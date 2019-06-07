@@ -16,137 +16,130 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL,
   tailport = NULL, decorate = NULL)
 }
 \arguments{
-\item{style}{the edge line style. The \code{style} types that can be used are
-\code{solid}, \code{bold}, \code{dashed}, \code{dotted}, \code{tapered},
-and \code{invisible}.}
+\item{style}{The edge line style. The \code{style} types that can be used are
+\code{solid}, \code{bold}, \code{dashed}, \code{dotted}, \code{tapered}, and \code{invisible}.}
 
-\item{penwidth}{the thickness of the stroke line for the edge itself.}
+\item{penwidth}{The thickness of the stroke line for the edge itself.}
 
-\item{color}{the color of the edge. Can be an X11 color or a hexadecimal
+\item{color}{The color of the edge. Can be an X11 color or a hexadecimal
 color code.}
 
-\item{arrowsize}{a scaling factor for arrowheads. The default value is
-\code{1.0} and the minimum is \code{0}.}
+\item{arrowsize}{A scaling factor for arrowheads. The default value is \code{1.0}
+and the minimum is \code{0}.}
 
-\item{arrowhead}{the type of arrowhead to use. The \code{style} attribute can
-be any of these types: \code{normal}, \code{vee}, \code{tee}, \code{dot},
-\code{diamond}, \code{box}, \code{curve}, \code{icurve}, \code{inv},
-\code{crow}, or \code{none}.}
+\item{arrowhead}{The type of arrowhead to use. The \code{style} attribute can be
+any of these types: \code{normal}, \code{vee}, \code{tee}, \code{dot}, \code{diamond}, \code{box},
+\code{curve}, \code{icurve}, \code{inv}, \code{crow}, or \code{none}.}
 
-\item{arrowtail}{the type of arrowtail to use. The \code{style} attribute can
-any of these types: \code{normal}, \code{vee}, \code{tee}, \code{dot},
-\code{diamond}, \code{box}, \code{curve}, \code{icurve}, \code{inv},
-\code{crow}, or \code{none}.}
+\item{arrowtail}{The type of arrowtail to use. The \code{style} attribute can any
+of these types: \code{normal}, \code{vee}, \code{tee}, \code{dot}, \code{diamond}, \code{box}, \code{curve},
+\code{icurve}, \code{inv}, \code{crow}, or \code{none}.}
 
-\item{fontname}{the name of the system font that will be used for any edge
+\item{fontname}{The name of the system font that will be used for any edge
 text.}
 
-\item{fontsize}{the point size of the font used for any edge text.}
+\item{fontsize}{The point size of the font used for any edge text.}
 
-\item{fontcolor}{the color used for any edge text. Can be an X11 color or a
+\item{fontcolor}{The color used for any edge text. Can be an X11 color or a
 hexadecimal color code.}
 
-\item{len}{the preferred edge length for an edge, in inches. Default value is
+\item{len}{The preferred edge length for an edge, in inches. Default value is
 \code{1.0}.}
 
-\item{tooltip}{text for a tooltip that appears when hovering over an edge. If
+\item{tooltip}{Text for a tooltip that appears when hovering over an edge. If
 text is not provided, then the default tooltip text will provide the edge
 definition (i.e., \code{[id]->[id] or [id]--[id]}).}
 
-\item{URL}{a URL to associate with an edge. Upon rendering the plot, clicking
+\item{URL}{A URL to associate with an edge. Upon rendering the plot, clicking
 edges with any associated URLs will open the URL in the default browser.}
 
-\item{label}{the label text associated with the edge. This text will appear
+\item{label}{The label text associated with the edge. This text will appear
 near the center of the edge.}
 
-\item{labelfontname}{the name of the system font that will be used for the
-\code{headlabel} and the \code{taillabel} label text. If not set, the
-\code{fontname} value will instead be used.}
+\item{labelfontname}{The name of the system font that will be used for the
+\code{headlabel} and the \code{taillabel} label text. If not set, the \code{fontname}
+value will instead be used.}
 
-\item{labelfontsize}{the point size of the font used for the \code{headlabel}
-and the \code{taillabel} label text. If not set, the \code{fontsize} value
-will instead be used.}
+\item{labelfontsize}{The point size of the font used for the \code{headlabel} and
+the \code{taillabel} label text. If not set, the \code{fontsize} value will instead
+be used.}
 
-\item{labelfontcolor}{the color used for the label text of the
-\code{headlabel} and the \code{taillabel} label text. If not set, the
-\code{fontcolor} value will instead be used. Can be an X11 color or a
-hexadecimal color code.}
+\item{labelfontcolor}{The color used for the label text of the \code{headlabel}
+and the \code{taillabel} label text. If not set, the \code{fontcolor} value will
+instead be used. Can be an X11 color or a hexadecimal color code.}
 
-\item{labeltooltip}{text for a tooltip that will appear when hovering over
+\item{labeltooltip}{Text for a tooltip that will appear when hovering over
 the main label of an edge (if label text provided in the \code{label} edge
 attribute). If text is not provided and an edge label is visible, then the
-default tooltip text will provide the edge definition (i.e.,
-\code{[id]->[id] or [id]--[id]}).}
+default tooltip text will provide the edge definition (i.e., \code{[id]->[id] or [id]--[id]}).}
 
-\item{labelURL}{a URL to associate with edge label text. Upon rendering the
+\item{labelURL}{A URL to associate with edge label text. Upon rendering the
 plot, clicking edge labels with any associated URLs will open the URL in
 the default browser.}
 
-\item{edgetooltip}{this option provides a means to specify a tooltip with
+\item{edgetooltip}{This option provides a means to specify a tooltip with
 only the non-label parts of an edge. If this is defined, the value
-overrides any \code{tooltip} defined for the edge. This tooltip text is
-when hovering along the edge (even near the head or tail node) unless
-overridden by a \code{headtooltip} or \code{tailtooltip} value.}
+overrides any \code{tooltip} defined for the edge. This tooltip text is when
+hovering along the edge (even near the head or tail node) unless overridden
+by a \code{headtooltip} or \code{tailtooltip} value.}
 
-\item{edgeURL}{this option provides a means to specify a URL with only the
+\item{edgeURL}{This option provides a means to specify a URL with only the
 non-label parts of an edge. If this is defined, the value overrides any
-\code{URL} defined for the edge. This URL is used along the edge (even near
-the head or tail node) unless overridden by a \code{headURL} or
-\code{tailURL} value.}
+\code{URL} defined for the edge. This URL is used along the edge (even near the
+head or tail node) unless overridden by a \code{headURL} or \code{tailURL} value.}
 
-\item{dir}{an optional direction type. Normally, for directed graphs, this is
-\code{forward} and needn't be set. For undirected graphs, this would be
-\code{none} and again no explicit setting is required. However, one can
-also use the \code{back} or \code{both} options. The \code{back} option
-draws an arrowhead in the reverse direction of an edge. The \code{both}
-option draws two arrowheads. When using any of these options in such an
-explicit manner, the \code{head...} and \code{tail...} edge attributes
-allow control over aesthetic edge attributes in either side of the edge.}
+\item{dir}{An optional direction type. Normally, for directed graphs, this is
+\code{forward} and needn't be set. For undirected graphs, this would be \code{none}
+and again no explicit setting is required. However, one can also use the
+\code{back} or \code{both} options. The \code{back} option draws an arrowhead in the
+reverse direction of an edge. The \code{both} option draws two arrowheads. When
+using any of these options in such an explicit manner, the \code{head...} and
+\code{tail...} edge attributes allow control over aesthetic edge attributes in
+either side of the edge.}
 
-\item{headtooltip}{this option provides a means to specify a tooltip that can
+\item{headtooltip}{This option provides a means to specify a tooltip that can
 be displayed by hovering over the part of an edge that is adjacent to
 incoming node (see the \code{tooltip} argument for further details).}
 
-\item{headURL}{this option provides a means to specify a URL that can be
+\item{headURL}{This option provides a means to specify a URL that can be
 accessed by clicking the part of an edge that is adjacent to incoming node
 (see the \code{URL} argument for further details).}
 
-\item{headclip}{if \code{TRUE} (the default behavior), then the head of the
-affected edge is clipped to the node boundary. Using \code{FALSE} places
-the head of the outgoing edge at the center of its node.}
+\item{headclip}{If \code{TRUE} (the default behavior), then the head of the
+affected edge is clipped to the node boundary. Using \code{FALSE} places the
+head of the outgoing edge at the center of its node.}
 
-\item{headlabel}{this option provides a means to display a label near the
-part of an edge that is adjacent to incoming node (see the \code{label}
-argument for further details).}
+\item{headlabel}{This option provides a means to display a label near the
+part of an edge that is adjacent to incoming node (see the \code{label} argument
+for further details).}
 
-\item{headport}{allows one to specify which compass position on the incoming
-node the head of the edge will alight. Options are \code{n}, \code{ne},
-\code{e}, \code{se}, \code{s}, \code{sw}, \code{w}, and \code{nw}.}
+\item{headport}{Allows one to specify which compass position on the incoming
+node the head of the edge will alight. Options are \code{n}, \code{ne}, \code{e}, \code{se},
+\code{s}, \code{sw}, \code{w}, and \code{nw}.}
 
-\item{tailtooltip}{this option provides a means to specify a tooltip that can
+\item{tailtooltip}{This option provides a means to specify a tooltip that can
 be displayed by hovering over the part of an edge that is adjacent to
 outgoing node (see the \code{tooltip} argument for further details).}
 
-\item{tailURL}{this option provides a means to specify a URL that can be
+\item{tailURL}{This option provides a means to specify a URL that can be
 accessed by clicking the part of an edge that is adjacent to outgoing node
 (see the \code{URL} argument for further details).}
 
-\item{tailclip}{if \code{TRUE} (the default behavior), then the tail of the
-affected edge is clipped to the node boundary. Using \code{FALSE} places
-the tail of the outgoing edge at the center of its node.}
+\item{tailclip}{If \code{TRUE} (the default behavior), then the tail of the
+affected edge is clipped to the node boundary. Using \code{FALSE} places the
+tail of the outgoing edge at the center of its node.}
 
-\item{taillabel}{this option provides a means to display a label near the
-part of an edge that is adjacent to outgoing node (see the \code{label}
-argument for further details).}
+\item{taillabel}{This option provides a means to display a label near the
+part of an edge that is adjacent to outgoing node (see the \code{label} argument
+for further details).}
 
-\item{tailport}{allows one to specify which compass position on the outgoing
-node the tail of the edge will be emitted from. Options are \code{n},
-\code{ne}, \code{e}, \code{se}, \code{s}, \code{sw}, \code{w}, and
-\code{nw}.}
+\item{tailport}{Allows one to specify which compass position on the outgoing
+node the tail of the edge will be emitted from. Options are \code{n}, \code{ne}, \code{e},
+\code{se}, \code{s}, \code{sw}, \code{w}, and \code{nw}.}
 
-\item{decorate}{if \code{TRUE} then attach any edge label to the edge line
-via a 2-segment polyline, underlining the label text and partially
-overlapping the edge line.}
+\item{decorate}{If \code{TRUE} then attach any edge label to the edge line via a
+2-segment polyline, underlining the label text and partially overlapping
+the edge line.}
 }
 \description{
 This helper function should be invoked to provide values for the namesake
@@ -172,4 +165,5 @@ graph <-
 # been inserted
 graph \%>\%
   get_edge_df()
+
 }

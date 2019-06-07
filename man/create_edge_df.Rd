@@ -7,18 +7,18 @@
 create_edge_df(from, to, rel = NULL, ...)
 }
 \arguments{
-\item{from}{a vector of node ID values from which edges are outbound. The
+\item{from}{A vector of node ID values from which edges are outbound. The
 vector length must equal that of the \code{to} vector.}
 
-\item{to}{a vector of node ID values to which edges are incoming. The vector
+\item{to}{A vector of node ID values to which edges are incoming. The vector
 length must equal that of the \code{from} vector.}
 
-\item{rel}{an optional \code{rel} label for each edge.}
+\item{rel}{An optional \code{rel} label for each edge.}
 
-\item{...}{one or more vectors for associated edge attributes.}
+\item{...}{One or more vectors for associated edge attributes.}
 }
 \value{
-an edge data frame (edf).
+An edge data frame (edf).
 }
 \description{
 Combine several vectors for edges and their attributes into a data frame,
@@ -35,8 +35,8 @@ columns:
 }
 
 An arbitrary number of additional columns containing aesthetic or data
-attributes can be part of the edf, so long as they follow the
-aforementioned columns.
+attributes can be part of the edf, so long as they follow the aforementioned
+columns.
 }
 \examples{
 # Create a simple edge data frame (edf) and
@@ -64,4 +64,5 @@ edf <-
 
 # Display the edge data frame
 edf
+
 }

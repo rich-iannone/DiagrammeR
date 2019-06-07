@@ -14,109 +14,107 @@ node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
   margin = NULL)
 }
 \arguments{
-\item{shape}{the shape to use for the node. Some possible \code{shape} types
-include: \code{circle}, \code{rectangle}, \code{triangle},
-\code{plaintext}, \code{square}, and \code{polygon}.}
+\item{shape}{The shape to use for the node. Some possible \code{shape} types
+include: \code{circle}, \code{rectangle}, \code{triangle}, \code{plaintext}, \code{square}, and
+\code{polygon}.}
 
-\item{style}{the node line style. The \code{style} types that can be used
-are: \code{filled}, \code{invisible}, \code{diagonals}, \code{rounded},
-\code{dashed}, \code{dotted}, \code{solid}, and \code{bold}.}
+\item{style}{The node line style. The \code{style} types that can be used are:
+\code{filled}, \code{invisible}, \code{diagonals}, \code{rounded}, \code{dashed}, \code{dotted}, \code{solid},
+and \code{bold}.}
 
-\item{penwidth}{the thickness of the stroke line (in pt units) for the node
+\item{penwidth}{The thickness of the stroke line (in pt units) for the node
 shape. The default value is \code{1.0}.}
 
-\item{color}{the color of the node's outline. Can be any of the named colors
+\item{color}{The color of the node's outline. Can be any of the named colors
 that R knows about (obtained using the \code{colors()} function), or, a
 hexadecimal color code.}
 
-\item{fillcolor}{the color with which to fill the shape of the node. Can be
-any of the named colors that R knows about (obtained using the
-\code{colors()} function), or, a hexadecimal color code.}
+\item{fillcolor}{The color with which to fill the shape of the node. Can be
+any of the named colors that R knows about (obtained using the \code{colors()}
+function), or, a hexadecimal color code.}
 
-\item{image}{a reference to an image location.}
+\item{image}{A reference to an image location.}
 
-\item{fa_icon}{the name of a FontAwesome icon.}
+\item{fa_icon}{The name of a FontAwesome icon.}
 
-\item{fontname}{the name of the system font that will be used for any node
+\item{fontname}{The name of the system font that will be used for any node
 text.}
 
-\item{fontsize}{the point size of the font used for any node text.}
+\item{fontsize}{The point size of the font used for any node text.}
 
-\item{fontcolor}{the color used for any node text. Can be any of the named
-colors that R knows about (obtained using the \code{colors()} function),
-or, a hexadecimal color code.}
+\item{fontcolor}{The color used for any node text. Can be any of the named
+colors that R knows about (obtained using the \code{colors()} function), or, a
+hexadecimal color code.}
 
-\item{peripheries}{the repeated number of node shapes (of increasing size) to
+\item{peripheries}{The repeated number of node shapes (of increasing size) to
 draw at the node periphery.}
 
-\item{height}{the height of the node shape, in inches. The default value is
-\code{0.5} whereas the minimum value is \code{0.02}. This is understood as
-the initial, minimum height of the node. If \code{fixedsize} is set to
-\code{TRUE}, this will be the final height of the node. Otherwise, if the
-node label requires more height to fit, the node's height will be increased
-to contain the label.}
+\item{height}{The height of the node shape, in inches. The default value is
+\code{0.5} whereas the minimum value is \code{0.02}. This is understood as the
+initial, minimum height of the node. If \code{fixedsize} is set to \code{TRUE}, this
+will be the final height of the node. Otherwise, if the node label requires
+more height to fit, the node's height will be increased to contain the
+label.}
 
-\item{width}{the width of the node shape, in inches. The default value is
-\code{0.5} whereas the minimum value is \code{0.02}. This is understood as
-the initial, minimum width of the node. If \code{fixedsize} is set to
-\code{TRUE}, this will be the final width of the node. Otherwise, if the
-node label requires more width to fit, the node's width will be increased
-to contain the label.}
+\item{width}{The width of the node shape, in inches. The default value is
+\code{0.5} whereas the minimum value is \code{0.02}. This is understood as the
+initial, minimum width of the node. If \code{fixedsize} is set to \code{TRUE}, this
+will be the final width of the node. Otherwise, if the node label requires
+more width to fit, the node's width will be increased to contain the label.}
 
-\item{x}{the fixed position of the node in the x direction. Any integer-based
+\item{x}{The fixed position of the node in the x direction. Any integer-based
 or floating point value will be accepted.}
 
-\item{y}{the fixed position of the node in the y direction. Any integer-based
+\item{y}{The fixed position of the node in the y direction. Any integer-based
 or floating point value will be accepted.}
 
-\item{group}{the node group.}
+\item{group}{The node group.}
 
-\item{tooltip}{text for a node tooltip.}
+\item{tooltip}{Text for a node tooltip.}
 
 \item{xlabel}{External label for a node. The label will be placed outside of
 the node but near it. These labels are added after all nodes and edges have
 been placed. The labels will be placed so that they do not overlap any node
 or label. This means it may not be possible to place all of them.}
 
-\item{URL}{a URL to associate with a node. Upon rendering the plot, clicking
+\item{URL}{A URL to associate with a node. Upon rendering the plot, clicking
 nodes with any associated URLs will open the URL in the default browser.}
 
-\item{sides}{when using the shape \code{polygon}, this value will provide
-the number of sides for that polygon.}
+\item{sides}{When using the shape \code{polygon}, this value will provide the
+number of sides for that polygon.}
 
-\item{orientation}{this is the angle, in degrees, that is used to rotate
-nodes that have a \code{shape} of \code{polygon}. Not that for any of the
-polygon shapes (set by the \code{sides} node attribute), a value for
-\code{orientation} that is \code{0} results in a flat base.}
+\item{orientation}{This is the angle, in degrees, that is used to rotate
+nodes that have a \code{shape} of \code{polygon}. Not that for any of the polygon
+shapes (set by the \code{sides} node attribute), a value for \code{orientation} that
+is \code{0} results in a flat base.}
 
-\item{skew}{a \code{0-1} value that will result in the node shape being
-skewed to the right (from bottom to top). A value in the range \code{0} to
-\code{-1} will skew the shape to the left.}
+\item{skew}{A \code{0-1} value that will result in the node shape being skewed to
+the right (from bottom to top). A value in the range \code{0} to \code{-1} will skew
+the shape to the left.}
 
-\item{distortion}{a distortion factor that is used only when a \code{shape}
-of \code{polygon} is used. A \code{0-1} value will increasingly result in
-the top part of the node polygon shape to be larger than the bottom. Moving
-from \code{0} toward \code{-1} will result in the opposite distortion
-effect.}
+\item{distortion}{A distortion factor that is used only when a \code{shape} of
+\code{polygon} is used. A \code{0-1} value will increasingly result in the top part
+of the node polygon shape to be larger than the bottom. Moving from \code{0}
+toward \code{-1} will result in the opposite distortion effect.}
 
-\item{gradientangle}{the path angle for the node color fill gradient.}
+\item{gradientangle}{The path angle for the node color fill gradient.}
 
-\item{fixedsize}{if set to \code{FALSE}, the size of a node is determined by
+\item{fixedsize}{If set to \code{FALSE}, the size of a node is determined by
 smallest width and height needed to contain its label, if any, with a
-margin specified by the \code{margin} node attribute. The width and height
-must also be at least as large as the sizes specified by the \code{width}
-and \code{height} node attributes, which specify the minimum values. If set
-to \code{TRUE}, the node size is entirely specified by the values of the
-\code{width} and \code{height} node attributes (i.e., the node is not
-expanded in size to contain the text label).}
+margin specified by the \code{margin} node attribute. The width and height must
+also be at least as large as the sizes specified by the \code{width} and
+\code{height} node attributes, which specify the minimum values. If set to
+\code{TRUE}, the node size is entirely specified by the values of the \code{width}
+and \code{height} node attributes (i.e., the node is not expanded in size to
+contain the text label).}
 
-\item{labelloc}{sets the vertical placement of labels for nodes and clusters.
+\item{labelloc}{Sets the vertical placement of labels for nodes and clusters.
 This attribute is used only when the height of the node is larger than the
-height of its label. The \code{labelloc} node attribute can be set to
-either \code{t} (top), \code{c} (center), or \code{b} (bottom). By default,
-the label is vertically centered.}
+height of its label. The \code{labelloc} node attribute can be set to either \code{t}
+(top), \code{c} (center), or \code{b} (bottom). By default, the label is vertically
+centered.}
 
-\item{margin}{sets the amount of space around the node's label. By default,
+\item{margin}{Sets the amount of space around the node's label. By default,
 the value is \code{0.11,0.055}.}
 }
 \description{
@@ -159,4 +157,5 @@ graph <-
       "arrow-left", "arrow-right",
       "arrow-up", "arrow-down")),
     edge_aes = edge_aes(color = "blue"))
+
 }

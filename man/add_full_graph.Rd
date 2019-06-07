@@ -9,59 +9,54 @@ add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
   edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of nodes comprising the fully connected graph.}
+\item{n}{The number of nodes comprising the fully connected graph.}
 
-\item{type}{an optional string that describes the entity type for the nodes
+\item{type}{An optional string that describes the entity type for the nodes
 to be added.}
 
-\item{label}{either a vector object of length \code{n} that provides optional
+\item{label}{Either a vector object of length \code{n} that provides optional
 labels for the new nodes, or, a boolean value where setting to \code{TRUE}
-ascribes node IDs to the label and \code{FALSE} or \code{NULL} yields a
-blank label.}
+ascribes node IDs to the label and \code{FALSE} or \code{NULL} yields a blank label.}
 
-\item{rel}{an optional string for providing a relationship label to all new
+\item{rel}{An optional string for providing a relationship label to all new
 edges created in the connected graph.}
 
-\item{edge_wt_matrix}{an optional matrix of \code{n} by \code{n} dimensions
-containing values to apply as edge weights. If the matrix has row names or
-column names and \code{label = TRUE}, those row or column names will be
-used as node label values.}
+\item{edge_wt_matrix}{An optional matrix of \code{n} by \code{n} dimensions containing
+values to apply as edge weights. If the matrix has row names or column
+names and \code{label = TRUE}, those row or column names will be used as node
+label values.}
 
-\item{keep_loops}{an option to simplify the fully connected graph by removing
+\item{keep_loops}{An option to simplify the fully connected graph by removing
 loops (edges from and to the same node). The default value is \code{FALSE}.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.}
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph}, add a fully connected graph
-either with or without loops. If the graph object set as directed, the
-added graph will have edges to and from each pair of nodes. In the
-undirected case, a single edge will link each pair of nodes.
+With a graph object of class \code{dgr_graph}, add a fully connected graph either
+with or without loops. If the graph object set as directed, the added graph
+will have edges to and from each pair of nodes. In the undirected case, a
+single edge will link each pair of nodes.
 }
 \examples{
 # Create a new graph object
@@ -159,4 +154,5 @@ create_graph(directed = FALSE) \%>\%
     edge_wt_matrix = edge_wt_matrix,
     keep_loops = FALSE) \%>\%
   get_edge_df()
+
 }

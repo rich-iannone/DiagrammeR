@@ -7,10 +7,10 @@
 count_w_connected_cmpts(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single integer value representing the number of weakly-connected
+A single integer value representing the number of weakly-connected
 graph components.
 }
 \description{
@@ -25,6 +25,6 @@ graph <-
 
 # Get a count of weakly-connected
 # components in the graph
-graph \%>\%
-  count_w_connected_cmpts()
+graph \%>\% count_w_connected_cmpts()
+
 }

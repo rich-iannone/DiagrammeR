@@ -7,10 +7,10 @@
 get_girth(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the length of the shortest circle
+A single numeric value representing the length of the shortest circle
 in the graph.
 }
 \description{
@@ -32,4 +32,5 @@ graph \%>\% get_girth()
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   get_girth()
+
 }

@@ -7,7 +7,7 @@
 get_edge_count_w_multiedge(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
 a vector with a single, numerical value.
@@ -44,4 +44,5 @@ graph <-
 # distinct edges with separate edge
 # ID values)
 graph \%>\% get_edge_count_w_multiedge()
+
 }

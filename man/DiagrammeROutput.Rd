@@ -7,12 +7,12 @@
 DiagrammeROutput(outputId, width = "100\%", height = "auto")
 }
 \arguments{
-\item{outputId}{output variable to read from}
+\item{outputId}{Output variable to read from}
 
-\item{width}{a valid CSS unit for the width or a number, which will be
+\item{width}{A valid CSS unit for the width or a number, which will be
 coerced to a string and have \code{px} appended.}
 
-\item{height}{a valid CSS unit for the height or a number, which will be
+\item{height}{A valid CSS unit for the height or a number, which will be
 coerced to a string and have \code{px} appended.}
 }
 \description{

@@ -7,15 +7,15 @@
 select_last_nodes_created(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Select the last nodes that were created in a graph object of class
-\code{dgr_graph}. This function should ideally be used just after creating
-the nodes to be selected.
+\code{dgr_graph}. This function should ideally be used just after creating the
+nodes to be selected.
 }
 \examples{
 # Create a graph and add 4 nodes
@@ -45,4 +45,5 @@ graph <-
 # Display the graph's internal node
 # data frame to verify the change
 graph \%>\% get_node_df()
+
 }

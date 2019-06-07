@@ -9,34 +9,34 @@ rescale_node_attrs(graph, node_attr_from, to_lower_bound = 0,
   from_upper_bound = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node_attr_from}{the node attribute containing numeric data that is to
+\item{node_attr_from}{The node attribute containing numeric data that is to
 be rescaled to new numeric or color values.}
 
-\item{to_lower_bound}{the lower bound value for the set of rescaled values.
+\item{to_lower_bound}{The lower bound value for the set of rescaled values.
 This can be a numeric value or an X11 color name.}
 
-\item{to_upper_bound}{the upper bound value for the set of rescaled values.
+\item{to_upper_bound}{The upper bound value for the set of rescaled values.
 This can be a numeric value or an X11 color name.}
 
-\item{node_attr_to}{an optional name of a new node attribute to which the
+\item{node_attr_to}{An optional name of a new node attribute to which the
 recoded values will be applied. This will retain the original node
 attribute and its values.}
 
-\item{from_lower_bound}{an optional, manually set lower bound value for the
+\item{from_lower_bound}{An optional, manually set lower bound value for the
 rescaled values. If not set, the minimum value from the set will be used.}
 
-\item{from_upper_bound}{an optional, manually set upper bound value for the
+\item{from_upper_bound}{An optional, manually set upper bound value for the
 rescaled values. If not set, the minimum value from the set will be used.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, take a set of numeric values
-for a node attribute, rescale to a new numeric or color range, then write
-to the same node attribute or to a new node attribute column.
+From a graph object of class \code{dgr_graph}, take a set of numeric values for a
+node attribute, rescale to a new numeric or color range, then write to the
+same node attribute or to a new node attribute column.
 }
 \examples{
 # Create a random graph using the
@@ -97,4 +97,5 @@ graph <-
 # in the `fillcolor` and `fontcolor`
 # node attributes
 graph \%>\% get_node_df()
+
 }

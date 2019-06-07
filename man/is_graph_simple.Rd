@@ -7,10 +7,10 @@
 is_graph_simple(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
 Determine whether the graph is a simple graph. A simple graph is one that
@@ -25,4 +25,5 @@ graph <-
 
 # Check if the graph is simple
 graph \%>\% is_graph_simple()
+
 }

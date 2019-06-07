@@ -7,14 +7,14 @@
 set_graph_time(graph, time = NULL, tz = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{time}{the date-time to set for the graph.}
+\item{time}{The date-time to set for the graph.}
 
-\item{tz}{the timezone to set for the graph.}
+\item{tz}{The timezone to set for the graph.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Set the time and timezone for a graph object of class \code{dgr_graph}.
@@ -27,8 +27,7 @@ graph <- create_graph()
 # is not supplied, `GMT` is used as the time zone)
 graph_1 <-
   graph \%>\%
-  set_graph_time(
-    time = "2015-10-25 15:23:00")
+  set_graph_time(time = "2015-10-25 15:23:00")
 
 # Provide the new graph with a timestamp that is
 # the current time; the time zone is inferred from
@@ -41,6 +40,6 @@ graph_2 <-
 # is present
 graph_2 <-
   graph_2 \%>\%
-  set_graph_time(
-    tz = "America/Los_Angeles")
+  set_graph_time(tz = "America/Los_Angeles")
+
 }

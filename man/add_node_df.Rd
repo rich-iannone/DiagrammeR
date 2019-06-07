@@ -7,17 +7,16 @@
 add_node_df(graph, node_df)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node_df}{a node data frame that is created using
-\code{\link[=create_node_df]{create_node_df()}}.}
+\item{node_df}{A node data frame that is created using \code{\link[=create_node_df]{create_node_df()}}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph} add nodes from a node data
-frame to that graph.
+With a graph object of class \code{dgr_graph} add nodes from a node data frame to
+that graph.
 }
 \examples{
 # Create an empty graph
@@ -55,4 +54,5 @@ graph <-
 # node data frame using the
 # `get_node_df()` function
 graph \%>\% get_node_df()
+
 }

@@ -7,10 +7,10 @@
 transform_to_min_spanning_tree(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Get a minimum spanning tree subgraph for a connected graph of class
@@ -64,4 +64,5 @@ min_spanning_tree_graph <-
     to_lower_bound = 0.5,
     to_upper_bound = 4.0,
       edge_attr_to = penwidth)
+
 }

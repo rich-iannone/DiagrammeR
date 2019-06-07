@@ -7,10 +7,10 @@
 save_graph(x, file)
 }
 \arguments{
-\item{x}{a graph object of class \code{dgr_graph} or a graph series object of
-type \code{dgr_graph_1D}.}
+\item{x}{A graph object of class \code{dgr_graph} or a graph series object of type
+\code{dgr_graph_1D}.}
 
-\item{file}{a file name for the graph or graph series. Provide a character
+\item{file}{A file name for the graph or graph series. Provide a character
 string and the \code{.dgr} extension will be applied to it.}
 }
 \description{
@@ -38,4 +38,5 @@ save_graph(
 gnp_graph_2 <-
   open_graph(
     file = "gnp_graph.dgr")
+
 }

@@ -7,10 +7,10 @@
 clear_selection(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Clear the selection of nodes or edges within a graph object.
@@ -42,4 +42,5 @@ graph <-
 # Verify that the node
 # selection has been cleared
 graph \%>\% get_selection()
+
 }

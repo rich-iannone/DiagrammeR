@@ -7,7 +7,7 @@
 get_eccentricity(graph, mode = "out")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{mode}{the mode with which the shortest paths to or from the given
 vertices should be calculated for directed graphs. If \code{out} (the
@@ -36,4 +36,5 @@ graph <-
 # Get the eccentricity values for
 # all nodes in the graph
 graph \%>\% get_eccentricity()
+
 }

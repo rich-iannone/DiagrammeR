@@ -7,17 +7,16 @@
 add_edge_df(graph, edge_df)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge_df}{an edge data frame that is created using
-\code{\link[=create_edge_df]{create_edge_df()}}.}
+\item{edge_df}{An edge data frame that is created using \code{\link[=create_edge_df]{create_edge_df()}}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph}, add edges from an edge data
-frame to that graph.
+With a graph object of class \code{dgr_graph}, add edges from an edge data frame
+to that graph.
 }
 \examples{
 # Create a graph with 4 nodes

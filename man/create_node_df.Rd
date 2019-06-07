@@ -7,16 +7,16 @@
 create_node_df(n, type = NULL, label = NULL, ...)
 }
 \arguments{
-\item{n}{the total number of nodes to include in the node data frame.}
+\item{n}{The total number of nodes to include in the node data frame.}
 
-\item{type}{an optional \code{type} for each node.}
+\item{type}{An optional \code{type} for each node.}
 
-\item{label}{an optional \code{label} for each node.}
+\item{label}{An optional \code{label} for each node.}
 
-\item{...}{one or more vectors for associated node attributes.}
+\item{...}{One or more vectors for associated node attributes.}
 }
 \value{
-a node data frame (ndf).
+A node data frame (ndf).
 }
 \description{
 Combine several vectors for nodes and their attributes into a data frame,
@@ -32,8 +32,8 @@ columns:
 }
 
 An arbitrary number of additional columns containing aesthetic or data
-attributes can be part of the ndf, so long as they follow the
-aforementioned columns.
+attributes can be part of the ndf, so long as they follow the aforementioned
+columns.
 }
 \examples{
 # Create a node data frame (ndf) where the labels
@@ -66,4 +66,5 @@ node_df <-
 
 # Display the node data frame
 node_df
+
 }

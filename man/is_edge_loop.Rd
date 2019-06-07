@@ -7,12 +7,12 @@
 is_edge_loop(graph, edge)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge}{a numeric edge ID value.}
+\item{edge}{A numeric edge ID value.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
 Determines whether an edge definition is a loop edge.
@@ -41,4 +41,5 @@ graph \%>\% is_edge_loop(edge = 4)
 # Determine if edge `2` is
 # a loop edge
 graph \%>\% is_edge_loop(edge = 2)
+
 }

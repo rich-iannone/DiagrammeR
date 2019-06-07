@@ -7,19 +7,18 @@
 display_metagraph(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}. This graph must
-fulfill the condition of being a property graph, otherwise the function
-yields an error.}
+\item{graph}{A graph object of class \code{dgr_graph}. This graph must fulfill the
+condition of being a property graph, otherwise the function yields an
+error.}
 }
 \description{
-With a graph object of class \code{dgr_graph} that is also a property graph
-(i.e., all nodes have an assigned \code{type} value and all edges have an
-assigned \code{rel} value), display its metagraph in the RStudio Viewer.
-This representation provides all combinations of edges of different
-\code{rel} values to all nodes with distinct \code{type} values, including
-any edges to nodes of the same \code{type} (shown as loops). The
-precondition of the graph being a property graph can be verified by using
-the \code{\link[=is_property_graph]{is_property_graph()}} function.
+With a graph object of class \code{dgr_graph} that is also a property graph (i.e.,
+all nodes have an assigned \code{type} value and all edges have an assigned \code{rel}
+value), display its metagraph in the RStudio Viewer. This representation
+provides all combinations of edges of different \code{rel} values to all nodes
+with distinct \code{type} values, including any edges to nodes of the same \code{type}
+(shown as loops). The precondition of the graph being a property graph can be
+verified by using the \code{\link[=is_property_graph]{is_property_graph()}} function.
 }
 \examples{
 \dontrun{
@@ -85,4 +84,5 @@ property_graph <-
 # graph model for a property graph
 display_metagraph(property_graph)
 }
+
 }

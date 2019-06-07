@@ -7,10 +7,10 @@
 invert_selection(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Modify the selection of nodes or edges within a graph object such that all
@@ -45,8 +45,7 @@ graph <-
 
 # Verify that a node
 # selection has been made
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Invert the selection
 graph <-
@@ -55,6 +54,6 @@ graph <-
 
 # Verify that the node
 # selection has been changed
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
+
 }

@@ -8,20 +8,20 @@ from_igraph(igraph, graph_name = NULL, write_backups = FALSE,
   display_msgs = FALSE)
 }
 \arguments{
-\item{igraph}{an \pkg{igraph} graph object.}
+\item{igraph}{An \pkg{igraph} graph object.}
 
-\item{graph_name}{an optional string for labeling the graph object.}
+\item{graph_name}{An optional string for labeling the graph object.}
 
-\item{write_backups}{an option to write incremental backups of changing
-graph states to disk. If \code{TRUE}, a subdirectory within the working
-directory will be created and used to store \code{RDS} files. The default
-value is \code{FALSE} so one has to opt in to use this functionality.}
+\item{write_backups}{An option to write incremental backups of changing graph
+states to disk. If \code{TRUE}, a subdirectory within the working directory will
+be created and used to store \code{RDS} files. The default value is \code{FALSE} so
+one has to opt in to use this functionality.}
 
-\item{display_msgs}{an option to display messages primarily concerned with
+\item{display_msgs}{An option to display messages primarily concerned with
 changes in graph selections. By default, this is \code{FALSE}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Convert an igraph graph to a DiagrammeR graph object.
@@ -50,4 +50,5 @@ dgr_graph_new <-
 # Get some graph information
 (dgr_graph_new \%>\%
   get_graph_info())[, 1:6]
+
 }

@@ -7,20 +7,20 @@
 select_nodes_in_neighborhood(graph, node, distance, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node}{the node from which the traversal will originate.}
+\item{node}{The node from which the traversal will originate.}
 
-\item{distance}{the maximum number of steps from the \code{node} for
-inclusion in the selection.}
+\item{distance}{The maximum number of steps from the \code{node} for inclusion in
+the selection.}
 
-\item{set_op}{the set operation to perform upon consecutive selections of
+\item{set_op}{The set operation to perform upon consecutive selections of
 graph nodes. This can either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect}, or, as a
-\code{difference} on the previous selection, if it exists.}
+intersection of selections with \code{intersect}, or, as a \code{difference} on the
+previous selection, if it exists.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Select those nodes in the neighborhood of nodes connected a specified
@@ -62,4 +62,5 @@ graph <-
 
 # Get the selection of nodes
 graph \%>\% get_selection()
+
 }

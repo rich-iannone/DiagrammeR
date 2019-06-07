@@ -8,22 +8,22 @@ export_csv(graph, ndf_name = "nodes.csv", edf_name = "edges.csv",
   output_path = getwd(), colnames_type = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{ndf_name}{the name to provide to the CSV file containing node
+\item{ndf_name}{The name to provide to the CSV file containing node
 information. By default this CSV will be called \code{nodes.csv}.}
 
-\item{edf_name}{the name to provide to the CSV file containing edge
+\item{edf_name}{The name to provide to the CSV file containing edge
 information. By default this CSV will be called \code{edges.csv}.}
 
-\item{output_path}{the path to which the CSV files will be placed. By
+\item{output_path}{The path to which the CSV files will be placed. By
 default, this is the current working directory.}
 
-\item{colnames_type}{provides options to modify CSV column names to allow for
-easier import into other graph systems. The \code{neo4j} option modifies
-column names to allow for direct import of CSVs into Neo4J with the
-\code{LOAD CSV} clause. The \code{graphframes} option modifies column names
-to match those required by the Spark GraphFrames package.}
+\item{colnames_type}{Provides options to modify CSV column names to allow for
+easier import into other graph systems. The \code{neo4j} option modifies column
+names to allow for direct import of CSVs into Neo4J with the \code{LOAD CSV}
+clause. The \code{graphframes} option modifies column names to match those
+required by the Spark GraphFrames package.}
 }
 \description{
 Export a graph to CSV files for nodes and edges.
@@ -53,4 +53,5 @@ graph <-
 # Create separate `nodes.csv` and `edges.csv`
 # files in the working directory
 graph \%>\% export_csv()
+
 }

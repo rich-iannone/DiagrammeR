@@ -7,16 +7,16 @@
 mutate_node_attrs(graph, ...)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{...}{expressions used for the mutation of node attributes. LHS of each
+\item{...}{Expressions used for the mutation of node attributes. LHS of each
 expression is either an existing or new node attribute name. The RHS can
 consist of any valid R code that uses node attributes as variables.
 Expressions are evaluated in the order provided, so, node attributes
 created or modified are ready to use in subsequent expressions.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal node data frame (ndf), mutate numeric node
@@ -80,4 +80,5 @@ graph <-
 # values had been multiplied
 # together (with new attr `area`)
 graph \%>\% get_node_df()
+
 }

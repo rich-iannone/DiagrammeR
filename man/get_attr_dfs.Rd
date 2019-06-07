@@ -8,7 +8,7 @@ get_attr_dfs(graph, node_id = NULL, edge_id = NULL,
   return_format = "single_tbl")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{node_id}{a vector of node ID values in which data frames are bound as
 node attrs.}
@@ -113,4 +113,5 @@ get_attr_dfs(
   graph,
   edge_id = 1,
   return_format = "single_df")
+
 }

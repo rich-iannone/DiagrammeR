@@ -7,10 +7,10 @@
 get_selection(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a vector with the current selection of node or edge ID values.
+A vector with the current selection of node or edge ID values.
 }
 \description{
 Get the current selection of node IDs or edge IDs from a graph object of
@@ -41,4 +41,5 @@ graph \%>\%
   select_edges_by_node_id(
     nodes = 4) \%>\%
   get_selection()
+
 }

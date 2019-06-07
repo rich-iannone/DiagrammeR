@@ -7,7 +7,7 @@
 get_cmty_fast_greedy(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
 a data frame with group membership assignments for each of the nodes.
@@ -45,4 +45,5 @@ graph <-
 # Display the graph's
 # node data frame
 graph \%>\% get_node_df()
+
 }

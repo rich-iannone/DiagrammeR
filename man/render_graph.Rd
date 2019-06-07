@@ -8,26 +8,24 @@ render_graph(graph, layout = NULL, output = NULL, as_svg = FALSE,
   title = NULL, width = NULL, height = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{layout}{a string specifying a layout type to use for node placement in
-this rendering. Possible layouts include: \code{nicely}, \code{circle},
-\code{tree}, \code{kk}, and \code{fr}.}
+\item{layout}{A string specifying a layout type to use for node placement in
+this rendering. Possible layouts include: \code{nicely}, \code{circle}, \code{tree}, \code{kk},
+and \code{fr}.}
 
-\item{output}{a string specifying the output type; \code{graph} (the default)
-renders the graph using the \code{\link[=grViz]{grViz()}} function and
-\code{visNetwork} renders the graph using the \code{\link[=visnetwork]{visnetwork()}}
-function.}
+\item{output}{A string specifying the output type; \code{graph} (the default)
+renders the graph using the \code{\link[=grViz]{grViz()}} function and \code{visNetwork} renders the
+graph using the \code{\link[=visnetwork]{visnetwork()}} function.}
 
-\item{as_svg}{an option to render the graph as an SVG document.}
+\item{as_svg}{An option to render the graph as an SVG document.}
 
-\item{title}{an optional title for a graph when using
-\code{output = "graph"}.}
+\item{title}{An optional title for a graph when using \code{output = "graph"}.}
 
-\item{width}{an optional parameter for specifying the width of the resulting
+\item{width}{An optional parameter for specifying the width of the resulting
 graphic in pixels.}
 
-\item{height}{an optional parameter for specifying the height of the
+\item{height}{An optional parameter for specifying the height of the
 resulting graphic in pixels.}
 }
 \description{
@@ -75,4 +73,5 @@ create_graph() \%>\%
   render_graph(
     output = "visNetwork")
 }
+
 }

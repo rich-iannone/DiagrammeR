@@ -7,19 +7,19 @@
 set_cache(graph, to_cache, name = NULL, col = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{to_cache}{any vector or data frame. If a data frame is supplied then a
+\item{to_cache}{Any vector or data frame. If a data frame is supplied then a
 single column for the vector to pull must be provided in the \code{col}
 argument.}
 
-\item{name}{an optional name for the cached vector.}
+\item{name}{An optional name for the cached vector.}
 
-\item{col}{if a data frame is provided in \code{to_cache} then a column name
-from that data frame must provided here.}
+\item{col}{If a data frame is provided in \code{to_cache} then a column name from
+that data frame must provided here.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+Aa graph object of class \code{dgr_graph}.
 }
 \description{
 Place any vector in the cache of a graph object of class \code{dgr_graph}.
@@ -63,6 +63,6 @@ graph <-
 
 # Get the graph's cache
 graph \%>\%
-  get_cache(
-    name = "difference")
+  get_cache(name = "difference")
+
 }

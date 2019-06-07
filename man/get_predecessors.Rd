@@ -7,12 +7,12 @@
 get_predecessors(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node}{a node ID for the selected node.}
+\item{node}{A node ID for the selected node.}
 }
 \value{
-a vector of node ID values.
+A vector of node ID values.
 }
 \description{
 Provides a vector of node IDs for all nodes that have a connection to the
@@ -53,4 +53,5 @@ graph \%>\%
 graph \%>\%
   get_predecessors(
     node = 26)
+
 }

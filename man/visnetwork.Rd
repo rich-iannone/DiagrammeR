@@ -7,7 +7,7 @@
 visnetwork(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \description{
 Render a graph object with the visNetwork R package.
@@ -42,4 +42,5 @@ graph <-
 
 visnetwork(graph)
 }
+
 }

@@ -8,33 +8,31 @@ add_n_nodes(graph, n, type = NULL, label = NULL, node_aes = NULL,
   node_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of new nodes to add to the graph.}
+\item{n}{The number of new nodes to add to the graph.}
 
-\item{type}{an optional character vector that provides group identifiers for
+\item{type}{An optional character vector that provides group identifiers for
 the nodes to be added.}
 
-\item{label}{an optional character object that describes the nodes to be
+\item{label}{An optional character object that describes the nodes to be
 added.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Add \code{n} new nodes to a graph object of class \code{dgr_graph}.
-Optionally, set node \code{type} values for the new nodes.
+Add \code{n} new nodes to a graph object of class \code{dgr_graph}. Optionally, set
+node \code{type} values for the new nodes.
 }
 \examples{
 # Create an empty graph and
@@ -47,4 +45,5 @@ graph <-
 
 # Get the graph's node IDs
 graph \%>\% get_node_ids()
+
 }

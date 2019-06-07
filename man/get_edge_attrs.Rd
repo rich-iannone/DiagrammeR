@@ -7,7 +7,7 @@
 get_edge_attrs(graph, edge_attr, from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{edge_attr}{the name of the attribute for which to get values.}
 
@@ -77,4 +77,5 @@ graph \%>\%
     edge_attr = value,
     from = c(1, 2),
       to = c(2, 3))
+
 }

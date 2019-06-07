@@ -7,10 +7,10 @@
 get_node_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame containing information specific to each node within the
+A data frame containing information specific to each node within the
 graph.
 }
 \description{
@@ -27,4 +27,5 @@ graph <-
 
 # Get information on the graph's nodes
 graph \%>\% get_node_info()
+
 }

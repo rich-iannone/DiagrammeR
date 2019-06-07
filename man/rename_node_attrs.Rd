@@ -7,15 +7,15 @@
 rename_node_attrs(graph, node_attr_from, node_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node_attr_from}{the name of the node attribute that will be renamed.}
+\item{node_attr_from}{The name of the node attribute that will be renamed.}
 
-\item{node_attr_to}{the new name of the node attribute column identified in
+\item{node_attr_to}{The new name of the node attribute column identified in
 \code{node_attr_from}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal node data frame (ndf), rename an existing node
@@ -57,4 +57,5 @@ graph <-
 # ndf to show that the node
 # attribute had been renamed
 graph \%>\% get_node_df()
+
 }

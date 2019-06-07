@@ -7,10 +7,10 @@
 count_s_connected_cmpts(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single integer value representing the number of strongly-connected
+A single integer value representing the number of strongly-connected
 graph components.
 }
 \description{
@@ -30,6 +30,6 @@ graph <-
 
 # Get a count of strongly-connected
 # components in the graph
-graph \%>\%
-  count_s_connected_cmpts()
+graph \%>\% count_s_connected_cmpts()
+
 }

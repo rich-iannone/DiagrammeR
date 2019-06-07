@@ -7,7 +7,7 @@
 get_authority_centrality(graph, weights_attr = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{weights_attr}{an optional name of the edge attribute to use in the
 adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
@@ -44,4 +44,5 @@ graph <-
 
 # Display the graph's node data frame
 graph \%>\% get_node_df()
+
 }

@@ -7,9 +7,9 @@
 transform_to_complement_graph(graph, loops = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{loops}{an option for whether loops should be generated in the
+\item{loops}{An option for whether loops should be generated in the
 complement graph.}
 }
 \value{
@@ -17,9 +17,9 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Create a complement graph which contains only edges not present in the input
-graph. It's important to nodes that any edge attributes in the input
-graph's edges will be lost. Node attributes will be retained, since they
-are not affected by this transformation.
+graph. It's important to nodes that any edge attributes in the input graph's
+edges will be lost. Node attributes will be retained, since they are not
+affected by this transformation.
 }
 \examples{
 # Create a simple graph
@@ -41,4 +41,5 @@ graph_c <-
 # Get the edge data frame
 # for the complement graph
 graph_c \%>\% get_edge_df()
+
 }

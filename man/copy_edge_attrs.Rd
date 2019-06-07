@@ -7,16 +7,16 @@
 copy_edge_attrs(graph, edge_attr_from, edge_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute column from which values
+\item{edge_attr_from}{The name of the edge attribute column from which values
 will be copied.}
 
-\item{edge_attr_to}{the name of the new edge attribute column to which the
+\item{edge_attr_to}{The name of the new edge attribute column to which the
 copied values will be placed.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), copy the contents an
@@ -54,4 +54,5 @@ graph <-
 # edf to show that the edge
 # attribute had been copied
 graph \%>\% get_edge_df()
+
 }

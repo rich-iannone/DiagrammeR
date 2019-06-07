@@ -7,17 +7,17 @@
 is_node_present(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node}{either a node ID value or a node label to test for presence in
+\item{node}{Either a node ID value or a node label to test for presence in
 the graph.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine whether a specified
-node is present.
+From a graph object of class \code{dgr_graph}, determine whether a specified node
+is present.
 }
 \examples{
 # Create a simple graph with

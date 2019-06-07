@@ -7,7 +7,7 @@
 get_degree_out(graph, normalized = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{normalized}{set as \code{FALSE} (the default), the outdegree will be
 provided for each of the nodes (as a count of edges outgoing from each
@@ -47,4 +47,5 @@ graph <-
 # Display the graph's
 # node data frame
 graph \%>\% get_node_df()
+
 }

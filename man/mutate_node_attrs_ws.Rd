@@ -7,41 +7,33 @@
 mutate_node_attrs_ws(graph, ...)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{...}{expressions used for the mutation of node attributes. LHS of each
+\item{...}{Expressions used for the mutation of node attributes. LHS of each
 expression is either an existing or new node attribute name. The RHS can
 consist of any valid R code that uses node attributes as variables.
 Expressions are evaluated in the order provided, so, node attributes
 created or modified are ready to use in subsequent expressions.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal node data frame (ndf), mutate node attribute values
 only for nodes in a selection by using one or more expressions.
 }
 \details{
-This function makes use of an active selection of nodes (and the
-function ending with \code{_ws} hints at this).
+This function makes use of an active selection of nodes (and the function
+ending with \code{_ws} hints at this).
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions:
-\code{\link[=select_nodes]{select_nodes()}},
-\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
-\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
-\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out]{trav_out()}},
-\code{\link[=trav_in]{trav_in()}},
-\code{\link[=trav_both]{trav_both()}},
-\code{\link[=trav_out_node]{trav_out_node()}},
-\code{\link[=trav_in_node]{trav_in_node()}},
-\code{\link[=trav_out_until]{trav_out_until()}}, or
+(\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, or
 \code{\link[=trav_in_until]{trav_in_until()}}.
 }
 \examples{
@@ -133,4 +125,5 @@ graph <-
 # attributes without changing
 # those of the other nodes
 graph \%>\% get_node_df()
+
 }

@@ -7,10 +7,10 @@
 is_graph_connected(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
 Determines whether a graph is a connected graph.
@@ -34,4 +34,5 @@ create_graph() \%>\%
     m = 15,
     set_seed = 23) \%>\%
   is_graph_connected()
+
 }

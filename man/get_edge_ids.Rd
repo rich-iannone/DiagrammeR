@@ -7,7 +7,7 @@
 get_edge_ids(graph, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{conditions}{an option to use filtering conditions for the retrieval of
 edges.}
@@ -67,4 +67,5 @@ get_edge_ids(
   conditions =
     color == "blue" &
     value > 5)
+
 }

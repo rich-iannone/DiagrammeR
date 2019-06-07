@@ -7,7 +7,7 @@
 get_degree_distribution(graph, mode = "total")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{mode}{using \code{total} (the default), degree considered for each node
 will be the total degree. With \code{in} and \code{out} the degree used
@@ -36,4 +36,5 @@ graph <-
 graph \%>\%
   get_degree_distribution(
     mode = "total")
+
 }

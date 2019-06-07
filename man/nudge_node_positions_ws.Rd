@@ -7,46 +7,37 @@
 nudge_node_positions_ws(graph, dx, dy)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{dx}{a single numeric value specifying the amount that selected nodes
-(with non-\code{NA} values for the \code{x} and \code{y} attributes) will
-be moved in the x direction. A positive value will move nodes right,
-negative left.}
+\item{dx}{A single numeric value specifying the amount that selected nodes
+(with non-\code{NA} values for the \code{x} and \code{y} attributes) will be moved in the
+x direction. A positive value will move nodes right, negative left.}
 
-\item{dy}{a single numeric value specifying the amount that selected nodes
-(with non-\code{NA} values for the \code{x} and \code{y} attributes) will
-be moved in the y direction. A positive value will move nodes up, negative down.}
+\item{dy}{A single numeric value specifying the amount that selected nodes
+(with non-\code{NA} values for the \code{x} and \code{y} attributes) will be moved in the
+y direction. A positive value will move nodes up, negative down.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-With an active selection of nodes, move the position in either the \code{x}
-or \code{y} directions, or both. Nodes in the selection that do not have
-position information (i.e., \code{NA} values for the \code{x} or \code{y}
-node attributes) will be ignored.
+With an active selection of nodes, move the position in either the \code{x} or \code{y}
+directions, or both. Nodes in the selection that do not have position
+information (i.e., \code{NA} values for the \code{x} or \code{y} node attributes) will be
+ignored.
 }
 \details{
-This function makes use of an active selection of nodes (and the
-function ending with \code{_ws} hints at this).
+This function makes use of an active selection of nodes (and the function
+ending with \code{_ws} hints at this).
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions:
-\code{\link[=select_nodes]{select_nodes()}},
-\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
-\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
-\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out]{trav_out()}},
-\code{\link[=trav_in]{trav_in()}},
-\code{\link[=trav_both]{trav_both()}},
-\code{\link[=trav_out_node]{trav_out_node()}},
-\code{\link[=trav_in_node]{trav_in_node()}},
-\code{\link[=trav_out_until]{trav_out_until()}}, or
+(\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, or
 \code{\link[=trav_in_until]{trav_in_until()}}.
 }
 \examples{
@@ -108,4 +99,5 @@ graph <-
 
 # View the graph's node data frame
 graph \%>\% get_node_df()
+
 }

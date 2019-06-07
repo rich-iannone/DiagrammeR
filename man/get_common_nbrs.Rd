@@ -7,7 +7,7 @@
 get_common_nbrs(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{nodes}{a vector of node ID values of length at least 2.}
 }
@@ -35,4 +35,5 @@ graph \%>\%
 graph \%>\%
   get_common_nbrs(
     nodes = c(1, 3))
+
 }

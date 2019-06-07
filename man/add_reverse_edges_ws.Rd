@@ -8,32 +8,30 @@ add_reverse_edges_ws(graph, rel = NULL, edge_aes = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{rel}{an optional string to apply a \code{rel} attribute to all newly
-created edges.}
-
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
-
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
+\item{rel}{An optional string to apply a \code{rel} attribute to all newly created
 edges.}
+
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
+
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Add edges in the opposite direction of one or more edges available as an edge
-selection in a graph object of class \code{dgr_graph}. New graph edges have
-the opposite edge definitions as those in the selection. For example, a graph
-with the edge \code{1->2} in its active selection will gain a new \code{2->1}
-edge. There is also the option to assign a common \code{rel} grouping to the
-newly created edges. Upon addition of the edges, the edge selection will be
+selection in a graph object of class \code{dgr_graph}. New graph edges have the
+opposite edge definitions as those in the selection. For example, a graph
+with the edge \code{1->2} in its active selection will gain a new \code{2->1} edge.
+There is also the option to assign a common \code{rel} grouping to the newly
+created edges. Upon addition of the edges, the edge selection will be
 retained for further selection or traversal operations.
 }
 \details{
@@ -41,18 +39,12 @@ This function makes use of an active selection of edges (and the function
 ending with \code{_ws} hints at this).
 
 Selections of edges can be performed using the following selection
-(\code{select_*()}) functions:
-\code{\link[=select_edges]{select_edges()}},
-\code{\link[=select_last_edges_created]{select_last_edges_created()}},
-\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or
-\code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
+(\code{select_*()}) functions: \code{\link[=select_edges]{select_edges()}}, \code{\link[=select_last_edges_created]{select_last_edges_created()}},
+\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or \code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
 
 Selections of edges can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out_edge]{trav_out_edge()}},
-\code{\link[=trav_in_edge]{trav_in_edge()}},
-\code{\link[=trav_both_edge]{trav_both_edge()}}, or
-\code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
+(\code{trav_*()}) functions: \code{\link[=trav_out_edge]{trav_out_edge()}}, \code{\link[=trav_in_edge]{trav_in_edge()}},
+\code{\link[=trav_both_edge]{trav_both_edge()}}, or \code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
 }
 \examples{
 # Create an empty graph, add 2 nodes to it,
@@ -84,4 +76,5 @@ graph <-
 
 # Get the graph's edge data frame
 graph \%>\% get_edge_df()
+
 }

@@ -7,10 +7,10 @@
 to_igraph(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-an igraph object.
+An igraph object.
 }
 \description{
 Convert a DiagrammeR graph to an igraph graph object.
@@ -41,4 +41,5 @@ class(ig_graph)
 # Get a summary of the igraph
 # graph object
 summary(ig_graph)
+
 }

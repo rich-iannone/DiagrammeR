@@ -7,15 +7,15 @@
 rename_edge_attrs(graph, edge_attr_from, edge_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute that will be renamed.}
+\item{edge_attr_from}{The name of the edge attribute that will be renamed.}
 
-\item{edge_attr_to}{the new name of the edge attribute column identified in
+\item{edge_attr_to}{The new name of the edge attribute column identified in
 \code{edge_attr_from}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), rename an existing edge
@@ -51,4 +51,5 @@ graph <-
 # edf to show that the edge
 # attribute had been renamed
 graph \%>\% get_edge_df()
+
 }

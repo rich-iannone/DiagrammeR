@@ -8,7 +8,7 @@ get_alpha_centrality(graph, alpha = 1, exo = 1, weights_attr = NULL,
   tol = 1e-07)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{alpha}{the parameter that specifies the relative importance of
 endogenous versus exogenous factors in the determination of centrality.}
@@ -57,4 +57,5 @@ graph <-
 # Display the graph's node
 # data frame
 graph \%>\% get_node_df()
+
 }

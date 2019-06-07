@@ -7,10 +7,10 @@
 count_graphs_in_graph_series(graph_series)
 }
 \arguments{
-\item{graph_series}{a graph series object of type \code{dgr_graph_1D}}
+\item{graph_series}{A graph series object of type \code{dgr_graph_1D}}
 }
 \value{
-a numeric vector representing a count of graphs in a graph series
+A numeric vector representing a count of graphs in a graph series
 object.
 }
 \description{
@@ -45,4 +45,5 @@ series <-
 # in the graph series
 series \%>\%
   count_graphs_in_graph_series()
+
 }

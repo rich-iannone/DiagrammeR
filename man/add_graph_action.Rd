@@ -7,17 +7,17 @@
 add_graph_action(graph, fcn, ..., action_name = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{fcn}{the name of the function to use.}
+\item{fcn}{The name of the function to use.}
 
-\item{...}{arguments and values to pass to the named function in \code{fcn},
-if necessary.}
+\item{...}{Arguments and values to pass to the named function in \code{fcn}, if
+necessary.}
 
-\item{action_name}{an optional name for labeling the action.}
+\item{action_name}{An optional name for labeling the action.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Add a graph function along with its arguments to be run at every graph
@@ -54,4 +54,5 @@ graph <-
 # available in the graph, use the
 # `get_graph_actions()` function
 graph \%>\% get_graph_actions()
+
 }

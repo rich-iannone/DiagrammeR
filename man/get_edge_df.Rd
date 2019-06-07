@@ -7,7 +7,7 @@
 get_edge_df(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
 an edge data frame.
@@ -47,4 +47,5 @@ graph <-
 # Get the graph's internal
 # edge data frame (edf)
 graph \%>\% get_edge_df()
+
 }

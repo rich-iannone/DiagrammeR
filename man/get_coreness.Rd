@@ -7,7 +7,7 @@
 get_coreness(graph, direction = "all")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{direction}{using \code{all} (the default), the search will ignore edge
 direction while traversing through the graph. With \code{out}, measurements
@@ -45,4 +45,5 @@ graph <-
 
 # Display the graph's node data frame
 graph \%>\% get_node_df()
+
 }

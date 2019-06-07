@@ -7,10 +7,10 @@
 count_mutual_node_pairs(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the number of mutually-connected
+A single numeric value representing the number of mutually-connected
 node pairs.
 }
 \description{
@@ -25,8 +25,7 @@ graph <-
 
 # Get a count of mutually-connected
 # node pairs
-graph \%>\%
-  count_mutual_node_pairs()
+graph \%>\% count_mutual_node_pairs()
 
 # Create a full graph and then
 # count the mutually-connected
@@ -34,4 +33,5 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   count_mutual_node_pairs()
+
 }

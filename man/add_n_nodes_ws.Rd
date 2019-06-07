@@ -9,78 +9,65 @@ add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of new nodes to attach as successor nodes to the nodes in
+\item{n}{The number of new nodes to attach as successor nodes to the nodes in
 the selection.}
 
-\item{direction}{using \code{from} will create new edges from existing nodes
-to the new nodes. The \code{to} option will create new edges directed
-toward the existing nodes.}
+\item{direction}{Using \code{from} will create new edges from existing nodes to
+the new nodes. The \code{to} option will create new edges directed toward the
+existing nodes.}
 
-\item{type}{an optional character vector that provides group identifiers for
+\item{type}{An optional character vector that provides group identifiers for
 the nodes to be added.}
 
-\item{label}{an optional character object that describes the nodes to be
+\item{label}{An optional character object that describes the nodes to be
 added.}
 
-\item{rel}{an optional string to apply a \code{rel} attribute to all newly
-created edges.}
-
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
-
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
-
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
-
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
+\item{rel}{An optional string to apply a \code{rel} attribute to all newly created
 edges.}
+
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
+
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
+
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
+
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Add \code{n} new nodes to or from one or more nodes available as a selection
-in a graph object of class \code{dgr_graph}. New graph edges will all move
-either from the nodes in the selection toward the newly created nodes (with
-the option \code{direction = "from"}), or to the selected nodes already in
-the graph (using \code{direction = "to"}). Optionally, set node \code{type}
-and edge \code{rel} values for all the new nodes and edges created,
-respectively.
+Add \code{n} new nodes to or from one or more nodes available as a selection in a
+graph object of class \code{dgr_graph}. New graph edges will all move either from
+the nodes in the selection toward the newly created nodes (with the option
+\code{direction = "from"}), or to the selected nodes already in the graph (using
+\code{direction = "to"}). Optionally, set node \code{type} and edge \code{rel} values for
+all the new nodes and edges created, respectively.
 }
 \details{
-This function makes use of an active selection of nodes (and the
-function ending with \code{_ws} hints at this).
+This function makes use of an active selection of nodes (and the function
+ending with \code{_ws} hints at this).
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions:
-\code{\link[=select_nodes]{select_nodes()}},
-\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
-\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
-\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out]{trav_out()}},
-\code{\link[=trav_in]{trav_in()}},
-\code{\link[=trav_both]{trav_both()}},
-\code{\link[=trav_out_node]{trav_out_node()}},
-\code{\link[=trav_in_node]{trav_in_node()}},
-\code{\link[=trav_out_until]{trav_out_until()}}, or
+(\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, or
 \code{\link[=trav_in_until]{trav_in_until()}}.
 }
 \examples{
@@ -119,4 +106,5 @@ graph \%>\% get_node_ids()
 
 # Get the graph's edges
 graph \%>\% get_edges()
+
 }

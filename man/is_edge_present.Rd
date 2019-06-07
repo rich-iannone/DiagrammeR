@@ -7,26 +7,26 @@
 is_edge_present(graph, edge = NULL, from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge}{an edge ID value to test for presence in the graph. If a single,
-numeric value is provided then values for \code{from} or \code{to} needn't
-be supplied.}
+\item{edge}{An edge ID value to test for presence in the graph. If a single,
+numeric value is provided then values for \code{from} or \code{to} needn't be
+supplied.}
 
-\item{from}{a node ID from which the edge is outgoing, or, the label
-associated with the node. For an undirected graph, the value in \code{from}
-can be interchangeable with that in \code{to}.}
+\item{from}{A node ID from which the edge is outgoing, or, the label
+associated with the node. For an undirected graph, the value in \code{from} can
+be interchangeable with that in \code{to}.}
 
-\item{to}{a node ID to which the edge is incoming, or, the label associated
+\item{to}{A node ID to which the edge is incoming, or, the label associated
 with the node. For an undirected graph, the value in \code{to} can be
 interchangeable with that in \code{from}.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine whether an edge
-(defined by a pair of node IDs or node label values) is present.
+From a graph object of class \code{dgr_graph}, determine whether an edge (defined
+by a pair of node IDs or node label values) is present.
 }
 \examples{
 # Create a simple graph with
@@ -76,4 +76,5 @@ graph \%>\%
   is_edge_present(
     from = "three",
     to = "two")
+
 }

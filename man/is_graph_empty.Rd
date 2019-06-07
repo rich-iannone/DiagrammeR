@@ -7,10 +7,10 @@
 is_graph_empty(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
 Provides a logical value on whether the graph is empty (i.e., contains no
@@ -30,4 +30,5 @@ graph <-
 
 # Determine whether this graph is empty
 graph \%>\% is_graph_empty()
+
 }

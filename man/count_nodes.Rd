@@ -7,14 +7,13 @@
 count_nodes(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a numeric vector of single length.
+A numeric vector of single length.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get a count of nodes in the
-graph.
+From a graph object of class \code{dgr_graph}, get a count of nodes in the graph.
 }
 \examples{
 # Create a graph with a
@@ -29,4 +28,5 @@ graph <-
 # in the graph
 graph \%>\%
   count_nodes()
+
 }

@@ -7,14 +7,14 @@
 rev_edge_dir(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Using a directed graph as input,
-reverse the direction of all edges in that graph.
+Using a directed graph as input, reverse the direction of all edges in that
+graph.
 }
 \examples{
 # Create a graph with a
@@ -37,4 +37,5 @@ graph <-
 # Inspect the graph's edges
 # after their reversal
 graph \%>\% get_edges()
+
 }

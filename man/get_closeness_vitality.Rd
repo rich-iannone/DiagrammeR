@@ -7,7 +7,7 @@
 get_closeness_vitality(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
 a data frame with closeness vitality values for each of the nodes.
@@ -40,4 +40,5 @@ graph <-
 # Display the graph's
 # node data frame
 graph \%>\% get_node_df()
+
 }

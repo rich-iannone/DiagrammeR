@@ -9,47 +9,43 @@ add_prism(graph, n, type = NULL, label = TRUE, rel = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of nodes describing the shape of the prism. For example,
-the triangular prism has \code{n} equal to 3 and it is composed of 6 nodes
-and 9 edges. For any n-gonal prism, the graph will be generated with
-2\code{n} nodes and 3\code{n} edges.}
+\item{n}{The number of nodes describing the shape of the prism. For example,
+the triangular prism has \code{n} equal to 3 and it is composed of 6 nodes and 9
+edges. For any n-gonal prism, the graph will be generated with 2\code{n} nodes
+and 3\code{n} edges.}
 
-\item{type}{an optional string that describes the entity type for the nodes
+\item{type}{An optional string that describes the entity type for the nodes
 to be added.}
 
-\item{label}{either a vector object of length \code{n} that provides optional
+\item{label}{Either a vector object of length \code{n} that provides optional
 labels for the new nodes, or, a logical value where setting to \code{TRUE}
 ascribes node IDs to the label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for providing a relationship label to all new
+\item{rel}{An optional string for providing a relationship label to all new
 edges created in the node prism.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.}
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add a node prism to the graph.
@@ -114,4 +110,5 @@ graph_w_attrs \%>\% get_node_df()
 
 # Get the graph's edge data frame
 graph_w_attrs \%>\% get_edge_df()
+
 }

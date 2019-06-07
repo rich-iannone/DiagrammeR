@@ -11,69 +11,64 @@ add_pa_graph(graph, n, m = NULL, power = 1, out_dist = NULL,
   set_seed = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of nodes comprising the preferential attachment graph.}
+\item{n}{The number of nodes comprising the preferential attachment graph.}
 
-\item{m}{the number of edges to add in each time step.}
+\item{m}{The number of edges to add in each time step.}
 
-\item{power}{the power of the preferential attachment. The default value of
+\item{power}{The power of the preferential attachment. The default value of
 \code{1} indicates a linear preferential attachment.}
 
-\item{out_dist}{a numeric vector that provides the distribution of the number
+\item{out_dist}{A numeric vector that provides the distribution of the number
 of edges to add in each time step.}
 
-\item{use_total_degree}{a logical value (default is \code{TRUE}) that governs
+\item{use_total_degree}{A logical value (default is \code{TRUE}) that governs
 whether the total degree should be used for calculating the citation
 probability. If \code{FALSE}, the indegree is used.}
 
-\item{zero_appeal}{a measure of the attractiveness of the nodes with no
+\item{zero_appeal}{A measure of the attractiveness of the nodes with no
 adjacent edges.}
 
-\item{algo}{the algorithm to use to generate the graph. The available options
-are \code{psumtree}, \code{psumtree-multiple}, and \code{bag}. With the
-\code{psumtree} algorithm, a partial prefix-sum tree is used to to create
-the graph. Any values for \code{power} and \code{zero_appeal} can be
-provided and this algorithm never generates multiple edges. The
-\code{psumtree-multiple} algorithm also uses a partial prefix-sum tree but
-the difference here is that multiple edges are allowed. The \code{bag}
-algorithm places the node IDs into a bag as many times as their in-degree
-(plus once more). The required number of cited nodes are drawn from the bag
-with replacement. Multiple edges may be produced using this method (it is
-not disallowed).}
+\item{algo}{The algorithm to use to generate the graph. The available options
+are \code{psumtree}, \code{psumtree-multiple}, and \code{bag}. With the \code{psumtree}
+algorithm, a partial prefix-sum tree is used to to create the graph. Any
+values for \code{power} and \code{zero_appeal} can be provided and this algorithm
+never generates multiple edges. The \code{psumtree-multiple} algorithm also uses
+a partial prefix-sum tree but the difference here is that multiple edges
+are allowed. The \code{bag} algorithm places the node IDs into a bag as many
+times as their in-degree (plus once more). The required number of cited
+nodes are drawn from the bag with replacement. Multiple edges may be
+produced using this method (it is not disallowed).}
 
-\item{type}{an optional string that describes the entity type for all the
+\item{type}{An optional string that describes the entity type for all the
 nodes to be added.}
 
-\item{label}{a logical value where setting to \code{TRUE} ascribes node IDs
-to the label and \code{FALSE} yields a blank label.}
+\item{label}{A logical value where setting to \code{TRUE} ascribes node IDs to the
+label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for providing a relationship label to all edges
+\item{rel}{An optional string for providing a relationship label to all edges
 to be added.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.}
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 
-\item{set_seed}{supplying a value sets a random seed of the
+\item{set_seed}{Supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
 }
 \description{
@@ -97,4 +92,5 @@ pa_graph \%>\% count_nodes()
 
 # Get a count of edges
 pa_graph \%>\% count_edges()
+
 }

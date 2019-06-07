@@ -7,10 +7,10 @@
 is_graph_undirected(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.
+A logical value.
 }
 \description{
 Determines whether a graph is set as undirected or not and returns a logical
@@ -38,4 +38,5 @@ graph \%>\% is_graph_undirected()
 graph \%>\%
   set_graph_directed() \%>\%
   is_graph_undirected()
+
 }

@@ -7,20 +7,20 @@
 reorder_graph_actions(graph, indices)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{indices}{a numeric vector that provides the new ordering of graph
+\item{indices}{A numeric vector that provides the new ordering of graph
 actions. This vector can be the same length as the number of graph actions,
 or, of shorter length. In the latter case, the ordering places the given
 items first and the remaining actions will follow.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Reorder the graph actions stored in the graph through the use of the
-\code{link{add_graph_action}()} function. These actions are be invoked in a
-specified order via the \code{\link[=trigger_graph_actions]{trigger_graph_actions()}} function.
+\code{\link[=add_graph_action]{add_graph_action()}} function. These actions are be invoked in a specified
+order via the \code{\link[=trigger_graph_actions]{trigger_graph_actions()}} function.
 }
 \examples{
 # Create a random graph using the
@@ -74,4 +74,5 @@ graph <-
 # object once again to verify that
 # we have the desired order of actions
 graph \%>\% get_graph_actions()
+
 }

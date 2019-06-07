@@ -7,24 +7,24 @@
 add_n_node_clones(graph, n, node, label = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of node clones to add to the graph.}
+\item{n}{The number of node clones to add to the graph.}
 
-\item{node}{a node ID corresponding to the graph node to be cloned.}
+\item{node}{A node ID corresponding to the graph node to be cloned.}
 
-\item{label}{an optional vector of node label values. The vector length
+\item{label}{An optional vector of node label values. The vector length
 should correspond to the value set for \code{n}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Add \code{n} new nodes to a graph object of class \code{dgr_graph} which are
-clones of a node already in the graph. All node attributes are preserved
-except for the node \code{label} attribute (to maintain the uniqueness of
-non-\code{NA} node label values). A vector of node \code{label} can be
-provided to bind new labels to the cloned nodes.
+Add \code{n} new nodes to a graph object of class \code{dgr_graph} which are clones of
+a node already in the graph. All node attributes are preserved except for the
+node \code{label} attribute (to maintain the uniqueness of non-\code{NA} node label
+values). A vector of node \code{label} can be provided to bind new labels to the
+cloned nodes.
 }
 \examples{
 # Create a graph with a path of
@@ -56,4 +56,5 @@ graph <-
 # node data frame: nodes `4`,
 # `5`, and `6` are clones of `1`
 graph \%>\% get_node_df()
+
 }

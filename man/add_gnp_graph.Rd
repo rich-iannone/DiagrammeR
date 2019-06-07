@@ -9,51 +9,47 @@ add_gnp_graph(graph, n, p, loops = FALSE, type = NULL, label = TRUE,
   edge_data = NULL, set_seed = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of nodes comprising the generated graph.}
+\item{n}{The number of nodes comprising the generated graph.}
 
-\item{p}{the probability of creating an edge between two arbitrary nodes.}
+\item{p}{The probability of creating an edge between two arbitrary nodes.}
 
-\item{loops}{a logical value (default is \code{FALSE}) that governs whether
-loops are allowed to be created.}
+\item{loops}{A logical value (default is \code{FALSE}) that governs whether loops
+are allowed to be created.}
 
-\item{type}{an optional string that describes the entity type for all the
+\item{type}{An optional string that describes the entity type for all the
 nodes to be added.}
 
-\item{label}{a boolean value where setting to \code{TRUE} ascribes node
-IDs to the label and \code{FALSE} yields a blank label.}
+\item{label}{A boolean value where setting to \code{TRUE} ascribes node IDs to the
+label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for providing a relationship label to all edges
+\item{rel}{An optional string for providing a relationship label to all edges
 to be added.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.}
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 
-\item{set_seed}{supplying a value sets a random seed of the
+\item{set_seed}{Supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 To an existing graph object, add a graph built according to the Erdos-Renyi
@@ -75,4 +71,5 @@ gnp_graph \%>\% count_nodes()
 
 # Get a count of edges
 gnp_graph \%>\% count_edges()
+
 }

@@ -7,19 +7,19 @@
 get_leverage_centrality(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with leverage centrality values for each of the nodes.
+A data frame with leverage centrality values for each of the nodes.
 }
 \description{
 Get the leverage centrality values for all nodes in the graph. Leverage
 centrality is a measure of the relationship between the degree of a given
-node and the degree of each of its neighbors, averaged over all neighbors.
-A node with negative leverage centrality is influenced by its neighbors, as
-the neighbors connect and interact with far more nodes. A node with positive
-leverage centrality influences its neighbors since the neighbors tend to
-have far fewer connections.
+node and the degree of each of its neighbors, averaged over all neighbors. A
+node with negative leverage centrality is influenced by its neighbors, as the
+neighbors connect and interact with far more nodes. A node with positive
+leverage centrality influences its neighbors since the neighbors tend to have
+far fewer connections.
 }
 \examples{
 # Create a random graph using the
@@ -47,4 +47,5 @@ graph <-
 
 # Display the graph's node data frame
 graph \%>\% get_node_df()
+
 }

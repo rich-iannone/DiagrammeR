@@ -7,10 +7,10 @@
 get_mean_distance(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the mean distance of the graph.
+A single numeric value representing the mean distance of the graph.
 }
 \description{
 Get the mean distance of a graph, which is the average path length in the
@@ -32,4 +32,5 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   get_mean_distance()
+
 }

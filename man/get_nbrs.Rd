@@ -7,12 +7,12 @@
 get_nbrs(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node ID values.}
+\item{nodes}{A vector of node ID values.}
 }
 \value{
-a vector of node ID values.
+A vector of node ID values.
 }
 \description{
 With one or more nodes, get the set of all neighboring nodes.
@@ -25,13 +25,11 @@ graph <-
   add_path(n = 5)
 
 # Find all neighbor nodes for node `2`
-graph \%>\%
-  get_nbrs(nodes = 2)
+graph \%>\% get_nbrs(nodes = 2)
 
 # Find all neighbor nodes for nodes `1`
 # and `5`
-graph \%>\%
-  get_nbrs(nodes = c(1, 5))
+graph \%>\% get_nbrs(nodes = c(1, 5))
 
 # Color node `3` with purple, get its
 # neighbors and color those nodes green
@@ -49,4 +47,5 @@ graph <-
   set_node_attrs_ws(
     node_attr = color,
     value = "green")
+
 }

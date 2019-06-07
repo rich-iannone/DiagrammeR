@@ -7,10 +7,10 @@
 get_node_df(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a node data frame.
+A node data frame.
 }
 \description{
 From a graph, obtain a node data frame with all current node attributes.
@@ -48,4 +48,5 @@ graph <-
 # data frame (ndf)
 graph \%>\%
   get_node_df()
+
 }

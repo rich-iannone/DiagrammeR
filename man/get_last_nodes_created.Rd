@@ -7,15 +7,15 @@
 get_last_nodes_created(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a vector of node ID values.
+A vector of node ID values.
 }
 \description{
-Get the last nodes that were created in a graph object of class
-\code{dgr_graph}. Provides a vector of node ID values. This function should
-ideally be used just after creating the nodes.
+Get the last nodes that were created in a graph object of class \code{dgr_graph}.
+Provides a vector of node ID values. This function should ideally be used
+just after creating the nodes.
 }
 \examples{
 # Create a graph and add 4 nodes
@@ -33,7 +33,6 @@ graph <-
 
 # Get the last nodes created (2 nodes
 # from the last function call)
-graph \%>\%
-  get_last_nodes_created()
-#> [1] 3 4
+graph \%>\% get_last_nodes_created()
+
 }

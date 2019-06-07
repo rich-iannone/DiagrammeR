@@ -8,23 +8,21 @@ export_graph(graph, file_name = NULL, file_type = NULL, title = NULL,
   width = NULL, height = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{file_name}{the name of the exported file (including it's extension).}
+\item{file_name}{The name of the exported file (including it's extension).}
 
-\item{file_type}{the type of file to be exported. Options for graph files
-are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}. Options for graph
-file formats are: \code{gexf}.}
+\item{file_type}{The type of file to be exported. Options for graph files
+are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}. Options for graph file formats are:
+\code{gexf}.}
 
-\item{title}{an optional title for the output graph.}
+\item{title}{An optional title for the output graph.}
 
-\item{width}{output width in pixels or \code{NULL} for default. Only useful
-for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
-\code{ps}.}
+\item{width}{Output width in pixels or \code{NULL} for default. Only useful for
+export to image file formats \code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
 
-\item{height}{output height in pixels or \code{NULL} for default. Only useful
-for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
-\code{ps}.}
+\item{height}{Output height in pixels or \code{NULL} for default. Only useful for
+export to image file formats \code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
 }
 \description{
 Export a graph to a variety of file formats, including image formats such as
@@ -59,4 +57,5 @@ graph \%>\%
     file_name = "mypng.png",
     file_type = "PNG")
 }
+
 }

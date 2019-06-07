@@ -7,39 +7,33 @@
 add_forward_edges_ws(graph, rel = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{rel}{an optional string to apply a \code{rel} attribute to all newly
-created edges.}
+\item{rel}{An optional string to apply a \code{rel} attribute to all newly created
+edges.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Add edges in the same direction of one or more edges available as an edge
-selection in a graph object of class \code{dgr_graph}. New graph edges have
-the same edge definitions as those in the selection except with new edge ID
-values. There is also the option to assign a common \code{rel} grouping to
-the newly created edges. Upon addition of the edges, the edge selection will
-be retained for further selection or traversal operations.
+selection in a graph object of class \code{dgr_graph}. New graph edges have the
+same edge definitions as those in the selection except with new edge ID
+values. There is also the option to assign a common \code{rel} grouping to the
+newly created edges. Upon addition of the edges, the edge selection will be
+retained for further selection or traversal operations.
 }
 \details{
 This function makes use of an active selection of edges (and the function
 ending with \code{_ws} hints at this).
 
 Selections of edges can be performed using the following selection
-(\code{select_*()}) functions:
-\code{\link[=select_edges]{select_edges()}},
-\code{\link[=select_last_edges_created]{select_last_edges_created()}},
-\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or
-\code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
+(\code{select_*()}) functions: \code{\link[=select_edges]{select_edges()}}, \code{\link[=select_last_edges_created]{select_last_edges_created()}},
+\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or \code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
 
 Selections of edges can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out_edge]{trav_out_edge()}},
-\code{\link[=trav_in_edge]{trav_in_edge()}},
-\code{\link[=trav_both_edge]{trav_both_edge()}}, or
-\code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
+(\code{trav_*()}) functions: \code{\link[=trav_out_edge]{trav_out_edge()}}, \code{\link[=trav_in_edge]{trav_in_edge()}},
+\code{\link[=trav_both_edge]{trav_both_edge()}}, or \code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
 }
 \examples{
 # Create an empty graph, add 2 nodes
@@ -69,4 +63,5 @@ graph <-
 
 # Get the graph's edge data frame
 graph \%>\% get_edge_df()
+
 }

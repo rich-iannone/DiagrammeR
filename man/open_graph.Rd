@@ -7,7 +7,7 @@
 open_graph(file)
 }
 \arguments{
-\item{file}{the filename for the graph or graph series. Optionally, this may
+\item{file}{The filename for the graph or graph series. Optionally, this may
 contain a path to the file.}
 }
 \description{
@@ -35,4 +35,5 @@ save_graph(
 gnp_graph_2 <-
   open_graph(
     file = "gnp_graph.dgr")
+
 }

@@ -7,10 +7,10 @@
 transform_to_subgraph_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Create a subgraph based on a selection of nodes or edges stored in the graph
@@ -21,32 +21,18 @@ This function makes use of an active selection of nodes or edges (and the
 function ending with \code{_ws} hints at this).
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions:
-\code{\link[=select_nodes]{select_nodes()}},
-\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
-\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
-\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of edges can be performed using the following edge selection
-(\code{select_*()}) functions:
-\code{\link[=select_edges]{select_edges()}},
-\code{\link[=select_last_edges_created]{select_last_edges_created()}},
-\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or
-\code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
+(\code{select_*()}) functions: \code{\link[=select_edges]{select_edges()}}, \code{\link[=select_last_edges_created]{select_last_edges_created()}},
+\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or \code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
 
 Selections of nodes or edges can also be performed using the following
-traversal (\code{trav_*()}) functions:
-\code{\link[=trav_out]{trav_out()}},
-\code{\link[=trav_in]{trav_in()}},
-\code{\link[=trav_both]{trav_both()}},
-\code{\link[=trav_out_node]{trav_out_node()}},
-\code{\link[=trav_in_node]{trav_in_node()}},
-\code{\link[=trav_out_until]{trav_out_until()}},
-\code{\link[=trav_in_until]{trav_in_until()}},
-\code{\link[=trav_out_edge]{trav_out_edge()}},
-\code{\link[=trav_in_edge]{trav_in_edge()}},
-\code{\link[=trav_both_edge]{trav_both_edge()}}, or
+traversal (\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, \code{\link[=trav_in_until]{trav_in_until()}},
+\code{\link[=trav_out_edge]{trav_out_edge()}}, \code{\link[=trav_in_edge]{trav_in_edge()}}, \code{\link[=trav_both_edge]{trav_both_edge()}}, or
 \code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
 }
 \examples{
@@ -90,19 +76,21 @@ subgraph \%>\% get_edge_df()
 
 # Create a selection of edges, this selects
 # edges `1`, `2`
-graph <- graph \%>\%
+graph <-
+  graph \%>\%
   clear_selection() \%>\%
   select_edges(
   edges = c(1,2))
 
 # Create a subgraph based on the selection
-  subgraph <-
+subgraph <-
   graph \%>\%
   transform_to_subgraph_ws()
 
 # Display the graph's node data frame
-  subgraph \%>\% get_node_df()
+subgraph \%>\% get_node_df()
 
 # Display the graph's edge data frame
-  subgraph \%>\% get_edge_df()
+subgraph \%>\% get_edge_df()
+
 }

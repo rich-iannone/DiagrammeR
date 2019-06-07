@@ -7,10 +7,10 @@
 generate_dot(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a character vector of length 1 containing Graphviz DOT code.
+A character vector of length 1 containing Graphviz DOT code.
 }
 \description{
 Generates Graphviz DOT code as an R character object using DiagrammeR graph

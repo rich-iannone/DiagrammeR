@@ -7,23 +7,23 @@
 select_nodes_by_id(graph, nodes, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node IDs for the selection of nodes present in the
+\item{nodes}{A vector of node IDs for the selection of nodes present in the
 graph.}
 
-\item{set_op}{the set operation to perform upon consecutive selections of
+\item{set_op}{The set operation to perform upon consecutive selections of
 graph nodes. This can either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect}, or, as a
-\code{difference} on the previous selection, if it exists.}
+intersection of selections with \code{intersect}, or, as a \code{difference} on the
+previous selection, if it exists.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Select nodes in a graph object of class \code{dgr_graph} by their node ID
-values. If nodes have IDs that are monotonically increasing integer
-values, then numeric ranges can be used for the selection.
+Select nodes in a graph object of class \code{dgr_graph} by their node ID values.
+If nodes have IDs that are monotonically increasing integer values, then
+numeric ranges can be used for the selection.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -39,4 +39,5 @@ graph <-
 graph \%>\%
   select_nodes_by_id(nodes = 1:5) \%>\%
   get_selection()
+
 }

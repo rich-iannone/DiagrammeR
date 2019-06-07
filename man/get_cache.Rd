@@ -7,7 +7,7 @@
 get_cache(graph, name = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{name}{the name of the object to extract from the cache. If none
 supplied, the most recent object added to the cache will be returned.}
@@ -48,4 +48,5 @@ graph <-
 
 # Return the cached vector
 graph \%>\% get_cache()
+
 }

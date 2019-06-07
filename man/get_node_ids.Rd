@@ -7,14 +7,13 @@
 get_node_ids(graph, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering conditions for the retrieval of
+\item{conditions}{An option to use filtering conditions for the retrieval of
 nodes.}
 }
 \value{
-a vector of node ID
-values.
+A vector of node ID values.
 }
 \description{
 Obtain a vector of node ID values from a graph object. An optional filter by
@@ -63,4 +62,5 @@ graph \%>\%
     conditions =
       color == "blue" &
       value > 5)
+
 }

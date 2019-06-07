@@ -7,26 +7,26 @@
 do_dfs(graph, node = NULL, direction = "all")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node}{an optional node ID value to specify a single starting point for
+\item{node}{An optional node ID value to specify a single starting point for
 the dfs. If not provided, a random node from the graph will be chosen.}
 
-\item{direction}{using \code{all} (the default), the bfs will ignore edge
-direction while traversing through the graph. With \code{out} and
-\code{in}, traversals between adjacent nodes will respect the edge direction.}
+\item{direction}{Using \code{all} (the default), the bfs will ignore edge
+direction while traversing through the graph. With \code{out} and \code{in},
+traversals between adjacent nodes will respect the edge direction.}
 }
 \value{
-a vector containing node ID values for nodes visited during the
+A vector containing node ID values for nodes visited during the
 depth-first search. The order of the node IDs corresponds to the order
 visited.
 }
 \description{
 With a chosen or random node serving as the starting point, perform a
-depth-first search of the whole graph and return the node ID values
-visited. The dfs algorithm differs from breadth-first search (bfs) in that
-dfs will follow tree branches as far as possible until terminating at leaf
-node (bfs traverses branches one level at a time).
+depth-first search of the whole graph and return the node ID values visited.
+The dfs algorithm differs from breadth-first search (bfs) in that dfs will
+follow tree branches as far as possible until terminating at leaf node (bfs
+traverses branches one level at a time).
 }
 \examples{
 # Create a graph containing
@@ -73,4 +73,5 @@ graph \%>\%
   do_dfs(
     node = 1,
     direction = "out")
+
 }

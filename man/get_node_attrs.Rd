@@ -7,20 +7,20 @@
 get_node_attrs(graph, node_attr, nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{the name of the attribute for which to get values.}
+\item{node_attr}{The name of the attribute for which to get values.}
 
-\item{nodes}{an optional vector of node IDs for filtering list of nodes
+\item{nodes}{An optional vector of node IDs for filtering list of nodes
 present in the graph or node data frame.}
 }
 \value{
-a named vector of node attribute values for the attribute given by
+A named vector of node attribute values for the attribute given by
 \code{node_attr} by node ID.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get node attribute values for
-one or more nodes.
+From a graph object of class \code{dgr_graph}, get node attribute values for one
+or more nodes.
 }
 \examples{
 # Create a random graph using the
@@ -49,4 +49,5 @@ graph \%>\%
   get_node_attrs(
     node_attr = value,
     nodes = c(1, 3))
+
 }

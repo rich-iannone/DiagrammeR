@@ -7,7 +7,7 @@
 get_constraint(graph, nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{nodes}{an optional vector of node IDs to consider for constraint
 scores. If not supplied, then constraint scores for all nodes in the graph
@@ -51,4 +51,5 @@ graph <-
 
 # Display the graph's node data frame
 graph \%>\% get_node_df()
+
 }

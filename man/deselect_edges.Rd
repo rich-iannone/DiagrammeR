@@ -7,12 +7,12 @@
 deselect_edges(graph, edges)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edges}{a vector of edge IDs that should be deselected.}
+\item{edges}{A vector of edge IDs that should be deselected.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Deselect edges in a graph object of class \code{dgr_graph}.
@@ -47,4 +47,5 @@ graph <-
 # `3` and that edge `1` has been
 # deselected (leaving only `3`)
 graph \%>\% get_selection()
+
 }

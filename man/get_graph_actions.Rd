@@ -7,16 +7,15 @@
 get_graph_actions(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a \code{df_tbl} object.
+A \code{df_tbl} object.
 }
 \description{
 Get a tibble of the available graph actions, which contains information on
-function invocations to be called on the graph at every transformation
-step, or, when manually invoked with the
-\code{\link[=trigger_graph_actions]{trigger_graph_actions()}} function.
+function invocations to be called on the graph at every transformation step,
+or, when manually invoked with the \code{\link[=trigger_graph_actions]{trigger_graph_actions()}} function.
 }
 \examples{
 # Create a random graph using the
@@ -47,4 +46,5 @@ graph <-
 # available in the graph, use the
 # `get_graph_actions()` function
 graph \%>\% get_graph_actions()
+
 }

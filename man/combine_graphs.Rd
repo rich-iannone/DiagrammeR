@@ -7,15 +7,15 @@
 combine_graphs(x, y)
 }
 \arguments{
-\item{x}{a \code{DiagrammeR} graph object to which another graph will be
-unioned. This graph should be considered the graph from which global graph
+\item{x}{A \code{DiagrammeR} graph object to which another graph will be unioned.
+This graph should be considered the graph from which global graph
 attributes will be inherited in the resulting graph.}
 
-\item{y}{a \code{DiagrammeR} graph object that is to be unioned with the
-graph supplied as \code{x}.}
+\item{y}{A \code{DiagrammeR} graph object that is to be unioned with the graph
+supplied as \code{x}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Combine two graphs in order to make a new graph.
@@ -54,4 +54,5 @@ combined_graph \%>\% count_nodes()
 # during the union; this ensures
 # that node ID values are unique
 combined_graph \%>\% get_node_ids()
+
 }

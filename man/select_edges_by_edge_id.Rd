@@ -7,22 +7,21 @@
 select_edges_by_edge_id(graph, edges, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edges}{a vector of edge IDs for the selection of edges present in the
+\item{edges}{A vector of edge IDs for the selection of edges present in the
 graph.}
 
-\item{set_op}{the set operation to perform upon consecutive selections of
+\item{set_op}{The set operation to perform upon consecutive selections of
 graph edges This can either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect}, or, as a
-\code{difference} on the previous selection, if it exists.}
+intersection of selections with \code{intersect}, or, as a \code{difference} on the
+previous selection, if it exists.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Select edges in a graph object of class \code{dgr_graph} using edge ID
-values.
+Select edges in a graph object of class \code{dgr_graph} using edge ID values.
 }
 \examples{
 # Create a graph with 5 nodes
@@ -60,4 +59,5 @@ graph \%>\%
     e <- count_edges(.)
     l/e
   }
+
 }

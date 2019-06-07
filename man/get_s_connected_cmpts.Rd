@@ -7,10 +7,10 @@
 get_s_connected_cmpts(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with nodes and their membership in different strongly
+A data frame with nodes and their membership in different strongly
 connected components.
 }
 \description{
@@ -50,4 +50,5 @@ graph <-
 # components as a data frame of
 # nodes and their groupings
 graph \%>\% get_s_connected_cmpts()
+
 }

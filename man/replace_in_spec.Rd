@@ -7,7 +7,7 @@
 replace_in_spec(spec)
 }
 \arguments{
-\item{spec}{string spec to be parsed and evaluated.}
+\item{spec}{String spec to be parsed and evaluated.}
 }
 \description{
 Use Razor-like syntax to define a template for use in a \code{grViz} diagram.
@@ -44,4 +44,5 @@ a -> { b c d e f g h i j}
 "
 grViz(replace_in_spec(spec))
 }
+
 }

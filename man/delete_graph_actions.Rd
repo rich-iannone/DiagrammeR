@@ -7,14 +7,14 @@
 delete_graph_actions(graph, actions)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{actions}{either a vector of integer numbers indicating which actions to
+\item{actions}{Either a vector of integer numbers indicating which actions to
 delete (based on \code{action_index} values), or, a character vector
 corresponding to \code{action_name} values.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Delete one or more graph actions stored within a graph object of class
@@ -66,4 +66,5 @@ graph <-
 # actions were deleted by again using
 # the `get_graph_actions()` function
 graph \%>\% get_graph_actions()
+
 }

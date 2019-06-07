@@ -7,9 +7,9 @@
 get_graph_from_graph_series(graph_series, graph_no)
 }
 \arguments{
-\item{graph_series}{a graph series object of type \code{dgr_graph_1D}.}
+\item{graph_series}{A graph series object of type \code{dgr_graph_1D}.}
 
-\item{graph_no}{the index of the graph in the graph series.}
+\item{graph_no}{The index of the graph in the graph series.}
 }
 \description{
 Using a graph series object of type \code{dgr_graph_1D}, get a graph object.
@@ -44,4 +44,5 @@ extracted_graph <-
   series \%>\%
   get_graph_from_graph_series(
     graph_no = 2)
+
 }

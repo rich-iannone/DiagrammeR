@@ -8,7 +8,7 @@ get_dice_similarity(graph, nodes = NULL, direction = "all",
   round_to = 3)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{nodes}{an optional vector of node IDs to consider for Dice similarity
 scores. If not supplied, then similarity scores will be provided for every
@@ -46,4 +46,5 @@ graph <-
 graph \%>\%
   get_dice_similarity(
     nodes = 5:7)
+
 }

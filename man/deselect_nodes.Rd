@@ -7,12 +7,12 @@
 deselect_nodes(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node IDs that should be deselected.}
+\item{nodes}{A vector of node IDs that should be deselected.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Deselect nodes in a graph object of class \code{dgr_graph}.
@@ -50,4 +50,5 @@ graph <-
 # `3` and that node `1` has been
 # deselected (leaving only `3`)
 graph \%>\% get_selection()
+
 }

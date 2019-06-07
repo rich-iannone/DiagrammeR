@@ -8,24 +8,23 @@ recode_edge_attrs(graph, edge_attr_from, ..., otherwise = NULL,
   edge_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute column from which values
+\item{edge_attr_from}{The name of the edge attribute column from which values
 will be recoded.}
 
-\item{...}{single-length character vectors with the recoding instructions.
+\item{...}{Single-length character vectors with the recoding instructions.
 The first component should have the value to replace and the second should
-have the replacement value (in the form
-\code{"[to_replace] -> [replacement]", ...}).}
+have the replacement value (in the form \code{"[to_replace] -> [replacement]", ...}).}
 
-\item{otherwise}{an optional single value for recoding any unmatched values.}
+\item{otherwise}{An optional single value for recoding any unmatched values.}
 
-\item{edge_attr_to}{an optional name of a new edge attribute to which the
+\item{edge_attr_to}{An optional name of a new edge attribute to which the
 recoded values will be applied. This will retain the original edge
 attribute and its values.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), recode character or numeric
@@ -72,4 +71,5 @@ graph <-
 # recoded and copied into a
 # new node attribute
 graph \%>\% get_edge_df()
+
 }

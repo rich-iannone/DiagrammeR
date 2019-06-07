@@ -7,7 +7,7 @@
 delete_edge(graph, from = NULL, to = NULL, id = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{from}{a node ID from which the edge to be removed is outgoing. If an
 edge ID is provided to \code{id}, then this argument is ignored. There is
@@ -102,4 +102,5 @@ graph_labeled_nodes \%>\%
     from = "one",
     to = "two") \%>\%
   count_edges()
+
 }

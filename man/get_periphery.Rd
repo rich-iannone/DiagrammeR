@@ -7,10 +7,10 @@
 get_periphery(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a vector of node IDs.
+A vector of node IDs.
 }
 \description{
 Get those nodes that are part of the graph periphery (i.e., have the maximum
@@ -26,4 +26,5 @@ create_graph() \%>\%
     m = 35,
     set_seed = 23) \%>\%
   get_periphery()
+
 }

@@ -7,7 +7,7 @@
 get_cmty_walktrap(graph, steps = 4)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{steps}{the number of steps to take for each of the random walks.}
 }
@@ -47,4 +47,5 @@ graph <-
 # Display the graph's
 # node data frame
 graph \%>\% get_node_df()
+
 }

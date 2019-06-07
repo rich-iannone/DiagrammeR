@@ -8,32 +8,30 @@ add_nodes_from_df_cols(graph, df, columns, type = NULL,
   keep_duplicates = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{df}{a data frame from which values will be taken as new nodes for the
+\item{df}{A data frame from which values will be taken as new nodes for the
 graph.}
 
-\item{columns}{a character vector of column names or a numeric vector of
-column numbers for the data frame supplied in \code{df}. The distinct
-values in these columns will serve as labels for the nodes added to the
-graph.}
+\item{columns}{A character vector of column names or a numeric vector of
+column numbers for the data frame supplied in \code{df}. The distinct values in
+these columns will serve as labels for the nodes added to the graph.}
 
-\item{type}{an optional, single-length character vector that provides a group
+\item{type}{An optional, single-length character vector that provides a group
 identifier for the nodes to be added to the graph.}
 
-\item{keep_duplicates}{an option to exclude incoming nodes where the labels
-(i.e., values found in columns of the specified \code{df}) match label
-values available in the graph's nodes. By default, this is set to
-\code{FALSE}.}
+\item{keep_duplicates}{An option to exclude incoming nodes where the labels
+(i.e., values found in columns of the specified \code{df}) match label values
+available in the graph's nodes. By default, this is set to \code{FALSE}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-Add new nodes to a graph object of class \code{dgr_graph} using distinct
-values from one or more columns in a data frame. The values will serve as
-node labels and the number of nodes added depends on the number of distinct
-values found in the specified columns.
+Add new nodes to a graph object of class \code{dgr_graph} using distinct values
+from one or more columns in a data frame. The values will serve as node
+labels and the number of nodes added depends on the number of distinct values
+found in the specified columns.
 }
 \examples{
 # Create an empty graph
@@ -79,4 +77,5 @@ graph <-
 # get made with columns that
 # are not character class columns
 graph \%>\% get_node_df()
+
 }

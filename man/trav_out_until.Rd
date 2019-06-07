@@ -8,34 +8,33 @@ trav_out_until(graph, conditions, max_steps = 30,
   exclude_unmatched = TRUE, add_to_selection = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use a stopping condition for the traversal. If
+\item{conditions}{An option to use a stopping condition for the traversal. If
 the condition is met during the traversal (i.e., the node(s) traversed to
 match the condition), then those traversals will terminate at those nodes.
 Otherwise, traversals with continue and terminate when the number of steps
 provided in \code{max_steps} is reached.}
 
-\item{max_steps}{the maximum number of \code{trav_out()} steps (i.e.,
-node-to-node traversals in the outward direction) to allow before stopping.}
+\item{max_steps}{The maximum number of \code{trav_out()} steps (i.e., node-to-node
+traversals in the outward direction) to allow before stopping.}
 
-\item{exclude_unmatched}{if \code{TRUE} (the default value) then any nodes
-not satisfying the conditions provided in \code{conditions} that are in the
-ending selection are excluded.}
+\item{exclude_unmatched}{If \code{TRUE} (the default value) then any nodes not
+satisfying the conditions provided in \code{conditions} that are in the ending
+selection are excluded.}
 
-\item{add_to_selection}{if \code{TRUE} then every node traversed will be part
-of the final selection of nodes. If \code{FALSE} (the default value) then
-only the nodes finally traversed to will be part of the final node
-selection.}
+\item{add_to_selection}{If \code{TRUE} then every node traversed will be part of
+the final selection of nodes. If \code{FALSE} (the default value) then only the
+nodes finally traversed to will be part of the final node selection.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, move along outward edges from
-one or more nodes present in a selection to other connected nodes, replacing
-the current nodes in the selection with those nodes traversed to until
-reaching nodes that satisfy one or more conditions.
+From a graph object of class \code{dgr_graph}, move along outward edges from one
+or more nodes present in a selection to other connected nodes, replacing the
+current nodes in the selection with those nodes traversed to until reaching
+nodes that satisfy one or more conditions.
 }
 \details{
 This traversal function makes use of an active selection of nodes. After the
@@ -43,21 +42,13 @@ traversal, depending on the traversal conditions, there will either be a
 selection of nodes or no selection at all.
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions:
-\code{\link[=select_nodes]{select_nodes()}},
-\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
-\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
-\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
-(\code{trav_*()}) functions:
-\code{\link[=trav_out]{trav_out()}},
-\code{\link[=trav_in]{trav_in()}},
-\code{\link[=trav_both]{trav_both()}},
-\code{\link[=trav_out_node]{trav_out_node()}},
-\code{\link[=trav_in_node]{trav_in_node()}},
-\code{\link[=trav_out_until]{trav_out_until()}}, or
+(\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, or
 \code{\link[=trav_in_until]{trav_in_until()}}.
 }
 \examples{
@@ -120,4 +111,5 @@ graph <-
 
 # Get the graph's node selection
 graph \%>\% get_selection()
+
 }

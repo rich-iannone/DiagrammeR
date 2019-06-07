@@ -7,7 +7,7 @@
 node_data(...)
 }
 \arguments{
-\item{...}{node data attributes provided as one or more named vectors.}
+\item{...}{Node data attributes provided as one or more named vectors.}
 }
 \description{
 This helper function should be invoked to provide values for the namesake
@@ -32,4 +32,5 @@ graph <-
 # data attributes have been
 # inserted
 graph \%>\% get_node_df()
+
 }

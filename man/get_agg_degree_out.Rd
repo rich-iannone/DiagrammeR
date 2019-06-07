@@ -7,17 +7,17 @@
 get_agg_degree_out(graph, agg, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{agg}{the aggregation function to use for summarizing outdegree values
-from graph nodes. The following aggregation functions can be used:
-\code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.}
+\item{agg}{The aggregation function to use for summarizing outdegree values
+from graph nodes. The following aggregation functions can be used: \code{sum},
+\code{min}, \code{max}, \code{mean}, or \code{median}.}
 
-\item{conditions}{an option to use filtering conditions for the nodes to
+\item{conditions}{An option to use filtering conditions for the nodes to
 consider.}
 }
 \value{
-a vector with an aggregate outdegree value.
+A vector with an aggregate outdegree value.
 }
 \description{
 Get a single, aggregate value from the outdegree values for all nodes in a
@@ -60,4 +60,5 @@ graph \%>\%
   get_agg_degree_out(
     agg = "mean",
     conditions = value < 5.0)
+
 }

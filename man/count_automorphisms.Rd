@@ -7,10 +7,10 @@
 count_automorphisms(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the number of automorphisms the
+A single numeric value representing the number of automorphisms the
 graph contains.
 }
 \description{
@@ -33,4 +33,5 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   count_automorphisms()
+
 }

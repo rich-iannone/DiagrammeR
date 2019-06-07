@@ -10,48 +10,44 @@ add_islands_graph(graph, n_islands, island_size, p, edges_between,
   set_seed = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{n_islands}{the number of islands in the generated graph.}
+\item{n_islands}{The number of islands in the generated graph.}
 
-\item{island_size}{the size of the islands in the generated graph.}
+\item{island_size}{The size of the islands in the generated graph.}
 
-\item{p}{the probability of there being edges between the islands.}
+\item{p}{The probability of there being edges between the islands.}
 
 \item{edges_between}{The number of edges between islands.}
 
-\item{type}{an optional string that describes the entity type for all the
+\item{type}{An optional string that describes the entity type for all the
 nodes to be added.}
 
-\item{label}{a logical value where setting to \code{TRUE} ascribes node IDs
-to the label and \code{FALSE} yields a blank label.}
+\item{label}{A logical value where setting to \code{TRUE} ascribes node IDs to the
+label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for providing a relationship label to all edges
+\item{rel}{An optional string for providing a relationship label to all edges
 to be added.}
 
-\item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
-\code{fillcolor}).}
+\item{node_aes}{An optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{color}, \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., \code{shape}, \code{style},
-\code{penwidth}, \code{color}).}
+\item{edge_aes}{An optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., \code{shape}, \code{style}, \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.}
+\item{node_data}{An optional list of named vectors comprising node data
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.}
+\item{edge_data}{An optional list of named vectors comprising edge data
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly recommended for
+use here as it helps bind data specifically to the created edges.}
 
-\item{set_seed}{supplying a value sets a random seed of the
+\item{set_seed}{Supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
 }
 \description{
@@ -75,4 +71,5 @@ islands_graph \%>\% count_nodes()
 
 # Get a count of edges
 islands_graph \%>\% count_edges()
+
 }

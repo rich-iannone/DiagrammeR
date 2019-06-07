@@ -7,7 +7,7 @@
 get_agg_degree_total(graph, agg, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{agg}{the aggregation function to use for summarizing total degree
 values from graph nodes. The following aggregation functions can be used:
@@ -64,4 +64,5 @@ graph \%>\%
   get_agg_degree_total(
     agg = "mean",
     conditions = value < 5.0)
+
 }

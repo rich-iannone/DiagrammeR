@@ -7,10 +7,10 @@
 count_unconnected_node_pairs(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the number of unconnected node
+A single numeric value representing the number of unconnected node
 pairs.
 }
 \description{
@@ -32,4 +32,5 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   count_unconnected_node_pairs()
+
 }

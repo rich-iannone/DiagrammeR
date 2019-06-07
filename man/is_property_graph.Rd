@@ -7,10 +7,10 @@
 is_property_graph(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.Create a graph with 2 nodes(with type values) and asingle edge (with a rel)
+A logical value.Create a graph with 2 nodes(with type values) and asingle edge (with a rel)
 
 simple_property_graph <-
 create_graph() %>%
@@ -39,6 +39,6 @@ is_property_graph()
 }
 \description{
 Provides a logical value on whether the graph is property graph (i.e., all
-nodes have an assigned \code{type} value and all edges have an assigned
-\code{rel} value).
+nodes have an assigned \code{type} value and all edges have an assigned \code{rel}
+value).
 }
