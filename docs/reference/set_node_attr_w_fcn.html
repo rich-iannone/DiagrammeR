@@ -33,7 +33,8 @@
 <meta property="og:title" content="Set node attribute values with a graph function — set_node_attr_w_fcn" />
 
 <meta property="og:description" content="From a graph object of class dgr_graph or a node data frame, set node
-  attribute properties for all nodes in the graph using one of several whole-graph functions." />
+attribute properties for all nodes in the graph using one of several
+whole-graph functions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +136,8 @@
     <div class="ref-description">
     
     <p>From a graph object of class <code>dgr_graph</code> or a node data frame, set node
-  attribute properties for all nodes in the graph using one of several whole-graph functions.</p>
+attribute properties for all nodes in the graph using one of several
+whole-graph functions.</p>
     
     </div>
 
@@ -146,41 +148,36 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_fcn</th>
-      <td><p>the name of the function to use for creating a column of
-node attribute values. Valid functions are:
-<code><a href='get_alpha_centrality.html'>get_alpha_centrality</a>()</code>,
-<code><a href='get_authority_centrality.html'>get_authority_centrality</a>()</code>,
-<code><a href='get_betweenness.html'>get_betweenness</a>()</code>, <code><a href='get_bridging.html'>get_bridging</a>()</code>,
-<code><a href='get_closeness.html'>get_closeness</a>()</code>, <code><a href='get_cmty_edge_btwns.html'>get_cmty_edge_btwns</a>()</code>,
-<code><a href='get_cmty_fast_greedy.html'>get_cmty_fast_greedy</a>()</code>, <code><a href='get_cmty_l_eigenvec.html'>get_cmty_l_eigenvec</a>()</code>,
-<code><a href='get_cmty_louvain.html'>get_cmty_louvain</a>()</code>, <code><a href='get_cmty_walktrap.html'>get_cmty_walktrap</a>()</code>,
-<code><a href='get_constraint.html'>get_constraint</a>()</code>, <code><a href='get_degree_distribution.html'>get_degree_distribution</a>()</code>,
-<code><a href='get_degree_histogram.html'>get_degree_histogram</a>()</code>, <code><a href='get_degree_in.html'>get_degree_in</a>()</code>,
-<code><a href='get_degree_out.html'>get_degree_out</a>()</code>, <code><a href='get_degree_total.html'>get_degree_total</a>()</code>,
-<code><a href='get_eccentricity.html'>get_eccentricity</a>()</code>, <code><a href='get_eigen_centrality.html'>get_eigen_centrality</a>()</code>,
-<code><a href='get_pagerank.html'>get_pagerank</a>()</code>, <code><a href='get_s_connected_cmpts.html'>get_s_connected_cmpts</a>()</code>,
-and <code><a href='get_w_connected_cmpts.html'>get_w_connected_cmpts</a>()</code>.</p></td>
+      <td><p>The name of the function to use for creating a column of
+node attribute values. Valid functions are: <code><a href='get_alpha_centrality.html'>get_alpha_centrality()</a></code>,
+<code><a href='get_authority_centrality.html'>get_authority_centrality()</a></code>, <code><a href='get_betweenness.html'>get_betweenness()</a></code>, <code><a href='get_bridging.html'>get_bridging()</a></code>,
+<code><a href='get_closeness.html'>get_closeness()</a></code>, <code><a href='get_cmty_edge_btwns.html'>get_cmty_edge_btwns()</a></code>, <code><a href='get_cmty_fast_greedy.html'>get_cmty_fast_greedy()</a></code>,
+<code><a href='get_cmty_l_eigenvec.html'>get_cmty_l_eigenvec()</a></code>, <code><a href='get_cmty_louvain.html'>get_cmty_louvain()</a></code>, <code><a href='get_cmty_walktrap.html'>get_cmty_walktrap()</a></code>,
+<code><a href='get_constraint.html'>get_constraint()</a></code>, <code><a href='get_degree_distribution.html'>get_degree_distribution()</a></code>, <code><a href='get_degree_histogram.html'>get_degree_histogram()</a></code>,
+<code><a href='get_degree_in.html'>get_degree_in()</a></code>, <code><a href='get_degree_out.html'>get_degree_out()</a></code>, <code><a href='get_degree_total.html'>get_degree_total()</a></code>,
+<code><a href='get_eccentricity.html'>get_eccentricity()</a></code>, <code><a href='get_eigen_centrality.html'>get_eigen_centrality()</a></code>, <code><a href='get_pagerank.html'>get_pagerank()</a></code>,
+<code><a href='get_s_connected_cmpts.html'>get_s_connected_cmpts()</a></code>, and <code><a href='get_w_connected_cmpts.html'>get_w_connected_cmpts()</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments and values to pass to the named function in
+      <td><p>Arguments and values to pass to the named function in
 <code>node_attr_fcn</code>, if necessary.</p></td>
     </tr>
     <tr>
       <th>column_name</th>
-      <td><p>an option to supply a column name for the new node
-attribute column. If <code>NULL</code> then the column name supplied by the
-function will used along with a <code>__A</code> suffix.</p></td>
+      <td><p>An option to supply a column name for the new node
+attribute column. If <code>NULL</code> then the column name supplied by the function
+will used along with a <code>__A</code> suffix.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>either a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -290,7 +287,8 @@ function will used along with a <code>__A</code> suffix.</p></td>
 #&gt; 8   8 &lt;NA&gt;     8   5.8   0.0400
 #&gt; 9   9 &lt;NA&gt;     9   4.7   0.0685
 #&gt; 10 10 &lt;NA&gt;    10   5.7   0.0440
-#&gt; 11 11 &lt;NA&gt;  &lt;NA&gt;    NA   0.0744</div></pre>
+#&gt; 11 11 &lt;NA&gt;  &lt;NA&gt;    NA   0.0744</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

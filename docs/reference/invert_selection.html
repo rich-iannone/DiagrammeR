@@ -33,7 +33,7 @@
 <meta property="og:title" content="Invert selection of nodes or edges in a graph — invert_selection" />
 
 <meta property="og:description" content="Modify the selection of nodes or edges within a graph object such that all
-  nodes or edges previously not selected will now be selected and vice versa." />
+nodes or edges previously not selected will now be selected and vice versa." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +135,7 @@
     <div class="ref-description">
     
     <p>Modify the selection of nodes or edges within a graph object such that all
-  nodes or edges previously not selected will now be selected and vice versa.</p>
+nodes or edges previously not selected will now be selected and vice versa.</p>
     
     </div>
 
@@ -146,13 +146,13 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -180,20 +180,20 @@
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(
-    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 2 nodes</span></div><div class='input'>
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
+
 <span class='co'># Verify that a node</span>
 <span class='co'># selection has been made</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 2 nodes</span></div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
 <span class='co'># Invert the selection</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>invert_selection</span>()</div><div class='output co'>#&gt; <span class='message'>`invert_selection()` INFO: inverted an existing selection of 2 nodes:</span>
-#&gt; <span class='message'>* 2 nodes are now in the active selection</span></div><div class='input'>
+  <span class='fu'>invert_selection</span>()
+
 <span class='co'># Verify that the node</span>
 <span class='co'># selection has been changed</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 2 nodes</span></div><div class='output co'>#&gt; [1] 2 4</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 4</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

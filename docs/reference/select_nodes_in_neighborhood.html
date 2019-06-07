@@ -33,7 +33,7 @@
 <meta property="og:title" content="Select nodes based on a walk distance from a specified node — select_nodes_in_neighborhood" />
 
 <meta property="og:description" content="Select those nodes in the neighborhood of nodes connected a specified
-  distance from an initial node." />
+distance from an initial node." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +135,7 @@
     <div class="ref-description">
     
     <p>Select those nodes in the neighborhood of nodes connected a specified
-  distance from an initial node.</p>
+distance from an initial node.</p>
     
     </div>
 
@@ -146,29 +146,29 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>the node from which the traversal will originate.</p></td>
+      <td><p>The node from which the traversal will originate.</p></td>
     </tr>
     <tr>
       <th>distance</th>
-      <td><p>the maximum number of steps from the <code>node</code> for
-inclusion in the selection.</p></td>
+      <td><p>The maximum number of steps from the <code>node</code> for inclusion in
+the selection.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon consecutive selections of
+      <td><p>The set operation to perform upon consecutive selections of
 graph nodes. This can either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>, or, as a
-<code>difference</code> on the previous selection, if it exists.</p></td>
+intersection of selections with <code>intersect</code>, or, as a <code>difference</code> on the
+previous selection, if it exists.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -189,9 +189,10 @@ intersection of selections with <code>intersect</code>, or, as a
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>select_nodes_in_neighborhood</span>(
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 3 nodes</span></div><div class='input'>
+    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
 <span class='co'># Get the selection of nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 3 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'># Perform another selection</span>
 <span class='co'># of nodes, this time with a</span>
 <span class='co'># neighborhood spanning 2 nodes</span>
@@ -201,9 +202,11 @@ intersection of selections with <code>intersect</code>, or, as a
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>select_nodes_in_neighborhood</span>(
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 3 nodes</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 7 nodes</span></div><div class='input'>
+    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
 <span class='co'># Get the selection of nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 7 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

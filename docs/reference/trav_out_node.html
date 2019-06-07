@@ -32,10 +32,10 @@
 
 <meta property="og:title" content="Traverse from one or more selected edges onto adjacent, outward nodes — trav_out_node" />
 
-<meta property="og:description" content="From a graph object of class dgr_graph with an active selection of
-edges move opposite to the edge direction to connected nodes, replacing the
-current edge selection with those nodes traversed to. An optional filter by
-node attribute can limit the set of nodes traversed to." />
+<meta property="og:description" content="From a graph object of class dgr_graph with an active selection of edges
+move opposite to the edge direction to connected nodes, replacing the current
+edge selection with those nodes traversed to. An optional filter by node
+attribute can limit the set of nodes traversed to." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,10 +136,10 @@ node attribute can limit the set of nodes traversed to." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class <code>dgr_graph</code> with an active selection of
-edges move opposite to the edge direction to connected nodes, replacing the
-current edge selection with those nodes traversed to. An optional filter by
-node attribute can limit the set of nodes traversed to.</p>
+    <p>From a graph object of class <code>dgr_graph</code> with an active selection of edges
+move opposite to the edge direction to connected nodes, replacing the current
+edge selection with those nodes traversed to. An optional filter by node
+attribute can limit the set of nodes traversed to.</p>
     
     </div>
 
@@ -151,31 +151,31 @@ node attribute can limit the set of nodes traversed to.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to use filtering conditions for the traversal.</p></td>
+      <td><p>An option to use filtering conditions for the traversal.</p></td>
     </tr>
     <tr>
       <th>copy_attrs_from</th>
-      <td><p>providing an edge attribute name will copy those edge
+      <td><p>Providing an edge attribute name will copy those edge
 attribute values to the traversed nodes. If the edge attribute already
- exists, the values will be merged to the traversed nodes; otherwise, a new
- node attribute will be created.</p></td>
+exists, the values will be merged to the traversed nodes; otherwise, a new
+node attribute will be created.</p></td>
     </tr>
     <tr>
       <th>copy_attrs_as</th>
-      <td><p>if an edge attribute name is provided in
-<code>copy_attrs_from</code>, this option will allow the copied attribute values
-to be written under a different node attribute name. If the attribute name
-provided in <code>copy_attrs_as</code> does not exist in the graph's ndf, the new
-node attribute will be created with the chosen name.</p></td>
+      <td><p>If an edge attribute name is provided in
+<code>copy_attrs_from</code>, this option will allow the copied attribute values to be
+written under a different node attribute name. If the attribute name
+provided in <code>copy_attrs_as</code> does not exist in the graph's ndf, the new node
+attribute will be created with the chosen name.</p></td>
     </tr>
     <tr>
       <th>agg</th>
-      <td><p>if an edge attribute is provided to <code>copy_attrs_from</code>, then
-an aggregation function is required since there may be cases where multiple
+      <td><p>If an edge attribute is provided to <code>copy_attrs_from</code>, then an
+aggregation function is required since there may be cases where multiple
 edge attribute values will be passed onto the traversed node(s). To pass
 only a single value, the following aggregation functions can be used:
 <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, or <code>median</code>.</p></td>
@@ -184,7 +184,7 @@ only a single value, the following aggregation functions can be used:
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -192,21 +192,16 @@ only a single value, the following aggregation functions can be used:
 traversal, depending on the traversal conditions, there will either be a
 selection of nodes or no selection at all.</p>
 <p>Selections of edges can be performed using the following selection
-(<code>select_*()</code>) functions:
-<code><a href='select_edges.html'>select_edges</a>()</code>,
-<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
-<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
-<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_edges.html'>select_edges()</a></code>, <code><a href='select_last_edges_created.html'>select_last_edges_created()</a></code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id()</a></code>, or <code><a href='select_edges_by_node_id.html'>select_edges_by_node_id()</a></code>.</p>
 <p>Selections of edges can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
-<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
-<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
-<code><a href='trav_reverse_edge.html'>trav_reverse_edge</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out_edge.html'>trav_out_edge()</a></code>, <code><a href='trav_in_edge.html'>trav_in_edge()</a></code>,
+<code><a href='trav_both_edge.html'>trav_both_edge()</a></code>, or <code><a href='trav_reverse_edge.html'>trav_reverse_edge()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Set a seed</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>RNGversion</a></span>(<span class='st'>"3.5.0"</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>23</span>)
 
 <span class='co'># Create a simple graph</span>
@@ -272,7 +267,7 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_out_node</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 1 node</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Traverse from edges `2`-&gt;`5` and</span>
 <span class='co'># `3`-&gt;`5` to the attached node along</span>
 <span class='co'># the direction of the edge; here, the</span>
@@ -285,9 +280,7 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>3</span>,
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_out_node</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: modified an existing selection of 1 edge:</span>
-#&gt; <span class='message'>* 2 edges are now in the active selection</span>
-#&gt; <span class='message'>* used the `union` set operation</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 2 nodes</span></div><div class='output co'>#&gt; [1] 2 3</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 3</div><div class='input'>
 <span class='co'># Traverse from the edge `1`-&gt;`3`</span>
 <span class='co'># to the attached node where the edge</span>
 <span class='co'># is outgoing, this time filtering</span>
@@ -299,7 +292,7 @@ selection of nodes or no selection at all.</p>
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_out_node</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>7.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 1 node</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Traverse from the edge `1`-&gt;`3`</span>
 <span class='co'># to the attached node where the edge</span>
 <span class='co'># is outgoing, this time filtering</span>
@@ -313,7 +306,7 @@ selection of nodes or no selection at all.</p>
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_out_node</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>values</span> <span class='kw'>&lt;</span> <span class='fl'>7.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from the edge `1`-&gt;`2`</span>
 <span class='co'># to node `2`, using multiple conditions</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -324,7 +317,7 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>".*d$"</span>, <span class='no'>label</span>) <span class='kw'>|</span>
       <span class='no'>values</span> <span class='kw'>&lt;</span> <span class='fl'>6.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 1 node</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Create another simple graph to demonstrate</span>
 <span class='co'># copying of edge attribute values to traversed</span>
 <span class='co'># nodes</span>
@@ -351,7 +344,8 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_edges.html'>select_edges</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_edges_by_edge_id()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`select_edges_by_edge_id()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 2 edges</span></div><div class='input'>
+  <span class='fu'><a href='select_edges.html'>select_edges</a></span>()
+
 <span class='co'># Show the graph's internal edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value
 #&gt; 1  1    1  2 &lt;NA&gt;     5
@@ -377,7 +371,8 @@ selection of nodes or no selection at all.</p>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;    10
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;     8
-#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;    NA</div></pre>
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;    NA</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

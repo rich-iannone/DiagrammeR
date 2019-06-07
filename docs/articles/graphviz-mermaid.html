@@ -89,7 +89,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="graphviz-mermaid_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="graphviz-mermaid_files/viz-1.8.2/viz.js"></script><link href="graphviz-mermaid_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+      </header><script src="graphviz-mermaid_files/htmlwidgets-1.4/htmlwidgets.js"></script><script src="graphviz-mermaid_files/viz-1.8.2/viz.js"></script><link href="graphviz-mermaid_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="graphviz-mermaid_files/grViz-binding-1.0.0/grViz.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -152,8 +152,8 @@
 <a class="sourceLine" id="cb2-20" title="20"><span class="st">  E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8</span></a>
 <a class="sourceLine" id="cb2-21" title="21"><span class="st">}</span></a>
 <a class="sourceLine" id="cb2-22" title="22"><span class="st">"</span>)</a></code></pre></div>
-<div id="htmlwidget-d65e56ae5175d06f1d08" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d65e56ae5175d06f1d08">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n  A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n  1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  A->1 B->2 B->3 B->4 C->A\n  1->D E->A 2->4 1->5 1->F\n  E->6 4->6 5->7 6->7 3->8\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b660ed5a2d080ba66643" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b660ed5a2d080ba66643">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n  A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n  1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  A->1 B->2 B->3 B->4 C->A\n  1->D E->A 2->4 1->5 1->F\n  E->6 4->6 5->7 6->7 3->8\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="subgraphs-and-clusters" class="section level3">
 <h3 class="hasAnchor">
@@ -277,8 +277,8 @@ A -&gt; C</code></pre>
 <a class="sourceLine" id="cb15-21" title="21"><span class="st">[1]: 'top'</span></a>
 <a class="sourceLine" id="cb15-22" title="22"><span class="st">[2]: 10:20</span></a>
 <a class="sourceLine" id="cb15-23" title="23"><span class="st">"</span>)</a></code></pre></div>
-<div id="htmlwidget-9cdbc084c18bae9ee95f" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9cdbc084c18bae9ee95f">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\nnode [fontname = Helvetica]\na [label = \"top\"]\nb [label = \"10\"]\nc [label = \"11\"]\nd [label = \"12\"]\ne [label = \"13\"]\nf [label = \"14\"]\ng [label = \"15\"]\nh [label = \"16\"]\ni [label = \"17\"]\nj [label = \"18\"]\n\n# edge definitions with the node IDs\na -> {b c d e f g h i j}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>As can be seen from the output:</p>
+<div id="htmlwidget-6a5c49d497264e53bf04" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6a5c49d497264e53bf04">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\nnode [fontname = Helvetica]\na [label = \"top\"]\nb [label = \"10\"]\nc [label = \"11\"]\nd [label = \"12\"]\ne [label = \"13\"]\nf [label = \"14\"]\ng [label = \"15\"]\nh [label = \"16\"]\ni [label = \"17\"]\nj [label = \"18\"]\n\n# edge definitions with the node IDs\na -> {b c d e f g h i j}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>As can be seen from the output:</p>
 <ol style="list-style-type: decimal">
 <li>the node with ID <code>a</code> is given the label “top” (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote R expression)</li>
 <li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices <code>1</code> to <code>9</code> (using the hyphenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>

@@ -33,7 +33,7 @@
 <meta property="og:title" content="Subset a graph series object — filter_graph_series" />
 
 <meta property="og:description" content="Subsetting a graph series by the graphs' index positions in the graph series
-  or through selection via graphs' date-time attributes." />
+or through selection via graphs' date-time attributes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +135,7 @@
     <div class="ref-description">
     
     <p>Subsetting a graph series by the graphs' index positions in the graph series
-  or through selection via graphs' date-time attributes.</p>
+or through selection via graphs' date-time attributes.</p>
     
     </div>
 
@@ -146,32 +146,31 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph_series</th>
-      <td><p>a graph series object of type <code>dgr_graph_1D</code>.</p></td>
+      <td><p>A graph series object of type <code>dgr_graph_1D</code>.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>either <code>number</code>, which allows for subsetting of the graph
-series by graph indices, or <code>time</code> which for graph series objects of
-type <code>temporal</code> allows for a subsetting of graphs by a date-time or
-time range.</p></td>
+      <td><p>Either <code>number</code>, which allows for subsetting of the graph series by
+graph indices, or <code>time</code> which for graph series objects of type <code>temporal</code>
+allows for a subsetting of graphs by a date-time or time range.</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>where the subsetting of the graph series by to occur via graph
+      <td><p>Where the subsetting of the graph series by to occur via graph
 indices (where <code>by = number</code>), provide a vector of those indices; when
-subsetting by time (where <code>by = time</code>), a range of times can be
-provided as a vector.</p></td>
+subsetting by time (where <code>by = time</code>), a range of times can be provided as
+a vector.</p></td>
     </tr>
     <tr>
       <th>tz</th>
-      <td><p>the time zone (<code>tz</code>) corresponding to dates or date-time
-string provided in <code>values</code> (if <code>by = "date"</code>).</p></td>
+      <td><p>The time zone (<code>tz</code>) corresponding to dates or date-time string
+provided in <code>values</code> (if <code>by = "date"</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph series object of type <code>dgr_graph_1D</code>.</p>
+    <p>A graph series object of type <code>dgr_graph_1D</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -232,7 +231,8 @@ string provided in <code>values</code> (if <code>by = "date"</code>).</p></td>
 <span class='co'># Get a count of graphs in</span>
 <span class='co'># the series</span>
 <span class='no'>series_time_subset</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_graphs_in_graph_series.html'>count_graphs_in_graph_series</a></span>()</div><div class='output co'>#&gt; [1] 2</div></pre>
+  <span class='fu'><a href='count_graphs_in_graph_series.html'>count_graphs_in_graph_series</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -89,7 +89,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="selections_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="selections_files/viz-1.8.2/viz.js"></script><link href="selections_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+      </header><script src="selections_files/htmlwidgets-1.4/htmlwidgets.js"></script><script src="selections_files/viz-1.8.2/viz.js"></script><link href="selections_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="selections_files/grViz-binding-1.0.0/grViz.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -142,14 +142,13 @@
 <a class="sourceLine" id="cb2-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/select_nodes.html">select_nodes</a></span>(</a>
 <a class="sourceLine" id="cb2-7" title="7">    <span class="dt">conditions =</span> data <span class="op">&gt;</span><span class="st"> </span><span class="fl">7.0</span></a>
 <a class="sourceLine" id="cb2-8" title="8">  )</a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 2 nodes</span></a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb2-13" title="13">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;   id type label data</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;  9.7</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;  8.5</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-9" title="9"></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb2-12" title="12">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;   id type label data</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;  9.7</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;  8.5</span></a></code></pre></div>
 <p>A selection of nodes can be obtained through a match using a regular expression operating on a collection of character-based values (the node attribute that is named <code>fruits</code>). This uses the <code><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl()</a></code> function in the expression supplied to <code>conditions</code>. The regular expression to use is <code>^ap</code>, where the <code>^</code> denotes the beginning of the text to the parsed.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Create a node data frame</span></a>
 <a class="sourceLine" id="cb3-2" title="2">ndf &lt;-</a>
@@ -171,14 +170,13 @@
 <a class="sourceLine" id="cb3-18" title="18"><span class="st">  </span><span class="kw"><a href="../reference/select_nodes.html">select_nodes</a></span>(</a>
 <a class="sourceLine" id="cb3-19" title="19">    <span class="dt">conditions =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"^ap"</span>, fruits)</a>
 <a class="sourceLine" id="cb3-20" title="20">  )</a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 2 nodes</span></a>
-<a class="sourceLine" id="cb3-22" title="22"></a>
-<a class="sourceLine" id="cb3-23" title="23"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb3-24" title="24"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb3-25" title="25">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb3-26" title="26"><span class="co">#&gt;   id type label   fruits</span></a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="co">#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   apples</span></a>
-<a class="sourceLine" id="cb3-28" title="28"><span class="co">#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt; apricots</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-21" title="21"></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb3-24" title="24">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb3-25" title="25"><span class="co">#&gt;   id type label   fruits</span></a>
+<a class="sourceLine" id="cb3-26" title="26"><span class="co">#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   apples</span></a>
+<a class="sourceLine" id="cb3-27" title="27"><span class="co">#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt; apricots</span></a></code></pre></div>
 <p>The situation may arise when a more specialized match needs to be made (i.e., matching this but not that, or, matching two different types of things). This is where the <code>set_op</code> argument can become useful. When a selection of nodes is obtained using <code><a href="../reference/select_nodes.html">select_nodes()</a></code> (or any of the other <code>select_*()</code> functions that operate on nodes), the selection is stored in the graph object. This is seen in the above examples where <code><a href="../reference/get_selection.html">get_selection()</a></code> was used to verify which nodes were in the selection. Because the selection is retained (at least until <code><a href="../reference/clear_selection.html">clear_selection()</a></code> is called, or, a selection of edges is made), multiple uses <code><a href="../reference/select_nodes.html">select_nodes()</a></code> can modify the set of selected nodes depending on the option provided in the <code>set_op</code> argument. These set operations are:</p>
 <ul>
 <li>
@@ -233,21 +231,17 @@
 <a class="sourceLine" id="cb5-9" title="9">    <span class="dt">conditions =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"e$"</span>, label),</a>
 <a class="sourceLine" id="cb5-10" title="10">    <span class="dt">set_op =</span> <span class="st">"union"</span></a>
 <a class="sourceLine" id="cb5-11" title="11">  )</a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 3 nodes</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; `select_nodes()` INFO: modified an existing selection of 3 nodes:</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; * 6 nodes are now in the active selection</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; * used the `union` set operation</span></a>
-<a class="sourceLine" id="cb5-16" title="16"></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb5-19" title="19">graph_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt;   id  type     label count</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 1  1 fruit pineapple     6</span></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 2  2 fruit     apple     3</span></a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 3  4   veg  cucumber     7</span></a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt; 4  5   veg    celery     2</span></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 5  6   veg    endive     6</span></a>
-<a class="sourceLine" id="cb5-26" title="26"><span class="co">#&gt; 6  9   nut  chestnut     7</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-12" title="12"></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb5-15" title="15">graph_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt;   id  type     label count</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 1  1 fruit pineapple     6</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 2  2 fruit     apple     3</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 3  4   veg  cucumber     7</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 4  5   veg    celery     2</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 5  6   veg    endive     6</span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 6  9   nut  chestnut     7</span></a></code></pre></div>
 <p>The <code>conditions</code> don’t need to be related. In the first below, it’s a matching expression using <code><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl()</a></code>. The second is filtering to those nodes with <code>count &lt; 5</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Select any food beginning with `a` and</span></a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="co"># having a count less than 5</span></a>
@@ -260,16 +254,12 @@
 <a class="sourceLine" id="cb6-9" title="9">    <span class="dt">conditions =</span> count <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb6-10" title="10">    <span class="dt">set_op =</span> <span class="st">"intersect"</span></a>
 <a class="sourceLine" id="cb6-11" title="11">  )</a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 3 nodes</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; `select_nodes()` INFO: modified an existing selection of 3 nodes:</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt; * 1 node are now in the active selection</span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; * used the `intersect` set operation</span></a>
-<a class="sourceLine" id="cb6-16" title="16"></a>
-<a class="sourceLine" id="cb6-17" title="17"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb6-18" title="18"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb6-19" title="19">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb6-20" title="20"><span class="co">#&gt;   id  type label count</span></a>
-<a class="sourceLine" id="cb6-21" title="21"><span class="co">#&gt; 1  2 fruit apple     3</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-12" title="12"></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb6-15" title="15">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt;   id  type label count</span></a>
+<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; 1  2 fruit apple     3</span></a></code></pre></div>
 <p>The following example contains a pair of <code><a href="../reference/select_nodes.html">select_nodes()</a></code> statements, where the first filters nodes to a <code>fruit</code> group (<code>type == "fruit"</code>) and then excludes a subset of these nodes (any fruit containing “apple” in the name) using the <code>set_op = "difference"</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Select any fruit not containing</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="co"># `apple` in its name</span></a>
@@ -282,16 +272,12 @@
 <a class="sourceLine" id="cb7-9" title="9">    <span class="dt">conditions =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"apple"</span>, label),</a>
 <a class="sourceLine" id="cb7-10" title="10">    <span class="dt">set_op =</span> <span class="st">"difference"</span></a>
 <a class="sourceLine" id="cb7-11" title="11">  )</a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 3 nodes</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt; `select_nodes()` INFO: modified an existing selection of 3 nodes:</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt; * 1 node are now in the active selection</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; * used the `difference` set operation</span></a>
-<a class="sourceLine" id="cb7-16" title="16"></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb7-19" title="19">graph_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt;   id  type   label count</span></a>
-<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt; 1  3 fruit apricot     8</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-12" title="12"></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb7-15" title="15">graph_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;   id  type   label count</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 1  3 fruit apricot     8</span></a></code></pre></div>
 <p>There is an additional filtering option available as the <code>nodes</code> argument. Here, a vector of node ID values can be supplied and this will indicate to the function that only that subset of nodes will be considered for <code><a href="../reference/select_nodes.html">select_nodes()</a></code>. Note that, if nothing is provided in <code>conditions</code> and <code>nodes</code> is given a vector of node ID values, it will be those very nodes that will make up the selection in this function call. While this is convenient and often a good method for selecting nodes (so long as one knows which node IDs need to be selected), the function <code><a href="../reference/select_nodes_by_id.html">select_nodes_by_id()</a></code> handles this use case more directly (as it only filters based on its <code>nodes</code> argument).</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Create a node data frame</span></a>
 <a class="sourceLine" id="cb8-2" title="2">ndf &lt;-</a>
@@ -326,15 +312,14 @@
 <a class="sourceLine" id="cb9-7" title="7">    <span class="dt">conditions =</span> data <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>,</a>
 <a class="sourceLine" id="cb9-8" title="8">    <span class="dt">nodes =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb9-9" title="9">  )</a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt; `select_nodes()` INFO: created a new selection of 3 nodes</span></a>
-<a class="sourceLine" id="cb9-11" title="11"></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="co"># of nodes as a table</span></a>
-<a class="sourceLine" id="cb9-14" title="14">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt;   id type label data</span></a>
-<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt; 1  4 &lt;NA&gt;  &lt;NA&gt;  2.0</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt; 2  5 &lt;NA&gt;  &lt;NA&gt;  2.5</span></a>
-<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt; 3  6 &lt;NA&gt;  &lt;NA&gt;  3.0</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-10" title="10"></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co"># of nodes as a table</span></a>
+<a class="sourceLine" id="cb9-13" title="13">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df_ws.html">get_node_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt;   id type label data</span></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt; 1  4 &lt;NA&gt;  &lt;NA&gt;  2.0</span></a>
+<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt; 2  5 &lt;NA&gt;  &lt;NA&gt;  2.5</span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt; 3  6 &lt;NA&gt;  &lt;NA&gt;  3.0</span></a></code></pre></div>
 </div>
 <div id="creating-an-edge-selection" class="section level1">
 <h1 class="hasAnchor">
@@ -377,14 +362,13 @@
 <a class="sourceLine" id="cb11-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/select_edges.html">select_edges</a></span>(</a>
 <a class="sourceLine" id="cb11-7" title="7">    <span class="dt">conditions =</span> data <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.0</span></a>
 <a class="sourceLine" id="cb11-8" title="8">  )</a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt; `select_edges()` INFO: created a new selection of 2 edges</span></a>
-<a class="sourceLine" id="cb11-10" title="10"></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="co"># Get the graph's current selection</span></a>
-<a class="sourceLine" id="cb11-12" title="12"><span class="co"># of edges as a table</span></a>
-<a class="sourceLine" id="cb11-13" title="13">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_edge_df_ws.html">get_edge_df_ws</a></span>()</a>
-<a class="sourceLine" id="cb11-14" title="14"><span class="co">#&gt;   id from to  rel data</span></a>
-<a class="sourceLine" id="cb11-15" title="15"><span class="co">#&gt; 1  1    1  2 &lt;NA&gt;  8.6</span></a>
-<a class="sourceLine" id="cb11-16" title="16"><span class="co">#&gt; 2  3    3  4 &lt;NA&gt;  6.3</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-9" title="9"></a>
+<a class="sourceLine" id="cb11-10" title="10"><span class="co"># Get the graph's current selection</span></a>
+<a class="sourceLine" id="cb11-11" title="11"><span class="co"># of edges as a table</span></a>
+<a class="sourceLine" id="cb11-12" title="12">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_edge_df_ws.html">get_edge_df_ws</a></span>()</a>
+<a class="sourceLine" id="cb11-13" title="13"><span class="co">#&gt;   id from to  rel data</span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="co">#&gt; 1  1    1  2 &lt;NA&gt;  8.6</span></a>
+<a class="sourceLine" id="cb11-15" title="15"><span class="co">#&gt; 2  3    3  4 &lt;NA&gt;  6.3</span></a></code></pre></div>
 </div>
 <div id="selecting-the-last-node-or-edge-in-an-ndf-or-edf" class="section level1">
 <h1 class="hasAnchor">
@@ -396,13 +380,11 @@
 <a class="sourceLine" id="cb12-2" title="2">graph &lt;-</a>
 <a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span>graph <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/clear_selection.html">clear_selection</a></span>()</a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; `clear_selection()` INFO: cleared an existing selection of 2 edges</span></a>
-<a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co"># Check whether there is still</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="co"># a selection present</span></a>
-<a class="sourceLine" id="cb12-9" title="9">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_selection.html">get_selection</a></span>()</a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt; `get_selection()` INFO: there is no active selection of nodes or edges</span></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-5" title="5"></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co"># Check whether there is still</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co"># a selection present</span></a>
+<a class="sourceLine" id="cb12-8" title="8">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_selection.html">get_selection</a></span>()</a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
 <p>If we use <code>select_last_nodes_created</code> on this graph, we find that the active selection of nodes contains all the nodes in the graph, as they were all produced in the <code><a href="../reference/create_graph.html">create_graph()</a></code> function (and no nodes were added in subsequent operations).</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Select the last node in the graph's NDF and confirm</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="co"># that the selection was made</span></a>
@@ -462,23 +444,21 @@
 <a class="sourceLine" id="cb15-34" title="34">    <span class="dt">value =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.time</a></span>())</a>
 <a class="sourceLine" id="cb15-35" title="35">  ) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-36" title="36"><span class="st">  </span><span class="kw"><a href="../reference/clear_selection.html">clear_selection</a></span>()</a>
-<a class="sourceLine" id="cb15-37" title="37"><span class="co">#&gt; `clear_selection()` INFO: cleared an existing selection of 1 node</span></a>
-<a class="sourceLine" id="cb15-38" title="38"><span class="co">#&gt; `clear_selection()` INFO: cleared an existing selection of 1 edge</span></a>
-<a class="sourceLine" id="cb15-39" title="39"></a>
-<a class="sourceLine" id="cb15-40" title="40"><span class="co"># View the new graph</span></a>
-<a class="sourceLine" id="cb15-41" title="41">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/render_graph.html">render_graph</a></span>()</a></code></pre></div>
-<div id="htmlwidget-cc34cc1ce4dad13a6df6" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cc34cc1ce4dad13a6df6">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>The graph shows two nodes connected together. Nothing more, nothing less. The more interesting views of the data are of the node and edge data frames, which now have several attributes set. Let’s have a look at the graph’s internal node data frame…</p>
+<a class="sourceLine" id="cb15-37" title="37"></a>
+<a class="sourceLine" id="cb15-38" title="38"><span class="co"># View the new graph</span></a>
+<a class="sourceLine" id="cb15-39" title="39">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/render_graph.html">render_graph</a></span>()</a></code></pre></div>
+<div id="htmlwidget-a80e9cbd0ebbb321201c" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a80e9cbd0ebbb321201c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>The graph shows two nodes connected together. Nothing more, nothing less. The more interesting views of the data are of the node and edge data frames, which now have several attributes set. Let’s have a look at the graph’s internal node data frame…</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Inspect the new graph's NDF</span></a>
 <a class="sourceLine" id="cb16-2" title="2">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df.html">get_node_df</a></span>()</a>
 <a class="sourceLine" id="cb16-3" title="3"><span class="co">#&gt;   id type label           timestamp</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2019-02-04 17:08:23</span></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2019-02-04 17:08:23</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-4" title="4"><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2019-06-07 11:08:17</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2019-06-07 11:08:17</span></a></code></pre></div>
 <p>…and let’s inspect the graph’s internal edge data frame.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Inspect the new graph's EDF</span></a>
 <a class="sourceLine" id="cb17-2" title="2">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_edge_df.html">get_edge_df</a></span>()</a>
 <a class="sourceLine" id="cb17-3" title="3"><span class="co">#&gt;   id from to rel           timestamp</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="co">#&gt; 1  1    1  2  AB 2019-02-04 17:08:24</span></a></code></pre></div>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co">#&gt; 1  1    1  2  AB 2019-06-07 11:08:17</span></a></code></pre></div>
 <p>As can be seen, immediately invoking <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> or <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> after addition of new nodes or edges can be useful for working with the newly made nodes/edges. Many functions ending with <code>_ws()</code> operate specifically on selections of nodes or edges.</p>
 </div>
   </div>

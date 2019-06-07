@@ -33,8 +33,8 @@
 <meta property="og:title" content="R + mermaid.js — mermaid" />
 
 <meta property="og:description" content="Make diagrams in R using
-  mermaid.js with infrastructure
-  provided by htmlwidgets." />
+mermaid.js with infrastructure
+provided by htmlwidgets." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,8 +136,8 @@
     <div class="ref-description">
     
     <p>Make diagrams in R using
-  <a href='https://github.com/knsv/mermaid/wiki'>mermaid.js</a> with infrastructure
-  provided by <a href='http://www.htmlwidgets.org/'>htmlwidgets</a>.</p>
+<a href='https://github.com/knsv/mermaid/wiki'>mermaid.js</a> with infrastructure
+provided by <a href='http://www.htmlwidgets.org/'>htmlwidgets</a>.</p>
     
     </div>
 
@@ -148,32 +148,32 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>diagram</th>
-      <td><p>diagram in mermaid markdown-like language or file (as a
+      <td><p>Diagram in mermaid markdown-like language or file (as a
 connection or file name) containing a diagram specification. If no diagram
-is provided <code>diagram = ""</code> then the function will assume that a
-diagram will be provided by <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>tags</a></code> and
-<code>DiagrammeR</code> is just being used for dependency injection.</p></td>
+is provided <code>diagram = ""</code> then the function will assume that a diagram
+will be provided by <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::tags()</a></code> and <code>DiagrammeR</code> is just being used
+for dependency injection.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments and parameters you would like to send to
+      <td><p>Other arguments and parameters you would like to send to
 JavaScript.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>the width of the resulting graphic in pixels.</p></td>
+      <td><p>The width of the resulting graphic in pixels.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>the height of the resulting graphic in pixels.</p></td>
+      <td><p>The height of the resulting graphic in pixels.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>htmlwidget</code> that will intelligently print
-  itself into HTML in a variety of contexts including the R console, within
-  R Markdown documents, and within Shiny output bindings.</p>
+    <p>An object of class <code>htmlwidget</code> that will intelligently print itself
+into HTML in a variety of contexts including the R console, within R
+Markdown documents, and within Shiny output bindings.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -241,9 +241,9 @@ JavaScript.</p></td>
    )
  )
 
-<span class='co'># Also with \code{DiagrammeR()}, you can use tags</span>
-<span class='co'># from \code{htmltools} (just make sure to use</span>
-<span class='co'># \code{class = "mermaid"})</span>
+<span class='co'># Also with `DiagrammeR()`, you can use tags</span>
+<span class='co'># from `htmltools` (just make sure to use</span>
+<span class='co'># `class = "mermaid"`)</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>htmltools</span>)
 <span class='no'>diagramSpec</span> <span class='kw'>=</span> <span class='st'>"
 graph LR;
@@ -274,7 +274,8 @@ sequenceDiagram;
      ticket seller-&gt;&gt;customer: sorry;
    end
 "</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

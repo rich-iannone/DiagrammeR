@@ -33,9 +33,9 @@
 <meta property="og:title" content="Create a node data frame — create_node_df" />
 
 <meta property="og:description" content="Combine several vectors for nodes and their attributes into a data frame,
-  which can be combined with other similarly-generated data frames, or, added
-  to a graph object. A node data frame, or ndf, has at least the following
-  columns:" />
+which can be combined with other similarly-generated data frames, or, added
+to a graph object. A node data frame, or ndf, has at least the following
+columns:" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,9 +137,9 @@
     <div class="ref-description">
     
     <p>Combine several vectors for nodes and their attributes into a data frame,
-  which can be combined with other similarly-generated data frames, or, added
-  to a graph object. A node data frame, or ndf, has at least the following
-  columns:</p>
+which can be combined with other similarly-generated data frames, or, added
+to a graph object. A node data frame, or ndf, has at least the following
+columns:</p>
     
     </div>
 
@@ -150,34 +150,36 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>n</th>
-      <td><p>the total number of nodes to include in the node data frame.</p></td>
+      <td><p>The total number of nodes to include in the node data frame.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional <code>type</code> for each node.</p></td>
+      <td><p>An optional <code>type</code> for each node.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>an optional <code>label</code> for each node.</p></td>
+      <td><p>An optional <code>label</code> for each node.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>one or more vectors for associated node attributes.</p></td>
+      <td><p>One or more vectors for associated node attributes.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a node data frame (ndf).</p>
+    <p>A node data frame (ndf).</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>- <code>id</code> (of type <code>integer</code>)</p>
-<p>- <code>type</code> (of type <code>character</code>)</p>
-<p>- <code>label</code> (of type <code>character</code>)</p>
-<p>An arbitrary number of additional columns containing aesthetic or data
-  attributes can be part of the ndf, so long as they follow the
-  aforementioned columns.</p>
+    <ul>
+<li><p><code>id</code> (of type <code>integer</code>)</p></li>
+<li><p><code>type</code> (of type <code>character</code>)</p></li>
+<li><p><code>label</code> (of type <code>character</code>)</p></li>
+</ul>
+    <p>An arbitrary number of additional columns containing aesthetic or data
+attributes can be part of the ndf, so long as they follow the aforementioned
+columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -217,7 +219,8 @@
 #&gt; 1  1    a  2384 filled  aqua    circle   3.5
 #&gt; 2  2    a  3942 filled  aqua    circle   2.6
 #&gt; 3  3    a  8362 filled  aqua rectangle   9.4
-#&gt; 4  4    a  2194 filled  aqua rectangle   2.7</div></pre>
+#&gt; 4  4    a  2194 filled  aqua rectangle   2.7</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

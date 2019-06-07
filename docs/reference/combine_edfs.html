@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Combine multiple edge data frames into a single edge data frame — combine_edfs" />
 
-<meta property="og:description" content="Combine several edge data frames in the style of rbind, except, it
-  works regardless of the number and ordering of the columns." />
+<meta property="og:description" content="Combine several edge data frames in the style of rbind(), except, it works
+regardless of the number and ordering of the columns." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,8 +134,8 @@
 
     <div class="ref-description">
     
-    <p>Combine several edge data frames in the style of <code>rbind</code>, except, it
-  works regardless of the number and ordering of the columns.</p>
+    <p>Combine several edge data frames in the style of <code><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind()</a></code>, except, it works
+regardless of the number and ordering of the columns.</p>
     
     </div>
 
@@ -146,14 +146,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>two or more edge data frames, which contain edge IDs and
+      <td><p>Two or more edge data frames, which contain edge IDs and
 associated attributes.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a combined edge data frame.</p>
+    <p>A combined edge data frame.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -176,8 +176,7 @@ associated attributes.</p></td>
     <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
 
 <span class='co'># Combine the two edge data frames</span>
-<span class='no'>all_edges</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>combine_edfs</span>(<span class='no'>edf_1</span>, <span class='no'>edf_2</span>)
+<span class='no'>all_edges</span> <span class='kw'>&lt;-</span> <span class='fu'>combine_edfs</span>(<span class='no'>edf_1</span>, <span class='no'>edf_2</span>)
 
 <span class='co'># View the combined edge data frame</span>
 <span class='no'>all_edges</span></div><div class='output co'>#&gt;   id from to      rel color data arrowhead
@@ -188,7 +187,8 @@ associated attributes.</p></td>
 #&gt; 5  5    5  7 receives   red   NA       dot
 #&gt; 6  6    7  8 receives   red   NA       dot
 #&gt; 7  7    8  6 receives   red   NA       dot
-#&gt; 8  8    8  5 receives   red   NA       dot</div></pre>
+#&gt; 8  8    8  5 receives   red   NA       dot</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

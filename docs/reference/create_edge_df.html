@@ -33,9 +33,9 @@
 <meta property="og:title" content="Create an edge data frame — create_edge_df" />
 
 <meta property="og:description" content="Combine several vectors for edges and their attributes into a data frame,
-  which can be combined with other similarly-generated data frames, or, added
-  to a graph object. An edge data frame, or edf, has at least the following
-  columns:" />
+which can be combined with other similarly-generated data frames, or, added
+to a graph object. An edge data frame, or edf, has at least the following
+columns:" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,9 +137,9 @@
     <div class="ref-description">
     
     <p>Combine several vectors for edges and their attributes into a data frame,
-  which can be combined with other similarly-generated data frames, or, added
-  to a graph object. An edge data frame, or edf, has at least the following
-  columns:</p>
+which can be combined with other similarly-generated data frames, or, added
+to a graph object. An edge data frame, or edf, has at least the following
+columns:</p>
     
     </div>
 
@@ -150,37 +150,39 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>from</th>
-      <td><p>a vector of node ID values from which edges are outbound. The
+      <td><p>A vector of node ID values from which edges are outbound. The
 vector length must equal that of the <code>to</code> vector.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>a vector of node ID values to which edges are incoming. The vector
+      <td><p>A vector of node ID values to which edges are incoming. The vector
 length must equal that of the <code>from</code> vector.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional <code>rel</code> label for each edge.</p></td>
+      <td><p>An optional <code>rel</code> label for each edge.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>one or more vectors for associated edge attributes.</p></td>
+      <td><p>One or more vectors for associated edge attributes.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>an edge data frame (edf).</p>
+    <p>An edge data frame (edf).</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>- <code>id</code> (of type <code>integer</code>)</p>
-<p>- <code>from</code> (of type <code>integer</code>)</p>
-<p>- <code>to</code> (of type <code>integer</code>)</p>
-<p>- <code>rel</code> (of type <code>character</code>)</p>
-<p>An arbitrary number of additional columns containing aesthetic or data
-  attributes can be part of the edf, so long as they follow the
-  aforementioned columns.</p>
+    <ul>
+<li><p><code>id</code> (of type <code>integer</code>)</p></li>
+<li><p><code>from</code> (of type <code>integer</code>)</p></li>
+<li><p><code>to</code> (of type <code>integer</code>)</p></li>
+<li><p><code>rel</code> (of type <code>character</code>)</p></li>
+</ul>
+    <p>An arbitrary number of additional columns containing aesthetic or data
+attributes can be part of the edf, so long as they follow the aforementioned
+columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -213,7 +215,8 @@ length must equal that of the <code>from</code> vector.</p></td>
 <span class='no'>edf</span></div><div class='output co'>#&gt;   id from to rel length color width
 #&gt; 1  1    1  4   a     50 green     1
 #&gt; 2  2    2  3   a    100 green     5
-#&gt; 3  3    3  1   a    250 green     2</div></pre>
+#&gt; 3  3    3  1   a    250 green     2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

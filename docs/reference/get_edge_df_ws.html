@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Get the graph's edf filtered by a selection of edges — get_edge_df_ws" />
 
-<meta property="og:description" content="From a graph object of class dgr_graph, get the graph's internal edge
-data frame that is filtered by the edge ID values currently active as a
-selection." />
+<meta property="og:description" content="From a graph object of class dgr_graph, get the graph's internal edge data
+frame that is filtered by the edge ID values currently active as a selection." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,9 +134,8 @@ selection." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class <code>dgr_graph</code>, get the graph's internal edge
-data frame that is filtered by the edge ID values currently active as a
-selection.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, get the graph's internal edge data
+frame that is filtered by the edge ID values currently active as a selection.</p>
     
     </div>
 
@@ -148,7 +146,7 @@ selection.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
@@ -161,17 +159,11 @@ selection.</p>
     <p>This function makes use of an active selection of edges (and the function
 ending with <code>_ws</code> hints at this).</p>
 <p>Selections of edges can be performed using the following selection
-(<code>select_*()</code>) functions:
-<code><a href='select_edges.html'>select_edges</a>()</code>,
-<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
-<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
-<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_edges.html'>select_edges()</a></code>, <code><a href='select_last_edges_created.html'>select_last_edges_created()</a></code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id()</a></code>, or <code><a href='select_edges_by_node_id.html'>select_edges_by_node_id()</a></code>.</p>
 <p>Selections of edges can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
-<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
-<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
-<code><a href='trav_reverse_edge.html'>trav_reverse_edge</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out_edge.html'>trav_out_edge()</a></code>, <code><a href='trav_in_edge.html'>trav_in_edge()</a></code>,
+<code><a href='trav_both_edge.html'>trav_both_edge()</a></code>, or <code><a href='trav_reverse_edge.html'>trav_reverse_edge()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -192,13 +184,15 @@ ending with <code>_ws</code> hints at this).</p>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a></span>(
-    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; <span class='message'>`select_edges_by_edge_id()` INFO: created a new selection of 2 edges</span></div><div class='input'>
+    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
+
 <span class='co'># Get the edge data frame that's</span>
 <span class='co'># limited to the rows that correspond</span>
 <span class='co'># to the edge selection</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>get_edge_df_ws</span>()</div><div class='output co'>#&gt;   id from to  rel value
 #&gt; 1  1    2  1 &lt;NA&gt;   2.5
-#&gt; 2  3    3  2 &lt;NA&gt;   4.2</div></pre>
+#&gt; 2  3    3  2 &lt;NA&gt;   4.2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

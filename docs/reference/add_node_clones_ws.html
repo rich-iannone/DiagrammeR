@@ -34,9 +34,9 @@
 
 <meta property="og:description" content="Add new nodes to a graph object of class dgr_graph which are clones of
 nodes in an active selection of nodes. All node attributes are preserved
-except for the node label attribute (to maintain the uniqueness of
-non-NA node label values). A vector of node label can be
-provided to bind new labels to the cloned nodes." />
+except for the node label attribute (to maintain the uniqueness of non-NA
+node label values). A vector of node label can be provided to bind new
+labels to the cloned nodes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,9 +139,9 @@ provided to bind new labels to the cloned nodes." />
     
     <p>Add new nodes to a graph object of class <code>dgr_graph</code> which are clones of
 nodes in an active selection of nodes. All node attributes are preserved
-except for the node <code>label</code> attribute (to maintain the uniqueness of
-non-<code>NA</code> node label values). A vector of node <code>label</code> can be
-provided to bind new labels to the cloned nodes.</p>
+except for the node <code>label</code> attribute (to maintain the uniqueness of non-<code>NA</code>
+node label values). A vector of node <code>label</code> can be provided to bind new
+labels to the cloned nodes.</p>
     
     </div>
 
@@ -153,50 +153,42 @@ provided to bind new labels to the cloned nodes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>add_edges</th>
-      <td><p>an option for whether to add edges from the selected nodes
+      <td><p>An option for whether to add edges from the selected nodes
 to each of their clones, or, in the opposite direction.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>using <code>from</code> will create new edges from existing nodes
-to the new, cloned nodes. The <code>to</code> option will create new edges
-directed toward the existing nodes.</p></td>
+      <td><p>Using <code>from</code> will create new edges from existing nodes to
+the new, cloned nodes. The <code>to</code> option will create new edges directed
+toward the existing nodes.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>an optional vector of node label values. The vector length
+      <td><p>An optional vector of node label values. The vector length
 should correspond to the number of nodes in the active selection of nodes.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function makes use of an active selection of nodes (and the
-function ending with <code>_ws</code> hints at this).</p>
+    <p>This function makes use of an active selection of nodes (and the function
+ending with <code>_ws</code> hints at this).</p>
 <p>Selections of nodes can be performed using the following node selection
-(<code>select_*()</code>) functions:
-<code><a href='select_nodes.html'>select_nodes</a>()</code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_nodes.html'>select_nodes()</a></code>, <code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>, <code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.</p>
 <p>Selections of nodes can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out.html'>trav_out</a>()</code>,
-<code><a href='trav_in.html'>trav_in</a>()</code>,
-<code><a href='trav_both.html'>trav_both</a>()</code>,
-<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
-<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
-<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
-<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>, <code><a href='trav_both.html'>trav_both()</a></code>,
+<code><a href='trav_out_node.html'>trav_out_node()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>, <code><a href='trav_out_until.html'>trav_out_until()</a></code>, or
+<code><a href='trav_in_until.html'>trav_in_until()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -226,7 +218,8 @@ function ending with <code>_ws</code> hints at this).</p>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_node_clones_ws</span>(
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"v"</span>))</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='input'>
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"v"</span>))
+
 <span class='co'># Display the graph's internal</span>
 <span class='co'># node data frame: nodes `4`,</span>
 <span class='co'># `5`, and `6` are clones of</span>
@@ -250,7 +243,8 @@ function ending with <code>_ws</code> hints at this).</p>
   <span class='fu'>add_node_clones_ws</span>(
     <span class='kw'>add_edges</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"t"</span>, <span class='st'>"z"</span>, <span class='st'>"s"</span>))</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='input'>
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"t"</span>, <span class='st'>"z"</span>, <span class='st'>"s"</span>))
+
 <span class='co'># Display the graph's internal</span>
 <span class='co'># edge data frame; there are</span>
 <span class='co'># edges between the selected</span>
@@ -260,7 +254,8 @@ function ending with <code>_ws</code> hints at this).</p>
 #&gt; 2  2    2  3 &lt;NA&gt;
 #&gt; 3  3    4  7 &lt;NA&gt;
 #&gt; 4  4    5  8 &lt;NA&gt;
-#&gt; 5  5    6  9 &lt;NA&gt;</div></pre>
+#&gt; 5  5    6  9 &lt;NA&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

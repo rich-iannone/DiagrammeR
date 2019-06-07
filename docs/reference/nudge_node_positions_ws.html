@@ -32,10 +32,10 @@
 
 <meta property="og:title" content="Move layout positions of a selection of nodes — nudge_node_positions_ws" />
 
-<meta property="og:description" content="With an active selection of nodes, move the position in either the x
-or y directions, or both. Nodes in the selection that do not have
-position information (i.e., NA values for the x or y
-node attributes) will be ignored." />
+<meta property="og:description" content="With an active selection of nodes, move the position in either the x or y
+directions, or both. Nodes in the selection that do not have position
+information (i.e., NA values for the x or y node attributes) will be
+ignored." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,10 +136,10 @@ node attributes) will be ignored." />
 
     <div class="ref-description">
     
-    <p>With an active selection of nodes, move the position in either the <code>x</code>
-or <code>y</code> directions, or both. Nodes in the selection that do not have
-position information (i.e., <code>NA</code> values for the <code>x</code> or <code>y</code>
-node attributes) will be ignored.</p>
+    <p>With an active selection of nodes, move the position in either the <code>x</code> or <code>y</code>
+directions, or both. Nodes in the selection that do not have position
+information (i.e., <code>NA</code> values for the <code>x</code> or <code>y</code> node attributes) will be
+ignored.</p>
     
     </div>
 
@@ -150,47 +150,38 @@ node attributes) will be ignored.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>dx</th>
-      <td><p>a single numeric value specifying the amount that selected nodes
-(with non-<code>NA</code> values for the <code>x</code> and <code>y</code> attributes) will
-be moved in the x direction. A positive value will move nodes right,
-negative left.</p></td>
+      <td><p>A single numeric value specifying the amount that selected nodes
+(with non-<code>NA</code> values for the <code>x</code> and <code>y</code> attributes) will be moved in the
+x direction. A positive value will move nodes right, negative left.</p></td>
     </tr>
     <tr>
       <th>dy</th>
-      <td><p>a single numeric value specifying the amount that selected nodes
-(with non-<code>NA</code> values for the <code>x</code> and <code>y</code> attributes) will
-be moved in the y direction. A positive value will move nodes up, negative down.</p></td>
+      <td><p>A single numeric value specifying the amount that selected nodes
+(with non-<code>NA</code> values for the <code>x</code> and <code>y</code> attributes) will be moved in the
+y direction. A positive value will move nodes up, negative down.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function makes use of an active selection of nodes (and the
-function ending with <code>_ws</code> hints at this).</p>
+    <p>This function makes use of an active selection of nodes (and the function
+ending with <code>_ws</code> hints at this).</p>
 <p>Selections of nodes can be performed using the following node selection
-(<code>select_*()</code>) functions:
-<code><a href='select_nodes.html'>select_nodes</a>()</code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_nodes.html'>select_nodes()</a></code>, <code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>, <code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.</p>
 <p>Selections of nodes can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out.html'>trav_out</a>()</code>,
-<code><a href='trav_in.html'>trav_in</a>()</code>,
-<code><a href='trav_both.html'>trav_both</a>()</code>,
-<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
-<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
-<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
-<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>, <code><a href='trav_both.html'>trav_both()</a></code>,
+<code><a href='trav_out_node.html'>trav_out_node()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>, <code><a href='trav_out_until.html'>trav_out_until()</a></code>, or
+<code><a href='trav_in_until.html'>trav_in_until()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -226,7 +217,8 @@ function ending with <code>_ws</code> hints at this).</p>
 <span class='co'># Select all of the graph's nodes using the</span>
 <span class='co'># `select_nodes()` function (and only</span>
 <span class='co'># specifying the graph object)</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 4 nodes</span></div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(<span class='no'>graph</span>)
+
 <span class='co'># Move the selected nodes (all the nodes,</span>
 <span class='co'># in this case) 5 units to the right</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -250,13 +242,15 @@ function ending with <code>_ws</code> hints at this).</p>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>type</span> <span class='kw'>==</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>nudge_node_positions_ws</span>(
-    <span class='kw'>dx</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dy</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 4 nodes</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 2 nodes</span></div><div class='input'>
+    <span class='kw'>dx</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>dy</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
 <span class='co'># View the graph's node data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
 #&gt; 1  1    a   one 6 1
 #&gt; 2  2    a   two 7 2
 #&gt; 3  3    b three 8 5
-#&gt; 4  4    b  four 9 6</div></pre>
+#&gt; 4  4    b  four 9 6</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Select edges in a graph using edge ID values — select_edges_by_edge_id" />
 
-<meta property="og:description" content="Select edges in a graph object of class dgr_graph using edge ID
-  values." />
+<meta property="og:description" content="Select edges in a graph object of class dgr_graph using edge ID values." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,8 +133,7 @@
 
     <div class="ref-description">
     
-    <p>Select edges in a graph object of class <code>dgr_graph</code> using edge ID
-  values.</p>
+    <p>Select edges in a graph object of class <code>dgr_graph</code> using edge ID values.</p>
     
     </div>
 
@@ -146,25 +144,25 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edges</th>
-      <td><p>a vector of edge IDs for the selection of edges present in the
+      <td><p>A vector of edge IDs for the selection of edges present in the
 graph.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon consecutive selections of
+      <td><p>The set operation to perform upon consecutive selections of
 graph edges This can either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>, or, as a
-<code>difference</code> on the previous selection, if it exists.</p></td>
+intersection of selections with <code>intersect</code>, or, as a <code>difference</code> on the
+previous selection, if it exists.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -178,18 +176,20 @@ intersection of selections with <code>intersect</code>, or, as a
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>select_edges_by_edge_id</span>(
-    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`select_edges_by_edge_id()` INFO: created a new selection of 2 edges</span></div><div class='input'>
+    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>)
+
 <span class='co'># Get the selection of edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
 <span class='co'># Perform another selection of edges,</span>
 <span class='co'># with edge IDs `1`, `2`, and `4`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>select_edges_by_edge_id</span>(
-    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 2 edges</span></div><div class='output co'>#&gt; <span class='message'>`select_edges_by_edge_id()` INFO: created a new selection of 3 edges</span></div><div class='input'>
+    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>))
+
 <span class='co'># Get the selection of edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of3 edges</span></div><div class='output co'>#&gt; [1] 1 2 4</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 4</div><div class='input'>
 <span class='co'># Get the fraction of edges selected</span>
 <span class='co'># over all the edges in the graph</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -198,7 +198,8 @@ intersection of selections with <code>intersect</code>, or, as a
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>.</span>)
     <span class='no'>e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>.</span>)
     <span class='no'>l</span>/<span class='no'>e</span>
-  }</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of3 edges</span></div><div class='output co'>#&gt; [1] 0.75</div></pre>
+  }</div><div class='output co'>#&gt; [1] 0.75</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

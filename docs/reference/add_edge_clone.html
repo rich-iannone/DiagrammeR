@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Add a clone of an existing edge to the graph — add_edge_clone" />
 
-<meta property="og:description" content="Add a new edge to a graph object of class dgr_graph which is a clone
-  of an edge already in the graph. All edge attributes are preserved." />
+<meta property="og:description" content="Add a new edge to a graph object of class dgr_graph which is a clone of an
+edge already in the graph. All edge attributes are preserved." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,8 +134,8 @@
 
     <div class="ref-description">
     
-    <p>Add a new edge to a graph object of class <code>dgr_graph</code> which is a clone
-  of an edge already in the graph. All edge attributes are preserved.</p>
+    <p>Add a new edge to a graph object of class <code>dgr_graph</code> which is a clone of an
+edge already in the graph. All edge attributes are preserved.</p>
     
     </div>
 
@@ -146,25 +146,25 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge</th>
-      <td><p>an edge ID corresponding to the graph edge to be cloned.</p></td>
+      <td><p>An edge ID corresponding to the graph edge to be cloned.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>the outgoing node from which the edge is connected.</p></td>
+      <td><p>The outgoing node from which the edge is connected.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>the incoming nodes to which each edge is connected.</p></td>
+      <td><p>The incoming nodes to which each edge is connected.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -182,7 +182,8 @@
   <span class='fu'><a href='set_edge_attrs.html'>set_edge_attrs</a></span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"steelblue"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 1 edge</span></div><div class='input'>
+  <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>()
+
 <span class='co'># Display the graph's internal</span>
 <span class='co'># edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel     color

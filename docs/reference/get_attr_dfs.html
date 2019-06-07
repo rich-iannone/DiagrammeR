@@ -33,8 +33,8 @@
 <meta property="og:title" content="Get data frames bound to node attributes — get_attr_dfs" />
 
 <meta property="og:description" content="From a graph object of class dgr_graph, get one or more data frames
-  already bound as node and/or edge attribute values given graph node and/or
-  edges." />
+already bound as node and/or edge attribute values given graph node and/or
+edges." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,8 +136,8 @@
     <div class="ref-description">
     
     <p>From a graph object of class <code>dgr_graph</code>, get one or more data frames
-  already bound as node and/or edge attribute values given graph node and/or
-  edges.</p>
+already bound as node and/or edge attribute values given graph node and/or
+edges.</p>
     
     </div>
 
@@ -149,7 +149,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_id</th>
@@ -165,7 +165,7 @@ edge attrs.</p></td>
       <th>return_format</th>
       <td><p>the format in which to return the results of several
 data frames. These can either be: (1) <code>single_tbl</code> (a tibble object
-resulting from a `bind_rows` operation of multiple data frames), and (2)
+resulting from a <code>bind_rows</code> operation of multiple data frames), and (2)
 <code>single_df</code> (a single data frame which all of the data frame data).</p></td>
     </tr>
     </table>
@@ -273,7 +273,8 @@ resulting from a `bind_rows` operation of multiple data frames), and (2)
   <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>return_format</span> <span class='kw'>=</span> <span class='st'>"single_df"</span>)</div><div class='output co'>#&gt;   node_edge__ id        rel from to    c d
 #&gt; 1        edge  1 leading_to    1  4 five 5
-#&gt; 2        edge  1 leading_to    1  4  six 6</div></span></pre>
+#&gt; 2        edge  1 leading_to    1  4  six 6</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

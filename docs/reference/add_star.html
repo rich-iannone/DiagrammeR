@@ -146,64 +146,60 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>the number of nodes comprising the star. The first node will be the
+      <td><p>The number of nodes comprising the star. The first node will be the
 center of the star.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional string that describes the entity type for the nodes
+      <td><p>An optional string that describes the entity type for the nodes
 to be added.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>either a vector object of length <code>n</code> that provides optional
+      <td><p>Either a vector object of length <code>n</code> that provides optional
 labels for the new nodes, or, a logical value where setting to <code>TRUE</code>
 ascribes node IDs to the label and <code>FALSE</code> yields a blank label.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional string for providing a relationship label to all new
+      <td><p>An optional string for providing a relationship label to all new
 edges created in the node star.</p></td>
     </tr>
     <tr>
       <th>node_aes</th>
-      <td><p>an optional list of named vectors comprising node aesthetic
-attributes. The helper function <code><a href='node_aes.html'>node_aes</a>()</code> is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>,
-<code>fillcolor</code>).</p></td>
+      <td><p>An optional list of named vectors comprising node aesthetic
+attributes. The helper function <code><a href='node_aes.html'>node_aes()</a></code> is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>, <code>fillcolor</code>).</p></td>
     </tr>
     <tr>
       <th>edge_aes</th>
-      <td><p>an optional list of named vectors comprising edge aesthetic
-attributes. The helper function <code><a href='edge_aes.html'>edge_aes</a>()</code> is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., <code>shape</code>, <code>style</code>,
-<code>penwidth</code>, <code>color</code>).</p></td>
+      <td><p>An optional list of named vectors comprising edge aesthetic
+attributes. The helper function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., <code>shape</code>, <code>style</code>, <code>penwidth</code>, <code>color</code>).</p></td>
     </tr>
     <tr>
       <th>node_data</th>
-      <td><p>an optional list of named vectors comprising node data
-attributes. The helper function <code><a href='node_data.html'>node_data</a>()</code> is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.</p></td>
+      <td><p>An optional list of named vectors comprising node data
+attributes. The helper function <code><a href='node_data.html'>node_data()</a></code> is strongly recommended for
+use here as it helps bind data specifically to the created nodes.</p></td>
     </tr>
     <tr>
       <th>edge_data</th>
-      <td><p>an optional list of named vectors comprising edge data
-attributes. The helper function <code><a href='edge_data.html'>edge_data</a>()</code> is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.</p></td>
+      <td><p>An optional list of named vectors comprising edge data
+attributes. The helper function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended for
+use here as it helps bind data specifically to the created edges.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -235,6 +231,7 @@ edges.</p></td>
 <span class='co'># `node_data`, and `edge_data`</span>
 <span class='co'># arguments</span>
 
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>RNGversion</a></span>(<span class='st'>"3.5.0"</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>23</span>)
 
 <span class='no'>graph_w_attrs</span> <span class='kw'>&lt;-</span>
@@ -272,7 +269,8 @@ edges.</p></td>
 <span class='no'>graph_w_attrs</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color    value
 #&gt; 1  1    1  2   A      1.2   red 5.996605
 #&gt; 2  2    1  3   A      1.2   red 6.107490
-#&gt; 3  3    1  4   A      1.2   red 4.721914</div></pre>
+#&gt; 3  3    1  4   A      1.2   red 4.721914</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

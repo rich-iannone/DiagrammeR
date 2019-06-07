@@ -146,34 +146,26 @@ selection of nodes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function makes use of an active selection of nodes (and the
-function ending with <code>_ws</code> hints at this).</p>
+    <p>This function makes use of an active selection of nodes (and the function
+ending with <code>_ws</code> hints at this).</p>
 <p>Selections of nodes can be performed using the following node selection
-(<code>select_*()</code>) functions:
-<code><a href='select_nodes.html'>select_nodes</a>()</code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_nodes.html'>select_nodes()</a></code>, <code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>, <code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.</p>
 <p>Selections of nodes can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out.html'>trav_out</a>()</code>,
-<code><a href='trav_in.html'>trav_in</a>()</code>,
-<code><a href='trav_both.html'>trav_both</a>()</code>,
-<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
-<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
-<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
-<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>, <code><a href='trav_both.html'>trav_both()</a></code>,
+<code><a href='trav_out_node.html'>trav_out_node()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>, <code><a href='trav_out_until.html'>trav_out_until()</a></code>, or
+<code><a href='trav_in_until.html'>trav_in_until()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -187,7 +179,8 @@ function ending with <code>_ws</code> hints at this).</p>
 <span class='co'># Select node with ID `1`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='input'>
+  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
 <span class='co'># Delete node in selection (this</span>
 <span class='co'># also deletes any attached edges)</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -195,7 +188,8 @@ function ending with <code>_ws</code> hints at this).</p>
   <span class='fu'>delete_nodes_ws</span>()
 
 <span class='co'># Get a count of nodes in the graph</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 2</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -33,9 +33,9 @@
 <meta property="og:title" content="Get neighboring nodes based on node attribute similarity — get_similar_nbrs" />
 
 <meta property="og:description" content="With a graph a single node serving as the starting point, get those nodes in
-  a potential neighborhood of nodes (adjacent to the starting node) that have
-  a common or similar (within threshold values) node attribute to the
-  starting node." />
+a potential neighborhood of nodes (adjacent to the starting node) that have a
+common or similar (within threshold values) node attribute to the starting
+node." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,9 +137,9 @@
     <div class="ref-description">
     
     <p>With a graph a single node serving as the starting point, get those nodes in
-  a potential neighborhood of nodes (adjacent to the starting node) that have
-  a common or similar (within threshold values) node attribute to the
-  starting node.</p>
+a potential neighborhood of nodes (adjacent to the starting node) that have a
+common or similar (within threshold values) node attribute to the starting
+node.</p>
     
     </div>
 
@@ -151,28 +151,28 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>a single-length vector containing a node ID value.</p></td>
+      <td><p>A single-length vector containing a node ID value.</p></td>
     </tr>
     <tr>
       <th>node_attr</th>
-      <td><p>the name of the node attribute to use to compare with
+      <td><p>The name of the node attribute to use to compare with
 adjacent nodes.</p></td>
     </tr>
     <tr>
       <th>tol_abs</th>
-      <td><p>if the values contained in the node attribute <code>node_attr</code>
-are numeric, one can optionally supply a numeric vector of length 2 that
+      <td><p>If the values contained in the node attribute <code>node_attr</code> are
+numeric, one can optionally supply a numeric vector of length 2 that
 provides a lower and upper numeric bound as criteria for neighboring node
 similarity to the starting node.</p></td>
     </tr>
     <tr>
       <th>tol_pct</th>
-      <td><p>if the values contained in the node attribute <code>node_attr</code>
-are numeric, one can optionally supply a numeric vector of length 2 that
+      <td><p>If the values contained in the node attribute <code>node_attr</code> are
+numeric, one can optionally supply a numeric vector of length 2 that
 specifies lower and upper bounds as negative and positive percentage
 changes to the value of the starting node. These bounds serve as criteria
 for neighboring node similarity to the starting node.</p></td>
@@ -181,7 +181,7 @@ for neighboring node similarity to the starting node.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a vector of node ID values.</p>
+    <p>A vector of node ID values.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -238,7 +238,8 @@ for neighboring node similarity to the starting node.</p></td>
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>10</span>,
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
     <span class='kw'>tol_abs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>)) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>()</div><div class='output co'>#&gt; [1] 17</div></pre>
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>()</div><div class='output co'>#&gt; [1] 17</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

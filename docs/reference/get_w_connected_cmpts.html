@@ -33,8 +33,8 @@
 <meta property="og:title" content="Get all nodes associated with connected components — get_w_connected_cmpts" />
 
 <meta property="og:description" content="Determine which nodes in a graph belong to different weakly connected
-  components (i.e., distinct sets of nodes with traversable paths to and from
-  each node in the set)." />
+components (i.e., distinct sets of nodes with traversable paths to and from
+each node in the set)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,8 +136,8 @@
     <div class="ref-description">
     
     <p>Determine which nodes in a graph belong to different weakly connected
-  components (i.e., distinct sets of nodes with traversable paths to and from
-  each node in the set).</p>
+components (i.e., distinct sets of nodes with traversable paths to and from
+each node in the set).</p>
     
     </div>
 
@@ -148,14 +148,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame with nodes and their membership in different weakly
-  connected components.</p>
+    <p>A data frame with nodes and their membership in different weakly
+connected components.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -170,15 +170,15 @@
   <span class='fu'><a href='is_graph_connected.html'>is_graph_connected</a></span>()</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># Get the graph's weakly-connected</span>
 <span class='co'># components</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_w_connected_cmpts</span>()</div><div class='output co'>#&gt;   id wc_component
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>get_w_connected_cmpts</span>()</div><div class='output co'>#&gt;   id wc_component
 #&gt; 1  1            1
 #&gt; 2  2            1
 #&gt; 3  3            1
 #&gt; 4  4            1
 #&gt; 5  5            2
 #&gt; 6  6            2
-#&gt; 7  7            2</div></pre>
+#&gt; 7  7            2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

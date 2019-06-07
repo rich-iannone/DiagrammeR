@@ -32,10 +32,10 @@
 
 <meta property="og:title" content="Traverse outward node-by-node until stopping conditions are met — trav_out_until" />
 
-<meta property="og:description" content="From a graph object of class dgr_graph, move along outward edges from
-one or more nodes present in a selection to other connected nodes, replacing
-the current nodes in the selection with those nodes traversed to until
-reaching nodes that satisfy one or more conditions." />
+<meta property="og:description" content="From a graph object of class dgr_graph, move along outward edges from one
+or more nodes present in a selection to other connected nodes, replacing the
+current nodes in the selection with those nodes traversed to until reaching
+nodes that satisfy one or more conditions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,10 +136,10 @@ reaching nodes that satisfy one or more conditions." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class <code>dgr_graph</code>, move along outward edges from
-one or more nodes present in a selection to other connected nodes, replacing
-the current nodes in the selection with those nodes traversed to until
-reaching nodes that satisfy one or more conditions.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, move along outward edges from one
+or more nodes present in a selection to other connected nodes, replacing the
+current nodes in the selection with those nodes traversed to until reaching
+nodes that satisfy one or more conditions.</p>
     
     </div>
 
@@ -151,11 +151,11 @@ reaching nodes that satisfy one or more conditions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to use a stopping condition for the traversal. If
+      <td><p>An option to use a stopping condition for the traversal. If
 the condition is met during the traversal (i.e., the node(s) traversed to
 match the condition), then those traversals will terminate at those nodes.
 Otherwise, traversals with continue and terminate when the number of steps
@@ -163,27 +163,26 @@ provided in <code>max_steps</code> is reached.</p></td>
     </tr>
     <tr>
       <th>max_steps</th>
-      <td><p>the maximum number of <code><a href='trav_out.html'>trav_out()</a></code> steps (i.e.,
-node-to-node traversals in the outward direction) to allow before stopping.</p></td>
+      <td><p>The maximum number of <code><a href='trav_out.html'>trav_out()</a></code> steps (i.e., node-to-node
+traversals in the outward direction) to allow before stopping.</p></td>
     </tr>
     <tr>
       <th>exclude_unmatched</th>
-      <td><p>if <code>TRUE</code> (the default value) then any nodes
-not satisfying the conditions provided in <code>conditions</code> that are in the
-ending selection are excluded.</p></td>
+      <td><p>If <code>TRUE</code> (the default value) then any nodes not
+satisfying the conditions provided in <code>conditions</code> that are in the ending
+selection are excluded.</p></td>
     </tr>
     <tr>
       <th>add_to_selection</th>
-      <td><p>if <code>TRUE</code> then every node traversed will be part
-of the final selection of nodes. If <code>FALSE</code> (the default value) then
-only the nodes finally traversed to will be part of the final node
-selection.</p></td>
+      <td><p>If <code>TRUE</code> then every node traversed will be part of
+the final selection of nodes. If <code>FALSE</code> (the default value) then only the
+nodes finally traversed to will be part of the final node selection.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -191,21 +190,13 @@ selection.</p></td>
 traversal, depending on the traversal conditions, there will either be a
 selection of nodes or no selection at all.</p>
 <p>Selections of nodes can be performed using the following node selection
-(<code>select_*()</code>) functions:
-<code><a href='select_nodes.html'>select_nodes</a>()</code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_nodes.html'>select_nodes()</a></code>, <code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>, <code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.</p>
 <p>Selections of nodes can also be performed using the following traversal
-(<code>trav_*()</code>) functions:
-<code><a href='trav_out.html'>trav_out</a>()</code>,
-<code><a href='trav_in.html'>trav_in</a>()</code>,
-<code><a href='trav_both.html'>trav_both</a>()</code>,
-<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
-<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
-<code>trav_out_until()</code>, or
-<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
+(<code>trav_*()</code>) functions: <code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>, <code><a href='trav_both.html'>trav_both()</a></code>,
+<code><a href='trav_out_node.html'>trav_out_node()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>, <code>trav_out_until()</code>, or
+<code><a href='trav_in_until.html'>trav_in_until()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -220,7 +211,8 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='fu'><a href='node_data.html'>node_data</a></span>(
       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(
-    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='input'>
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
 <span class='co'># Traverse outward, node-by-node</span>
 <span class='co'># until stopping at a node where</span>
 <span class='co'># the `value` attribute is 8</span>
@@ -228,9 +220,10 @@ selection of nodes or no selection at all.</p>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_out_until</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span>
-      <span class='no'>value</span> <span class='kw'>==</span> <span class='fl'>8</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='input'>
+      <span class='no'>value</span> <span class='kw'>==</span> <span class='fl'>8</span>)
+
 <span class='co'># Get the graph's node selection</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 1 node</span></div><div class='output co'>#&gt; [1] 8</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 8</div><div class='input'>
 <span class='co'># Create two cycles in graph and</span>
 <span class='co'># add values of 1 to 6 to the</span>
 <span class='co'># first cycle, and values 7 to</span>
@@ -247,7 +240,8 @@ selection of nodes or no selection at all.</p>
     <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='fu'><a href='node_data.html'>node_data</a></span>(
       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>7</span>:<span class='fl'>12</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(
-    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>7</span>))</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 2 nodes</span></div><div class='input'>
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>7</span>))
+
 <span class='co'># Traverse outward, node-by-node</span>
 <span class='co'># from `1` and `7` until stopping</span>
 <span class='co'># at the first nodes where the</span>
@@ -260,9 +254,11 @@ selection of nodes or no selection at all.</p>
   <span class='fu'>trav_out_until</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>value</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>9</span>),
-    <span class='kw'>exclude_unmatched</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 2 nodes</span></div><div class='input'>
+    <span class='kw'>exclude_unmatched</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
 <span class='co'># Get the graph's node selection</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 2 nodes</span></div><div class='output co'>#&gt; [1] 5 9</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 5 9</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

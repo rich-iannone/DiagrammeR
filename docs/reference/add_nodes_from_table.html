@@ -147,42 +147,41 @@ file or a data frame.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>table</th>
-      <td><p>either a path to a CSV file, or, a data frame object.</p></td>
+      <td><p>Either a path to a CSV file, or, a data frame object.</p></td>
     </tr>
     <tr>
       <th>label_col</th>
-      <td><p>an option to apply a column of data in the table as
-<code>label</code> attribute values.</p></td>
+      <td><p>An option to apply a column of data in the table as <code>label</code>
+attribute values.</p></td>
     </tr>
     <tr>
       <th>type_col</th>
-      <td><p>an option to apply a column of data in the table as
-<code>type</code> attribute values.</p></td>
+      <td><p>An option to apply a column of data in the table as <code>type</code>
+attribute values.</p></td>
     </tr>
     <tr>
       <th>set_type</th>
-      <td><p>an optional string to apply a <code>type</code> attribute to all
-nodes created from data in the external table.</p></td>
+      <td><p>An optional string to apply a <code>type</code> attribute to all nodes
+created from data in the external table.</p></td>
     </tr>
     <tr>
       <th>drop_cols</th>
-      <td><p>an optional column selection statement for dropping columns
+      <td><p>An optional column selection statement for dropping columns
 from the external table before inclusion as attributes in the graph's
 internal node data frame. Several columns can be dropped by name using the
-syntax <code>col_1 &amp; col_2 &amp; ...</code>. Columns can also be dropped using a
-numeric column range with <code>:</code> (e.g., <code>5:8</code>), or, by using the
-<code>:</code> between column names to specify the range (e.g.,
-<code>col_5_name:col_8_name</code>).</p></td>
+syntax <code>col_1 &amp; col_2 &amp; ...</code>. Columns can also be dropped using a numeric
+column range with <code>:</code> (e.g., <code>5:8</code>), or, by using the <code>:</code> between column
+names to specify the range (e.g., <code>col_5_name:col_8_name</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -256,7 +255,8 @@ numeric column range with <code>:</code> (e.g., <code>5:8</code>), or, by using 
 <span class='co'># graph's internal node data frame</span>
 <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>()</div><div class='output co'>#&gt; [1] "id"          "type"        "label"       "curr_number"</div></pre>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>()</div><div class='output co'>#&gt; [1] "id"          "type"        "label"       "curr_number"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

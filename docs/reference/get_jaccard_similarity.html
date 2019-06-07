@@ -147,32 +147,31 @@ graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>nodes</th>
-      <td><p>an optional vector of node IDs to consider for Jaccard
+      <td><p>An optional vector of node IDs to consider for Jaccard
 similarity scores. If not supplied, then similarity scores will be provided
 for every pair of nodes in the graph.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>using <code>all</code> (the default), the function will ignore
-edge direction when determining scores for neighboring nodes. With
-<code>out</code> and <code>in</code>, edge direction for neighboring nodes will be
-considered.</p></td>
+      <td><p>Using <code>all</code> (the default), the function will ignore edge
+direction when determining scores for neighboring nodes. With <code>out</code> and
+<code>in</code>, edge direction for neighboring nodes will be considered.</p></td>
     </tr>
     <tr>
       <th>round_to</th>
-      <td><p>the maximum number of decimal places to retain for the
+      <td><p>The maximum number of decimal places to retain for the
 Jaccard similarity coefficient scores. The default value is <code>3</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a matrix with Jaccard similarity values for each pair of nodes
-  considered.</p>
+    <p>A matrix with Jaccard similarity values for each pair of nodes
+considered.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -194,7 +193,8 @@ Jaccard similarity coefficient scores. The default value is <code>3</code>.</p><
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>)</div><div class='output co'>#&gt;       5     6     7
 #&gt; 5 1.000 0.286 0.400
 #&gt; 6 0.286 1.000 0.333
-#&gt; 7 0.400 0.333 1.000</div></pre>
+#&gt; 7 0.400 0.333 1.000</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

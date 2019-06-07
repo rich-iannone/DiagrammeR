@@ -137,31 +137,37 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>from_igraph</span>(<span class='no'>igraph</span>, <span class='kw'>graph_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>write_backups</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>from_igraph</span>(<span class='no'>igraph</span>, <span class='kw'>graph_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>write_backups</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>display_msgs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>igraph</th>
-      <td><p>an igraph graph object.</p></td>
+      <td><p>An <span class="pkg">igraph</span> graph object.</p></td>
     </tr>
     <tr>
       <th>graph_name</th>
-      <td><p>an optional string for labeling the graph object.</p></td>
+      <td><p>An optional string for labeling the graph object.</p></td>
     </tr>
     <tr>
       <th>write_backups</th>
-      <td><p>an option to write incremental backups of changing graph
-states to disk. If <code>TRUE</code>, a subdirectory of the working directory
-will be used to store <code>RDS</code> files. The default value is <code>FALSE</code>
-so one has to opt in to use this functionality.</p></td>
+      <td><p>An option to write incremental backups of changing graph
+states to disk. If <code>TRUE</code>, a subdirectory within the working directory will
+be created and used to store <code>RDS</code> files. The default value is <code>FALSE</code> so
+one has to opt in to use this functionality.</p></td>
+    </tr>
+    <tr>
+      <th>display_msgs</th>
+      <td><p>An option to display messages primarily concerned with
+changes in graph selections. By default, this is <code>FALSE</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -188,7 +194,8 @@ so one has to opt in to use this functionality.</p></td>
 <span class='co'># Get some graph information</span>
 (<span class='no'>dgr_graph_new</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_graph_info.html'>get_graph_info</a></span>())[, <span class='fl'>1</span>:<span class='fl'>6</span>]</div><div class='output co'>#&gt;             name  n  e   dens mn_deg mx_deg
-#&gt; 1 graph_hWHYG7a9 36 50 0.0571      1      7</div></pre>
+#&gt; 1 graph_hWHYG7a9 36 50 0.0571      1      7</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -32,10 +32,10 @@
 
 <meta property="og:title" content="Add nodes from distinct values in data frame columns — add_nodes_from_df_cols" />
 
-<meta property="og:description" content="Add new nodes to a graph object of class dgr_graph using distinct
-  values from one or more columns in a data frame. The values will serve as
-  node labels and the number of nodes added depends on the number of distinct
-  values found in the specified columns." />
+<meta property="og:description" content="Add new nodes to a graph object of class dgr_graph using distinct values
+from one or more columns in a data frame. The values will serve as node
+labels and the number of nodes added depends on the number of distinct values
+found in the specified columns." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,10 +136,10 @@
 
     <div class="ref-description">
     
-    <p>Add new nodes to a graph object of class <code>dgr_graph</code> using distinct
-  values from one or more columns in a data frame. The values will serve as
-  node labels and the number of nodes added depends on the number of distinct
-  values found in the specified columns.</p>
+    <p>Add new nodes to a graph object of class <code>dgr_graph</code> using distinct values
+from one or more columns in a data frame. The values will serve as node
+labels and the number of nodes added depends on the number of distinct values
+found in the specified columns.</p>
     
     </div>
 
@@ -151,37 +151,35 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>df</th>
-      <td><p>a data frame from which values will be taken as new nodes for the
+      <td><p>A data frame from which values will be taken as new nodes for the
 graph.</p></td>
     </tr>
     <tr>
       <th>columns</th>
-      <td><p>a character vector of column names or a numeric vector of
-column numbers for the data frame supplied in <code>df</code>. The distinct
-values in these columns will serve as labels for the nodes added to the
-graph.</p></td>
+      <td><p>A character vector of column names or a numeric vector of
+column numbers for the data frame supplied in <code>df</code>. The distinct values in
+these columns will serve as labels for the nodes added to the graph.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional, single-length character vector that provides a group
+      <td><p>An optional, single-length character vector that provides a group
 identifier for the nodes to be added to the graph.</p></td>
     </tr>
     <tr>
       <th>keep_duplicates</th>
-      <td><p>an option to exclude incoming nodes where the labels
-(i.e., values found in columns of the specified <code>df</code>) match label
-values available in the graph's nodes. By default, this is set to
-<code>FALSE</code>.</p></td>
+      <td><p>An option to exclude incoming nodes where the labels
+(i.e., values found in columns of the specified <code>df</code>) match label values
+available in the graph's nodes. By default, this is set to <code>FALSE</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -237,7 +235,8 @@ values available in the graph's nodes. By default, this is set to
 #&gt; 4  4 &lt;NA&gt;     x
 #&gt; 5  5 &lt;NA&gt;     a
 #&gt; 6  6 &lt;NA&gt;     v
-#&gt; 7  7 &lt;NA&gt;     h</div></pre>
+#&gt; 7  7 &lt;NA&gt;     h</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

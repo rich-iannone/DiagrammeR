@@ -33,7 +33,7 @@
 <meta property="og:title" content="Create a subgraph using a node or edge selection — transform_to_subgraph_ws" />
 
 <meta property="og:description" content="Create a subgraph based on a selection of nodes or edges stored in the graph
-  object." />
+object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +135,7 @@
     <div class="ref-description">
     
     <p>Create a subgraph based on a selection of nodes or edges stored in the graph
-  object.</p>
+object.</p>
     
     </div>
 
@@ -146,44 +146,30 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function makes use of an active selection of nodes or edges (and the
 function ending with <code>_ws</code> hints at this).</p>
 <p>Selections of nodes can be performed using the following node selection
-(<code>select_*()</code>) functions:
-<code><a href='select_nodes.html'>select_nodes</a>()</code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_nodes.html'>select_nodes()</a></code>, <code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>, <code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.</p>
 <p>Selections of edges can be performed using the following edge selection
-(<code>select_*()</code>) functions:
-<code><a href='select_edges.html'>select_edges</a>()</code>,
-<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
-<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
-<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+(<code>select_*()</code>) functions: <code><a href='select_edges.html'>select_edges()</a></code>, <code><a href='select_last_edges_created.html'>select_last_edges_created()</a></code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id()</a></code>, or <code><a href='select_edges_by_node_id.html'>select_edges_by_node_id()</a></code>.</p>
 <p>Selections of nodes or edges can also be performed using the following
-traversal (<code>trav_*()</code>) functions:
-<code><a href='trav_out.html'>trav_out</a>()</code>,
-<code><a href='trav_in.html'>trav_in</a>()</code>,
-<code><a href='trav_both.html'>trav_both</a>()</code>,
-<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
-<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
-<code><a href='trav_out_until.html'>trav_out_until</a>()</code>,
-<code><a href='trav_in_until.html'>trav_in_until</a>()</code>,
-<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
-<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
-<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
-<code><a href='trav_reverse_edge.html'>trav_reverse_edge</a>()</code>.</p>
+traversal (<code>trav_*()</code>) functions: <code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>, <code><a href='trav_both.html'>trav_both()</a></code>,
+<code><a href='trav_out_node.html'>trav_out_node()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>, <code><a href='trav_out_until.html'>trav_out_until()</a></code>, <code><a href='trav_in_until.html'>trav_in_until()</a></code>,
+<code><a href='trav_out_edge.html'>trav_out_edge()</a></code>, <code><a href='trav_in_edge.html'>trav_in_edge()</a></code>, <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>, or
+<code><a href='trav_reverse_edge.html'>trav_reverse_edge()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -198,8 +184,8 @@ traversal (<code>trav_*()</code>) functions:
 <span class='co'># Create an edge data frame (edf)</span>
 <span class='no'>edf</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_edge_df.html'>create_edge_df</a></span>(
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span>, <span class='fl'>2</span>, <span class='fl'>6</span>),
-      <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>, <span class='fl'>5</span>))
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span>, <span class='fl'>2</span>, <span class='fl'>6</span>, <span class='fl'>2</span>),
+      <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>, <span class='fl'>5</span>, <span class='fl'>4</span>))
 
 <span class='co'># Create a graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -212,7 +198,8 @@ traversal (<code>trav_*()</code>) functions:
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(
-    <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 3 nodes</span></div><div class='input'>
+    <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>)
+
 <span class='co'># Create a subgraph based on the selection</span>
 <span class='no'>subgraph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -225,7 +212,30 @@ traversal (<code>trav_*()</code>) functions:
 #&gt; 3  5 &lt;NA&gt;  &lt;NA&gt;   5.2</div><div class='input'>
 <span class='co'># Display the graph's edge data frame</span>
 <span class='no'>subgraph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
-#&gt; 1  4    5  3 &lt;NA&gt;</div></pre>
+#&gt; 1  4    5  3 &lt;NA&gt;</div><div class='input'>
+<span class='co'># Create a selection of edges, this selects</span>
+<span class='co'># edges `1`, `2`</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_edges.html'>select_edges</a></span>(
+  <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
+
+<span class='co'># Create a subgraph based on the selection</span>
+<span class='no'>subgraph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>transform_to_subgraph_ws</span>()
+
+<span class='co'># Display the graph's node data frame</span>
+<span class='no'>subgraph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   3.5
+#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   2.6
+#&gt; 3  4 &lt;NA&gt;  &lt;NA&gt;   2.7</div><div class='input'>
+<span class='co'># Display the graph's edge data frame</span>
+<span class='no'>subgraph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  1    1  2 &lt;NA&gt;
+#&gt; 2  2    2  4 &lt;NA&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

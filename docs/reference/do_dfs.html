@@ -33,10 +33,10 @@
 <meta property="og:title" content="Use the depth-first search (dfs) algorithm — do_dfs" />
 
 <meta property="og:description" content="With a chosen or random node serving as the starting point, perform a
-  depth-first search of the whole graph and return the node ID values
-  visited. The dfs algorithm differs from breadth-first search (bfs) in that
-  dfs will follow tree branches as far as possible until terminating at leaf
-  node (bfs traverses branches one level at a time)." />
+depth-first search of the whole graph and return the node ID values visited.
+The dfs algorithm differs from breadth-first search (bfs) in that dfs will
+follow tree branches as far as possible until terminating at leaf node (bfs
+traverses branches one level at a time)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -138,10 +138,10 @@
     <div class="ref-description">
     
     <p>With a chosen or random node serving as the starting point, perform a
-  depth-first search of the whole graph and return the node ID values
-  visited. The dfs algorithm differs from breadth-first search (bfs) in that
-  dfs will follow tree branches as far as possible until terminating at leaf
-  node (bfs traverses branches one level at a time).</p>
+depth-first search of the whole graph and return the node ID values visited.
+The dfs algorithm differs from breadth-first search (bfs) in that dfs will
+follow tree branches as far as possible until terminating at leaf node (bfs
+traverses branches one level at a time).</p>
     
     </div>
 
@@ -152,26 +152,26 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>an optional node ID value to specify a single starting point for
+      <td><p>An optional node ID value to specify a single starting point for
 the dfs. If not provided, a random node from the graph will be chosen.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>using <code>all</code> (the default), the bfs will ignore edge
-direction while traversing through the graph. With <code>out</code> and
-<code>in</code>, traversals between adjacent nodes will respect the edge direction.</p></td>
+      <td><p>Using <code>all</code> (the default), the bfs will ignore edge
+direction while traversing through the graph. With <code>out</code> and <code>in</code>,
+traversals between adjacent nodes will respect the edge direction.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a vector containing node ID values for nodes visited during the
-  depth-first search. The order of the node IDs corresponds to the order
-  visited.</p>
+    <p>A vector containing node ID values for nodes visited during the
+depth-first search. The order of the node IDs corresponds to the order
+visited.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -215,7 +215,8 @@ direction while traversing through the graph. With <code>out</code> and
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>do_dfs</span>(
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"out"</span>)</div><div class='output co'>#&gt;  [1]  1  2  4  5  3  6  7  8  9 12 13 14 10 15 16 17 11 18 19 20</div></pre>
+    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"out"</span>)</div><div class='output co'>#&gt;  [1]  1  2  4  5  3  6  7  8  9 12 13 14 10 15 16 17 11 18 19 20</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

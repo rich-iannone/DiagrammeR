@@ -33,7 +33,7 @@
 <meta property="og:title" content="Import a graph from various graph formats — import_graph" />
 
 <meta property="og:description" content="Import a variety of graphs from different graph formats and create a graph
-  object." />
+object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,52 +135,78 @@
     <div class="ref-description">
     
     <p>Import a variety of graphs from different graph formats and create a graph
-  object.</p>
+object.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>import_graph</span>(<span class='no'>graph_file</span>, <span class='kw'>file_type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>edges_extra_attr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edges_extra_attr_coltypes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>edges_extra_attr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edges_extra_attr_coltypes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>graph_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>attr_theme</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>write_backups</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>display_msgs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph_file</th>
-      <td><p>a connection to a graph file. When provided as a path to a
+      <td><p>A connection to a graph file. When provided as a path to a
 file, it will read the file from disk. Files starting with <code>http://</code>,
-<code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> will be automatically
-downloaded.</p></td>
+<code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> will be automatically downloaded.</p></td>
     </tr>
     <tr>
       <th>file_type</th>
-      <td><p>the type of file to be imported. Options are: <code>gml</code>
-(GML), <code>sif</code> (SIF), <code>edges</code> (a .edges file), and <code>mtx</code>
-(MatrixMarket format). If not supplied, the type of graph file will be
-inferred by its file extension.</p></td>
+      <td><p>The type of file to be imported. Options are: <code>gml</code> (GML),
+<code>sif</code> (SIF), <code>edges</code> (a .edges file), and <code>mtx</code> (MatrixMarket format). If
+not supplied, the type of graph file will be inferred by its file
+extension.</p></td>
     </tr>
     <tr>
       <th>edges_extra_attr_names</th>
-      <td><p>for <code>edges</code> files, a vector of attribute
-names beyond the <code>from</code> and <code>to</code> data columns can be provided in
-the order they appear in the input data file.</p></td>
+      <td><p>For <code>edges</code> files, a vector of attribute names
+beyond the <code>from</code> and <code>to</code> data columns can be provided in the order they
+appear in the input data file.</p></td>
     </tr>
     <tr>
       <th>edges_extra_attr_coltypes</th>
-      <td><p>for <code>edges</code> files, this is a string of
+      <td><p>For <code>edges</code> files, this is a string of
 column types for any attribute columns provided for
 <code>edges_extra_attr_names</code>. This string representation is where each
 character represents each of the extra columns of data and the mappings
-are: <code>c</code> -&gt; character, <code>i</code> -&gt; integer, <code>n</code> -&gt; number,
-<code>d</code> -&gt; double, <code>l</code> -&gt; logical, <code>D</code> -&gt; date, <code>T</code> -&gt;
-date time, <code>t</code> -&gt; time, <code>?</code> -&gt; guess, or <code>_/-</code>, which skips
-the column.</p></td>
+are: <code>c</code> -&gt; character, <code>i</code> -&gt; integer, <code>n</code> -&gt; number, <code>d</code> -&gt; double, <code>l</code> -&gt;
+logical, <code>D</code> -&gt; date, <code>T</code> -&gt; date time, <code>t</code> -&gt; time, <code>?</code> -&gt; guess, or
+<code>_/-</code>, which skips the column.</p></td>
+    </tr>
+    <tr>
+      <th>graph_name</th>
+      <td><p>An optional string for labeling the graph object.</p></td>
+    </tr>
+    <tr>
+      <th>attr_theme</th>
+      <td><p>The theme (i.e., collection of <code>graph</code>, <code>node</code>, and <code>edge</code>
+global graph attributes) to use for this graph. The default theme is called
+<code>default</code>; there are hierarchical layout themes called <code>lr</code>, <code>tb</code>, <code>rl</code>,
+and <code>bt</code> (these operate from left-to-right, top-to-bottom, right-to-left,
+and bottom-to-top); and, for larger graphs, the <code>fdp</code> theme provides a
+force directed layout. If this is set to <code>NULL</code> then no global graph
+attributes will be applied to the graph upon creation.</p></td>
+    </tr>
+    <tr>
+      <th>write_backups</th>
+      <td><p>An option to write incremental backups of changing graph
+states to disk. If <code>TRUE</code>, a subdirectory within the working directory will
+be created and used to store <code>RDS</code> files. The default value is <code>FALSE</code> so
+one has to opt in to use this functionality.</p></td>
+    </tr>
+    <tr>
+      <th>display_msgs</th>
+      <td><p>An option to display messages primarily concerned with
+changes in graph selections. By default, this is <code>FALSE</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -199,7 +225,8 @@ the column.</p></td>
 <span class='co'># Get a count of the graph's edges</span>
 <span class='no'>gml_graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='count_edges.html'>count_edges</a></span>()
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

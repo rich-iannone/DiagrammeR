@@ -33,7 +33,7 @@
 <meta property="og:title" content="Get node IDs for successor nodes to the specified node — get_successors" />
 
 <meta property="og:description" content="Provides a vector of node IDs for all nodes that have a connection from the
-  given node." />
+given node." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -135,7 +135,7 @@
     <div class="ref-description">
     
     <p>Provides a vector of node IDs for all nodes that have a connection from the
-  given node.</p>
+given node.</p>
     
     </div>
 
@@ -146,21 +146,22 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>a node ID for the selected node.</p></td>
+      <td><p>A node ID for the selected node.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a vector of node ID values.</p>
+    <p>A vector of node ID values.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Set a seed</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>RNGversion</a></span>(<span class='st'>"3.5.0"</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>23</span>)
 
 <span class='co'># Create a node data frame (ndf)</span>
@@ -191,7 +192,8 @@
 <span class='co'># NA is returned</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_successors</span>(
-    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] NA</div></pre>
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] NA</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

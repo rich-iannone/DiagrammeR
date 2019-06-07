@@ -33,8 +33,8 @@
 <meta property="og:title" content="Add a Watts-Strogatz small-world graph — add_smallworld_graph" />
 
 <meta property="og:description" content="To an existing graph object, add a graph built according to the
-  Watts-Strogatz small-world model, which uses a lattice along with a
-  rewiring probability to randomly modify edge definitions." />
+Watts-Strogatz small-world model, which uses a lattice along with a rewiring
+probability to randomly modify edge definitions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,8 +136,8 @@
     <div class="ref-description">
     
     <p>To an existing graph object, add a graph built according to the
-  Watts-Strogatz small-world model, which uses a lattice along with a
-  rewiring probability to randomly modify edge definitions.</p>
+Watts-Strogatz small-world model, which uses a lattice along with a rewiring
+probability to randomly modify edge definitions.</p>
     
     </div>
 
@@ -151,86 +151,86 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>dimension</th>
-      <td><p>the dimension of the starting lattice.</p></td>
+      <td><p>The dimension of the starting lattice.</p></td>
     </tr>
     <tr>
       <th>size</th>
-      <td><p>the size of the lattice across each dimension.</p></td>
+      <td><p>The size of the lattice across each dimension.</p></td>
     </tr>
     <tr>
       <th>neighborhood</th>
-      <td><p>the neighborhood where the lattice nodes are to be
+      <td><p>The neighborhood where the lattice nodes are to be
 connected.</p></td>
     </tr>
     <tr>
       <th>p</th>
-      <td><p>the rewiring probability.</p></td>
+      <td><p>The rewiring probability.</p></td>
     </tr>
     <tr>
       <th>loops</th>
-      <td><p>a logical value (default is <code>FALSE</code>) that governs whether
-loops are allowed to be created.</p></td>
+      <td><p>A logical value (default is <code>FALSE</code>) that governs whether loops
+are allowed to be created.</p></td>
     </tr>
     <tr>
       <th>multiple</th>
-      <td><p>a logical value (default is <code>FALSE</code>) that governs
-whether multiple edges are allowed to be created.</p></td>
+      <td><p>A logical value (default is <code>FALSE</code>) that governs whether
+multiple edges are allowed to be created.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional string that describes the entity type for all the
+      <td><p>An optional string that describes the entity type for all the
 nodes to be added.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>a logical value where setting to <code>TRUE</code> ascribes node IDs
-to the label and <code>FALSE</code> yields a blank label.</p></td>
+      <td><p>A logical value where setting to <code>TRUE</code> ascribes node IDs to the
+label and <code>FALSE</code> yields a blank label.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional string for providing a relationship label to all edges
+      <td><p>An optional string for providing a relationship label to all edges
 to be added.</p></td>
     </tr>
     <tr>
       <th>node_aes</th>
-      <td><p>an optional list of named vectors comprising node aesthetic
-attributes. The helper function <code><a href='node_aes.html'>node_aes</a>()</code> is strongly
-recommended for use here as it contains arguments for each of the accepted
-node aesthetic attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>,
-<code>fillcolor</code>).</p></td>
+      <td><p>An optional list of named vectors comprising node aesthetic
+attributes. The helper function <code><a href='node_aes.html'>node_aes()</a></code> is strongly recommended for
+use here as it contains arguments for each of the accepted node aesthetic
+attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>, <code>fillcolor</code>).</p></td>
     </tr>
     <tr>
       <th>edge_aes</th>
-      <td><p>an optional list of named vectors comprising edge aesthetic
-attributes. The helper function <code><a href='edge_aes.html'>edge_aes</a>()</code> is strongly
-recommended for use here as it contains arguments for each of the accepted
-edge aesthetic attributes (e.g., <code>shape</code>, <code>style</code>,
-<code>penwidth</code>, <code>color</code>).</p></td>
+      <td><p>An optional list of named vectors comprising edge aesthetic
+attributes. The helper function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended for
+use here as it contains arguments for each of the accepted edge aesthetic
+attributes (e.g., <code>shape</code>, <code>style</code>, <code>penwidth</code>, <code>color</code>).</p></td>
     </tr>
     <tr>
       <th>node_data</th>
-      <td><p>an optional list of named vectors comprising node data
-attributes. The helper function <code><a href='node_data.html'>node_data</a>()</code> is strongly
-recommended for use here as it helps bind data specifically to the created
-nodes.</p></td>
+      <td><p>An optional list of named vectors comprising node data
+attributes. The helper function <code><a href='node_data.html'>node_data()</a></code> is strongly recommended for
+use here as it helps bind data specifically to the created nodes.</p></td>
     </tr>
     <tr>
       <th>edge_data</th>
-      <td><p>an optional list of named vectors comprising edge data
-attributes. The helper function <code><a href='edge_data.html'>edge_data</a>()</code> is strongly
-recommended for use here as it helps bind data specifically to the created
-edges.</p></td>
+      <td><p>An optional list of named vectors comprising edge data
+attributes. The helper function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended for
+use here as it helps bind data specifically to the created edges.</p></td>
     </tr>
     <tr>
       <th>set_seed</th>
-      <td><p>supplying a value sets a random seed of the
+      <td><p>Supplying a value sets a random seed of the
 <code>Mersenne-Twister</code> implementation.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -250,13 +250,16 @@ edges.</p></td>
 <span class='co'># Get a count of nodes</span>
 <span class='no'>smallworld_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 50</div><div class='input'>
 <span class='co'># Get a count of edges</span>
-<span class='no'>smallworld_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 50</div></pre>
+<span class='no'>smallworld_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 50</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -33,14 +33,13 @@
 <meta property="og:title" content="Set the edge attribute values to be rendered — set_edge_attr_to_display" />
 
 <meta property="og:description" content="Set a edge attribute type to display as edge text when calling the
-  render_graph() function. This allows for display of different
-  types of edge attribute values on a per-edge basis. Without setting the
-  display attribute, rendering a graph will default to not printing
-  any text on edges. Setting the display edge attribute with this
-  function for the first time (i.e., the display column doesn't exist
-  in the graph's internal edge data frame) will insert the attr value
-  for all edges specified in edges and a default value
-  (default) for all remaining edges." />
+render_graph() function. This allows for display of different types of edge
+attribute values on a per-edge basis. Without setting the display
+attribute, rendering a graph will default to not printing any text on edges.
+Setting the display edge attribute with this function for the first time
+(i.e., the display column doesn't exist in the graph's internal edge data
+frame) will insert the attr value for all edges specified in edges and a
+default value (default) for all remaining edges." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -142,14 +141,13 @@
     <div class="ref-description">
     
     <p>Set a edge attribute type to display as edge text when calling the
-  <code><a href='render_graph.html'>render_graph</a>()</code> function. This allows for display of different
-  types of edge attribute values on a per-edge basis. Without setting the
-  <code>display</code> attribute, rendering a graph will default to not printing
-  any text on edges. Setting the <code>display</code> edge attribute with this
-  function for the first time (i.e., the <code>display</code> column doesn't exist
-  in the graph's internal edge data frame) will insert the <code>attr</code> value
-  for all edges specified in <code>edges</code> and a default value
-  (<code>default</code>) for all remaining edges.</p>
+<code><a href='render_graph.html'>render_graph()</a></code> function. This allows for display of different types of edge
+attribute values on a per-edge basis. Without setting the <code>display</code>
+attribute, rendering a graph will default to not printing any text on edges.
+Setting the <code>display</code> edge attribute with this function for the first time
+(i.e., the <code>display</code> column doesn't exist in the graph's internal edge data
+frame) will insert the <code>attr</code> value for all edges specified in <code>edges</code> and a
+default value (<code>default</code>) for all remaining edges.</p>
     
     </div>
 
@@ -161,32 +159,32 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
+      <td><p>A graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>attr</th>
-      <td><p>the name of the attribute from which label text for the edge will
-be obtained. If set to <code>NULL</code>, then <code>NA</code> values will be assigned
-to the <code>display</code> column for the chosen edges.</p></td>
+      <td><p>The name of the attribute from which label text for the edge will
+be obtained. If set to <code>NULL</code>, then <code>NA</code> values will be assigned to the
+<code>display</code> column for the chosen edges.</p></td>
     </tr>
     <tr>
       <th>edges</th>
-      <td><p>a length vector containing one or several edge ID values (as
+      <td><p>A length vector containing one or several edge ID values (as
 integers) for which edge attributes are set for display in the rendered
-graph. If <code>NULL</code>, all edges from the graph are assigned the
-<code>display</code> value given as <code>attr</code>.</p></td>
+graph. If <code>NULL</code>, all edges from the graph are assigned the <code>display</code> value
+given as <code>attr</code>.</p></td>
     </tr>
     <tr>
       <th>default</th>
-      <td><p>the name of an attribute to set for all other graph edges not
-included in <code>edges</code>. This value only gets used if the <code>display</code>
-edge attribute is not in the graph's internal edge data frame.</p></td>
+      <td><p>The name of an attribute to set for all other graph edges not
+included in <code>edges</code>. This value only gets used if the <code>display</code> edge
+attribute is not in the graph's internal edge data frame.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>A graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -238,7 +236,8 @@ edge attribute is not in the graph's internal edge data frame.</p></td>
 #&gt; 1  1    2  1 &lt;NA&gt;      id   2.5
 #&gt; 2  2    3  1 &lt;NA&gt;   value   8.2
 #&gt; 3  3    3  2 &lt;NA&gt;      id   4.2
-#&gt; 4  4    4  3 &lt;NA&gt;      to   2.4</div></pre>
+#&gt; 4  4    4  3 &lt;NA&gt;      to   2.4</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
