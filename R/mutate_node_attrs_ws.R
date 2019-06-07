@@ -180,7 +180,7 @@ mutate_node_attrs_ws <- function(graph,
       ndf_replacement <-
         ndf %>%
         dplyr::mutate_(
-          .dots = setNames(list((exprs %>% paste())[i]),
+          .dots = stats::setNames(list((exprs %>% paste())[i]),
                            names(exprs)[i]))
 
       ndf_replacement[
@@ -203,7 +203,7 @@ mutate_node_attrs_ws <- function(graph,
       ndf_replacement <-
         ndf %>%
         dplyr::mutate_(
-          .dots = setNames(list((exprs %>% paste())[i]),
+          .dots = stats::setNames(list((exprs %>% paste())[i]),
                            names(exprs)[i]))
 
       ndf_replacement[

@@ -1,12 +1,13 @@
 #' Remove a graph from a graph series
 #'
 #' Remove a single graph object from an set of graph objects contained within a
-#'   graph series object.
-#' @param graph_series a graph series object from which the graph object will be
+#' graph series object.
+#'
+#' @param graph_series A graph series object from which the graph object will be
 #'   removed.
-#' @param index the index of the graph object to be removed from the graph
+#' @param index The index of the graph object to be removed from the graph
 #'   series object.
-#' @return a graph series object of type `dgr_graph_1D`.
+#' @return A graph series object of type `dgr_graph_1D`.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
@@ -44,6 +45,7 @@
 #' # was removed
 #' series %>%
 #'   get_graph_series_info()
+#'
 #' @export
 remove_graph_from_graph_series <- function(graph_series,
                                            index = "last") {

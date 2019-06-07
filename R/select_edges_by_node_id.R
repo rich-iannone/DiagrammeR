@@ -1,16 +1,16 @@
 #' Select edges in a graph using node ID values
 #'
-#' Select edges in a graph object of class `dgr_graph` using node ID
-#'   values. All edges associated with the provided nodes will be included in
-#'   the selection.
+#' Select edges in a graph object of class `dgr_graph` using node ID values. All
+#' edges associated with the provided nodes will be included in the selection.
+#'
 #' @inheritParams render_graph
-#' @param nodes a vector of node IDs for the selection of edges present in the
+#' @param nodes A vector of node IDs for the selection of edges present in the
 #'   graph.
-#' @param set_op the set operation to perform upon consecutive selections of
+#' @param set_op The set operation to perform upon consecutive selections of
 #'   graph edges This can either be as a `union` (the default), as an
-#'   intersection of selections with `intersect`, or, as a
-#'   `difference` on the previous selection, if it exists.
-#' @return a graph object of class `dgr_graph`.
+#'   intersection of selections with `intersect`, or, as a `difference` on the
+#'   previous selection, if it exists.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 5 nodes
 #' graph <-
@@ -47,7 +47,7 @@
 #'     e <- count_edges(.)
 #'     l/e
 #'   }
-#' @importFrom dplyr filter select rename
+#'
 #' @export
 select_edges_by_node_id <- function(graph,
                                     nodes,

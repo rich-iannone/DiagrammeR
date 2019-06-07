@@ -118,7 +118,7 @@ mutate_edge_attrs <- function(graph,
     edf <-
       edf %>%
       dplyr::mutate_(
-        .dots = setNames(list((exprs %>% paste())[i]),
+        .dots = stats::setNames(list((exprs %>% paste())[i]),
                          names(exprs)[i]))
   }
 

@@ -1,20 +1,21 @@
 #' Select edges in a graph
 #'
 #' Select edges from a graph object of class `dgr_graph`.
+#'
 #' @inheritParams render_graph
-#' @param conditions an option to use filtering conditions for the retrieval of
+#' @param conditions An option to use filtering conditions for the retrieval of
 #'   edges.
-#' @param set_op the set operation to perform upon consecutive selections of
+#' @param set_op The set operation to perform upon consecutive selections of
 #'   graph nodes. This can either be as a `union` (the default), as an
-#'   intersection of selections with `intersect`, or, as a
-#'   `difference` on the previous selection, if it exists.
-#' @param from an optional vector of node IDs from which the edge is outgoing
+#'   intersection of selections with `intersect`, or, as a `difference` on the
+#'   previous selection, if it exists.
+#' @param from An optional vector of node IDs from which the edge is outgoing
 #'   for filtering the list of edges present in the graph.
-#' @param to an optional vector of node IDs to which the edge is incoming for
+#' @param to An optional vector of node IDs to which the edge is incoming for
 #'   filtering the list of edges present in the graph.
-#' @param edges an optional vector of edge IDs for filtering the list of edges
+#' @param edges An optional vector of edge IDs for filtering the list of edges
 #'   present in the graph.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -75,8 +76,8 @@
 #' # made; in this case, edges `1`->`4` and
 #' # `3`->`1` have values for `value` > 3.0
 #' graph %>% get_selection()
-#' @importFrom dplyr filter select rename
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 select_edges <- function(graph,
                          conditions = NULL,

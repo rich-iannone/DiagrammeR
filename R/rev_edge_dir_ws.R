@@ -7,20 +7,15 @@
 #' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (`select_*()`) functions:
-#' [select_edges()],
-#' [select_last_edges_created()],
-#' [select_edges_by_edge_id()], or
-#' [select_edges_by_node_id()].
+#' (`select_*()`) functions: [select_edges()], [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out_edge()],
-#' [trav_in_edge()],
-#' [trav_both_edge()], or
-#' [trav_reverse_edge()].
+#' (`trav_*()`) functions: [trav_out_edge()], [trav_in_edge()],
+#' [trav_both_edge()], or [trav_reverse_edge()].
+#'
 #' @inheritParams render_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with a
 #' # directed tree
@@ -49,7 +44,7 @@
 #' # Inspect the graph's edges
 #' # after their reversal
 #' graph %>% get_edges()
-#' @importFrom dplyr filter rename select everything bind_rows
+#'
 #' @export
 rev_edge_dir_ws <- function(graph) {
 

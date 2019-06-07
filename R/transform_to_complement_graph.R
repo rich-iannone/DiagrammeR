@@ -1,14 +1,14 @@
 #' Create a complement of a graph
 #'
 #' Create a complement graph which contains only edges not present in the input
-#'   graph. It's important to nodes that any edge attributes in the input
-#'   graph's edges will be lost. Node attributes will be retained, since they
-#'   are not affected by this transformation.
+#' graph. It's important to nodes that any edge attributes in the input graph's
+#' edges will be lost. Node attributes will be retained, since they are not
+#' affected by this transformation.
+#'
 #' @inheritParams render_graph
-#' @param loops an option for whether loops should be generated in the
+#' @param loops An option for whether loops should be generated in the
 #'   complement graph.
 #' @return a graph object of class `dgr_graph`.
-#' @importFrom igraph complementer
 #' @examples
 #' # Create a simple graph
 #' # with a single cycle
@@ -29,6 +29,7 @@
 #' # Get the edge data frame
 #' # for the complement graph
 #' graph_c %>% get_edge_df()
+#'
 #' @export
 transform_to_complement_graph <- function(graph,
                                           loops = FALSE) {

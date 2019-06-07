@@ -1,26 +1,26 @@
 #' Set the node attribute values to be rendered
 #'
 #' Set a node attribute type to display as node text when calling the
-#'   [render_graph()] function. This allows for display of different
-#'   types of node attribute values on a per-node basis. Without setting the
-#'   `display` attribute, rendering a graph will default to printing text
-#'   from the `label` attribute on nodes. Setting the `display` node
-#'   attribute with this function for the first time (i.e., the `display`
-#'   column doesn't exist in the graph's internal node data frame) will insert
-#'   the `attr` value for all nodes specified in `nodes` and a default
-#'   value (`default`) for all remaining nodes.
+#' [render_graph()] function. This allows for display of different types of node
+#' attribute values on a per-node basis. Without setting the `display`
+#' attribute, rendering a graph will default to printing text from the `label`
+#' attribute on nodes. Setting the `display` node attribute with this function
+#' for the first time (i.e., the `display` column doesn't exist in the graph's
+#' internal node data frame) will insert the `attr` value for all nodes
+#' specified in `nodes` and a default value (`default`) for all remaining nodes.
+#'
 #' @inheritParams render_graph
-#' @param attr the name of the attribute from which label text for the node will
-#'   be obtained. If set to `NULL`, then `NA` values will be assigned
-#'   to the `display` column for the chosen nodes.
-#' @param nodes a length vector containing one or several node ID values (as
+#' @param attr The name of the attribute from which label text for the node will
+#'   be obtained. If set to `NULL`, then `NA` values will be assigned to the
+#'   `display` column for the chosen nodes.
+#' @param nodes A length vector containing one or several node ID values (as
 #'   integers) for which node attributes are set for display in the rendered
-#'   graph. If `NULL`, all nodes from the graph are assigned the
-#'   `display` value given as `attr`.
-#' @param default the name of an attribute to set for all other graph nodes not
-#'   included in `nodes`. This value only gets used if the `display`
-#'   node attribute is not in the graph's internal node data frame.
-#' @return a graph object of class `dgr_graph`.
+#'   graph. If `NULL`, all nodes from the graph are assigned the `display` value
+#'   given as `attr`.
+#' @param default The name of an attribute to set for all other graph nodes not
+#'   included in `nodes`. This value only gets used if the `display` node
+#'   attribute is not in the graph's internal node data frame.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -64,9 +64,8 @@
 #'     nodes = c(1, 3),
 #'     attr = id) %>%
 #'   get_node_df()
-#' @importFrom dplyr mutate left_join coalesce bind_cols select
-#' @importFrom dplyr everything case_when tibble
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 set_node_attr_to_display <- function(graph,
                                      attr = NULL,

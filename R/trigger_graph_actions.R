@@ -1,13 +1,14 @@
 #' Trigger the execution of a series of graph actions
 #'
 #' Execute the graph actions stored in the graph through the use of the
-#'   [add_graph_action()] function. These actions will be invoked in
-#'   order and any errors encountered will trigger a warning message and result
-#'   in no change to the input graph. Normally, graph actions are automatically
-#'   triggered at every transformation step but this function allows for the
-#'   manual triggering of graph actions after setting them, for example.
+#' [add_graph_action()] function. These actions will be invoked in order and any
+#' errors encountered will trigger a warning message and result in no change to
+#' the input graph. Normally, graph actions are automatically triggered at every
+#' transformation step but this function allows for the manual triggering of
+#' graph actions after setting them, for example.
+#'
 #' @inheritParams render_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -74,7 +75,7 @@
 #' # the `pagerank`, `width`, and
 #' # `fillcolor` columns are present
 #' graph %>% get_node_df()
-#' @importFrom dplyr filter pull
+#'
 #' @export
 trigger_graph_actions <- function(graph) {
 

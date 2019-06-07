@@ -175,9 +175,9 @@ add_reverse_edges_ws <- function(graph,
   if (exists("edge_aes_tbl")) {
 
     graph$edges_df <-
-      bind_rows(
+      dplyr::bind_rows(
         graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
-        bind_cols(
+        dplyr::bind_cols(
           graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
           edge_aes_tbl))
   }
@@ -186,9 +186,9 @@ add_reverse_edges_ws <- function(graph,
   if (exists("edge_data_tbl")) {
 
     graph$edges_df <-
-      bind_rows(
+      dplyr::bind_rows(
         graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
-        bind_cols(
+        dplyr::bind_cols(
           graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
           edge_data_tbl))
   }

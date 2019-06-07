@@ -1,14 +1,15 @@
 #' Set node attribute values
 #'
-#' From a graph object of class `dgr_graph`, set node attribute values for
-#'   one or more nodes.
+#' From a graph object of class `dgr_graph`, set node attribute values for one
+#' or more nodes.
+#'
 #' @inheritParams render_graph
-#' @param node_attr the name of the attribute to set.
-#' @param values the values to be set for the chosen attribute for the chosen
+#' @param node_attr The name of the attribute to set.
+#' @param values The values to be set for the chosen attribute for the chosen
 #'   nodes.
-#' @param nodes an optional vector of node IDs for filtering the list of nodes
+#' @param nodes An optional vector of node IDs for filtering the list of nodes
 #'   present in the graph.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -53,8 +54,8 @@
 #'
 #' # Display the graph's ndf
 #' graph %>% get_node_df()
-#' @importFrom dplyr mutate
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 set_node_attrs <- function(graph,
                            node_attr,

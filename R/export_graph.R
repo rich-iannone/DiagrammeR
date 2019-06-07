@@ -363,7 +363,7 @@ export_graph <- function(graph,
 
     # Get a matrix of graph edges
     edges <-
-      ends(graph = g, E(g))
+      igraph::ends(graph = g, igraph::E(g))
 
     # Get node attribute names
     node_attr_names <-

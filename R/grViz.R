@@ -1,14 +1,12 @@
 #' R + viz.js
 #'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}
-#' with infrastructure provided by
-#' \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' Make diagrams in R using `viz.js` with infrastructure provided by
+#' pkg{htmlwidgets}.
 #'
 #' @param diagram Spec for a diagram as either text, filename string, or file
 #'   connection.
 #' @param engine String for the Graphviz layout engine; can be `dot` (default),
-#'   `neato`, `circo`, or `twopi`. For more information see \href{viz.js
-#'   Usage}{https://github.com/mdaines/viz.js#usage}.
+#'   `neato`, `circo`, or `twopi`.
 #' @param allow_subst A boolean that enables/disables substitution
 #'   functionality.
 #' @param options Parameters supplied to the htmlwidgets framework.

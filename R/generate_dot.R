@@ -128,7 +128,7 @@ generate_dot <- function(graph) {
     for (i in 1:nrow(nodes_df)) {
       if (grepl("^\\$.*\\$$", nodes_df[i, equation_col])) {
         nodes_df[i, equation_col] <-
-          str_replace_all(
+          stringr::str_replace_all(
             nodes_df[i, equation_col], "\\\\", "\\\\\\\\")
       } else {
         nodes_df[i, equation_col] <- ""
@@ -167,7 +167,7 @@ generate_dot <- function(graph) {
 
       edges_df <-
         edges_df %>%
-        mutate(label = as.character(NA))
+        dplyr::mutate(label = as.character(NA))
     }
 
     label_col <- which(colnames(edges_df) == "label")

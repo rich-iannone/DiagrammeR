@@ -146,7 +146,7 @@ add_nodes_from_table <- function(graph,
   if (inherits(table, "character")) {
 
     # Load in CSV file
-    csv <- read.csv(table, stringsAsFactors = FALSE)
+    csv <- utils::read.csv(table, stringsAsFactors = FALSE)
 
   } else if (inherits(table, "data.frame")) {
 

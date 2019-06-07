@@ -1,16 +1,17 @@
 #' Select nodes in a graph
 #'
 #' Select nodes from a graph object of class `dgr_graph`.
+#'
 #' @inheritParams render_graph
-#' @param conditions an option to use filtering conditions for the retrieval of
+#' @param conditions An option to use filtering conditions for the retrieval of
 #'   nodes.
-#' @param set_op the set operation to perform upon consecutive selections of
+#' @param set_op The set operation to perform upon consecutive selections of
 #'   graph nodes. This can either be as a `union` (the default), as an
-#'   intersection of selections with `intersect`, or, as a
-#'   `difference` on the previous selection, if it exists.
-#' @param nodes an optional vector of node IDs for filtering the list of nodes
+#'   intersection of selections with `intersect`, or, as a `difference` on the
+#'   previous selection, if it exists.
+#' @param nodes An optional vector of node IDs for filtering the list of nodes
 #'   present in the graph.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -68,8 +69,8 @@
 #' # made; in this case, nodes `1` and `3` have values
 #' # for `value` greater than 3.0
 #' graph %>% get_selection()
-#' @importFrom dplyr filter pull
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 select_nodes <- function(graph,
                          conditions = NULL,

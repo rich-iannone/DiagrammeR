@@ -1,15 +1,15 @@
 #' Set a data frame as a node attribute
 #'
 #' From a graph object of class `dgr_graph`, bind a data frame as a node
-#'   attribute property for one given graph node. The data frames are stored in
-#'   list columns within a `df_tbl` object. A `df_id` value is
-#'   generated and serves as a pointer to the table row that contains the
-#'   ingested data frame.
+#' attribute property for one given graph node. The data frames are stored in
+#' list columns within a `df_tbl` object. A `df_id` value is generated and
+#' serves as a pointer to the table row that contains the ingested data frame.
+#'
 #' @inheritParams render_graph
-#' @param node the node ID to which the data frame will be bound as an
+#' @param node The node ID to which the data frame will be bound as an
 #'   attribute.
-#' @param df the data frame to be bound to the node as an attribute.
-#' @return a graph object of class `dgr_graph`.
+#' @param df The data frame to be bound to the node as an attribute.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -63,8 +63,7 @@
 #'   set_df_as_node_attr(
 #'     node = 2,
 #'     df = df_2)
-#' @importFrom dplyr filter everything mutate select bind_rows as_tibble
-#' @importFrom purrr flatten_chr
+#'
 #' @export
 set_df_as_node_attr <- function(graph,
                                 node,
@@ -130,7 +129,7 @@ set_df_as_node_attr <- function(graph,
       df_id__ = df_id,
       node_edge__ = "node",
       id__ = node) %>%
-    dplyr::select(df_id__, node_edge__, id__, everything()) %>%
+    dplyr::select(df_id__, node_edge__, id__, dplyr::everything()) %>%
     dplyr::as_tibble()
 
   # If there is an existing data frame attributed

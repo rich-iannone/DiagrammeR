@@ -1,20 +1,21 @@
 #' Recode a set of edge attribute values
 #'
 #' Within a graph's internal edge data frame (edf), recode character or numeric
-#'   edge attribute values. Optionally, one can specify a replacement value for
-#'   any unmatched mappings.
+#' edge attribute values. Optionally, one can specify a replacement value for
+#' any unmatched mappings.
+#'
 #' @inheritParams render_graph
-#' @param edge_attr_from the name of the edge attribute column from which values
+#' @param edge_attr_from The name of the edge attribute column from which values
 #'   will be recoded.
-#' @param ... single-length character vectors with the recoding instructions.
+#' @param ... Single-length character vectors with the recoding instructions.
 #'   The first component should have the value to replace and the second should
-#'   have the replacement value (in the form
-#'   `"[to_replace] -> [replacement]", ...`).
-#' @param otherwise an optional single value for recoding any unmatched values.
-#' @param edge_attr_to an optional name of a new edge attribute to which the
+#'   have the replacement value (in the form `"[to_replace] -> [replacement]",
+#'   ...`).
+#' @param otherwise An optional single value for recoding any unmatched values.
+#' @param edge_attr_to An optional name of a new edge attribute to which the
 #'   recoded values will be applied. This will retain the original edge
 #'   attribute and its values.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -55,8 +56,8 @@
 #' # recoded and copied into a
 #' # new node attribute
 #' graph %>% get_edge_df()
-#' @importFrom stringr str_split
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 recode_edge_attrs <- function(graph,
                               edge_attr_from,

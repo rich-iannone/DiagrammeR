@@ -149,7 +149,7 @@ get_attr_dfs <- function(graph,
                   by = c("df_id__" = "df_id")) %>%
                 dplyr::select(-df_id__) %>%
                 dplyr::select(-id__) %>%
-                dplyr::select(node_edge__, id, type, label, everything())
+                dplyr::select(node_edge__, id, type, label, dplyr::everything())
             } else {
               dplyr::tibble()
             }})
@@ -182,7 +182,7 @@ get_attr_dfs <- function(graph,
                   by = c("df_id__" = "df_id")) %>%
                 dplyr::select(-df_id__) %>%
                 dplyr::select(-id__) %>%
-                dplyr::select(node_edge__, id, from, to, rel, everything())
+                dplyr::select(node_edge__, id, from, to, rel, dplyr::everything())
             } else {
               dplyr::tibble()
             }})

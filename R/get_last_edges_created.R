@@ -59,7 +59,7 @@ get_last_edges_created <- function(graph) {
   if (nrow(graph_transform_steps) > 0) {
 
     if (graph_transform_steps %>%
-        tail(1) %>%
+        utils::tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
 
       emit_error(
@@ -71,11 +71,11 @@ get_last_edges_created <- function(graph) {
         number_of_edges_created <-
           (graph_transform_steps %>%
              dplyr::select(edges) %>%
-             tail(2) %>%
+             utils::tail(2) %>%
              dplyr::pull(edges))[2] -
           (graph_transform_steps %>%
              dplyr::select(edges) %>%
-             tail(2) %>%
+             utils::tail(2) %>%
              dplyr::pull(edges))[1]
       } else {
         number_of_edges_created <-
@@ -87,7 +87,7 @@ get_last_edges_created <- function(graph) {
     edge_id_values <-
       graph$edges_df %>%
       dplyr::select(id) %>%
-      tail(number_of_edges_created) %>%
+      utils::tail(number_of_edges_created) %>%
       dplyr::pull(id)
   } else {
     edge_id_values <- NA

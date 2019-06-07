@@ -1,28 +1,25 @@
 #' Set node attribute values with a graph function
 #'
 #' From a graph object of class `dgr_graph` or a node data frame, set node
-#'   attribute properties for all nodes in the graph using one of several whole-graph functions.
+#' attribute properties for all nodes in the graph using one of several
+#' whole-graph functions.
+#'
 #' @inheritParams render_graph
-#' @param node_attr_fcn the name of the function to use for creating a column of
-#'   node attribute values. Valid functions are:
-#'   [get_alpha_centrality()],
-#'   [get_authority_centrality()],
-#'   [get_betweenness()], [get_bridging()],
-#'   [get_closeness()], [get_cmty_edge_btwns()],
-#'   [get_cmty_fast_greedy()], [get_cmty_l_eigenvec()],
-#'   [get_cmty_louvain()], [get_cmty_walktrap()],
-#'   [get_constraint()], [get_degree_distribution()],
-#'   [get_degree_histogram()], [get_degree_in()],
-#'   [get_degree_out()], [get_degree_total()],
-#'   [get_eccentricity()], [get_eigen_centrality()],
-#'   [get_pagerank()], [get_s_connected_cmpts()],
-#'   and [get_w_connected_cmpts()].
-#' @param ... arguments and values to pass to the named function in
+#' @param node_attr_fcn The name of the function to use for creating a column of
+#'   node attribute values. Valid functions are: [get_alpha_centrality()],
+#'   [get_authority_centrality()], [get_betweenness()], [get_bridging()],
+#'   [get_closeness()], [get_cmty_edge_btwns()], [get_cmty_fast_greedy()],
+#'   [get_cmty_l_eigenvec()], [get_cmty_louvain()], [get_cmty_walktrap()],
+#'   [get_constraint()], [get_degree_distribution()], [get_degree_histogram()],
+#'   [get_degree_in()], [get_degree_out()], [get_degree_total()],
+#'   [get_eccentricity()], [get_eigen_centrality()], [get_pagerank()],
+#'   [get_s_connected_cmpts()], and [get_w_connected_cmpts()].
+#' @param ... Arguments and values to pass to the named function in
 #'   `node_attr_fcn`, if necessary.
-#' @param column_name an option to supply a column name for the new node
-#'   attribute column. If `NULL` then the column name supplied by the
-#'   function will used along with a `__A` suffix.
-#' @return either a graph object of class `dgr_graph`.
+#' @param column_name An option to supply a column name for the new node
+#'   attribute column. If `NULL` then the column name supplied by the function
+#'   will used along with a `__A` suffix.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -93,7 +90,7 @@
 #' # Inspect the graph's internal
 #' # node data frame
 #' graph_3 %>% get_node_df()
-#' @importFrom dplyr inner_join mutate
+#'
 #' @export
 set_node_attr_w_fcn <- function(graph,
                                 node_attr_fcn,

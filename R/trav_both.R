@@ -1,8 +1,8 @@
 #' Traverse from one or more selected nodes onto neighboring nodes
 #'
-#' From a graph object of class `dgr_graph` move from one or more nodes
-#' present in a selection to other nodes that are connected by edges, replacing
-#' the current nodes in the selection with those nodes traversed to. An optional
+#' From a graph object of class `dgr_graph` move from one or more nodes present
+#' in a selection to other nodes that are connected by edges, replacing the
+#' current nodes in the selection with those nodes traversed to. An optional
 #' filter by node attribute can limit the set of nodes traversed to.
 #'
 #' This traversal function makes use of an active selection of nodes. After the
@@ -10,41 +10,34 @@
 #' selection of nodes or no selection at all.
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @param conditions an option to use filtering conditions for the traversal.
-#' @param copy_attrs_from providing a node attribute name will copy those node
+#' @param conditions An option to use filtering conditions for the traversal.
+#' @param copy_attrs_from Providing a node attribute name will copy those node
 #'   attribute values to the traversed nodes. Any values extant on the nodes
 #'   traversed to will be replaced.
-#' @param copy_attrs_as if a node attribute name is provided in
-#'   `copy_attrs_from`, this option will allow the copied attribute values
-#'   to be written under a different attribute name. If the attribute name
-#'   provided in `copy_attrs_as` does not exist in the graph's ndf, the new
-#'   node attribute will be created with the chosen name.
-#' @param agg if a node attribute is provided to `copy_attrs_from`, then an
+#' @param copy_attrs_as If a node attribute name is provided in
+#'   `copy_attrs_from`, this option will allow the copied attribute values to be
+#'   written under a different attribute name. If the attribute name provided in
+#'   `copy_attrs_as` does not exist in the graph's ndf, the new node attribute
+#'   will be created with the chosen name.
+#' @param agg If a node attribute is provided to `copy_attrs_from`, then an
 #'   aggregation function is required since there may be cases where multiple
 #'   edge attribute values will be passed onto the traversed node(s). To pass
 #'   only a single value, the following aggregation functions can be used:
 #'   `sum`, `min`, `max`, `mean`, or `median`.
-#' @param add_to_selection an option to either add the traversed to nodes to the
-#'   active selection of nodes (`TRUE`) or switch the active selection
-#'   entirely to those traversed to nodes (`FALSE`, the default case).
-#' @return a graph object of class `dgr_graph`.
+#' @param add_to_selection An option to either add the traversed to nodes to the
+#'   active selection of nodes (`TRUE`) or switch the active selection entirely
+#'   to those traversed to nodes (`FALSE`, the default case).
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -185,9 +178,8 @@
 #' # Show the graph's internal node data frame
 #' # after this change
 #' graph %>% get_node_df()
-#' @importFrom dplyr filter_ inner_join right_join rename group_by as_tibble
-#' @importFrom dplyr distinct select select_ union_all summarize_ everything
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 trav_both <- function(graph,
                       conditions = NULL,
@@ -328,7 +320,7 @@ trav_both <- function(graph,
       from_join %>%
       dplyr::union_all(to_join) %>%
       dplyr::group_by(id) %>%
-      dplyr::summarize_(.dots = setNames(
+      dplyr::summarize_(.dots = stats::setNames(
         list(stats::as.formula(
           paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
         copy_attrs_from)) %>%

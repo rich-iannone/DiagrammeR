@@ -180,7 +180,7 @@ mutate_edge_attrs_ws <- function(graph,
       edf_replacement <-
         edf %>%
         dplyr::mutate_(
-          .dots = setNames(list((exprs %>% paste())[i]),
+          .dots = stats::setNames(list((exprs %>% paste())[i]),
                            names(exprs)[i]))
 
       edf_replacement[
@@ -203,7 +203,7 @@ mutate_edge_attrs_ws <- function(graph,
       edf_replacement <-
         edf %>%
         dplyr::mutate_(
-          .dots = setNames(list((exprs %>% paste())[i]),
+          .dots = stats::setNames(list((exprs %>% paste())[i]),
                            names(exprs)[i]))
 
       edf_replacement[

@@ -65,7 +65,7 @@ get_edge_count_w_multiedge <- function(graph) {
     dplyr::mutate(edge_from_to = paste0(from, "_", to)) %>%
     dplyr::select(edge_from_to) %>%
     dplyr::group_by(edge_from_to) %>%
-    dplyr::summarize(n = n()) %>%
+    dplyr::summarize(n = dplyr::n()) %>%
     dplyr::ungroup() %>%
     dplyr::filter(n > 1) %>%
     nrow()

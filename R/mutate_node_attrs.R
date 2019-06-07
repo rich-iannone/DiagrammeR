@@ -116,7 +116,7 @@ mutate_node_attrs <- function(graph,
     ndf <-
       ndf %>%
       dplyr::mutate_(
-        .dots = setNames(list((exprs %>% paste())[i]),
+        .dots = stats::setNames(list((exprs %>% paste())[i]),
                          names(exprs)[i]))
   }
 

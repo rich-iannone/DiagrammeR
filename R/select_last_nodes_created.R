@@ -1,10 +1,11 @@
 #' Select the last set of nodes created in a graph
 #'
 #' Select the last nodes that were created in a graph object of class
-#'   `dgr_graph`. This function should ideally be used just after creating
-#'   the nodes to be selected.
+#' `dgr_graph`. This function should ideally be used just after creating the
+#' nodes to be selected.
+#'
 #' @inheritParams render_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph and add 4 nodes
 #' # in 2 separate function calls
@@ -33,8 +34,7 @@
 #' # Display the graph's internal node
 #' # data frame to verify the change
 #' graph %>% get_node_df()
-#' @importFrom dplyr mutate filter select pull if_else
-#' @importFrom utils tail
+#'
 #' @export
 select_last_nodes_created <- function(graph) {
 
@@ -76,7 +76,7 @@ select_last_nodes_created <- function(graph) {
   if (nrow(graph_transform_steps) > 0) {
 
     if (graph_transform_steps %>%
-        tail(1) %>%
+        utils::tail(1) %>%
         dplyr::pull(step_deleted_nodes) == 1) {
 
       emit_error(
@@ -88,11 +88,11 @@ select_last_nodes_created <- function(graph) {
         number_of_nodes_created <-
           (graph_transform_steps %>%
              dplyr::select(nodes) %>%
-             tail(2) %>%
+             utils::tail(2) %>%
              dplyr::pull(nodes))[2] -
           (graph_transform_steps %>%
              dplyr::select(nodes) %>%
-             tail(2) %>%
+             utils::tail(2) %>%
              dplyr::pull(nodes))[1]
       } else {
         number_of_nodes_created <-
@@ -104,7 +104,7 @@ select_last_nodes_created <- function(graph) {
     node_id_values <-
       graph$nodes_df %>%
       dplyr::select(id) %>%
-      tail(number_of_nodes_created) %>%
+      utils::tail(number_of_nodes_created) %>%
       dplyr::pull(id)
   } else {
     node_id_values <- NA

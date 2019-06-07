@@ -52,7 +52,7 @@ get_degree_distribution <- function(graph,
 
   # Get the total degree distribution for the graph
   if (mode %in% c("all", "total", "both")) {
-    deg_dist <- degree_distribution(ig_graph, mode = "all")
+    deg_dist <- igraph::degree_distribution(ig_graph, mode = "all")
 
     # Transform to a data frame
     deg_dist_df <-
@@ -64,7 +64,7 @@ get_degree_distribution <- function(graph,
 
   # Get the total in-degree distribution for the graph
   if (mode == "in") {
-    deg_dist <- degree_distribution(ig_graph, mode = "in")
+    deg_dist <- igraph::degree_distribution(ig_graph, mode = "in")
 
     # Transform to a data frame
     deg_dist_df <-
@@ -76,7 +76,7 @@ get_degree_distribution <- function(graph,
 
   # Get the total out-degree distribution for the graph
   if (mode == "out") {
-    deg_dist <- degree_distribution(ig_graph, mode = "out")
+    deg_dist <- igraph::degree_distribution(ig_graph, mode = "out")
 
     # Transform to a data frame
     deg_dist_df <-

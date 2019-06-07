@@ -1,20 +1,20 @@
 #' Apply a layout position to a single node
 #'
-#' Apply position information for a single node. This is done by setting the
-#'   `x` and `y` attrs for a node `id` or node `label`
-#'   supplied in `node`. When rendering the graph, nodes with attribute
-#'   values set for `x` and `y` will be fixed to those positions on
-#'   the graph canvas.
+#' Apply position information for a single node. This is done by setting the `x`
+#' and `y` attrs for a node `id` or node `label` supplied in `node`. When
+#' rendering the graph, nodes with attribute values set for `x` and `y` will be
+#' fixed to those positions on the graph canvas.
+#'
 #' @inheritParams render_graph
-#' @param node a single-length vector containing either a node ID value
+#' @param node A single-length vector containing either a node ID value
 #'   (integer) or a node label (character) for which position information should
 #'   be applied.
-#' @param x the x coordinate to set for the node.
-#' @param y the y coordinate to set for the node.
-#' @param use_labels an option to use a node `label` value in `node`.
-#'   Note that this is only possible if all nodes have distinct `label`
-#'   values set and none exist as an NA value.
-#' @return a graph object of class `dgr_graph`.
+#' @param x The x coordinate to set for the node.
+#' @param y The y coordinate to set for the node.
+#' @param use_labels An option to use a node `label` value in `node`. Note that
+#'   this is only possible if all nodes have distinct `label` values set and
+#'   none exist as an NA value.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a simple graph with 4 nodes
 #' graph <-
@@ -85,7 +85,7 @@
 #'
 #' # View the graph's node data frame
 #' graph %>% get_node_df()
-#' @importFrom dplyr case_when mutate coalesce
+#'
 #' @export
 set_node_position <- function(graph,
                               node,

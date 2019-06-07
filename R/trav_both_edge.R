@@ -10,39 +10,32 @@
 #' selection of edges or no selection at all.
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @param conditions an option to use filtering conditions for the traversal.
-#' @param copy_attrs_from providing a node attribute name will copy those node
+#' @param conditions An option to use filtering conditions for the traversal.
+#' @param copy_attrs_from Providing a node attribute name will copy those node
 #'   attribute values to the traversed edges. If the edge attribute already
 #'   exists, the values will be merged to the traversed edges; otherwise, a new
 #'   edge attribute will be created.
-#' @param copy_attrs_as if a node attribute name is provided in
+#' @param copy_attrs_as If a node attribute name is provided in
 #'   `copy_attrs_from`, this option will allow the copied attribute values
 #'   to be written under a different edge attribute name. If the attribute name
 #'   provided in `copy_attrs_as` does not exist in the graph's edf, the new
 #'   edge attribute will be created with the chosen name.
-#' @param agg if a node attribute is provided to `copy_attrs_from`, then an
+#' @param agg If a node attribute is provided to `copy_attrs_from`, then an
 #'   aggregation function is required since there may be cases where multiple
 #'   node attribute values will be passed onto the traversed edge(s). To pass
 #'   only a single value, the following aggregation functions can be used:
 #'   `sum`, `min`, `max`, `mean`, or `median`.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -191,10 +184,8 @@
 #' # Show the graph's internal edge data frame
 #' # after this change
 #' graph %>% get_edge_df()
-#' @importFrom stats median
-#' @importFrom dplyr filter select select_ left_join right_join rename bind_rows group_by summarize_
-#' @importFrom tibble as_tibble
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 trav_both_edge <- function(graph,
                            conditions = NULL,
@@ -356,12 +347,12 @@ trav_both_edge <- function(graph,
         dplyr::left_join(edf, by = c("e_id" = "id")) %>%
         dplyr::rename(id = e_id) %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize_(.dots = setNames(
+        dplyr::summarize_(.dots = stats::setNames(
           list(stats::as.formula(
             paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
           copy_attrs_from)) %>%
         dplyr::right_join(edf, by = "id") %>%
-        dplyr::select(id, from, to, rel, everything()) %>%
+        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
         as.data.frame(stringsAsFractions = FALSE)
     }
 
@@ -492,7 +483,7 @@ trav_both_edge <- function(graph,
         dplyr::arrange(e_id) %>%
         dplyr::rename(id = e_id) %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize_(.dots = setNames(
+        dplyr::summarize_(.dots = stats::setNames(
           list(stats::as.formula(
             paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))), copy_attrs_from)) %>%
         dplyr::ungroup() %>%
@@ -521,7 +512,7 @@ trav_both_edge <- function(graph,
 
       edges <-
         joined_edges %>%
-        dplyr::select(id, from, to, rel, everything()) %>%
+        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
         dplyr::arrange(id) %>%
         as.data.frame(stringsAsFractions = FALSE)
     }

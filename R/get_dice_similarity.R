@@ -52,7 +52,7 @@ get_dice_similarity <- function(graph,
   ig_graph <- to_igraph(graph)
 
   if (is.null(nodes)) {
-    ig_nodes <- V(ig_graph)
+    ig_nodes <- igraph::V(ig_graph)
   }
 
   if (!is.null(nodes)) {
@@ -67,7 +67,7 @@ get_dice_similarity <- function(graph,
     }
 
     # Get an igraph representation of node ID values
-    ig_nodes <- V(ig_graph)[nodes]
+    ig_nodes <- igraph::V(ig_graph)[nodes]
   }
 
   # Get the Dice similarity scores

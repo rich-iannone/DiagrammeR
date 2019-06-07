@@ -1014,7 +1014,7 @@ get_attr_tbl <- function(line) {
     unlist() %>%
     gsub("'", "", .) %>% strsplit("=")
 
-  setNames(
+  stats::setNames(
     sapply(el_attrs, `[[`, 2),
     sapply(el_attrs, `[[`, 1)) %>%
     as.list() %>%

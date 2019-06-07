@@ -1,20 +1,19 @@
 #' Render the graph in various formats
 #'
 #' Using a `dgr_graph` object, render the graph in the RStudio Viewer.
-#' @param graph a graph object of class `dgr_graph`.
-#' @param layout a string specifying a layout type to use for node placement in
-#'   this rendering. Possible layouts include: `nicely`, `circle`,
-#'   `tree`, `kk`, and `fr`.
-#' @param output a string specifying the output type; `graph` (the default)
-#'   renders the graph using the [grViz()] function and
-#'   `visNetwork` renders the graph using the [visnetwork()]
-#'   function.
-#' @param as_svg an option to render the graph as an SVG document.
-#' @param title an optional title for a graph when using
-#'   `output = "graph"`.
-#' @param width an optional parameter for specifying the width of the resulting
+#'
+#' @param graph A graph object of class `dgr_graph`.
+#' @param layout A string specifying a layout type to use for node placement in
+#'   this rendering. Possible layouts include: `nicely`, `circle`, `tree`, `kk`,
+#'   and `fr`.
+#' @param output A string specifying the output type; `graph` (the default)
+#'   renders the graph using the [grViz()] function and `visNetwork` renders the
+#'   graph using the [visnetwork()] function.
+#' @param as_svg An option to render the graph as an SVG document.
+#' @param title An optional title for a graph when using `output = "graph"`.
+#' @param width An optional parameter for specifying the width of the resulting
 #'   graphic in pixels.
-#' @param height an optional parameter for specifying the height of the
+#' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
 #' @examples
 #' \dontrun{
@@ -58,14 +57,8 @@
 #'   render_graph(
 #'     output = "visNetwork")
 #' }
-#' @importFrom dplyr select rename mutate filter coalesce left_join
-#' @importFrom dplyr pull bind_cols as_tibble as_data_frame
-#' @importFrom igraph layout_in_circle layout_with_sugiyama
-#' @importFrom igraph layout_with_kk layout_with_fr layout_nicely
-#' @importFrom purrr flatten_chr
-#' @importFrom tidyr fill
-#' @importFrom htmltools browsable HTML
-#' @importFrom glue glue
+#'
+#' @import glue glue
 #' @export
 render_graph <- function(graph,
                          layout = NULL,

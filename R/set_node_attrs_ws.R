@@ -1,33 +1,26 @@
 #' Set node attributes with a node selection
 #'
 #' From a graph object of class `dgr_graph` or a node data frame, set node
-#'   attribute properties for nodes present in a node selection.
+#' attribute properties for nodes present in a node selection.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @param node_attr the name of the attribute to set.
-#' @param value the value to be set for the chosen attribute for the nodes in
+#' @param node_attr The name of the attribute to set.
+#' @param value The value to be set for the chosen attribute for the nodes in
 #'   the current selection.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a simple graph
 #' graph <-
@@ -50,7 +43,8 @@
 #' # that the node attribute has been set for
 #' # specific node
 #' graph %>% get_node_df()
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 set_node_attrs_ws <- function(graph,
                               node_attr,

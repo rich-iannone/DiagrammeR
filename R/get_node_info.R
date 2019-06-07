@@ -68,11 +68,11 @@ get_node_info <- function(graph) {
 
     # Ensure that the `id` column is an integer
     node_properties <-
-      mutate(node_properties, id = as.integer(id))
+      dplyr::mutate(node_properties, id = as.integer(id))
 
     # Arrange the table by `id` ascending
     node_properties <-
-      arrange(node_properties, id)
+      dplyr::arrange(node_properties, id)
 
   } else if (!is.null(graph$edges_df)) {
 

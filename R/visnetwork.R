@@ -1,6 +1,7 @@
 #' Render graph with visNetwork
 #'
 #' Render a graph object with the visNetwork R package.
+#'
 #' @inheritParams render_graph
 #' @examples
 #' \dontrun{
@@ -32,7 +33,8 @@
 #'
 #' visnetwork(graph)
 #' }
-#' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes visLayout
+#'
+#' @import visNetwork
 #' @export
 visnetwork <- function(graph) {
 

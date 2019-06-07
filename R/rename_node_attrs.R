@@ -2,11 +2,12 @@
 #'
 #' Within a graph's internal node data frame (ndf), rename an existing node
 #' attribute.
+#'
 #' @inheritParams render_graph
-#' @param node_attr_from the name of the node attribute that will be renamed.
-#' @param node_attr_to the new name of the node attribute column identified in
+#' @param node_attr_from The name of the node attribute that will be renamed.
+#' @param node_attr_to The new name of the node attribute column identified in
 #'   `node_attr_from`.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -43,7 +44,8 @@
 #' # ndf to show that the node
 #' # attribute had been renamed
 #' graph %>% get_node_df()
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 rename_node_attrs <- function(graph,
                               node_attr_from,

@@ -238,7 +238,7 @@ add_n_nodes_ws <- function(graph,
     graph %>%
     get_edge_df() %>%
     dplyr::select(id) %>%
-    tail(edges_added) %>%
+    utils::tail(edges_added) %>%
     dplyr::pull(id)
 
   # Get the node ID values for the
@@ -247,7 +247,7 @@ add_n_nodes_ws <- function(graph,
     graph %>%
     get_node_df() %>%
     dplyr::select(id) %>%
-    tail(nodes_added) %>%
+    utils::tail(nodes_added) %>%
     dplyr::pull(id)
 
   # Collect node aesthetic attributes
@@ -340,7 +340,7 @@ add_n_nodes_ws <- function(graph,
     node_aes_tbl <-
       node_aes_tbl %>%
       dplyr::mutate(id = new_node_id) %>%
-      dplyr::select(id, everything())
+      dplyr::select(id, dplyr::everything())
 
     columns_to_select <-
       c("id", base::setdiff(colnames(graph$nodes_df), colnames(node_aes_tbl)))
@@ -361,7 +361,7 @@ add_n_nodes_ws <- function(graph,
     node_data_tbl <-
       node_data_tbl %>%
       dplyr::mutate(id = new_node_id) %>%
-      dplyr::select(id, everything())
+      dplyr::select(id, dplyr::everything())
 
     columns_to_select <-
       c("id", base::setdiff(colnames(graph$nodes_df), colnames(node_data_tbl)))
@@ -382,7 +382,7 @@ add_n_nodes_ws <- function(graph,
     edge_aes_tbl <-
       edge_aes_tbl %>%
       dplyr::mutate(id = new_edge_id) %>%
-      dplyr::select(id, everything())
+      dplyr::select(id, dplyr::everything())
 
     columns_to_select <-
       c("id", base::setdiff(colnames(graph$edges_df), colnames(edge_aes_tbl)))
@@ -403,7 +403,7 @@ add_n_nodes_ws <- function(graph,
     edge_data_tbl <-
       edge_data_tbl %>%
       dplyr::mutate(id = new_edge_id) %>%
-      dplyr::select(id, everything())
+      dplyr::select(id, dplyr::everything())
 
     columns_to_select <-
       c("id", base::setdiff(colnames(graph$edges_df), colnames(edge_data_tbl)))

@@ -101,7 +101,7 @@ delete_graph_actions <- function(graph,
       graph %>%
       get_graph_actions() %>%
       dplyr::filter(!(action_name %in% actions)) %>%
-      dplyr::mutate(action_index = row_number())
+      dplyr::mutate(action_index = dplyr::row_number())
   }
 
   if (inherits(actions, "numeric")) {
@@ -123,7 +123,7 @@ delete_graph_actions <- function(graph,
       graph %>%
       get_graph_actions() %>%
       dplyr::filter(!(action_index %in% actions)) %>%
-      dplyr::mutate(action_index = row_number())
+      dplyr::mutate(action_index = dplyr::row_number())
   }
 
   # Replace `graph$graph_actions` with the

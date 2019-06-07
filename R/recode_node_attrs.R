@@ -1,20 +1,21 @@
 #' Recode a set of node attribute values
 #'
 #' Within a graph's internal node data frame (ndf), recode character or numeric
-#'   node attribute values. Optionally, one can specify a replacement value for
-#'   any unmatched mappings.
+#' node attribute values. Optionally, one can specify a replacement value for
+#' any unmatched mappings.
+#'
 #' @inheritParams render_graph
-#' @param node_attr_from the name of the node attribute column from which values
+#' @param node_attr_from The name of the node attribute column from which values
 #'   will be recoded.
-#' @param ... single-length character vectors with the recoding instructions.
+#' @param ... Single-length character vectors with the recoding instructions.
 #'   The first component should have the value to replace and the second should
-#'   have the replacement value (in the form
-#'   `"[to_replace] -> [replacement]", ...`).
-#' @param otherwise an optional single value for recoding any unmatched values.
-#' @param node_attr_to an optional name of a new node attribute to which the
+#'   have the replacement value (in the form `"[to_replace] -> [replacement]",
+#'   ...`).
+#' @param otherwise An optional single value for recoding any unmatched values.
+#' @param node_attr_to An optional name of a new node attribute to which the
 #'   recoded values will be applied. This will retain the original node
 #'   attribute and its values.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -69,8 +70,8 @@
 #' # Get the graph's internal ndf
 #' # to see the change
 #' graph %>% get_node_df()
-#' @importFrom stringr str_split
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 recode_node_attrs <- function(graph,
                               node_attr_from,

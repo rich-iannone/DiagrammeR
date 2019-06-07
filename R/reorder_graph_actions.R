@@ -1,14 +1,15 @@
 #' Reorder the stored series of graph actions
 #'
 #' Reorder the graph actions stored in the graph through the use of the
-#'   \code{link{add_graph_action}()} function. These actions are be invoked in a
-#'   specified order via the [trigger_graph_actions()] function.
+#' [add_graph_action()] function. These actions are be invoked in a specified
+#' order via the [trigger_graph_actions()] function.
+#'
 #' @inheritParams render_graph
-#' @param indices a numeric vector that provides the new ordering of graph
+#' @param indices A numeric vector that provides the new ordering of graph
 #'   actions. This vector can be the same length as the number of graph actions,
 #'   or, of shorter length. In the latter case, the ordering places the given
 #'   items first and the remaining actions will follow.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -61,7 +62,7 @@
 #' # object once again to verify that
 #' # we have the desired order of actions
 #' graph %>% get_graph_actions()
-#' @importFrom dplyr mutate row_number pull
+#'
 #' @export
 reorder_graph_actions <- function(graph,
                                   indices) {
@@ -122,7 +123,7 @@ reorder_graph_actions <- function(graph,
   # in the requested order
   revised_graph_actions <-
     graph_actions_tbl[revised_indices, ] %>%
-    dplyr::mutate(action_index = row_number())
+    dplyr::mutate(action_index = dplyr::row_number())
 
   # Replace `graph$graph_actions` with the
   # revised version

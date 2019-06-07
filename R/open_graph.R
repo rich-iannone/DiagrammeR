@@ -1,7 +1,8 @@
 #' Read a graph or graph series from disk
 #'
 #' Load a graph or a graph series object from disk.
-#' @param file the filename for the graph or graph series. Optionally, this may
+#'
+#' @param file The filename for the graph or graph series. Optionally, this may
 #'   contain a path to the file.
 #' @examples
 #' # Create an undirected GNP
@@ -25,6 +26,7 @@
 #' gnp_graph_2 <-
 #'   open_graph(
 #'     file = "gnp_graph.dgr")
+#'
 #' @export
 open_graph <- function(file) {
 
