@@ -266,7 +266,7 @@ colorize_node_attrs <- function(graph,
   graph <-
     set_node_attrs(
       graph = graph,
-      node_attr = UQ(node_attr_to_2),
+      node_attr = rlang::UQ(node_attr_to_2),
       values = nodes_attr_vector_colorized)
 
   # Remove last action from the `graph_log`

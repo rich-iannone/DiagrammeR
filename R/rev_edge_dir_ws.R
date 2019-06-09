@@ -105,7 +105,7 @@ rev_edge_dir_ws <- function(graph) {
     dplyr::filter(from != to) %>%
     dplyr::rename(from = to, to = from) %>%
     dplyr::select(id, from, to, dplyr::everything()) %>%
-    dplyr::bind_rows(., edges %>% filter(!(id %in% edge_ids)))
+    dplyr::bind_rows(., edges %>% dplyr::filter(!(id %in% edge_ids)))
 
   # Modify the graph object
   graph$edges_df <- edges_new

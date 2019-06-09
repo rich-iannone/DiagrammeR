@@ -161,8 +161,7 @@ trav_in_until <- function(graph,
   # conditions provided
   all_nodes_conditions_met <-
     graph %>%
-    get_node_ids(
-      conditions = UQ(conditions))
+    get_node_ids(conditions = rlang::UQ(conditions))
 
   if (exclude_unmatched & all(is.na(all_nodes_conditions_met))) {
 

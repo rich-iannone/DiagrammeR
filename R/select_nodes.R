@@ -129,9 +129,9 @@ select_nodes <- function(graph,
     rlang::get_expr())) {
 
     nodes_df <-
-      filter(
+      dplyr::filter(
         .data = nodes_df,
-        UQ(conditions))
+        rlang::UQ(conditions))
   }
 
   # Get the nodes as a vector

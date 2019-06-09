@@ -293,9 +293,9 @@ trav_in_edge <- function(graph,
     rlang::get_expr())) {
 
     valid_edges <-
-      filter(
+      dplyr::filter(
         .data = valid_edges,
-        UQ(conditions))
+        rlang::UQ(conditions))
   }
 
   # If no rows returned, then there are no

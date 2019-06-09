@@ -281,7 +281,7 @@ add_edge <- function(graph,
         graph <-
           graph %>%
           set_edge_attrs_ws(
-            edge_attr = UQ(colnames(edge_aes_tbl)[i]),
+            edge_attr = rlang::UQ(colnames(edge_aes_tbl)[i]),
             value = edge_aes_tbl[1, i][[1]])
       }
 
@@ -309,7 +309,7 @@ add_edge <- function(graph,
         graph <-
           graph %>%
           set_edge_attrs_ws(
-            edge_attr = UQ(colnames(edge_data_tbl)[i]),
+            edge_attr = rlang::UQ(colnames(edge_data_tbl)[i]),
             value = edge_data_tbl[1, i][[1]])
       }
 

@@ -148,7 +148,7 @@ select_edges <- function(graph,
     edges_df <-
       dplyr::filter(
         .data = edges_df,
-        UQ(conditions))
+        rlang::UQ(conditions))
   }
 
   # If a `from` vector provided, filter the edf

@@ -129,9 +129,9 @@ get_edges <- function(graph,
     rlang::get_expr())) {
 
     edges_df <-
-      filter(
+      dplyr::filter(
         .data = edges_df,
-        UQ(conditions))
+        rlang::UQ(conditions))
   }
 
   # If no edges remain then return NA

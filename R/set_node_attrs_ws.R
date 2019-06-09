@@ -94,7 +94,7 @@ set_node_attrs_ws <- function(graph,
   graph <-
     set_node_attrs(
       graph = graph,
-      node_attr = UQ(node_attr_2),
+      node_attr = rlang::UQ(node_attr_2),
       values = value,
       nodes = nodes)
 
