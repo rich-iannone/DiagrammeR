@@ -2,7 +2,9 @@
 # Graph validation functions
 ###
 
-# Function to check whether a graph object is valid
+#' Check whether a graph object is valid
+#'
+#' @noRd
 graph_object_valid <- function(graph) {
 
   # Check for all component names to be present
@@ -37,7 +39,9 @@ graph_object_valid <- function(graph) {
   return(TRUE)
 }
 
-# Function to check whether a graph contains any nodes
+#' Check whether a graph contains any nodes
+#'
+#' @noRd
 graph_contains_nodes <- function(graph) {
 
   if (nrow(graph$nodes_df) == 0) {
@@ -47,7 +51,9 @@ graph_contains_nodes <- function(graph) {
   }
 }
 
-# Function to check whether a graph contains any edges
+#' Check whether a graph contains any edges
+#'
+#' @noRd
 graph_contains_edges <- function(graph) {
 
   if (nrow(graph$edges_df) == 0) {
@@ -57,8 +63,9 @@ graph_contains_edges <- function(graph) {
   }
 }
 
-# Function to check whether a graph
-# contains a valid node selection
+#' Check whether a graph contains a valid node selection
+#'
+#' @noRd
 graph_contains_node_selection <- function(graph) {
 
   # Check if graph contains a node selection
@@ -69,8 +76,9 @@ graph_contains_node_selection <- function(graph) {
   }
 }
 
-# Function to check whether a graph
-# contains a valid edge selection
+#' Check whether a graph contains a valid edge selection
+#'
+#' @noRd
 graph_contains_edge_selection <- function(graph) {
 
   # Check if graph contains an edge selection
@@ -81,8 +89,9 @@ graph_contains_edge_selection <- function(graph) {
   }
 }
 
-# Function to return of list of
-# node/edge selection properties
+#' Get a list of node/edge selection properties
+#'
+#' @noRd
 node_edge_selection_properties <- function(graph) {
 
   # Determine if there is an existing
@@ -130,9 +139,9 @@ node_edge_selection_properties <- function(graph) {
     selection_count_str = selection_count_str)
 }
 
-# Function to replace the `node_selection` df with
-# different node ID values
-#' @importFrom dplyr tibble as_tibble bind_rows
+#' Replace the `node_selection` df with different node ID values
+#'
+#' @noRd
 replace_graph_node_selection <- function(graph,
                                          replacement) {
 
@@ -155,9 +164,9 @@ replace_graph_node_selection <- function(graph,
         node = as.integer(replacement)))
 }
 
-# Function to replace the `edge_selection` df with
-# different node ID values
-#' @importFrom dplyr tibble as_tibble bind_rows
+#' Replace the `edge_selection` df with different edge ID values
+#'
+#' @noRd
 replace_graph_edge_selection <- function(graph,
                                          edge_id,
                                          from_node,
@@ -202,11 +211,13 @@ create_empty_esdf <- function() {
     as.data.frame(stringsAsFactors = FALSE)
 }
 
-# Function to determine whether a node or edge
-# attribute has values that are all non-NA and
-# are unique
-#' @importFrom dplyr select_ distinct
+#' Is an attribute unique and fully free of `NA`s?
+#'
+#' This function determines whether a node or edge attribute has values that
+#' are all non-`NA` and are unique
+#'
 #' @importFrom magrittr not
+#' @noRd
 is_attr_unique_and_non_na <- function(graph,
                                       which_graph_df,
                                       attr) {
@@ -248,9 +259,12 @@ is_attr_unique_and_non_na <- function(graph,
 # Graph transformation functions
 ###
 
-# Function to take a graph object and labels for `from`
-# and `to` values, and, translate the `from`/`to` label
-# values to node ID values
+#' Transform `from` and `to` edge attributes
+#'
+#' This function takes a graph object and labels for `from` and `to` values and
+#' then translates the `from`/`to` label values to node ID values
+#'
+#' @noRd
 translate_to_node_id <- function(graph, from, to) {
 
   # Check that node labels are unique
@@ -304,24 +318,29 @@ translate_to_node_id <- function(graph, from, to) {
 # Graph logging functions
 ###
 
-# Function to get the time of the graph function in
-# the user's locale
+#' Get the time of the graph function invocation
+#'
+#' @noRd
 graph_function_sys_time <- function() {
   return(Sys.time())
 }
 
-# Function to get the time difference from the start
-# of the function (relies on a call of the
-# `graph_function_sys_time()` function) to the time
-# of invoking this function
+#' Get the time taken for a graph function to execute
+#'
+#' This calculates the difference from the start of the function call (relies on
+#' a call of the `graph_function_sys_time()` function) to the time of invoking
+#' this function
+#'
+#' @noRd
 graph_function_duration <- function(start_time) {
   end_time <- Sys.time()
   time_diff_s <- (end_time - start_time)[[1]]
   return(time_diff_s)
 }
 
-# Function to add log line for a graph `action`
-#' @importFrom dplyr bind_rows
+#' Add a log line for a graph `action`
+#'
+#' @noRd
 add_action_to_log <- function(graph_log,
                               version_id,
                               function_used,
@@ -357,8 +376,9 @@ add_action_to_log <- function(graph_log,
   dplyr::bind_rows(graph_log, graph_log_line)
 }
 
-# Function to save the graph as an RDS file within
-# a subdirectory in the working directory
+#' Save the graph as an RDS file
+#'
+#' @noRd
 save_graph_as_rds <- function(graph) {
 
   # Construct a file name for the RDS
@@ -392,9 +412,9 @@ save_graph_as_rds <- function(graph) {
 # Selection helper functions
 ###
 
-# Function to extract column names from a
-# column selection statement
-#' @importFrom stringr str_detect str_split str_extract
+#' Get column names from a column selection statement
+#'
+#' @noRd
 get_col_selection <- function(col_selection_stmt) {
 
   if (all(stringr::str_detect(
@@ -471,9 +491,9 @@ get_col_selection <- function(col_selection_stmt) {
 # Aesthetic attribute functions
 ###
 
-# Function to get the ideal contrasting text color
-# (black or white) given the fillcolor of a node
-#' @importFrom grDevices col2rgb
+#' Get the ideal contrasting text color given the fill color of a node
+#'
+#' @noRd
 contrasting_text_color <- function(background_color) {
 
   rgb_colors <-
@@ -504,9 +524,10 @@ contrasting_text_color <- function(background_color) {
 # Functions that help build info messages
 ###
 
-# Function that constructs a consistent
-# message string and passes it to `message()`
-#' @importFrom glue glue
+#' Construct a consistent message string, passing it to `message()`
+#'
+#' @import glue
+#' @noRd
 emit_message <- function(fcn_name,
                          message_body) {
 
@@ -515,9 +536,10 @@ emit_message <- function(fcn_name,
     message()
 }
 
-# Function that constructs a consistent
-# warning string and passes it to `warning()`
-#' @importFrom glue glue
+#' Construct a consistent message string, passing it to `warning()`
+#'
+#' @import glue
+#' @noRd
 emit_warning <- function(fcn_name,
                          message_body) {
 
@@ -526,9 +548,10 @@ emit_warning <- function(fcn_name,
     warning()
 }
 
-# Function that constructs a consistent
-# message string and passes it to `stop()`
-#' @importFrom glue glue
+#' Construct a consistent message string, passing it to `stop()`
+#'
+#' @import glue
+#' @noRd
 emit_error <- function(fcn_name,
                        reasons) {
 
@@ -561,9 +584,9 @@ emit_error <- function(fcn_name,
     stop(call. = FALSE)
 }
 
-# Function that gets the calling function
-# as a formatted character string
-#' @importFrom stringr str_replace_all
+#' Get the calling function as a formatted character string
+#'
+#' @noRd
 get_calling_fcn <- function() {
 
   calling_fcn <- deparse(sys.call(-1))
@@ -579,8 +602,9 @@ get_calling_fcn <- function() {
 ###
 
 
-# Function that yields a vector of
-# Graphviz graph attribute names
+#' Produce a vector of Graphviz graph attribute names
+#'
+#' @noRd
 gv_graph_attributes <- function() {
 
   c("layout", "bgcolor", "rankdir",
@@ -589,8 +613,9 @@ gv_graph_attributes <- function() {
     "stylesheet")
 }
 
-# Function that yields a vector of
-# Graphviz node attribute names
+#' Produce a vector of Graphviz node attribute names
+#'
+#' @noRd
 gv_node_attributes <- function() {
 
   c("shape", "style", "penwidth", "color", "fillcolor",
@@ -602,8 +627,9 @@ gv_node_attributes <- function() {
     "labelloc", "margin", "orientation", "pos")
 }
 
-# Function that yields a vector of
-# Graphviz edge attribute names
+#' Produce a vector of Graphviz edge attribute names
+#'
+#' @noRd
 gv_edge_attributes <- function() {
 
   c("style", "penwidth", "color", "arrowsize",
@@ -620,8 +646,9 @@ gv_edge_attributes <- function() {
     "dir", "decorate")
 }
 
-# Function that yields vector of node
-# creation function names
+#' Produce a vector of node creation function names
+#'
+#' @noRd
 node_creation_functions <- function() {
 
   c("add_node", "add_n_nodes", "add_n_node_clones",
@@ -636,16 +663,18 @@ node_creation_functions <- function() {
     "add_islands_graph")
 }
 
-# Function that yields vector of node
-# deletion function names
+#' Produce a vector of node deletion function names
+#'
+#' @noRd
 node_deletion_functions <- function() {
 
   c("create_subgraph_ws", "create_complement_graph",
     "delete_node", "delete_nodes_ws")
 }
 
-# Function that yields vector of edge
-# creation function names
+#' Produce a vector of edge creation function names
+#'
+#' @noRd
 edge_creation_functions <- function() {
 
   c("add_edge", "add_edge_clone", "add_edges_w_string",
@@ -660,8 +689,9 @@ edge_creation_functions <- function() {
     "fully_connect_nodes_ws")
 }
 
-# Function that yields vector of edge
-# deletion function names
+#' Produce a vector of edge deletion function names
+#'
+#' @noRd
 edge_deletion_functions <- function() {
 
   c("delete_edge", "delete_edges_ws",
@@ -670,8 +700,9 @@ edge_deletion_functions <- function() {
     "fully_disconnect_nodes_ws")
 }
 
-# Function that yields vector of graph
-# initializing function names
+#' Produce vector of graph initializing function names
+#'
+#' @noRd
 graph_init_functions <- function() {
 
   c("create_graph", "create_random_graph",
@@ -679,9 +710,9 @@ graph_init_functions <- function() {
     "import_graph")
 }
 
-# Function for creating a list of data frames
-# of functions that get node properties using
-# whole-graph methods
+#' Produce a list of data frames for functions that get node properties
+#'
+#' @noRd
 value_per_node_functions <- function() {
 
   list(
@@ -806,9 +837,9 @@ value_per_node_functions <- function() {
 }
 
 
-# Function to determine the `df_id` values
-# for a graph's internal ndf or edf
-#' @importFrom dplyr select filter pull
+#' Get the `df_id` values for a graph's internal NDF or EDF
+#'
+#' @noRd
 get_df_ids <- function(graph_df) {
 
   if (nrow(graph_df) > 0) {
@@ -829,10 +860,12 @@ get_df_ids <- function(graph_df) {
 }
 
 
-# Function to scavenge the graph$df_storage
-# list and remove any linked data frames if
-# the associated nodes or edges no longer exist
-#' @importFrom dplyr bind_rows filter select distinct pull
+#' Scavenge the `graph$df_storage` list
+#'
+#' This removes any linked data frames if the associated nodes or edges no
+#' longer exist.
+#'
+#' @noRd
 remove_linked_dfs <- function(graph) {
 
   if (is.null(graph$df_storage)) {
@@ -938,9 +971,9 @@ remove_linked_dfs <- function(graph) {
 # Functions for working with graph SVG output
 ###
 
-# Function to create a table of SVG attributes
-#' @importFrom dplyr tibble bind_rows
-#' @importFrom tidyr fill
+#' Create a table of SVG attributes
+#'
+#' @noRd
 get_svg_tbl <- function(svg_vec) {
 
   svg_tbl <-
@@ -1003,8 +1036,9 @@ get_svg_tbl <- function(svg_vec) {
   svg_tbl %>% tidyr::fill(node_id)
 }
 
-# Function to create a one-row table of attr-value pairs
-#' @importFrom dplyr as_tibble
+#' Function to create a one-row table of attr-value pairs
+#'
+#' @noRd
 get_attr_tbl <- function(line) {
 
   line <- gsub("<[a-z]*? ", "", line) %>% gsub("\"", "'", .) %>% gsub("(/>|>|>.*)", "", .)
@@ -1021,8 +1055,9 @@ get_attr_tbl <- function(line) {
     dplyr::as_tibble()
 }
 
-# Function to create a one-row, one-column table of inner HTML
-#' @importFrom dplyr tibble
+#' Function to create a one-row, one-column table of inner HTML
+#'
+#' @noRd
 get_inner_html <- function(line) {
 
   inner_html <- gsub("(^<.*?>|</.*?>)", "", line)
