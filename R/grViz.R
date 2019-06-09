@@ -17,7 +17,6 @@
 #' @return An object of class `htmlwidget` that will intelligently print itself
 #'   into HTML in a variety of contexts including the R console, within R
 #'   Markdown documents, and within Shiny output bindings.
-#'
 #' @export
 grViz <- function(diagram = "",
                   engine = "dot",
@@ -76,10 +75,11 @@ grViz <- function(diagram = "",
 }
 
 #' Widget output function for use in Shiny
-#' @param outputId output variable to read from
-#' @param width a valid CSS unit for the width or a number, which will be
+#'
+#' @param outputId Output variable to read from.
+#' @param width A valid CSS unit for the width or a number, which will be
 #'   coerced to a string and have `px` appended.
-#' @param height a valid CSS unit for the height or a number, which will be
+#' @param height A valid CSS unit for the height or a number, which will be
 #'   coerced to a string and have `px` appended.
 #' @examples
 #' \dontrun{
@@ -108,6 +108,7 @@ grViz <- function(diagram = "",
 #'
 #' shinyApp(ui = ui, server = server)
 #' }
+#'
 #' @export
 grVizOutput <- function(outputId,
                         width = '100%',
@@ -122,11 +123,12 @@ grVizOutput <- function(outputId,
 }
 
 #' Widget render function for use in Shiny
+#'
 #' @param expr an expression that generates a DiagrammeR graph
 #' @param env the environment in which to evaluate expr.
 #' @param quoted is expr a quoted expression (with quote())? This is useful if
 #'   you want to save an expression in a variable.
-#' @seealso [grVizOutput()] for an example in Shiny
+#' @seealso [grVizOutput()] for an example in Shiny.
 #' @export
 renderGrViz <- function(expr,
                         env = parent.frame(),
@@ -142,12 +144,11 @@ renderGrViz <- function(expr,
 }
 
 #' Add MathJax-formatted equation text
-#' @param gv a `grViz` htmlwidget.
-#' @param include_mathjax `logical` to add mathjax JS. Change to
-#'   `FALSE` if using with `RMarkdown` since MathJax will likely
-#'   already be added.
-#' @return a `grViz` htmlwidget
-#' @importFrom htmltools browsable tags tagList htmlDependency
+#'
+#' @param gv A `grViz` htmlwidget.
+#' @param include_mathjax A `logical` to add mathjax JS. Change to `FALSE` if
+#'   using with \pkg{rmarkdown} since MathJax will likely already be added.
+#' @return A `grViz` htmlwidget
 #' @export
 add_mathjax <- function(gv = NULL,
                         include_mathjax = TRUE) {

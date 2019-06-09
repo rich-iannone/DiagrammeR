@@ -1,7 +1,6 @@
 #nocov start
 
-#' @importFrom utils globalVariables
-globalVariables(
+utils::globalVariables(
   c(
     ".",
     "action_index",
