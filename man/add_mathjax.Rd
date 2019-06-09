@@ -7,14 +7,13 @@
 add_mathjax(gv = NULL, include_mathjax = TRUE)
 }
 \arguments{
-\item{gv}{a \code{grViz} htmlwidget.}
+\item{gv}{A \code{grViz} htmlwidget.}
 
-\item{include_mathjax}{\code{logical} to add mathjax JS. Change to
-\code{FALSE} if using with \code{RMarkdown} since MathJax will likely
-already be added.}
+\item{include_mathjax}{A \code{logical} to add mathjax JS. Change to \code{FALSE} if
+using with \pkg{rmarkdown} since MathJax will likely already be added.}
 }
 \value{
-a \code{grViz} htmlwidget
+A \code{grViz} htmlwidget
 }
 \description{
 Add MathJax-formatted equation text
