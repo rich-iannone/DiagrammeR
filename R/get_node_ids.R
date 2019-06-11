@@ -75,10 +75,7 @@ get_node_ids <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    nodes_df <-
-      dplyr::filter(
-        .data = nodes_df,
-        rlang::UQ(conditions))
+    nodes_df <- dplyr::filter(.data = nodes_df, !!conditions)
   }
 
   # If no nodes remain then return NA

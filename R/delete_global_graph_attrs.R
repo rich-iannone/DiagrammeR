@@ -90,7 +90,7 @@ delete_global_graph_attrs <- function(graph,
 
     graph$global_attrs <-
       graph$global_attrs %>%
-      dplyr::filter(!(attr %in% rlang::UQ(attr)))
+      dplyr::filter(!(attr %in% !!attr))
   }
 
   if (!is.null(attr_type) & is.null(attr)) {
@@ -109,7 +109,7 @@ delete_global_graph_attrs <- function(graph,
 
     graph$global_attrs <-
       graph$global_attrs %>%
-      dplyr::filter(!(attr_type %in% rlang::UQ(attr_type)))
+      dplyr::filter(!(attr_type %in% !!attr_type))
   }
 
   if (!is.null(attr_type) & !is.null(attr)) {

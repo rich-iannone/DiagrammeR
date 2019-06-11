@@ -94,9 +94,10 @@ set_node_attrs_ws <- function(graph,
   graph <-
     set_node_attrs(
       graph = graph,
-      node_attr = rlang::UQ(node_attr_2),
+      node_attr = !!node_attr_2,
       values = value,
-      nodes = nodes)
+      nodes = nodes
+    )
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

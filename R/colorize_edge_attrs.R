@@ -221,8 +221,9 @@ colorize_edge_attrs <- function(graph,
   graph <-
     set_edge_attrs(
       graph = graph,
-      edge_attr = rlang::UQ(edge_attr_to_2),
-      values = edges_attr_vector_colorized)
+      edge_attr = !!edge_attr_to_2,
+      values = edges_attr_vector_colorized
+    )
 
   # Remove last action from the `graph_log`
   graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]

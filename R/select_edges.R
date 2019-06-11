@@ -145,10 +145,7 @@ select_edges <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    edges_df <-
-      dplyr::filter(
-        .data = edges_df,
-        rlang::UQ(conditions))
+    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
   }
 
   # If a `from` vector provided, filter the edf

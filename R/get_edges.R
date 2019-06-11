@@ -114,9 +114,9 @@ get_edges <- function(graph,
   if (return_values == "label") {
     edges_df <-
       edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% select_("id", "label"), by = c("from" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select_("id", "label"), by = c("from" = "id")) %>%
       dplyr::rename(from_label_ = label) %>%
-      dplyr::left_join(graph$nodes_df %>% select_("id", "label"), by = c("to" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select_("id", "label"), by = c("to" = "id")) %>%
       dplyr::rename(to_label_ = label)
   }
 
@@ -128,10 +128,7 @@ get_edges <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    edges_df <-
-      dplyr::filter(
-        .data = edges_df,
-        rlang::UQ(conditions))
+    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
   }
 
   # If no edges remain then return NA

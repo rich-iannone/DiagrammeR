@@ -314,11 +314,7 @@ trav_out <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    valid_nodes <-
-      dplyr::filter(
-        .data = valid_nodes,
-        rlang::UQ(conditions)
-      )
+    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
   }
 
   # If the option is taken to copy node attribute

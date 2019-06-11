@@ -197,9 +197,9 @@ add_edges_from_table <- function(graph,
   # Get the `from` col
   col_from <-
     dplyr::as_tibble(csv) %>%
-    dplyr::select(rlang::UQ(from_col)) %>%
+    dplyr::select(!!from_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, rlang::UQ(from_to_map)),
+      ndf %>% dplyr::select(id, !!from_to_map),
       by = stats::setNames(from_to_map, from_col)) %>%
     dplyr::select(id) %>%
     dplyr::rename(from = id) %>%
@@ -208,9 +208,9 @@ add_edges_from_table <- function(graph,
   # Get the `to` col
   col_to <-
     dplyr::as_tibble(csv) %>%
-    dplyr::select(rlang::UQ(to_col)) %>%
+    dplyr::select(!!to_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, rlang::UQ(from_to_map)),
+      ndf %>% dplyr::select(id, !!from_to_map),
       by = stats::setNames(from_to_map, to_col)) %>%
     dplyr::select(id) %>%
     dplyr::rename(to = id) %>%

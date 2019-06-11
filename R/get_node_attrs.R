@@ -72,9 +72,7 @@ get_node_attrs <- function(graph,
   if (is.null(nodes)) {
 
     # Extract the node attribute values
-    node_attr_vals <-
-      ndf %>%
-      dplyr::pull(rlang::UQ(node_attr))
+    node_attr_vals <- ndf %>% dplyr::pull(!!node_attr)
 
     # Extract the node names
     node_names <- ndf$id
@@ -94,9 +92,7 @@ get_node_attrs <- function(graph,
       dplyr::filter(id %in% nodes)
 
     # Extract the node attribute values
-    node_attr_vals <-
-      ndf %>%
-      dplyr::pull(rlang::UQ(node_attr))
+    node_attr_vals <- ndf %>% dplyr::pull(!!node_attr)
 
     # Extract the node names
     node_names <- ndf$id

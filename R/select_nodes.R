@@ -128,10 +128,7 @@ select_nodes <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    nodes_df <-
-      dplyr::filter(
-        .data = nodes_df,
-        rlang::UQ(conditions))
+    nodes_df <- dplyr::filter(.data = nodes_df, !!conditions)
   }
 
   # Get the nodes as a vector

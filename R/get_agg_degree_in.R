@@ -78,11 +78,7 @@ get_agg_degree_in <- function(graph,
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)
-
-    ndf <-
-      dplyr::filter(
-        .data = ndf,
-        rlang::UQ(conditions))
+    ndf <- dplyr::filter(.data = ndf, !!conditions)
 
     # Get a vector of node ID values
     node_ids <-

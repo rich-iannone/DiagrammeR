@@ -297,10 +297,7 @@ trav_out_node <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    valid_nodes <-
-      dplyr::filter(
-        .data = valid_nodes,
-        rlang::UQ(conditions))
+    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
   }
 
   # If no rows returned, then there are no

@@ -292,10 +292,7 @@ trav_in_edge <- function(graph,
     rlang::enquo(conditions) %>%
     rlang::get_expr())) {
 
-    valid_edges <-
-      dplyr::filter(
-        .data = valid_edges,
-        rlang::UQ(conditions))
+    valid_edges <- dplyr::filter(.data = valid_edges, !!conditions)
   }
 
   # If no rows returned, then there are no

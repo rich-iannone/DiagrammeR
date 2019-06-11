@@ -78,10 +78,7 @@ get_agg_degree_out <- function(graph,
     ndf <- get_node_df(graph)
 
     # Apply filtering conditions to the ndf
-    ndf <-
-      dplyr::filter(
-        .data = ndf,
-        rlang::UQ(conditions))
+    ndf <- dplyr::filter(.data = ndf, !!conditions)
 
     # Get a vector of node ID values
     node_ids <-
