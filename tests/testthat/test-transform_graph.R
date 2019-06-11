@@ -161,28 +161,32 @@ test_that("Creating a complement graph is possible", {
   expect_equal(
     graph_c %>%
       get_edge_df() %>%
-      nrow(), 8)
+      nrow(), 8
+  )
 
   # Expect that there are no loops in the
   # complement graph
   expect_equal(
     graph_c %>%
       get_edge_df() %>%
-      filter(from == to) %>%
-      nrow(), 0)
+      dplyr::filter(from == to) %>%
+      nrow(), 0
+  )
 
   # Create the complement of the original graph
   # with loops created
   graph_cl <-
     transform_to_complement_graph(
       graph = graph,
-      loops = TRUE)
+      loops = TRUE
+    )
 
   # Expect 12 edges in this complement graph
   expect_equal(
     graph_cl %>%
       get_edge_df() %>%
-      nrow(), 12)
+      nrow(), 12
+  )
 })
 
 test_that("Fully connecting selected nodes is possible", {
@@ -333,12 +337,14 @@ test_that("Removing loop edges via a selection is possible", {
   expect_equal(
     graph_loops_removed %>%
       get_edge_df() %>%
-      filter(from == to) %>%
-      nrow(), 3)
+      dplyr::filter(from == to) %>%
+      nrow(), 3
+  )
 
   # Expect an error if there is
   # isn't a valid node selection
   expect_error(
     graph %>%
-    delete_loop_edges_ws())
+      delete_loop_edges_ws()
+  )
 })

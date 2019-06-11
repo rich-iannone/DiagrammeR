@@ -5,7 +5,7 @@ get_printed_output <- function(graph, line = NULL) {
   captured_output <-
     capture_output(
       graph %>% print()) %>%
-    str_split(pattern = "\n") %>%
+    stringr::str_split(pattern = "\n") %>%
     unlist()
 
   if (!is.null(line)) {

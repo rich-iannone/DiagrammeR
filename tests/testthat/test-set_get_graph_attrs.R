@@ -157,7 +157,7 @@ test_that("Getting global graph attrs is possible", {
   # equivalent to the table stored in
   # the graph object
   expect_equal(
-    graph$global_attrs %>% as_tibble(),
+    graph$global_attrs %>% dplyr::as_tibble(),
     global_graph_attrs)
 })
 
