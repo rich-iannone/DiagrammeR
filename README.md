@@ -13,7 +13,7 @@ status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.
 
 With the **DiagrammeR** package you can create, modify, analyze, and
 visualize network graph diagrams. The output can be incorporated into
-**RMarkdown** documents, integrated with **Shiny** web apps, converted
+**R Markdown** documents, integrated with **Shiny** web apps, converted
 to other graph formats, or exported as image files.
 
 This package is made possible by the

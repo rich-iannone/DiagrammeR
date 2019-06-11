@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **R Markdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
 
 This package is made possible by the [**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides an easy-to-use framework for bringing together R and JavaScript.
 
