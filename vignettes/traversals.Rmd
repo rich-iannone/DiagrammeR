@@ -96,7 +96,7 @@ create_graph() %>%
   get_selection()
 ```
 
-Traversals are commonly performed where an initial selection contains multiple nodes (usually, these are nodes that have something in common with each other). Let's have a look at a slightly more complex graph and how multiple nodes in an initial selction can be migrated to a final selection after a traversal.
+Traversals are commonly performed where an initial selection contains multiple nodes (usually, these are nodes that have something in common with each other). Let's have a look at a slightly more complex graph and how multiple nodes in an initial selection can be migrated to a final selection after a traversal.
 
 ```{r}
 graph_1 <- 
