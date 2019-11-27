@@ -5,13 +5,13 @@ HTMLWidgets.widget({
   type: 'output',
 
   initialize: function(el, width, height) {
-    
+
     /* wait to initialize until renderValue
         since x not provided until then
         and mermaid will try to build the diagram
         as soon as class of the div is set to "mermaid"
     */
-    
+
     /* to prevent auto init() by mermaid
         not documented but
         see lines https://github.com/knsv/mermaid/blob/master/src/main.js#L100-L109
@@ -21,7 +21,7 @@ HTMLWidgets.widget({
         after complete
     */
     window.mermaid.startOnLoad = false;
-    
+
     // set config options for Gantt
     //   undocumented but these can be provided
     //   so from R
@@ -67,10 +67,10 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-    
+
     // if no diagram provided then assume
     // that the diagrams are provided through htmltools tags
-    // and DiagrammeR was just used for dependencies 
+    // and DiagrammeR was just used for dependencies
     if ( x.diagram != "" ) {
       el.innerHTML = x.diagram;
       //if dynamic such as shiny remove data-processed
@@ -86,21 +86,21 @@ HTMLWidgets.widget({
       // should we remove instead??
       el.style.display = "none";
     }
-    
+
     // check for undocumented ganttConfig
     //   to override the defaults manually entered
     //   in initialize above
     //   note this is really sloppy and will not
     //   work well if multiple gantt charts
     //   with custom configs here
-    if( typeof x.config !== "undefined" && 
+    if( typeof x.config !== "undefined" &&
          typeof x.config.ganttConfig !== "undefined" ){
       Object.keys(x.config.ganttConfig).map(function(k){
         window.mermaid.ganttConfig[k] = x.config.ganttConfig[k];
       })
     }
-    
-    
+
+
     // use this to sort of make our diagram responsive
     //  or at a minimum fit within the bounds set by htmlwidgets
     //  for the parent container
@@ -122,12 +122,27 @@ HTMLWidgets.widget({
     //  to send error to the htmlwidget for display
     try{
       mermaid.init( el );
-      
+
       // sort of make our diagram responsive
       //   should we make this an option?
       //   if so, then could easily add to list of post process tasks
       makeResponsive( el );
-      
+
+      if (HTMLWidgets.shinyMode) {
+        // Get widget id
+        var id = el.id;
+
+        $("#" + id + " .node").click(function(e) {
+          // Build return object *obj* with node-id and node textContent
+          var obj = {
+            id: e.currentTarget.id,
+            nodeValues: e.currentTarget.textContent
+          };
+          // Send *obj* to Shiny's inputs (input$[id]+_click  e.g.: input$vtree_click))
+          Shiny.setInputValue(id + "_click", obj, {priority: "event"});
+        });
+      }
+
       /*
       // change the id of our SVG assigned by mermaid to prevent conflict
       //   mermaid.init has a counter that will reset to 0
@@ -140,11 +155,11 @@ HTMLWidgets.widget({
       if(d3.select(el).select("svg").select("style")[0][0]){
         d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
           .select("style")[0][0].innerHTML
-      */ 
+      */
       /// sep comment for / in regex    .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
       /*}
       */
-        
+
       // set up a container for tasks to perform after completion
       //  one example would be add callbacks for event handling
       //  styling
@@ -170,13 +185,13 @@ HTMLWidgets.widget({
       processedDg = d3.select(processedDg[0][processedDg[0].length - 1])
       // remove the svg
       processedDg.select("svg").remove();
-      
+
       //if dynamic such as shiny remove data-processed
       // so mermaid will reprocess and redraw
       if (HTMLWidgets.shinyMode) {
         el.removeAttribute("data-processed")
       }
-      
+
       processedDg.append("pre").html( ["parse error with " + x.diagram, e.message].join("\n") )
     }
 
@@ -185,6 +200,6 @@ HTMLWidgets.widget({
   resize: function(el, width, height, instance) {
 
   }
-  
+
 
 });
