@@ -39,6 +39,29 @@ HTMLWidgets.widget({
 
         makeResponsive(el);
 
+        if (HTMLWidgets.shinyMode) {
+          // Get widget id
+          var id = el.id;
+
+          $("#" + id + " .node").click(function(e) {
+            // Get node id
+            var nodeid = e.currentTarget.id;
+            // Get node text object and make an array
+            var node_texts = $("#" + nodeid + " text");
+            //var node_path = $("#" + nodeid + " path")[0];
+            var text_array = node_texts.map(function() {return $(this).text(); }).toArray();
+            // Build return object *obj* with node-id, node text values and node fill
+            var obj = {
+              id: nodeid,
+              //fill: node_path.attributes.fill.nodeValue,
+              //outerHMTL: node_path.outerHTML,
+              nodeValues: text_array
+            };
+            // Send *obj* to Shiny's inputs (input$[id]+_click  e.g.: input$vtree_click))
+            Shiny.setInputValue(id + "_click", obj, {priority: "event"});
+          });
+        }
+
         // set up a container for tasks to perform after completion
         //  one example would be add callbacks for event handling
         //  styling
