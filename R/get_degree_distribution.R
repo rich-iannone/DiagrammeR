@@ -6,7 +6,9 @@
 #' @param mode using `total` (the default), degree considered for each node
 #'   will be the total degree. With `in` and `out` the degree used
 #'   will be the in-degree and out-degree, respectively.
-#' @return a data frame with degree frequencies.
+#'
+#' @return A data frame with degree frequencies.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -13,9 +13,11 @@
 #'   JavaScript.
 #' @param width The width of the resulting graphic in pixels.
 #' @param height The height of the resulting graphic in pixels.
+#'
 #' @return An object of class `htmlwidget` that will intelligently print itself
 #'   into HTML in a variety of contexts including the R console, within R
 #'   Markdown documents, and within Shiny output bindings.
+#'
 #' @examples
 #' \dontrun{
 #' # Create a simple graph running left to right (note

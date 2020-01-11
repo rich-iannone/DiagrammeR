@@ -14,9 +14,11 @@
 #' @param type A string, either `mermaid` (default) or `grViz` indicating the
 #'   type of diagram spec and the desired parser/renderer.
 #' @param ... Any other parameters to pass to `grViz` or `mermaid`
+#'
 #' @return An object of class `htmlwidget` that will intelligently print itself
 #'   into HTML in a variety of contexts including the R console, within R
 #'   Markdown documents, and within Shiny output bindings.
+#'
 #' @examples
 #' \dontrun{
 #' # note the whitespace is not important

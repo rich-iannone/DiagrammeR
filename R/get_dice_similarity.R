@@ -11,8 +11,10 @@
 #'   considered.
 #' @param round_to the maximum number of decimal places to retain for the Dice
 #'   similarity coefficient scores. The default value is `3`.
-#' @return a matrix with Dice similarity values for each pair of nodes
+#'
+#' @return A matrix with Dice similarity values for each pair of nodes
 #'   considered.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

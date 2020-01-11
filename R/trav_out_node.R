@@ -33,7 +33,9 @@
 #'   edge attribute values will be passed onto the traversed node(s). To pass
 #'   only a single value, the following aggregation functions can be used:
 #'   `sum`, `min`, `max`, `mean`, or `median`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

@@ -17,7 +17,9 @@
 #' [trav_in_until()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 3 nodes
 #' graph <-

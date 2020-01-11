@@ -24,7 +24,9 @@
 #' @param width The width of the `layout` diagram.
 #' @param height The height of the `layout` diagram.
 #' @param ll A vector describing the the lower-left coordinates of the `layout`
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with unique labels and
 #' # several node `type` groupings

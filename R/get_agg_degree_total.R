@@ -8,7 +8,9 @@
 #'   `sum`, `min`, `max`, `mean`, or `median`.
 #' @param conditions an option to use filtering conditions for the nodes to
 #'   consider.
-#' @return a vector with an aggregate total degree value.
+#'
+#' @return A vector with an aggregate total degree value.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

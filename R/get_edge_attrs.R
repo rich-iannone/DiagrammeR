@@ -8,8 +8,10 @@
 #'   for filtering the list of edges.
 #' @param to an optional vector of node IDs from which the edge is incoming for
 #'   filtering the list of edges.
-#' @return a named vector of edge attribute values for the attribute given by
+#'
+#' @return A named vector of edge attribute values for the attribute given by
 #'   `edge_attr` by edge.
+#'
 #' @examples
 #' # Create a simple graph where
 #' # edges have an edge attribute

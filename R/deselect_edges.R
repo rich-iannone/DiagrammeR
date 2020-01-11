@@ -4,7 +4,9 @@
 #'
 #' @inheritParams render_graph
 #' @param edges A vector of edge IDs that should be deselected.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with
 #' # a single path

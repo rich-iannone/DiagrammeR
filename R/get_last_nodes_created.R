@@ -5,7 +5,9 @@
 #' just after creating the nodes.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A vector of node ID values.
+#'
 #' @examples
 #' # Create a graph and add 4 nodes
 #' # in 2 separate function calls

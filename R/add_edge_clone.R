@@ -7,7 +7,9 @@
 #' @param edge An edge ID corresponding to the graph edge to be cloned.
 #' @param from The outgoing node from which the edge is connected.
 #' @param to The incoming nodes to which each edge is connected.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with a path of
 #' # 2 nodes; supply a common `rel`

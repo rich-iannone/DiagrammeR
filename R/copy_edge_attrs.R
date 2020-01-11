@@ -9,7 +9,9 @@
 #'   will be copied.
 #' @param edge_attr_to The name of the new edge attribute column to which the
 #'   copied values will be placed.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

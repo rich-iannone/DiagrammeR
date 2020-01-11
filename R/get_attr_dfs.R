@@ -12,7 +12,9 @@
 #'   data frames. These can either be: (1) `single_tbl` (a tibble object
 #'   resulting from a `bind_rows` operation of multiple data frames), and (2)
 #'   `single_df` (a single data frame which all of the data frame data).
-#' @return either a tibble or a data frame.
+#'
+#' @return Either a tibble or a data frame.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

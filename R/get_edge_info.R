@@ -4,8 +4,10 @@
 #' interrelationships within the graph.
 #'
 #' @inheritParams render_graph
-#' @return a data frame containing information specific to each edge within the
+#'
+#' @return A data frame containing information specific to each edge within the
 #'   graph.
+#'
 #' @examples
 #' # Create a simple graph
 #' graph <-

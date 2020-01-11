@@ -2,7 +2,9 @@
 #'
 #' Get the nodes in the graph that are identified as articulation points.
 #' @inheritParams render_graph
+#'
 #' @return a vector of node IDs.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

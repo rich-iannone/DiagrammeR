@@ -3,8 +3,10 @@
 #' Get the name of a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single-length character vector with the assigned graph name. If a
 #'   graph name has not been set, NA is returned.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

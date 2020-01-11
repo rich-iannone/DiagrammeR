@@ -19,7 +19,6 @@
 #'   any of the named colors that R knows about (obtained using the `colors()`
 #'   function), or, a hexadecimal color code.
 #' @param image A reference to an image location.
-#' @param fa_icon The name of a FontAwesome icon.
 #' @param fontname The name of the system font that will be used for any node
 #'   text.
 #' @param fontsize The point size of the font used for any node text.
@@ -92,7 +91,9 @@
 #'     node_aes = node_aes(
 #'       shape = "circle",
 #'       x = c(1, 3, 2),
-#'       y = c(4, -1, 3)))
+#'       y = c(4, -1, 3)
+#'     )
+#'   )
 #'
 #' # View the graph's internal
 #' # node data frame; the node
@@ -101,8 +102,7 @@
 #' graph %>% get_node_df()
 #'
 #' # Create a new graph which is
-#' # fully connected and has FontAwesome
-#' # icons as nodes
+#' # fully connected
 #' graph <-
 #'   create_graph() %>%
 #'   add_full_graph(
@@ -110,11 +110,10 @@
 #'     node_data = node_data(value = 1:4),
 #'     node_aes = node_aes(
 #'       x = c(2, 1, 3, 2),
-#'       y = c(3, 2, 2, 1),
-#'       fa_icon = c(
-#'       "arrow-left", "arrow-right",
-#'       "arrow-up", "arrow-down")),
-#'     edge_aes = edge_aes(color = "blue"))
+#'       y = c(3, 2, 2, 1)
+#'     ),
+#'     edge_aes = edge_aes(color = "blue")
+#'   )
 #'
 #' @export
 node_aes <- function(shape = NULL,
@@ -123,7 +122,7 @@ node_aes <- function(shape = NULL,
                      color = NULL,
                      fillcolor = NULL,
                      image = NULL,
-                     fa_icon = NULL,
+                     #fa_icon = NULL,
                      fontname = NULL,
                      fontsize = NULL,
                      fontcolor = NULL,
@@ -155,7 +154,7 @@ node_aes <- function(shape = NULL,
       color = color,
       fillcolor = fillcolor,
       image = image,
-      fa_icon = fa_icon,
+      #fa_icon = fa_icon,
       fontname = fontname,
       fontsize = fontsize,
       fontcolor = fontcolor,

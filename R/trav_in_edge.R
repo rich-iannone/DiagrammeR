@@ -30,7 +30,9 @@
 #'   written under a different edge attribute name. If the attribute name
 #'   provided in `copy_attrs_as` does not exist in the graph's edf, the new edge
 #'   attribute will be created with the chosen name.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

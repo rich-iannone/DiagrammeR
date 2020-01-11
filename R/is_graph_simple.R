@@ -4,7 +4,9 @@
 #' does not contain any loops nor any multiple edges.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a graph with 2 cycles
 #' graph <-

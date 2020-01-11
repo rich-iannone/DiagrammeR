@@ -14,7 +14,9 @@
 #' @param use_labels An option to use node `label` values in the `edges` string
 #'   to define node connections. Note that this is only possible if all nodes
 #'   have distinct `label` values set and none exist as an empty string.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-

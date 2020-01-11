@@ -7,7 +7,9 @@
 #' @param actions Either a vector of integer numbers indicating which actions to
 #'   delete (based on `action_index` values), or, a character vector
 #'   corresponding to `action_name` values.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

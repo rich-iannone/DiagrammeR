@@ -6,7 +6,9 @@
 #' @param nodes an optional vector of node IDs to consider for constraint
 #'   scores. If not supplied, then constraint scores for all nodes in the graph
 #'   will be calculated.
-#' @return a data frame with constraint scores for one or more graph nodes.
+#'
+#' @return A data frame with constraint scores for one or more graph nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

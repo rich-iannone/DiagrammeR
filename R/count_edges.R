@@ -3,7 +3,9 @@
 #' From a graph object of class `dgr_graph`, get a count of edges in the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single-length numeric vector.
+#'
 #' @examples
 #' # Create a graph with a
 #' # path of nodes and 3

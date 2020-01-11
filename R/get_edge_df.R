@@ -3,7 +3,9 @@
 #' From a graph, obtain an edge data frame with all current edge attributes.
 #'
 #' @inheritParams render_graph
-#' @return an edge data frame.
+#'
+#' @return An edge data frame.
+#'
 #' @examples
 #' # Create a graph
 #' graph <-

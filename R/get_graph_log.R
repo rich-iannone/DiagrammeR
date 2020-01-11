@@ -4,7 +4,9 @@
 #' called on the graph that resulted in some transformation of the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A `df_tbl` object.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function and

@@ -14,9 +14,11 @@
 #'   graphic in pixels.
 #' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
+#'
 #' @return An object of class `htmlwidget` that will intelligently print itself
 #'   into HTML in a variety of contexts including the R console, within R
 #'   Markdown documents, and within Shiny output bindings.
+#'
 #' @export
 grViz <- function(diagram = "",
                   engine = "dot",
@@ -148,7 +150,9 @@ renderGrViz <- function(expr,
 #' @param gv A `grViz` htmlwidget.
 #' @param include_mathjax A `logical` to add mathjax JS. Change to `FALSE` if
 #'   using with \pkg{rmarkdown} since MathJax will likely already be added.
+#'
 #' @return A `grViz` htmlwidget
+#'
 #' @export
 add_mathjax <- function(gv = NULL,
                         include_mathjax = TRUE) {

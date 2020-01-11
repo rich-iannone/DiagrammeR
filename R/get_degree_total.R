@@ -6,7 +6,9 @@
 #'   provided for each of the nodes (as a count of edges to and from each node).
 #'   When set as `TRUE`, then the result for each node will be divided by
 #'   the total number of nodes in the graph minus 1.
-#' @return a data frame with total degree values for each of the nodes.
+#'
+#' @return A data frame with total degree values for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -4,7 +4,9 @@
 #' eccentricity in the graph).
 #'
 #' @inheritParams render_graph
+#'
 #' @return A vector of node IDs.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function and

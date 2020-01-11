@@ -9,7 +9,9 @@
 #'   consist of any valid R code that uses node attributes as variables.
 #'   Expressions are evaluated in the order provided, so, node attributes
 #'   created or modified are ready to use in subsequent expressions.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 3 nodes
 #' graph <-

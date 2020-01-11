@@ -3,8 +3,10 @@
 #' Get the number of strongly-connected components in the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single integer value representing the number of strongly-connected
 #'   graph components.
+#'
 #' @examples
 #' # Create a graph and add
 #' # several graph islands

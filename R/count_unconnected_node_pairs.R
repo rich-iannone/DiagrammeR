@@ -3,8 +3,10 @@
 #' Get the number of unconnected node pairs. This works for directed graphs.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the number of unconnected node
 #'   pairs.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

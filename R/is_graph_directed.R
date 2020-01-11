@@ -4,7 +4,9 @@
 #' value to that effect.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create an empty graph; by default,
 #' # new graphs made by `create_graph()`

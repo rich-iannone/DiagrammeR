@@ -8,7 +8,9 @@
 #' @param ... Arguments and values to pass to the named function in `fcn`, if
 #'   necessary.
 #' @param action_name An optional name for labeling the action.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -23,7 +23,9 @@
 #'   length must equal that of the `from` vector.
 #' @param rel An optional `rel` label for each edge.
 #' @param ... One or more vectors for associated edge attributes.
+#'
 #' @return An edge data frame (edf).
+#'
 #' @examples
 #' # Create a simple edge data frame (edf) and
 #' # view the results

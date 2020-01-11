@@ -3,7 +3,9 @@
 #' Get a data frame with metrics for a graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A data frame containing metrics pertaining to the graph
+#'
 #' @examples
 #' \dontrun{
 #' # Import a GML graph file available

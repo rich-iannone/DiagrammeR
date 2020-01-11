@@ -7,7 +7,9 @@
 #' count will be `4`.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A vector with a single, numerical value.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

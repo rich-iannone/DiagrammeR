@@ -27,7 +27,9 @@
 #'   toward the existing nodes.
 #' @param label An optional vector of node label values. The vector length
 #'   should correspond to the number of nodes in the active selection of nodes.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with a path of
 #' # nodes; supply `label`, `type`,

@@ -25,7 +25,9 @@
 #'   one has to opt in to use this functionality.
 #' @param display_msgs An option to display messages primarily concerned with
 #'   changes in graph selections. By default, this is `FALSE`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # With `create_graph()` we can
 #' # simply create an empty graph (and

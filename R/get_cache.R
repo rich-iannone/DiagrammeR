@@ -4,7 +4,9 @@
 #' @inheritParams render_graph
 #' @param name the name of the object to extract from the cache. If none
 #'   supplied, the most recent object added to the cache will be returned.
-#' @return a vector.
+#'
+#' @return A vector.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

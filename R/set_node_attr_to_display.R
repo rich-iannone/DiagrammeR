@@ -20,7 +20,9 @@
 #' @param default The name of an attribute to set for all other graph nodes not
 #'   included in `nodes`. This value only gets used if the `display` node
 #'   attribute is not in the graph's internal node data frame.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

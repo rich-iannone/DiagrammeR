@@ -10,7 +10,9 @@
 #'   the nodes to be added.
 #' @param label An optional character object that describes the nodes to be
 #'   added.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph and
 #' # add 5 nodes; these nodes

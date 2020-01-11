@@ -3,7 +3,9 @@
 #' Get the bridging scores (based on Valente's Bridging vertex measure) for all
 #' nodes in a graph.
 #' @inheritParams render_graph
-#' @return a data frame with bridging scores for each of the nodes.
+#'
+#' @return A data frame with bridging scores for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -19,7 +19,9 @@
 #' @param column_name An option to supply a column name for the new node
 #'   attribute column. If `NULL` then the column name supplied by the function
 #'   will used along with a `__A` suffix.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -3,7 +3,9 @@
 #' With two or more nodes, get the set of common neighboring nodes.
 #' @inheritParams render_graph
 #' @param nodes a vector of node ID values of length at least 2.
+#'
 #' @return a vector of node ID values.
+#'
 #' @examples
 #' # Create a directed graph with 5 nodes
 #' graph <-

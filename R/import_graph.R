@@ -21,7 +21,9 @@
 #'   logical, `D` -> date, `T` -> date time, `t` -> time, `?` -> guess, or
 #'   `_/-`, which skips the column.
 #' @inheritParams create_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' \dontrun{
 #' # Import a GML graph file

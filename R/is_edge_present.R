@@ -13,7 +13,9 @@
 #' @param to A node ID to which the edge is incoming, or, the label associated
 #'   with the node. For an undirected graph, the value in `to` can be
 #'   interchangeable with that in `from`.
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a simple graph with
 #' # a path of four nodes

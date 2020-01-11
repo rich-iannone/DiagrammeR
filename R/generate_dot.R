@@ -4,6 +4,7 @@
 #' object.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A character vector of length 1 containing Graphviz DOT code.
 #'
 #' @export

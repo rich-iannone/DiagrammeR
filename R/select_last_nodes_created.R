@@ -5,7 +5,9 @@
 #' nodes to be selected.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph and add 4 nodes
 #' # in 2 separate function calls

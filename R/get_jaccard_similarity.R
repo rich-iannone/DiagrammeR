@@ -12,8 +12,10 @@
 #'   `in`, edge direction for neighboring nodes will be considered.
 #' @param round_to The maximum number of decimal places to retain for the
 #'   Jaccard similarity coefficient scores. The default value is `3`.
+#'
 #' @return A matrix with Jaccard similarity values for each pair of nodes
 #'   considered.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -3,7 +3,9 @@
 #' Convert a DiagrammeR graph to an igraph graph object.
 #'
 #' @inheritParams render_graph
+#'
 #' @return An igraph object.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -23,7 +23,9 @@
 #' @param add_to_selection An option to either add the reverse edges to the
 #'   active selection of edges (`TRUE`) or switch the active selection entirely
 #'   to those reverse edges (`FALSE`, the default case).
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

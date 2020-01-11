@@ -5,7 +5,9 @@
 #'
 #' @param ... Two or more edge data frames, which contain edge IDs and
 #'   associated attributes.
+#'
 #' @return A combined edge data frame.
+#'
 #' @examples
 #' # Create an edge data frame (edf)
 #' edf_1 <-

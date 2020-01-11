@@ -5,7 +5,9 @@
 #' @inheritParams render_graph
 #' @param time The date-time to set for the graph.
 #' @param tz The timezone to set for the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

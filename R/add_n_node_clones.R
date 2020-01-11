@@ -11,7 +11,9 @@
 #' @param node A node ID corresponding to the graph node to be cloned.
 #' @param label An optional vector of node label values. The vector length
 #'   should correspond to the value set for `n`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with a path of
 #' # nodes; supply `label`, `type`,

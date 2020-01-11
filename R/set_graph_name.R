@@ -4,7 +4,9 @@
 #'
 #' @inheritParams render_graph
 #' @param name The name to set for the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

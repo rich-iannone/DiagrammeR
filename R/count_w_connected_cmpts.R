@@ -3,8 +3,10 @@
 #' Get the number of weakly-connected components in the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single integer value representing the number of weakly-connected
 #'   graph components.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

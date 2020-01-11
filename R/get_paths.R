@@ -12,8 +12,10 @@
 #'   of all determined paths.
 #' @param distance A vector of integer values that specify which of the valid
 #'   paths to return when filtering by distance.
+#'
 #' @return A list of paths, sorted by ascending traversal length, comprising
 #'   vectors of node IDs in sequence of traversal through the graph.
+#'
 #' @examples
 #' # Create a simple graph
 #' graph <-

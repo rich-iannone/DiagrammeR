@@ -5,8 +5,10 @@
 #' each node in the set).
 #'
 #' @inheritParams render_graph
+#'
 #' @return A data frame with nodes and their membership in different weakly
 #'   connected components.
+#'
 #' @examples
 #' # Create a graph with 2 cycles
 #' graph <-

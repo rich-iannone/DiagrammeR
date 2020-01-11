@@ -33,7 +33,9 @@
 #' @param add_to_selection If `TRUE` then every node traversed will be part of
 #'   the final selection of nodes. If `FALSE` (the default value) then only the
 #'   nodes finally traversed to will be part of the final node selection.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a path graph and add
 #' # values of 1 to 10 across the

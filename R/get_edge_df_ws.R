@@ -15,7 +15,9 @@
 #' [trav_both_edge()], or [trav_reverse_edge()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return an edge data frame.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

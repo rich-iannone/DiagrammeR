@@ -7,7 +7,9 @@
 #' @param edge_attr_from The name of the edge attribute that will be renamed.
 #' @param edge_attr_to The new name of the edge attribute column identified in
 #'   `edge_attr_from`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

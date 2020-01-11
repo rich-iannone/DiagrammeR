@@ -15,8 +15,10 @@
 #' @param return_values using `id` (the default) results in node ID values
 #'   returned in the edge definitions. With `label`, the node labels will
 #'   instead be used to define edges.
-#' @return a list, data frame, or a vector object, depending on the value given
+#'
+#' @return A list, data frame, or a vector object, depending on the value given
 #'   to `return_type`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

@@ -4,7 +4,9 @@
 #' nodes).
 #'
 #' @inheritParams render_graph
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

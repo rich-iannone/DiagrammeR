@@ -3,7 +3,9 @@
 #' Get the available global attributes for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A data frame containing global attributes for the graph.
+#'
 #' @examples
 #' # Create a new, empty graph
 #' graph <- create_graph()

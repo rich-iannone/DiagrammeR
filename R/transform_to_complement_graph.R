@@ -8,7 +8,9 @@
 #' @inheritParams render_graph
 #' @param loops An option for whether loops should be generated in the
 #'   complement graph.
+#'
 #' @return a graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a simple graph
 #' # with a single cycle

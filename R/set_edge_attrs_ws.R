@@ -18,7 +18,9 @@
 #' @param edge_attr The name of the attribute to set.
 #' @param value The value to be set for the chosen attribute for the edges in
 #'   the current selection.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a simple graph
 #' graph <-

@@ -16,7 +16,9 @@
 #' [trav_in_until()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an undirected, full graph
 #' # of 5 nodes with loops retained

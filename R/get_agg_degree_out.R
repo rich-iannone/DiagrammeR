@@ -9,7 +9,9 @@
 #'   `min`, `max`, `mean`, or `median`.
 #' @param conditions An option to use filtering conditions for the nodes to
 #'   consider.
+#'
 #' @return A vector with an aggregate outdegree value.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

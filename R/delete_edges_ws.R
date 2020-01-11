@@ -15,7 +15,9 @@
 #' [trav_both_edge()], or [trav_reverse_edge()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph
 #' graph <-

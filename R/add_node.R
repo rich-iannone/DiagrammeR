@@ -15,7 +15,9 @@
 #'   directed to the new node.
 #' @param to An optional vector containing node IDs to which edges will be
 #'   directed from the new node.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph and add 2 nodes by using
 #' # the `add_node()` function twice

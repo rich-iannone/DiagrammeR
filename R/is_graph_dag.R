@@ -5,7 +5,9 @@
 #' directed graph and it should not contain any cycles.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a directed graph containing
 #' # only a balanced tree

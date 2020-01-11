@@ -37,7 +37,9 @@
 #' @param add_to_selection An option to either add the traversed to nodes to the
 #'   active selection of nodes (`TRUE`) or switch the active selection entirely
 #'   to those traversed to nodes (`FALSE`, the default case).
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

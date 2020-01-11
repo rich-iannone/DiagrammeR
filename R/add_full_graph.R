@@ -21,7 +21,9 @@
 #'   label values.
 #' @param keep_loops An option to simplify the fully connected graph by removing
 #'   loops (edges from and to the same node). The default value is `FALSE`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph object
 #' # and add a directed and fully

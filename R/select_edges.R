@@ -15,7 +15,9 @@
 #'   filtering the list of edges present in the graph.
 #' @param edges An optional vector of edge IDs for filtering the list of edges
 #'   present in the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

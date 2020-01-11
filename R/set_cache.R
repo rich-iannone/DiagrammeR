@@ -9,7 +9,9 @@
 #' @param name An optional name for the cached vector.
 #' @param col If a data frame is provided in `to_cache` then a column name from
 #'   that data frame must provided here.
-#' @return Aa graph object of class `dgr_graph`.
+#'
+#' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -18,7 +20,8 @@
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 22,
-#'     set_seed = 23)
+#'     set_seed = 23
+#'   )
 #'
 #' # Get the closeness values for
 #' # all nodes from `1` to `10` and
@@ -28,12 +31,12 @@
 #'   set_cache(
 #'     name = "closeness_vector",
 #'     to_cache = get_closeness(.),
-#'     col = "closeness")
+#'     col = "closeness"
+#'   )
 #'
 #' # Get the graph's cache
 #' graph %>%
-#'   get_cache(
-#'     name = "closeness_vector")
+#'   get_cache(name = "closeness_vector")
 #'
 #' # Get the difference of betweenness
 #' # and closeness values for nodes in
@@ -45,7 +48,8 @@
 #'     name = "difference",
 #'     to_cache =
 #'       get_betweenness(.)$betweenness -
-#'         get_closeness(.)$closeness)
+#'         get_closeness(.)$closeness
+#'   )
 #'
 #' # Get the graph's cache
 #' graph %>%

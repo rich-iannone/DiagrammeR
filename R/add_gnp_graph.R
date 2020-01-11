@@ -17,7 +17,9 @@
 #'   to be added.
 #' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using

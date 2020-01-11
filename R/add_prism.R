@@ -15,7 +15,9 @@
 #'   ascribes node IDs to the label and `FALSE` yields a blank label.
 #' @param rel An optional string for providing a relationship label to all new
 #'   edges created in the node prism.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph and
 #' # add 2 prisms

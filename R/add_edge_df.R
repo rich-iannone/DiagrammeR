@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param edge_df An edge data frame that is created using [create_edge_df()].
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 4 nodes
 #' # and no edges

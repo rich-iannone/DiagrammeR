@@ -4,7 +4,9 @@
 #' nodes or edges previously not selected will now be selected and vice versa.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

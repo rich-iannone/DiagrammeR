@@ -13,7 +13,9 @@
 #'   a vector.
 #' @param tz The time zone (`tz`) corresponding to dates or date-time string
 #'   provided in `values` (if `by = "date"`).
+#'
 #' @return A graph series object of type `dgr_graph_1D`.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_time_1 <-

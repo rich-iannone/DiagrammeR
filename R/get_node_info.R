@@ -4,8 +4,10 @@
 #' interrelationships within the graph.
 #'
 #' @param graph A graph object of class `dgr_graph`.
+#'
 #' @return A data frame containing information specific to each node within the
 #'   graph.
+#'
 #' @examples
 #' # Create a simple graph
 #' graph <-

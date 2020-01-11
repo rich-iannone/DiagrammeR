@@ -12,7 +12,9 @@
 #'   `FALSE` then the diagonal values will be replaced with zero values before
 #'   inclusion in any calculations.
 #' @inheritParams create_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an adjacency matrix
 #' adj_matrix <-

@@ -5,7 +5,9 @@
 #' pairs of nodes.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the mean distance of the graph.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

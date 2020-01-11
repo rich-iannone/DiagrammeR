@@ -10,7 +10,9 @@
 #'   `attr_for_type` argument.
 #' @param attr_type The specific type of global graph attribute to set. The type
 #'   is specified with `graph`, `node`, or `edge`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph with no
 #' # global graph attributes and

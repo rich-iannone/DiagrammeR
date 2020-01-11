@@ -11,7 +11,9 @@
 #'   for filtering list of nodes with outgoing edges in the graph.
 #' @param to An optional vector of node IDs from which the edge is incoming for
 #'   filtering list of nodes with incoming edges in the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a simple graph
 #' ndf <-

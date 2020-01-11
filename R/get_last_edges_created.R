@@ -4,7 +4,9 @@
 #' This function should ideally be used just after creating the edges.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A vector of edge ID values.
+#'
 #' @examples
 #' # Create a graph and add a cycle and then
 #' # a tree in 2 separate function calls

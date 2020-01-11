@@ -8,7 +8,9 @@
 #'   direction while traversing through the graph. With `out`, measurements of
 #'   paths will be from a node whereas with `in`, measurements of paths will be
 #'   to a node.
+#'
 #' @return A data frame with radiality centrality scores for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
