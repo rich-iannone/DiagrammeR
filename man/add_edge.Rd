@@ -4,8 +4,7 @@
 \alias{add_edge}
 \title{Add an edge between nodes in a graph object}
 \usage{
-add_edge(graph, from, to, rel = NULL, edge_aes = NULL,
-  edge_data = NULL)
+add_edge(graph, from, to, rel = NULL, edge_aes = NULL, edge_data = NULL)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

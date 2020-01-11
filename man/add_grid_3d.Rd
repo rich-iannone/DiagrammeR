@@ -4,9 +4,19 @@
 \alias{add_grid_3d}
 \title{Add a 3D grid of nodes to the graph}
 \usage{
-add_grid_3d(graph, x, y, z, type = NULL, label = TRUE, rel = NULL,
-  node_aes = NULL, edge_aes = NULL, node_data = NULL,
-  edge_data = NULL)
+add_grid_3d(
+  graph,
+  x,
+  y,
+  z,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

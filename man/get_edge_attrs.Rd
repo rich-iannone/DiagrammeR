@@ -18,7 +18,7 @@ for filtering the list of edges.}
 filtering the list of edges.}
 }
 \value{
-a named vector of edge attribute values for the attribute given by
+A named vector of edge attribute values for the attribute given by
 \code{edge_attr} by edge.
 }
 \description{

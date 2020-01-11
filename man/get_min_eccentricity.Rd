@@ -11,7 +11,7 @@ get_min_eccentricity(graph, direction = "all")
 
 \item{direction}{Using \code{all} (the default), the search will ignore edge
 direction while traversing through the graph. With \code{out}, measurements of
-paths will be from a node whereas with \code{in}, measurements of paths will be
+paths will be from a node whereas with \verb{in}, measurements of paths will be
 to a node.}
 }
 \value{

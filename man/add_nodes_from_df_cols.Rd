@@ -4,8 +4,13 @@
 \alias{add_nodes_from_df_cols}
 \title{Add nodes from distinct values in data frame columns}
 \usage{
-add_nodes_from_df_cols(graph, df, columns, type = NULL,
-  keep_duplicates = FALSE)
+add_nodes_from_df_cols(
+  graph,
+  df,
+  columns,
+  type = NULL,
+  keep_duplicates = FALSE
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

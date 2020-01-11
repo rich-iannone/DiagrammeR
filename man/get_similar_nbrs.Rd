@@ -4,8 +4,7 @@
 \alias{get_similar_nbrs}
 \title{Get neighboring nodes based on node attribute similarity}
 \usage{
-get_similar_nbrs(graph, node, node_attr, tol_abs = NULL,
-  tol_pct = NULL)
+get_similar_nbrs(graph, node, node_attr, tol_abs = NULL, tol_pct = NULL)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

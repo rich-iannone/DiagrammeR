@@ -88,9 +88,9 @@ connections <- sapply(
 # Create a diagram using the 'connections' object
 DiagrammeR(
    paste0(
-     "graph TD;", "\\n",
-     paste(connections, collapse = "\\n"),"\\n",
-     "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\\n",
+     "graph TD;", "\n",
+     paste(connections, collapse = "\n"),"\n",
+     "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\n",
      "class ", paste0(1:length(connections), collapse = ","), " column;"
    )
  )

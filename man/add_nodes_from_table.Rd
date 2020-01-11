@@ -4,8 +4,14 @@
 \alias{add_nodes_from_table}
 \title{Add nodes and attributes to graph from a table}
 \usage{
-add_nodes_from_table(graph, table, label_col = NULL, type_col = NULL,
-  set_type = NULL, drop_cols = NULL)
+add_nodes_from_table(
+  graph,
+  table,
+  label_col = NULL,
+  type_col = NULL,
+  set_type = NULL,
+  drop_cols = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

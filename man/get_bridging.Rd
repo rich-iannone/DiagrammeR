@@ -10,7 +10,7 @@ get_bridging(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with bridging scores for each of the nodes.
+A data frame with bridging scores for each of the nodes.
 }
 \description{
 Get the bridging scores (based on Valente's Bridging vertex measure) for all

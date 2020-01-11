@@ -4,9 +4,20 @@
 \alias{add_growing_graph}
 \title{Create a random growing graph with m edges added per step}
 \usage{
-add_growing_graph(graph, n, m = 1, citation = FALSE, type = NULL,
-  label = TRUE, rel = NULL, node_aes = NULL, edge_aes = NULL,
-  node_data = NULL, edge_data = NULL, set_seed = NULL)
+add_growing_graph(
+  graph,
+  n,
+  m = 1,
+  citation = FALSE,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL,
+  set_seed = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

@@ -4,8 +4,13 @@
 \alias{recode_node_attrs}
 \title{Recode a set of node attribute values}
 \usage{
-recode_node_attrs(graph, node_attr_from, ..., otherwise = NULL,
-  node_attr_to = NULL)
+recode_node_attrs(
+  graph,
+  node_attr_from,
+  ...,
+  otherwise = NULL,
+  node_attr_to = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -15,7 +20,7 @@ will be recoded.}
 
 \item{...}{Single-length character vectors with the recoding instructions.
 The first component should have the value to replace and the second should
-have the replacement value (in the form \code{"[to_replace] -> [replacement]", ...}).}
+have the replacement value (in the form \verb{"[to_replace] -> [replacement]", ...}).}
 
 \item{otherwise}{An optional single value for recoding any unmatched values.}
 

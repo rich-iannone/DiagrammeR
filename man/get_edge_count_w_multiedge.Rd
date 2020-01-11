@@ -10,7 +10,7 @@ get_edge_count_w_multiedge(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a vector with a single, numerical value.
+A vector with a single, numerical value.
 }
 \description{
 Get a count of the number of edge definitions (e.g, \code{1} -> \code{2}) where there

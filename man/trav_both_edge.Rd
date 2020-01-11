@@ -4,8 +4,13 @@
 \alias{trav_both_edge}
 \title{Traverse from one or more selected nodes onto adjacent edges}
 \usage{
-trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL,
-  copy_attrs_as = NULL, agg = "sum")
+trav_both_edge(
+  graph,
+  conditions = NULL,
+  copy_attrs_from = NULL,
+  copy_attrs_as = NULL,
+  agg = "sum"
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -44,12 +49,12 @@ traversal, depending on the traversal conditions, there will either be a
 selection of edges or no selection at all.
 
 Selections of nodes can be performed using the following node selection
-(\code{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+(\verb{select_*()}) functions: \code{\link[=select_nodes]{select_nodes()}}, \code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
 \code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}}, \code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
 \code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
-(\code{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
+(\verb{trav_*()}) functions: \code{\link[=trav_out]{trav_out()}}, \code{\link[=trav_in]{trav_in()}}, \code{\link[=trav_both]{trav_both()}},
 \code{\link[=trav_out_node]{trav_out_node()}}, \code{\link[=trav_in_node]{trav_in_node()}}, \code{\link[=trav_out_until]{trav_out_until()}}, or
 \code{\link[=trav_in_until]{trav_in_until()}}.
 }

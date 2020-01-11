@@ -12,7 +12,7 @@ get_cmty_walktrap(graph, steps = 4)
 \item{steps}{the number of steps to take for each of the random walks.}
 }
 \value{
-a data frame with group membership assignments for each of the nodes.
+A data frame with group membership assignments for each of the nodes.
 }
 \description{
 With the Walktrap community finding algorithm, obtain the group membership

@@ -4,8 +4,12 @@
 \alias{get_attr_dfs}
 \title{Get data frames bound to node attributes}
 \usage{
-get_attr_dfs(graph, node_id = NULL, edge_id = NULL,
-  return_format = "single_tbl")
+get_attr_dfs(
+  graph,
+  node_id = NULL,
+  edge_id = NULL,
+  return_format = "single_tbl"
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -22,7 +26,7 @@ resulting from a \code{bind_rows} operation of multiple data frames), and (2)
 \code{single_df} (a single data frame which all of the data frame data).}
 }
 \value{
-either a tibble or a data frame.
+Either a tibble or a data frame.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get one or more data frames

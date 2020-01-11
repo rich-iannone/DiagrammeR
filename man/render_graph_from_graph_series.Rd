@@ -4,8 +4,13 @@
 \alias{render_graph_from_graph_series}
 \title{Render a graph available in a series}
 \usage{
-render_graph_from_graph_series(graph_series, graph_no, output = "graph",
-  width = NULL, height = NULL)
+render_graph_from_graph_series(
+  graph_series,
+  graph_no,
+  output = "graph",
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{graph_series}{A graph series object of type \code{dgr_graph_1D}.}

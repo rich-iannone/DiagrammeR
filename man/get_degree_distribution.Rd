@@ -10,11 +10,11 @@ get_degree_distribution(graph, mode = "total")
 \item{graph}{A graph object of class \code{dgr_graph}.}
 
 \item{mode}{using \code{total} (the default), degree considered for each node
-will be the total degree. With \code{in} and \code{out} the degree used
+will be the total degree. With \verb{in} and \code{out} the degree used
 will be the in-degree and out-degree, respectively.}
 }
 \value{
-a data frame with degree frequencies.
+A data frame with degree frequencies.
 }
 \description{
 Get degree distribution data for a graph. Graph degree is represented as a

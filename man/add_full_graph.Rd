@@ -4,9 +4,19 @@
 \alias{add_full_graph}
 \title{Add a fully connected graph}
 \usage{
-add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
-  edge_wt_matrix = NULL, keep_loops = FALSE, node_aes = NULL,
-  edge_aes = NULL, node_data = NULL, edge_data = NULL)
+add_full_graph(
+  graph,
+  n,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  edge_wt_matrix = NULL,
+  keep_loops = FALSE,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

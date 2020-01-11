@@ -4,8 +4,14 @@
 \alias{add_n_nodes}
 \title{Add one or several unconnected nodes to the graph}
 \usage{
-add_n_nodes(graph, n, type = NULL, label = NULL, node_aes = NULL,
-  node_data = NULL)
+add_n_nodes(
+  graph,
+  n,
+  type = NULL,
+  label = NULL,
+  node_aes = NULL,
+  node_data = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

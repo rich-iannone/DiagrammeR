@@ -26,7 +26,7 @@ set and none exist as an empty string.}
 \item{id}{an edge ID of the edge to be removed.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing edge by

@@ -4,6 +4,6 @@
 \alias{\%>\%}
 \title{The magrittr pipe}
 \description{
-DiagrammeR uses the pipe function, \code{\\\%>\\\%} to turn function composition
+DiagrammeR uses the pipe function, \verb{\\\%>\\\%} to turn function composition
 into a series of imperative statements.
 }
