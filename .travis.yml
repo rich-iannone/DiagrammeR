@@ -2,7 +2,7 @@ language: r
 
 r:
   - release
-  - dev
+  - devel
 
 warnings_are_errors: false
 
