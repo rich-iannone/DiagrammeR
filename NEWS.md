@@ -1,3 +1,5 @@
+# DiagrammeR (development version)
+
 # DiagrammeR 1.0.0
 
 * Added the helper functions `node_aes()`, `node_data()`, `edge_aes()`, and `edge_data()` to facilitate the binding of node and edge aesthetic and data attribute values; several functions now have namesake arguments that accept these functions' output.
