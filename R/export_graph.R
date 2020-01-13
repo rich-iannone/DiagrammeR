@@ -12,8 +12,8 @@
 #'   export to image file formats `png`, `pdf`, `svg`, and `ps`.
 #' @param height Output height in pixels or `NULL` for default. Only useful for
 #'   export to image file formats `png`, `pdf`, `svg`, and `ps`.
+#'
 #' @examples
-#' \dontrun{
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
@@ -22,25 +22,30 @@
 #'       edge_aes = edge_aes(
 #'         arrowhead = c(
 #'           "normal", "vee",
-#'           "tee", "dot"),
+#'           "tee", "dot"
+#'         ),
 #'         color = c(
 #'         "red", "blue",
-#'         "orange", "purple")))
+#'         "orange", "purple"
+#'         )
+#'       )
+#'     )
 #'
 #' # Create a PDF file for
 #' # the graph (`graph.pdf`)
-#' graph %>%
-#'   export_graph(
-#'     file_name = "graph.pdf",
-#'     title = "Simple Graph")
+#' # graph %>%
+#' #   export_graph(
+#' #     file_name = "graph.pdf",
+#' #     title = "Simple Graph"
+#' #   )
 #'
 #' # Create a PNG file for
 #' # the graph (`mypng.png`)
-#' graph %>%
-#'   export_graph(
-#'     file_name = "mypng.png",
-#'     file_type = "PNG")
-#' }
+#' # graph %>%
+#' #   export_graph(
+#' #     file_name = "mypng.png",
+#' #     file_type = "PNG"
+#' #   )
 #'
 #' @export
 export_graph <- function(graph,
@@ -66,9 +71,7 @@ export_graph <- function(graph,
   # on user's current date/time
   if (is.null(file_name) & is.null(file_type)) {
     file_name <-
-      paste0("graph_",
-             format(Sys.time(),
-                    "%Y_%m_%d__%H_%M_%S"), ".pdf")
+      paste0("graph_", format(Sys.time(), "%Y_%m_%d__%H_%M_%S"), ".pdf")
     file_type <- "pdf"
   }
 
@@ -77,8 +80,7 @@ export_graph <- function(graph,
   # extension provided, default to PDF export
   if (is.null(file_type) & !is.null(file_name)) {
     if (grepl("\\.", file_name)) {
-      file_type <-
-        gsub(".*\\.([A-Za-z])", "\\1", file_name)
+      file_type <- gsub(".*\\.([A-Za-z])", "\\1", file_name)
     } else {
       file_name <- paste0(file_name, ".pdf")
       file_type <- "pdf"
@@ -90,8 +92,7 @@ export_graph <- function(graph,
       requireNamespace("rsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -102,8 +103,7 @@ export_graph <- function(graph,
     }
 
     # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -115,25 +115,11 @@ export_graph <- function(graph,
 
     if (!is.null(title)) {
 
-      graph <-
-        add_global_graph_attrs(
-          graph, "label", title, "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labelloc", "t", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labeljust", "c", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontname", "Helvetica", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontcolor", "gray30", "graph")
+      graph <- add_global_graph_attrs(graph, "label", title, "graph")
+      graph <- add_global_graph_attrs(graph, "labelloc", "t", "graph")
+      graph <- add_global_graph_attrs(graph, "labeljust", "c", "graph")
+      graph <- add_global_graph_attrs(graph, "fontname", "Helvetica", "graph")
+      graph <- add_global_graph_attrs(graph, "fontcolor", "gray30", "graph")
     }
 
     # Generate DOT code
@@ -141,11 +127,11 @@ export_graph <- function(graph,
 
     # Produce a PNG file in the working directory
     rsvg::rsvg_png(
-      charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+      charToRaw(DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
-      height = height)
+      height = height
+    )
   }
 
   if ((file_type == "PDF" | file_type == "pdf") &&
@@ -153,8 +139,7 @@ export_graph <- function(graph,
     requireNamespace("rsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -165,8 +150,7 @@ export_graph <- function(graph,
     }
 
     # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -177,25 +161,11 @@ export_graph <- function(graph,
     }
 
     if (!is.null(title)) {
-      graph <-
-        add_global_graph_attrs(
-          graph, "label", title, "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labelloc", "t", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labeljust", "c", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontname", "Helvetica", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontcolor", "gray30", "graph")
+      graph <- add_global_graph_attrs(graph, "label", title, "graph")
+      graph <- add_global_graph_attrs(graph, "labelloc", "t", "graph")
+      graph <- add_global_graph_attrs(graph, "labeljust", "c", "graph")
+      graph <- add_global_graph_attrs(graph, "fontname", "Helvetica", "graph")
+      graph <- add_global_graph_attrs(graph, "fontcolor", "gray30", "graph")
     }
 
     # Generate DOT code
@@ -203,11 +173,11 @@ export_graph <- function(graph,
 
     # Produce a PDF file in the working directory
     rsvg::rsvg_pdf(
-      charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+      charToRaw(DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
-      height = height)
+      height = height
+    )
   }
 
   if ((file_type == "SVG" | file_type == "svg") &&
@@ -215,8 +185,7 @@ export_graph <- function(graph,
       requireNamespace("rsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -227,8 +196,7 @@ export_graph <- function(graph,
     }
 
     # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -252,11 +220,11 @@ export_graph <- function(graph,
 
     # Produce an SVG file in the working directory
     rsvg::rsvg_svg(
-      charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+      charToRaw(DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
-      height = height)
+      height = height
+    )
   }
 
   if ((file_type == "PS" | file_type == "ps") &&
@@ -264,8 +232,7 @@ export_graph <- function(graph,
     requireNamespace("rsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -276,8 +243,7 @@ export_graph <- function(graph,
     }
 
     # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
+    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -289,25 +255,11 @@ export_graph <- function(graph,
 
     if (!is.null(title)) {
 
-      graph <-
-        add_global_graph_attrs(
-          graph, "label", title, "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labelloc", "t", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labeljust", "c", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontname", "Helvetica", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontcolor", "gray30", "graph")
+      graph <- add_global_graph_attrs(graph, "label", title, "graph")
+      graph <- add_global_graph_attrs(graph, "labelloc", "t", "graph")
+      graph <- add_global_graph_attrs(graph, "labeljust", "c", "graph")
+      graph <- add_global_graph_attrs(graph, "fontname", "Helvetica", "graph")
+      graph <- add_global_graph_attrs(graph, "fontcolor", "gray30", "graph")
     }
 
     # Generate DOT code
@@ -315,10 +267,10 @@ export_graph <- function(graph,
 
     # Produce a PS file in the working directory
     rsvg::rsvg_ps(
-      charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+      charToRaw(DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
-      height = height)
+      height = height
+    )
   }
 }

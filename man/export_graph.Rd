@@ -34,7 +34,6 @@ Export a graph to a variety of image formats such as PNG, PDF, SVG, and
 PostScript.
 }
 \examples{
-\dontrun{
 # Create a simple graph
 graph <-
   create_graph() \%>\%
@@ -43,24 +42,29 @@ graph <-
       edge_aes = edge_aes(
         arrowhead = c(
           "normal", "vee",
-          "tee", "dot"),
+          "tee", "dot"
+        ),
         color = c(
         "red", "blue",
-        "orange", "purple")))
+        "orange", "purple"
+        )
+      )
+    )
 
 # Create a PDF file for
 # the graph (`graph.pdf`)
-graph \%>\%
-  export_graph(
-    file_name = "graph.pdf",
-    title = "Simple Graph")
+# graph \%>\%
+#   export_graph(
+#     file_name = "graph.pdf",
+#     title = "Simple Graph"
+#   )
 
 # Create a PNG file for
 # the graph (`mypng.png`)
-graph \%>\%
-  export_graph(
-    file_name = "mypng.png",
-    file_type = "PNG")
-}
+# graph \%>\%
+#   export_graph(
+#     file_name = "mypng.png",
+#     file_type = "PNG"
+#   )
 
 }

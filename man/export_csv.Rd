@@ -31,7 +31,7 @@ clause. The \code{graphframes} option modifies column names to match those
 required by the Spark GraphFrames package.}
 }
 \description{
-Export a graph to CSV files for nodes and edges.
+Export a graph to separate CSV files for nodes and edges.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -40,23 +40,26 @@ ndf <-
     n = 4,
     type = c("a", "a", "z", "z"),
     label = TRUE,
-    value = c(3.5, 2.6, 9.4, 2.7))
+    value = c(3.5, 2.6, 9.4, 2.7)
+  )
 
 # Create an edge data frame (edf)
 edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
-    rel = c("rel_a", "rel_z", "rel_a"))
+    rel = c("rel_a", "rel_z", "rel_a")
+  )
 
 # Create a graph with the ndf and edf
 graph <-
   create_graph(
     nodes_df = ndf,
-    edges_df = edf)
+    edges_df = edf
+  )
 
-# Create separate `nodes.csv` and `edges.csv`
-# files in the working directory
-graph \%>\% export_csv()
+# Create separate `nodes.csv` and
+# `edges.csv` files
+# graph \%>\% export_csv()
 
 }
