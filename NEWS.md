@@ -1,4 +1,4 @@
-# DiagrammeR 1.0.3
+# DiagrammeR 1.0.4
 
 * Removes the ability to save a DiagrammeR graph object as a Gephi file (.gexf) since the **rgexf** package is no longer maintained
 
