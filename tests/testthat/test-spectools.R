@@ -45,3 +45,12 @@ test_that("the specification tools are functional", {
   expect_is(
     replaced_spec, c("grViz", "htmlwidget"))
 })
+
+test_that("specification substitution works without quotes", {
+
+  spec <- "digraph { @@1 }
+   [1]: LETTERS[1]"
+  replaced_spec <- replace_in_spec(spec)
+  expect_equal(replaced_spec, "digraph { A }")
+
+})
