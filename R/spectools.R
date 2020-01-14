@@ -104,8 +104,8 @@ replace_in_spec <- function(spec) {
 
       while (grepl(paste0("@@", i, "([^-0-9])"), spec_body)) {
 
-        spec_body <- gsub(paste0("'@@", i, "'"),
-                          paste0("'", eval_expressions[[i]][1], "'"), spec_body)
+        spec_body <- gsub(paste0("@@", i),
+                          eval_expressions[[i]][1], spec_body)
       }
     }
 
