@@ -306,25 +306,25 @@ trav_both_edge <- function(graph,
 
       from_join <-
         ndf %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "from")) %>%
-        dplyr::select_("e_id", copy_attrs_from)
+        dplyr::select("e_id",!! enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "to")) %>%
-        dplyr::select_("e_id", copy_attrs_from)
+        dplyr::select("e_id",!! enquo(copy_attrs_from))
 
       if (!is.null(copy_attrs_as)) {
 
@@ -359,7 +359,7 @@ trav_both_edge <- function(graph,
 
       from_join <-
         ndf %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -403,11 +403,11 @@ trav_both_edge <- function(graph,
       # Drop the ".x" column
       from_join <-
         from_join %>%
-        dplyr::select_("e_id", copy_attrs_from)
+        dplyr::select("e_id",!! enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -449,7 +449,7 @@ trav_both_edge <- function(graph,
       # Drop the ".x" column
       to_join <-
         to_join %>%
-        dplyr::select_("e_id", copy_attrs_from)
+        dplyr::select("e_id",!! enquo(copy_attrs_from))
 
       edges <-
         dplyr::bind_rows(

@@ -312,7 +312,7 @@ trav_in_edge <- function(graph,
     ndf_2 <-
       ndf %>%
       dplyr::filter(id %in% starting_nodes) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 

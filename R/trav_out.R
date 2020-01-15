@@ -328,8 +328,8 @@ trav_out <- function(graph,
       valid_nodes %>%
       dplyr::select(id) %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("from" = "id")) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     # If the values to be copied are numeric,
     # perform aggregation on the values

@@ -305,15 +305,15 @@ trav_both <- function(graph,
       valid_nodes %>%
       dplyr::select(id) %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("to" = "id")) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("to" = "id")) %>%
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     to_join <-
       valid_nodes %>%
       dplyr::select(id) %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("from" = "id")) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     nodes <-
       from_join %>%

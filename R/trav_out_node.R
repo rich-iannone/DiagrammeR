@@ -318,7 +318,7 @@ trav_out_node <- function(graph,
       starting_edges %>%
       dplyr::semi_join(valid_nodes, by = "from") %>%
       dplyr::left_join(edf, by = c("edge" = "id")) %>%
-      dplyr::select_("from.y", copy_attrs_from)
+      dplyr::select("from.y",!! enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 

@@ -54,7 +54,7 @@ to_igraph <- function(graph) {
   # exclude the `id` column
   edf <-
     graph$edges_df %>%
-    dplyr::select_("-id")
+    dplyr::select(-id)
 
   igraph::graph_from_data_frame(
     d = edf,
