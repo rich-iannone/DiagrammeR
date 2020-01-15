@@ -173,53 +173,16 @@ mutate_node_attrs_ws <- function(graph,
       get_node_ids(graph),
       suppressMessages(get_selection(graph)))
 
-  for (i in 1:length(exprs)) {
+  s <- ndf$id %in% unselected_nodes
+  order <- c(which(!s), which(s))
 
-    # Case where mutation occurs for an
-    # existing node attribute
-    if (names(exprs)[i] %in% colnames(ndf)) {
+  ndf <-
+    dplyr::bind_rows(
+      ndf %>% dplyr::filter(!(!! enquo(s))) %>% dplyr::mutate(!!! enquos(...)),
+      ndf %>% dplyr::filter( (!! enquo(s)))
+    ) %>% dplyr::arrange(!! enquo(order))
 
-      ndf_replacement <-
-        ndf %>%
-        dplyr::mutate_(
-          .dots = stats::setNames(list((exprs %>% paste())[i]),
-                           names(exprs)[i]))
-
-      ndf_replacement[
-        which(ndf$id %in% unselected_nodes), ] <-
-        ndf[
-          which(ndf$id %in% unselected_nodes), ]
-
-      # Update the graph's ndf
-      graph$nodes_df <- ndf_replacement
-
-      # Reobtain the changed ndf for
-      # any subsequent mutations
-      ndf <- get_node_df(graph)
-    }
-
-    # Case where mutation creates a
-    # new node attribute
-    if (!(names(exprs)[i] %in% colnames(ndf))) {
-
-      ndf_replacement <-
-        ndf %>%
-        dplyr::mutate_(
-          .dots = stats::setNames(list((exprs %>% paste())[i]),
-                           names(exprs)[i]))
-
-      ndf_replacement[
-        which(ndf$id %in% unselected_nodes),
-        which(colnames(ndf_replacement) == names(exprs)[i])] <- NA
-
-      # Update the graph's ndf
-      graph$nodes_df <- ndf_replacement
-
-      # Reobtain the changed ndf for
-      # any subsequent mutations
-      ndf <- get_node_df(graph)
-    }
-  }
+  graph$nodes_df <- ndf
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
