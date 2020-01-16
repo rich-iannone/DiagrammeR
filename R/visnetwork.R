@@ -4,7 +4,7 @@
 #'
 #' @inheritParams render_graph
 #' @examples
-#' \dontrun{
+#'
 #' # Create a node data frame (ndf)
 #' ndf <-
 #'   create_node_df(
@@ -14,7 +14,8 @@
 #'                   "pink", "aqua", "yellow"),
 #'     shape = "dot",
 #'     size = c(20, 80, 40, 10, 30, 50),
-#'     type = c("1", "1", "1", "2", "2", "2"))
+#'     type = c("1", "1", "1", "2", "2", "2")
+#'   )
 #'
 #' # Create an edge data frame (edf)
 #' edf <-
@@ -23,16 +24,17 @@
 #'     to = c(4, 3, 1, 3, 1, 4),
 #'     color = c("green", "green", "grey",
 #'               "grey", "blue", "blue"),
-#'     rel = "leading_to")
+#'     rel = "leading_to"
+#'   )
 #'
 #' # Create a graph object
 #' graph <-
 #'   create_graph(
 #'     nodes_df = ndf,
-#'     edges_df = edf)
+#'     edges_df = edf
+#'   )
 #'
-#' visnetwork(graph)
-#' }
+#' # visnetwork(graph)
 #'
 #' @import visNetwork
 #' @export

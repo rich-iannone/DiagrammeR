@@ -16,7 +16,7 @@
 #' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Render a graph that's a
 #' # balanced tree
 #' create_graph() %>%

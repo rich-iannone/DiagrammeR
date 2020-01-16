@@ -21,7 +21,6 @@ with distinct \code{type} values, including any edges to nodes of the same \code
 verified by using the \code{\link[=is_property_graph]{is_property_graph()}} function.
 }
 \examples{
-\dontrun{
 # Create a randomized property
 # graph with 1000 nodes and 1350 edges
 property_graph <-
@@ -82,7 +81,6 @@ property_graph <-
 # Display this graph's
 # metagraph, or, the underlying
 # graph model for a property graph
-display_metagraph(property_graph)
-}
+# display_metagraph(property_graph)
 
 }
