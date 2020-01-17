@@ -334,10 +334,9 @@ trav_in <- function(graph,
       nodes <-
         nodes %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize_(.dots = stats::setNames(
-          list(stats::as.formula(
-            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
-          copy_attrs_from)) %>%
+        dplyr::summarize(!! copy_attrs_from :=
+                           match.fun(!! agg)(!! as.name(copy_attrs_from),
+                                             na.rm = TRUE)) %>%
         dplyr::ungroup()
     }
 

@@ -346,10 +346,9 @@ trav_both_edge <- function(graph,
         dplyr::left_join(edf, by = c("e_id" = "id")) %>%
         dplyr::rename(id = e_id) %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize_(.dots = stats::setNames(
-          list(stats::as.formula(
-            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
-          copy_attrs_from)) %>%
+        dplyr::summarize(!! copy_attrs_from :=
+                           match.fun(!! agg)(!! as.name(copy_attrs_from),
+                                             na.rm = TRUE)) %>%
         dplyr::right_join(edf, by = "id") %>%
         dplyr::select(id, from, to, rel, dplyr::everything()) %>%
         as.data.frame(stringsAsFractions = FALSE)
@@ -482,9 +481,9 @@ trav_both_edge <- function(graph,
         dplyr::arrange(e_id) %>%
         dplyr::rename(id = e_id) %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize_(.dots = stats::setNames(
-          list(stats::as.formula(
-            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))), copy_attrs_from)) %>%
+        dplyr::summarize(!! copy_attrs_from :=
+                            match.fun(!! agg)(!! as.name(copy_attrs_from),
+                                              na.rm = TRUE)) %>%
         dplyr::ungroup() %>%
         dplyr::right_join(edf, by = "id")
 

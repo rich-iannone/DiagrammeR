@@ -111,11 +111,12 @@ get_agg_degree_out <- function(graph,
 
   # Get the aggregate value of total degree based
   # on the aggregate function provided
+  fun <- match.fun(agg)
+
   outdegree_agg <-
     outdegree_df %>%
     dplyr::group_by() %>%
-    dplyr::summarize_(stats::as.formula(
-      paste0("~", agg, "(outdegree, na.rm = TRUE)"))) %>%
+    dplyr::summarize(fun(outdegree, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     purrr::flatten_dbl()
 
