@@ -184,7 +184,7 @@ layout_nodes_w_string <- function(graph,
     # Filter the graph `ndf`
     ndf_part <-
       ndf %>%
-      dplyr::filter_(paste0(node_attr, " == '", node_attr_val, "'"))
+      dplyr::filter(!! parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
 
     # Optionally apply sorting
     if (!is.null(sort)) {
