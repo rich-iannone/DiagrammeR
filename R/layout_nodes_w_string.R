@@ -191,12 +191,12 @@ layout_nodes_w_string <- function(graph,
       if (sort_dir == "desc") {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange_(paste0("desc(", sort_attr, ")"))
+          dplyr::arrange(desc(!! sym(sort_attr)))
 
       } else {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange_(sort_attr)
+          dplyr::arrange(!! sym(sort_attr))
       }
     }
 
