@@ -18,32 +18,3 @@ coerced to a string and have \code{px} appended.}
 \description{
 Widget output function for use in Shiny
 }
-\examples{
-\dontrun{
-library(shiny)
-library(shinyAce)
-
-ui = shinyUI(fluidPage(fluidRow(
-  column(
-    width=4
-    , aceEditor("ace", selectionId = "selection", value="digraph {A;}")
-  ),
-  column(
-    width = 6
-    , grVizOutput('diagram' )
-  )
-)))
-
-server = function(input, output) {
-  output$diagram <- renderGrViz({
-    grViz(
-      input$ace
-    )
-  })
-
-}
-
-shinyApp(ui = ui, server = server)
-}
-
-}

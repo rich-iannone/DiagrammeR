@@ -19,15 +19,17 @@
 #'
 #' # Save the graph to disk; use
 #' # the file name `gnp_graph.dgr`
-#' save_graph(
-#'   x = gnp_graph,
-#'   file = "gnp_graph")
+#' # save_graph(
+#' #   x = gnp_graph,
+#' #   file = "gnp_graph"
+#' # )
 #'
 #' # To read the graph file from
 #' # disk, use `open_graph()`
-#' gnp_graph_2 <-
-#'   open_graph(
-#'     file = "gnp_graph.dgr")
+#' # gnp_graph_2 <-
+#' #   open_graph(
+#' #     file = "gnp_graph.dgr"
+#' # )
 #'
 #' @export
 save_graph <- function(x,

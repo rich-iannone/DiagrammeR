@@ -12,7 +12,6 @@
 #'   condition of being a property graph, otherwise the function yields an
 #'   error.
 #' @examples
-#' \dontrun{
 #' # Create a randomized property
 #' # graph with 1000 nodes and 1350 edges
 #' property_graph <-
@@ -73,8 +72,7 @@
 #' # Display this graph's
 #' # metagraph, or, the underlying
 #' # graph model for a property graph
-#' display_metagraph(property_graph)
-#' }
+#' # display_metagraph(property_graph)
 #'
 #' @export
 display_metagraph <- function(graph) {
