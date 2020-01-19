@@ -118,7 +118,7 @@ renderGrViz <- function(expr,
   htmlwidgets::shinyRenderWidget(
     expr = expr,
     outputFunction = grVizOutput,
-    evn = env,
+    env = env,
     quoted = TRUE
   )
 }
