@@ -305,24 +305,23 @@ trav_both <- function(graph,
       valid_nodes %>%
       dplyr::select(id) %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("to" = "id")) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("to" = "id")) %>%
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     to_join <-
       valid_nodes %>%
       dplyr::select(id) %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("from" = "id")) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     nodes <-
       from_join %>%
       dplyr::union_all(to_join) %>%
       dplyr::group_by(id) %>%
-      dplyr::summarize_(.dots = stats::setNames(
-        list(stats::as.formula(
-          paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
-        copy_attrs_from)) %>%
+      dplyr::summarize(!! copy_attrs_from :=
+                         match.fun(!! agg)(!! as.name(copy_attrs_from),
+                                           na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
       dplyr::select(id, type, label, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
