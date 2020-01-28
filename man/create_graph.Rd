@@ -4,9 +4,15 @@
 \alias{create_graph}
 \title{Create a graph object}
 \usage{
-create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
-  graph_name = NULL, attr_theme = "default", write_backups = FALSE,
-  display_msgs = FALSE)
+create_graph(
+  nodes_df = NULL,
+  edges_df = NULL,
+  directed = TRUE,
+  graph_name = NULL,
+  attr_theme = "default",
+  write_backups = FALSE,
+  display_msgs = FALSE
+)
 }
 \arguments{
 \item{nodes_df}{An optional data frame containing, at minimum, a column

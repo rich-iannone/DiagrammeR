@@ -13,7 +13,9 @@
 #'   graph nodes. This can either be as a `union` (the default), as an
 #'   intersection of selections with `intersect`, or, as a `difference` on the
 #'   previous selection, if it exists.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using
 #' # the `add_gnm_graph()` function
@@ -121,13 +123,8 @@ select_nodes_by_degree <- function(graph,
   # Get a data frame with node ID and degree types
   node_degree <-
     get_node_info(graph) %>%
-    dplyr::select(id, deg, indeg, outdeg)
-
-  for (i in 1:length(expressions)) {
-    node_degree <-
-      node_degree %>%
-      dplyr::filter_(expressions[i])
-  }
+    dplyr::select(id, deg, indeg, outdeg) %>%
+    dplyr::filter(!!! parse_exprs(expressions))
 
   # Get the node ID values from the filtered table
   nodes_selected <- node_degree$id

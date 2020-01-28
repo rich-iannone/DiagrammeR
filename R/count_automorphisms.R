@@ -5,8 +5,10 @@
 #' preserving edge-node connectivity.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the number of automorphisms the
 #'   graph contains.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

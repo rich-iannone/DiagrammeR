@@ -6,7 +6,9 @@
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
 #'   edges.
-#' @return a vector of edge ID values.
+#'
+#' @return A vector of edge ID values.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

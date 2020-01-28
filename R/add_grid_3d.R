@@ -10,7 +10,9 @@
 #' @param label Either a vector object of length `x * y * z` that provides
 #'   optional labels for the new nodes, or, a logical value where setting to
 #'   `TRUE` ascribes node IDs to the label and `FALSE` yields a blank label.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph and add
 #' # a 2 x 2 x 2 grid

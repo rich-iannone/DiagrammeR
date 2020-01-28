@@ -4,7 +4,9 @@
 #'
 #' @param ... Two or more node data frames, which contain node IDs and
 #'   associated attributes.
+#'
 #' @return A combined node data frame.
+#'
 #' @examples
 #' # Create two node data frames
 #' node_df_1 <-

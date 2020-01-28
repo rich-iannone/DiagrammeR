@@ -21,7 +21,9 @@
 #'   label values.
 #' @param keep_loops An option to simplify the fully connected graph by removing
 #'   loops (edges from and to the same node). The default value is `FALSE`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph object
 #' # and add a directed and fully
@@ -34,7 +36,8 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_full_graph(
-#'     n = 3, keep_loops = TRUE)
+#'     n = 3, keep_loops = TRUE
+#'   )
 #'
 #' # Get node information
 #' # from this graph
@@ -56,7 +59,8 @@
 #'     n = 3,
 #'     type = "connected",
 #'     label = c("1st", "2nd", "3rd"),
-#'     rel = "connected_to")
+#'     rel = "connected_to"
+#'   )
 #'
 #' # Show the graph's node
 #' # data frame (ndf)
@@ -80,9 +84,10 @@
 #'   sample(9, FALSE) %>%
 #'   round(2) %>%
 #'   matrix(
-#'     nc = 3,
-#'     nr = 3,
-#'     dimnames = list(c("a", "b", "c")))
+#'     ncol = 3,
+#'     nrow = 3,
+#'     dimnames = list(c("a", "b", "c"))
+#'   )
 #'
 #' # Create the fully-connected
 #' # graph (without loops however)
@@ -116,7 +121,8 @@
 #'     label = TRUE,
 #'     rel = "related_to",
 #'     edge_wt_matrix = edge_wt_matrix,
-#'     keep_loops = FALSE) %>%
+#'     keep_loops = FALSE
+#'   ) %>%
 #'   get_edge_df()
 #'
 #' @export

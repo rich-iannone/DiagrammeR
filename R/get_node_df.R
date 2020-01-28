@@ -3,7 +3,9 @@
 #' From a graph, obtain a node data frame with all current node attributes.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A node data frame.
+#'
 #' @examples
 #' # Create a graph
 #' graph <-

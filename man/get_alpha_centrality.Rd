@@ -4,8 +4,13 @@
 \alias{get_alpha_centrality}
 \title{Get the alpha centrality for all nodes}
 \usage{
-get_alpha_centrality(graph, alpha = 1, exo = 1, weights_attr = NULL,
-  tol = 1e-07)
+get_alpha_centrality(
+  graph,
+  alpha = 1,
+  exo = 1,
+  weights_attr = NULL,
+  tol = 1e-07
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -26,7 +31,7 @@ matrix will be used in calculations.}
 The default value is set to \code{1e-7}.}
 }
 \value{
-a data frame with alpha centrality scores for each of the nodes.
+A data frame with alpha centrality scores for each of the nodes.
 }
 \description{
 Get the alpha centrality values for all nodes in the graph.

@@ -7,7 +7,9 @@
 #'   removed.
 #' @param index The index of the graph object to be removed from the graph
 #'   series object.
+#'
 #' @return A graph series object of type `dgr_graph_1D`.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

@@ -13,7 +13,7 @@ do_dfs(graph, node = NULL, direction = "all")
 the dfs. If not provided, a random node from the graph will be chosen.}
 
 \item{direction}{Using \code{all} (the default), the bfs will ignore edge
-direction while traversing through the graph. With \code{out} and \code{in},
+direction while traversing through the graph. With \code{out} and \verb{in},
 traversals between adjacent nodes will respect the edge direction.}
 }
 \value{

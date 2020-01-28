@@ -5,7 +5,9 @@
 #' @param weights_attr an optional name of the edge attribute to use in the
 #' adjacency matrix. If `NULL` then, if it exists, the `weight` edge
 #' attribute of the graph will be used.
+#'
 #' @return a data frame with authority scores for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -15,7 +15,9 @@
 #' @param node_attr_to An optional name of a new node attribute to which the
 #'   recoded values will be applied. This will retain the original node
 #'   attribute and its values.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

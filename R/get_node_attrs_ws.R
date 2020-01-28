@@ -18,8 +18,10 @@
 #'
 #' @inheritParams render_graph
 #' @param node_attr The name of the attribute for which to get values.
+#'
 #' @return A named vector of node attribute values for the attribute given by
 #'   `node_attr` by node ID.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

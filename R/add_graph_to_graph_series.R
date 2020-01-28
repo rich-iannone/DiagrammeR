@@ -6,7 +6,9 @@
 #' @param graph_series A graph series object to which the graph object will be
 #'   added.
 #' @param graph A graph object to add to the graph series object.
+#'
 #' @return A graph series object of type `dgr_graph_1D`.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

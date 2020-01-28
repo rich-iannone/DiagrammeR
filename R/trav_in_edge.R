@@ -30,7 +30,9 @@
 #'   written under a different edge attribute name. If the attribute name
 #'   provided in `copy_attrs_as` does not exist in the graph's edf, the new edge
 #'   attribute will be created with the chosen name.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -310,7 +312,7 @@ trav_in_edge <- function(graph,
     ndf_2 <-
       ndf %>%
       dplyr::filter(id %in% starting_nodes) %>%
-      dplyr::select_("id", copy_attrs_from)
+      dplyr::select("id",!! enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 

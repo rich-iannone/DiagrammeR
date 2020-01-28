@@ -19,7 +19,7 @@ argument.}
 that data frame must provided here.}
 }
 \value{
-Aa graph object of class \code{dgr_graph}.
+A graph object of class \code{dgr_graph}.
 }
 \description{
 Place any vector in the cache of a graph object of class \code{dgr_graph}.
@@ -32,7 +32,8 @@ graph <-
   add_gnm_graph(
     n = 10,
     m = 22,
-    set_seed = 23)
+    set_seed = 23
+  )
 
 # Get the closeness values for
 # all nodes from `1` to `10` and
@@ -42,12 +43,12 @@ graph <-
   set_cache(
     name = "closeness_vector",
     to_cache = get_closeness(.),
-    col = "closeness")
+    col = "closeness"
+  )
 
 # Get the graph's cache
 graph \%>\%
-  get_cache(
-    name = "closeness_vector")
+  get_cache(name = "closeness_vector")
 
 # Get the difference of betweenness
 # and closeness values for nodes in
@@ -59,7 +60,8 @@ graph <-
     name = "difference",
     to_cache =
       get_betweenness(.)$betweenness -
-        get_closeness(.)$closeness)
+        get_closeness(.)$closeness
+  )
 
 # Get the graph's cache
 graph \%>\%

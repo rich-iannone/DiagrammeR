@@ -14,7 +14,9 @@
 #'   If both `by_graph` and `by_df` are not provided, then a natural join will
 #'   occur if there are columns in the graph's edf and in `df` with identical
 #'   names.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

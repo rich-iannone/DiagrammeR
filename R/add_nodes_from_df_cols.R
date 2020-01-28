@@ -16,7 +16,9 @@
 #' @param keep_duplicates An option to exclude incoming nodes where the labels
 #'   (i.e., values found in columns of the specified `df`) match label values
 #'   available in the graph's nodes. By default, this is set to `FALSE`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()
@@ -134,7 +136,7 @@ add_nodes_from_df_cols <- function(graph,
           trimws() %>%
           stringr::str_split(" ") %>%
           purrr::flatten_chr() %>%
-          dplyr::as_tibble(.name_repair = "unique") %>%
+          tibble::enframe(name = NULL) %>%
           tidyr::drop_na() %>%
           dplyr::distinct() %>%
           purrr::flatten_chr())

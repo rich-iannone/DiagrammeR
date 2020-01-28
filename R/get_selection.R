@@ -4,7 +4,9 @@
 #' class `dgr_graph`.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A vector with the current selection of node or edge ID values.
+#'
 #' @examples
 #' # Create a simple graph
 #' graph <-

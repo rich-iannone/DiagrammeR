@@ -24,7 +24,7 @@ node attribute values. Valid functions are: \code{\link[=get_alpha_centrality]{g
 
 \item{column_name}{An option to supply a column name for the new node
 attribute column. If \code{NULL} then the column name supplied by the function
-will used along with a \code{__A} suffix.}
+will used along with a \verb{__A} suffix.}
 }
 \value{
 A graph object of class \code{dgr_graph}.

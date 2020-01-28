@@ -4,7 +4,9 @@
 #' graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with a
 #' # directed tree

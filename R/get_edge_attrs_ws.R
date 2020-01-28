@@ -16,8 +16,10 @@
 #'
 #' @inheritParams render_graph
 #' @param edge_attr the name of the attribute for which to get values.
-#' @return a named vector of edge attribute values for the attribute given by
+#'
+#' @return A named vector of edge attribute values for the attribute given by
 #'   `edge_attr` by edge.
+#'
 #' @examples
 #' # Create a simple graph where
 #' # edges have an edge attribute

@@ -21,7 +21,9 @@
 #' @inheritParams render_graph
 #' @param rel An optional string to apply a `rel` attribute to all newly created
 #'   edges.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph, add 2 nodes
 #' # to it, and create the edge `1->2`

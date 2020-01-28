@@ -9,7 +9,9 @@
 #'   nodes.
 #' @param nodes An optional vector of node IDs for filtering the list of nodes
 #'   present in the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

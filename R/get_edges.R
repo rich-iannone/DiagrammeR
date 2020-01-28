@@ -15,8 +15,10 @@
 #' @param return_values using `id` (the default) results in node ID values
 #'   returned in the edge definitions. With `label`, the node labels will
 #'   instead be used to define edges.
-#' @return a list, data frame, or a vector object, depending on the value given
+#'
+#' @return A list, data frame, or a vector object, depending on the value given
 #'   to `return_type`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -114,9 +116,9 @@ get_edges <- function(graph,
   if (return_values == "label") {
     edges_df <-
       edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select_("id", "label"), by = c("from" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("from" = "id")) %>%
       dplyr::rename(from_label_ = label) %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select_("id", "label"), by = c("to" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("to" = "id")) %>%
       dplyr::rename(to_label_ = label)
   }
 
@@ -157,11 +159,11 @@ get_edges <- function(graph,
     if (return_values == "id") {
       edges_df <-
         edges_df %>%
-        dplyr::select_("from", "to")
+        dplyr::select("from", "to")
     } else if (return_values == "label") {
       edges_df <-
         edges_df %>%
-        dplyr::select_("from_label_", "to_label_")
+        dplyr::select("from_label_", "to_label_")
     }
 
     return(edges_df)

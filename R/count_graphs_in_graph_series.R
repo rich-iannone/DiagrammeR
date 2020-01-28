@@ -3,8 +3,10 @@
 #' Counts the total number of graphs in a graph series object.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`
+#'
 #' @return A numeric vector representing a count of graphs in a graph series
 #'   object.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

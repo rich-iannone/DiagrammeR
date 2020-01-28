@@ -5,7 +5,9 @@
 #' or, when manually invoked with the [trigger_graph_actions()] function.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A `df_tbl` object.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -4,8 +4,7 @@
 \alias{get_jaccard_similarity}
 \title{Get Jaccard similarity coefficient scores}
 \usage{
-get_jaccard_similarity(graph, nodes = NULL, direction = "all",
-  round_to = 3)
+get_jaccard_similarity(graph, nodes = NULL, direction = "all", round_to = 3)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -16,7 +15,7 @@ for every pair of nodes in the graph.}
 
 \item{direction}{Using \code{all} (the default), the function will ignore edge
 direction when determining scores for neighboring nodes. With \code{out} and
-\code{in}, edge direction for neighboring nodes will be considered.}
+\verb{in}, edge direction for neighboring nodes will be considered.}
 
 \item{round_to}{The maximum number of decimal places to retain for the
 Jaccard similarity coefficient scores. The default value is \code{3}.}

@@ -15,7 +15,7 @@ When set as \code{TRUE}, then the result for each node will be divided by
 the total number of nodes in the graph minus 1.}
 }
 \value{
-a data frame with total degree values for each of the nodes.
+A data frame with total degree values for each of the nodes.
 }
 \description{
 Get the total degree values for all nodes in a graph.

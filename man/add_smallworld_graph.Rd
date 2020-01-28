@@ -4,10 +4,23 @@
 \alias{add_smallworld_graph}
 \title{Add a Watts-Strogatz small-world graph}
 \usage{
-add_smallworld_graph(graph, dimension, size, neighborhood, p,
-  loops = FALSE, multiple = FALSE, type = NULL, label = TRUE,
-  rel = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
-  edge_data = NULL, set_seed = NULL)
+add_smallworld_graph(
+  graph,
+  dimension,
+  size,
+  neighborhood,
+  p,
+  loops = FALSE,
+  multiple = FALSE,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL,
+  set_seed = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

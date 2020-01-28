@@ -4,9 +4,19 @@
 \alias{add_full_graph}
 \title{Add a fully connected graph}
 \usage{
-add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
-  edge_wt_matrix = NULL, keep_loops = FALSE, node_aes = NULL,
-  edge_aes = NULL, node_data = NULL, edge_data = NULL)
+add_full_graph(
+  graph,
+  n,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  edge_wt_matrix = NULL,
+  keep_loops = FALSE,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -70,7 +80,8 @@ single edge will link each pair of nodes.
 graph <-
   create_graph() \%>\%
   add_full_graph(
-    n = 3, keep_loops = TRUE)
+    n = 3, keep_loops = TRUE
+  )
 
 # Get node information
 # from this graph
@@ -92,7 +103,8 @@ graph <-
     n = 3,
     type = "connected",
     label = c("1st", "2nd", "3rd"),
-    rel = "connected_to")
+    rel = "connected_to"
+  )
 
 # Show the graph's node
 # data frame (ndf)
@@ -116,9 +128,10 @@ edge_wt_matrix <-
   sample(9, FALSE) \%>\%
   round(2) \%>\%
   matrix(
-    nc = 3,
-    nr = 3,
-    dimnames = list(c("a", "b", "c")))
+    ncol = 3,
+    nrow = 3,
+    dimnames = list(c("a", "b", "c"))
+  )
 
 # Create the fully-connected
 # graph (without loops however)
@@ -152,7 +165,8 @@ create_graph(directed = FALSE) \%>\%
     label = TRUE,
     rel = "related_to",
     edge_wt_matrix = edge_wt_matrix,
-    keep_loops = FALSE) \%>\%
+    keep_loops = FALSE
+  ) \%>\%
   get_edge_df()
 
 }

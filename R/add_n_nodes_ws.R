@@ -33,7 +33,9 @@
 #'   added.
 #' @param rel An optional string to apply a `rel` attribute to all newly created
 #'   edges.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph

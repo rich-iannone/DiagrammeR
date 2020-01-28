@@ -14,7 +14,7 @@ scores. If not supplied, then constraint scores for all nodes in the graph
 will be calculated.}
 }
 \value{
-a data frame with constraint scores for one or more graph nodes.
+A data frame with constraint scores for one or more graph nodes.
 }
 \description{
 Get the constraint scores (based on Burt's Constraint Index) for one or more

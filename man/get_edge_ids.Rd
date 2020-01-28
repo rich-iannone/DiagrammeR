@@ -13,7 +13,7 @@ get_edge_ids(graph, conditions = NULL)
 edges.}
 }
 \value{
-a vector of edge ID values.
+A vector of edge ID values.
 }
 \description{
 Obtain a vector of edge ID values from a graph object. An optional filter by

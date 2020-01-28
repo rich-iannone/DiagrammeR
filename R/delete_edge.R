@@ -18,7 +18,9 @@
 #'   that this is only possible if all nodes have distinct `label` values
 #'   set and none exist as an empty string.
 #' @param id an edge ID of the edge to be removed.
-#' @return a graph object of class `dgr_graph`.
+#'
+#' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 2 nodes
 #' graph <-

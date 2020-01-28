@@ -6,7 +6,9 @@
 #' @param directed If `TRUE` (the default) then directed paths will be
 #'   considered for directed graphs. This is ignored for undirected graphs.
 #' @param damping The damping factor. The default value is set to `0.85`.
+#'
 #' @return A data frame with PageRank values for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

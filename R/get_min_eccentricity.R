@@ -9,8 +9,10 @@
 #'   direction while traversing through the graph. With `out`, measurements of
 #'   paths will be from a node whereas with `in`, measurements of paths will be
 #'   to a node.
+#'
 #' @return A single numeric value representing the minimum eccentricity of the
 #'   graph.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

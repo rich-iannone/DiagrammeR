@@ -17,7 +17,9 @@
 #'   none exist as an empty string.
 #' @param rel An optional string specifying the relationship between the
 #'   connected nodes.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-

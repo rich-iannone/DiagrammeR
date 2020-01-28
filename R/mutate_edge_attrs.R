@@ -9,7 +9,9 @@
 #'   consist of any valid R code that uses edge attributes as variables.
 #'   Expressions are evaluated in the order provided, so, edge attributes
 #'   created or modified are ready to use in subsequent expressions.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 3 edges
 #' graph <-
@@ -114,13 +116,7 @@ mutate_edge_attrs <- function(graph,
       reasons = "The variables `id`, `from`, or `to` cannot undergo mutation")
   }
 
-  for (i in 1:length(exprs)) {
-    edf <-
-      edf %>%
-      dplyr::mutate_(
-        .dots = stats::setNames(list((exprs %>% paste())[i]),
-                         names(exprs)[i]))
-  }
+  edf <- edf %>% dplyr::mutate(!!! enquos(...))
 
   # Update the graph
   graph$edges_df <- edf

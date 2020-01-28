@@ -4,7 +4,9 @@
 #'
 #' @inheritParams render_graph
 #' @param nodes A vector of node ID values.
+#'
 #' @return A vector of node ID values.
+#'
 #' @examples
 #' # Create a simple, directed graph with 5
 #' # nodes and 4 edges

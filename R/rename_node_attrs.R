@@ -7,7 +7,9 @@
 #' @param node_attr_from The name of the node attribute that will be renamed.
 #' @param node_attr_to The new name of the node attribute column identified in
 #'   `node_attr_from`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

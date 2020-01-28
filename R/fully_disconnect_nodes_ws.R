@@ -17,7 +17,9 @@
 #' [trav_in_until()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph and
 #' # add a path of 6 nodes

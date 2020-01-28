@@ -5,7 +5,9 @@
 #' edges to be selected.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph and add a cycle and then
 #' # a tree in 2 separate function calls

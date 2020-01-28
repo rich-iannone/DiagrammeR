@@ -7,7 +7,9 @@
 #' @param series_name An optional name to ascribe to the series.
 #' @param series_type Either a `sequential` type (the default) or a `temporal`
 #'   type (which requires date-time strings and time zone codes to be supplied).
+#'
 #' @return A graph series object of type `dgr_graph_1D`.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

@@ -4,14 +4,34 @@
 \alias{node_aes}
 \title{Insert node aesthetic attributes during node creation}
 \usage{
-node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
-  fillcolor = NULL, image = NULL, fa_icon = NULL, fontname = NULL,
-  fontsize = NULL, fontcolor = NULL, peripheries = NULL,
-  height = NULL, width = NULL, x = NULL, y = NULL, group = NULL,
-  tooltip = NULL, xlabel = NULL, URL = NULL, sides = NULL,
-  orientation = NULL, skew = NULL, distortion = NULL,
-  gradientangle = NULL, fixedsize = NULL, labelloc = NULL,
-  margin = NULL)
+node_aes(
+  shape = NULL,
+  style = NULL,
+  penwidth = NULL,
+  color = NULL,
+  fillcolor = NULL,
+  image = NULL,
+  fontname = NULL,
+  fontsize = NULL,
+  fontcolor = NULL,
+  peripheries = NULL,
+  height = NULL,
+  width = NULL,
+  x = NULL,
+  y = NULL,
+  group = NULL,
+  tooltip = NULL,
+  xlabel = NULL,
+  URL = NULL,
+  sides = NULL,
+  orientation = NULL,
+  skew = NULL,
+  distortion = NULL,
+  gradientangle = NULL,
+  fixedsize = NULL,
+  labelloc = NULL,
+  margin = NULL
+)
 }
 \arguments{
 \item{shape}{The shape to use for the node. Some possible \code{shape} types
@@ -34,8 +54,6 @@ any of the named colors that R knows about (obtained using the \code{colors()}
 function), or, a hexadecimal color code.}
 
 \item{image}{A reference to an image location.}
-
-\item{fa_icon}{The name of a FontAwesome icon.}
 
 \item{fontname}{The name of the system font that will be used for any node
 text.}
@@ -115,7 +133,7 @@ height of its label. The \code{labelloc} node attribute can be set to either \co
 centered.}
 
 \item{margin}{Sets the amount of space around the node's label. By default,
-the value is \code{0.11,0.055}.}
+the value is \verb{0.11,0.055}.}
 }
 \description{
 This helper function should be invoked to provide values for the namesake
@@ -134,7 +152,9 @@ graph <-
     node_aes = node_aes(
       shape = "circle",
       x = c(1, 3, 2),
-      y = c(4, -1, 3)))
+      y = c(4, -1, 3)
+    )
+  )
 
 # View the graph's internal
 # node data frame; the node
@@ -143,8 +163,7 @@ graph <-
 graph \%>\% get_node_df()
 
 # Create a new graph which is
-# fully connected and has FontAwesome
-# icons as nodes
+# fully connected
 graph <-
   create_graph() \%>\%
   add_full_graph(
@@ -152,10 +171,9 @@ graph <-
     node_data = node_data(value = 1:4),
     node_aes = node_aes(
       x = c(2, 1, 3, 2),
-      y = c(3, 2, 2, 1),
-      fa_icon = c(
-      "arrow-left", "arrow-right",
-      "arrow-up", "arrow-down")),
-    edge_aes = edge_aes(color = "blue"))
+      y = c(3, 2, 2, 1)
+    ),
+    edge_aes = edge_aes(color = "blue")
+  )
 
 }

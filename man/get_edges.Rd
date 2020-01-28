@@ -4,8 +4,12 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(graph, conditions = NULL, return_type = "vector",
-  return_values = "id")
+get_edges(
+  graph,
+  conditions = NULL,
+  return_type = "vector",
+  return_values = "id"
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -24,7 +28,7 @@ returned in the edge definitions. With \code{label}, the node labels will
 instead be used to define edges.}
 }
 \value{
-a list, data frame, or a vector object, depending on the value given
+A list, data frame, or a vector object, depending on the value given
 to \code{return_type}.
 }
 \description{

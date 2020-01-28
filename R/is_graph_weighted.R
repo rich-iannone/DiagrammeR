@@ -5,7 +5,9 @@
 #' `weight` attribute with numerical values assigned for all edges.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a graph where the edges have
 #' # a `weight` attribute

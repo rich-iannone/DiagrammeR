@@ -10,7 +10,9 @@
 #' @param edge The edge ID to which the data frame will be bound as an
 #'   attribute.
 #' @param df The data frame to be bound to the edge as an attribute.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param edge_attr The name of the edge attribute column to drop.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

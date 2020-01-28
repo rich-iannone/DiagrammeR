@@ -10,7 +10,7 @@ get_edge_df(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-an edge data frame.
+An edge data frame.
 }
 \description{
 From a graph, obtain an edge data frame with all current edge attributes.

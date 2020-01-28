@@ -4,8 +4,15 @@
 \alias{render_graph}
 \title{Render the graph in various formats}
 \usage{
-render_graph(graph, layout = NULL, output = NULL, as_svg = FALSE,
-  title = NULL, width = NULL, height = NULL)
+render_graph(
+  graph,
+  layout = NULL,
+  output = NULL,
+  as_svg = FALSE,
+  title = NULL,
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -32,7 +39,7 @@ resulting graphic in pixels.}
 Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 }
 \examples{
-\dontrun{
+\donttest{
 # Render a graph that's a
 # balanced tree
 create_graph() \%>\%

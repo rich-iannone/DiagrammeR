@@ -3,7 +3,9 @@
 #' Convert a DiagrammeR graph to an igraph graph object.
 #'
 #' @inheritParams render_graph
+#'
 #' @return An igraph object.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -52,7 +54,7 @@ to_igraph <- function(graph) {
   # exclude the `id` column
   edf <-
     graph$edges_df %>%
-    dplyr::select_("-id")
+    dplyr::select(-id)
 
   igraph::graph_from_data_frame(
     d = edf,

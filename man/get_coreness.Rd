@@ -11,11 +11,11 @@ get_coreness(graph, direction = "all")
 
 \item{direction}{using \code{all} (the default), the search will ignore edge
 direction while traversing through the graph. With \code{out}, measurements
-of paths will be from a node whereas with \code{in}, measurements of paths
+of paths will be from a node whereas with \verb{in}, measurements of paths
 will be to a node.}
 }
 \value{
-a data frame with coreness values for each of the nodes.
+A data frame with coreness values for each of the nodes.
 }
 \description{
 Get the coreness values for all nodes in a graph.

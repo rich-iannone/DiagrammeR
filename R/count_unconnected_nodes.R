@@ -4,7 +4,9 @@
 #' that are not connected to any other node.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A numeric vector of single length.
+#'
 #' @examples
 #' # Create a graph with a
 #' # path of nodes and 3

@@ -10,7 +10,7 @@ get_cmty_edge_btwns(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership assignments for each of the nodes.
+A data frame with group membership assignments for each of the nodes.
 }
 \description{
 Using edge betweenness, obtain the group membership values for each of the

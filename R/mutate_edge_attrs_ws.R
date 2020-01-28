@@ -20,7 +20,9 @@
 #'   consist of any valid R code that uses edge attributes as variables.
 #'   Expressions are evaluated in the order provided, so, edge attributes
 #'   created or modified are ready to use in subsequent expressions.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 3 edges
 #' # and then select edge `1`
@@ -171,53 +173,17 @@ mutate_edge_attrs_ws <- function(graph,
       get_edge_ids(graph),
       suppressMessages(get_selection(graph)))
 
-  for (i in 1:length(exprs)) {
+  s <- edf$id %in% unselected_edges
+  order <- c(which(!s), which(s))
 
-    # Case where mutation occurs for an
-    # existing edge attribute
-    if (names(exprs)[i] %in% colnames(edf)) {
+  edf <-
+    dplyr::bind_rows(
+      edf %>% dplyr::filter(!(!! enquo(s))) %>% dplyr::mutate(!!! enquos(...)),
+      edf %>% dplyr::filter( (!! enquo(s)))
+    ) %>% dplyr::arrange(!! enquo(order))
 
-      edf_replacement <-
-        edf %>%
-        dplyr::mutate_(
-          .dots = stats::setNames(list((exprs %>% paste())[i]),
-                           names(exprs)[i]))
+  graph$edges_df <- edf
 
-      edf_replacement[
-        which(edf$id %in% unselected_edges), ] <-
-        edf[
-          which(edf$id %in% unselected_edges), ]
-
-      # Update the graph's edf
-      graph$edges_df <- edf_replacement
-
-      # Reobtain the changed edf for
-      # any subsequent mutations
-      edf <- get_edge_df(graph)
-    }
-
-    # Case where mutation creates a
-    # new edge attribute
-    if (!(names(exprs)[i] %in% colnames(edf))) {
-
-      edf_replacement <-
-        edf %>%
-        dplyr::mutate_(
-          .dots = stats::setNames(list((exprs %>% paste())[i]),
-                           names(exprs)[i]))
-
-      edf_replacement[
-        which(edf$id %in% unselected_edges),
-        which(colnames(edf_replacement) == names(exprs)[i])] <- NA
-
-      # Update the graph's edf
-      graph$edges_df <- edf_replacement
-
-      # Reobtain the changed edf for
-      # any subsequent mutations
-      edf <- get_edge_df(graph)
-    }
-  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

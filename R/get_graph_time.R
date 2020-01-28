@@ -3,7 +3,9 @@
 #' Get the time and timezone for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single-length `POSIXct` vector with the assigned graph time.
+#'
 #' @examples
 #' # Create an empty graph and
 #' # set the graph's time; if nothing

@@ -4,7 +4,9 @@
 #'   modularity matrix of the graph, obtain the group membership values for each
 #'   of the nodes in the graph.
 #' @inheritParams render_graph
-#' @return a data frame with group membership assignments for each of the nodes.
+#'
+#' @return A data frame with group membership assignments for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

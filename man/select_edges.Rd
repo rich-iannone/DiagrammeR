@@ -4,8 +4,14 @@
 \alias{select_edges}
 \title{Select edges in a graph}
 \usage{
-select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
-  to = NULL, edges = NULL)
+select_edges(
+  graph,
+  conditions = NULL,
+  set_op = "union",
+  from = NULL,
+  to = NULL,
+  edges = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

@@ -9,7 +9,9 @@
 #'   actions. This vector can be the same length as the number of graph actions,
 #'   or, of shorter length. In the latter case, the ordering places the given
 #'   items first and the remaining actions will follow.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

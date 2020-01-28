@@ -13,7 +13,7 @@ get_cache(graph, name = NULL)
 supplied, the most recent object added to the cache will be returned.}
 }
 \value{
-a vector.
+A vector.
 }
 \description{
 Get the vector cached in a graph object of class \code{dgr_graph}.

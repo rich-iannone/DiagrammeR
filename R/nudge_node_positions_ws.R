@@ -25,7 +25,9 @@
 #' @param dy A single numeric value specifying the amount that selected nodes
 #'   (with non-`NA` values for the `x` and `y` attributes) will be moved in the
 #'   y direction. A positive value will move nodes up, negative down.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a simple graph with 4 nodes
 #' graph <-

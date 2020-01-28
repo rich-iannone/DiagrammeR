@@ -20,7 +20,9 @@
 #' @param default The name of an attribute to set for all other graph edges not
 #'   included in `edges`. This value only gets used if the `display` edge
 #'   attribute is not in the graph's internal edge data frame.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

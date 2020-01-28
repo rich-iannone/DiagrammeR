@@ -8,7 +8,9 @@
 #'   shortest paths to each node are considered. If `all` is used, then the
 #'   corresponding undirected graph will be used and edge directions will be
 #'   ignored. For undirected graphs, this argument is ignored.
-#' @return a data frame containing eccentricity values by node ID value.
+#'
+#' @return A data frame containing eccentricity values by node ID value.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

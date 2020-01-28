@@ -4,8 +4,7 @@
 \alias{set_edge_attr_to_display}
 \title{Set the edge attribute values to be rendered}
 \usage{
-set_edge_attr_to_display(graph, attr = NULL, edges = NULL,
-  default = "label")
+set_edge_attr_to_display(graph, attr = NULL, edges = NULL, default = "label")
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

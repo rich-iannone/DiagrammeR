@@ -10,7 +10,7 @@ get_edge_info(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame containing information specific to each edge within the
+A data frame containing information specific to each edge within the
 graph.
 }
 \description{

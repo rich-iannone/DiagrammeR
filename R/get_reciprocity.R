@@ -6,8 +6,10 @@
 #' reciprocal. This function does not consider loop edges (e.g., `1` -> `1`).
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single, numerical value that is the ratio value of reciprocal edges
 #'   over all graph edges.
+#'
 #' @examples
 #' # Define a graph where 2 edge definitions
 #' # have pairs of reciprocal edges

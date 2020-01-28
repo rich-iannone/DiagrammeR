@@ -8,7 +8,9 @@
 #'   `sum`, `min`, `max`, `mean`, or `median`.
 #' @param conditions an option to use filtering conditions for the nodes to
 #'   consider.
-#' @return a vector with an aggregate total degree value.
+#'
+#' @return A vector with an aggregate total degree value.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -112,11 +114,12 @@ get_agg_degree_total <- function(graph,
 
   # Get the aggregate value of total degree based
   # on the aggregate function provided
+  fun <- match.fun(agg)
+
   total_degree_agg <-
     total_degree_df %>%
     dplyr::group_by() %>%
-    dplyr::summarize_(stats::as.formula(
-      paste0("~", agg, "(total_degree, na.rm = TRUE)"))) %>%
+    dplyr::summarize(fun(total_degree, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     purrr::flatten_dbl()
 

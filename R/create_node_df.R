@@ -19,7 +19,9 @@
 #' @param type An optional `type` for each node.
 #' @param label An optional `label` for each node.
 #' @param ... One or more vectors for associated node attributes.
+#'
 #' @return A node data frame (ndf).
+#'
 #' @examples
 #' # Create a node data frame (ndf) where the labels
 #' # are equivalent to the node ID values (this is not

@@ -5,8 +5,10 @@
 #' the edge connectivity of the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the minimum number of edges to
 #'   remove.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

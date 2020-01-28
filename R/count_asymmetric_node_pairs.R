@@ -4,8 +4,10 @@
 #' directed graphs.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the number of
 #'   asymmetrically-connected node pairs.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

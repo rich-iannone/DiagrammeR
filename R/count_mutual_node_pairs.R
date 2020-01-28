@@ -4,8 +4,10 @@
 #' graphs.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the number of mutually-connected
 #'   node pairs.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

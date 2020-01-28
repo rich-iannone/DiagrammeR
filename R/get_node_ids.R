@@ -6,7 +6,9 @@
 #' @inheritParams render_graph
 #' @param conditions An option to use filtering conditions for the retrieval of
 #'   nodes.
+#'
 #' @return A vector of node ID values.
+#'
 #' @examples
 #' # Create a node data
 #' # frame (ndf)

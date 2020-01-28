@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param node_attr The name of the node attribute column to drop.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' graph <-
 #'   create_graph() %>%

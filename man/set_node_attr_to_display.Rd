@@ -4,8 +4,7 @@
 \alias{set_node_attr_to_display}
 \title{Set the node attribute values to be rendered}
 \usage{
-set_node_attr_to_display(graph, attr = NULL, nodes = NULL,
-  default = "label")
+set_node_attr_to_display(graph, attr = NULL, nodes = NULL, default = "label")
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

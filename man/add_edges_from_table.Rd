@@ -4,8 +4,16 @@
 \alias{add_edges_from_table}
 \title{Add edges and attributes to graph from a table}
 \usage{
-add_edges_from_table(graph, table, from_col, to_col, from_to_map,
-  rel_col = NULL, set_rel = NULL, drop_cols = NULL)
+add_edges_from_table(
+  graph,
+  table,
+  from_col,
+  to_col,
+  from_to_map,
+  rel_col = NULL,
+  set_rel = NULL,
+  drop_cols = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

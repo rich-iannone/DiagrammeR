@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param node A node ID for the node to be deleted from the graph.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 5 nodes and
 #' # edges between each in a path

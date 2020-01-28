@@ -4,11 +4,24 @@
 \alias{add_pa_graph}
 \title{Add a preferential attachment graph}
 \usage{
-add_pa_graph(graph, n, m = NULL, power = 1, out_dist = NULL,
-  use_total_degree = FALSE, zero_appeal = 1, algo = "psumtree",
-  type = NULL, label = TRUE, rel = NULL, node_aes = NULL,
-  edge_aes = NULL, node_data = NULL, edge_data = NULL,
-  set_seed = NULL)
+add_pa_graph(
+  graph,
+  n,
+  m = NULL,
+  power = 1,
+  out_dist = NULL,
+  use_total_degree = FALSE,
+  zero_appeal = 1,
+  algo = "psumtree",
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL,
+  set_seed = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

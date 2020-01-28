@@ -5,7 +5,9 @@
 #' @inheritParams render_graph
 #' @param name One or more name of vector objects to delete from the cache. If
 #'   none supplied, all cached vectors available in the graph will be deleted.
+#'
 #' @return A vector.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <-

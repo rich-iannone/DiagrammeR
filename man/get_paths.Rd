@@ -4,8 +4,14 @@
 \alias{get_paths}
 \title{Get paths from a specified node in a directed graph}
 \usage{
-get_paths(graph, from = NULL, to = NULL, shortest_path = FALSE,
-  longest_path = FALSE, distance = NULL)
+get_paths(
+  graph,
+  from = NULL,
+  to = NULL,
+  shortest_path = FALSE,
+  longest_path = FALSE,
+  distance = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

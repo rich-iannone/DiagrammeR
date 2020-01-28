@@ -6,7 +6,9 @@
 #' @inheritParams render_graph
 #' @param node Either a node ID value or a node label to test for presence in
 #'   the graph.
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a simple graph with
 #' # a path of four nodes

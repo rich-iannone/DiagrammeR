@@ -18,7 +18,9 @@
 #'   rescaled values. If not set, the minimum value from the set will be used.
 #' @param from_upper_bound An optional, manually set upper bound value for the
 #'   rescaled values. If not set, the minimum value from the set will be used.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

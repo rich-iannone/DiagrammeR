@@ -12,7 +12,7 @@ get_all_connected_nodes(graph, node)
 \item{node}{a single-length vector containing a node ID value.}
 }
 \value{
-a vector of node ID values.
+A vector of node ID values.
 }
 \description{
 With a single node serving as the starting point get all nodes connected

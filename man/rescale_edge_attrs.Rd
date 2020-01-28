@@ -4,9 +4,15 @@
 \alias{rescale_edge_attrs}
 \title{Rescale numeric edge attribute values}
 \usage{
-rescale_edge_attrs(graph, edge_attr_from, to_lower_bound = 0,
-  to_upper_bound = 1, edge_attr_to = NULL, from_lower_bound = NULL,
-  from_upper_bound = NULL)
+rescale_edge_attrs(
+  graph,
+  edge_attr_from,
+  to_lower_bound = 0,
+  to_upper_bound = 1,
+  edge_attr_to = NULL,
+  from_lower_bound = NULL,
+  from_upper_bound = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

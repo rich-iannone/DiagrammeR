@@ -4,8 +4,7 @@
 \alias{select_nodes}
 \title{Select nodes in a graph}
 \usage{
-select_nodes(graph, conditions = NULL, set_op = "union",
-  nodes = NULL)
+select_nodes(graph, conditions = NULL, set_op = "union", nodes = NULL)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

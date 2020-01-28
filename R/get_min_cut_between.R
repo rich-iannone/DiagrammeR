@@ -7,8 +7,10 @@
 #' @inheritParams render_graph
 #' @param from The node ID for the source node.
 #' @param to The node ID for the sink or target node.
+#'
 #' @return A single numeric value representing the minimum total edge capacity
 #'   removed to disconnect the source and sink nodes.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

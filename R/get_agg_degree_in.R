@@ -9,7 +9,9 @@
 #'   `min`, `max`, `mean`, or `median`.
 #' @param conditions An option to use filtering conditions for the nodes to
 #'   consider.
+#'
 #' @return A vector with an aggregate indegree value.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -109,11 +111,12 @@ get_agg_degree_in <- function(graph,
 
   # Get the aggregate value of total degree based
   # on the aggregate function provided
+  fun <- match.fun(agg)
+
   indegree_agg <-
     indegree_df %>%
     dplyr::group_by() %>%
-    dplyr::summarize_(stats::as.formula(
-      paste0("~", agg, "(indegree, na.rm = TRUE)"))) %>%
+    dplyr::summarize(fun(indegree, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     purrr::flatten_dbl()
 

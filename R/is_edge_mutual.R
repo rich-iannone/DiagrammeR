@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param edge A numeric edge ID value.
+#'
 #' @return A logical value.
+#'
 #' @examples
 #' # Create a graph that has mutual
 #' # edges across some node pairs

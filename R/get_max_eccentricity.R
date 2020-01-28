@@ -5,8 +5,10 @@
 #' node in the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the maximum eccentricity of the
 #'   graph.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

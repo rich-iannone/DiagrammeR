@@ -10,7 +10,7 @@ get_closeness_vitality(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with closeness vitality values for each of the nodes.
+A data frame with closeness vitality values for each of the nodes.
 }
 \description{
 Get the closeness vitality values for all nodes in the graph.

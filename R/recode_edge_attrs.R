@@ -15,7 +15,9 @@
 #' @param edge_attr_to An optional name of a new edge attribute to which the
 #'   recoded values will be applied. This will retain the original edge
 #'   attribute and its values.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

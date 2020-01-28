@@ -13,7 +13,9 @@
 #'   matrix will be used in calculations.
 #' @param tol the tolerance for near-singularities during matrix inversion.
 #' The default value is set to `1e-7`.
-#' @return a data frame with alpha centrality scores for each of the nodes.
+#'
+#' @return A data frame with alpha centrality scores for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -11,8 +11,8 @@ add_edges_w_string(graph, edges, rel = NULL, use_labels = FALSE)
 
 \item{edges}{A single-length vector with a character string specifying the
 edges. For a directed graph, the string object should be formatted as a
-series of node ID values as \code{[node_ID_1]->[node_ID_2]} separated by a one
-or more space characters. For undirected graphs, \code{--} should replace \code{->}.
+series of node ID values as \verb{[node_ID_1]->[node_ID_2]} separated by a one
+or more space characters. For undirected graphs, \verb{--} should replace \verb{->}.
 Line breaks in the vector won't cause an error.}
 
 \item{rel}{An optional vector specifying the relationship between the

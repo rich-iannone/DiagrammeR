@@ -22,7 +22,9 @@
 #' @param default_color A hexadecimal color value to use for instances when the
 #'   values do not fall into the bucket ranges specified in the `cut_points`
 #'   vector.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 5
 #' # nodes and 4 edges

@@ -18,7 +18,9 @@
 #'   specifies lower and upper bounds as negative and positive percentage
 #'   changes to the value of the starting node. These bounds serve as criteria
 #'   for neighboring node similarity to the starting node.
+#'
 #' @return A vector of node ID values.
+#'
 #' @examples
 #' # Getting similar neighbors can
 #' # be done through numerical comparisons;

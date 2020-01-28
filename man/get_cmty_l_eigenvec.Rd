@@ -10,7 +10,7 @@ get_cmty_l_eigenvec(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership assignments for each of the nodes.
+A data frame with group membership assignments for each of the nodes.
 }
 \description{
 Through the calculation of the leading non-negative eigenvector of the

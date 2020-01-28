@@ -9,7 +9,9 @@
 #' far fewer connections.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A data frame with leverage centrality values for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

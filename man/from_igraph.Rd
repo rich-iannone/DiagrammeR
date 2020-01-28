@@ -4,8 +4,12 @@
 \alias{from_igraph}
 \title{Convert an igraph graph to a DiagrammeR one}
 \usage{
-from_igraph(igraph, graph_name = NULL, write_backups = FALSE,
-  display_msgs = FALSE)
+from_igraph(
+  igraph,
+  graph_name = NULL,
+  write_backups = FALSE,
+  display_msgs = FALSE
+)
 }
 \arguments{
 \item{igraph}{An \pkg{igraph} graph object.}

@@ -8,7 +8,9 @@
 #'   attribute specified.
 #' @param attr_type The specific type of global graph attribute to delete. The
 #'   type is specified with `graph`, `node`, or `edge`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a new graph and add
 #' # some extra global graph attrs

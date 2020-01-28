@@ -17,7 +17,7 @@ values from graph nodes. The following aggregation functions can be used:
 consider.}
 }
 \value{
-a vector with an aggregate total degree value.
+A vector with an aggregate total degree value.
 }
 \description{
 Get a single, aggregate value from the total degree values for all nodes in a

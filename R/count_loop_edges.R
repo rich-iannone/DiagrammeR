@@ -4,7 +4,9 @@
 #' the graph.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A numeric vector of single length.
+#'
 #' @examples
 #' # Create an undirected, full graph
 #' # with 3 nodes and all possible

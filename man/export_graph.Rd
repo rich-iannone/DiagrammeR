@@ -2,10 +2,16 @@
 % Please edit documentation in R/export_graph.R
 \name{export_graph}
 \alias{export_graph}
-\title{Export a graph to various file formats}
+\title{Export a graph to various image formats}
 \usage{
-export_graph(graph, file_name = NULL, file_type = NULL, title = NULL,
-  width = NULL, height = NULL)
+export_graph(
+  graph,
+  file_name = NULL,
+  file_type = NULL,
+  title = NULL,
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
@@ -13,8 +19,7 @@ export_graph(graph, file_name = NULL, file_type = NULL, title = NULL,
 \item{file_name}{The name of the exported file (including it's extension).}
 
 \item{file_type}{The type of file to be exported. Options for graph files
-are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}. Options for graph file formats are:
-\code{gexf}.}
+are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
 
 \item{title}{An optional title for the output graph.}
 
@@ -25,11 +30,10 @@ export to image file formats \code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
 export to image file formats \code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
 }
 \description{
-Export a graph to a variety of file formats, including image formats such as
-PNG, PDF, SVG, and PostScript, and graph file formats such as GEXF.
+Export a graph to a variety of image formats such as PNG, PDF, SVG, and
+PostScript.
 }
 \examples{
-\dontrun{
 # Create a simple graph
 graph <-
   create_graph() \%>\%
@@ -38,24 +42,29 @@ graph <-
       edge_aes = edge_aes(
         arrowhead = c(
           "normal", "vee",
-          "tee", "dot"),
+          "tee", "dot"
+        ),
         color = c(
         "red", "blue",
-        "orange", "purple")))
+        "orange", "purple"
+        )
+      )
+    )
 
 # Create a PDF file for
 # the graph (`graph.pdf`)
-graph \%>\%
-  export_graph(
-    file_name = "graph.pdf",
-    title = "Simple Graph")
+# graph \%>\%
+#   export_graph(
+#     file_name = "graph.pdf",
+#     title = "Simple Graph"
+#   )
 
 # Create a PNG file for
 # the graph (`mypng.png`)
-graph \%>\%
-  export_graph(
-    file_name = "mypng.png",
-    file_type = "PNG")
-}
+# graph \%>\%
+#   export_graph(
+#     file_name = "mypng.png",
+#     file_type = "PNG"
+#   )
 
 }

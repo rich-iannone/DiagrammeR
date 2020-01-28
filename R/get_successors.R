@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param node A node ID for the selected node.
+#'
 #' @return A vector of node ID values.
+#'
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

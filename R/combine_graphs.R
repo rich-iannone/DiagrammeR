@@ -7,7 +7,9 @@
 #'   attributes will be inherited in the resulting graph.
 #' @param y A `DiagrammeR` graph object that is to be unioned with the graph
 #'   supplied as `x`.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with a cycle
 #' # containing 6 nodes

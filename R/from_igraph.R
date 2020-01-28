@@ -4,7 +4,9 @@
 #'
 #' @param igraph An \pkg{igraph} graph object.
 #' @inheritParams create_graph
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a DiagrammeR graph object
 #' dgr_graph_orig <-

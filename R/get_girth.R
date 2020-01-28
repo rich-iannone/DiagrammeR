@@ -5,8 +5,10 @@
 #' contains no cycles then zero is returned.
 #'
 #' @inheritParams render_graph
+#'
 #' @return A single numeric value representing the length of the shortest circle
 #'   in the graph.
+#'
 #' @examples
 #' # Create a cycle graph
 #' graph <-

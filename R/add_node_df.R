@@ -5,7 +5,9 @@
 #'
 #' @inheritParams render_graph
 #' @param node_df A node data frame that is created using [create_node_df()].
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

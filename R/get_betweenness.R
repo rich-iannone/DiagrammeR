@@ -2,7 +2,9 @@
 #'
 #' Get the betweenness centrality scores for all nodes in a graph.
 #' @inheritParams render_graph
+#'
 #' @return a data frame with betweenness scores for each of the nodes.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

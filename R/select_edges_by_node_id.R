@@ -10,7 +10,9 @@
 #'   graph edges This can either be as a `union` (the default), as an
 #'   intersection of selections with `intersect`, or, as a `difference` on the
 #'   previous selection, if it exists.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a graph with 5 nodes
 #' graph <-

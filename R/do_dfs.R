@@ -12,9 +12,11 @@
 #' @param direction Using `all` (the default), the bfs will ignore edge
 #'   direction while traversing through the graph. With `out` and `in`,
 #'   traversals between adjacent nodes will respect the edge direction.
+#'
 #' @return A vector containing node ID values for nodes visited during the
 #'   depth-first search. The order of the node IDs corresponds to the order
 #'   visited.
+#'
 #' @examples
 #' # Create a graph containing
 #' # two balanced trees

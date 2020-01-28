@@ -20,7 +20,9 @@
 #'   syntax `col_1 & col_2 & ...`. Columns can also be dropped using a numeric
 #'   column range with `:` (e.g., `5:8`), or, by using the `:` between column
 #'   names to specify the range (e.g., `col_5_name:col_8_name`).
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create an empty graph and then
 #' # add nodes to it from the

@@ -14,7 +14,9 @@
 #' @param use_labels An option to use a node `label` value in `node`. Note that
 #'   this is only possible if all nodes have distinct `label` values set and
 #'   none exist as an NA value.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a simple graph with 4 nodes
 #' graph <-

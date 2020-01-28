@@ -10,7 +10,7 @@ get_cmty_louvain(graph)
 \item{graph}{A graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership assignments for each of the nodes.
+A data frame with group membership assignments for each of the nodes.
 }
 \description{
 Through the use of multi-level optimization of a modularity score, obtain the

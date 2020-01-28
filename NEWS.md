@@ -1,3 +1,9 @@
+# DiagrammeR (development version)
+
+# DiagrammeR 1.0.5
+
+* Removes the ability to save a DiagrammeR graph object as a Gephi file (.gexf) since the **rgexf** package is no longer maintained
+
 # DiagrammeR 1.0.0
 
 * Added the helper functions `node_aes()`, `node_data()`, `edge_aes()`, and `edge_data()` to facilitate the binding of node and edge aesthetic and data attribute values; several functions now have namesake arguments that accept these functions' output.

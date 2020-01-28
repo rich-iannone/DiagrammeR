@@ -4,16 +4,40 @@
 \alias{edge_aes}
 \title{Insert edge aesthetic attributes during edge creation}
 \usage{
-edge_aes(style = NULL, penwidth = NULL, color = NULL,
-  arrowsize = NULL, arrowhead = NULL, arrowtail = NULL,
-  fontname = NULL, fontsize = NULL, fontcolor = NULL, len = NULL,
-  tooltip = NULL, URL = NULL, label = NULL, labelfontname = NULL,
-  labelfontsize = NULL, labelfontcolor = NULL, labeltooltip = NULL,
-  labelURL = NULL, edgetooltip = NULL, edgeURL = NULL, dir = NULL,
-  headtooltip = NULL, headURL = NULL, headclip = NULL,
-  headlabel = NULL, headport = NULL, tailtooltip = NULL,
-  tailURL = NULL, tailclip = NULL, taillabel = NULL,
-  tailport = NULL, decorate = NULL)
+edge_aes(
+  style = NULL,
+  penwidth = NULL,
+  color = NULL,
+  arrowsize = NULL,
+  arrowhead = NULL,
+  arrowtail = NULL,
+  fontname = NULL,
+  fontsize = NULL,
+  fontcolor = NULL,
+  len = NULL,
+  tooltip = NULL,
+  URL = NULL,
+  label = NULL,
+  labelfontname = NULL,
+  labelfontsize = NULL,
+  labelfontcolor = NULL,
+  labeltooltip = NULL,
+  labelURL = NULL,
+  edgetooltip = NULL,
+  edgeURL = NULL,
+  dir = NULL,
+  headtooltip = NULL,
+  headURL = NULL,
+  headclip = NULL,
+  headlabel = NULL,
+  headport = NULL,
+  tailtooltip = NULL,
+  tailURL = NULL,
+  tailclip = NULL,
+  taillabel = NULL,
+  tailport = NULL,
+  decorate = NULL
+)
 }
 \arguments{
 \item{style}{The edge line style. The \code{style} types that can be used are
@@ -48,7 +72,7 @@ hexadecimal color code.}
 
 \item{tooltip}{Text for a tooltip that appears when hovering over an edge. If
 text is not provided, then the default tooltip text will provide the edge
-definition (i.e., \code{[id]->[id] or [id]--[id]}).}
+definition (i.e., \verb{[id]->[id] or [id]--[id]}).}
 
 \item{URL}{A URL to associate with an edge. Upon rendering the plot, clicking
 edges with any associated URLs will open the URL in the default browser.}
@@ -71,7 +95,7 @@ instead be used. Can be an X11 color or a hexadecimal color code.}
 \item{labeltooltip}{Text for a tooltip that will appear when hovering over
 the main label of an edge (if label text provided in the \code{label} edge
 attribute). If text is not provided and an edge label is visible, then the
-default tooltip text will provide the edge definition (i.e., \code{[id]->[id] or [id]--[id]}).}
+default tooltip text will provide the edge definition (i.e., \verb{[id]->[id] or [id]--[id]}).}
 
 \item{labelURL}{A URL to associate with edge label text. Upon rendering the
 plot, clicking edge labels with any associated URLs will open the URL in

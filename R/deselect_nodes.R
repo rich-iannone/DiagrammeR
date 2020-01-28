@@ -4,7 +4,9 @@
 #'
 #' @inheritParams render_graph
 #' @param nodes A vector of node IDs that should be deselected.
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

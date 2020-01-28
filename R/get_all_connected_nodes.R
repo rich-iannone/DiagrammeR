@@ -4,7 +4,9 @@
 #'   (i.e., reachable with a traversable path) to that node.
 #' @inheritParams render_graph
 #' @param node a single-length vector containing a node ID value.
-#' @return a vector of node ID values.
+#'
+#' @return A vector of node ID values.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function; it

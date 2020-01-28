@@ -23,7 +23,9 @@
 #' @param add_to_selection An option to either add the reverse edges to the
 #'   active selection of edges (`TRUE`) or switch the active selection entirely
 #'   to those reverse edges (`FALSE`, the default case).
+#'
 #' @return A graph object of class `dgr_graph`.
+#'
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -111,44 +113,16 @@ trav_reverse_edge <- function(graph,
   edf <- graph$edges_df
 
   # Get the available reverse edges
-  reverse_edges <-
-    edf %>%
-    {
-      reverse_edges <- dplyr::as_tibble()
-      for (i in 1:length(edges_to)) {
-        reverse_edges <-
-          edf %>%
-          dplyr::filter_(
-            paste0(
-              "from == ",
-              edges_to[i],
-              " & to == ",
-              edges_from[i])) %>%
-          dplyr::bind_rows(reverse_edges)
-      }
-      reverse_edges
-    }
+  reverse_edges_df <- data.frame(to = edges_from, from = edges_to)
+  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df)
 
   # Add the reverse edges to the existing,
   # selected edges
   if (add_to_selection) {
+    edges_df <- data.frame(to = edges_to, from = edges_from)
     edges <-
       edf %>%
-      {
-        edges <- dplyr::as_tibble()
-        for (i in 1:length(edges_to)) {
-          edges <-
-            edf %>%
-            dplyr::filter_(
-              paste0(
-                "from == ",
-                edges_from[i],
-                " & to == ",
-                edges_to[i])) %>%
-            dplyr::bind_rows(edges)
-        }
-        edges
-      } %>%
+      dplyr::inner_join(edges_df) %>%
       dplyr::bind_rows(reverse_edges)
   } else {
     edges <- reverse_edges

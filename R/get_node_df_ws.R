@@ -17,7 +17,9 @@
 #' [trav_in_until()].
 #'
 #' @inheritParams render_graph
+#'
 #' @return A node data frame.
+#'
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

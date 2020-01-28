@@ -4,9 +4,20 @@
 \alias{add_gnm_graph}
 \title{Add a G(n, m) Erdos-Renyi graph}
 \usage{
-add_gnm_graph(graph, n, m, loops = FALSE, type = NULL, label = TRUE,
-  rel = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
-  edge_data = NULL, set_seed = NULL)
+add_gnm_graph(
+  graph,
+  n,
+  m,
+  loops = FALSE,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL,
+  set_seed = NULL
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}

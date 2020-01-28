@@ -11,13 +11,13 @@ get_eccentricity(graph, mode = "out")
 
 \item{mode}{the mode with which the shortest paths to or from the given
 vertices should be calculated for directed graphs. If \code{out} (the
-default) then the shortest paths from the node, if \code{in} then only
+default) then the shortest paths from the node, if \verb{in} then only
 shortest paths to each node are considered. If \code{all} is used, then the
 corresponding undirected graph will be used and edge directions will be
 ignored. For undirected graphs, this argument is ignored.}
 }
 \value{
-a data frame containing eccentricity values by node ID value.
+A data frame containing eccentricity values by node ID value.
 }
 \description{
 Get a data frame with node eccentricity values.

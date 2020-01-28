@@ -4,8 +4,11 @@
 \alias{create_graph_series}
 \title{Create a graph series object}
 \usage{
-create_graph_series(graph = NULL, series_name = NULL,
-  series_type = "sequential")
+create_graph_series(
+  graph = NULL,
+  series_name = NULL,
+  series_type = "sequential"
+)
 }
 \arguments{
 \item{graph}{A graph object to add to the new graph series object.}

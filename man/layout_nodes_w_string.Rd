@@ -4,8 +4,15 @@
 \alias{layout_nodes_w_string}
 \title{Layout nodes using a text-based schematic}
 \usage{
-layout_nodes_w_string(graph, layout, nodes, sort = NULL, width = 8,
-  height = 8, ll = c(0, 0))
+layout_nodes_w_string(
+  graph,
+  layout,
+  nodes,
+  sort = NULL,
+  width = 8,
+  height = 8,
+  ll = c(0, 0)
+)
 }
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
