@@ -59,6 +59,7 @@
 #' }
 #'
 #' @import glue glue
+#' @family Display and Save
 #' @export
 render_graph <- function(graph,
                          layout = NULL,

@@ -44,7 +44,7 @@
 #' # View the graph's internal
 #' # node data frame (ndf)
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 add_node <- function(graph,
                      type = NULL,

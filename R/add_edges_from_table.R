@@ -79,6 +79,7 @@
 #'   get_edge_df() %>%
 #'   head()
 #' @import rlang
+#' @family Edge creation and removal
 #' @export
 add_edges_from_table <- function(graph,
                                  table,
