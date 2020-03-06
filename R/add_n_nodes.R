@@ -24,7 +24,7 @@
 #'
 #' # Get the graph's node IDs
 #' graph %>% get_node_ids()
-#'
+#' @family Node creation and removal
 #' @export
 add_n_nodes <- function(graph,
                         n,

@@ -64,3 +64,10 @@ render_graph_from_graph_series(
   graph_no = 2)
 }
 }
+\seealso{
+Other Display and Save: 
+\code{\link{export_graph}()},
+\code{\link{render_graph}()},
+\code{\link{save_graph}()}
+}
+\concept{Display and Save}

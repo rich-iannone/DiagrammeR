@@ -53,6 +53,7 @@
 #' # Get the graph's edge data frame
 #' graph %>% get_edge_df()
 #'
+#' @family Edge creation and removal
 #' @export
 add_forward_edges_ws <- function(graph,
                                  rel = NULL) {

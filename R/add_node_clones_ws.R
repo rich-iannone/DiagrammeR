@@ -82,7 +82,7 @@
 #' # edges between the selected
 #' # nodes and their clones
 #' graph %>% get_edge_df()
-#'
+#' @family Node creation and removal
 #' @export
 add_node_clones_ws <- function(graph,
                                add_edges = FALSE,

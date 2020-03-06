@@ -36,6 +36,7 @@
 #' graph %>%
 #'   get_edges(
 #'     return_type = "vector")
+#' @family Edge creation and removal
 #' @export
 add_edge_df <- function(graph,
                         edge_df) {

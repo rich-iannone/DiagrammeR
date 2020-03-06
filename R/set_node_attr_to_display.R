@@ -68,6 +68,7 @@
 #'   get_node_df()
 #'
 #' @import rlang
+#' @family Node creation and removal
 #' @export
 set_node_attr_to_display <- function(graph,
                                      attr = NULL,

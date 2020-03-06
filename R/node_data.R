@@ -23,7 +23,7 @@
 #' # data attributes have been
 #' # inserted
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 node_data <- function(...) {
 
