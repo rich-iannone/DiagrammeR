@@ -1,0 +1,115 @@
+---
+title: "DiagrammeR and economiccomplexity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Graphviz and mermaid in DiagrammeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
+```
+
+### Bipartite network projections
+
+This example is a simplified version, extended to DiagrammeR, of the examples
+from pacha.dev/economiccomplexity. The data used here corresponds to 
+World Trade and Per-Capita GDP averages between 1998 and 2000 included in
+`economiccomplexity::`.
+
+```{r create-network}
+library(DiagrammeR)
+library(economiccomplexity)
+library(igraph)
+
+# Step 1: Obtain Balassa Index
+bi <- balassa_index(world_trade_avg_1998_to_2000)
+
+# Step 2: Obtain proximity matrices
+pro <- proximity(bi)
+
+# Step 3: Create bipartite network projections
+net <- projections(pro$proximity_country, pro$proximity_product)
+E(net$network_country)[1:5]
+E(net$network_product)[1:5]
+```
+
+### Data aggregation for edge size
+
+```{r alter-edge-size-1, fig.width=7, fig.height=7}
+set.seed(200100)
+
+aggregated_countries <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$country),
+  FUN = sum
+)
+
+aggregated_countries <- setNames(aggregated_countries$x,
+                                 aggregated_countries$country)
+
+V(net$network_country)$size <- aggregated_countries[
+  match(V(net$network_country)$name, names(aggregated_countries))]
+```
+
+```{r alter-edge-size-2, fig.width=10, fig.height=10}
+aggregated_products <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$product),
+  FUN = sum
+)
+
+aggregated_products <- setNames(aggregated_products$x,
+                                aggregated_products$country)
+
+V(net$network_product)$size <- aggregated_products[
+  match(V(net$network_product)$name, names(aggregated_products))]
+```
+
+### Using Diagrammer to visualize
+
+The last section returned a list containing two igraph objects. These
+are almost ready to create the visualization.
+
+```{r visualize-with-diagrammer-1, fig.width=10, fig.height=10}
+# Step 1: Remove names and add labels (or it won't render well)
+V(net$network_country)$label = V(net$network_country)$name
+V(net$network_country)$name = factor(V(net$network_country)$name,
+  levels = as.character(V(net$network_country)$name))
+
+# Step 2: Visualize
+vis_country <- from_igraph(net$network_country) %>% 
+  set_node_attrs(
+    node_attr = fillcolor,
+    values = "SteelBlue")
+
+# get_node_attrs(vis_country, "size") ok
+
+vis_country %>% 
+  render_graph(
+    layout = "kk",
+    title = "Proximity Based Network Projection for Countries"
+  )
+```
+
+```{r visualize-with-diagrammer-2, fig.width=10, fig.height=10}
+# Step 1: Remove names and add labels (or it won't render well)
+V(net$network_product)$label = V(net$network_product)$name
+V(net$network_product)$name = factor(V(net$network_product)$name,
+  levels = as.character(V(net$network_product)$name))
+
+# Step 2: Visualize
+vis_product <- from_igraph(net$network_product) %>% 
+  set_node_attrs(
+    node_attr = fillcolor,
+    values = "Crimson")
+
+# get_node_attrs(vis_product, "size") ok
+
+vis_product %>% 
+  render_graph(
+    layout = "kk",
+    title = "Proximity Based Network Projection for Countries"
+  )
+```
