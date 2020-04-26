@@ -4,14 +4,16 @@
 \name{node_list_2}
 \alias{node_list_2}
 \title{Node list - Version 2.}
-\format{A data frame with 10 rows and 5 variables:
+\format{
+A data frame with 10 rows and 5 variables:
 \describe{
 \item{id}{a unique, monotonically increasing integer ID value}
 \item{label}{a unique label associated with each ID value}
 \item{type}{a grouping variable of either x, y, or z}
 \item{value_1}{a randomized set of numeric values between 0 and 10}
 \item{value_2}{a randomized set of numeric values between 0 and 10}
-}}
+}
+}
 \usage{
 node_list_2
 }
