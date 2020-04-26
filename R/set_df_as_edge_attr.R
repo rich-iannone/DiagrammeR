@@ -50,7 +50,7 @@
 #'   set_df_as_edge_attr(
 #'     edge = 1,
 #'     df = df)
-#'
+#' @family Edge creation and removal
 #' @export
 set_df_as_edge_attr <- function(graph,
                                 edge,

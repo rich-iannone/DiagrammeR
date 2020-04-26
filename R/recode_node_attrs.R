@@ -74,6 +74,7 @@
 #' graph %>% get_node_df()
 #'
 #' @import rlang
+#' @family Node creation and removal
 #' @export
 recode_node_attrs <- function(graph,
                               node_attr_from,

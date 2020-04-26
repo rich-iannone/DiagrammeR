@@ -44,7 +44,7 @@
 #' # node data frame using the
 #' # `get_node_df()` function
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 add_node_df <- function(graph,
                         node_df) {

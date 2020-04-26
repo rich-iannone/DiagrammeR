@@ -84,6 +84,7 @@
 #'   colnames()
 #'
 #' @import rlang
+#' @family Node creation and removal
 #' @export
 add_nodes_from_table <- function(graph,
                                  table,

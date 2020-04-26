@@ -46,7 +46,7 @@
 #' #     file_name = "mypng.png",
 #' #     file_type = "PNG"
 #' #   )
-#'
+#' @family Display and Save
 #' @export
 export_graph <- function(graph,
                          file_name = NULL,

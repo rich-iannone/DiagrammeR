@@ -56,6 +56,7 @@
 #' # edge data frame (it's the
 #' # same as before)
 #' graph_node_label %>% get_edge_df()
+#' @family Edge creation and removal
 #' @export
 add_edges_w_string <- function(graph,
                                edges,

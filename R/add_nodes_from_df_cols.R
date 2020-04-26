@@ -63,7 +63,7 @@
 #' # get made with columns that
 #' # are not character class columns
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 add_nodes_from_df_cols <- function(graph,
                                    df,

@@ -44,6 +44,7 @@
 #'   graph_series = series,
 #'   graph_no = 2)
 #' }
+#' @family Display and Save
 #' @export
 render_graph_from_graph_series <- function(graph_series,
                                            graph_no,

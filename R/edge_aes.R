@@ -117,7 +117,7 @@
 #' # been inserted
 #' graph %>%
 #'   get_edge_df()
-#'
+#' @family Aesthetics
 #' @export
 edge_aes <- function(style = NULL,
                      penwidth = NULL,

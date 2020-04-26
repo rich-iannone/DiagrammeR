@@ -65,7 +65,7 @@
 #'   set_df_as_node_attr(
 #'     node = 2,
 #'     df = df_2)
-#'
+#' @family Node creation and removal
 #' @export
 set_df_as_node_attr <- function(graph,
                                 node,

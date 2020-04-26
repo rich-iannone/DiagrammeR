@@ -26,7 +26,7 @@
 #' # since there were edges between the
 #' # removed node to and from other nodes
 #' graph %>% get_edges()
-#'
+#' @family Node creation and removal
 #' @export
 delete_node <- function(graph,
                         node) {

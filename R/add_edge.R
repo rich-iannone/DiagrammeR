@@ -100,6 +100,7 @@
 #' # newly created edge
 #' graph_2 %>% get_edge_df()
 #' @import rlang
+#' @family Edge creation and removal
 #' @export
 add_edge <- function(graph,
                      from,

@@ -57,6 +57,7 @@
 #' # Get the graph's edge data frame
 #' graph %>% get_edge_df()
 #'
+#' @family Edge creation and removal
 #' @export
 add_reverse_edges_ws <- function(graph,
                                  rel = NULL,
