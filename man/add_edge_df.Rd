@@ -70,7 +70,6 @@ Other Edge creation and removal:
 \code{\link{rescale_edge_attrs}()},
 \code{\link{rev_edge_dir_ws}()},
 \code{\link{rev_edge_dir}()},
-\code{\link{set_df_as_edge_attr}()},
 \code{\link{set_edge_attr_to_display}()},
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}

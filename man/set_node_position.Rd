@@ -125,7 +125,6 @@ Other Node creation and removal:
 \code{\link{recode_node_attrs}()},
 \code{\link{rename_node_attrs}()},
 \code{\link{rescale_node_attrs}()},
-\code{\link{set_df_as_node_attr}()},
 \code{\link{set_node_attr_to_display}()},
 \code{\link{set_node_attr_w_fcn}()},
 \code{\link{set_node_attrs_ws}()},

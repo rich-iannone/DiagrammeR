@@ -1,5 +1,7 @@
 # DiagrammeR (development version)
 
+* Removed the `set_df_as_node_attr()`, `set_df_as_edge_attr()`, and `get_attr_dfs()` functions.
+
 # DiagrammeR 1.0.5
 
 * Removes the ability to save a DiagrammeR graph object as a Gephi file (.gexf) since the **rgexf** package is no longer maintained
