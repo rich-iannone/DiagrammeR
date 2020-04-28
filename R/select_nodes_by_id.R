@@ -57,7 +57,7 @@ select_nodes_by_id <- function(graph,
   }
 
   # Get a vector of node ID values from the graph
-  nodes_in_graph <- graph$nodes_df[, 1]
+  nodes_in_graph <- get_node_ids(graph)
 
   # Stop function if any nodes specified are not
   # in the graph

@@ -147,13 +147,8 @@ layout_nodes_w_string <- function(graph,
 
   for (k in 1:node_group_count) {
 
-    # Create table with position and node ID
-    position_table <-
-      dplyr::tibble(
-        x = as.numeric(NA),
-        y = as.numeric(NA))
-
-    position_table <- position_table[-1, ]
+    # Create empty table with position and node ID
+    position_table <- dplyr::tibble(x = numeric(0), y = numeric(0))
 
     node_group <- names(nodes)[k]
     node_select <- nodes[[k]]

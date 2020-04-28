@@ -145,23 +145,11 @@ node_edge_selection_properties <- function(graph) {
 replace_graph_node_selection <- function(graph,
                                          replacement) {
 
-  # Get the graph's `node_selection` df
-  node_selection <- graph$node_selection
-
-  # Remove objects in `graph$node_selection`
-  node_selection <-
-    node_selection %>%
-    dplyr::as_tibble()
-
-  node_selection <-
-    node_selection[-seq(1, nrow(node_selection)), 1] %>%
-    as.data.frame(stringsAsFactors = FALSE)
-
-  # Add replacement to `graph$node_selection`
-  node_selection %>%
-    dplyr::bind_rows(
-      dplyr::tibble(
-        node = as.integer(replacement)))
+  # Create a new table for the node selection
+  dplyr::bind_rows(
+    create_empty_nsdf(),
+    dplyr::tibble(node = as.integer(replacement))
+  )
 }
 
 #' Replace the `edge_selection` df with different edge ID values
@@ -172,32 +160,21 @@ replace_graph_edge_selection <- function(graph,
                                          from_node,
                                          to_node) {
 
-  # Get the graph's `edge_selection` df
-  edge_selection <- graph$edge_selection
-
-  # Remove objects in `graph$edge_selection`
-  edge_selection <-
-    edge_selection %>%
-    dplyr::as_tibble()
-
-  edge_selection <-
-    edge_selection[-seq(1, nrow(edge_selection)), 1] %>%
-    as.data.frame(stringsAsFactors = FALSE)
-
-  # Add replacement to `graph$edge_selection`
-  edge_selection %>%
-    dplyr::bind_rows(
-      dplyr::tibble(
-        edge = as.integer(edge_id),
-        from = as.integer(from_node),
-        to = as.integer(to_node)))
+  # Create a new table for the edge selection
+  dplyr::bind_rows(
+    create_empty_esdf(),
+    dplyr::tibble(
+      edge = as.integer(edge_id),
+      from = as.integer(from_node),
+      to = as.integer(to_node)
+    )
+  )
 }
 
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  dplyr::tibble(
-    node = as.integer(NA))[-1, ] %>%
+  dplyr::tibble(node = integer(0)) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
 
@@ -205,9 +182,10 @@ create_empty_esdf <- function() {
 
   # Create empty `esdf`
   dplyr::tibble(
-    edge = as.integer(NA),
-    from = as.integer(NA),
-    to = as.integer(NA))[-1, ] %>%
+    edge = integer(0),
+    from = integer(0),
+    to = integer(0)
+  ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
 

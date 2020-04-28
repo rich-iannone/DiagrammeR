@@ -97,27 +97,33 @@ generate_dot <- function(graph) {
     edge_attrs <- NA
   }
 
+
   # Replace NA values with empty strings in `nodes_df`
   if (!is.null(nodes_df)) {
+
     if (ncol(nodes_df) >= 4) {
-      for (i in 4:ncol(nodes_df)) {
-        nodes_df[, i] <-
-          as.character(nodes_df[, i])
-        nodes_df[, i] <-
-          ifelse(is.na(nodes_df[, i]), "", nodes_df[, i])
-      }
+
+      nodes_df <-
+        nodes_df %>%
+        dplyr::mutate_at(
+          .vars = base::setdiff(colnames(nodes_df), c("id", "type", "label")),
+          .funs =  ~ tidyr::replace_na(., "")
+        )
     }
   }
 
+
   # Replace NA values with empty strings in `edges_df`
   if (!is.null(edges_df)) {
-    if (ncol(edges_df) >= 4) {
-      for (i in 4:ncol(edges_df)) {
-        edges_df[, i] <-
-          ifelse(is.na(edges_df[, i]), "", edges_df[, i])
-        edges_df[, i] <-
-          as.character(edges_df[, i])
-      }
+
+    if (ncol(edges_df) >= 5) {
+
+      edges_df <-
+        edges_df %>%
+        dplyr::mutate_at(
+          .vars = base::setdiff(colnames(edges_df), c("id", "from", "to", "rel")),
+          .funs =  ~ tidyr::replace_na(., "")
+        )
     }
   }
 
@@ -177,9 +183,9 @@ generate_dot <- function(graph) {
       if (!is.na(edges_df[i, display_col]) ) {
         if (edges_df[i, display_col] != "") {
 
-        edges_df[i, label_col] <-
-          edges_df[
-            i, which(colnames(edges_df) == edges_df[i, display_col])]
+          edges_df[i, label_col] <-
+            edges_df[
+              i, which(colnames(edges_df) == edges_df[i, display_col])]
         }
       } else {
         edges_df[i, label_col] <- ""
@@ -275,7 +281,9 @@ generate_dot <- function(graph) {
                 nodes_df[, column_with_x],
                 ",",
                 nodes_df[, column_with_y],
-                "!"))
+                "!"),
+            stringsAsFactors = FALSE
+          )
 
         nodes_df$pos <- pos$pos
       }
@@ -321,7 +329,7 @@ generate_dot <- function(graph) {
         color_attr_column_name <-
           unlist(strsplit(colnames(nodes_df)[
             (which(grepl("alpha:.*", colnames(nodes_df))))
-            ], ":"))[-1]
+          ], ":"))[-1]
 
         color_attr_column_no <-
           which(colnames(nodes_df) %in% color_attr_column_name)
@@ -445,28 +453,37 @@ generate_dot <- function(graph) {
                                    '}\n')
                      }
                      return(x)
-                   }))
-      }
+                   })
+          )
 
-      else if ('cluster' %in% colnames(nodes_df)) {
-	clustered_node_block <- character(0)
-	clusters <- split(node_block, nodes_df$cluster)
-	for (i in seq_along(clusters)) {
-	  if (names(clusters)[[i]] == "") {
-	    # nodes not in clusters
-	    cluster_block <- clusters[[i]]
-	  } else {
-	    cluster_block <- paste0("subgraph cluster", i, "{\nlabel='",
-	                            names(clusters)[[i]], "'\n",
-	       			    paste0(clusters[[i]], collapse="\n"), "}\n")
-	  }
-	  clustered_node_block <- c(clustered_node_block, cluster_block)
-	}
+      } else if ('cluster' %in% colnames(nodes_df)) {
 
-	node_block <- clustered_node_block
+        cluster_vals <- nodes_df$cluster
+        cluster_vals[cluster_vals == ""] <- NA_character_
 
-	# cleanup variables
-	rm(clustered_node_block, clusters, cluster_block)
+        clustered_node_block <- character(0)
+        clusters <- split(node_block, cluster_vals)
+
+        for (i in seq_along(clusters)) {
+          if (names(clusters)[[i]] == "") {
+            # nodes not in clusters
+            cluster_block <- clusters[[i]]
+          } else {
+            cluster_block <-
+              paste0(
+                "subgraph cluster", i, "{\nlabel='",
+                names(clusters)[[i]], "'\n",
+                paste0(clusters[[i]], collapse = "\n"), "}\n"
+              )
+          }
+
+          clustered_node_block <- c(clustered_node_block, cluster_block)
+        }
+
+        node_block <- clustered_node_block
+
+        # cleanup variables
+        rm(clustered_node_block, clusters, cluster_block)
       }
 
       # Construct the `node_block` character object

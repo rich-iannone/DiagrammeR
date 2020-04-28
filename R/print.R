@@ -431,57 +431,6 @@ print.dgr_graph <- function(x, ...) {
       cache_str)
 
   #
-  # Create string for the dfs stored in the graph
-  #
-
-  # Get a count of all dfs stored in the graph
-  if (is.null(x$df_storage)) {
-
-    df_count <- 0
-
-  } else {
-
-    df_count <- length(x$df_storage)
-
-    if (any(!is.na(get_df_ids(graph_df = x$nodes_df)))) {
-
-      dfs_w_nodes <-
-        get_df_ids(graph_df = x$nodes_df) %>%
-        length()
-
-    } else {
-
-      dfs_w_nodes <- 0
-    }
-
-    if (any(!is.na(get_df_ids(graph_df = x$edges_df)))) {
-
-      dfs_w_edges <-
-        get_df_ids(graph_df = x$edges_df) %>%
-        length()
-
-    } else {
-
-      dfs_w_edges <- 0
-    }
-  }
-
-  if (df_count > 0) {
-    stored_dfs_detail_str <-
-      paste0(
-        "  STORED DFs / ",
-        df_count,
-        ": ", dfs_w_nodes,
-        " with nodes & ",
-        dfs_w_edges,
-        " with edges")
-  } else {
-    stored_dfs_detail_str <-
-      paste0(
-        "  STORED DFs / <none>")
-  }
-
-  #
   # Create string for global attributes
   #
 
@@ -566,7 +515,6 @@ print.dgr_graph <- function(x, ...) {
   edge_detail_str_1_length <- nchar(edge_detail_str_1)
   selection_detail_str_length <- nchar(selection_detail_str)
   cache_detail_str_length <- nchar(cache_detail_str)
-  stored_dfs_detail_str_length <- nchar(stored_dfs_detail_str)
   global_attrs_detail_str_length <- nchar(global_attrs_detail_str)
 
   info_labels_node_df_length <- nchar(info_labels["get_node_df"])[[1]]
@@ -642,22 +590,6 @@ print.dgr_graph <- function(x, ...) {
         info_labels["get_cache"])
   }
 
-  if (console_width - stored_dfs_detail_str_length - info_labels_attr_dfs_length >= 5 &
-      !is.na(get_df_ids(graph_df = x$nodes_df))[1]) {
-
-    stored_dfs_detail_str <-
-      paste0(
-        stored_dfs_detail_str,
-        paste(
-          rep(
-            x = " ",
-            times = (console_width -
-                       stored_dfs_detail_str_length -
-                       info_labels_attr_dfs_length)),
-          collapse = ""),
-        info_labels["get_attr_dfs"])
-  }
-
   if (console_width -
       global_attrs_detail_str_length -
       info_labels_global_graph_attrs >= 5) {
@@ -690,10 +622,10 @@ print.dgr_graph <- function(x, ...) {
       edge_detail_str_2, "\n",
       selection_detail_str, "\n",
       cache_detail_str, "\n",
-      stored_dfs_detail_str, "\n",
       global_attrs_detail_str, "\n",
       graph_actions_detail_str, "\n",
-      graph_history_detail_str, "\n")
+      graph_history_detail_str, "\n"
+    )
 
   cat(complete_stmt)
 }

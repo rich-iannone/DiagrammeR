@@ -1,0 +1,38 @@
+digraph G {
+
+graph [fontname = 'Helvetica',
+       outputorder = 'edgesfirst',
+       bgcolor = 'white']
+
+node [fontname = 'Helvetica',
+      fontsize = '10',
+      shape = 'circle',
+      fixedsize = 'true',
+      width = '0.5',
+      style = 'filled',
+      fillcolor = 'aliceblue',
+      color = 'gray70',
+      fontcolor = 'gray50']
+
+edge [fontname = 'Helvetica',
+      fontsize = '8',
+      len = '1.5',
+      color = 'gray80',
+      arrowsize = '0.5']
+
+subgraph cluster1{
+label='bar'
+  '4'
+  '6'}
+
+subgraph cluster2{
+label='foo'
+  '2'
+  '3'}
+
+  '1'->'2'
+  '2'->'3'
+  '3'->'4'
+  '4'->'5'
+  '5'->'6'
+}

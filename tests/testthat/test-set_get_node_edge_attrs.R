@@ -370,13 +370,11 @@ test_that("Getting node attributes with a selection is possible", {
   graph <-
     create_graph() %>%
     add_gnm_graph(
-      n = 4,
-      m = 4,
-      node_data = node_data(
-        value = 1:4),
-      set_seed = 23) %>%
-  select_nodes_by_id(
-    nodes = c(1, 3))
+      n = 4, m = 4,
+      node_data = node_data(value = 1:4),
+      set_seed = 23
+    ) %>%
+    select_nodes_by_id(nodes = c(1, 3))
 
   # Get node attributes for all
   # selected nodes with the

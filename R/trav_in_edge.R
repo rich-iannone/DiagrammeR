@@ -335,7 +335,8 @@ trav_in_edge <- function(graph,
         dplyr::right_join(edf, c("id" = "to")) %>%
         dplyr::rename(to = id) %>%
         dplyr::rename(id = id.y) %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
+        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::arrange(id)
     }
 
     # If node attribute exists as a column in the edf
@@ -343,8 +344,8 @@ trav_in_edge <- function(graph,
 
       edges <-
         ndf_2 %>%
-        dplyr::right_join(edf, c("id" = "to")) %>%
-        dplyr::rename(to = id.y)
+        dplyr::right_join(edf, by = c("id" = "to")) %>%
+        dplyr::rename(to = id, id = id.y)
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
@@ -370,7 +371,8 @@ trav_in_edge <- function(graph,
       # Reorder columns
       edges <-
         edges %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
+        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::arrange(id)
     }
 
     # Update the graph's internal node data frame
