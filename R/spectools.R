@@ -76,16 +76,14 @@ replace_in_spec <- function(spec) {
 
     # Extract the spec into several pieces: first being the body,
     # subsequent pieces belonging the replacement references
-
     spec_body <- unlist(strsplit(x = spec, "\\n\\s*\\[1\\]:"))[1]
 
-    spec_references <- paste0("[1]:",
-                              unlist(strsplit(x = spec, "\\n\\s*\\[1\\]:"))[2])
+    spec_references <-
+      paste0("[1]:", unlist(strsplit(x = spec, "\\n\\s*\\[1\\]:"))[2])
 
     # Split the references into a vector of R statements
     split_references <-
-      gsub("\\[[0-9]+\\]:[ ]?", "",
-           unlist(strsplit(x = spec_references, "\\n")))
+      gsub("\\[[0-9]+\\]:[ ]?", "", unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
     for (i in 1:length(split_references)) {
@@ -94,18 +92,18 @@ replace_in_spec <- function(spec) {
         eval_expressions <- list()
       }
 
-      eval_expressions <- c(eval_expressions,
-                            list(eval(parse(text = split_references[i]))))
+      eval_expressions <-
+        c(
+          eval_expressions,
+          list(eval(parse(text = split_references[i])))
+        )
     }
 
-    # Make replacements to the spec body for each replacement that has
-    # no hyphen
+    # Make replacements to the spec body for each replacement that has no hyphen
     for (i in 1:length(split_references)) {
-
       while (grepl(paste0("@@", i, "([^-0-9])"), spec_body)) {
-
-        spec_body <- gsub(paste0("@@", i),
-                          eval_expressions[[i]][1], spec_body)
+        spec_body <-
+          gsub(paste0("@@", i, "(?=[^-0-9])"), eval_expressions[[i]][1], spec_body, perl = TRUE)
       }
     }
 
@@ -113,22 +111,31 @@ replace_in_spec <- function(spec) {
     # following and return the value from that index
     for (i in 1:length(split_references)) {
       while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)) {
+
         the_index <-
-          as.numeric(gsub("^([0-9]+)(.*)", "\\1",
-                          strsplit(spec_body,
-                                   paste0("@@", i, "-"))[[1]][2]))
+          gsub(
+            "^([0-9]+)(.*)", "\\1",
+            strsplit(spec_body, paste0("@@", i, "-"))[[1]][2]
+          ) %>%
+          as.numeric()
 
         if (the_index > length(eval_expressions[[i]])) {
+
           spec_body <-
-            gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
-                 paste0(eval_expressions[[i]][length(eval_expressions[[i]])],
-                        "\\1"),
-                 spec_body)
+            gsub(
+              paste0("@@", i, "-", the_index, "([^0-9])"),
+              paste0(eval_expressions[[i]][length(eval_expressions[[i]])], "\\1"),
+              spec_body
+            )
+
         } else {
+
           spec_body <-
-            gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
-                 paste0(eval_expressions[[i]][the_index], "\\1"),
-                 spec_body)
+            gsub(
+              paste0("@@", i, "-", the_index, "([^0-9])"),
+              paste0(eval_expressions[[i]][the_index], "\\1"),
+              spec_body
+            )
         }
       }
     }
