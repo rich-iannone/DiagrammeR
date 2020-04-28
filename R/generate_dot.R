@@ -264,28 +264,21 @@ generate_dot <- function(graph) {
 
     if (nrow(nodes_df) > 0) {
 
-      # Determine whether positional (x,y)
-      # data is included
-      column_with_x <-
-        which(colnames(nodes_df) %in% "x")[1]
+      # Determine whether positional (x,y) data is included
+      column_with_x <- which(colnames(nodes_df) %in% "x")[1]
 
-      column_with_y <-
-        which(colnames(nodes_df) %in% "y")[1]
+      column_with_y <- which(colnames(nodes_df) %in% "y")[1]
 
       if (!is.na(column_with_x) & !is.na(column_with_y)) {
-
         pos <-
-          data.frame(
-            "pos" =
-              paste0(
-                nodes_df[, column_with_x],
-                ",",
-                nodes_df[, column_with_y],
-                "!"),
-            stringsAsFactors = FALSE
+          paste0(
+            nodes_df %>% dplyr::pull(column_with_x), ",",
+            nodes_df %>% dplyr::pull(column_with_y), "!"
           )
 
-        nodes_df$pos <- pos$pos
+        nodes_df <-
+          nodes_df %>%
+          dplyr::mutate(pos = !!pos)
       }
 
       # Determine whether column 'alpha' exists
