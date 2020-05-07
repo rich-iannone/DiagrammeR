@@ -31,7 +31,6 @@ Make diagrams in R using
 provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
-\donttest{
 # Create a simple graph running left to right (note
 # that the whitespace is not important)
 # DiagrammeR("
@@ -129,6 +128,5 @@ library(htmltools)
 #      ticket seller->>customer: sorry;
 #    end
 # ")
-}
 
 }

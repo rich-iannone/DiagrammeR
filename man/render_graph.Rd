@@ -39,7 +39,8 @@ resulting graphic in pixels.}
 Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 }
 \examples{
-\donttest{
+if (interactive()) {
+
 # Render a graph that's a
 # balanced tree
 create_graph() \%>\%

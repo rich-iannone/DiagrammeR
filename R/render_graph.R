@@ -16,7 +16,8 @@
 #' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
 #' @examples
-#' \donttest{
+#' if (interactive()) {
+#'
 #' # Render a graph that's a
 #' # balanced tree
 #' create_graph() %>%
@@ -58,8 +59,8 @@
 #'     output = "visNetwork")
 #' }
 #'
-#' @import glue glue
 #' @family Display and Save
+#'
 #' @export
 render_graph <- function(graph,
                          layout = NULL,
