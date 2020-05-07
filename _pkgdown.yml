@@ -1,11 +1,7 @@
-articles:
-  - title: Getting Started
-    contents:
-    - node-edge-data-frames
-    - simple-graphs-ndfs-edfs
-  - title: Graphviz & Mermaid
-    contents:
-    - graphviz-mermaid
+destination: docs
+
+home:
+  strip_header: true
 
 reference:
   - title: External NDF/EDF
@@ -111,7 +107,6 @@ reference:
       - mutate_node_attrs_ws
       - colorize_node_attrs
       - recode_node_attrs
-      - set_df_as_node_attr
       - set_node_position
       - layout_nodes_w_string
       - nudge_node_positions_ws
@@ -127,7 +122,6 @@ reference:
       - mutate_edge_attrs_ws
       - colorize_edge_attrs
       - recode_edge_attrs
-      - set_df_as_edge_attr
       - node_data
       - node_aes
       - edge_data
@@ -182,7 +176,6 @@ reference:
       - get_paths
       - do_dfs
       - do_bfs
-      - get_attr_dfs
       - count_nodes
       - count_edges
       - count_loop_edges
@@ -329,3 +322,15 @@ reference:
   - title: mermaid
     contents:
       - mermaid
+
+articles:
+  - title: Getting Started
+    contents:
+    - node-edge-data-frames
+    - simple-graphs-ndfs-edfs
+  - title: Graphviz & Mermaid
+    contents:
+    - graphviz-mermaid
+
+development:
+  version_tooltip: "Development version"
