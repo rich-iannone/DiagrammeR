@@ -3,6 +3,7 @@
 .bowerrc
 .*sublime.*
 ^\.travis\.yml$
+^.github$
 ^cran-comments\.md$
 ^CONDUCT\.md$
 ^revdep$
