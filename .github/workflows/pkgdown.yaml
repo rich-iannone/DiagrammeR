@@ -27,6 +27,13 @@ jobs:
           key: macOS-r-4.0-2-${{ hashFiles('depends.Rds') }}
           restore-keys: macOS-r-4.0-2-
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get -y install librsvg2-dev
+          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+
       - name: Install dependencies
         run: |
           install.packages("remotes")
