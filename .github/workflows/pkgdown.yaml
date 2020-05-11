@@ -24,8 +24,8 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: macOS-r-4.0-1-${{ hashFiles('depends.Rds') }}
-          restore-keys: macOS-r-4.0-1-
+          key: macOS-r-4.0-2-${{ hashFiles('depends.Rds') }}
+          restore-keys: macOS-r-4.0-2-
 
       - name: Install dependencies
         run: |
@@ -40,4 +40,3 @@ jobs:
       - name: Deploy package
         run: pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
-        
