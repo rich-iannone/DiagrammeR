@@ -13,3 +13,4 @@
 ^_pkgdown\.yml$
 ^man/figures/.*$
 ^README\.md$
+^.github$
