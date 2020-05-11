@@ -28,8 +28,10 @@ jobs:
           restore-keys: macOS-r-4.0-2-
 
       - name: Install system dependencies
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          sudo apt-get -y install librsvg2-dev
+          brew install librsvg2-dev
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
