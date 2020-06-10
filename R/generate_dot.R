@@ -452,7 +452,6 @@ generate_dot <- function(graph) {
       } else if ('cluster' %in% colnames(nodes_df)) {
 
         cluster_vals <- nodes_df$cluster
-        cluster_vals[cluster_vals == ""] <- NA_character_
 
         clustered_node_block <- character(0)
         clusters <- split(node_block, cluster_vals)
