@@ -615,10 +615,10 @@ gv_edge_attributes <- function() {
     "headlabel", "headport", "headtarget", "headtooltip", "headURL", "href",
     "id", "label", "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
     "labelfontname", "labelfontsize", "labelhref", "labeltarget", "labeltooltip",
-    "labelURL", "layer", "len", "lhead", "lp", "ltail",  ea <- "minlen",
+    "labelURL", "layer", "len", "lhead", "lp", "ltail",  "minlen",
     "nojustify", "penwidth", "pos", "samehead", "sametail", "showboxes", "style",
     "tailclip", "tailhref", "taillabel", "tailport", "tailtarget", "tailtooltip",
-    "tailURL", "target", "tooltip", "URL", "weight")
+    "tailURL", "target", "tooltip", "URL", "weight", "rel")
 }
 
 #' Produce a vector of node creation function names
