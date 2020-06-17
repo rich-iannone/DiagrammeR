@@ -77,8 +77,35 @@
 #'   height of its label. The `labelloc` node attribute can be set to either `t`
 #'   (top), `c` (center), or `b` (bottom). By default, the label is vertically
 #'   centered.
-#' @param margin Sets the amount of space around the node's label. By default,
 #'   the value is `0.11,0.055`.
+#' @param margin Sets the amount of space around the node's label. By default,
+#' @param colorscheme  Specifies a color scheme namespace. If defined, it
+#' specifies the context for interpreting color names. In particular, if a color
+#'  value has form "xxx" or "//xxx", then the color xxx will be evaluated
+#'  according to the current color scheme.
+#' @param comment Comments are inserted into output. Device-dependent
+#' @param imagescale Attribute controlling how an image fills its containing node.
+#' In general, the image is given its natural size, (cf. dpi), and the node size
+#' is made large enough to contain its image, its label, its margin, and its
+#' peripheries.
+#' @param label Text label attached to objects.
+#' @param layer Specifies layers in which the node is present.
+#' @param nojustify If TRUE, multi-line labels will be justified in the context
+#' of itself.
+#' By default, the justification of multi-line labels is done within the largest
+#' context that makes sense
+#' @param pin If true and the node has a pos attribute on input, neato or fdp
+#' prevents the node from moving from the input position
+#' @param pos Position of node, or spline control points. For nodes, the
+#' position indicates the center of the node. On output, the coordinates are
+#' in `points`
+#' @param regular If true, force polygon to be regular, i.e., the vertices of
+#' the polygon will lie on a circle whose center is the center of the node.
+#' @param root This specifies nodes to be used as the center of the layout and
+#' the root of the generated spanning tree.
+#' @param samplepoints If the input graph defines the vertices attribute, and
+#' output is dot or xdot, this gives the number of points used for a node whose
+#' shape is a circle or ellipse
 #' @examples
 #' # Create a new graph and add
 #' # a path with several node
@@ -128,7 +155,6 @@ node_aes <- function(color         = NULL,
                      gradientangle = NULL,
                      group         = NULL,
                      height        = NULL,
-                     id            = NULL,
                      image         = NULL,
                      imagescale    = NULL,
                      label         = NULL,
@@ -141,26 +167,19 @@ node_aes <- function(color         = NULL,
                      peripheries   = NULL,
                      pin           = NULL,
                      pos           = NULL,
-                     rects         = NULL,
                      regular       = NULL,
                      root          = NULL,
                      samplepoints  = NULL,
                      shape         = NULL,
-                     shapefile     = NULL,
-                     showboxes     = NULL,
                      sides         = NULL,
                      skew          = NULL,
-                     sortv         = NULL,
                      style         = NULL,
-                     target        = NULL,
                      tooltip       = NULL,
                      URL           = NULL,
-                     vertices      = NULL,
                      width         = NULL,
                      xlabel        = NULL,
                      x             = NULL,
-                     y             = NULL,
-                     z             = NULL) {
+                     y             = NULL) {
 
   # Collect vectors of node aesthetic
   # attribute values into a list object
@@ -178,7 +197,6 @@ node_aes <- function(color         = NULL,
       gradientangle = gradientangle,
       group         = group,
       height        = height,
-      id            = id,
       image         = image,
       imagescale    = imagescale,
       label         = label,
@@ -191,26 +209,19 @@ node_aes <- function(color         = NULL,
       peripheries   = peripheries,
       pin           = pin,
       pos           = pos,
-      rects         = rects,
       regular       = regular,
       root          = root,
       samplepoints  = samplepoints,
       shape         = shape,
-      shapefile     = shapefile,
-      showboxes     = showboxes,
       sides         = sides,
       skew          = skew,
-      sortv         = sortv,
       style         = style,
-      target        = target,
       tooltip       = tooltip,
       URL           = URL,
-      vertices      = vertices,
       width         = width,
       xlabel        = xlabel,
       x             = x,
-      y             = y,
-      z             = z)
+      y             = y)
 
   non_null_attrs <-
     1:length(attr_values) %>%
