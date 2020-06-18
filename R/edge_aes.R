@@ -97,7 +97,38 @@
 #'   `se`, `s`, `sw`, `w`, and `nw`.
 #' @param decorate If `TRUE` then attach any edge label to the edge line via a
 #'   2-segment polyline, underlining the label text and partially overlapping
-#'   the edge line.
+#' @param colorscheme This attribute specifies a color scheme namespace. If
+#' defined, it specifies the context for interpreting color names.
+#' @param comment Comments are inserted into output. Device-dependent
+#' @param constraint If false, the edge is not used in ranking the nodes.
+#' @param labelangle This, along with `labeldistance`, determine where the
+#' headlabel (taillabel) are placed with respect to the head (tail) in polar
+#' coordinates. The origin in the coordinate system is the point where the edge
+#' touches the node. The ray of 0 degrees goes from the origin back along the
+#' edge, parallel to the edge at the origin.
+#' @param labeldistance Multiplicative scaling factor adjusting the distance
+#' that the headlabel(taillabel) is from the head(tail) node. The default
+#' distance is 10 points.
+#' @param labelfloat If `TRUE`, allows edge labels to be less constrained in
+#' position. In particular, it may appear on top of other edges.
+#' @param layer Specifies layers in which the node, edge or cluster is present.
+#' @param lhead Logical head of an edge
+#' @param lp Label position, in points.
+#' @param ltail Logical tail of an edge
+#' @param minlen Minimum edge length (rank difference between head and tail)
+#' @param nojustify If TRUE, multi-line labels will be justified in the context
+#' of itself. By default, the justification of multi-line labels is done within
+#' the largest context that makes sense
+#' @param samehead Edges with the same head and the same `samehead` value are
+#' aimed at the same point on the head
+#' @param sametail Edges with the same tail and the same `sametail` value are
+#' aimed at the same point on the tail
+#' @param weight Weight of edge. In dot, the heavier the weight, the shorter,
+#' straighter and more vertical the edge is. N.B. Weights in dot must be
+#' integers. For twopi, a weight of 0 indicates the edge should not be used in
+#' constructing a spanning tree from the root. For other layouts, a larger
+#' weight encourages the layout to make the edge length closer to that specified
+#' by the `len` attribute.
 #' @examples
 #' # Create a new graph and add
 #' # a path with several edge
@@ -119,75 +150,105 @@
 #'   get_edge_df()
 #' @family Aesthetics
 #' @export
-edge_aes <- function(style = NULL,
-                     penwidth = NULL,
-                     color = NULL,
-                     arrowsize = NULL,
-                     arrowhead = NULL,
-                     arrowtail = NULL,
-                     fontname = NULL,
-                     fontsize = NULL,
-                     fontcolor = NULL,
-                     len = NULL,
-                     tooltip = NULL,
-                     URL = NULL,
-                     label = NULL,
+edge_aes <- function(arrowhead     = NULL,
+                     arrowsize     = NULL,
+                     arrowtail     = NULL,
+                     color         = NULL,
+                     colorscheme   = NULL,
+                     comment       = NULL,
+                     constraint    = NULL,
+                     decorate      = NULL,
+                     dir           = NULL,
+                     edgetooltip   = NULL,
+                     edgeURL       = NULL,
+                     fontcolor     = NULL,
+                     fontname      = NULL,
+                     fontsize      = NULL,
+                     headclip      = NULL,
+                     headlabel     = NULL,
+                     headport      = NULL,
+                     headtooltip   = NULL,
+                     headURL       = NULL,
+                     label         = NULL,
+                     labelangle    = NULL,
+                     labeldistance = NULL,
+                     labelfloat    = NULL,
+                     labelfontcolor= NULL,
                      labelfontname = NULL,
                      labelfontsize = NULL,
-                     labelfontcolor = NULL,
-                     labeltooltip = NULL,
-                     labelURL = NULL,
-                     edgetooltip = NULL,
-                     edgeURL = NULL,
-                     dir = NULL,
-                     headtooltip = NULL,
-                     headURL = NULL,
-                     headclip = NULL,
-                     headlabel = NULL,
-                     headport = NULL,
-                     tailtooltip = NULL,
-                     tailURL = NULL,
-                     tailclip = NULL,
-                     taillabel = NULL,
-                     tailport = NULL,
-                     decorate = NULL) {
+                     labeltooltip  = NULL,
+                     labelURL      = NULL,
+                     layer         = NULL,
+                     len           = NULL,
+                     lhead         = NULL,
+                     lp            = NULL,
+                     ltail         = NULL,
+                     minlen        = NULL,
+                     nojustify     = NULL,
+                     penwidth      = NULL,
+                     samehead      = NULL,
+                     sametail      = NULL,
+                     style         = NULL,
+                     tailclip      = NULL,
+                     taillabel     = NULL,
+                     tailport      = NULL,
+                     tailtooltip   = NULL,
+                     tailURL       = NULL,
+                     tooltip       = NULL,
+                     URL           = NULL,
+                     weight        = NULL) {
 
   # Collect vectors of node aesthetic
   # attribute values into a list object
   attr_values <-
     list(
-      style = style,
-      penwidth = penwidth,
-      color = color,
-      arrowsize = arrowsize,
-      arrowhead = arrowhead,
-      arrowtail = arrowtail,
-      fontname = fontname,
-      fontsize = fontsize,
-      fontcolor = fontcolor,
-      len = len,
-      tooltip = tooltip,
-      URL = URL,
-      label = label,
-      labelfontname = labelfontname,
-      labelfontsize = labelfontsize,
+      arrowhead      = arrowhead,
+      arrowsize      = arrowsize,
+      arrowtail      = arrowtail,
+      color          = color,
+      colorscheme    = colorscheme,
+      comment        = comment,
+      constraint     = constraint,
+      decorate       = decorate,
+      dir            = dir,
+      edgetooltip    = edgetooltip,
+      edgeURL        = edgeURL,
+      fontcolor      = fontcolor,
+      fontname       = fontname,
+      fontsize       = fontsize,
+      headclip       = headclip,
+      headlabel      = headlabel,
+      headport       = headport,
+      headtooltip    = headtooltip,
+      headURL        = headURL,
+      label          = label,
+      labelangle     = labelangle,
+      labeldistance  = labeldistance,
+      labelfloat     = labelfloat,
       labelfontcolor = labelfontcolor,
-      labeltooltip = labeltooltip,
-      labelURL = labelURL,
-      edgetooltip = edgetooltip,
-      edgeURL = edgeURL,
-      dir = dir,
-      headtooltip = headtooltip,
-      headURL = headURL,
-      headclip = headclip,
-      headlabel = headlabel,
-      headport = headport,
-      tailtooltip = tailtooltip,
-      tailURL = tailURL,
-      tailclip = tailclip,
-      taillabel = taillabel,
-      tailport = tailport,
-      decorate = decorate)
+      labelfontname  = labelfontname,
+      labelfontsize  = labelfontsize,
+      labeltooltip   = labeltooltip,
+      labelURL       = labelURL,
+      layer          = layer,
+      len            = len,
+      lhead          = lhead,
+      lp             = lp,
+      ltail          = ltail,
+      minlen         = minlen,
+      nojustify      = nojustify,
+      penwidth       = penwidth,
+      samehead       = samehead,
+      sametail       = sametail,
+      style          = style,
+      tailclip       = tailclip,
+      taillabel      = taillabel,
+      tailport       = tailport,
+      tailtooltip    = tailtooltip,
+      tailURL        = tailURL,
+      tooltip        = tooltip,
+      URL            = URL,
+      weight         = weight)
 
   non_null_attrs <-
     1:length(attr_values) %>%
