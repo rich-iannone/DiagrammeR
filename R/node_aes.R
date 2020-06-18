@@ -91,9 +91,8 @@
 #' @param label Text label attached to objects.
 #' @param layer Specifies layers in which the node is present.
 #' @param nojustify If TRUE, multi-line labels will be justified in the context
-#' of itself.
-#' By default, the justification of multi-line labels is done within the largest
-#' context that makes sense
+#' of itself. By default, the justification of multi-line labels is done within
+#' the largest context that makes sense
 #' @param pin If true and the node has a pos attribute on input, neato or fdp
 #' prevents the node from moving from the input position
 #' @param pos Position of node, or spline control points. For nodes, the
