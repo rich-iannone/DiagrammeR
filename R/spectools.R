@@ -3,6 +3,7 @@
 #' Use Razor-like syntax to define a template for use in a `grViz` diagram.
 #'
 #' @param spec String spec to be parsed and evaluated.
+#' @inheritParams grViz
 #' @examples
 #' \dontrun{
 #' # a simple example to use a LETTER as a node label
@@ -37,7 +38,7 @@
 #' }
 #'
 #' @export
-replace_in_spec <- function(spec) {
+replace_in_spec <- function(spec, envir = parent.frame()) {
 
   # Directive for marking subscripted text in a label or tooltip '@_'
   if (grepl("@_", spec)) {
@@ -95,7 +96,7 @@ replace_in_spec <- function(spec) {
       eval_expressions <-
         c(
           eval_expressions,
-          list(eval(parse(text = split_references[i])))
+          list(eval(parse(text = split_references[i]), envir = envir))
         )
     }
 
