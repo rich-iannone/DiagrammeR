@@ -1,5 +1,7 @@
 # DiagrammeR 1.0.6.9000 (Unreleased)
 
+* Added the `envir` argument to the `grViz` and `replace_in_spec` functions.
+
 # DiagrammeR 1.0.6.1
 
 * Removed the `set_df_as_node_attr()`, `set_df_as_edge_attr()`, and `get_attr_dfs()` functions.
