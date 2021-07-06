@@ -109,7 +109,8 @@ colorize_edge_attrs <- function(graph,
   # Handle vector of hexadecimal or named colors
   if (length(palette) > 1) {
     # Verify colors are valid
-    if (!all(tolower(palette) %in% x11_hex()$hex)) {
+    is_valid_hex <- grepl(toupper(palette), pattern = "#[0-9A-F]{6}")
+    if (!all(is_valid_hex)) {
       emit_error(fcn_name = fcn_name,
                  reasons = "The color palette contains invalid hexadecimal values.")
     }

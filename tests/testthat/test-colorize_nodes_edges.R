@@ -184,6 +184,7 @@ test_that("Adding color based on node attributes is possible", {
     "#[0-9A-F]{6}")
 
   # Bucketize as before but color according to hexadecimal vector input
+  # Includes one valid hex color not in x11_hex()
   graph <-
     create_graph() %>%
     add_gnm_graph(
@@ -196,7 +197,7 @@ test_that("Adding color based on node attributes is possible", {
       node_attr_from = value,
       node_attr_to = fillcolor,
       cut_points = c(1, 3, 5, 7, 9),
-      palette = c("#458b00", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
+      palette = c("#64ccc9", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
                   "#698b69", "#cd2626", "#4a4a4a"))
 
   # Expect that there are 5 colors in the
@@ -226,7 +227,7 @@ test_that("Adding color based on node attributes is possible", {
         node_attr_from = value,
         node_attr_to = fillcolor,
         cut_points = c(1, 3, 5, 7, 9),
-        palette = c("#458b00l15", "foo", "#00eeee", "bar", "orange")))
+        palette = c("458b00l15", "foo", "#00eeee", "bar", "orange")))
 
 })
 
@@ -399,6 +400,7 @@ test_that("Adding color based on edge attributes is possible", {
     "#[0-9A-F]{6}")
 
   # Color edges according to hexadecimal vector input
+  # Includes one valid hex color not in x11_hex()
   graph <-
     create_graph() %>%
     add_gnm_graph(
@@ -414,7 +416,7 @@ test_that("Adding color based on edge attributes is possible", {
     colorize_edge_attrs(
       edge_attr_from = rel,
       edge_attr_to = color,
-      palette = c("#458b00", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
+      palette = c("#64ccc9", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
                   "#698b69", "#cd2626", "#4a4a4a"))
 
   # Expect that each value in the `color`
