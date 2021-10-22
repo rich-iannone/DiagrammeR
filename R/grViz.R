@@ -14,6 +14,7 @@
 #'   graphic in pixels.
 #' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
+#' @param envir The environment in which substitution functionality takes place.
 #'
 #' @return An object of class `htmlwidget` that will intelligently print itself
 #'   into HTML in a variety of contexts including the R console, within R
@@ -25,7 +26,8 @@ grViz <- function(diagram = "",
                   allow_subst = TRUE,
                   options = NULL,
                   width = NULL,
-                  height = NULL) {
+                  height = NULL,
+                  envir = parent.frame()) {
 
   # Check for a connection or file
   if (inherits(diagram, "connection") ||
@@ -45,7 +47,7 @@ grViz <- function(diagram = "",
   }
 
   if (allow_subst == TRUE) {
-    diagram <- replace_in_spec(diagram)
+    diagram <- replace_in_spec(diagram, envir = envir)
   }
 
   # Single quotes within a diagram spec are problematic

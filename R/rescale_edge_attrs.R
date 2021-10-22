@@ -85,6 +85,7 @@
 #' graph %>% get_edge_df()
 #'
 #' @import rlang
+#' @family Edge creation and removal
 #' @export
 rescale_edge_attrs <- function(graph,
                                edge_attr_from,
@@ -143,12 +144,11 @@ rescale_edge_attrs <- function(graph,
       reasons = "The edge attribute to rescale is not in the edf")
   }
 
-  # Get the column number for the edge attr to rescale
-  col_num_rescale <-
-    which(colnames(edges) %in% edge_attr_from)
-
   # Extract the vector to rescale from the `edges` df
-  vector_to_rescale <- as.numeric(edges[, col_num_rescale])
+  vector_to_rescale <-
+    edges %>%
+    dplyr::mutate_at(.vars = edge_attr_from, .funs = ~as.numeric(.)) %>%
+    dplyr::pull(var = !!edge_attr_from)
 
   if ((!is.null(from_lower_bound) &
        is.null(from_upper_bound)) |
@@ -157,11 +157,7 @@ rescale_edge_attrs <- function(graph,
       (is.null(from_lower_bound) &
        is.null(from_upper_bound))) {
 
-    from <-
-      range(
-        vector_to_rescale,
-        na.rm = TRUE,
-        finite = TRUE)
+    from <- range(vector_to_rescale, na.rm = TRUE, finite = TRUE)
 
   } else {
     from <- c(from_lower_bound, from_upper_bound)

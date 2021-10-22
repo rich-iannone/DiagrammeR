@@ -76,7 +76,7 @@
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 layout_nodes_w_string <- function(graph,
                                   layout,
@@ -147,13 +147,8 @@ layout_nodes_w_string <- function(graph,
 
   for (k in 1:node_group_count) {
 
-    # Create table with position and node ID
-    position_table <-
-      dplyr::tibble(
-        x = as.numeric(NA),
-        y = as.numeric(NA))
-
-    position_table <- position_table[-1, ]
+    # Create empty table with position and node ID
+    position_table <- dplyr::tibble(x = numeric(0), y = numeric(0))
 
     node_group <- names(nodes)[k]
     node_select <- nodes[[k]]
@@ -184,14 +179,14 @@ layout_nodes_w_string <- function(graph,
     # Filter the graph `ndf`
     ndf_part <-
       ndf %>%
-      dplyr::filter(!! parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
+      dplyr::filter(!! rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
 
     # Optionally apply sorting
     if (!is.null(sort)) {
       if (sort_dir == "desc") {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange(desc(!! sym(sort_attr)))
+          dplyr::arrange(dplyr::desc(!! sym(sort_attr)))
 
       } else {
         ndf_part <-

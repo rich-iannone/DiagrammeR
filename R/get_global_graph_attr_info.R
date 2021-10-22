@@ -26,22 +26,21 @@ get_global_graph_attr_info <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph object is not valid"
+    )
   }
 
   if (nrow(graph$global_attrs) == 0) {
 
     global_graph_attrs_tbl <-
       dplyr::tibble(
-        attr = NA_character_ ,
-        value = NA_character_,
-        attr_type = NA_character_)[-1, ]
+        attr = character(0),
+        value = character(0),
+        attr_type = character(0)
+      )
 
   } else if (nrow(graph$global_attrs) > 0) {
-
-    global_graph_attrs_tbl <-
-      graph$global_attrs %>%
-      dplyr::as_tibble()
+    global_graph_attrs_tbl <- dplyr::as_tibble(graph$global_attrs)
   }
 
   global_graph_attrs_tbl

@@ -61,7 +61,7 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 join_node_attrs <- function(graph,
                             df,

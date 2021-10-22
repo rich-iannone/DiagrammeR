@@ -42,15 +42,16 @@ get_graph_series_info <- function(graph_series) {
     count_graphs_in_graph_series(graph_series)
 
   series_info_df <-
-    data.frame(
-      graph = as.integer(NA),
-      name = as.character(NA),
+    dplyr::tibble(
+      graph = integer(0),
+      name = character(0),
       date_time = Sys.time(),
-      tz = as.character(NA),
-      nodes = as.integer(NA),
-      edges = as.integer(NA),
-      directed = as.logical(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      tz = character(0),
+      nodes = integer(0),
+      edges = integer(0),
+      directed = logical(0)
+    ) %>%
+    as.data.frame(stringsAsFactors = FALSE)
 
   if (graphs_in_series == 0) {
     return(series_info_df)

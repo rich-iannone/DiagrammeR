@@ -104,6 +104,7 @@
 #'
 #' @import RColorBrewer
 #' @import rlang
+#' @family Node creation and removal
 #' @export
 colorize_node_attrs <- function(graph,
                                 node_attr_from,
@@ -152,29 +153,41 @@ colorize_node_attrs <- function(graph,
     num_recodings <- length(cut_points) - 1
   }
 
-  # If the number of recodings lower than any Color
-  # Brewer palette, shift palette to `viridis`
-  if ((num_recodings < 3 | num_recodings > 10) & palette %in%
-      c(row.names(RColorBrewer::brewer.pal.info))) {
-    palette <- "viridis"
+  # Handle vector of hexadecimal or named colors
+  if (length(palette) > 1) {
+    # Verify colors are valid
+    is_valid_hex <- grepl(toupper(palette), pattern = "#[0-9A-F]{6}")
+    if (!all(is_valid_hex)) {
+      emit_error(fcn_name = fcn_name,
+                 reasons = "The color palette contains invalid hexadecimal values.")
+    }
+    if (length(palette) < num_recodings) {
+      # Revert to viridis if provided color vector is too short
+      palette <- "viridis"
+    } else {
+      color_palette <- toupper(palette)[1:num_recodings]
+    }
   }
 
-  # or any of the RColorBrewer palettes
+  # Handle viridis and ColorBrewer palette name input
   if (length(palette) == 1) {
-    if (!(palette %in%
-          c(row.names(RColorBrewer::brewer.pal.info),
-            "viridis"))) {
+    # If the number of recodings lower than any Color
+    # Brewer palette, shift palette to `viridis`
+    if ((num_recodings < 3 | num_recodings > 10) & palette %in%
+        c(row.names(RColorBrewer::brewer.pal.info))) {
+      palette <- "viridis"
+    }
 
+    # or any of the RColorBrewer palettes
+    if (!(palette %in% c(row.names(RColorBrewer::brewer.pal.info),
+                         "viridis"))) {
       emit_error(
         fcn_name = fcn_name,
         reasons = "The color palette is not an `RColorBrewer` or `viridis` palette")
     }
-  }
 
-  # Obtain a color palette
-  if (length(palette) == 1) {
-    if (palette %in%
-        row.names(RColorBrewer::brewer.pal.info)) {
+    # Obtain a color palette
+    if (palette %in% row.names(RColorBrewer::brewer.pal.info)) {
       color_palette <- RColorBrewer::brewer.pal(num_recodings, palette)
     } else if (palette == "viridis") {
       color_palette <- viridis::viridis(num_recodings)

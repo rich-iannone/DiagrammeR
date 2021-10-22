@@ -16,7 +16,8 @@
 #' @param height An optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
 #' @examples
-#' \donttest{
+#' if (interactive()) {
+#'
 #' # Render a graph that's a
 #' # balanced tree
 #' create_graph() %>%
@@ -58,7 +59,8 @@
 #'     output = "visNetwork")
 #' }
 #'
-#' @import glue glue
+#' @family Display and Save
+#'
 #' @export
 render_graph <- function(graph,
                          layout = NULL,
@@ -84,31 +86,17 @@ render_graph <- function(graph,
   }
 
   if (output == "graph") {
+
     if (!is.null(title)) {
 
-      graph <-
-        add_global_graph_attrs(
-          graph, "label", title, "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labelloc", "t", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "labeljust", "c", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontname", "Helvetica", "graph")
-
-      graph <-
-        add_global_graph_attrs(
-          graph, "fontcolor", "gray30", "graph")
+      graph <- add_global_graph_attrs(graph, "label", title, "graph")
+      graph <- add_global_graph_attrs(graph, "labelloc", "t", "graph")
+      graph <- add_global_graph_attrs(graph, "labeljust", "c", "graph")
+      graph <- add_global_graph_attrs(graph, "fontname", "Helvetica", "graph")
+      graph <- add_global_graph_attrs(graph, "fontcolor", "gray30", "graph")
     }
 
-    # If no fillcolor provided, use default; if no default available,
-    # use white
+    # If no fillcolor provided, use default; if no default available, use white
     if (nrow(graph$nodes_df) > 0) {
       if (!("fillcolor" %in% colnames(graph$nodes_df))) {
         if ("fillcolor" %in% graph$global_attrs$attr) {
@@ -237,7 +225,6 @@ render_graph <- function(graph,
           dplyr::bind_cols(coords)
       }
     }
-
 
     if (("image" %in% colnames(graph %>% get_node_df()) ||
          "fa_icon" %in% colnames(graph %>% get_node_df()) ||

@@ -4,14 +4,16 @@
 \name{edge_list_2}
 \alias{edge_list_2}
 \title{Edge list - Version 2.}
-\format{A data frame with 19 rows and 5 variables:
+\format{
+A data frame with 19 rows and 5 variables:
 \describe{
 \item{from}{integer values that state the node ID values where an edge starts}
 \item{to}{integer values that state the node ID values where an edge terminates}
 \item{rel}{a grouping variable of either a, b, or c}
 \item{value_1}{a randomized set of numeric values between 0 and 10}
 \item{value_2}{a randomized set of numeric values between 0 and 10}
-}}
+}
+}
 \usage{
 edge_list_2
 }

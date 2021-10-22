@@ -82,6 +82,7 @@
 #' graph %>% get_node_df()
 #'
 #' @import rlang
+#' @family Node creation and removal
 #' @export
 rescale_node_attrs <- function(graph,
                                node_attr_from,
@@ -140,12 +141,11 @@ rescale_node_attrs <- function(graph,
       reasons = "The node attribute to rescale is not in the ndf")
   }
 
-  # Get the column number for the node attr to rescale
-  col_num_rescale <-
-    which(colnames(nodes) %in% node_attr_from)
-
   # Extract the vector to rescale from the `nodes` df
-  vector_to_rescale <- as.numeric(nodes[, col_num_rescale])
+  vector_to_rescale <-
+    nodes %>%
+    dplyr::mutate_at(.vars = node_attr_from, .funs = ~as.numeric(.)) %>%
+    dplyr::pull(var = !!node_attr_from)
 
   if ((!is.null(from_lower_bound) &
        is.null(from_upper_bound)) |
@@ -154,11 +154,7 @@ rescale_node_attrs <- function(graph,
       (is.null(from_lower_bound) &
        is.null(from_upper_bound))) {
 
-    from <-
-      range(
-        vector_to_rescale,
-        na.rm = TRUE,
-        finite = TRUE)
+    from <- range(vector_to_rescale, na.rm = TRUE, finite = TRUE)
 
   } else {
     from <- c(from_lower_bound, from_upper_bound)

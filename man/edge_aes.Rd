@@ -189,5 +189,10 @@ graph <-
 # been inserted
 graph \%>\%
   get_edge_df()
-
 }
+\seealso{
+Other Aesthetics: 
+\code{\link{node_aes}()},
+\code{\link{node_edge_aes_data}}
+}
+\concept{Aesthetics}

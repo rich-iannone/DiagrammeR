@@ -65,22 +65,17 @@ test_that("Printing a summary of an empty graph works", {
 
   expect_equal(
     graph %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / <none>")
-
-  expect_equal(
-    graph %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / 17 are set")
 
   expect_equal(
     graph %>%
-      get_printed_output(12) %>% substr(1, 45) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 45) %>% stringr::str_trim(),
     "GRAPH ACTIONS / <none>")
 
   expect_equal(
     graph %>%
-      get_printed_output(13) %>% substr(1, 45) %>% stringr::str_trim(),
+      get_printed_output(12) %>% substr(1, 45) %>% stringr::str_trim(),
     "GRAPH LOG / create_graph()")
 })
 
@@ -511,103 +506,6 @@ test_that("Printing a summary line for graph caches works", {
     "CACHE / 2 caches")
 })
 
-test_that("Printing a summary line for stored data frames works", {
-
-  graph_no_df_stored <-
-    create_graph() %>%
-    add_path(n = 4)
-
-  graph_w_1_df_at_node <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_1_df_at_edge <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_2_dfs_at_nodes <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_node_attr(
-      node = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_2_dfs_at_edges <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_4_dfs_at_nodes_and_edges <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_node_attr(
-      node = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  expect_equal(
-    graph_no_df_stored %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / <none>")
-
-  expect_equal(
-    graph_w_1_df_at_node %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 1: 1 with nodes & 0 with edges")
-
-  expect_equal(
-    graph_w_1_df_at_edge %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 1: 0 with nodes & 1 with edges")
-
-  expect_equal(
-    graph_w_2_dfs_at_nodes %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 2: 2 with nodes & 0 with edges")
-
-  expect_equal(
-    graph_w_2_dfs_at_edges %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 2: 0 with nodes & 2 with edges")
-
-  expect_equal(
-    graph_w_4_dfs_at_nodes_and_edges %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 4: 2 with nodes & 2 with edges")
-})
-
 test_that("Printing a summary line for global graph attributes works", {
 
   graph_default_global_attrs <-
@@ -619,12 +517,12 @@ test_that("Printing a summary line for global graph attributes works", {
 
   expect_equal(
     graph_default_global_attrs %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / 17 are set")
 
   expect_equal(
     graph_no_global_attrs %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / <none>")
 })
 
@@ -664,16 +562,16 @@ test_that("Printing a summary line for graph actions works", {
 
   expect_equal(
     graph_no_actions %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / <none>")
 
   expect_equal(
     graph_w_1_action %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / 1 is set")
 
   expect_equal(
     graph_w_2_actions %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / 2 are set")
 })

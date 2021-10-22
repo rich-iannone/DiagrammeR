@@ -68,6 +68,7 @@
 #'   get_edge_df()
 #'
 #' @import rlang
+#' @family Edge creation and removal
 #' @export
 set_edge_attr_to_display <- function(graph,
                                      attr = NULL,

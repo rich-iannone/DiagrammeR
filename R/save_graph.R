@@ -30,7 +30,7 @@
 #' #   open_graph(
 #' #     file = "gnp_graph.dgr"
 #' # )
-#'
+#' @family Display and Save
 #' @export
 save_graph <- function(x,
                        file) {

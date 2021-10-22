@@ -28,7 +28,7 @@
 #' # Inspect the graph's edges
 #' # after their reversal
 #' graph %>% get_edges()
-#'
+#' @family Edge creation and removal
 #' @export
 rev_edge_dir <- function(graph) {
 

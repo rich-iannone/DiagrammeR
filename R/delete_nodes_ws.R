@@ -41,7 +41,7 @@
 #'
 #' # Get a count of nodes in the graph
 #' graph %>% count_nodes()
-#'
+#' @family Node creation and removal
 #' @export
 delete_nodes_ws <- function(graph) {
 

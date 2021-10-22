@@ -39,7 +39,8 @@ resulting graphic in pixels.}
 Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 }
 \examples{
-\donttest{
+if (interactive()) {
+
 # Render a graph that's a
 # balanced tree
 create_graph() \%>\%
@@ -82,3 +83,10 @@ create_graph() \%>\%
 }
 
 }
+\seealso{
+Other Display and Save: 
+\code{\link{export_graph}()},
+\code{\link{render_graph_from_graph_series}()},
+\code{\link{save_graph}()}
+}
+\concept{Display and Save}

@@ -344,6 +344,7 @@ trav_in <- function(graph,
       nodes %>%
       dplyr::right_join(ndf, by = "id") %>%
       dplyr::select(id, type, label, dplyr::everything()) %>%
+      dplyr::arrange(id) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Get column numbers that end with ".x" or ".y"

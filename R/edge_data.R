@@ -25,7 +25,7 @@
 #' # been inserted
 #' graph %>% get_edge_df()
 #' }
-#'
+#' @family Edge creation and removal
 #' @export
 edge_data <- function(...) {
 

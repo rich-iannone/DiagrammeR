@@ -63,6 +63,7 @@
 #' # Display the graph's internal
 #' # edge data frame
 #' graph_3 %>% get_edge_df()
+#' @family Edge creation and removal
 #' @export
 add_edge_clone <- function(graph,
                            edge,

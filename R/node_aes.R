@@ -114,7 +114,7 @@
 #'     ),
 #'     edge_aes = edge_aes(color = "blue")
 #'   )
-#'
+#' @family Aesthetics
 #' @export
 node_aes <- function(shape = NULL,
                      style = NULL,

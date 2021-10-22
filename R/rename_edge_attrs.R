@@ -42,6 +42,7 @@
 #' graph %>% get_edge_df()
 #'
 #' @import rlang
+#' @family Edge creation and removal
 #' @export
 rename_edge_attrs <- function(graph,
                               edge_attr_from,

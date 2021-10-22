@@ -44,7 +44,7 @@
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of `1`
 #' graph %>% get_node_df()
-#'
+#' @family Node creation and removal
 #' @export
 add_n_node_clones <- function(graph,
                               n,

@@ -10,7 +10,7 @@ dependencies:
 - name: mermaid
   version: 0.3.0
   src: htmlwidgets/lib/mermaid
-  script: dist/mermaid.js
+  script: dist/mermaid.slim.min.js
   stylesheet: dist/mermaid.css
 - name: DiagrammeR-styles
   version: 0.2
