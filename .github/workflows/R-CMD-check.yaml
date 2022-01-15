@@ -1,10 +1,10 @@
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 name: R-CMD-check
 
@@ -18,16 +18,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest, r: '3.6'}
-          - {os: macOS-latest, r: '4.0'}
-          - {os: windows-latest, r: '3.6'}
+          - {os: macos-11, r: '4.1'}
           - {os: windows-latest, r: '4.0'}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+          - {os: windows-latest, r: '4.1'}
+          - {os: ubuntu-latest, r: '3.6'}
+          - {os: ubuntu-latest, r: '4.0'}
+          - {os: ubuntu-latest, r: '4.1'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      RSPM: ${{ matrix.config.rspm }}
 
     steps:
       - uses: actions/checkout@v2
@@ -63,6 +62,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          if (Sys.info()[["sysname"]] == "Windows") {
+             options(install.packages.compile.from.source = "never")
+          }
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
@@ -81,6 +83,6 @@ jobs:
           path: check
 
       - name: Test coverage
-        if: matrix.config.os == 'macOS-latest' && matrix.config.r == '3.6'
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == '4.0'
         run: covr::codecov()
         shell: Rscript {0}

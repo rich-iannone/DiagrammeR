@@ -1,7 +1,7 @@
 Type: Package
 Package: DiagrammeR
 Title: Graph/Network Visualization
-Version: 1.0.6.9000
+Version: 1.0.7
 Authors@R:
     person("Richard", "Iannone", , "riannone@me.com", c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3925-190X"))
@@ -47,6 +47,5 @@ Suggests:
     rmarkdown
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
-VignetteBuilder: knitr
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)

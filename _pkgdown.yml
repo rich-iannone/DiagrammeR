@@ -3,6 +3,11 @@ destination: docs
 home:
   strip_header: true
 
+url: http://visualizers.co/diagrammer/
+
+template:
+  bootstrap: 5
+
 reference:
   - title: External NDF/EDF
     desc: >

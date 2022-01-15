@@ -1,7 +1,7 @@
 #' R + mermaid.js
 #'
 #' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
-#' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
+#' \href{https://github.com/mermaid-js/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
 #' @param diagram The diagram in `graphviz` or `mermaid` format, or, a file (as
