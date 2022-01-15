@@ -1,5 +1,9 @@
 # DiagrammeR 1.0.6.9000 (Unreleased)
 
+* Fix malformed CSS selector in `htmlwidgets/grViz.js`
+
+* Only call `replace_na(replace = "")` on character columns
+
 * Added the `envir` argument to the `grViz` and `replace_in_spec` functions.
 
 # DiagrammeR 1.0.6.1
