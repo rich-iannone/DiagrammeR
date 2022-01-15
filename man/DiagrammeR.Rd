@@ -12,7 +12,7 @@ a connection or file name) containing a diagram specification. The
 recommended filename extensions are \code{.gv} and \code{.mmd} for the Graphviz and
 the mermaid diagram specifications, respectively. If no diagram is provided
 (\code{diagram = ""}) then the function will assume that a diagram will be
-provided by \code{\link[htmltools:tags]{htmltools::tags()}} and \code{DiagrammeR} is just being used for
+provided by \code{\link[htmltools:builder]{htmltools::tags()}} and \code{DiagrammeR} is just being used for
 dependency injection.}
 
 \item{type}{A string, either \code{mermaid} (default) or \code{grViz} indicating the
