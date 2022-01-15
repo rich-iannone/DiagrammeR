@@ -19,7 +19,6 @@ jobs:
       matrix:
         config:
           - {os: macos-11, r: '4.1'}
-          - {os: windows-latest, r: '3.6'}
           - {os: windows-latest, r: '4.0'}
           - {os: windows-latest, r: '4.1'}
           - {os: ubuntu-latest, r: '3.6'}
