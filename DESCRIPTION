@@ -17,27 +17,27 @@ License: MIT + file LICENSE
 URL: https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.5)
 Imports:
-    dplyr (>= 0.7.6),
+    dplyr (>= 1.0.7),
     downloader (>= 0.4),
-    glue (>= 1.3.0),
-    htmltools (>= 0.3.6),
-    htmlwidgets (>= 1.2),
-    igraph (>= 1.2.2),
-    influenceR (>= 0.1.0),
+    glue (>= 1.5.0),
+    htmltools (>= 0.5.2),
+    htmlwidgets (>= 1.5),
+    igraph (>= 1.2.11),
+    influenceR (>= 0.1.0.1),
     magrittr (>= 1.5),
-    purrr (>= 0.2.5),
+    purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),
-    readr (>= 1.1.1),
-    rlang (>= 0.2.2),
+    readr (>= 2.1.1),
+    rlang (>= 0.4),
     rstudioapi (>= 0.7),
-    scales (>= 1.0.0),
-    stringr (>= 1.3.1),
-    tibble (>= 1.4.2),
-    tidyr (>= 0.8.1),
-    viridis (>= 0.5.1),
-    visNetwork (>= 2.0.4)
+    scales (>= 1.1),
+    stringr (>= 1.4),
+    tibble (>= 3.1),
+    tidyr (>= 1.1),
+    viridis (>= 0.6.2),
+    visNetwork (>= 2.1.0)
 Suggests:
     covr,
     DiagrammeRsvg,
