@@ -10,7 +10,7 @@ mermaid(diagram = "", ..., width = NULL, height = NULL)
 \item{diagram}{Diagram in mermaid markdown-like language or file (as a
 connection or file name) containing a diagram specification. If no diagram
 is provided \code{diagram = ""} then the function will assume that a diagram
-will be provided by \code{\link[htmltools:tags]{htmltools::tags()}} and \code{DiagrammeR} is just being used
+will be provided by \code{\link[htmltools:builder]{htmltools::tags()}} and \code{DiagrammeR} is just being used
 for dependency injection.}
 
 \item{...}{Other arguments and parameters you would like to send to
