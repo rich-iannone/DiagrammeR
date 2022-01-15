@@ -2,10 +2,7 @@
 ^\.Rproj\.user$
 .bowerrc
 .*sublime.*
-^\.travis\.yml$
 ^.github$
-^cran-comments\.md$
-^CONDUCT\.md$
 ^revdep$
 ^docs$
 ^README\.Rmd$
@@ -14,3 +11,4 @@
 ^_pkgdown\.yml$
 ^man/figures/.*$
 ^README\.md$
+vignettes
