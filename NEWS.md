@@ -1,4 +1,4 @@
-# DiagrammeR 1.0.6.9000 (Unreleased)
+# DiagrammeR 1.0.7
 
 * Fix malformed CSS selector in `htmlwidgets/grViz.js`
 
