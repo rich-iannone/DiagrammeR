@@ -27,8 +27,8 @@ Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using
-\href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+\href{https://github.com/mermaid-js/mermaid/wiki}{mermaid.js} with
+infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
 # Create a simple graph running left to right (note
