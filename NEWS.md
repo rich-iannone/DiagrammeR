@@ -1,4 +1,4 @@
-# DiagrammeR (development version)
+# DiagrammeR 1.0.9
 
 * More safely check inputs to `grViz()` and `mermaid()`
 
