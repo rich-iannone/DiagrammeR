@@ -30,21 +30,15 @@ grViz <- function(diagram = "",
                   envir = parent.frame()) {
 
   # Check for a connection or file
-  if (inherits(diagram, "connection") ||
-      file.exists(diagram)) {
+  is_connection_or_file <-
+    inherits(diagram[1], "connection") || file.exists(diagram[1])
 
-    diagram <-
-      readLines(diagram, encoding = "UTF-8", warn = FALSE)
-
-    diagram <- paste0(diagram, collapse = "\n")
-
-  } else {
-
-    # Concatenate any vector with length > 1
-    if (length(diagram) > 1) {
-      diagram <- paste0(diagram, collapse = "\n")
-    }
+  # Obtain the diagram text via `readLines()`
+  if (is_connection_or_file) {
+    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
   }
+
+  diagram <- paste0(diagram, collapse = "\n")
 
   if (allow_subst == TRUE) {
     diagram <- replace_in_spec(diagram, envir = envir)

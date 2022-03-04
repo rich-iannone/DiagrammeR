@@ -125,22 +125,25 @@ mermaid <- function(diagram = "",
                     height = NULL) {
 
   # Check for a connection or file
-  if (inherits(diagram, "connection") ||
-      file.exists(diagram)) {
-    diagram <-
-      readLines(
-        diagram, encoding = "UTF-8", warn = FALSE)
-    diagram <- paste0(diagram, collapse = "\n")
+  is_connection_or_file <-
+    inherits(diagram[1], "connection") || file.exists(diagram[1])
+
+  # Obtain the diagram text via `readLines()`
+  if (is_connection_or_file) {
+
+    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
+
   } else {
+
     # Check for vector with length > 1 and concatenate
     if (length(diagram) > 1) {
 
-      nosep <- grep(x = diagram, pattern = "[;\n]")
+      nosep <- grep("[;\n]", diagram)
 
       if (length(nosep) < length(diagram)) {
+
         diagram[-nosep] <-
-          sapply(diagram[-nosep],
-                 function(c) { paste0(c, ";") })
+          sapply(diagram[-nosep], function(c) { paste0(c, ";") })
       }
 
       diagram = paste0(diagram, collapse = "")
