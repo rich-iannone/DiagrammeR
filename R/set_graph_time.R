@@ -55,7 +55,7 @@ set_graph_time <- function(graph,
     tz <- Sys.timezone()
   }
 
-  if (class(time)[1] == "POSIXct") {
+  if (inherits(time[1], "POSIXct")) {
 
     if (!is.null(attr(time, "tzone"))) {
       tz <- attr(time, "tzone")
