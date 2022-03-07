@@ -40,7 +40,7 @@
 #' @export
 count_graphs_in_graph_series <- function(graph_series) {
 
-  if (class(graph_series) == "dgr_graph_1D") {
+  if (inherits(graph_series, "dgr_graph_1D")) {
     if (is.null(graph_series$graphs)) {
       return(0)
     }

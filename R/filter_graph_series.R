@@ -92,7 +92,7 @@ filter_graph_series <- function(graph_series,
   if (by == "number") {
 
     # validate the value provided for 'values'
-    if (class(values) != "numeric") {
+    if (!inherits(values, "numeric")) {
 
       return(graph_series)
     }
@@ -123,7 +123,7 @@ filter_graph_series <- function(graph_series,
   if (by == "time") {
 
     # validate the value provided for 'values'
-    if (class(values) == "numeric") {
+    if (inherits(values, "numeric")) {
 
       return(graph_series)
     }
