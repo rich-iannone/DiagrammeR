@@ -132,6 +132,7 @@ mermaid <- function(diagram = "",
   if (is_connection_or_file) {
 
     diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
+    diagram <- paste0(diagram, collapse = "\n")
 
   } else {
 
