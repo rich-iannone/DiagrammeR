@@ -2,6 +2,7 @@
 #'
 #' Create a data frame containing information on X11 colors and their
 #' corresponding hexadecimal color values.
+#' @keywords internal
 #' @export
 x11_hex <- function() {
 
