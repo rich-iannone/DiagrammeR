@@ -18,3 +18,4 @@ A \code{grViz} htmlwidget
 \description{
 Add MathJax-formatted equation text
 }
+\keyword{internal}

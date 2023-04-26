@@ -31,3 +31,4 @@ Other Aesthetics:
 \code{\link{node_aes}()}
 }
 \concept{Aesthetics}
+\keyword{internal}
