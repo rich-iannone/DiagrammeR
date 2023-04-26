@@ -3,8 +3,6 @@ destination: docs
 home:
   strip_header: true
 
-url: http://visualizers.co/diagrammer/
-
 template:
   bootstrap: 5
 
@@ -351,15 +349,6 @@ reference:
       - edge_list_2
       - currencies
       - usd_exchange_rates
-
-articles:
-  - title: Getting Started
-    contents:
-    - node-edge-data-frames
-    - simple-graphs-ndfs-edfs
-  - title: Graphviz & Mermaid
-    contents:
-    - graphviz-mermaid
 
 development:
   version_tooltip: "Development version"
