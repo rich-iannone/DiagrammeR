@@ -3,10 +3,8 @@
 
 # DiagrammeR <img src="man/figures/logo.svg" align="right" height="250px" />
 
-[![Build
-Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
 [![Coverage
-Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
+Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=main)](https://app.codecov.io/gh/rstudio/DiagrammeR?branch=main)
 [![CRAN
 status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
@@ -15,10 +13,6 @@ With the **DiagrammeR** package you can create, modify, analyze, and
 visualize network graph diagrams. The output can be incorporated into
 **R Markdown** documents, integrated with **Shiny** web apps, converted
 to other graph formats, or exported as image files.
-
-This package is made possible by the
-[**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides
-an easy-to-use framework for bringing together R and JavaScript.
 
 <img src="man/figures/simple_graph.png">
 
@@ -283,28 +277,26 @@ we’re working with.
 
     node_list_1     edge_list_1
 
-``` 
-   id label        from to 
-1   1     A     1     1  2 
-2   2     B     2     1  3 
-3   3     C     3     1  4 
-4   4     D     4     1  9 
-5   5     E     5     2  8 
-6   6     F     6     2  7 
-7   7     G     7     2  1 
-8   8     H     8     2 10 
-9   9     I     9     3  1 
-10 10     J     10    3  6 
-                11    3  8
-                12    4  1
-                13    5  7
-                14    6  2
-                15    6  9
-                16    8  1
-                17    9  3
-                18    9 10
-                19   10  1
-```
+       id label        from to 
+    1   1     A     1     1  2 
+    2   2     B     2     1  3 
+    3   3     C     3     1  4 
+    4   4     D     4     1  9 
+    5   5     E     5     2  8 
+    6   6     F     6     2  7 
+    7   7     G     7     2  1 
+    8   8     H     8     2 10 
+    9   9     I     9     3  1 
+    10 10     J     10    3  6 
+                    11    3  8
+                    12    4  1
+                    13    5  7
+                    14    6  2
+                    15    6  9
+                    16    8  1
+                    17    9  3
+                    18    9 10
+                    19   10  1
 
 To fashion this into a graph, we need to ensure that both the nodes and
 their attributes (in this case, just a `label`) are added, and, that the
@@ -504,7 +496,7 @@ the sums of `value_1` and `value_2` as `value_3` (for both the nodes and
 the edges). Then, let’s color the nodes and edges `forestgreen` if
 `value_3` is greater than `10` (`red` otherwise). Finally, let’s display
 the values of `value_3` for the nodes when rendering the graph diagram.
-Here we go\!
+Here we go!
 
 ``` r
 k_graph <-
@@ -678,8 +670,8 @@ Kim is now a contributor to the **stringbuildeR** project and has made
 First, add an edge with `add_edge()`. Note that `add_edge()` usually
 relies on node IDs in `from` and `to` when creating the new edge. This
 is almost always inconvenient so we can instead use node labels (we know
-they are unique in this graph) to compose the edge, setting `use_labels
-= TRUE`.
+they are unique in this graph) to compose the edge, setting
+`use_labels = TRUE`.
 
 The `rel` value in `add_edge()` was set to `contributor` – in a property
 graph we always have values set for all node `type` and edge `rel`
