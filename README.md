@@ -1,13 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DiagrammeR <img src="man/figures/logo.svg" align="right" height="250px" />
+<div align="center">
 
-[![Coverage
-Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=main)](https://app.codecov.io/gh/rstudio/DiagrammeR?branch=main)
-[![CRAN
-status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
-![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
+<hr style="color:transparent" />
+<a href='http://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<hr style="color:transparent"/>
+<!-- badges: start -->
+
+<a href="https://cran.r-project.org/package=DiagrammeR"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status" /></a>
+<a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status" /></a>
+<a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Coverage status" /></a>
+
+<a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/DiagrammeR" alt="Monthly Downloads"></a>
+<a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR" alt="Total Downloads"></a>
+
+<a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
+<!-- badges: end -->
+<hr style="color:transparent" />
+
+<br />
+
+</div>
 
 With the **DiagrammeR** package you can create, modify, analyze, and
 visualize network graph diagrams. The output can be incorporated into
@@ -768,11 +782,19 @@ make this package better, feel free to file an
 
 ## Code of Conduct
 
-Please note that the **DiagrammeR** project is released with a
-[Contributor Code of
-Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/).
-By participating in this project you agree to abide by its terms.
+Please note that the gt project is released with a [contributor code of
+conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).<br>By
+participating in this project you agree to abide by its terms.
 
-## License
+## 📄 License
 
-MIT © Richard Iannone
+**gt** is licensed under the MIT license. See the
+[`LICENSE.md`](LICENSE.md) file for more details.
+
+## 🏛️ Governance
+
+This project is primarily maintained by [Rich
+Iannone](https://twitter.com/riannone). Other authors may occasionally
+assist with some of these duties.
+
+<hr>
