@@ -127,6 +127,7 @@ renderGrViz <- function(expr,
 #'
 #' @return A `grViz` htmlwidget
 #'
+#' @keywords internal
 #' @export
 add_mathjax <- function(gv = NULL,
                         include_mathjax = TRUE) {
