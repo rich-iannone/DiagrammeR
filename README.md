@@ -16,8 +16,7 @@ to other graph formats, or exported as image files.
 
 <img src="man/figures/simple_graph.png">
 
-The graph above can be created with this combination of **DiagrammeR**
-functions:
+The graph above can be created with this combination of functions:
 
 ``` r
 example_graph <-
