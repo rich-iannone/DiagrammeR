@@ -91,9 +91,16 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
+  <main id="main" class="col-md-9"><div align="center">
+<hr style="color:transparent">
+<a href="http://rich-iannone.github.io/DiagrammeR/" class="external-link"><img src="reference/figures/logo.svg" width="350px"></a>
+<hr style="color:transparent">
+<!-- badges: start -->
 
-<p><a href="https://app.codecov.io/gh/rstudio/DiagrammeR?branch=main" class="external-link"><img src="https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=main" alt="Coverage Status"></a> <a href="https://cran.r-project.org/package=DiagrammeR" class="external-link"><img src="http://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status"></a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen"></p>
+ <!-- badges: end -->
+<hr style="color:transparent">
+<p><br></p>
+</div>
 <p>With the <strong>DiagrammeR</strong> package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into <strong>R Markdown</strong> documents, integrated with <strong>Shiny</strong> web apps, converted to other graph formats, or exported as image files.</p>
 <p><img src="reference/figures/simple_graph.png"></p>
 <p>The graph above can be created with this combination of <strong>DiagrammeR</strong> functions:</p>
@@ -239,28 +246,28 @@
 <h2 id="using-data-from-tables-to-generate-a-graph">Using Data from Tables to Generate a Graph<a class="anchor" aria-label="anchor" href="#using-data-from-tables-to-generate-a-graph"></a>
 </h2>
 <p>The <strong>DiagrammeR</strong> package contains a few simple datasets that help illustrate how to create a graph with table data. The <code>node_list_1</code> and <code>edge_list_1</code> datasets are super simple node and edge data frames that can be assembled into a graph. Let’s print them side by side to see what we’re working with.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>node_list_1     edge_list_1</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>   id label        from to </span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">1</span>     A     <span class="dv">1</span>     <span class="dv">1</span>  <span class="dv">2</span> </span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">2</span>     B     <span class="dv">2</span>     <span class="dv">1</span>  <span class="dv">3</span> </span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">3</span>     C     <span class="dv">3</span>     <span class="dv">1</span>  <span class="dv">4</span> </span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="dv">4</span>   <span class="dv">4</span>     D     <span class="dv">4</span>     <span class="dv">1</span>  <span class="dv">9</span> </span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="dv">5</span>   <span class="dv">5</span>     E     <span class="dv">5</span>     <span class="dv">2</span>  <span class="dv">8</span> </span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="dv">6</span>   <span class="dv">6</span>     F     <span class="dv">6</span>     <span class="dv">2</span>  <span class="dv">7</span> </span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="dv">7</span>   <span class="dv">7</span>     G     <span class="dv">7</span>     <span class="dv">2</span>  <span class="dv">1</span> </span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="dv">8</span>   <span class="dv">8</span>     H     <span class="dv">8</span>     <span class="dv">2</span> <span class="dv">10</span> </span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="dv">9</span>   <span class="dv">9</span>     I     <span class="dv">9</span>     <span class="dv">3</span>  <span class="dv">1</span> </span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="dv">10</span> <span class="dv">10</span>     J     <span class="dv">10</span>    <span class="dv">3</span>  <span class="dv">6</span> </span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>                <span class="dv">11</span>    <span class="dv">3</span>  <span class="dv">8</span></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>                <span class="dv">12</span>    <span class="dv">4</span>  <span class="dv">1</span></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>                <span class="dv">13</span>    <span class="dv">5</span>  <span class="dv">7</span></span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>                <span class="dv">14</span>    <span class="dv">6</span>  <span class="dv">2</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>                <span class="dv">15</span>    <span class="dv">6</span>  <span class="dv">9</span></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>                <span class="dv">16</span>    <span class="dv">8</span>  <span class="dv">1</span></span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>                <span class="dv">17</span>    <span class="dv">9</span>  <span class="dv">3</span></span>
-<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a>                <span class="dv">18</span>    <span class="dv">9</span> <span class="dv">10</span></span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a>                <span class="dv">19</span>   <span class="dv">10</span>  <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>node_list_1     edge_list_1</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   id label        from to </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">1</span>     A     <span class="dv">1</span>     <span class="dv">1</span>  <span class="dv">2</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="dv">2</span>     B     <span class="dv">2</span>     <span class="dv">1</span>  <span class="dv">3</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="dv">3</span>     C     <span class="dv">3</span>     <span class="dv">1</span>  <span class="dv">4</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   <span class="dv">4</span>     D     <span class="dv">4</span>     <span class="dv">1</span>  <span class="dv">9</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   <span class="dv">5</span>     E     <span class="dv">5</span>     <span class="dv">2</span>  <span class="dv">8</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   <span class="dv">6</span>     F     <span class="dv">6</span>     <span class="dv">2</span>  <span class="dv">7</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>   <span class="dv">7</span>     G     <span class="dv">7</span>     <span class="dv">2</span>  <span class="dv">1</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>   <span class="dv">8</span>     H     <span class="dv">8</span>     <span class="dv">2</span> <span class="dv">10</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>   <span class="dv">9</span>     I     <span class="dv">9</span>     <span class="dv">3</span>  <span class="dv">1</span> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="dv">10</span>     J     <span class="dv">10</span>    <span class="dv">3</span>  <span class="dv">6</span> </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                <span class="dv">11</span>    <span class="dv">3</span>  <span class="dv">8</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                <span class="dv">12</span>    <span class="dv">4</span>  <span class="dv">1</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                <span class="dv">13</span>    <span class="dv">5</span>  <span class="dv">7</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                <span class="dv">14</span>    <span class="dv">6</span>  <span class="dv">2</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>                <span class="dv">15</span>    <span class="dv">6</span>  <span class="dv">9</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                <span class="dv">16</span>    <span class="dv">8</span>  <span class="dv">1</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                <span class="dv">17</span>    <span class="dv">9</span>  <span class="dv">3</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>                <span class="dv">18</span>    <span class="dv">9</span> <span class="dv">10</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                <span class="dv">19</span>   <span class="dv">10</span>  <span class="dv">1</span></span></code></pre></div>
 <p>To fashion this into a graph, we need to ensure that both the nodes and their attributes (in this case, just a <code>label</code>) are added, and, that the edges are added. Furthermore, we must map the <code>from</code> and the <code>to</code> definitions to the node <code>id</code> (in other cases, we may need to map relationships between text labels to the same text attribute stored in the node data frame). We can use three functions to generate a graph containing this data:</p>
 <ol style="list-style-type: decimal">
 <li><code><a href="reference/create_graph.html">create_graph()</a></code></li>
@@ -525,7 +532,7 @@
 <p><strong>DiagrammeR</strong> is used in an R environment. If you don’t have an R installation, it can be obtained from the <a href="https://cran.r-project.org/" class="external-link"><strong>Comprehensive R Archive Network (CRAN)</strong></a>.</p>
 <p>You can install the development version of <strong>DiagrammeR</strong> from <strong>GitHub</strong> using the <strong>devtools</strong> package.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rich-iannone/DiagrammeR"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rich-iannone/DiagrammeR"</span><span class="op">)</span></span></code></pre></div>
 <p>Or, get it from <strong>CRAN</strong>.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"DiagrammeR"</span><span class="op">)</span></span></code></pre></div>
@@ -534,14 +541,20 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the <strong>DiagrammeR</strong> project is released with a <a href="https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/" class="external-link">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that the gt project is released with a <a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html" class="external-link">contributor code of conduct</a>.<br>By participating in this project you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+<h2 id="id_-license">📄 License<a class="anchor" aria-label="anchor" href="#id_-license"></a>
 </h2>
-<p>MIT © Richard Iannone</p>
+<p><strong>gt</strong> is licensed under the MIT license. See the <a href="LICENSE.html"><code>LICENSE.md</code></a> file for more details.</p>
 </div>
+<div class="section level2">
+<h2 id="id_️-governance">🏛️ Governance<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F-governance"></a>
+</h2>
+<p>This project is primarily maintained by <a href="https://twitter.com/riannone" class="external-link">Rich Iannone</a>. Other authors may occasionally assist with some of these duties.</p>
+<hr>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -580,7 +593,16 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=DiagrammeR" class="external-link"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status"></a></li>
+<li><a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a></li>
+<li><a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main" class="external-link"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=DiagrammeR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/DiagrammeR" alt="Monthly Downloads"></a></li>
+<li><a href="https://CRAN.R-project.org/package=DiagrammeR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR" alt="Total Downloads"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>

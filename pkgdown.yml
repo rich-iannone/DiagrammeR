@@ -1,4 +1,4 @@
-pandoc: 3.1.1
+pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -7,5 +7,5 @@ articles:
   selections: selections.html
   simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
   traversals: traversals.html
-last_built: 2023-04-26T19:45Z
+last_built: 2023-04-26T20:19Z
 
