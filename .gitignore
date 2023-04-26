@@ -2,24 +2,27 @@
 .Rhistory
 .Rapp.history
 
+# Docs folder from `pkgdown::build_site()`
+docs/
+inst/doc
+
 # Example code in package build process
 *-Ex.R
+
 # R data files from past sessions
 .Rdata
+
 # RStudio files
 .Rproj.user/
 .Rproj.user
-# Sublime Text files
-*.sublime-*
-# Vim files
-*.swp
-.undodir
-Session.vim
+
 # Output files
 *.txt
 *.tif
+
 # .DS_Store
 .DS_Store
+
 # HTTR
 .httr-oauth
 revdep/checks
