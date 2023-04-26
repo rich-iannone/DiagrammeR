@@ -1,0 +1,11 @@
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  graphviz-mermaid: graphviz-mermaid.html
+  node-edge-data-frames: node-edge-data-frames.html
+  selections: selections.html
+  simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
+  traversals: traversals.html
+last_built: 2023-04-26T19:45Z
+
