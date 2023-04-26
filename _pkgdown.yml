@@ -19,6 +19,7 @@ reference:
       - create_edge_df
       - combine_ndfs
       - combine_edfs
+
   - title: Graph Creation, Rendering, and I/O
     desc: >
       Graphs can be created, read in, written out, and displayed
@@ -35,6 +36,7 @@ reference:
       - export_csv
       - render_graph
       - display_metagraph
+
   - title: Node and Edge Selection
     desc: >
       Graph nodes or edges can be selected with these functions. This
@@ -56,6 +58,7 @@ reference:
       - deselect_edges
       - invert_selection
       - clear_selection
+
   - title: Graph Modification
     desc: >
       These functions make changes to the graph. We can change many
@@ -131,6 +134,7 @@ reference:
       - node_aes
       - edge_data
       - edge_aes
+
   - title: Graph Transformation
     desc: >
       Wholesale changes to a graph can be made with any of these
@@ -144,6 +148,7 @@ reference:
       - transform_to_min_spanning_tree
       - set_graph_undirected
       - set_graph_directed
+
   - title: Graph Inspection
     desc: >
       Sometimes, you'll need to gather information about the
@@ -179,6 +184,7 @@ reference:
       - get_edge_ids
       - get_edges
       - get_paths
+      - get_graph_info
       - do_dfs
       - do_bfs
       - count_nodes
@@ -241,6 +247,7 @@ reference:
       - is_graph_connected
       - is_graph_dag
       - is_property_graph
+
   - title: Value Caching
     desc: >
       Think of caching as a way to temporarily store a vector
@@ -252,6 +259,7 @@ reference:
       - set_cache
       - get_cache
       - delete_cache
+
   - title: Graph Traversal
     desc: >
       Traversing the graph is useful if you have a defined
@@ -272,6 +280,7 @@ reference:
       - trav_out_until
       - trav_in_until
       - trav_reverse_edge
+
   - title: Graph Series
     desc: >
       A series of graphs can be occasionally useful. It's a
@@ -286,6 +295,7 @@ reference:
       - get_graph_from_graph_series
       - get_graph_series_info
       - render_graph_from_graph_series
+
   - title: Graph Metadata
     desc: >
       Graph metadata consist of the attributes that don't
@@ -304,6 +314,7 @@ reference:
       - get_graph_name
       - get_graph_time
       - get_graph_log
+
   - title: Graph Actions
     desc: >
       Take action! Think of graph actions as little
@@ -315,18 +326,31 @@ reference:
       - get_graph_actions
       - reorder_graph_actions
       - trigger_graph_actions
-  - title: Graphviz
-    desc: >
-      Graphviz is a cornerstone technology for
-      rendering graphs in DiagrammeR. These
-      functions generate Graphviz code and
-      render graphs with that code.
+
+  - title: Graphviz, mermaid, and visNetwork
     contents:
-      - generate_dot
+      - DiagrammeR
       - grViz
-  - title: mermaid
-    contents:
+      - generate_dot
+      - replace_in_spec
       - mermaid
+      - visnetwork
+
+  - title: Shiny
+    contents:
+      - renderDiagrammeR
+      - DiagrammeROutput
+      - renderGrViz
+      - grVizOutput
+
+  - title: Datasets
+    contents:
+      - node_list_1
+      - edge_list_1
+      - node_list_2
+      - edge_list_2
+      - currencies
+      - usd_exchange_rates
 
 articles:
   - title: Getting Started
