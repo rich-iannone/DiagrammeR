@@ -1,15 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-.bowerrc
-.*sublime.*
 ^.github$
 ^revdep$
 ^docs$
 ^README\.Rmd$
+^README\.md$
 ^README-.*\.png$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^man/figures/.*$
-^README\.md$
 vignettes
 ^codecov\.yml$
