@@ -21,8 +21,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 Within a graph's internal node data frame (ndf), mutate node attribute values
 only for nodes in a selection by using one or more expressions.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 

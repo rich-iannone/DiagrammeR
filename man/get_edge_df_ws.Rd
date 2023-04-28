@@ -15,8 +15,7 @@ an edge data frame.
 \description{
 From a graph object of class \code{dgr_graph}, get the graph's internal edge data
 frame that is filtered by the edge ID values currently active as a selection.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 

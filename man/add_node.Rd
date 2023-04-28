@@ -84,6 +84,7 @@ graph <-
 # View the graph's internal
 # node data frame (ndf)
 graph \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 

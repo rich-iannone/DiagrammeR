@@ -119,6 +119,8 @@ graph_2 <-
 # values were bound to the
 # newly created edge
 graph_2 \%>\% get_edge_df()
+
+
 }
 \seealso{
 Other Edge creation and removal: 

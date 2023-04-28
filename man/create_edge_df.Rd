@@ -25,8 +25,6 @@ Combine several vectors for edges and their attributes into a data frame,
 which can be combined with other similarly-generated data frames, or, added
 to a graph object. An edge data frame, or edf, has at least the following
 columns:
-}
-\details{
 \itemize{
 \item \code{id} (of type \code{integer})
 \item \code{from} (of type \code{integer})

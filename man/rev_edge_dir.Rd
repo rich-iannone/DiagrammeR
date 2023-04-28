@@ -37,6 +37,7 @@ graph <-
 # Inspect the graph's edges
 # after their reversal
 graph \%>\% get_edges()
+
 }
 \seealso{
 Other Edge creation and removal: 

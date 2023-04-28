@@ -22,8 +22,8 @@ A named vector of edge attribute values for the attribute given by
 \code{edge_attr} by edge.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get edge attribute values for
-one or more edges.
+From a graph object of class \code{dgr_graph}, get edge attribute values for one
+or more edges.
 }
 \examples{
 # Create a simple graph where

@@ -23,8 +23,7 @@ selected edges. For instance, if an active selection has the edge \code{1->2} bu
 there is also an (not selected) edge \code{2->1}, then this function can either
 switch to the selection of \code{2->1}, or, incorporate both those edges into the
 active selection of edges.
-}
-\details{
+
 This traversal function makes use of an active selection of edges. After the
 traversal, depending on the traversal conditions, there will either be a
 selection of edges or no selection at all.

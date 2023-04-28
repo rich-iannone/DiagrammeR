@@ -13,7 +13,6 @@ visnetwork(graph)
 Render a graph object with the visNetwork R package.
 }
 \examples{
-
 # Create a node data frame (ndf)
 ndf <-
   create_node_df(

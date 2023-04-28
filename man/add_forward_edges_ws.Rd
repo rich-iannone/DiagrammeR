@@ -22,8 +22,7 @@ same edge definitions as those in the selection except with new edge ID
 values. There is also the option to assign a common \code{rel} grouping to the
 newly created edges. Upon addition of the edges, the edge selection will be
 retained for further selection or traversal operations.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 

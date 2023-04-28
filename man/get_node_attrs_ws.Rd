@@ -18,8 +18,7 @@ A named vector of node attribute values for the attribute given by
 \description{
 From a graph object of class \code{dgr_graph}, get node attribute values from
 nodes currently active as a selection.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 

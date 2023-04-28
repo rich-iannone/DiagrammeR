@@ -75,6 +75,7 @@ graph_3 <-
 # Display the graph's internal
 # edge data frame
 graph_3 \%>\% get_edge_df()
+
 }
 \seealso{
 Other Edge creation and removal: 

@@ -23,8 +23,6 @@ Combine several vectors for nodes and their attributes into a data frame,
 which can be combined with other similarly-generated data frames, or, added
 to a graph object. A node data frame, or ndf, has at least the following
 columns:
-}
-\details{
 \itemize{
 \item \code{id} (of type \code{integer})
 \item \code{type} (of type \code{character})
@@ -66,6 +64,7 @@ node_df <-
 
 # Display the node data frame
 node_df
+
 }
 \seealso{
 Other Node creation and removal: 

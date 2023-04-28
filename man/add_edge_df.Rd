@@ -46,6 +46,7 @@ graph <-
 graph \%>\%
   get_edges(
     return_type = "vector")
+
 }
 \seealso{
 Other Edge creation and removal: 

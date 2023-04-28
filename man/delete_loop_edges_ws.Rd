@@ -14,8 +14,7 @@ A graph object of class \code{dgr_graph}.
 }
 \description{
 With a selection of nodes in a graph, remove any associated loop edges.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 
@@ -51,6 +50,7 @@ graph <-
 # Count the number of loop
 # edges remaining in the graph
 graph \%>\% count_loop_edges()
+
 }
 \seealso{
 Other Edge creation and removal: 

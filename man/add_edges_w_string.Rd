@@ -68,6 +68,7 @@ graph_node_label <-
 # edge data frame (it's the
 # same as before)
 graph_node_label \%>\% get_edge_df()
+
 }
 \seealso{
 Other Edge creation and removal: 

@@ -42,8 +42,7 @@ From a graph object of class \code{dgr_graph} move to adjacent edges from a
 selection of one or more selected nodes, thereby creating a selection of
 edges. An optional filter by edge attribute can limit the set of edges
 traversed to.
-}
-\details{
+
 This traversal function makes use of an active selection of nodes. After the
 traversal, depending on the traversal conditions, there will either be a
 selection of edges or no selection at all.

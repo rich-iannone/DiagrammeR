@@ -28,8 +28,7 @@ nodes in an active selection of nodes. All node attributes are preserved
 except for the node \code{label} attribute (to maintain the uniqueness of non-\code{NA}
 node label values). A vector of node \code{label} can be provided to bind new
 labels to the cloned nodes.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 
@@ -95,6 +94,7 @@ graph <-
 # edges between the selected
 # nodes and their clones
 graph \%>\% get_edge_df()
+
 }
 \seealso{
 Other Node creation and removal: 

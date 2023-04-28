@@ -34,6 +34,7 @@ graph <-
 # been inserted
 graph \%>\% get_edge_df()
 }
+
 }
 \seealso{
 Other Edge creation and removal: 

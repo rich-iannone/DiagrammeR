@@ -56,6 +56,7 @@ graph <-
 # node data frame: nodes `4`,
 # `5`, and `6` are clones of `1`
 graph \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 

@@ -21,8 +21,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 Within a graph's internal edge data frame (edf), mutate edge attribute values
 only for edges in a selection by using one or more expressions.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 

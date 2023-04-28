@@ -15,8 +15,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 Create a subgraph based on a selection of nodes or edges stored in the graph
 object.
-}
-\details{
+
 This function makes use of an active selection of nodes or edges (and the
 function ending with \verb{_ws} hints at this).
 

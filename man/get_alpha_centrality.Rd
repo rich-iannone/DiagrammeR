@@ -23,12 +23,12 @@ endogenous versus exogenous factors in the determination of centrality.}
 factor for every node.}
 
 \item{weights_attr}{an optional name of the edge attribute to use in the
-adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
-attribute of the graph will be used. Failing that, the standard adjacency
-matrix will be used in calculations.}
+adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge attribute
+of the graph will be used. Failing that, the standard adjacency matrix will
+be used in calculations.}
 
-\item{tol}{the tolerance for near-singularities during matrix inversion.
-The default value is set to \code{1e-7}.}
+\item{tol}{the tolerance for near-singularities during matrix inversion. The
+default value is set to \code{1e-7}.}
 }
 \value{
 A data frame with alpha centrality scores for each of the nodes.

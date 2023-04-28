@@ -100,6 +100,7 @@ graph <-
 
 # View the graph's node data frame
 graph \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 

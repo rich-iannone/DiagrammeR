@@ -15,8 +15,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 In a graph object of class \code{dgr_graph}, delete all edges present in a
 selection.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 
@@ -50,6 +49,7 @@ graph <-
 
 # Get a count of edges in the graph
 graph \%>\% count_edges()
+
 }
 \seealso{
 Other Edge creation and removal: 

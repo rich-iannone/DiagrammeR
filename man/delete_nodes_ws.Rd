@@ -15,8 +15,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 In a graph object of class \code{dgr_graph}, delete all nodes present in a
 selection of nodes.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 
@@ -51,6 +50,7 @@ graph <-
 
 # Get a count of nodes in the graph
 graph \%>\% count_nodes()
+
 }
 \seealso{
 Other Node creation and removal: 

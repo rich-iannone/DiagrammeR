@@ -104,6 +104,7 @@ graph_3 <-
 # Inspect the graph's internal
 # node data frame
 graph_3 \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 

@@ -103,6 +103,7 @@ graph_2 <-
 graph_2 \%>\%
   get_edge_df() \%>\%
   head()
+
 }
 \seealso{
 Other Edge creation and removal: 

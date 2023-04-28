@@ -42,8 +42,7 @@ From a graph object of class \code{dgr_graph} with an active selection of edges
 move with the edge direction to connected nodes, replacing the current edges
 in the selection with those nodes traversed to. An optional filter by node
 attribute can limit the set of nodes traversed to.
-}
-\details{
+
 This traversal function makes use of an active selection of edges. After the
 traversal, depending on the traversal conditions, there will either be a
 selection of nodes or no selection at all.

@@ -20,8 +20,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class \code{dgr_graph} or a node data frame, set node
 attribute properties for nodes present in a node selection.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 

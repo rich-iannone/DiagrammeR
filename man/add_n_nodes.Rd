@@ -51,6 +51,7 @@ graph <-
 
 # Get the graph's node IDs
 graph \%>\% get_node_ids()
+
 }
 \seealso{
 Other Node creation and removal: 

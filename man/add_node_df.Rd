@@ -54,6 +54,7 @@ graph <-
 # node data frame using the
 # `get_node_df()` function
 graph \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 

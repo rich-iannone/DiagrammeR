@@ -82,6 +82,7 @@ graph <-
 # get made with columns that
 # are not character class columns
 graph \%>\% get_node_df()
+
 }
 \seealso{
 Other Node creation and removal: 
