@@ -782,13 +782,14 @@ make this package better, feel free to file an
 
 ## Code of Conduct
 
-Please note that the gt project is released with a [contributor code of
+Please note that the **DiagrammeR** project is released with a
+[contributor code of
 conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).<br>By
 participating in this project you agree to abide by its terms.
 
 ## 📄 License
 
-**gt** is licensed under the MIT license. See the
+**DiagrammeR** is licensed under the MIT license. See the
 [`LICENSE.md`](LICENSE.md) file for more details.
 
 ## 🏛️ Governance
