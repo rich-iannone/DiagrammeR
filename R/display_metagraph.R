@@ -1,5 +1,7 @@
 #' Display a property graph's underlying model
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph` that is also a property graph (i.e.,
 #' all nodes have an assigned `type` value and all edges have an assigned `rel`
 #' value), display its metagraph in the RStudio Viewer. This representation
@@ -11,6 +13,7 @@
 #' @param graph A graph object of class `dgr_graph`. This graph must fulfill the
 #'   condition of being a property graph, otherwise the function yields an
 #'   error.
+#'
 #' @examples
 #' # Create a randomized property
 #' # graph with 1000 nodes and 1350 edges

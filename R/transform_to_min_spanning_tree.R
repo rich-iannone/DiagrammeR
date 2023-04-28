@@ -1,5 +1,7 @@
 #' Get a minimum spanning tree subgraph
 #'
+#' @description
+#'
 #' Get a minimum spanning tree subgraph for a connected graph of class
 #' `dgr_graph`.
 #'

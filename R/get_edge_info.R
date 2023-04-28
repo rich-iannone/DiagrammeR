@@ -1,5 +1,7 @@
 #' Get detailed information on edges
 #'
+#' @description
+#'
 #' Obtain a data frame with detailed information on edges and their
 #' interrelationships within the graph.
 #'

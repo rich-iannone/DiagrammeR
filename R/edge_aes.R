@@ -1,5 +1,7 @@
 #' Insert edge aesthetic attributes during edge creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `edge_aes` argument, which is present in any function where edges are
 #' created.
@@ -98,6 +100,7 @@
 #' @param decorate If `TRUE` then attach any edge label to the edge line via a
 #'   2-segment polyline, underlining the label text and partially overlapping
 #'   the edge line.
+#'
 #' @examples
 #' # Create a new graph and add
 #' # a path with several edge
@@ -117,7 +120,9 @@
 #' # been inserted
 #' graph %>%
 #'   get_edge_df()
+#'
 #' @family Aesthetics
+#'
 #' @export
 edge_aes <- function(style = NULL,
                      penwidth = NULL,

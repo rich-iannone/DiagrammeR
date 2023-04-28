@@ -1,5 +1,7 @@
 #' Is the graph a directed acyclic graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is a directed acyclic graph
 #' (DAG). The conditions for a graph that is a DAG are that it should be a
 #' directed graph and it should not contain any cycles.

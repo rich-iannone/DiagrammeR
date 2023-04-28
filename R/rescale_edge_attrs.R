@@ -1,5 +1,7 @@
 #' Rescale numeric edge attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, take a set of numeric values for an
 #' edge attribute, rescale to a new numeric or color range, then write to the
 #' same edge attribute or to a new edge attribute column.
@@ -84,16 +86,19 @@
 #' # edge attribute
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-rescale_edge_attrs <- function(graph,
-                               edge_attr_from,
-                               to_lower_bound = 0,
-                               to_upper_bound = 1,
-                               edge_attr_to = NULL,
-                               from_lower_bound = NULL,
-                               from_upper_bound = NULL) {
+rescale_edge_attrs <- function(
+    graph,
+    edge_attr_from,
+    to_lower_bound = 0,
+    to_upper_bound = 1,
+    edge_attr_to = NULL,
+    from_lower_bound = NULL,
+    from_upper_bound = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

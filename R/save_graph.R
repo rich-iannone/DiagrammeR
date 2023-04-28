@@ -1,11 +1,14 @@
 #' Save a graph or graph series to disk
 #'
+#' @description
+#'
 #' Save a graph or a graph series object to disk.
 #'
 #' @param x A graph object of class `dgr_graph` or a graph series object of type
 #'   `dgr_graph_1D`.
 #' @param file A file name for the graph or graph series. Provide a character
 #'   string and the `.dgr` extension will be applied to it.
+#'
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using
@@ -30,10 +33,13 @@
 #' #   open_graph(
 #' #     file = "gnp_graph.dgr"
 #' # )
+#'
 #' @family Display and Save
 #' @export
-save_graph <- function(x,
-                       file) {
+save_graph <- function(
+    x,
+    file
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

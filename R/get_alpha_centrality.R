@@ -1,6 +1,9 @@
 #' Get the alpha centrality for all nodes
 #'
+#' @description
+#'
 #' Get the alpha centrality values for all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param alpha the parameter that specifies the relative importance of
 #'   endogenous versus exogenous factors in the determination of centrality.
@@ -8,11 +11,11 @@
 #'   (which applies the same factor to every node), or a vector giving the
 #'   factor for every node.
 #' @param weights_attr an optional name of the edge attribute to use in the
-#'   adjacency matrix. If `NULL` then, if it exists, the `weight` edge
-#'   attribute of the graph will be used. Failing that, the standard adjacency
-#'   matrix will be used in calculations.
-#' @param tol the tolerance for near-singularities during matrix inversion.
-#' The default value is set to `1e-7`.
+#'   adjacency matrix. If `NULL` then, if it exists, the `weight` edge attribute
+#'   of the graph will be used. Failing that, the standard adjacency matrix will
+#'   be used in calculations.
+#' @param tol the tolerance for near-singularities during matrix inversion. The
+#'   default value is set to `1e-7`.
 #'
 #' @return A data frame with alpha centrality scores for each of the nodes.
 #'
@@ -44,11 +47,13 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_alpha_centrality <- function(graph,
-                                 alpha = 1,
-                                 exo = 1,
-                                 weights_attr = NULL,
-                                 tol = 1e-7) {
+get_alpha_centrality <- function(
+    graph,
+    alpha = 1,
+    exo = 1,
+    weights_attr = NULL,
+    tol = 1e-7
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

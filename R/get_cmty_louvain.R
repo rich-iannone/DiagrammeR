@@ -1,7 +1,10 @@
 #' Get community membership by Louvain optimization
 #'
+#' @description
+#'
 #' Through the use of multi-level optimization of a modularity score, obtain the
-#'   group membership values for each of the nodes in the graph.
+#' group membership values for each of the nodes in the graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with group membership assignments for each of the nodes.

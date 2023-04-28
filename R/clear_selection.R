@@ -1,5 +1,7 @@
 #' Clear an active selection of nodes or edges
 #'
+#' @description
+#'
 #' Clear the selection of nodes or edges within a graph object.
 #'
 #' @inheritParams render_graph

@@ -1,5 +1,7 @@
 #' Rename a node attribute
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), rename an existing node
 #' attribute.
 #'
@@ -47,12 +49,15 @@
 #' # attribute had been renamed
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-rename_node_attrs <- function(graph,
-                              node_attr_from,
-                              node_attr_to) {
+rename_node_attrs <- function(
+    graph,
+    node_attr_from,
+    node_attr_to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

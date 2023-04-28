@@ -1,5 +1,7 @@
 #' Subset a graph series object
 #'
+#' @description
+#'
 #' Subsetting a graph series by the graphs' index positions in the graph series
 #' or through selection via graphs' date-time attributes.
 #'
@@ -78,10 +80,12 @@
 #'   count_graphs_in_graph_series()
 #'
 #' @export
-filter_graph_series <- function(graph_series,
-                                by = "number",
-                                values,
-                                tz = NULL) {
+filter_graph_series <- function(
+    graph_series,
+    by = "number",
+    values,
+    tz = NULL
+) {
 
   if (count_graphs_in_graph_series(
     graph_series = graph_series) == 0) {

@@ -1,5 +1,7 @@
 #' Set node attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, set node attribute values for one
 #' or more nodes.
 #'
@@ -57,13 +59,16 @@
 #' # Display the graph's ndf
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-set_node_attrs <- function(graph,
-                           node_attr,
-                           values,
-                           nodes = NULL) {
+set_node_attrs <- function(
+    graph,
+    node_attr,
+    values,
+    nodes = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Deselect any selected nodes in a graph
 #'
+#' @description
+#'
 #' Deselect nodes in a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -42,8 +44,10 @@
 #' graph %>% get_selection()
 #'
 #' @export
-deselect_nodes <- function(graph,
-                           nodes) {
+deselect_nodes <- function(
+    graph,
+    nodes
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

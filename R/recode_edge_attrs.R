@@ -1,5 +1,7 @@
 #' Recode a set of edge attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), recode character or numeric
 #' edge attribute values. Optionally, one can specify a replacement value for
 #' any unmatched mappings.
@@ -59,14 +61,17 @@
 #' # new node attribute
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-recode_edge_attrs <- function(graph,
-                              edge_attr_from,
-                              ...,
-                              otherwise = NULL,
-                              edge_attr_to = NULL) {
+recode_edge_attrs <- function(
+    graph,
+    edge_attr_from,
+    ...,
+    otherwise = NULL,
+    edge_attr_to = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

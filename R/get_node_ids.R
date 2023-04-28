@@ -1,5 +1,7 @@
 #' Get a vector of node ID values
 #'
+#' @description
+#'
 #' Obtain a vector of node ID values from a graph object. An optional filter by
 #' node attribute can limit the set of node ID values returned.
 #'
@@ -55,8 +57,10 @@
 #'
 #' @import rlang
 #' @export
-get_node_ids <- function(graph,
-                         conditions = NULL) {
+get_node_ids <- function(
+    graph,
+    conditions = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Get an aggregate value from the outdegree of nodes
 #'
+#' @description
+#'
 #' Get a single, aggregate value from the outdegree values for all nodes in a
 #' graph, or, a subset of graph nodes.
 #'
@@ -52,9 +54,11 @@
 #'
 #' @import rlang
 #' @export
-get_agg_degree_out <- function(graph,
-                               agg,
-                               conditions = NULL) {
+get_agg_degree_out <- function(
+    graph,
+    agg,
+    conditions = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Traverse from one or more selected nodes onto adjacent, outward edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` move to outgoing edges from a
 #' selection of one or more selected nodes, thereby creating a selection of
 #' edges. An optional filter by edge attribute can limit the set of edges
@@ -173,10 +175,12 @@
 #'
 #' @import rlang
 #' @export
-trav_out_edge <- function(graph,
-                          conditions = NULL,
-                          copy_attrs_from = NULL,
-                          copy_attrs_as = NULL) {
+trav_out_edge <- function(
+    graph,
+    conditions = NULL,
+    copy_attrs_from = NULL,
+    copy_attrs_as = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

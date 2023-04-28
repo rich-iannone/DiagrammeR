@@ -1,5 +1,7 @@
 #' Join new edge attribute values using a data frame
 #'
+#' @description
+#'
 #' Join new edge attribute values in a left join using a data frame. The use of
 #' a left join in this function allows for no possibility that edges in the
 #' graph might be removed after the join.
@@ -52,10 +54,12 @@
 #' graph %>% get_edge_df()
 #' @family Edge creation and removal
 #' @export
-join_edge_attrs <- function(graph,
-                            df,
-                            by_graph = NULL,
-                            by_df = NULL) {
+join_edge_attrs <- function(
+    graph,
+    df,
+    by_graph = NULL,
+    by_df = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

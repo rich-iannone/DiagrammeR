@@ -1,5 +1,7 @@
 #' Add a G(n, m) Erdos-Renyi graph
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
 #' G(n, m) model. This uses the same constant probability when creating the
 #' fixed number of edges. Thus for `n` nodes there will be `m` edges and, if the
@@ -41,18 +43,20 @@
 #' gnm_graph %>% count_edges()
 #'
 #' @export
-add_gnm_graph <- function(graph,
-                          n,
-                          m,
-                          loops = FALSE,
-                          type = NULL,
-                          label = TRUE,
-                          rel = NULL,
-                          node_aes = NULL,
-                          edge_aes = NULL,
-                          node_data = NULL,
-                          edge_data = NULL,
-                          set_seed = NULL) {
+add_gnm_graph <- function(
+    graph,
+    n,
+    m,
+    loops = FALSE,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

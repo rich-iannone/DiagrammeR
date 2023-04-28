@@ -1,5 +1,7 @@
 #' Get the graph date-time or timezone
 #'
+#' @description
+#'
 #' Get the time and timezone for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -19,6 +21,7 @@
 #' # Get the graph's time as a POSIXct
 #' # object using `get_graph_time()`
 #' graph %>% get_graph_time()
+#'
 #' @export
 get_graph_time <- function(graph) {
 

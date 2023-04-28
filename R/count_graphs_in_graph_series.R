@@ -1,5 +1,7 @@
 #' Count graphs in a graph series object
 #'
+#' @description
+#'
 #' Counts the total number of graphs in a graph series object.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`

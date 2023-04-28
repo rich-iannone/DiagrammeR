@@ -1,7 +1,10 @@
 #' Get all nodes connected to a specified node
 #'
+#' @description
+#'
 #' With a single node serving as the starting point get all nodes connected
-#'   (i.e., reachable with a traversable path) to that node.
+#' (i.e., reachable with a traversable path) to that node.
+#'
 #' @inheritParams render_graph
 #' @param node a single-length vector containing a node ID value.
 #'
@@ -56,8 +59,10 @@
 #'     node = 8)
 #'
 #' @export
-get_all_connected_nodes <- function(graph,
-                                    node) {
+get_all_connected_nodes <- function(
+    graph,
+    node
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

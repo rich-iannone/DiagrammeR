@@ -1,5 +1,7 @@
 #' Get the number of strongly-connected components
 #'
+#' @description
+#'
 #' Get the number of strongly-connected components in the graph.
 #'
 #' @inheritParams render_graph

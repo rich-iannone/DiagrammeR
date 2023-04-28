@@ -1,5 +1,7 @@
 #' Get count of all loop edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get a count of all loop edges in
 #' the graph.
 #'

@@ -1,5 +1,7 @@
 #' Get a node data frame from a graph
 #'
+#' @description
+#'
 #' From a graph, obtain a node data frame with all current node attributes.
 #'
 #' @inheritParams render_graph

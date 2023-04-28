@@ -1,5 +1,7 @@
 #' Get leverage centrality
 #'
+#' @description
+#'
 #' Get the leverage centrality values for all nodes in the graph. Leverage
 #' centrality is a measure of the relationship between the degree of a given
 #' node and the degree of each of its neighbors, averaged over all neighbors. A

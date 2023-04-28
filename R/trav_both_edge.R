@@ -1,5 +1,7 @@
 #' Traverse from one or more selected nodes onto adjacent edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` move to adjacent edges from a
 #' selection of one or more selected nodes, thereby creating a selection of
 #' edges. An optional filter by edge attribute can limit the set of edges
@@ -189,11 +191,13 @@
 #'
 #' @import rlang
 #' @export
-trav_both_edge <- function(graph,
-                           conditions = NULL,
-                           copy_attrs_from = NULL,
-                           copy_attrs_as = NULL,
-                           agg = "sum") {
+trav_both_edge <- function(
+    graph,
+    conditions = NULL,
+    copy_attrs_from = NULL,
+    copy_attrs_as = NULL,
+    agg = "sum"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

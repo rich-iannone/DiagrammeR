@@ -1,5 +1,7 @@
 #' Rename an edge attribute
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), rename an existing edge
 #' attribute.
 #'
@@ -41,12 +43,15 @@
 #' # attribute had been renamed
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-rename_edge_attrs <- function(graph,
-                              edge_attr_from,
-                              edge_attr_to) {
+rename_edge_attrs <- function(
+    graph,
+    edge_attr_from,
+    edge_attr_to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,7 +1,10 @@
 #' Get total degree distribution data for a graph
 #'
+#' @description
+#'
 #' Get degree distribution data for a graph. Graph degree is represented as a
-#'   frequency of total degree values over all nodes in the graph.
+#' frequency of total degree values over all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param mode using `total` (the default), degree considered for each node
 #'   will be the total degree. With `in` and `out` the degree used
@@ -27,8 +30,10 @@
 #'     mode = "total")
 #'
 #' @export
-get_degree_distribution <- function(graph,
-                                    mode = "total") {
+get_degree_distribution <- function(
+    graph,
+    mode = "total"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

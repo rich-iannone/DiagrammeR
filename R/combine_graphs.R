@@ -1,5 +1,7 @@
 #' Combine two graphs into a single graph
 #'
+#' @description
+#'
 #' Combine two graphs in order to make a new graph.
 #'
 #' @param x A `DiagrammeR` graph object to which another graph will be unioned.
@@ -46,8 +48,10 @@
 #' combined_graph %>% get_node_ids()
 #'
 #' @export
-combine_graphs <- function(x,
-                           y) {
+combine_graphs <- function(
+    x,
+    y
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

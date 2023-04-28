@@ -1,5 +1,7 @@
 #' Create a complement of a graph
 #'
+#' @description
+#'
 #' Create a complement graph which contains only edges not present in the input
 #' graph. It's important to nodes that any edge attributes in the input graph's
 #' edges will be lost. Node attributes will be retained, since they are not
@@ -33,8 +35,10 @@
 #' graph_c %>% get_edge_df()
 #'
 #' @export
-transform_to_complement_graph <- function(graph,
-                                          loops = FALSE) {
+transform_to_complement_graph <- function(
+    graph,
+    loops = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

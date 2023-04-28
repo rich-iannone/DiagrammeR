@@ -1,5 +1,7 @@
 #' Add an edge between nodes in a graph object
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add an edge to nodes within the
 #' graph.
 #'
@@ -99,15 +101,20 @@
 #' # values were bound to the
 #' # newly created edge
 #' graph_2 %>% get_edge_df()
-#' @import rlang
+#'
+#'
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-add_edge <- function(graph,
-                     from,
-                     to,
-                     rel = NULL,
-                     edge_aes = NULL,
-                     edge_data = NULL) {
+add_edge <- function(
+    graph,
+    from,
+    to,
+    rel = NULL,
+    edge_aes = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

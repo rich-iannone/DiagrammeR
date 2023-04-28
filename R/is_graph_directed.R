@@ -1,5 +1,7 @@
 #' Is the graph a directed graph?
 #'
+#' @description
+#'
 #' Determines whether a graph is set to be directed or not and returns a logical
 #' value to that effect.
 #'

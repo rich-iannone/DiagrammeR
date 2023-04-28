@@ -1,5 +1,7 @@
 #' Apply a layout position to a single node
 #'
+#' @description
+#'
 #' Apply position information for a single node. This is done by setting the `x`
 #' and `y` attrs for a node `id` or node `label` supplied in `node`. When
 #' rendering the graph, nodes with attribute values set for `x` and `y` will be
@@ -87,13 +89,17 @@
 #'
 #' # View the graph's node data frame
 #' graph %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-set_node_position <- function(graph,
-                              node,
-                              x,
-                              y,
-                              use_labels = FALSE) {
+set_node_position <- function(
+    graph,
+    node,
+    x,
+    y,
+    use_labels = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

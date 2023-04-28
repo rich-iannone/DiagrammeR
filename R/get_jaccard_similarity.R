@@ -1,5 +1,7 @@
 #' Get Jaccard similarity coefficient scores
 #'
+#' @description
+#'
 #' Get the Jaccard similarity coefficient scores for one or more nodes in a
 #' graph.
 #'
@@ -35,10 +37,12 @@
 #'     nodes = 5:7)
 #'
 #' @export
-get_jaccard_similarity <- function(graph,
-                                   nodes = NULL,
-                                   direction = "all",
-                                   round_to = 3) {
+get_jaccard_similarity <- function(
+    graph,
+    nodes = NULL,
+    direction = "all",
+    round_to = 3
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Get a count of all nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get a count of nodes in the graph.
 #'
 #' @inheritParams render_graph

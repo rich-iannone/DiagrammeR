@@ -1,5 +1,7 @@
 #' Convert a directed graph to an undirected graph
 #'
+#' @description
+#'
 #' Take a graph which is directed and convert it to an undirected graph.
 #'
 #' @inheritParams render_graph

@@ -1,5 +1,7 @@
 #' Add a balanced tree to the graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a balanced tree to the graph.
 #'
 #' @inheritParams node_edge_aes_data
@@ -78,17 +80,20 @@
 #' graph_w_attrs %>%
 #'   get_edge_df() %>%
 #'   head(3)
+#'
 #' @export
-add_balanced_tree <- function(graph,
-                              k,
-                              h,
-                              type = NULL,
-                              label = TRUE,
-                              rel = NULL,
-                              node_aes = NULL,
-                              edge_aes = NULL,
-                              node_data = NULL,
-                              edge_data = NULL) {
+add_balanced_tree <- function(
+    graph,
+    k,
+    h,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

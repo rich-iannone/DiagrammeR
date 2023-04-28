@@ -1,5 +1,7 @@
 #' Traverse inward node-by-node until stopping conditions are met
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, move along inward edges from one or
 #' more nodes present in a selection to other connected nodes, replacing the
 #' current nodes in the selection with those nodes traversed to until reaching
@@ -99,11 +101,13 @@
 #'
 #' @import rlang
 #' @export
-trav_in_until <- function(graph,
-                          conditions,
-                          max_steps = 30,
-                          exclude_unmatched = TRUE,
-                          add_to_selection = FALSE) {
+trav_in_until <- function(
+    graph,
+    conditions,
+    max_steps = 30,
+    exclude_unmatched = TRUE,
+    add_to_selection = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

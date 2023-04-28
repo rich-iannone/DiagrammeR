@@ -1,5 +1,7 @@
 #' Delete vectors cached in a graph object
 #'
+#' @description
+#'
 #' Delete vectors cached in a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -36,10 +38,13 @@
 #' graph <-
 #'   graph %>%
 #'   delete_cache()
+#'
 #' @import glue
 #' @export
-delete_cache <- function(graph,
-                         name = NULL) {
+delete_cache <- function(
+    graph,
+    name = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Add a clone of an existing edge to the graph
 #'
+#' @description
+#'
 #' Add a new edge to a graph object of class `dgr_graph` which is a clone of an
 #' edge already in the graph. All edge attributes are preserved.
 #'
@@ -63,12 +65,15 @@
 #' # Display the graph's internal
 #' # edge data frame
 #' graph_3 %>% get_edge_df()
+#'
 #' @family Edge creation and removal
 #' @export
-add_edge_clone <- function(graph,
-                           edge,
-                           from,
-                           to) {
+add_edge_clone <- function(
+    graph,
+    edge,
+    from,
+    to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

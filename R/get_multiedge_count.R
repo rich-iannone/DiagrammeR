@@ -1,5 +1,7 @@
 #' Get the count of multiple edges
 #'
+#' @description
+#'
 #' Get a count of the number of multiple edges in the graph. Included in the
 #' count is the number of separate edges that share the same edge definition
 #' (i.e., same pair of nodes) across the entire graph. So, for example, if there

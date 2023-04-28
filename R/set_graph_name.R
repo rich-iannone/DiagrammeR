@@ -1,5 +1,7 @@
 #' Set graph name
 #'
+#' @description
+#'
 #' Set a name for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -18,8 +20,10 @@
 #'     name = "example_name")
 #'
 #' @export
-set_graph_name <- function(graph,
-                           name) {
+set_graph_name <- function(
+    graph,
+    name
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

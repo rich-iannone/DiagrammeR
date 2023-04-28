@@ -1,5 +1,7 @@
 #' Get count of edge definitions where multiple edges occur
 #'
+#' @description
+#'
 #' Get a count of the number of edge definitions (e.g, `1` -> `2`) where there
 #' are multiple edges (i.e., more than 1 edge of that definition, having
 #' distinct edge ID values). So, for example, if there are 2 edge definitions in

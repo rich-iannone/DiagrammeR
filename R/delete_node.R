@@ -1,5 +1,7 @@
 #' Delete a node from an existing graph object
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, delete an existing node by
 #' specifying its node ID.
 #'
@@ -28,8 +30,10 @@
 #' graph %>% get_edges()
 #' @family Node creation and removal
 #' @export
-delete_node <- function(graph,
-                        node) {
+delete_node <- function(
+    graph,
+    node
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Move layout positions of a selection of nodes
 #'
+#' @description
+#'
 #' With an active selection of nodes, move the position in either the `x` or `y`
 #' directions, or both. Nodes in the selection that do not have position
 #' information (i.e., `NA` values for the `x` or `y` node attributes) will be
@@ -89,9 +91,11 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-nudge_node_positions_ws <- function(graph,
-                                    dx,
-                                    dy) {
+nudge_node_positions_ws <- function(
+    graph,
+    dx,
+    dy
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

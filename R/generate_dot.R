@@ -1,5 +1,7 @@
 #' Generate DOT code using a graph object
 #'
+#' @description
+#'
 #' Generates Graphviz DOT code as an R character object using DiagrammeR graph
 #' object.
 #'

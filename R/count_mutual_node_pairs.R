@@ -1,5 +1,7 @@
 #' Get the number of mutually-connected node pairs
 #'
+#' @description
+#'
 #' Get the number of mutually-connected node pairs. This works for directed
 #' graphs.
 #'

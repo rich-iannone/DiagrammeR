@@ -1,5 +1,7 @@
 #' Get radiality centrality scores
 #'
+#' @description
+#'
 #' Get the radiality centrality for all nodes in a graph. These scores describe
 #' the ease to which nodes can reach other nodes.
 #'
@@ -38,8 +40,10 @@
 #'   get_node_df()
 #'
 #' @export
-get_radiality <- function(graph,
-                          direction = "all") {
+get_radiality <- function(
+    graph,
+    direction = "all"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Add one or more global graph attributes
 #'
+#' @description
+#'
 #' Add global attributes of a specific type (either `graph_attrs`, `node_attrs`,
 #' or `edge_attrs` for a graph object of class `dgr_graph`).
 #'
@@ -56,10 +58,12 @@
 #'   get_global_graph_attr_info()
 #'
 #' @export
-add_global_graph_attrs <- function(graph,
-                                   attr,
-                                   value,
-                                   attr_type) {
+add_global_graph_attrs <- function(
+    graph,
+    attr,
+    value,
+    attr_type
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

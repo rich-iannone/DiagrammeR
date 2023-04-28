@@ -1,5 +1,7 @@
 #' Add one or several unconnected nodes to the graph
 #'
+#' @description
+#'
 #' Add `n` new nodes to a graph object of class `dgr_graph`. Optionally, set
 #' node `type` values for the new nodes.
 #'
@@ -24,14 +26,18 @@
 #'
 #' # Get the graph's node IDs
 #' graph %>% get_node_ids()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_n_nodes <- function(graph,
-                        n,
-                        type = NULL,
-                        label = NULL,
-                        node_aes = NULL,
-                        node_data = NULL) {
+add_n_nodes <- function(
+    graph,
+    n,
+    type = NULL,
+    label = NULL,
+    node_aes = NULL,
+    node_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

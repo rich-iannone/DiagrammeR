@@ -1,5 +1,7 @@
 #' Get metrics for a graph
 #'
+#' @description
+#'
 #' Get a data frame with metrics for a graph.
 #'
 #' @inheritParams render_graph

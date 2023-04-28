@@ -1,5 +1,7 @@
 #' Get detailed information on nodes
 #'
+#' @description
+#'
 #' Obtain a data frame with detailed information on nodes and their
 #' interrelationships within the graph.
 #'

@@ -1,5 +1,7 @@
 #' Add one or more edges using a text string
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add one or more edges to the graph
 #' using a text string.
 #'
@@ -56,12 +58,16 @@
 #' # edge data frame (it's the
 #' # same as before)
 #' graph_node_label %>% get_edge_df()
+#'
 #' @family Edge creation and removal
+#'
 #' @export
-add_edges_w_string <- function(graph,
-                               edges,
-                               rel = NULL,
-                               use_labels = FALSE) {
+add_edges_w_string <- function(
+    graph,
+    edges,
+    rel = NULL,
+    use_labels = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

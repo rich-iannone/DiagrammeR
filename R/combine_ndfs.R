@@ -1,5 +1,7 @@
 #' Combine multiple node data frames
 #'
+#' @description
+#'
 #' Combine several node data frames into a single node data frame.
 #'
 #' @param ... Two or more node data frames, which contain node IDs and

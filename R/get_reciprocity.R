@@ -1,5 +1,7 @@
 #' Get the graph reciprocity
 #'
+#' @description
+#'
 #' Get the reciprocity of a directed graph. The reciprocity of a graph is the
 #' fraction of reciprocal edges (e.g., `1` -> `2` and `2` -> `1`) over all edges
 #' available in the graph. Note that for an undirected graph, all edges are

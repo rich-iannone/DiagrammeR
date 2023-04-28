@@ -1,9 +1,12 @@
 #' Delete an edge from an existing graph object
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, delete an existing edge by
-#'   specifying either: (1) a pair of node IDs corresponding to the edge
-#'   (keeping into consideration the direction of the edge in a directed graph),
-#'   or (2) an edge ID.
+#' specifying either: (1) a pair of node IDs corresponding to the edge (keeping
+#' into consideration the direction of the edge in a directed graph), or (2) an
+#' edge ID.
+#'
 #' @inheritParams render_graph
 #' @param from a node ID from which the edge to be removed is outgoing. If an
 #'   edge ID is provided to `id`, then this argument is ignored. There is
@@ -91,11 +94,14 @@
 #'   count_edges()
 #'
 #' @family Edge creation and removal
+#'
 #' @export
-delete_edge <- function(graph,
-                        from = NULL,
-                        to = NULL,
-                        id = NULL) {
+delete_edge <- function(
+    graph,
+    from = NULL,
+    to = NULL,
+    id = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

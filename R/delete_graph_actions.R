@@ -1,5 +1,7 @@
 #' Delete one or more graph actions stored within a graph object
 #'
+#' @description
+#'
 #' Delete one or more graph actions stored within a graph object of class
 #' `dgr_graph`).
 #'
@@ -58,8 +60,10 @@
 #' graph %>% get_graph_actions()
 #'
 #' @export
-delete_graph_actions <- function(graph,
-                                 actions) {
+delete_graph_actions <- function(
+    graph,
+    actions
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

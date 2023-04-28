@@ -1,5 +1,7 @@
 #' Get non-neighbors of a node in a graph
 #'
+#' @description
+#'
 #' Get the set of all nodes not neighboring a single graph node.
 #'
 #' @inheritParams render_graph
@@ -18,8 +20,10 @@
 #' graph %>% get_non_nbrs(node = 2)
 #'
 #' @export
-get_non_nbrs <- function(graph,
-                         node) {
+get_non_nbrs <- function(
+    graph,
+    node
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

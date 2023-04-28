@@ -1,5 +1,7 @@
 #' Get the PageRank values for all nodes
 #'
+#' @description
+#'
 #' Get the PageRank values for all nodes in the graph.
 #'
 #' @inheritParams render_graph
@@ -36,9 +38,11 @@
 #'     palette = "RdYlGn")
 #'
 #' @export
-get_pagerank <- function(graph,
-                         directed = TRUE,
-                         damping = 0.85) {
+get_pagerank <- function(
+    graph,
+    directed = TRUE,
+    damping = 0.85
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

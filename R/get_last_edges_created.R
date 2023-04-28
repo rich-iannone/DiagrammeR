@@ -1,5 +1,7 @@
 #' Get the last set of edges created in a graph
 #'
+#' @description
+#'
 #' Get the last edges that were created in a graph object of class `dgr_graph`.
 #' This function should ideally be used just after creating the edges.
 #'

@@ -1,5 +1,7 @@
 #' Import a graph from various graph formats
 #'
+#' @description
+#'
 #' Import a variety of graphs from different graph formats and create a graph
 #' object.
 #'
@@ -43,14 +45,16 @@
 #' }
 #'
 #' @export
-import_graph <- function(graph_file,
-                         file_type = NULL,
-                         edges_extra_attr_names = NULL,
-                         edges_extra_attr_coltypes = NULL,
-                         graph_name = NULL,
-                         attr_theme = "default",
-                         write_backups = FALSE,
-                         display_msgs = FALSE) {
+import_graph <- function(
+    graph_file,
+    file_type = NULL,
+    edges_extra_attr_names = NULL,
+    edges_extra_attr_coltypes = NULL,
+    graph_name = NULL,
+    attr_theme = "default",
+    write_backups = FALSE,
+    display_msgs = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

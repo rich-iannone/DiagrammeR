@@ -1,5 +1,7 @@
 #' Set edge attributes with an edge selection
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` or an edge data frame, set edge
 #' attribute properties for one or more edges.
 #'
@@ -45,12 +47,15 @@
 #' # for specific edges
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-set_edge_attrs_ws <- function(graph,
-                              edge_attr,
-                              value) {
+set_edge_attrs_ws <- function(
+    graph,
+    edge_attr,
+    value
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,8 +1,11 @@
 #' Get community membership by leading eigenvector
 #'
+#' @description
+#'
 #' Through the calculation of the leading non-negative eigenvector of the
-#'   modularity matrix of the graph, obtain the group membership values for each
-#'   of the nodes in the graph.
+#' modularity matrix of the graph, obtain the group membership values for each
+#' of the nodes in the graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with group membership assignments for each of the nodes.

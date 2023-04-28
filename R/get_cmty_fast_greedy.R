@@ -1,8 +1,11 @@
 #' Get community membership by modularity optimization
 #'
+#' @description
+#'
 #' Through the use of greedy optimization of a modularity score, obtain the
-#'   group membership values for each of the nodes in the graph. Note that this
-#'   method only works on graphs without multiple edges.
+#' group membership values for each of the nodes in the graph. Note that this
+#' method only works on graphs without multiple edges.
+#'
 #' @inheritParams render_graph
 #'
 #' @return a data frame with group membership assignments for each of the nodes.

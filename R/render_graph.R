@@ -1,5 +1,7 @@
 #' Render the graph in various formats
 #'
+#' @description
+#'
 #' Using a `dgr_graph` object, render the graph in the RStudio Viewer.
 #'
 #' @param graph A graph object of class `dgr_graph`.
@@ -62,13 +64,15 @@
 #' @family Display and Save
 #'
 #' @export
-render_graph <- function(graph,
-                         layout = NULL,
-                         output = NULL,
-                         as_svg = FALSE,
-                         title = NULL,
-                         width = NULL,
-                         height = NULL) {
+render_graph <- function(
+    graph,
+    layout = NULL,
+    output = NULL,
+    as_svg = FALSE,
+    title = NULL,
+    width = NULL,
+    height = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

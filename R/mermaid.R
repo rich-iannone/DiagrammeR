@@ -119,10 +119,12 @@
 #'
 #' @import htmlwidgets
 #' @export
-mermaid <- function(diagram = "",
-                    ...,
-                    width = NULL,
-                    height = NULL) {
+mermaid <- function(
+    diagram = "",
+    ...,
+    width = NULL,
+    height = NULL
+) {
 
   # Check for a connection or file
   is_connection_or_file <-

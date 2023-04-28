@@ -1,5 +1,7 @@
 #' Get the minimum cut between source and sink nodes
 #'
+#' @description
+#'
 #' Get the minimum cut between source and sink nodes. This is the minimum total
 #' capacity of edges needed for removal in order to eliminate all paths from the
 #' source and sink nodes.
@@ -63,9 +65,11 @@
 #'     to = 8)
 #'
 #' @export
-get_min_cut_between <- function(graph,
-                                from,
-                                to) {
+get_min_cut_between <- function(
+    graph,
+    from,
+    to
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

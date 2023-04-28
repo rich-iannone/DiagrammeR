@@ -1,5 +1,7 @@
 #' Get information on any available graph actions
 #'
+#' @description
+#'
 #' Get a tibble of the available graph actions, which contains information on
 #' function invocations to be called on the graph at every transformation step,
 #' or, when manually invoked with the [trigger_graph_actions()] function.

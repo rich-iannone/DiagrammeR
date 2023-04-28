@@ -1,5 +1,7 @@
 #' Add a node to an existing graph object
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a new node to the graph. One
 #' can optionally provide node attributes for the created node. There is also
 #' the option to create edges to and from existing nodes in the graph. Because
@@ -44,17 +46,21 @@
 #' # View the graph's internal
 #' # node data frame (ndf)
 #' graph %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_node <- function(graph,
-                     type = NULL,
-                     label = NULL,
-                     from = NULL,
-                     to = NULL,
-                     node_aes = NULL,
-                     edge_aes = NULL,
-                     node_data = NULL,
-                     edge_data = NULL) {
+add_node <- function(
+    graph,
+    type = NULL,
+    label = NULL,
+    from = NULL,
+    to = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

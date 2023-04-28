@@ -1,5 +1,7 @@
 #' Get the current selection available in a graph object
 #'
+#' @description
+#'
 #' Get the current selection of node IDs or edge IDs from a graph object of
 #' class `dgr_graph`.
 #'

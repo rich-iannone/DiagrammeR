@@ -1,5 +1,7 @@
 #' Get information on a graph series
 #'
+#' @description
+#'
 #' Obtain a data frame with information on the graphs within a graph series.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`.

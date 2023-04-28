@@ -1,5 +1,7 @@
 #' Apply colors based on node attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), use a categorical node
 #' attribute to generate a new node attribute with color values.
 #'
@@ -106,14 +108,16 @@
 #' @import rlang
 #' @family Node creation and removal
 #' @export
-colorize_node_attrs <- function(graph,
-                                node_attr_from,
-                                node_attr_to,
-                                cut_points = NULL,
-                                palette = "Spectral",
-                                alpha = NULL,
-                                reverse_palette = FALSE,
-                                default_color = "#D9D9D9") {
+colorize_node_attrs <- function(
+    graph,
+    node_attr_from,
+    node_attr_to,
+    cut_points = NULL,
+    palette = "Spectral",
+    alpha = NULL,
+    reverse_palette = FALSE,
+    default_color = "#D9D9D9"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

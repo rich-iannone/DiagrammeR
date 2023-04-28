@@ -1,5 +1,7 @@
 #' R + mermaid.js
 #'
+#' @description
+#'
 #' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
 #' \href{https://github.com/mermaid-js/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
@@ -121,7 +123,11 @@
 #'
 #' @import htmlwidgets
 #' @export
-DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
+DiagrammeR <- function(
+    diagram = "",
+    type = "mermaid",
+    ...
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()
@@ -149,17 +155,21 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #'   coerced to a string and have `px` appended.
 #' @param height A valid CSS unit for the height or a number, which will be
 #'   coerced to a string and have `px` appended.
+#'
 #' @export
-DiagrammeROutput <- function(outputId,
-                             width = '100%',
-                             height = 'auto') {
+DiagrammeROutput <- function(
+    outputId,
+    width = '100%',
+    height = 'auto'
+) {
 
   htmlwidgets::shinyWidgetOutput(
     outputId,
     'DiagrammeR',
     width,
     height,
-    package = 'DiagrammeR')
+    package = 'DiagrammeR'
+  )
 }
 
 #' Widget render function for use in Shiny
@@ -168,10 +178,13 @@ DiagrammeROutput <- function(outputId,
 #' @param env The environment in which to evaluate expr.
 #' @param quoted Is expr a quoted expression (with quote())? This is useful if
 #'   you want to save an expression in a variable.
+#'
 #' @export
-renderDiagrammeR <- function(expr,
-                             env = parent.frame(),
-                             quoted = FALSE) {
+renderDiagrammeR <- function(
+    expr,
+    env = parent.frame(),
+    quoted = FALSE
+) {
 
   if (!quoted) expr <- substitute(expr)
 
@@ -179,5 +192,6 @@ renderDiagrammeR <- function(expr,
     expr,
     DiagrammeROutput,
     env,
-    quoted = TRUE)
+    quoted = TRUE
+  )
 }

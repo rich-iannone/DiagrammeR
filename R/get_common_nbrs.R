@@ -1,6 +1,9 @@
 #' Get all common neighbors between two or more nodes
 #'
+#' @description
+#'
 #' With two or more nodes, get the set of common neighboring nodes.
+#'
 #' @inheritParams render_graph
 #' @param nodes a vector of node ID values of length at least 2.
 #'
@@ -26,8 +29,10 @@
 #'     nodes = c(1, 3))
 #'
 #' @export
-get_common_nbrs <- function(graph,
-                            nodes) {
+get_common_nbrs <- function(
+    graph,
+    nodes
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Drop a node attribute column
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), remove an existing node
 #' attribute.
 #'
@@ -40,11 +42,14 @@
 #' # removed
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-drop_node_attrs <- function(graph,
-                            node_attr) {
+drop_node_attrs <- function(
+    graph,
+    node_attr
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

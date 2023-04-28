@@ -1,6 +1,9 @@
 #' Get outdegree values for all nodes
 #'
+#' @description
+#'
 #' Get the outdegree values for all nodes in a graph.
+#'
 #' @inheritParams render_graph
 #' @param normalized set as `FALSE` (the default), the outdegree will be
 #'   provided for each of the nodes (as a count of edges outgoing from each
@@ -38,8 +41,10 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_degree_out <- function(graph,
-                           normalized = FALSE) {
+get_degree_out <- function(
+    graph,
+    normalized = FALSE
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

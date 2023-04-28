@@ -1,10 +1,12 @@
 #' Render graph with visNetwork
 #'
+#' @description
+#'
 #' Render a graph object with the visNetwork R package.
 #'
 #' @inheritParams render_graph
-#' @examples
 #'
+#' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
 #'   create_node_df(

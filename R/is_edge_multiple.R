@@ -1,5 +1,7 @@
 #' Is the edge a multiple edge?
 #'
+#' @description
+#'
 #' Determines whether an edge definition has multiple edge IDs associated with
 #' the same node pair.
 #'
@@ -36,8 +38,10 @@
 #'   is_edge_multiple(edge = 2)
 #'
 #' @export
-is_edge_multiple <- function(graph,
-                             edge) {
+is_edge_multiple <- function(
+    graph,
+    edge
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Export a graph to various image formats
 #'
+#' @description
+#'
 #' Export a graph to a variety of image formats such as PNG, PDF, SVG, and
 #' PostScript.
 #'
@@ -46,14 +48,18 @@
 #' #     file_name = "mypng.png",
 #' #     file_type = "PNG"
 #' #   )
+#'
 #' @family Display and Save
+#'
 #' @export
-export_graph <- function(graph,
-                         file_name = NULL,
-                         file_type = NULL,
-                         title = NULL,
-                         width = NULL,
-                         height = NULL) {
+export_graph <- function(
+    graph,
+    file_name = NULL,
+    file_type = NULL,
+    title = NULL,
+    width = NULL,
+    height = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()
@@ -99,7 +105,7 @@ export_graph <- function(graph,
           "please install the `DiagrammeRsvg` package and retry",
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
     }
-    
+
     # Stop function if `rsvg` package is not available
     if (!requireNamespace("rsvg", quietly = TRUE)) {
 
@@ -110,7 +116,7 @@ export_graph <- function(graph,
           "please install the `rsvg` package and retry",
           "pkg installed using `install.packages('rsvg')`"))
     }
-    
+
     if (!is.null(title)) {
 
       graph <- add_global_graph_attrs(graph, "label", title, "graph")

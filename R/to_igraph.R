@@ -1,5 +1,7 @@
 #' Convert a DiagrammeR graph to an igraph one
 #'
+#' @description
+#'
 #' Convert a DiagrammeR graph to an igraph graph object.
 #'
 #' @inheritParams render_graph

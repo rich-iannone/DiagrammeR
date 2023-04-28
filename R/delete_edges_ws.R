@@ -1,5 +1,7 @@
 #' Delete all selected edges in an edge selection
 #'
+#' @description
+#'
 #' In a graph object of class `dgr_graph`, delete all edges present in a
 #' selection.
 #'
@@ -40,7 +42,9 @@
 #'
 #' # Get a count of edges in the graph
 #' graph %>% count_edges()
+#'
 #' @family Edge creation and removal
+#'
 #' @export
 delete_edges_ws <- function(graph) {
 

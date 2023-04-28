@@ -1,5 +1,7 @@
 #' Trigger the execution of a series of graph actions
 #'
+#' @description
+#'
 #' Execute the graph actions stored in the graph through the use of the
 #' [add_graph_action()] function. These actions will be invoked in order and any
 #' errors encountered will trigger a warning message and result in no change to

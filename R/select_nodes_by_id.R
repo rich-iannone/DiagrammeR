@@ -1,5 +1,7 @@
 #' Select nodes in a graph by their ID values
 #'
+#' @description
+#'
 #' Select nodes in a graph object of class `dgr_graph` by their node ID values.
 #' If nodes have IDs that are monotonically increasing integer values, then
 #' numeric ranges can be used for the selection.
@@ -30,9 +32,11 @@
 #'   get_selection()
 #'
 #' @export
-select_nodes_by_id <- function(graph,
-                               nodes,
-                               set_op = "union") {
+select_nodes_by_id <- function(
+    graph,
+    nodes,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

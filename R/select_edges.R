@@ -1,5 +1,7 @@
 #' Select edges in a graph
 #'
+#' @description
+#'
 #' Select edges from a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -81,12 +83,14 @@
 #'
 #' @import rlang
 #' @export
-select_edges <- function(graph,
-                         conditions = NULL,
-                         set_op = "union",
-                         from = NULL,
-                         to = NULL,
-                         edges = NULL) {
+select_edges <- function(
+    graph,
+    conditions = NULL,
+    set_op = "union",
+    from = NULL,
+    to = NULL,
+    edges = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

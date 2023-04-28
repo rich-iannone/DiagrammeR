@@ -1,5 +1,7 @@
 #' Get paths from a specified node in a directed graph
 #'
+#' @description
+#'
 #' Obtain a list of all possible paths from a given node within a directed
 #' graph.
 #'
@@ -66,12 +68,14 @@
 #'   longest_path = TRUE)
 #'
 #' @export
-get_paths <- function(graph,
-                      from = NULL,
-                      to = NULL,
-                      shortest_path = FALSE,
-                      longest_path = FALSE,
-                      distance = NULL) {
+get_paths <- function(
+    graph,
+    from = NULL,
+    to = NULL,
+    shortest_path = FALSE,
+    longest_path = FALSE,
+    distance = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

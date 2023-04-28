@@ -1,5 +1,7 @@
 #' Get the graph's edf filtered by a selection of edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get the graph's internal edge data
 #' frame that is filtered by the edge ID values currently active as a selection.
 #'

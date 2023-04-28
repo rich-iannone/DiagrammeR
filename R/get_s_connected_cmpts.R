@@ -1,5 +1,7 @@
 #' Get nodes within strongly connected components
 #'
+#' @description
+#'
 #' Determine which nodes in a graph belong to different strongly connected
 #' components.
 #'

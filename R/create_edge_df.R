@@ -1,5 +1,7 @@
 #' Create an edge data frame
 #'
+#' @description
+#'
 #' Combine several vectors for edges and their attributes into a data frame,
 #' which can be combined with other similarly-generated data frames, or, added
 #' to a graph object. An edge data frame, or edf, has at least the following
@@ -55,10 +57,12 @@
 #'
 #' @family Edge creation and removal
 #' @export
-create_edge_df <- function(from,
-                           to,
-                           rel = NULL,
-                           ...) {
+create_edge_df <- function(
+    from,
+    to,
+    rel = NULL,
+    ...
+) {
 
   # Stop function if vector lengths for `from` and
   # `to` are not equal

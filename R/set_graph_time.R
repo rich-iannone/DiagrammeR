@@ -1,5 +1,7 @@
 #' Set graph date-time and timezone
 #'
+#' @description
+#'
 #' Set the time and timezone for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -32,9 +34,11 @@
 #'   set_graph_time(tz = "America/Los_Angeles")
 #'
 #' @export
-set_graph_time <- function(graph,
-                           time = NULL,
-                           tz = NULL) {
+set_graph_time <- function(
+    graph,
+    time = NULL,
+    tz = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

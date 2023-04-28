@@ -1,5 +1,7 @@
 #' Get neighboring nodes based on node attribute similarity
 #'
+#' @description
+#'
 #' With a graph a single node serving as the starting point, get those nodes in
 #' a potential neighborhood of nodes (adjacent to the starting node) that have a
 #' common or similar (within threshold values) node attribute to the starting
@@ -81,11 +83,13 @@
 #'
 #' @import rlang
 #' @export
-get_similar_nbrs <- function(graph,
-                             node,
-                             node_attr,
-                             tol_abs = NULL,
-                             tol_pct = NULL) {
+get_similar_nbrs <- function(
+    graph,
+    node,
+    node_attr,
+    tol_abs = NULL,
+    tol_pct = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

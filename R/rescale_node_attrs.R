@@ -1,5 +1,7 @@
 #' Rescale numeric node attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, take a set of numeric values for a
 #' node attribute, rescale to a new numeric or color range, then write to the
 #' same node attribute or to a new node attribute column.
@@ -81,16 +83,19 @@
 #' # node attributes
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-rescale_node_attrs <- function(graph,
-                               node_attr_from,
-                               to_lower_bound = 0,
-                               to_upper_bound = 1,
-                               node_attr_to = NULL,
-                               from_lower_bound = NULL,
-                               from_upper_bound = NULL) {
+rescale_node_attrs <- function(
+    graph,
+    node_attr_from,
+    to_lower_bound = 0,
+    to_upper_bound = 1,
+    node_attr_to = NULL,
+    from_lower_bound = NULL,
+    from_upper_bound = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

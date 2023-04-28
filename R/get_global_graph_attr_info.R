@@ -1,5 +1,7 @@
 #' Get global graph attributes
 #'
+#' @description
+#'
 #' Get the available global attributes for a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph

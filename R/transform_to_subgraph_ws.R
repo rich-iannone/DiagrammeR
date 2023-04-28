@@ -1,5 +1,7 @@
 #' Create a subgraph using a node or edge selection
 #'
+#' @description
+#'
 #' Create a subgraph based on a selection of nodes or edges stored in the graph
 #' object.
 #'

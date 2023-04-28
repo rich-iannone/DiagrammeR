@@ -1,5 +1,7 @@
 #' Add nodes and attributes to graph from a table
 #'
+#' @description
+#'
 #' Add nodes and their attributes to an existing graph object from data in a CSV
 #' file or a data frame.
 #'
@@ -83,15 +85,18 @@
 #'   get_node_df() %>%
 #'   colnames()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-add_nodes_from_table <- function(graph,
-                                 table,
-                                 label_col = NULL,
-                                 type_col = NULL,
-                                 set_type = NULL,
-                                 drop_cols = NULL) {
+add_nodes_from_table <- function(
+    graph,
+    table,
+    label_col = NULL,
+    type_col = NULL,
+    set_type = NULL,
+    drop_cols = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

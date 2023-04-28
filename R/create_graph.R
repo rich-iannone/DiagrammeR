@@ -1,5 +1,7 @@
 #' Create a graph object
 #'
+#' @description
+#'
 #' Generates a graph object with the option to use node data frames (ndfs)
 #' and/or edge data frames (edfs) to populate the initial graph.
 #'
@@ -106,13 +108,15 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-create_graph <- function(nodes_df = NULL,
-                         edges_df = NULL,
-                         directed = TRUE,
-                         graph_name = NULL,
-                         attr_theme = "default",
-                         write_backups = FALSE,
-                         display_msgs = FALSE) {
+create_graph <- function(
+    nodes_df = NULL,
+    edges_df = NULL,
+    directed = TRUE,
+    graph_name = NULL,
+    attr_theme = "default",
+    write_backups = FALSE,
+    display_msgs = FALSE
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

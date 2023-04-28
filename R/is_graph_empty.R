@@ -1,5 +1,7 @@
 #' Is the graph empty?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is empty (i.e., contains no
 #' nodes).
 #'

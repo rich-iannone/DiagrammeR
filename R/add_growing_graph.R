@@ -1,5 +1,7 @@
 #' Create a random growing graph with m edges added per step
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built by adding `m` new edges at
 #' each time step (where a node is added).
 #'
@@ -38,18 +40,20 @@
 #' growing_graph %>% count_edges()
 #'
 #' @export
-add_growing_graph <- function(graph,
-                              n,
-                              m = 1,
-                              citation = FALSE,
-                              type = NULL,
-                              label = TRUE,
-                              rel = NULL,
-                              node_aes = NULL,
-                              edge_aes = NULL,
-                              node_data = NULL,
-                              edge_data = NULL,
-                              set_seed = NULL) {
+add_growing_graph <- function(
+    graph,
+    n,
+    m = 1,
+    citation = FALSE,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

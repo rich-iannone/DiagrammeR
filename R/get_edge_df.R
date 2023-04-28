@@ -1,5 +1,7 @@
 #' Get an edge data frame from a graph
 #'
+#' @description
+#'
 #' From a graph, obtain an edge data frame with all current edge attributes.
 #'
 #' @inheritParams render_graph

@@ -1,5 +1,7 @@
 #' Get node IDs for successor nodes to the specified node
 #'
+#' @description
+#'
 #' Provides a vector of node IDs for all nodes that have a connection from the
 #' given node.
 #'
@@ -45,8 +47,10 @@
 #'     node = 1)
 #'
 #' @export
-get_successors <- function(graph,
-                           node) {
+get_successors <- function(
+    graph,
+    node
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Set node attribute values with a graph function
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` or a node data frame, set node
 #' attribute properties for all nodes in the graph using one of several
 #' whole-graph functions.
@@ -92,12 +94,16 @@
 #' # Inspect the graph's internal
 #' # node data frame
 #' graph_3 %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-set_node_attr_w_fcn <- function(graph,
-                                node_attr_fcn,
-                                ...,
-                                column_name = NULL) {
+set_node_attr_w_fcn <- function(
+    graph,
+    node_attr_fcn,
+    ...,
+    column_name = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

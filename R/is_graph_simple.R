@@ -1,5 +1,7 @@
 #' Is the graph a simple graph?
 #'
+#' @description
+#'
 #' Determine whether the graph is a simple graph. A simple graph is one that
 #' does not contain any loops nor any multiple edges.
 #'

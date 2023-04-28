@@ -1,5 +1,7 @@
 #' Is the edge mutual with another edge?
 #'
+#' @description
+#'
 #' Determines whether an edge definition has a mutual analogue with the same
 #' node pair.
 #'
@@ -36,8 +38,10 @@
 #'   is_edge_mutual(edge = 2)
 #'
 #' @export
-is_edge_mutual <- function(graph,
-                           edge) {
+is_edge_mutual <- function(
+    graph,
+    edge
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

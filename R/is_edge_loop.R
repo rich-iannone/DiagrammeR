@@ -1,5 +1,7 @@
 #' Is the edge a loop edge?
 #'
+#' @description
+#'
 #' Determines whether an edge definition is a loop edge.
 #'
 #' @inheritParams render_graph
@@ -33,8 +35,10 @@
 #' graph %>% is_edge_loop(edge = 2)
 #'
 #' @export
-is_edge_loop <- function(graph,
-                         edge) {
+is_edge_loop <- function(
+    graph,
+    edge
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

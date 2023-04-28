@@ -1,5 +1,7 @@
 #' Select edges in a graph using edge ID values
 #'
+#' @description
+#'
 #' Select edges in a graph object of class `dgr_graph` using edge ID values.
 #'
 #' @inheritParams render_graph
@@ -50,9 +52,11 @@
 #'   }
 #'
 #' @export
-select_edges_by_edge_id <- function(graph,
-                                    edges,
-                                    set_op = "union") {
+select_edges_by_edge_id <- function(
+    graph,
+    edges,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

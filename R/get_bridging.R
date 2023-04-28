@@ -1,7 +1,10 @@
 #' Get bridging scores
 #'
+#' @description
+#'
 #' Get the bridging scores (based on Valente's Bridging vertex measure) for all
 #' nodes in a graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with bridging scores for each of the nodes.

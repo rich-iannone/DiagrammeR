@@ -1,7 +1,10 @@
 #' Get histogram data for a graph's degree frequency
 #'
+#' @description
+#'
 #' Get histogram data for a graph's degree frequency. The bin width is set to 1
-#'   and zero-value degrees are omitted from the output.
+#' and zero-value degrees are omitted from the output.
+#'
 #' @inheritParams render_graph
 #' @param mode using `total` (the default), degree considered for each node
 #'   will be the total degree. With `in` and `out` the degree used
@@ -27,8 +30,10 @@
 #'     mode = "total")
 #'
 #' @export
-get_degree_histogram <- function(graph,
-                                 mode = "total") {
+get_degree_histogram <- function(
+    graph,
+    mode = "total"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

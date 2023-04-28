@@ -1,5 +1,7 @@
 #' Add a graph action for execution at every transform
 #'
+#' @description
+#'
 #' Add a graph function along with its arguments to be run at every graph
 #' transformation step.
 #'
@@ -44,10 +46,12 @@
 #' graph %>% get_graph_actions()
 #'
 #' @export
-add_graph_action <- function(graph,
-                             fcn,
-                             ...,
-                             action_name = NULL) {
+add_graph_action <- function(
+    graph,
+    fcn,
+    ...,
+    action_name = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

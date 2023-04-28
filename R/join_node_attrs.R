@@ -1,5 +1,7 @@
 #' Join new node attribute values using a data frame
 #'
+#' @description
+#'
 #' Join new node attribute values in a left join using a data frame. The use of
 #' a left join in this function allows for no possibility that nodes in the
 #' graph might be removed after the join.
@@ -63,10 +65,12 @@
 #' graph %>% get_node_df()
 #' @family Node creation and removal
 #' @export
-join_node_attrs <- function(graph,
-                            df,
-                            by_graph = NULL,
-                            by_df = NULL) {
+join_node_attrs <- function(
+    graph,
+    df,
+    by_graph = NULL,
+    by_df = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

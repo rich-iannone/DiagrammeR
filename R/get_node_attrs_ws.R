@@ -1,5 +1,7 @@
 #' Get node attribute values from a selection of nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get node attribute values from
 #' nodes currently active as a selection.
 #'
@@ -51,8 +53,10 @@
 #'
 #' @import rlang
 #' @export
-get_node_attrs_ws <- function(graph,
-                              node_attr) {
+get_node_attrs_ws <- function(
+    graph,
+    node_attr
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

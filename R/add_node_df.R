@@ -1,5 +1,7 @@
 #' Add nodes from a node data frame to an existing graph object
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph` add nodes from a node data frame to
 #' that graph.
 #'
@@ -44,10 +46,14 @@
 #' # node data frame using the
 #' # `get_node_df()` function
 #' graph %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_node_df <- function(graph,
-                        node_df) {
+add_node_df <- function(
+    graph,
+    node_df
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

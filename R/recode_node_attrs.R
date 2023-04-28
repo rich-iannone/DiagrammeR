@@ -1,5 +1,7 @@
 #' Recode a set of node attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), recode character or numeric
 #' node attribute values. Optionally, one can specify a replacement value for
 #' any unmatched mappings.
@@ -73,14 +75,17 @@
 #' # to see the change
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-recode_node_attrs <- function(graph,
-                              node_attr_from,
-                              ...,
-                              otherwise = NULL,
-                              node_attr_to = NULL) {
+recode_node_attrs <- function(
+    graph,
+    node_attr_from,
+    ...,
+    otherwise = NULL,
+    node_attr_to = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

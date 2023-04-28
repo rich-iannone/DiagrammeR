@@ -1,5 +1,7 @@
 #' Select nodes in a graph
 #'
+#' @description
+#'
 #' Select nodes from a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -74,10 +76,12 @@
 #'
 #' @import rlang
 #' @export
-select_nodes <- function(graph,
-                         conditions = NULL,
-                         set_op = "union",
-                         nodes = NULL) {
+select_nodes <- function(
+    graph,
+    conditions = NULL,
+    set_op = "union",
+    nodes = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

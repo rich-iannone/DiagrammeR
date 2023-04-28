@@ -1,5 +1,7 @@
 #' Determine whether a specified node is present
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, determine whether a specified node
 #' is present.
 #'
@@ -36,8 +38,10 @@
 #' graph %>%
 #'   is_node_present(node = "two")
 #' @export
-is_node_present <- function(graph,
-                            node) {
+is_node_present <- function(
+    graph,
+    node
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

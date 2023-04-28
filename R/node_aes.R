@@ -1,5 +1,7 @@
 #' Insert node aesthetic attributes during node creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `node_aes` argument, which is present in any function where nodes are
 #' created.

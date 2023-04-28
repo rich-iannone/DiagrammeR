@@ -1,5 +1,7 @@
 #' Get all neighbors of one or more nodes
 #'
+#' @description
+#'
 #' With one or more nodes, get the set of all neighboring nodes.
 #'
 #' @inheritParams render_graph
@@ -39,8 +41,10 @@
 #'     value = "green")
 #'
 #' @export
-get_nbrs <- function(graph,
-                     nodes) {
+get_nbrs <- function(
+    graph,
+    nodes
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

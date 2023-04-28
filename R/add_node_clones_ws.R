@@ -1,5 +1,7 @@
 #' Add clones of a selection of nodes
 #'
+#' @description
+#'
 #' Add new nodes to a graph object of class `dgr_graph` which are clones of
 #' nodes in an active selection of nodes. All node attributes are preserved
 #' except for the node `label` attribute (to maintain the uniqueness of non-`NA`
@@ -82,12 +84,16 @@
 #' # edges between the selected
 #' # nodes and their clones
 #' graph %>% get_edge_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_node_clones_ws <- function(graph,
-                               add_edges = FALSE,
-                               direction = NULL,
-                               label = NULL) {
+add_node_clones_ws <- function(
+    graph,
+    add_edges = FALSE,
+    direction = NULL,
+    label = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Traverse from one or more selected edges onto adjacent, outward nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` with an active selection of edges
 #' move opposite to the edge direction to connected nodes, replacing the current
 #' edge selection with those nodes traversed to. An optional filter by node
@@ -203,11 +205,13 @@
 #'
 #' @import rlang
 #' @export
-trav_out_node <- function(graph,
-                          conditions = NULL,
-                          copy_attrs_from = NULL,
-                          copy_attrs_as = NULL,
-                          agg = "sum") {
+trav_out_node <- function(
+    graph,
+    conditions = NULL,
+    copy_attrs_from = NULL,
+    copy_attrs_as = NULL,
+    agg = "sum"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

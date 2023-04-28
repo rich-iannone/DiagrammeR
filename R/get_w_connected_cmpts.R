@@ -1,5 +1,7 @@
 #' Get all nodes associated with connected components
 #'
+#' @description
+#'
 #' Determine which nodes in a graph belong to different weakly connected
 #' components (i.e., distinct sets of nodes with traversable paths to and from
 #' each node in the set).

@@ -1,5 +1,7 @@
 #' Get the last set of nodes created in a graph
 #'
+#' @description
+#'
 #' Get the last nodes that were created in a graph object of class `dgr_graph`.
 #' Provides a vector of node ID values. This function should ideally be used
 #' just after creating the nodes.

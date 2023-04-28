@@ -1,5 +1,7 @@
 #' Create a random islands graph with edges between the islands
 #'
+#' @description
+#'
 #' To an existing graph object, add several Erdos-Renyi random graphs (the
 #' islands) using a common set of parameters, connected together by a fixed
 #' number of edges.
@@ -18,6 +20,7 @@
 #'   to be added.
 #' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
+#'
 #' @examples
 #' # Create a graph of islands
 #' islands_graph <-
@@ -36,19 +39,21 @@
 #' islands_graph %>% count_edges()
 #'
 #' @export
-add_islands_graph <- function(graph,
-                              n_islands,
-                              island_size,
-                              p,
-                              edges_between,
-                              type = NULL,
-                              label = TRUE,
-                              rel = NULL,
-                              node_aes = NULL,
-                              edge_aes = NULL,
-                              node_data = NULL,
-                              edge_data = NULL,
-                              set_seed = NULL) {
+add_islands_graph <- function(
+    graph,
+    n_islands,
+    island_size,
+    p,
+    edges_between,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,6 +1,9 @@
 #' Get the authority scores for all nodes
 #'
+#' @description
+#'
 #' Get the Kleinberg authority centrality scores for all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param weights_attr an optional name of the edge attribute to use in the
 #' adjacency matrix. If `NULL` then, if it exists, the `weight` edge
@@ -35,8 +38,10 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_authority_centrality <- function(graph,
-                                     weights_attr = NULL) {
+get_authority_centrality <- function(
+    graph,
+    weights_attr = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

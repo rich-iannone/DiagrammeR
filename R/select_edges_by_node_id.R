@@ -1,5 +1,7 @@
 #' Select edges in a graph using node ID values
 #'
+#' @description
+#'
 #' Select edges in a graph object of class `dgr_graph` using node ID values. All
 #' edges associated with the provided nodes will be included in the selection.
 #'
@@ -51,9 +53,11 @@
 #'   }
 #'
 #' @export
-select_edges_by_node_id <- function(graph,
-                                    nodes,
-                                    set_op = "union") {
+select_edges_by_node_id <- function(
+    graph,
+    nodes,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

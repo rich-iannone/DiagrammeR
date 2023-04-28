@@ -1,5 +1,7 @@
 #' Traverse to any reverse edges
 #'
+#' @description
+#'
 #' From an active selection of edges in a graph object of class `dgr_graph`,
 #' traverse to any available reverse edges between the nodes common to the
 #' selected edges. For instance, if an active selection has the edge `1->2` but
@@ -72,8 +74,10 @@
 #' graph %>% get_selection()
 #'
 #' @export
-trav_reverse_edge <- function(graph,
-                              add_to_selection = FALSE) {
+trav_reverse_edge <- function(
+    graph,
+    add_to_selection = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

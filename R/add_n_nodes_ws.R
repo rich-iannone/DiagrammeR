@@ -1,5 +1,7 @@
 #' Add a multiple of new nodes with edges to or from one or more selected nodes
 #'
+#' @description
+#'
 #' Add `n` new nodes to or from one or more nodes available as a selection in a
 #' graph object of class `dgr_graph`. New graph edges will all move either from
 #' the nodes in the selection toward the newly created nodes (with the option
@@ -72,18 +74,22 @@
 #'
 #' # Get the graph's edges
 #' graph %>% get_edges()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_n_nodes_ws <- function(graph,
-                           n,
-                           direction = NULL,
-                           type = NULL,
-                           label = NULL,
-                           rel = NULL,
-                           node_aes = NULL,
-                           edge_aes = NULL,
-                           node_data = NULL,
-                           edge_data = NULL) {
+add_n_nodes_ws <- function(
+    graph,
+    n,
+    direction = NULL,
+    type = NULL,
+    label = NULL,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

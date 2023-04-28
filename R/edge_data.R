@@ -1,10 +1,13 @@
 #' Insert edge data attributes during edge creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `edge_data` argument, which is present in any function where edges are
 #' created.
 #'
 #' @param ... Edge data attributes provided as one or more named vectors.
+#'
 #' @examples
 #' \dontrun{
 #' # Create a new graph and add
@@ -25,7 +28,9 @@
 #' # been inserted
 #' graph %>% get_edge_df()
 #' }
+#'
 #' @family Edge creation and removal
+#'
 #' @export
 edge_data <- function(...) {
 

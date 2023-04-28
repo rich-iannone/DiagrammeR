@@ -1,5 +1,7 @@
 #' Add new edges with identical definitions as with a selection of edges
 #'
+#' @description
+#'
 #' Add edges in the same direction of one or more edges available as an edge
 #' selection in a graph object of class `dgr_graph`. New graph edges have the
 #' same edge definitions as those in the selection except with new edge ID
@@ -54,9 +56,12 @@
 #' graph %>% get_edge_df()
 #'
 #' @family Edge creation and removal
+#'
 #' @export
-add_forward_edges_ws <- function(graph,
-                                 rel = NULL) {
+add_forward_edges_ws <- function(
+    graph,
+    rel = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

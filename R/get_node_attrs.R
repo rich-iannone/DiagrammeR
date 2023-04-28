@@ -1,5 +1,7 @@
 #' Get node attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get node attribute values for one
 #' or more nodes.
 #'
@@ -41,9 +43,11 @@
 #'
 #' @import rlang
 #' @export
-get_node_attrs <- function(graph,
-                           node_attr,
-                           nodes = NULL) {
+get_node_attrs <- function(
+    graph,
+    node_attr,
+    nodes = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

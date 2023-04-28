@@ -1,7 +1,9 @@
 #' Get a vector of edge ID values
 #'
+#' @description
+#'
 #' Obtain a vector of edge ID values from a graph object. An optional filter by
-#'   edge attribute can limit the set of edge ID values returned.
+#' edge attribute can limit the set of edge ID values returned.
 #'
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
@@ -60,8 +62,10 @@
 #'
 #' @import rlang
 #' @export
-get_edge_ids <- function(graph,
-                         conditions = NULL) {
+get_edge_ids <- function(
+    graph,
+    conditions = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

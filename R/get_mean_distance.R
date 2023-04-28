@@ -1,5 +1,7 @@
 #' Get the mean distance
 #'
+#' @description
+#'
 #' Get the mean distance of a graph, which is the average path length in the
 #' graph. This operates through calculation of the shortest paths between all
 #' pairs of nodes.

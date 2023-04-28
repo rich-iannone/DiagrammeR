@@ -1,5 +1,7 @@
 #' Add graph object to a graph series object
 #'
+#' @description
+#'
 #' Add a graph object to an extant graph series object for storage of multiple
 #' graphs across a sequential or temporal one-dimensional array.
 #'
@@ -40,8 +42,10 @@
 #'   count_graphs_in_graph_series()
 #'
 #' @export
-add_graph_to_graph_series <- function(graph_series,
-                                      graph) {
+add_graph_to_graph_series <- function(
+    graph_series,
+    graph
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

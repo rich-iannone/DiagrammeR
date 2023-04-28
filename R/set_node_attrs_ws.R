@@ -1,5 +1,7 @@
 #' Set node attributes with a node selection
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` or a node data frame, set node
 #' attribute properties for nodes present in a node selection.
 #'
@@ -46,12 +48,15 @@
 #' # specific node
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-set_node_attrs_ws <- function(graph,
-                              node_attr,
-                              value) {
+set_node_attrs_ws <- function(
+    graph,
+    node_attr,
+    value
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

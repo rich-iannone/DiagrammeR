@@ -1,5 +1,7 @@
 #' Get graph adhesion
 #'
+#' @description
+#'
 #' Get the adhesion of a graph, which is the minimum number of edges needed to
 #' remove to obtain a graph which is not strongly connected. This is the same as
 #' the edge connectivity of the graph.

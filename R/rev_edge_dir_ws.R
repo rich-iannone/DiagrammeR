@@ -1,5 +1,7 @@
 #' Reverse the direction of selected edges in a graph using an edge selection
 #'
+#' @description
+#'
 #' Using a directed graph with a selection of edges as input, reverse the
 #' direction of those selected edges in input graph.
 #'
@@ -46,7 +48,9 @@
 #' # Inspect the graph's edges
 #' # after their reversal
 #' graph %>% get_edges()
+#'
 #' @family Edge creation and removal
+#'
 #' @export
 rev_edge_dir_ws <- function(graph) {
 

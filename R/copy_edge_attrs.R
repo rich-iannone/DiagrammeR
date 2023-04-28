@@ -1,5 +1,7 @@
 #' Copy an edge attribute column and set the name
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), copy the contents an
 #' existing edge attribute and create a distinct edge attribute within the edf
 #' with a different attribute name.
@@ -47,9 +49,11 @@
 #' @import rlang
 #' @family Edge creation and removal
 #' @export
-copy_edge_attrs <- function(graph,
-                            edge_attr_from,
-                            edge_attr_to) {
+copy_edge_attrs <- function(
+    graph,
+    edge_attr_from,
+    edge_attr_to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

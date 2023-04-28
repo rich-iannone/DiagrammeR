@@ -1,5 +1,7 @@
 #' Add one or several clones of an existing node to the graph
 #'
+#' @description
+#'
 #' Add `n` new nodes to a graph object of class `dgr_graph` which are clones of
 #' a node already in the graph. All node attributes are preserved except for the
 #' node `label` attribute (to maintain the uniqueness of non-`NA` node label
@@ -44,12 +46,16 @@
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of `1`
 #' graph %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_n_node_clones <- function(graph,
-                              n,
-                              node,
-                              label = NULL) {
+add_n_node_clones <- function(
+    graph,
+    n,
+    node,
+    label = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

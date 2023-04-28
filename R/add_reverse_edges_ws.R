@@ -1,5 +1,7 @@
 #' Add new edges in the opposite directions of a selection of edges
 #'
+#' @description
+#'
 #' Add edges in the opposite direction of one or more edges available as an edge
 #' selection in a graph object of class `dgr_graph`. New graph edges have the
 #' opposite edge definitions as those in the selection. For example, a graph
@@ -58,11 +60,14 @@
 #' graph %>% get_edge_df()
 #'
 #' @family Edge creation and removal
+#'
 #' @export
-add_reverse_edges_ws <- function(graph,
-                                 rel = NULL,
-                                 edge_aes = NULL,
-                                 edge_data = NULL) {
+add_reverse_edges_ws <- function(
+    graph,
+    rel = NULL,
+    edge_aes = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

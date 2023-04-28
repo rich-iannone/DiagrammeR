@@ -1,5 +1,7 @@
 #' Select nodes in the graph based on their degree values
 #'
+#' @description
+#'
 #' Using a graph object of class `dgr_graph`, create a selection of nodes that
 #' have certain degree values.
 #'
@@ -89,9 +91,11 @@
 #' graph_2 %>% get_selection()
 #'
 #' @export
-select_nodes_by_degree <- function(graph,
-                                   expressions,
-                                   set_op = "union") {
+select_nodes_by_degree <- function(
+    graph,
+    expressions,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Delete all nodes in a node selection
 #'
+#' @description
+#'
 #' In a graph object of class `dgr_graph`, delete all nodes present in a
 #' selection of nodes.
 #'
@@ -41,7 +43,9 @@
 #'
 #' # Get a count of nodes in the graph
 #' graph %>% count_nodes()
+#'
 #' @family Node creation and removal
+#'
 #' @export
 delete_nodes_ws <- function(graph) {
 

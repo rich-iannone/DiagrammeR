@@ -1,6 +1,9 @@
 #' Get articulation points
 #'
+#' @description
+#'
 #' Get the nodes in the graph that are identified as articulation points.
+#'
 #' @inheritParams render_graph
 #'
 #' @return a vector of node IDs.

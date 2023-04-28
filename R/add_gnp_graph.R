@@ -1,5 +1,7 @@
 #' Add a G(n, p) Erdos-Renyi graph
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
 #' G(n, p) model, which uses a constant probability when creating edges.
 #'
@@ -38,18 +40,20 @@
 #' gnp_graph %>% count_edges()
 #'
 #' @export
-add_gnp_graph <- function(graph,
-                          n,
-                          p,
-                          loops = FALSE,
-                          type = NULL,
-                          label = TRUE,
-                          rel = NULL,
-                          node_aes = NULL,
-                          edge_aes = NULL,
-                          node_data = NULL,
-                          edge_data = NULL,
-                          set_seed = NULL) {
+add_gnp_graph <- function(
+    graph,
+    n,
+    p,
+    loops = FALSE,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

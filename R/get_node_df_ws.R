@@ -1,5 +1,7 @@
 #' Get the graph's ndf filtered by a selection of nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get the graph's internal node data
 #' frame that is filtered by the node ID values currently active as a selection.
 #'

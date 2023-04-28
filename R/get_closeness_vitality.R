@@ -1,6 +1,9 @@
 #' Get closeness vitality
 #'
+#' @description
+#'
 #' Get the closeness vitality values for all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with closeness vitality values for each of the nodes.

@@ -1,6 +1,9 @@
 #' Get a cached vector from a graph object
 #'
+#' @description
+#'
 #' Get the vector cached in a graph object of class `dgr_graph`.
+#'
 #' @inheritParams render_graph
 #' @param name the name of the object to extract from the cache. If none
 #'   supplied, the most recent object added to the cache will be returned.
@@ -39,8 +42,10 @@
 #' graph %>% get_cache()
 #'
 #' @export
-get_cache <- function(graph,
-                      name = NULL) {
+get_cache <- function(
+    graph,
+    name = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

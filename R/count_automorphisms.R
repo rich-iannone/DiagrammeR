@@ -1,5 +1,7 @@
 #' Get the number of automorphisms
 #'
+#' @description
+#'
 #' Get the number of automorphisms the graph contains. An automorphism of a
 #' graph is a form of symmetry in which the graph is mapped onto itself while
 #' preserving edge-node connectivity.

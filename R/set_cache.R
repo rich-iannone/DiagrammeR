@@ -1,5 +1,7 @@
 #' Cache a vector in the graph
 #'
+#' @description
+#'
 #' Place any vector in the cache of a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -56,10 +58,12 @@
 #'   get_cache(name = "difference")
 #'
 #' @export
-set_cache <- function(graph,
-                      to_cache,
-                      name = NULL,
-                      col = NULL) {
+set_cache <- function(
+    graph,
+    to_cache,
+    name = NULL,
+    col = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Reorder the stored series of graph actions
 #'
+#' @description
+#'
 #' Reorder the graph actions stored in the graph through the use of the
 #' [add_graph_action()] function. These actions are be invoked in a specified
 #' order via the [trigger_graph_actions()] function.
@@ -66,8 +68,10 @@
 #' graph %>% get_graph_actions()
 #'
 #' @export
-reorder_graph_actions <- function(graph,
-                                  indices) {
+reorder_graph_actions <- function(
+    graph,
+    indices
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

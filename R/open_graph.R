@@ -1,5 +1,7 @@
 #' Read a graph or graph series from disk
 #'
+#' @description
+#'
 #' Load a graph or a graph series object from disk.
 #'
 #' @param file The filename for the graph or graph series. Optionally, this may

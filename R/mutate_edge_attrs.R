@@ -1,5 +1,7 @@
 #' Mutate a set of edge attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), mutate numeric edge
 #' attribute values using one or more expressions.
 #'
@@ -71,11 +73,14 @@
 #' # together (with new attr `area`)
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-mutate_edge_attrs <- function(graph,
-                              ...) {
+mutate_edge_attrs <- function(
+    graph,
+    ...
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

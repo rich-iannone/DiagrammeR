@@ -1,5 +1,7 @@
 #' Mutate edge attribute values for a selection of edges
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), mutate edge attribute values
 #' only for edges in a selection by using one or more expressions.
 #'
@@ -113,11 +115,14 @@
 #' # those of the other edges
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-mutate_edge_attrs_ws <- function(graph,
-                                 ...) {
+mutate_edge_attrs_ws <- function(
+    graph,
+    ...
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

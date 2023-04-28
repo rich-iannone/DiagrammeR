@@ -1,5 +1,7 @@
 #' Get a count of all edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get a count of edges in the graph.
 #'
 #' @inheritParams render_graph

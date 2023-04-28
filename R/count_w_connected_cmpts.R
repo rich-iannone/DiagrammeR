@@ -1,5 +1,7 @@
 #' Get the number of weakly-connected components
 #'
+#' @description
+#'
 #' Get the number of weakly-connected components in the graph.
 #'
 #' @inheritParams render_graph

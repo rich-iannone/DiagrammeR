@@ -1,5 +1,7 @@
 #' Drop an edge attribute column
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), remove an existing edge
 #' attribute.
 #'
@@ -41,11 +43,14 @@
 #' # removed
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-drop_edge_attrs <- function(graph,
-                            edge_attr) {
+drop_edge_attrs <- function(
+    graph,
+    edge_attr
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

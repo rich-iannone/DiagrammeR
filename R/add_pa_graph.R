@@ -1,5 +1,7 @@
 #' Add a preferential attachment graph
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built according to the
 #' Barabasi-Albert model, which uses preferential attachment in its stochastic
 #' algorithm.
@@ -35,6 +37,7 @@
 #'   to be added.
 #' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
+#'
 #' @examples
 #' # Create an undirected PA
 #' # graph with 100 nodes, adding
@@ -53,22 +56,24 @@
 #' pa_graph %>% count_edges()
 #'
 #' @export
-add_pa_graph <- function(graph,
-                         n,
-                         m = NULL,
-                         power = 1,
-                         out_dist = NULL,
-                         use_total_degree = FALSE,
-                         zero_appeal = 1,
-                         algo = "psumtree",
-                         type = NULL,
-                         label = TRUE,
-                         rel = NULL,
-                         node_aes = NULL,
-                         edge_aes = NULL,
-                         node_data = NULL,
-                         edge_data = NULL,
-                         set_seed = NULL) {
+add_pa_graph <- function(
+    graph,
+    n,
+    m = NULL,
+    power = 1,
+    out_dist = NULL,
+    use_total_degree = FALSE,
+    zero_appeal = 1,
+    algo = "psumtree",
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

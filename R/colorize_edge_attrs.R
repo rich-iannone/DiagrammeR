@@ -1,5 +1,7 @@
 #' Apply colors based on edge attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal edge data frame (edf), use a categorical edge
 #' attribute to generate a new edge attribute with color values.
 #'
@@ -59,14 +61,16 @@
 #' @import RColorBrewer
 #' @import rlang
 #' @export
-colorize_edge_attrs <- function(graph,
-                                edge_attr_from,
-                                edge_attr_to,
-                                cut_points = NULL,
-                                palette = "Spectral",
-                                alpha = NULL,
-                                reverse_palette = FALSE,
-                                default_color = "#D9D9D9") {
+colorize_edge_attrs <- function(
+    graph,
+    edge_attr_from,
+    edge_attr_to,
+    cut_points = NULL,
+    palette = "Spectral",
+    alpha = NULL,
+    reverse_palette = FALSE,
+    default_color = "#D9D9D9"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

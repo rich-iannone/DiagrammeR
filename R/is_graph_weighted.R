@@ -1,5 +1,7 @@
 #' Is the graph a weighted graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is weighted. A graph is
 #' considered to be weighted when it contains edges that all have a edge
 #' `weight` attribute with numerical values assigned for all edges.

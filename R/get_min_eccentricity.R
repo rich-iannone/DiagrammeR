@@ -1,5 +1,7 @@
 #' Get the minimum graph eccentricity
 #'
+#' @description
+#'
 #' Get the radius of a graph, which is the smallest eccentricity in the graph.
 #' The graph eccentricity of a node is its shortest path from the farthest other
 #' node in the graph.
@@ -32,8 +34,10 @@
 #'   get_min_eccentricity()
 #'
 #' @export
-get_min_eccentricity <- function(graph,
-                                 direction = "all") {
+get_min_eccentricity <- function(
+    graph,
+    direction = "all"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

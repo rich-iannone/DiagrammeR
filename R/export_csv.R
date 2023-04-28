@@ -1,5 +1,7 @@
 #' Export a graph to CSV files
 #'
+#' @description
+#'
 #' Export a graph to separate CSV files for nodes and edges.
 #'
 #' @inheritParams render_graph
@@ -45,11 +47,13 @@
 #' # graph %>% export_csv()
 #'
 #' @export
-export_csv <- function(graph,
-                       ndf_name = "nodes.csv",
-                       edf_name = "edges.csv",
-                       output_path = getwd(),
-                       colnames_type = NULL) {
+export_csv <- function(
+    graph,
+    ndf_name = "nodes.csv",
+    edf_name = "edges.csv",
+    output_path = getwd(),
+    colnames_type = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

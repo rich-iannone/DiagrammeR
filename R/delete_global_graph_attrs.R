@@ -1,5 +1,7 @@
 #' Delete one of the global graph attributes stored within a graph object
 #'
+#' @description
+#'
 #' Delete one of the global attributes stored within a graph object of class
 #' `dgr_graph`).
 #'
@@ -51,9 +53,11 @@
 #' @import glue
 #' @import rlang
 #' @export
-delete_global_graph_attrs <- function(graph,
-                                      attr = NULL,
-                                      attr_type = NULL) {
+delete_global_graph_attrs <- function(
+    graph,
+    attr = NULL,
+    attr_type = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

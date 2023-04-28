@@ -1,5 +1,7 @@
 #' Combine multiple edge data frames into a single edge data frame
 #'
+#' @description
+#'
 #' Combine several edge data frames in the style of `rbind()`, except, it works
 #' regardless of the number and ordering of the columns.
 #'

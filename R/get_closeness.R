@@ -1,6 +1,9 @@
 #' Get closeness centrality values
 #'
+#' @description
+#'
 #' Get the closeness centrality values for all nodes in a graph.
+#'
 #' @inheritParams render_graph
 #' @param direction using `all` (the default), the search will ignore edge
 #'   direction while traversing through the graph. With `out`, measurements
@@ -34,8 +37,10 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_closeness <- function(graph,
-                          direction = "all") {
+get_closeness <- function(
+    graph,
+    direction = "all"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

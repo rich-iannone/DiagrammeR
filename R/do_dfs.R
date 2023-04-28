@@ -1,5 +1,7 @@
 #' Use the depth-first search (dfs) algorithm
 #'
+#' @description
+#'
 #' With a chosen or random node serving as the starting point, perform a
 #' depth-first search of the whole graph and return the node ID values visited.
 #' The dfs algorithm differs from breadth-first search (bfs) in that dfs will
@@ -64,9 +66,11 @@
 #'     direction = "out")
 #'
 #' @export
-do_dfs <- function(graph,
-                   node = NULL,
-                   direction = "all") {
+do_dfs <- function(
+    graph,
+    node = NULL,
+    direction = "all"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,7 +1,10 @@
 #' Get an aggregate value from the total degree of nodes
 #'
+#' @description
+#'
 #' Get a single, aggregate value from the total degree values for all nodes in a
-#'   graph, or, a subset of graph nodes.
+#' graph, or, a subset of graph nodes.
+#'
 #' @inheritParams render_graph
 #' @param agg the aggregation function to use for summarizing total degree
 #'   values from graph nodes. The following aggregation functions can be used:
@@ -55,9 +58,11 @@
 #'
 #' @import rlang
 #' @export
-get_agg_degree_total <- function(graph,
-                                 agg,
-                                 conditions = NULL) {
+get_agg_degree_total <- function(
+    graph,
+    agg,
+    conditions = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

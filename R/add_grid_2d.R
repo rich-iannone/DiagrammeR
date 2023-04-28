@@ -1,5 +1,7 @@
 #' Add a 2D grid of nodes to the graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a two-dimensional grid to the
 #' graph.
 #'
@@ -62,16 +64,18 @@
 #' graph_w_attrs %>% get_edge_df()
 #'
 #' @export
-add_grid_2d <- function(graph,
-                        x,
-                        y,
-                        type = NULL,
-                        label = TRUE,
-                        rel = NULL,
-                        node_aes = NULL,
-                        edge_aes = NULL,
-                        node_data = NULL,
-                        edge_data = NULL) {
+add_grid_2d <- function(
+    graph,
+    x,
+    y,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

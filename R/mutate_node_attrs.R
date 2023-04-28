@@ -1,5 +1,7 @@
 #' Mutate a set of node attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), mutate numeric node
 #' attribute values using one or more expressions.
 #'
@@ -71,11 +73,14 @@
 #' # together (with new attr `area`)
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-mutate_node_attrs <- function(graph,
-                              ...) {
+mutate_node_attrs <- function(
+    graph,
+    ...
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

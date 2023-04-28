@@ -1,7 +1,10 @@
 #' Get constraint scores for one or more graph nodes
 #'
+#' @description
+#'
 #' Get the constraint scores (based on Burt's Constraint Index) for one or more
-#'   nodes in a graph.
+#' nodes in a graph.
+#'
 #' @inheritParams render_graph
 #' @param nodes an optional vector of node IDs to consider for constraint
 #'   scores. If not supplied, then constraint scores for all nodes in the graph
@@ -42,8 +45,10 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_constraint <- function(graph,
-                           nodes = NULL) {
+get_constraint <- function(
+    graph,
+    nodes = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

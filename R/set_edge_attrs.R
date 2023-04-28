@@ -1,5 +1,7 @@
 #' Set edge attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, set edge attribute values for one
 #' or more edges.
 #'
@@ -73,14 +75,17 @@
 #'     values = "black",
 #'     to = 1)
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-set_edge_attrs <- function(graph,
-                           edge_attr,
-                           values,
-                           from = NULL,
-                           to = NULL) {
+set_edge_attrs <- function(
+    graph,
+    edge_attr,
+    values,
+    from = NULL,
+    to = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

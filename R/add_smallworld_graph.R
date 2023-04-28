@@ -1,5 +1,7 @@
 #' Add a Watts-Strogatz small-world graph
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built according to the
 #' Watts-Strogatz small-world model, which uses a lattice along with a rewiring
 #' probability to randomly modify edge definitions.
@@ -47,21 +49,23 @@
 #' smallworld_graph %>% count_edges()
 #'
 #' @export
-add_smallworld_graph <- function(graph,
-                                 dimension,
-                                 size,
-                                 neighborhood,
-                                 p,
-                                 loops = FALSE,
-                                 multiple = FALSE,
-                                 type = NULL,
-                                 label = TRUE,
-                                 rel = NULL,
-                                 node_aes = NULL,
-                                 edge_aes = NULL,
-                                 node_data = NULL,
-                                 edge_data = NULL,
-                                 set_seed = NULL) {
+add_smallworld_graph <- function(
+    graph,
+    dimension,
+    size,
+    neighborhood,
+    p,
+    loops = FALSE,
+    multiple = FALSE,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

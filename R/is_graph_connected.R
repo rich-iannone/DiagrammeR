@@ -1,5 +1,7 @@
 #' Is the graph a connected graph?
 #'
+#' @description
+#'
 #' Determines whether a graph is a connected graph.
 #'
 #' @inheritParams render_graph

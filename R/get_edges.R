@@ -1,5 +1,7 @@
 #' Get node IDs associated with edges
 #'
+#' @description
+#'
 #' Obtain a vector, data frame, or list of node IDs associated with edges in a
 #' graph object. An optional filter by edge attribute can limit the set of edges
 #' returned.
@@ -99,10 +101,12 @@
 #'
 #' @import rlang
 #' @export
-get_edges <- function(graph,
-                      conditions = NULL,
-                      return_type = "vector",
-                      return_values = "id") {
+get_edges <- function(
+    graph,
+    conditions = NULL,
+    return_type = "vector",
+    return_values = "id"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Is the graph a property graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is property graph (i.e., all
 #' nodes have an assigned `type` value and all edges have an assigned `rel`
 #' value).

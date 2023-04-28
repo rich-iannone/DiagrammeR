@@ -1,5 +1,7 @@
 #' Set the edge attribute values to be rendered
 #'
+#' @description
+#'
 #' Set a edge attribute type to display as edge text when calling the
 #' [render_graph()] function. This allows for display of different types of edge
 #' attribute values on a per-edge basis. Without setting the `display`
@@ -67,13 +69,16 @@
 #'     attr = id) %>%
 #'   get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-set_edge_attr_to_display <- function(graph,
-                                     attr = NULL,
-                                     edges = NULL,
-                                     default = "label") {
+set_edge_attr_to_display <- function(
+    graph,
+    attr = NULL,
+    edges = NULL,
+    default = "label"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

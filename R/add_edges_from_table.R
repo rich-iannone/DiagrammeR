@@ -1,5 +1,7 @@
 #' Add edges and attributes to graph from a table
 #'
+#' @description
+#'
 #' Add edges and their attributes to an existing graph object from data in a CSV
 #' file or a data frame.
 #'
@@ -78,17 +80,21 @@
 #' graph_2 %>%
 #'   get_edge_df() %>%
 #'   head()
-#' @import rlang
+#'
 #' @family Edge creation and removal
+#'
+#' @import rlang
 #' @export
-add_edges_from_table <- function(graph,
-                                 table,
-                                 from_col,
-                                 to_col,
-                                 from_to_map,
-                                 rel_col = NULL,
-                                 set_rel = NULL,
-                                 drop_cols = NULL) {
+add_edges_from_table <- function(
+    graph,
+    table,
+    from_col,
+    to_col,
+    from_to_map,
+    rel_col = NULL,
+    set_rel = NULL,
+    drop_cols = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

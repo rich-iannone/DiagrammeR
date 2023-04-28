@@ -1,6 +1,9 @@
 #' Get node eccentricities
 #'
+#' @description
+#'
 #' Get a data frame with node eccentricity values.
+#'
 #' @inheritParams render_graph
 #' @param mode the mode with which the shortest paths to or from the given
 #'   vertices should be calculated for directed graphs. If `out` (the
@@ -27,8 +30,10 @@
 #' graph %>% get_eccentricity()
 #'
 #' @export
-get_eccentricity <- function(graph,
-                             mode = "out") {
+get_eccentricity <- function(
+    graph,
+    mode = "out"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

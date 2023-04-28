@@ -1,5 +1,7 @@
 #' Copy a node attribute column and set the name
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), copy the contents an
 #' existing node attribute and create a distinct node attribute within the ndf
 #' with a different attribute name.
@@ -50,12 +52,15 @@
 #' # attribute had been copied
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-copy_node_attrs <- function(graph,
-                            node_attr_from,
-                            node_attr_to) {
+copy_node_attrs <- function(
+    graph,
+    node_attr_from,
+    node_attr_to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

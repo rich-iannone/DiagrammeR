@@ -1,5 +1,7 @@
 #' Use the breadth-first search (bfs) algorithm
 #'
+#' @description
+#'
 #' With a chosen or random node serving as the starting point, perform a
 #' breadth-first search of the whole graph and return the node ID values
 #' visited. The bfs algorithm differs from depth-first search (dfs) in that bfs
@@ -64,9 +66,11 @@
 #'     direction = "out")
 #'
 #' @export
-do_bfs <- function(graph,
-                   node = NULL,
-                   direction = "all") {
+do_bfs <- function(
+    graph,
+    node = NULL,
+    direction = "all"
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

@@ -1,5 +1,7 @@
 #' Add a fully connected graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a fully connected graph either
 #' with or without loops. If the graph object set as directed, the added graph
 #' will have edges to and from each pair of nodes. In the undirected case, a
@@ -126,17 +128,19 @@
 #'   get_edge_df()
 #'
 #' @export
-add_full_graph <- function(graph,
-                           n,
-                           type = NULL,
-                           label = TRUE,
-                           rel = NULL,
-                           edge_wt_matrix = NULL,
-                           keep_loops = FALSE,
-                           node_aes = NULL,
-                           edge_aes = NULL,
-                           node_data = NULL,
-                           edge_data = NULL) {
+add_full_graph <- function(
+    graph,
+    n,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    edge_wt_matrix = NULL,
+    keep_loops = FALSE,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

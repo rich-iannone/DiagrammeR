@@ -1,5 +1,7 @@
 #' Set the node attribute values to be rendered
 #'
+#' @description
+#'
 #' Set a node attribute type to display as node text when calling the
 #' [render_graph()] function. This allows for display of different types of node
 #' attribute values on a per-node basis. Without setting the `display`
@@ -67,13 +69,16 @@
 #'     attr = id) %>%
 #'   get_node_df()
 #'
-#' @import rlang
 #' @family Node creation and removal
+#'
+#' @import rlang
 #' @export
-set_node_attr_to_display <- function(graph,
-                                     attr = NULL,
-                                     nodes = NULL,
-                                     default = "label") {
+set_node_attr_to_display <- function(
+    graph,
+    attr = NULL,
+    nodes = NULL,
+    default = "label"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,7 +1,10 @@
 #' Get community membership by edge betweenness
 #'
+#' @description
+#'
 #' Using edge betweenness, obtain the group membership values for each of the
 #'   nodes in the graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with group membership assignments for each of the nodes.

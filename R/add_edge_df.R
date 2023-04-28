@@ -1,5 +1,7 @@
 #' Add edges from an edge data frame to an existing graph object
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add edges from an edge data frame
 #' to that graph.
 #'
@@ -36,10 +38,14 @@
 #' graph %>%
 #'   get_edges(
 #'     return_type = "vector")
+#'
 #' @family Edge creation and removal
+#'
 #' @export
-add_edge_df <- function(graph,
-                        edge_df) {
+add_edge_df <- function(
+    graph,
+    edge_df
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

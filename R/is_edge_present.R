@@ -1,5 +1,7 @@
 #' Determine whether a specified edge is present
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, determine whether an edge (defined
 #' by a pair of node IDs or node label values) is present.
 #'
@@ -66,10 +68,12 @@
 #'     to = "two")
 #'
 #' @export
-is_edge_present <- function(graph,
-                            edge = NULL,
-                            from = NULL,
-                            to = NULL) {
+is_edge_present <- function(
+    graph,
+    edge = NULL,
+    from = NULL,
+    to = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

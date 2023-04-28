@@ -1,5 +1,7 @@
 #' Traverse from one or more selected nodes onto adjacent, inward nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph` move along inward edges from one or
 #' more nodes present in a selection to other connected nodes, replacing the
 #' current nodes in the selection with those nodes traversed to. An optional
@@ -202,12 +204,14 @@
 #'
 #' @import rlang
 #' @export
-trav_in <- function(graph,
-                    conditions = NULL,
-                    copy_attrs_from = NULL,
-                    copy_attrs_as = NULL,
-                    agg = "sum",
-                    add_to_selection = FALSE) {
+trav_in <- function(
+    graph,
+    conditions = NULL,
+    copy_attrs_from = NULL,
+    copy_attrs_as = NULL,
+    agg = "sum",
+    add_to_selection = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

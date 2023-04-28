@@ -1,5 +1,7 @@
 #' Add a cycle of nodes to the graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a node cycle to the graph.
 #'
 #' @inheritParams node_edge_aes_data
@@ -65,16 +67,19 @@
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>% get_edge_df()
+#'
 #' @export
-add_cycle <- function(graph,
-                      n,
-                      type = NULL,
-                      label = TRUE,
-                      rel = NULL,
-                      node_aes = NULL,
-                      edge_aes = NULL,
-                      node_data = NULL,
-                      edge_data = NULL) {
+add_cycle <- function(
+    graph,
+    n,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

@@ -1,5 +1,7 @@
 #' Select nodes based on a walk distance from a specified node
 #'
+#' @description
+#'
 #' Select those nodes in the neighborhood of nodes connected a specified
 #' distance from an initial node.
 #'
@@ -52,10 +54,12 @@
 #' graph %>% get_selection()
 #'
 #' @export
-select_nodes_in_neighborhood <- function(graph,
-                                         node,
-                                         distance,
-                                         set_op = "union") {
+select_nodes_in_neighborhood <- function(
+    graph,
+    node,
+    distance,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

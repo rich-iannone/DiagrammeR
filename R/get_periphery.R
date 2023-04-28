@@ -1,5 +1,7 @@
 #' Get nodes that form the graph periphery
 #'
+#' @description
+#'
 #' Get those nodes that are part of the graph periphery (i.e., have the maximum
 #' eccentricity in the graph).
 #'

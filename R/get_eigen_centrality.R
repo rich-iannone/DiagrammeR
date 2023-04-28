@@ -1,5 +1,7 @@
 #' Get the eigen centrality for all nodes
 #'
+#' @description
+#'
 #' Get the eigen centrality values for all nodes in the graph.
 #'
 #' @inheritParams render_graph
@@ -24,8 +26,10 @@
 #' graph %>% get_eigen_centrality()
 #'
 #' @export
-get_eigen_centrality <- function(graph,
-                                 weights_attr = NULL) {
+get_eigen_centrality <- function(
+    graph,
+    weights_attr = NULL
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

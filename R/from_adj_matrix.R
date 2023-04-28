@@ -1,5 +1,7 @@
 #' Create a graph using an adjacency matrix
 #'
+#' @description
+#'
 #' Using an adjacency matrix object, generate a graph of class `dgr_graph`.
 #'
 #' @param x A square `matrix` object serving as the adjacency matrix.
@@ -29,13 +31,15 @@
 #' graph <- from_adj_matrix(adj_matrix)
 #'
 #' @export
-from_adj_matrix <- function(x,
-                            mode = "undirected",
-                            weighted = FALSE,
-                            use_diag = TRUE,
-                            graph_name = NULL,
-                            write_backups = FALSE,
-                            display_msgs = FALSE) {
+from_adj_matrix <- function(
+    x,
+    mode = "undirected",
+    weighted = FALSE,
+    use_diag = TRUE,
+    graph_name = NULL,
+    write_backups = FALSE,
+    display_msgs = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

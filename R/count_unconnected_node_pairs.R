@@ -1,5 +1,7 @@
 #' Get the number of unconnected node pairs
 #'
+#' @description
+#'
 #' Get the number of unconnected node pairs. This works for directed graphs.
 #'
 #' @inheritParams render_graph

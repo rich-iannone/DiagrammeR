@@ -1,5 +1,7 @@
 #' Layout nodes using a text-based schematic
 #'
+#' @description
+#'
 #' Layout one or several groups of nodes using a text-based schematic. The
 #' option is available to apply sorting to each of the groups.
 #'
@@ -78,13 +80,15 @@
 #' graph %>% get_node_df()
 #' @family Node creation and removal
 #' @export
-layout_nodes_w_string <- function(graph,
-                                  layout,
-                                  nodes,
-                                  sort = NULL,
-                                  width = 8,
-                                  height = 8,
-                                  ll = c(0, 0)) {
+layout_nodes_w_string <- function(
+    graph,
+    layout,
+    nodes,
+    sort = NULL,
+    width = 8,
+    height = 8,
+    ll = c(0, 0)
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

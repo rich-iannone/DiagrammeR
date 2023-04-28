@@ -1,5 +1,7 @@
 #' Create a node data frame
 #'
+#' @description
+#'
 #' Combine several vectors for nodes and their attributes into a data frame,
 #' which can be combined with other similarly-generated data frames, or, added
 #' to a graph object. A node data frame, or ndf, has at least the following
@@ -53,12 +55,16 @@
 #'
 #' # Display the node data frame
 #' node_df
+#'
 #' @family Node creation and removal
+#'
 #' @export
-create_node_df <- function(n,
-                           type = NULL,
-                           label = NULL,
-                           ...) {
+create_node_df <- function(
+    n,
+    type = NULL,
+    label = NULL,
+    ...
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

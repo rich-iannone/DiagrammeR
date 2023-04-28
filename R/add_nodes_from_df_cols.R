@@ -1,5 +1,7 @@
 #' Add nodes from distinct values in data frame columns
 #'
+#' @description
+#'
 #' Add new nodes to a graph object of class `dgr_graph` using distinct values
 #' from one or more columns in a data frame. The values will serve as node
 #' labels and the number of nodes added depends on the number of distinct values
@@ -63,13 +65,17 @@
 #' # get made with columns that
 #' # are not character class columns
 #' graph %>% get_node_df()
+#'
 #' @family Node creation and removal
+#'
 #' @export
-add_nodes_from_df_cols <- function(graph,
-                                   df,
-                                   columns,
-                                   type = NULL,
-                                   keep_duplicates = FALSE) {
+add_nodes_from_df_cols <- function(
+    graph,
+    df,
+    columns,
+    type = NULL,
+    keep_duplicates = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

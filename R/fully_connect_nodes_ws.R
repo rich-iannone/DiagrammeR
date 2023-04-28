@@ -1,5 +1,7 @@
 #' Fully connect all nodes in a selection of nodes
 #'
+#' @description
+#'
 #' With a selection of nodes in a graph, add any remaining edges required to
 #' fully connect this group of edges to each other.
 #'

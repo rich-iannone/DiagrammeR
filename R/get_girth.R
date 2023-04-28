@@ -1,5 +1,7 @@
 #' Get the graph girth
 #'
+#' @description
+#'
 #' Get the girth of a graph, which is the length of the shortest circle in the
 #' graph. Loop edges and multiple edges are not considered. If the graph
 #' contains no cycles then zero is returned.

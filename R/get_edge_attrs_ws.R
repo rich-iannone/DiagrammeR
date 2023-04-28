@@ -1,5 +1,7 @@
 #' Get edge attribute values from a selection of edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get edge attribute values for one
 #' or more edges.
 #'
@@ -75,8 +77,10 @@
 #'
 #' @import rlang
 #' @export
-get_edge_attrs_ws <- function(graph,
-                              edge_attr) {
+get_edge_attrs_ws <- function(
+    graph,
+    edge_attr
+) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

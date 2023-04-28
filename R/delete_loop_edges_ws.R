@@ -1,5 +1,7 @@
 #' Delete all loop edges associated with a selection of nodes
 #'
+#' @description
+#'
 #' With a selection of nodes in a graph, remove any associated loop edges.
 #'
 #' This function makes use of an active selection of nodes (and the function
@@ -41,7 +43,9 @@
 #' # Count the number of loop
 #' # edges remaining in the graph
 #' graph %>% count_loop_edges()
+#'
 #' @family Edge creation and removal
+#'
 #' @export
 delete_loop_edges_ws <- function(graph) {
 
