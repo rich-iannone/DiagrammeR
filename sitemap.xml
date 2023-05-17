@@ -325,9 +325,6 @@
     <loc>/reference/get_betweenness.html</loc>
   </url>
   <url>
-    <loc>/reference/get_bridging.html</loc>
-  </url>
-  <url>
     <loc>/reference/get_cache.html</loc>
   </url>
   <url>
@@ -353,9 +350,6 @@
   </url>
   <url>
     <loc>/reference/get_common_nbrs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_constraint.html</loc>
   </url>
   <url>
     <loc>/reference/get_coreness.html</loc>
