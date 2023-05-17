@@ -220,9 +220,7 @@ reference:
       - get_radiality
       - get_eccentricity
       - get_coreness
-      - get_constraint
       - get_closeness_vitality
-      - get_bridging
       - get_dice_similarity
       - get_jaccard_similarity
       - get_w_connected_cmpts
