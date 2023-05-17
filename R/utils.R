@@ -711,11 +711,6 @@ value_per_node_functions <- function() {
         arg = NULL,
         value_type = NULL
       ),
-    "get_bridging" =
-      data.frame(
-        arg = NULL,
-        value_type = NULL
-      ),
     "get_closeness" =
       data.frame(
         arg = "direction",
@@ -745,12 +740,6 @@ value_per_node_functions <- function() {
     "get_cmty_walktrap" =
       data.frame(
         arg = "steps",
-        value_type = "numeric",
-        stringsAsFactors = FALSE
-      ),
-    "get_constraint" =
-      data.frame(
-        arg = "nodes",
         value_type = "numeric",
         stringsAsFactors = FALSE
       ),

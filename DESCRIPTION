@@ -25,7 +25,6 @@ Imports:
     htmltools (>= 0.5.2),
     htmlwidgets (>= 1.5),
     igraph (>= 1.2.11),
-    influenceR (>= 0.1.0.1),
     magrittr (>= 1.5),
     purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),

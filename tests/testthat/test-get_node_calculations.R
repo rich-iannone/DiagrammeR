@@ -36,42 +36,6 @@ test_that("Getting betweenness is possible", {
     "numeric")
 })
 
-test_that("Getting bridging is possible", {
-
-  # Create a random graph
-  graph <-
-    create_graph() %>%
-    add_gnm_graph(
-      n = 10,
-      m = 10,
-      set_seed = 23)
-
-  bridging_vals <- get_bridging(graph)
-
-  # Expect a data frame as output
-  expect_is(
-    bridging_vals, "data.frame")
-
-  # Expect 2 columns in the df
-  expect_equal(
-    ncol(bridging_vals), 2)
-
-  # Expect 10 rows in the df
-  expect_equal(
-    nrow(bridging_vals), 10)
-
-  # Expect node ID values in the first column
-  expect_identical(
-    bridging_vals[,1],
-    as.integer(1:10))
-
-  # Expect numerical values in the
-  # second column
-  expect_is(
-    bridging_vals[, 2],
-    "numeric")
-})
-
 test_that("Getting closeness is possible", {
 
   # Create a random graph
@@ -584,79 +548,6 @@ test_that("Getting eigenvector centrality is possible", {
     "numeric")
 })
 
-test_that("Getting constraint values is possible", {
-
-  # Create a random graph
-  graph <-
-    create_graph() %>%
-    add_gnm_graph(
-      n = 10,
-      m = 22,
-      set_seed = 23)
-
-  # Get constraint values for all
-  # nodes in the graph
-  constraint_vals <- get_constraint(graph)
-
-  # Expect a data frame as output
-  expect_is(
-    constraint_vals, "data.frame")
-
-  # Expect 2 columns in the df
-  expect_equal(
-    ncol(constraint_vals), 2)
-
-  # Expect 10 rows in the df
-  expect_equal(
-    nrow(constraint_vals), 10)
-
-  # Expect node ID values in the first column
-  expect_identical(
-    constraint_vals[, 1],
-    as.integer(1:10))
-
-  # Expect numerical values in the
-  # second column
-  expect_is(
-    constraint_vals[, 2],
-    "numeric")
-
-  # Get constraint values for specific nodes
-  constraint_vals_selected <-
-    get_constraint(
-      graph,
-      nodes = 1:5)
-
-  # Expect a data frame as output
-  expect_is(
-    constraint_vals_selected, "data.frame")
-
-  # Expect 2 columns in the df
-  expect_equal(
-    ncol(constraint_vals_selected), 2)
-
-  # Expect 5 rows in the df
-  expect_equal(
-    nrow(constraint_vals_selected), 5)
-
-  # Expect node ID values in the first column
-  expect_identical(
-    constraint_vals_selected[, 1],
-    as.integer(1:5))
-
-  # Expect numerical values in the
-  # second column
-  expect_is(
-    constraint_vals_selected[, 2],
-    "numeric")
-
-  # Expect an error if supplying nodes that don't exist
-  expect_error(
-    get_constraint(
-      graph,
-      nodes = 20))
-})
-
 test_that("Getting radiality values is possible", {
 
   # Create a random graph
@@ -667,8 +558,7 @@ test_that("Getting radiality values is possible", {
       m = 22,
       set_seed = 23)
 
-  # Get constraint values for all
-  # nodes in the graph
+  # Get radiality values for all nodes in the graph
   radiality_vals <- get_radiality(graph)
 
   # Expect a data frame as output
@@ -750,8 +640,7 @@ test_that("Getting PageRank values is possible", {
       m = 22,
       set_seed = 23)
 
-  # Get constraint values for all
-  # nodes in the graph
+  # Get pagerank values for all nodes in the graph
   pagerank_vals <- get_pagerank(graph)
 
   # Expect a data frame as output
