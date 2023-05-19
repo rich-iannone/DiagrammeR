@@ -1,3 +1,5 @@
+# DiagrammeR (development version)
+
 # DiagrammeR 1.0.10
 
 * Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions.
