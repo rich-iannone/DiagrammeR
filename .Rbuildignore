@@ -3,6 +3,7 @@
 ^.github$
 ^revdep$
 ^docs$
+^pkgdown$
 ^README\.Rmd$
 ^README\.md$
 ^README-.*\.png$
