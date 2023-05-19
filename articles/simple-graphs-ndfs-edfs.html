@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">DiagrammeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.9.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,7 @@
 
 
 <script src="simple-graphs-ndfs-edfs_files/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="simple-graphs-ndfs-edfs_files/viz-1.8.2/viz.js"></script><link href="simple-graphs-ndfs-edfs_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="simple-graphs-ndfs-edfs_files/grViz-binding-1.0.9.9000/grViz.js"></script><div class="row">
+<script src="simple-graphs-ndfs-edfs_files/grViz-binding-1.0.10/grViz.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Creating Simple Graphs from NDFs/EDFs</h1>
             
@@ -281,8 +281,8 @@ graph.</p>
 <p>Let’s have a look at the graph created in the last example:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graph</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/render_graph.html">render_graph</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f985c787ce77a24a2811" style="width:700.8px;height:432.632880098888px;"></div>
-<script type="application/json" data-for="htmlwidget-f985c787ce77a24a2811">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"a\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"b\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"c\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"d\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [color = \"blue\", arrowsize = \"2\"] \n\"2\"->\"3\" [color = \"blue\", arrowsize = \"2\"] \n\"3\"->\"1\" [color = \"blue\", arrowsize = \"2\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If you’d like to return the Graphviz DOT code (to, perhaps, share it
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9c53737aca57590b8072" style="width:700.8px;height:432.632880098888px;"></div>
+<script type="application/json" data-for="htmlwidget-9c53737aca57590b8072">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"a\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"b\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"c\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"d\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [color = \"blue\", arrowsize = \"2\"] \n\"2\"->\"3\" [color = \"blue\", arrowsize = \"2\"] \n\"3\"->\"1\" [color = \"blue\", arrowsize = \"2\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If you’d like to return the Graphviz DOT code (to, perhaps, share it
 or use it directly with the Graphviz command-line utility), we can use
 the <code><a href="../reference/generate_dot.html">generate_dot()</a></code> function. Here’s a simple example:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
