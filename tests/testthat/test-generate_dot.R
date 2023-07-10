@@ -3,13 +3,13 @@ context("Generate dot syntax from graph objects")
 # helper functions
 node <- function(id, label = NA) {
   if(all(is.na(label))) {
-    paste0("'", id, "'")
+    paste0("\"", id, "\"")
   } else {
-    paste0("'", id, "' \\[label = '", label, "'\\]")
+    paste0("\"", id, "\" \\[label = \"", label, "\"\\]")
   }
 }
-edge <- function(from, to) paste0("'", from, "'->'", to, "'")
-attrib_block <- "\\[[[:alnum:]'=.,[:space:]]*\\]"
+edge <- function(from, to) paste0("\"", from, "\"->\"", to, "\"")
+attrib_block <- "\\[[[:alnum:]\"=.,[:space:]]*\\]"
 
 expect_dot <- function(graph, pattern) {
   expect_match(
