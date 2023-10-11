@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Pipe operator</h1>
-      <small class="dont-index">Source: <a href="https://github.com/rich-iannone/DiagrammeR/blob/HEAD/R/pipe.R" class="external-link"><code>R/pipe.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rich-iannone/DiagrammeR/blob/HEAD/R/utils-pipe.R" class="external-link"><code>R/utils-pipe.R</code></a></small>
       <div class="d-none name"><code>pipe.Rd</code></div>
     </div>
 
@@ -64,8 +64,25 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">lhs</span> <span class="op">%&gt;%</span> <span class="va">rhs</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <dl><dt>lhs</dt>
+<dd><p>A value or the magrittr placeholder.</p></dd>
 
-  </main></div>
+
+<dt>rhs</dt>
+<dd><p>A function call using the magrittr semantics.</p></dd>
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>The result of calling <code>rhs(lhs)</code>.</p>
+    </div>
+
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
