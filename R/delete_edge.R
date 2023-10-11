@@ -154,15 +154,12 @@ delete_edge <- function(
 
     # Verify that each of the values for `from` and
     # `to` are given as single values
-    from_is_single_value <-
-      ifelse(length(from) == 1, TRUE, FALSE)
+    from_is_single_value <- length(from) == 1
 
-    to_is_single_value <-
-      ifelse(length(to) == 1, TRUE, FALSE)
+    to_is_single_value <- length(to) == 1
 
     # Stop function if either node is not a single value
-    if (from_is_single_value == FALSE |
-        to_is_single_value == FALSE) {
+    if (!from_is_single_value || !to_is_single_value) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -172,7 +169,7 @@ delete_edge <- function(
     # If `from` and `to` values provided as character
     # values, assume that these values refer to node
     # `label` attr values
-    if (is.character(from) & is.character(to)) {
+    if (is.character(from) && is.character(to)) {
 
       # Stop function if the label for `from` exists in the graph
       if (!(from %in% graph$nodes_df$label)) {
@@ -233,12 +230,10 @@ delete_edge <- function(
   # Determine whether the pair of nodes provided
   # are in the graph
   nodes_available_in_graph <-
-    ifelse(
-      all(c(from_id, to_id) %in%
-            get_node_ids(graph)), TRUE, FALSE)
+      all(c(from_id, to_id) %in% get_node_ids(graph))
 
   # Stop function if both nodes not present in graph
-  if (nodes_available_in_graph == FALSE) {
+  if (!nodes_available_in_graph) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -275,7 +270,7 @@ delete_edge <- function(
   }
 
   # Edge removal case for undirected graphs
-  if (is_graph_directed(graph) == FALSE) {
+  if (!is_graph_directed(graph)) {
 
     # Stop function if the edge provided is not
     # in the edge data frame

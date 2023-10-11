@@ -69,9 +69,10 @@ get_node_ids <- function(
 
   if (is_graph_empty(graph)) {
     return(NA)
-  } else {
-    nodes_df <- graph$nodes_df
   }
+
+  nodes_df <- graph$nodes_df
+
 
   # If conditions are provided then
   # pass in those conditions and filter the

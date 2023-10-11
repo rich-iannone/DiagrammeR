@@ -91,7 +91,7 @@ import_graph <- function(
         length(unlist(strsplit(graph_file, "/")))]
 
     # Download the file
-    downloader::download(graph_file, destfile = dest_file)
+    curl::curl_download(graph_file, destfile = dest_file)
 
     # Extract the file and get the filename of the extracted file
     if (gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file) == "zip") {

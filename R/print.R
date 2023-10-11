@@ -224,7 +224,7 @@ print.dgr_graph <- function(x, ...) {
   # Determine if the graph is weighted
   if (is_graph_weighted(x)) {
     weighted_graph_status <- TRUE
-  } else if (is_graph_weighted(x) == FALSE) {
+  } else if (!is_graph_weighted(x)) {
     weighted_graph_status <- FALSE
   }
 
@@ -238,14 +238,14 @@ print.dgr_graph <- function(x, ...) {
   # Determine if the graph is a property graph
   if (is_property_graph(x)) {
     property_graph_status <- TRUE
-  } else if (is_property_graph(x) == FALSE) {
+  } else if (!is_property_graph(x)) {
     property_graph_status <- FALSE
   }
 
   # Determine if the graph is a simple graph
   if (is_graph_simple(x)) {
     simple_graph_status <- TRUE
-  } else if (is_graph_simple(x) == FALSE) {
+  } else if (!is_graph_simple(x)) {
     simple_graph_status <- FALSE
   }
 

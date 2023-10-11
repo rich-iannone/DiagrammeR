@@ -79,7 +79,7 @@ delete_cache <- function(
 
     } else {
 
-      if (name %in% (graph$cache %>% names())) {
+      if (name %in% names(graph$cache)) {
 
         graph$cache[name] <- NULL
 

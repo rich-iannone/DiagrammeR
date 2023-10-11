@@ -95,5 +95,5 @@ get_edge_ids <- function(
     return(NA)
   }
 
-  edges_df %>% dplyr::pull(id)
+  edges_df %>% dplyr::pull("id")
 }

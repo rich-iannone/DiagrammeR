@@ -122,7 +122,7 @@ add_edge <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -130,14 +130,14 @@ add_edge <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
       reasons = "The graph contains no nodes, so, an edge cannot be added")
   }
 
-  if (length(from) > 1 | length(to) > 1) {
+  if (length(from) > 1 || length(to) > 1) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -165,13 +165,11 @@ add_edge <- function(
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -190,16 +188,14 @@ add_edge <- function(
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
   # If `from` and `to` values provided as character
   # values, assume that these values refer to node
   # `label` attr values
-  if (is.character(from) & is.character(to)) {
+  if (is.character(from) && is.character(to)) {
 
     # Stop function if the label for
     # `from` does not exist in the graph
