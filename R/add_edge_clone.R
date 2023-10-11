@@ -82,7 +82,7 @@ add_edge_clone <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -90,7 +90,7 @@ add_edge_clone <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -98,7 +98,7 @@ add_edge_clone <- function(
   }
 
   # Stop function if edge is not a single numerical value
-  if (length(edge) > 1 | inherits(edge, "character") | inherits(edge, "logical")) {
+  if (length(edge) > 1 || rlang::inherits_any(edge, c("character", "logical"))) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -117,8 +117,7 @@ add_edge_clone <- function(
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Get the number of columns in the graph's
   # internal edge data frame

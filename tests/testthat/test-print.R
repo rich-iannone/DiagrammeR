@@ -253,15 +253,13 @@ test_that("Describing if a graph is weighted works", {
     create_graph() %>%
     add_path(n = 5)
 
-  expect_true(
-    stringr::str_detect(
-      graph_weighted %>% get_printed_output(2),
-      "weighted"))
+  expect_match(
+    graph_weighted %>% get_printed_output(2),
+    "weighted")
 
-  expect_false(
-    stringr::str_detect(
-      graph_unweighted %>% get_printed_output(2),
-      "weighted"))
+  expect_no_match(
+    graph_unweighted %>% get_printed_output(2),
+    "weighted")
 })
 
 test_that("Describing if a graph is a DAG works", {
@@ -274,15 +272,13 @@ test_that("Describing if a graph is a DAG works", {
     create_graph() %>%
     add_cycle(n = 5)
 
-  expect_true(
-    stringr::str_detect(
-      graph_dag %>% get_printed_output(2),
-      "DAG"))
+  expect_match(
+    graph_dag %>% get_printed_output(2),
+    "DAG")
 
-  expect_false(
-    stringr::str_detect(
-      graph_cycle %>% get_printed_output(2),
-      "DAG"))
+  expect_no_match(
+    graph_cycle %>% get_printed_output(2),
+    "DAG")
 })
 
 test_that("Describing if a graph is a property graph works", {
@@ -302,15 +298,13 @@ test_that("Describing if a graph is a property graph works", {
       label = 1:4,
       rel = c("a", "a", "b", "b"))
 
-  expect_true(
-    stringr::str_detect(
-      graph_pg %>% get_printed_output(2),
-      "property graph"))
+  expect_match(
+    graph_pg %>% get_printed_output(2),
+    "property graph")
 
-  expect_false(
-    stringr::str_detect(
-      graph_not_pg %>% get_printed_output(2),
-      "property graph"))
+  expect_no_match(
+    graph_not_pg %>% get_printed_output(2),
+    "property graph")
 })
 
 test_that("Describing if a graph is a simple graph works", {
@@ -369,20 +363,17 @@ test_that("The number of reported nodes is correct", {
     create_graph() %>%
     add_n_nodes(n = 4)
 
-  expect_true(
-    stringr::str_detect(
-      graph_no_nodes %>% get_printed_output(1),
-      " no nodes"))
+  expect_match(
+    graph_no_nodes %>% get_printed_output(1),
+    " no nodes")
 
-  expect_true(
-    stringr::str_detect(
-      graph_1_node %>% get_printed_output(1),
-      " 1 node"))
+  expect_match(
+    graph_1_node %>% get_printed_output(1),
+    " 1 node")
 
-  expect_true(
-    stringr::str_detect(
-      graph_4_nodes %>% get_printed_output(1),
-      " 4 nodes"))
+  expect_match(
+    graph_4_nodes %>% get_printed_output(1),
+    " 4 nodes")
 })
 
 test_that("The number of reported edges is correct", {
@@ -399,25 +390,21 @@ test_that("The number of reported edges is correct", {
     create_graph() %>%
     add_path(n = 4)
 
-  expect_false(
-    stringr::str_detect(
-      graph_no_edges %>% get_printed_output(1),
-      " edge"))
+  expect_no_match(
+    graph_no_edges %>% get_printed_output(1),
+    " edge")
 
-  expect_true(
-    stringr::str_detect(
-      graph_1_edge %>% get_printed_output(1),
-      " 1 edge"))
+  expect_match(
+    graph_1_edge %>% get_printed_output(1),
+    " 1 edge")
 
-  expect_true(
-    stringr::str_detect(
-      graph_3_edges %>% get_printed_output(1),
-      " 3 edges"))
+  expect_match(
+    graph_3_edges %>% get_printed_output(1),
+    " 3 edges")
 
-  expect_true(
-    stringr::str_detect(
-      graph_3_edges %>% get_printed_output(1),
-      "DiagrammeR Graph // 4 nodes / 3 edges"))
+  expect_match(
+    graph_3_edges %>% get_printed_output(1),
+    "DiagrammeR Graph // 4 nodes / 3 edges")
 })
 
 test_that("Printing a summary line for node/edge selections works", {

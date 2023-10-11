@@ -151,7 +151,7 @@ colorize_edge_attrs <- function(
   }
 
   # Reverse color palette if `reverse_palette = TRUE`
-  if (reverse_palette == TRUE) {
+  if (reverse_palette) {
     color_palette <- rev(color_palette)
   }
 

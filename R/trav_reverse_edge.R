@@ -94,7 +94,7 @@ trav_reverse_edge <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,

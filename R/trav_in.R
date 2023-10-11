@@ -219,7 +219,7 @@ trav_in <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -227,7 +227,7 @@ trav_in <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -235,7 +235,7 @@ trav_in <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -243,7 +243,7 @@ trav_in <- function(
   }
 
   # Validation: Graph object has a valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
+  if (!graph_contains_node_selection(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -294,8 +294,7 @@ trav_in <- function(
     edf %>%
     dplyr::filter(to != from) %>%
     dplyr::filter(to %in% starting_nodes) %>%
-    dplyr::select(from) %>%
-    dplyr::distinct()
+    dplyr::distinct(from)
 
   valid_nodes <-
     dplyr::as_tibble(valid_nodes) %>%

@@ -149,7 +149,7 @@ add_full_graph <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -236,13 +236,9 @@ add_full_graph <- function(
 
   # Add label values to nodes
   if (length(label) == 1) {
-    if (label == TRUE) {
+    if (label) {
       new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
-    }
-  }
-
-  if (length(label) == 1) {
-    if (label == FALSE) {
+    } else {
       new_graph$nodes_df[, 3] <-
         as.character(new_graph$nodes_df[, 1])
     }
@@ -255,7 +251,7 @@ add_full_graph <- function(
   }
 
   if (length(label) == 1) {
-    if (label == TRUE) {
+    if (label) {
       if (!is.null(edge_wt_matrix)) {
 
         if (!is.null(colnames(edge_wt_matrix))) {
@@ -273,7 +269,7 @@ add_full_graph <- function(
   }
 
   # Add `type` values to all new nodes
-  if (!is.null(type) &
+  if (!is.null(type) &&
       length(type) == 1) {
     new_graph$nodes_df[, 2] <- type
   }
@@ -295,13 +291,11 @@ add_full_graph <- function(
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -320,9 +314,7 @@ add_full_graph <- function(
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -341,9 +333,7 @@ add_full_graph <- function(
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -362,9 +352,7 @@ add_full_graph <- function(
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 

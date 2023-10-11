@@ -202,7 +202,7 @@ get_paths <- function(
   paths <- paths[order]
 
   # If only a single vector returned, return NA
-  if (length(paths) == 1 & length(paths[[1]]) == 1) {
+  if (length(paths) == 1 && length(paths[[1]]) == 1) {
     return(NA)
   }
 
@@ -223,12 +223,11 @@ get_paths <- function(
 
   # If only `from` but not the `to` node specified,
   # get paths that consider the filtering criteria
-  if (!is.null(from) & is.null(to)) {
+  if (!is.null(from) && is.null(to)) {
 
     # Filter the `path_lengths` vector
     # by the chosen criteria
-    if (shortest_path == TRUE &
-        longest_path == FALSE) {
+    if (shortest_path && !longest_path) {
 
       # Remove paths not of shortest length
       for (i in 1:length(paths)) {
@@ -250,8 +249,7 @@ get_paths <- function(
         }
       }
 
-    } else if (shortest_path == FALSE &
-               longest_path == TRUE) {
+    } else if (!shortest_path && longest_path) {
 
       # Remove paths not of longest length
       for (i in 1:length(paths)) {
@@ -273,7 +271,7 @@ get_paths <- function(
         }
       }
 
-    } else if (!is.null(distance) == TRUE) {
+    } else if (!is.null(distance)) {
 
       # Remove paths not of the specified distances
       for (i in 1:length(paths)) {
@@ -307,11 +305,11 @@ get_paths <- function(
 
   # If both a 'from' node and a 'to' node specified,
   # get paths that begin and end with those nodes
-  if (!is.null(from) & !is.null(to)) {
+  if (!is.null(from) && !is.null(to)) {
 
     # Determine which paths contain the 2nd node target
     paths_with_end_node <-
-      which(sapply(1:length(paths),
+      which(sapply(seq_along(paths),
                    function(x) to %in% paths[[x]]))
 
     if (length(paths_with_end_node) == 0) {
@@ -330,23 +328,19 @@ get_paths <- function(
 
     # Filter the `path_lengths` vector by the
     # chosen criteria
-    if (shortest_path == TRUE &
-        longest_path == FALSE) {
+    if (shortest_path && !longest_path) {
       path_lengths <-
         as.numeric(names(path_lengths[
           which(path_lengths == min(path_lengths))]))
-    } else if (shortest_path == FALSE &
-               longest_path == TRUE) {
+    } else if (!shortest_path && longest_path) {
       path_lengths <-
         as.numeric(names(path_lengths[
           which(path_lengths == max(path_lengths))]))
-    } else if (!is.null(distance) == TRUE) {
+    } else if (!is.null(distance)) {
       path_lengths <-
         as.numeric(names(path_lengths[
           which(path_lengths %in% distance)]))
-    } else if (is.null(distance) == TRUE &
-               (shortest_path == FALSE &
-                longest_path == FALSE)) {
+    } else if (is.null(distance) && !shortest_path && !longest_path) {
       path_lengths <- as.numeric(names(path_lengths))
     }
 
