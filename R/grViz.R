@@ -1,7 +1,7 @@
 #' R + viz.js
 #'
 #' Make diagrams in R using `viz.js` with infrastructure provided by
-#' pkg{htmlwidgets}.
+#' \pkg{htmlwidgets}.
 #'
 #' @param diagram Spec for a diagram as either text, filename string, or file
 #'   connection.
