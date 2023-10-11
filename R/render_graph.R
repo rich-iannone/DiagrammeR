@@ -267,17 +267,17 @@ render_graph <- function(
         node_id_images <-
           graph %>%
           get_node_df() %>%
-          dplyr::select(id, image) %>%
+          dplyr::select("id", "image") %>%
           dplyr::filter(image != "") %>%
-          dplyr::pull(id)
+          dplyr::pull("id")
 
         filter_lines <-
           graph %>%
           get_node_df() %>%
-          dplyr::select(id, image) %>%
+          dplyr::select("id", "image") %>%
           dplyr::filter(image != "") %>%
           dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
-          dplyr::pull(filter_lines) %>%
+          dplyr::pull("filter_lines") %>%
           paste(collapse = "\n")
 
         filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
@@ -286,7 +286,7 @@ render_graph <- function(
           svg_tbl %>%
           dplyr::filter(node_id %in% node_id_images) %>%
           dplyr::filter(type == "node_block") %>%
-          dplyr::pull(index)
+          dplyr::pull("index")
 
         svg_shape_nos <- svg_shape_nos + 3
         svg_text_nos <- svg_shape_nos + 1

@@ -313,7 +313,7 @@ create_graph <- function(
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns
@@ -342,19 +342,19 @@ create_graph <- function(
         d_e = nrow(graph$edges_df)
       )
 
-  } else if (!is.null(nodes_df) & !is.null(edges_df)) {
+  } else if (!is.null(nodes_df) && !is.null(edges_df)) {
 
     # If an ndf and edf both provided, create a graph
     # initially populated with both nodes and edges
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(edges_df, "tbl_df")) {
-      edges_df <- edges_df %>% as.data.frame(stringsAsFactors = FALSE)
+      edges_df <- as.data.frame(edges_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns

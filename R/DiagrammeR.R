@@ -140,7 +140,6 @@ DiagrammeR <- function(
     grViz(diagram, ... )
 
   } else {
-
     emit_error(
       fcn_name = fcn_name,
       reasons = "The type should be `mermaid` or `grViz`")
