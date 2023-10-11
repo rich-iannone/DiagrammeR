@@ -230,23 +230,15 @@ render_graph <- function(
       }
     }
 
-    if (("image" %in% colnames(graph %>% get_node_df()) ||
+    if ("image" %in% colnames(graph %>% get_node_df()) ||
          "fa_icon" %in% colnames(graph %>% get_node_df()) ||
-         as_svg) &
-        requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
+         as_svg) {
+      if (!rlang::is_installed("DiagrammeRsvg") && as_svg) {
+        rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
+      }
 
       # Stop function if `DiagrammeRsvg` package is not available
-      if (!("DiagrammeRsvg" %in%
-            rownames(utils::installed.packages()))) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = c(
-            "Cannot currently render the graph to an SVG",
-            "please install the `DiagrammeRsvg` package and retry",
-            "pkg installed using `install.packages('DiagrammeRsvg')`",
-            "otherwise, set `as_svg = FALSE`"))
-      }
+      rlang::check_installed("DiagrammeRsvg", "to render the graph to SVG.")
 
       # Generate DOT code
       dot_code <- generate_dot(graph)
