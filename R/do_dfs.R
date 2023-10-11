@@ -107,7 +107,7 @@ do_dfs <- function(
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "all")
+        mode = "all")
 
   } else if (direction == "out") {
 
@@ -115,7 +115,7 @@ do_dfs <- function(
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "out")
+        mode = "out")
 
   } else if (direction == "in") {
 
@@ -123,7 +123,7 @@ do_dfs <- function(
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "in")
+        mode = "in")
 
   } else if (!(direction %in% c("all", "out", "in"))) {
 

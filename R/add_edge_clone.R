@@ -133,7 +133,7 @@ add_edge_clone <- function(
     graph %>%
     get_edge_df() %>%
     dplyr::filter(id == edge) %>%
-    dplyr::select(4:n_col_edf)
+    dplyr::select(4:dplyr::all_of(n_col_edf))
 
   # Create the requested edge
   graph <-
