@@ -19,7 +19,7 @@ BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Depends:
     R (>= 3.2)
 Imports:
-    downloader (>= 0.4),
+    curl,
     dplyr (>= 1.0.7),
     glue (>= 1.5.0),
     htmltools (>= 0.5.2),
