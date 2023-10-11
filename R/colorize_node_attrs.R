@@ -104,8 +104,6 @@
 #' # the default `gray85` color)
 #' graph %>% get_node_df()
 #'
-#' @import RColorBrewer
-#' @import rlang
 #' @family Node creation and removal
 #' @export
 colorize_node_attrs <- function(

@@ -173,7 +173,6 @@
 #' # data frame after this change
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @export
 trav_out_edge <- function(
     graph,

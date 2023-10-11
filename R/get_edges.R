@@ -99,7 +99,6 @@
 #'     return_type = "vector",
 #'     return_values = "label")
 #'
-#' @import rlang
 #' @export
 get_edges <- function(
     graph,

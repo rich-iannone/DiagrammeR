@@ -83,7 +83,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 add_edges_from_table <- function(
     graph,

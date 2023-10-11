@@ -105,7 +105,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 add_edge <- function(
     graph,

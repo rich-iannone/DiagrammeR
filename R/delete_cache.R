@@ -39,7 +39,6 @@
 #'   graph %>%
 #'   delete_cache()
 #'
-#' @import glue
 #' @export
 delete_cache <- function(
     graph,

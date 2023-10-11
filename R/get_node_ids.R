@@ -55,7 +55,6 @@
 #'       color == "blue" &
 #'       value > 5)
 #'
-#' @import rlang
 #' @export
 get_node_ids <- function(
     graph,

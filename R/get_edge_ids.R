@@ -60,7 +60,6 @@
 #'     color == "blue" &
 #'     value > 5)
 #'
-#' @import rlang
 #' @export
 get_edge_ids <- function(
     graph,

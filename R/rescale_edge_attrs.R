@@ -88,7 +88,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 rescale_edge_attrs <- function(
     graph,

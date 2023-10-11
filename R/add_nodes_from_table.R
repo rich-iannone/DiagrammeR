@@ -87,7 +87,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 add_nodes_from_table <- function(
     graph,

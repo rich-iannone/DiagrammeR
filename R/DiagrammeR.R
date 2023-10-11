@@ -121,7 +121,6 @@
 #' ")
 #' }
 #'
-#' @import htmlwidgets
 #' @export
 DiagrammeR <- function(
     diagram = "",

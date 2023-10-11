@@ -81,7 +81,6 @@
 #'     tol_abs = c(10, 10)) %>%
 #'     length()
 #'
-#' @import rlang
 #' @export
 get_similar_nbrs <- function(
     graph,

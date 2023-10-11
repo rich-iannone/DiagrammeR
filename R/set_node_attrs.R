@@ -61,7 +61,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 set_node_attrs <- function(
     graph,

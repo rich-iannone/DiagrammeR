@@ -44,7 +44,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 drop_node_attrs <- function(
     graph,

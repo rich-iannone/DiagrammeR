@@ -117,7 +117,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 mutate_edge_attrs_ws <- function(
     graph,

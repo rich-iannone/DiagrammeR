@@ -45,7 +45,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 rename_edge_attrs <- function(
     graph,

@@ -194,7 +194,6 @@ create_empty_esdf <- function() {
 #' This function determines whether a node or edge attribute has values that
 #' are all non-`NA` and are unique
 #'
-#' @importFrom magrittr not
 #' @noRd
 is_attr_unique_and_non_na <- function(graph,
                                       which_graph_df,
@@ -504,7 +503,6 @@ contrasting_text_color <- function(background_color) {
 
 #' Construct a consistent message string, passing it to `message()`
 #'
-#' @import glue
 #' @noRd
 emit_message <- function(fcn_name,
                          message_body) {
@@ -516,7 +514,6 @@ emit_message <- function(fcn_name,
 
 #' Construct a consistent message string, passing it to `warning()`
 #'
-#' @import glue
 #' @noRd
 emit_warning <- function(fcn_name,
                          message_body) {
@@ -528,7 +525,6 @@ emit_warning <- function(fcn_name,
 
 #' Construct a consistent message string, passing it to `stop()`
 #'
-#' @import glue
 #' @noRd
 emit_error <- function(fcn_name,
                        reasons) {

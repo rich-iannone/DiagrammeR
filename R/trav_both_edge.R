@@ -189,7 +189,6 @@
 #' # after this change
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @export
 trav_both_edge <- function(
     graph,

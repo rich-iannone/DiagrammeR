@@ -50,8 +50,6 @@
 #' graph %>%
 #'   get_global_graph_attr_info()
 #'
-#' @import glue
-#' @import rlang
 #' @export
 delete_global_graph_attrs <- function(
     graph,

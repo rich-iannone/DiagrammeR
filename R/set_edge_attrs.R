@@ -77,7 +77,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 set_edge_attrs <- function(
     graph,
