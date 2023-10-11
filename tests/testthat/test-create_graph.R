@@ -1,4 +1,4 @@
-context("Creating a graph object")
+# Creating a graph object
 
 test_that("an empty graph object can be created and such an object is correct", {
 

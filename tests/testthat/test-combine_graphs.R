@@ -1,4 +1,4 @@
-context("Combining two graph objects into a single graph object")
+# Combining two graph objects into a single graph object
 
 test_that("graphs can be combined", {
 

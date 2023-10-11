@@ -1,4 +1,4 @@
-context("Print graph summary")
+# Print graph summary
 
 get_printed_output <- function(graph, line = NULL) {
 

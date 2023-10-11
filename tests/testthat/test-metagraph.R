@@ -1,4 +1,4 @@
-context("Displaying the graph's metagraph")
+# Displaying the graph's metagraph")
 
 test_that("the display of the metagraph works", {
 

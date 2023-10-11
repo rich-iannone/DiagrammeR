@@ -1,4 +1,4 @@
-context("Graphviz specifications")
+# Graphviz specifications
 
 test_that("the specification tools are functional", {
 

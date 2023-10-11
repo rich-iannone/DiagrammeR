@@ -1,4 +1,4 @@
-context("Setting and getting node attributes")
+# Setting and getting node attributes
 
 test_that("setting node attributes is possible", {
 

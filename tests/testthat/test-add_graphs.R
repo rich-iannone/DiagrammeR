@@ -1,4 +1,4 @@
-context("Add graphs to graphs")
+# Add graphs to graphs
 
 test_that("Adding a balanced tree is possible", {
 

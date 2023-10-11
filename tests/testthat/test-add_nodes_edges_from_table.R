@@ -1,4 +1,4 @@
-context("Adding nodes and/or edges from a table to a graph")
+# Adding nodes and/or edges from a table to a graph
 
 test_that("adding nodes from a table to a graph is possible", {
 

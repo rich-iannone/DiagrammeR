@@ -1,5 +1,3 @@
-context("Setting node positions")
-
 test_that("setting a single node's position is possible", {
 
   # Create a simple graph with 4 nodes

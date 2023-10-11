@@ -1,4 +1,4 @@
-context("Get graph properties")
+# Get graph properties
 
 test_that("Getting the graph object log is possible", {
 

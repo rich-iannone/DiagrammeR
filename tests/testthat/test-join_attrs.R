@@ -1,4 +1,4 @@
-context("Joining data frames to graph dfs")
+# Joining data frames to graph dfs")
 
 test_that("joining a data frame to an ndf is possible", {
 
@@ -38,7 +38,7 @@ test_that("joining a data frame to an ndf is possible", {
   # Expect that the `values` column in the graph's
   # node data frame is equivalent to the first 5 values
   # in the `values` column of `df`
-  expect_equivalent(
+  expect_equal(
     graph$nodes_df$values, df$values[1:5])
 
   # Expect an error if `by_graph` specified but not
@@ -103,7 +103,7 @@ test_that("joining a data frame to an edf is possible", {
   # Expect that the `values` column in the graph's
   # node data frame is equivalent to the first 5 values
   # in the `values` column of `df`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$values, df$values[1:5])
 
   # Expect an error if `by_graph` specified but not

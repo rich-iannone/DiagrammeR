@@ -1,4 +1,4 @@
-context("Defining node and edge aesthetics and data attributes")
+# Defining node and edge aesthetics and data attributes")
 
 test_that("creating node data attribute values is possible", {
 

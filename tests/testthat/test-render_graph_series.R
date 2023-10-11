@@ -1,5 +1,3 @@
-context("Rendering a graph object")
-
 test_that("rendering a graph is indeed possible", {
 
   # Create a node data frame

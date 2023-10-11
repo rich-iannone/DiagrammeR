@@ -1,5 +1,3 @@
-context("Write graph backups")
-
 test_that("Graph backups for `add_balanced_tree()` works", {
 
   #

@@ -1,4 +1,4 @@
-context("Creating and combining edge data frames")
+# Creating and combining edge data frames
 
 test_that("a correct edge data frame is generated", {
 

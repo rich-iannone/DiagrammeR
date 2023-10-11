@@ -1,4 +1,4 @@
-context("Getting or selection of last-created nodes or edges in a graph")
+# Getting or selection of last-created nodes or edges in a graph")
 
 test_that("getting or selecting the last edges created is possible", {
 

@@ -1,4 +1,4 @@
-context("Perform graph object transformations")
+# Perform graph object transformations
 
 test_that("Converting to igraph is possible", {
 

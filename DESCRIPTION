@@ -42,9 +42,10 @@ Suggests:
     DiagrammeRsvg,
     rsvg,
     knitr,
-    testthat,
+    testthat (>= 3.0.0),
     rmarkdown
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
