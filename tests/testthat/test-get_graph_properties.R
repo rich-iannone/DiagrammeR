@@ -19,7 +19,7 @@ test_that("Getting the graph object log is possible", {
 
   # Expect that the graph log is provided
   # as a tibble object
-  expect_is(
+  expect_s3_class(
     graph_log, "tbl_df")
 
   # Expect certain column names for the

@@ -33,8 +33,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `fillcolor` column has
   # been created in the node data frame
-  expect_true(
-    "fillcolor" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "fillcolor")
 
   # Expect that there are as many different
   # colors in the `fillcolor` column as there
@@ -65,8 +64,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `color` column has
   # been created in the node data frame
-  expect_true(
-    "color" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "color")
 
   # Expect that there are as many different
   # colors in the `color` column as there
@@ -106,15 +104,11 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `fillcolor` column has
   # been created in the node data frame
-  expect_true(
-    "fillcolor" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "fillcolor")
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `fillcolor`
   # column is a properly-formed hexadecimal color
@@ -141,10 +135,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `color` column
   # is a properly-formed hexadecimal color code
@@ -171,10 +162,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `fillcolor`
   # column is a properly-formed hexadecimal color
@@ -202,10 +190,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `fillcolor`
   # column is a properly-formed hexadecimal color
@@ -264,11 +249,10 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that the `color` and `fontcolor`
   # columns have been created in the edf
-  expect_true(
-    "color" %in% colnames(graph$edges_df))
-
-  expect_true(
-    "fontcolor" %in% colnames(graph$edges_df))
+  expect_contains(
+    colnames(graph$edges_df),
+    c("color", "fontcolor")
+  )
 
   # Expect that there are as many different
   # colors in the `color` and `fontcolor`
@@ -308,13 +292,14 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that the `labelfontcolor` column has
   # been created in the edge data frame
-  expect_true(
-    "labelfontcolor" %in% colnames(graph$edges_df))
+  expect_contains(
+    colnames(graph$edges_df),
+    "labelfontcolor"
+    )
 
   # Expect that there are 4 colors in the
   # `labelfontcolor` column
-  expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+  expect_length(unique(graph$edges_df$labelfontcolor), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -352,8 +337,7 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that there are 4 colors in the
   # `labelfontcolor` column
-  expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+  expect_length(unique(graph$edges_df$labelfontcolor), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color

@@ -9,51 +9,46 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that names in this graph object match a
   # prescribed set of names
-  expect_true(all(
-    names(graph) ==
-      c(
-        "graph_info",
-        "nodes_df",
-        "edges_df",
-        "global_attrs",
-        "directed",
-        "last_node",
-        "last_edge",
-        "node_selection",
-        "edge_selection",
-        "cache",
-        "graph_actions",
-        "graph_log"
-      )
-  ))
+  expect_named(
+    graph,
+    c(
+      "graph_info",
+      "nodes_df",
+      "edges_df",
+      "global_attrs",
+      "directed",
+      "last_node",
+      "last_edge",
+      "node_selection",
+      "edge_selection",
+      "cache",
+      "graph_actions",
+      "graph_log"
+    )
+  )
 
   # Expect a graph object of class `dgr_graph`
-  expect_is(
+  expect_s3_class(
     graph, "dgr_graph")
 
   # Expect that the `global_attrs` components is not NULL
   expect_true(
     !is.null(graph$global_attrs))
 
-  # Expect that the `nodes_df` component is a data frame
-  expect_is(
-    graph$nodes_df, "data.frame")
-
-  # Expect that the `edges_df` component is a data frame
-  expect_is(
-    graph$edges_df, "data.frame")
+  # Expect that the `nodes_df` and  `edges_df`  component are a data frame
+  expect_s3_class(graph$nodes_df, "data.frame")
+  expect_s3_class(graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
-  expect_true(
-    graph$directed == TRUE)
+  expect_true(graph$directed)
 
   # Expect that the `nodes_df` data frame has 3 columns
-  expect_true(
-    ncol(graph$nodes_df) == 3)
+  expect_equal(
+    ncol(graph$nodes_df), 3)
 
   # Expect that the `nodes_df` data frame has 2 rows
-  expect_true(
-    nrow(graph$nodes_df) == 2)
+  expect_equal(
+    nrow(graph$nodes_df), 2)
 
   # Add a node with attributes to the graph
   graph_3 <-
@@ -105,8 +100,8 @@ test_that("adding a node to a graph is possible", {
       from = 3)
 
   # Expect that `edges_df` is not NULL
-  expect_true(
-    !is.null(graph_from$edges_df))
+  expect_false(
+    is.null(graph_from$edges_df))
 
   # Expect that the new node is available in the graph
   expect_true(
@@ -140,8 +135,8 @@ test_that("adding a node to a graph is possible", {
       to = 3)
 
   # Expect that `edges_df` is not NULL
-  expect_true(
-    !is.null(graph_to$edges_df))
+  expect_false(
+    is.null(graph_to$edges_df))
 
   # Expect that the new node is available in the graph
   expect_true(
@@ -177,8 +172,8 @@ test_that("adding a node to a graph is possible", {
       to = 2)
 
   # Expect that `edges_df` is not NULL
-  expect_true(
-    !is.null(graph_to_from$edges_df))
+  expect_false(
+    is.null(graph_to_from$edges_df))
 
   # Expect that the new node is available in the graph
   expect_true(
@@ -239,51 +234,45 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect that names in this graph object match a
   # prescribed set of names
-  expect_true(all(
-    names(graph) ==
-      c(
-        "graph_info",
-        "nodes_df",
-        "edges_df",
-        "global_attrs",
-        "directed",
-        "last_node",
-        "last_edge",
-        "node_selection",
-        "edge_selection",
-        "cache",
-        "graph_actions",
-        "graph_log"
-      )
-  ))
+  expect_named(
+    graph,
+    c(
+      "graph_info",
+      "nodes_df",
+      "edges_df",
+      "global_attrs",
+      "directed",
+      "last_node",
+      "last_edge",
+      "node_selection",
+      "edge_selection",
+      "cache",
+      "graph_actions",
+      "graph_log"
+    )
+  )
 
   # Expect a graph object of class `dgr_graph`
-  expect_is(
+  expect_s3_class(
     graph, "dgr_graph")
 
   # Expect that the `global_attrs` components is not NULL
-  expect_true(
-    !is.null(graph$global_attrs))
+  expect_false(
+    is.null(graph$global_attrs))
 
   # Expect that the `nodes_df` component is a data frame
-  expect_is(
+  expect_s3_class(
     graph$nodes_df, "data.frame")
 
   # Expect that the `edges_df` component is a data frame
-  expect_is(
+  expect_s3_class(
     graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
-  expect_true(
-    graph$directed == TRUE)
+  expect_true(graph$directed)
 
-  # Expect that the `nodes_df` data frame has 4 columns
-  expect_true(
-    ncol(graph$edges_df) == 4)
-
-  # Expect that the `nodes_df` data frame has 1 row
-  expect_true(
-    nrow(graph$edges_df) == 1)
+  # Expect that the `nodes_df` data frame has 1 row and 4 columns
+  expect_equal(dim(graph$edges_df),  c(1, 4))
 
   # Expect an error when attempting to add more than 1 edge
   expect_error(
@@ -320,9 +309,10 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect that the edges in the graph are:
   # `3->4` and `4->1`
-  expect_true(
-    all(
-      c("3->4", "4->1") %in% get_edges(graph_2)))
+  expect_contains(
+    get_edges(graph_2),
+    c("3->4", "4->1")
+  )
 })
 
 test_that("adding several nodes to a graph at once is possible", {
@@ -487,13 +477,16 @@ test_that("adding several nodes from a selected node is possible", {
       rel = "related")
 
   # Expect that all edges have a `rel` set
-  expect_true(
-    all(graph$edges_df$rel == "related"))
+  expect_in(
+    graph$edges_df$rel,
+    "related"
+  )
 
   # Expect that all new nodes have a `type` set
-  expect_true(
-    all(
-      get_node_df(graph)[11:20, 2] == "new"))
+  expect_in(
+    get_node_df(graph)[11:20, 2],
+    "new"
+  )
 })
 
 test_that("adding several nodes to a selected node is possible", {
@@ -573,12 +566,12 @@ test_that("adding several nodes to a selected node is possible", {
       rel = "related")
 
   # Expect that all edges have a `rel` set
-  expect_true(
-    all(graph$edges_df$rel == "related"))
+  expect_in(
+    graph$edges_df$rel,"related")
 
   # Expect that all new nodes have a `type` set
-  expect_true(
-    all(graph$nodes_df$type[11:20] == "new"))
+  expect_in(
+    graph$nodes_df$type[11:20], "new")
 })
 
 test_that("adding several edges with a string is possible", {
@@ -794,10 +787,8 @@ test_that("adding node clones with a selection is possible", {
   # `label` attributes for the
   # last 3 nodes in the graph
   expect_true(
-    all(
-      is.na(
-        graph_1 %>%
-          get_node_df())[4:6, 3]))
+    all(is.na(get_node_df(graph_1)[4:6, 3]))
+    )
 
   # Create clones of all nodes
   # in the selection but assign
@@ -814,23 +805,20 @@ test_that("adding node clones with a selection is possible", {
   # Expect nodes with ID values
   # from 1 to 6
   expect_equal(
-    (graph_2 %>%
-       get_node_df)[, 1], 1:6)
+    get_node_df(graph_2)[, 1], 1:6)
 
   # Expect cloned values for the
   # `type` attribute for the
   # last 3 nodes in the graph
   expect_equal(
-    (graph_2 %>%
-       get_node_df())[4:6, 2],
+    get_node_df(graph_2)[4:6, 2],
     c("a", "b", "c"))
 
   # Expect specific values for the
   # `label` attributes for the
   # last 3 nodes in the graph
   expect_equal(
-    (graph_2 %>%
-       get_node_df())[4:6, 3],
+    get_node_df(graph_2)[4:6, 3],
     c("a", "b", "v"))
 
   # Create clones of all nodes
@@ -850,25 +838,21 @@ test_that("adding node clones with a selection is possible", {
   # Expect nodes with ID values
   # from 1 to 6
   expect_equal(
-    (graph_3 %>%
-       get_node_df)[, 1], 1:6)
+    get_node_df(graph_3)[, 1], 1:6)
 
   # Expect cloned values for the
   # `type` attribute for the
   # last 3 nodes in the graph
   expect_equal(
-    (graph_3 %>%
-       get_node_df())[4:6, 2],
+    get_node_df(graph_3)[4:6, 2],
     c("a", "b", "c"))
 
   # Expect NA values for the
   # `label` attributes for the
   # last 3 nodes in the graph
   expect_true(
-    all(
-      is.na(
-        graph_3 %>%
-          get_node_df())[4:6, 3]))
+    all(is.na(get_node_df(graph_3))[4:6, 3])
+    )
 
   # Expect 5 edges in the graph
   expect_equal(
@@ -877,24 +861,22 @@ test_that("adding node clones with a selection is possible", {
   # Expect edges with ID values
   # from 1 to 5
   expect_equal(
-    (graph_3 %>%
-       get_edge_df)[, 1], 1:5)
+    get_edge_df(graph_3)[, 1],
+    1:5)
 
   # Expect that specific edges have
   # been created
   expect_equal(
-    (graph_3 %>%
-       get_edges)[3:5],
-    c("1->4", "2->5", "3->6"))
+    get_edges(graph_3)[3:5],
+    c("1->4", "2->5", "3->6")
+    )
 
   # Expect NA values for the
   # `rel` attributes for the
   # last 3 edges in the graph
   expect_true(
-    all(
-      is.na(
-        (graph_3 %>%
-          get_edge_df())[3:5, 4])))
+    all(is.na(get_edge_df(graph_3)[3:5, 4]))
+    )
 
   # Create clones of all nodes
   # in the selection and
@@ -913,25 +895,20 @@ test_that("adding node clones with a selection is possible", {
   # Expect nodes with ID values
   # from 1 to 6
   expect_equal(
-    (graph_4 %>%
-       get_node_df)[, 1], 1:6)
+       get_node_df(graph_4)[, 1], 1:6)
 
   # Expect cloned values for the
   # `type` attribute for the
   # last 3 nodes in the graph
   expect_equal(
-    (graph_4 %>%
-       get_node_df())[4:6, 2],
+    get_node_df(graph_4)[4:6, 2],
     c("a", "b", "c"))
 
   # Expect NA values for the
   # `label` attributes for the
   # last 3 nodes in the graph
   expect_true(
-    all(
-      is.na(
-        graph_4 %>%
-          get_node_df())[4:6, 3]))
+    all(is.na(get_node_df(graph_4))[4:6, 3]))
 
   # Expect 5 edges in the graph
   expect_equal(
@@ -940,24 +917,20 @@ test_that("adding node clones with a selection is possible", {
   # Expect edges with ID values
   # from 1 to 5
   expect_equal(
-    (graph_4 %>%
-       get_edge_df)[, 1], 1:5)
+    get_edge_df(graph_4)[, 1], 1:5)
 
   # Expect that specific edges have
   # been created
   expect_equal(
-    (graph_4 %>%
-       get_edges)[3:5],
+    get_edges(graph_4)[3:5],
     c("4->1", "5->2", "6->3"))
 
   # Expect NA values for the
   # `rel` attributes for the
   # last 3 edges in the graph
   expect_true(
-    all(
-      is.na(
-        (graph_4 %>%
-           get_edge_df())[3:5, 4])))
+    all(is.na(get_edge_df(graph_4)[3:5, 4]))
+    )
 })
 
 test_that("adding edge clones is possible", {
@@ -1010,11 +983,9 @@ test_that("adding edge clones is possible", {
 
   # Expect that both edges will be have
   # the same `rel` values
-  expect_equal(
-    unique(edf_1[, 4]), "a")
+  expect_in(edf_1[, 4], "a")
 
   # Expect that both edges will be have
   # the same `color` values
-  expect_equal(
-    unique(edf_1[, 5]), "steelblue")
+  expect_in(edf_1[, 5], "steelblue")
 })

@@ -32,51 +32,50 @@ test_that("graphs can be combined", {
     combine_graphs(graph_1, graph_2)
 
   # Expect a graph object of class `dgr_graph`
-  expect_is(
+  expect_s3_class(
     combined_graph_1, "dgr_graph")
 
   # Expect that names in graph object match a
   # prescribed set of names
-  expect_true(
-    all(
-      names(combined_graph_1) ==
-        c(
-          "graph_info",
-          "nodes_df",
-          "edges_df",
-          "global_attrs",
-          "directed",
-          "last_node",
-          "last_edge",
-          "node_selection",
-          "edge_selection",
-          "cache",
-          "graph_actions",
-          "graph_log")))
+  expect_in(
+    names(combined_graph_1),
+    c(
+      "graph_info",
+      "nodes_df",
+      "edges_df",
+      "global_attrs",
+      "directed",
+      "last_node",
+      "last_edge",
+      "node_selection",
+      "edge_selection",
+      "cache",
+      "graph_actions",
+      "graph_log"
+    )
+  )
 
   # Expect that the `global_attrs` graph component
   # is not NULL
-  expect_true(
-    !is.null(combined_graph_1$global_attrs))
+  expect_false(is.null(combined_graph_1$global_attrs))
 
   # Expect that the `is_graph_directed()` function
   # will return TRUE
-  expect_true(
-    is_graph_directed(combined_graph_1))
+  expect_true(is_graph_directed(combined_graph_1))
 
   # Expect that the `nodes_df` df has 3 columns
-  expect_true(
-    ncol(combined_graph_1$nodes_df) == 3)
+  expect_equal(
+    ncol(combined_graph_1$nodes_df), 3)
 
   # Expect that the `nodes_df` df has 20 rows
-  expect_true(
-    nrow(combined_graph_1$nodes_df) == 20)
+  expect_equal(
+    nrow(combined_graph_1$nodes_df), 20)
 
   # Expect that the `edges_df` df has 4 columns
-  expect_true(
-    ncol(combined_graph_1$edges_df) == 4)
+  expect_equal(
+    ncol(combined_graph_1$edges_df), 4)
 
   # Expect that the `edges_df` df has 18 rows
-  expect_true(
-    nrow(combined_graph_1$edges_df) == 18)
+  expect_equal(
+    nrow(combined_graph_1$edges_df), 18)
 })

@@ -25,8 +25,7 @@ test_that("setting a single node's position is possible", {
 
   # Expect that the `x` and `y` node
   # attributes columns are available
-  expect_true(
-    all(c("x", "y") %in% colnames(graph_1$nodes_df)))
+  expect_contains(colnames(graph_1$nodes_df), c("x", "y"))
 
   # Expect specific values in the `x` column
   expect_equal(
@@ -57,10 +56,9 @@ test_that("setting a single node's position is possible", {
       x = 4, y = 4,
       use_labels = TRUE)
 
-  # Expect that the `x` and `y` node
+  # Expect that both `x` and `y` node
   # attributes columns are available
-  expect_true(
-    all(c("x", "y") %in% colnames(graph_2$nodes_df)))
+  expect_contains(colnames(graph_2$nodes_df), c("x", "y"))
 
   # Expect specific values in the `x` column
   expect_equal(
@@ -179,10 +177,9 @@ test_that("setting positions with a text string is possible", {
                "2" = "label:desc",
                "3" = "label:desc"))
 
-  # Expect that the `x` and `y` node
+  # Expect that both the `x` and `y` node
   # attributes columns are available
-  expect_true(
-    all(c("x", "y") %in% colnames(graph$nodes_df)))
+  expect_contains(colnames(graph$nodes_df), c("x", "y"))
 
   # Expect specific values in the `x` column
   expect_equal(

@@ -13,7 +13,7 @@ test_that("Getting betweenness is possible", {
   betweenness_vals <- get_betweenness(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     betweenness_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -27,13 +27,13 @@ test_that("Getting betweenness is possible", {
   # Expect node ID values in the first column
   expect_identical(
     betweenness_vals[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     betweenness_vals[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting closeness is possible", {
@@ -53,7 +53,7 @@ test_that("Getting closeness is possible", {
       direction = "all")
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     closeness_vals_all, "data.frame")
 
   # Expect 2 columns in the df
@@ -84,7 +84,7 @@ test_that("Getting coreness values is possible", {
   coreness_vals_all <- get_coreness(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     coreness_vals_all, "data.frame")
 
   # Expect 2 columns in the df
@@ -101,9 +101,9 @@ test_that("Getting coreness values is possible", {
     as.integer(1:10))
 
   # Expect numeric values in the second column
-  expect_is(
+  expect_type(
     coreness_vals_all[, 2],
-    "numeric")
+    "double")
 
   # Get coreness values in the `in` direction
   coreness_vals_in <-
@@ -112,7 +112,7 @@ test_that("Getting coreness values is possible", {
       direction = "in")
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     coreness_vals_in, "data.frame")
 
   # Expect 2 columns in the df
@@ -129,9 +129,9 @@ test_that("Getting coreness values is possible", {
     as.integer(1:10))
 
   # Expect numeric values in the second column
-  expect_is(
+  expect_type(
     coreness_vals_in[, 2],
-    "numeric")
+    "double")
 
   # Get coreness values in the `out` direction
   coreness_vals_out <-
@@ -140,7 +140,7 @@ test_that("Getting coreness values is possible", {
       direction = "out")
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     coreness_vals_out, "data.frame")
 
   # Expect 2 columns in the df
@@ -154,12 +154,12 @@ test_that("Getting coreness values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     coreness_vals_out[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numeric values in the second column
-  expect_is(
+  expect_type(
     coreness_vals_out[, 2],
-    "numeric")
+    "double")
 
   # Expect an error if value for `direction`
   # is not any of `all`, `in`, or `out`
@@ -183,7 +183,7 @@ test_that("Getting closeness vitality is possible", {
   closeness_vitality_vals <- get_closeness_vitality(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     closeness_vitality_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -197,12 +197,12 @@ test_that("Getting closeness vitality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     closeness_vitality_vals[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numeric values in the second column
-  expect_is(
+  expect_type(
     closeness_vitality_vals[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting alpha centrality is possible", {
@@ -219,7 +219,7 @@ test_that("Getting alpha centrality is possible", {
     get_alpha_centrality(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     alpha_central_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -237,9 +237,9 @@ test_that("Getting alpha centrality is possible", {
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     alpha_central_vals[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting leverage centrality is possible", {
@@ -256,7 +256,7 @@ test_that("Getting leverage centrality is possible", {
     get_leverage_centrality(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     leverage_central_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -270,13 +270,13 @@ test_that("Getting leverage centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     leverage_central_vals[,1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     leverage_central_vals[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting authority centrality is possible", {
@@ -355,13 +355,13 @@ test_that("Getting authority centrality is possible", {
     get_authority_centrality(graph = graph_2)
 
   # Expect a data frame as output for all
-  expect_is(
+  expect_s3_class(
     auth_central_vals, "data.frame")
 
-  expect_is(
+  expect_s3_class(
     auth_central_vals_weight_1, "data.frame")
 
-  expect_is(
+  expect_s3_class(
     auth_central_vals_weight_2, "data.frame")
 
   # Expect 2 columns in the df
@@ -387,29 +387,29 @@ test_that("Getting authority centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     auth_central_vals[, 1],
-    as.integer(1:10))
+    1:10)
 
   expect_identical(
     auth_central_vals_weight_1[, 1],
-    as.integer(1:10))
+    1:10)
 
   expect_identical(
     auth_central_vals_weight_1[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     auth_central_vals[, 2],
-    "numeric")
+    "double")
 
-  expect_is(
+  expect_type(
     auth_central_vals_weight_1[, 2],
-    "numeric")
+    "double")
 
-  expect_is(
+  expect_type(
     auth_central_vals_weight_2[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting eigenvector centrality is possible", {
@@ -491,13 +491,13 @@ test_that("Getting eigenvector centrality is possible", {
     get_eigen_centrality(graph = graph_2)
 
   # Expect a data frame as output for all
-  expect_is(
+  expect_s3_class(
     eigen_central_vals, "data.frame")
 
-  expect_is(
+  expect_s3_class(
     eigen_central_vals_weight_1, "data.frame")
 
-  expect_is(
+  expect_s3_class(
     eigen_central_vals_weight_2, "data.frame")
 
   # Expect 2 columns in the df
@@ -523,29 +523,29 @@ test_that("Getting eigenvector centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     eigen_central_vals[, 1],
-    as.integer(1:10))
+    1:10)
 
   expect_identical(
     eigen_central_vals_weight_1[, 1],
-    as.integer(1:10))
+    1:10)
 
   expect_identical(
     eigen_central_vals_weight_1[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     eigen_central_vals[, 2],
-    "numeric")
+    "double")
 
-  expect_is(
+  expect_type(
     eigen_central_vals_weight_1[, 2],
-    "numeric")
+    "double")
 
-  expect_is(
+  expect_type(
     eigen_central_vals_weight_2[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting radiality values is possible", {
@@ -562,7 +562,7 @@ test_that("Getting radiality values is possible", {
   radiality_vals <- get_radiality(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     radiality_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -580,9 +580,9 @@ test_that("Getting radiality values is possible", {
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     radiality_vals[, 2],
-    "numeric")
+    "double")
 
   # Expect certain radiality values depending
   # on the `direction` parameter
@@ -644,7 +644,7 @@ test_that("Getting PageRank values is possible", {
   pagerank_vals <- get_pagerank(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     pagerank_vals, "data.frame")
 
   # Expect 2 columns in the df
@@ -658,13 +658,13 @@ test_that("Getting PageRank values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     pagerank_vals[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     pagerank_vals[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting articulation points is possible", {
@@ -682,12 +682,11 @@ test_that("Getting articulation points is possible", {
     get_articulation_points(graph)
 
   # Expect an integer vector as output
-  expect_is(
+  expect_type(
     articulation_points, "integer")
 
-  # Expect 4 values in the vector
-  expect_equal(
-    length(articulation_points), 2)
+  # Expect 2 values in the vector
+  expect_length(articulation_points, 2)
 })
 
 test_that("Getting weakly connected components is possible", {
@@ -705,7 +704,7 @@ test_that("Getting weakly connected components is possible", {
     get_w_connected_cmpts(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     connected_components, "data.frame")
 
   # Expect 2 columns in the df
@@ -718,9 +717,9 @@ test_that("Getting weakly connected components is possible", {
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     connected_components[, 2],
-    "numeric")
+    "double")
 })
 
 test_that("Getting strongly connected components is possible", {
@@ -738,7 +737,7 @@ test_that("Getting strongly connected components is possible", {
     get_s_connected_cmpts(graph)
 
   # Expect a data frame as output
-  expect_is(
+  expect_s3_class(
     s_connected_components, "data.frame")
 
   # Expect 2 columns in the df
@@ -751,7 +750,7 @@ test_that("Getting strongly connected components is possible", {
 
   # Expect numerical values in the
   # second column
-  expect_is(
+  expect_type(
     s_connected_components[, 2],
-    "numeric")
+    "double")
 })

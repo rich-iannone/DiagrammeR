@@ -211,13 +211,12 @@ test_that("adding nodes from a table to a graph is possible", {
 
   # Expect that there aren't any NA values in the
   # graph's `label` column
-  expect_true(
-    all(!is.na(graph_2_df$nodes_df[, 3])))
+  expect_false(
+    anyNA(graph_2_df$nodes_df[, 3]))
 
   # Expect that the values in the `label` are
   # of the character class
-  expect_true(
-    is.character(graph_2_df$nodes_df[, 3]))
+  expect_type(graph_2_df$nodes_df[, 3], "character")
 
   # Add nodes from the df; also apply a static value
   # for `type` as `currency`
@@ -230,8 +229,7 @@ test_that("adding nodes from a table to a graph is possible", {
 
   # Expect that all values set for the `type`
   # attribute are `currency`
-  expect_true(
-    all(graph_3_df$nodes_df[, 2] == "currency"))
+  expect_in(graph_3_df$nodes_df[, 2], "currency")
 
   # Add nodes from the df; drop some of the
   # incoming columns
@@ -246,8 +244,8 @@ test_that("adding nodes from a table to a graph is possible", {
   # Expect that the node attributes `exponent`
   # and `currency_name` do not appear in the graph's
   # internal node data frame
-  expect_true(
-    !all(c("exponent", "currency_name") %in%
+  expect_false(
+    all(c("exponent", "currency_name") %in%
            colnames(graph_4_df$nodes_df)))
 
   # Add nodes from the df; assign a table column
@@ -262,9 +260,9 @@ test_that("adding nodes from a table to a graph is possible", {
 
   # Expect that all values set for the `type`
   # attribute are have certain values (including NA)
-  expect_true(
-    all(graph_5_df$nodes_df[, 2] %in%
-          c("0", "1", "2", "3", "4", NA)))
+  expect_in(
+    graph_5_df$nodes_df[, 2],
+    c("0", "1", "2", "3", "4", NA))
 })
 
 test_that("adding edges from a table to a graph is possible", {

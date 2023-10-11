@@ -53,8 +53,7 @@ test_that("simple traversals are possible", {
 
   # Expect that nodes `1` and `3` are in the
   # current selection
-  expect_true(
-    all(c(1, 3) %in% get_selection(graph)))
+  expect_in(get_selection(graph), c(1, 3))
 
   # Traverse by moving from nodes onto edges, then,
   # onto nodes; from `1` to `4`

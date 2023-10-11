@@ -17,7 +17,7 @@ test_that("Getting a degree histogram is possible", {
       mode = "all")
 
   # Expect that `degree_hist_all` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_hist_all, "data.frame")
 
   # Expect certain column names for the `degree_hist_all` object
@@ -32,7 +32,7 @@ test_that("Getting a degree histogram is possible", {
       mode = "in")
 
   # Expect that `degree_hist_in` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_hist_in, "data.frame")
 
   # Expect certain column names for the `degree_hist_in` object
@@ -47,7 +47,7 @@ test_that("Getting a degree histogram is possible", {
       mode = "out")
 
   # Expect that `degree_hist_out` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_hist_out, "data.frame")
 
   # Expect certain column names for the `degree_hist_out` object
@@ -73,7 +73,7 @@ test_that("Getting degree distribution is possible", {
       mode = "all")
 
   # Expect that `degree_dist_all` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_dist_all, "data.frame")
 
   # Expect certain column names for the `degree_dist_all` object
@@ -88,7 +88,7 @@ test_that("Getting degree distribution is possible", {
       mode = "in")
 
   # Expect that `degree_dist_in` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_dist_in, "data.frame")
 
   # Expect certain column names for the `degree_dist_in` object
@@ -103,7 +103,7 @@ test_that("Getting degree distribution is possible", {
       mode = "out")
 
   # Expect that `degree_dist_out` inherits from `data.frame`
-  expect_is(
+  expect_s3_class(
     degree_dist_out, "data.frame")
 
   # Expect certain column names for the `degree_dist_out` object
@@ -125,23 +125,20 @@ test_that("Getting maximum eccentricity is possible", {
   max_eccen <- get_max_eccentricity(graph)
 
   # Expect that `max_eccen` is a numeric vector
-  expect_is(
-    max_eccen, "numeric")
+  expect_type(max_eccen, "double")
 
   # Expect that `max_eccen` is of length 1
-  expect_equal(
-    length(max_eccen), 1)
+  expect_length(max_eccen, 1)
 
   # Expect that `max_eccen` has the value 5
-  expect_equal(
-    max_eccen, 5)
+  expect_equal(max_eccen, 5)
 
   # Expect NA if there aren't any nodes
   # in the graph
   expect_equal(
     get_max_eccentricity(
       graph = create_graph()),
-    as.numeric(NA))
+    NA_real_)
 })
 
 test_that("Getting minimum eccentricity is possible", {
@@ -160,16 +157,13 @@ test_that("Getting minimum eccentricity is possible", {
       direction = "all")
 
   # Expect that `min_eccen` is a numeric vector
-  expect_is(
-    min_eccen, "numeric")
+  expect_type(min_eccen, "double")
 
   # Expect that `min_eccen` is of length 1
-  expect_equal(
-    length(min_eccen), 1)
+  expect_length(min_eccen, 1)
 
   # Expect that `min_eccen` has the value 2
-  expect_equal(
-    min_eccen, 2)
+  expect_equal(min_eccen, 2)
 
   # Expect certain values with different
   # values provided for `direction`
@@ -213,7 +207,7 @@ test_that("Getting graph eccentricity is possible", {
   graph_eccen <- get_eccentricity(graph)
 
   # Expect that `graph_eccen` is a data frame
-  expect_is(
+  expect_s3_class(
     graph_eccen, "data.frame")
 
   # Expect that `graph_eccen` has 10 rows
@@ -222,15 +216,15 @@ test_that("Getting graph eccentricity is possible", {
     nrow(graph_eccen), 10)
 
   # Expect certain column names for the `graph_eccen` object
-  expect_equal(
-    colnames(graph_eccen), c("id", "eccentricity"))
+  expect_named(
+    graph_eccen, c("id", "eccentricity"))
 
   # Expect that `eccentricity` column is numeric
-  expect_is(
-    graph_eccen$eccentricity, "numeric")
+  expect_type(
+    graph_eccen$eccentricity, "double")
 
   # Expect that `id` column has integer values
-  expect_is(
+  expect_type(
     graph_eccen$id, "integer")
 })
 
@@ -247,13 +241,13 @@ test_that("Getting graph periphery is possible", {
   graph_periphery <- get_periphery(graph)
 
   # Expect that `graph_periphery` is an integer vector
-  expect_is(
+  expect_type(
     graph_periphery, "integer")
 
   # Expect that `graph_periphery` has length 3 in
   # this case
-  expect_equal(
-    length(graph_periphery), 3)
+  expect_length(
+    graph_periphery, 3)
 
   # Expect certain values for the
   # `graph_periphery` object
@@ -290,7 +284,7 @@ test_that("Getting graph info is possible", {
     get_graph_info()
 
   # Expect that `graph_i` is a data frame
-  expect_is(
+  expect_s3_class(
     graph_i, "data.frame")
 
   # Expect that `graph_i` has 9 columns

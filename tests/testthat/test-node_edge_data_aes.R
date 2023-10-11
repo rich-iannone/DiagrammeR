@@ -11,12 +11,12 @@ test_that("creating node data attribute values is possible", {
 
   # Expect that a list object has
   # been generated
-  expect_is(
+  expect_type(
     node_data, "list")
 
   # Expect specific names in the object
-  expect_equal(
-    names(node_data),
+  expect_named(
+    node_data,
     c("values_1", "values_2"))
 
   # Expect specific values in each
@@ -59,12 +59,12 @@ test_that("creating edge data attribute values is possible", {
 
   # Expect that a list object has
   # been generated
-  expect_is(
+  expect_type(
     edge_data, "list")
 
   # Expect specific names in the object
-  expect_equal(
-    names(edge_data),
+  expect_named(
+    edge_data,
     c("values_1", "values_2"))
 
   # Expect specific values in each
@@ -120,7 +120,7 @@ test_that("creating node aesthetic attribute values is possible", {
 
   # Expect that a list object has
   # been generated
-  expect_is(
+  expect_type(
     node_aes, "list")
 
   # Expect specific names in the object
@@ -212,7 +212,7 @@ test_that("creating edge aesthetic attribute values is possible", {
 
   # Expect that a list object has
   # been generated
-  expect_is(edge_aes, "list")
+  expect_type(edge_aes, "list")
 
   # Expect specific values in each
   # of the list components
@@ -413,76 +413,39 @@ test_that("binding data and aesthetic attribute values is always possible", {
       edge_aes = edge_aes_,
       edge_data = edge_data_)
 
-  expect_true("fillcolor" %in% (graph_w_attrs_1$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_2$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_3$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_4$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_5$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_6$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_7$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_8$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_9$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_10$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_11$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_12$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_13$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_14$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_15$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_16$nodes_df %>% names()))
-  expect_true("fillcolor" %in% (graph_w_attrs_17$nodes_df %>% names()))
+  expect_contains(names(graph_w_attrs_1$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_2$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_3$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_4$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_5$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_6$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_7$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_8$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_9$nodes_df),  c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_10$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_11$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_12$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_13$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_14$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_15$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_16$nodes_df), c("fillcolor", "node_value"))
+  expect_contains(names(graph_w_attrs_17$nodes_df), c("fillcolor", "node_value"))
 
-  expect_true("node_value" %in% (graph_w_attrs_1$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_2$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_3$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_4$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_5$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_6$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_7$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_8$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_9$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_10$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_11$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_12$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_13$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_14$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_15$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_16$nodes_df %>% names()))
-  expect_true("node_value" %in% (graph_w_attrs_17$nodes_df %>% names()))
-
-  expect_true("color" %in% (graph_w_attrs_1$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_2$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_3$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_4$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_5$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_6$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_7$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_8$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_9$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_10$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_11$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_12$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_13$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_14$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_17$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_18$edges_df %>% names()))
-  expect_true("color" %in% (graph_w_attrs_19$edges_df %>% names()))
-
-  expect_true("edge_value" %in% (graph_w_attrs_1$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_2$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_3$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_4$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_5$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_6$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_7$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_8$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_9$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_10$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_11$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_12$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_13$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_14$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_17$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_18$edges_df %>% names()))
-  expect_true("edge_value" %in% (graph_w_attrs_19$edges_df %>% names()))
-
+  expect_contains(names(graph_w_attrs_1$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_2$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_3$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_4$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_5$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_6$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_7$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_8$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_9$edges_df),  c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_10$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_11$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_12$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_13$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_14$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_17$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_18$edges_df), c("color", "edge_value"))
+  expect_contains(names(graph_w_attrs_19$edges_df), c("color", "edge_value"))
 })

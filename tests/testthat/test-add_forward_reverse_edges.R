@@ -35,11 +35,12 @@ test_that("forward edges can be added given a selection of edges", {
 
   # Expect the edges have the same definition
   # of `1->2`
-  expect_true(
-    all(get_edges(graph) == "1->2"))
+  expect_in(
+    get_edges(graph),
+    "1->2")
 
   # Expect `rel` values of `a`, `b`, and `c`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$rel,
     c("a", "b", "c"))
 })

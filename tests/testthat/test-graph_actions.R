@@ -21,7 +21,7 @@ test_that("actions can be added to a graph object", {
 
   # Expect a `data.frame` object with in
   # `graph$graph_actions`
-  expect_is(
+  expect_s3_class(
     graph$graph_actions, "data.frame")
 
   # Extract `graph$graph_actions` to a
@@ -250,27 +250,29 @@ test_that("graph actions can be triggered to modify the graph", {
 
   # Expect the `pagerank` column to have
   # numeric values less than 1
-  expect_is(
-    graph$nodes_df$pagerank, "numeric")
+  expect_type(
+    graph$nodes_df$pagerank, "double")
 
   expect_true(
     all(graph$nodes_df$pagerank <= 1))
 
   # Expect the `width` column to have
   # numeric values less than 1
-  expect_is(
-    graph$nodes_df$width, "numeric")
+  expect_type(
+    graph$nodes_df$width, "double")
 
   expect_true(
     all(graph$nodes_df$width <= 1))
 
   # Expect the `fillcolor` column to have
   # character values with color codes
-  expect_is(
+  expect_type(
     graph$nodes_df$fillcolor, "character")
 
-  expect_true(
-    all(grepl("#[A-F0-9]*", graph$nodes_df$fillcolor)))
+  expect_match(
+    graph$nodes_df$fillcolor,
+    "#[A-F0-9]*"
+  )
 
   # Expect a warning if using the
   # `trigger_graph_actions()` function
