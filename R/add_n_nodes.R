@@ -54,11 +54,11 @@ add_n_nodes <- function(
   }
 
   if (is.null(type)) {
-    type <- as.character(NA)
+    type <- NA_character_
   }
 
   if (is.null(label)) {
-    label <- as.character(NA)
+    label <- NA_character_
   }
 
   # Collect node aesthetic attributes
@@ -78,7 +78,7 @@ add_n_nodes <- function(
     if ("id" %in% colnames(node_aes_tbl)) {
       node_aes_tbl <-
         node_aes_tbl %>%
-        dplyr::select(-id)
+        dplyr::select(-"id")
     }
   }
 
@@ -93,13 +93,13 @@ add_n_nodes <- function(
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
       node_data_tbl <-
         node_data_tbl %>%
-        dplyr::select(-id)
+        dplyr::select(-"id")
     }
   }
 

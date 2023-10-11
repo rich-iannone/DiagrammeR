@@ -78,7 +78,7 @@ create_edge_df <- function(
   # if `rel` is NULL, create character vector with
   # NA values; class as character otherwise
   if (is.null(rel)) {
-    rel <- rep(as.character(NA), length(from))
+    rel <- rep(NA_character_, length(from))
   } else {
     rel <- as.character(rel)
   }
@@ -96,7 +96,7 @@ create_edge_df <- function(
         length(rel) < length(from)) {
       rel <-
         c(rel,
-          rep(as.character(NA),
+          rep(NA_character_,
               (length(from) - length(rel))))
     }
 
@@ -125,7 +125,7 @@ create_edge_df <- function(
           length(extras[[i]]) < length(from)) {
         extras[[i]] <-
           c(extras[[i]],
-            rep(as.character(NA),
+            rep(NA_character_,
                 (length(from) -
                    length(extras[[i]]))))
       }

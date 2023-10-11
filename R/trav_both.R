@@ -327,7 +327,7 @@ trav_both <- function(
                          match.fun(!! agg)(!! as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::select(id, type, label, dplyr::everything()) %>%
+      dplyr::relocate(id, type, label) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Get column numbers that end with ".x" or ".y"

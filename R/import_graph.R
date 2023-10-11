@@ -169,8 +169,8 @@ import_graph <- function(
     edges <-
       edges %>%
       dplyr::mutate(id = 1:n_rows) %>%
-      dplyr::mutate(rel = as.character(NA)) %>%
-      dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+      dplyr::mutate(rel = NA_character_) %>%
+      dplyr::relocate(id, from, to, rel) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
@@ -179,16 +179,16 @@ import_graph <- function(
         dplyr::tibble(
           id = edges %>%
             dplyr::as_tibble() %>%
-            dplyr::select(from) %>%
+            dplyr::select("from") %>%
             purrr::flatten_int()),
         dplyr::tibble(
           id = edges %>%
             dplyr::as_tibble() %>%
-            dplyr::select(to) %>%
+            dplyr::select("to") %>%
             purrr::flatten_int())) %>%
       dplyr::distinct() %>%
       dplyr::arrange(id) %>%
-      dplyr::mutate(type = as.character(NA)) %>%
+      dplyr::mutate(type = NA_character_) %>%
       dplyr::mutate(label = as.character(id)) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
@@ -234,7 +234,7 @@ import_graph <- function(
             strsplit(
               mtx_document[first_line:length(mtx_document)],
               " ")))),
-        type = as.character(NA),
+        type = NA_character_,
         label = as.integer(unique(
           unlist(
             strsplit(
@@ -344,8 +344,8 @@ import_graph <- function(
     all_nodes <-
       dplyr::tibble(
         id = node_id,
-        type = as.character(NA),
-        label = as.character(NA)) %>%
+        type = NA_character_,
+        label = NA_character_) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     if (exists("node_label")) {

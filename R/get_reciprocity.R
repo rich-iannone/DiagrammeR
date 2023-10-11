@@ -66,7 +66,7 @@ get_reciprocity <- function(graph) {
   # cannot return any valid reciprocity
   # value
   if (nrow(graph$edges_df) == 0) {
-    return(as.numeric(NA))
+    return(NA_real_)
   }
 
   # Convert the graph to an igraph object

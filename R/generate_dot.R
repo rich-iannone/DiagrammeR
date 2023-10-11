@@ -180,7 +180,7 @@ generate_dot <- function(graph) {
 
       edges_df <-
         edges_df %>%
-        dplyr::mutate(label = as.character(NA))
+        dplyr::mutate(label = NA_character_)
     }
 
     label_col <- which(colnames(edges_df) == "label")

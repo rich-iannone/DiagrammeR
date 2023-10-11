@@ -126,7 +126,7 @@ node_edge_selection_properties <- function(graph) {
 
   } else {
 
-    selection_type <- as.character(NA)
+    selection_type <- NA_character_
     selection_count <- 0
     selection_count_str <- "no nodes or edges"
   }
@@ -814,15 +814,15 @@ get_df_ids <- function(graph_df) {
     if ("df_id" %in% colnames(graph_df)) {
 
       graph_df %>%
-        dplyr::select(df_id) %>%
+        dplyr::select("df_id") %>%
         dplyr::filter(!is.na(df_id)) %>%
-        dplyr::pull(df_id)
+        dplyr::pull("df_id")
     } else {
-      return(as.character(NA))
+      return(NA_character_)
     }
 
   } else if (nrow(graph_df) == 0) {
-    return(as.character(NA))
+    return(NA_character_)
   }
 }
 

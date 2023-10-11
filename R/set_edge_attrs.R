@@ -174,7 +174,7 @@ set_edge_attrs <- function(
     if (!(edge_attr %in% colnames(edf))) {
       edf <-
         cbind(edf,
-              rep(as.character(NA), nrow(edf)))
+              rep(NA_character_, nrow(edf)))
 
       edf[, ncol(edf)] <-
         edf[, ncol(edf)]

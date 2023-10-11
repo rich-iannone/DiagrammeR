@@ -440,7 +440,7 @@ test_that("Identifying the graph as weighted is possible", {
     select_edges() %>%
     set_edge_attrs_ws(
       edge_attr = "weight",
-      value = c(3, 5, as.numeric(NA), 9, as.numeric(NA))) %>%
+      value = c(3, 5, NA_real_, 9, NA_real_)) %>%
     clear_selection()
 
   # Expect that this graph won't be

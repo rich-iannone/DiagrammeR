@@ -138,7 +138,7 @@ delete_global_graph_attrs <- function(
     global_attrs_to_remove <-
       dplyr::tibble(
         attr = as.character(attr),
-        value = as.character(NA),
+        value = NA_character_,
         attr_type = as.character(attr_type)) %>%
       as.data.frame(stringsAsFactors = FALSE)
 

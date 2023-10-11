@@ -196,7 +196,8 @@ test_that("Getting minimum eccentricity is possible", {
   expect_equal(
     get_min_eccentricity(
       graph = create_graph()),
-    as.numeric(NA))
+    NA_real_
+  )
 })
 
 test_that("Getting graph eccentricity is possible", {
@@ -359,7 +360,7 @@ test_that("Getting graph adhesion is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    get_adhesion(graph_empty), as.numeric(NA))
+    get_adhesion(graph_empty), NA_real_)
 })
 
 test_that("Getting graph girth is possible", {
@@ -388,7 +389,7 @@ test_that("Getting graph girth is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    get_girth(graph_empty), as.numeric(NA))
+    get_girth(graph_empty), NA_real_)
 })
 
 test_that("Getting the mean distance for a graph is possible", {
@@ -417,7 +418,7 @@ test_that("Getting the mean distance for a graph is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    get_mean_distance(graph_empty), as.numeric(NA))
+    get_mean_distance(graph_empty), NA_real_)
 })
 
 test_that("Getting the reciprocity for a graph is possible", {
@@ -499,7 +500,7 @@ test_that("Getting the minimum cut between nodes is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    get_min_cut_between(graph_empty), as.numeric(NA))
+    get_min_cut_between(graph_empty), NA_real_)
 })
 
 test_that("Getting a count of graph automorphisms is possible", {
@@ -528,7 +529,7 @@ test_that("Getting a count of graph automorphisms is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    count_automorphisms(graph_empty), as.numeric(NA))
+    count_automorphisms(graph_empty), NA_real_)
 })
 
 test_that("Getting a count of asymmetric node pairs is possible", {
@@ -557,7 +558,7 @@ test_that("Getting a count of asymmetric node pairs is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    count_asymmetric_node_pairs(graph_empty), as.numeric(NA))
+    count_asymmetric_node_pairs(graph_empty), NA_real_)
 })
 
 test_that("Getting a count of mutual node pairs is possible", {
@@ -586,7 +587,7 @@ test_that("Getting a count of mutual node pairs is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    count_mutual_node_pairs(graph_empty), as.numeric(NA))
+    count_mutual_node_pairs(graph_empty), NA_real_)
 })
 
 test_that("Getting a count of unconnected node pairs is possible", {
@@ -615,5 +616,5 @@ test_that("Getting a count of unconnected node pairs is possible", {
 
   # Expect NA for the empty graph
   expect_equal(
-    count_unconnected_node_pairs(graph_empty), as.numeric(NA))
+    count_unconnected_node_pairs(graph_empty), NA_real_)
 })

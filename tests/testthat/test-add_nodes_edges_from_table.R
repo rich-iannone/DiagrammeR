@@ -858,6 +858,6 @@ test_that("adding nodes from several table columns to a graph is possible", {
   # for the last three nodes (others are not set)
   expect_equal(
     graph %>% get_node_df() %>% .$type,
-    c(rep(as.character(NA), 12),
+    c(rep(NA_character_, 12),
       rep("new", 3)))
 })

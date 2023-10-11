@@ -138,15 +138,15 @@ add_n_nodes_ws <- function(
   }
 
   if (is.null(type)) {
-    type <- as.character(NA)
+    type <- NA_character_
   }
 
   if (is.null(label)) {
-    label <- as.character(NA)
+    label <- NA_character_
   }
 
   if (is.null(rel)) {
-    rel <- as.character(NA)
+    rel <- NA_character_
   }
 
   # Get the number of nodes in the graph
@@ -290,13 +290,13 @@ add_n_nodes_ws <- function(
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
       node_data_tbl <-
         node_data_tbl %>%
-        dplyr::select(-id)
+        dplyr::select(-"id")
     }
   }
 

@@ -345,12 +345,12 @@ test_that("adding several nodes to a graph at once is possible", {
   # Expect that no `type` values have been set
   expect_equal(
     get_node_df(graph)[, 2],
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 
   # Expect that no `label` values have been set
   expect_equal(
     get_node_df(graph)[, 3],
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 
   # Create a graph with 10 nodes of a specified type
   graph <- create_graph()
@@ -380,7 +380,7 @@ test_that("adding several nodes to a graph at once is possible", {
   # Expect that `label` values have not been set
   expect_equal(
     get_node_df(graph)[, 3],
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 })
 
 test_that("adding several nodes to a graph at once (with extra attrs) is possible", {
@@ -403,12 +403,12 @@ test_that("adding several nodes to a graph at once (with extra attrs) is possibl
   # Expect that no `type` values have been set
   expect_equal(
     get_node_df(graph)[, 2],
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 
   # Expect that no `label` values have been set
   expect_equal(
     get_node_df(graph)[, 3],
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 })
 
 test_that("adding several nodes from a selected node is possible", {
@@ -458,7 +458,7 @@ test_that("adding several nodes from a selected node is possible", {
   # for any of the edges
   expect_equal(
     graph$edges_df$rel,
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 
   # Create another empty graph
   graph <- create_graph()
@@ -544,7 +544,7 @@ test_that("adding several nodes to a selected node is possible", {
   # for any of the edges
   expect_equal(
     graph$edges_df$rel,
-    rep(as.character(NA), 10))
+    rep(NA_character_, 10))
 
   # Create another empty graph
   graph <- create_graph()
@@ -611,7 +611,7 @@ test_that("adding several edges with a string is possible", {
   # for any of the edges
   expect_equal(
     graph$edges_df$rel,
-    rep(as.character(NA), 9))
+    rep(NA_character_, 9))
 
   # Create another empty graph
   graph <- create_graph()
@@ -749,7 +749,7 @@ test_that("adding node clones is possible", {
   # have NA `label` values
   expect_equal(
     ndf_2[4:6, 3],
-    rep(as.character(NA), 3))
+    rep(NA_character_, 3))
 })
 
 test_that("adding node clones with a selection is possible", {

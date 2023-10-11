@@ -84,7 +84,7 @@ create_node_df <- function(
   }
 
   if (is.null(type)) {
-    type <- rep(as.character(NA), n)
+    type <- rep(NA_character_, n)
   }
 
   if (!is.null(type)) {
@@ -99,7 +99,7 @@ create_node_df <- function(
     if (length(type) > 1 &
         length(type) < n) {
       type <-
-        c(type, rep(as.character(NA), (n - length(type))))
+        c(type, rep(NA_character_, (n - length(type))))
     }
 
     # Trim vectors with number of values exceeding the
@@ -146,7 +146,7 @@ create_node_df <- function(
 
   # Interpret node label values
   if (is.null(label)) {
-    label <- rep(as.character(NA), n)
+    label <- rep(NA_character_, n)
   } else if (inherits(label, "numeric") |
              inherits(label, "character")) {
     label <- as.character(label)
@@ -155,7 +155,7 @@ create_node_df <- function(
     if (label == TRUE) {
       label <- as.character(1:n)
     } else {
-      label <- rep(as.character(NA), n)
+      label <- rep(NA_character_, n)
     }
   }
 

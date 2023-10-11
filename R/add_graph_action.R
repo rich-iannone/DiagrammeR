@@ -125,7 +125,7 @@ add_graph_action <- function(
       action_index = ifelse(nrow(graph$graph_actions) == 0, 1,
                             max(graph$graph_actions$action_index) + 1),
       action_name = ifelse(!is.null(action_name), action_name,
-                           as.character(NA)),
+                           NA_character_),
       expression = char_expr,
       stringsAsFactors = FALSE)
 

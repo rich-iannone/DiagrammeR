@@ -152,7 +152,7 @@ add_edge <- function(
     max()
 
   if (is.null(rel)) {
-    rel <- as.character(NA)
+    rel <- NA_character_
   }
 
   # Collect edge aesthetic attributes

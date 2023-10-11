@@ -95,7 +95,7 @@ add_forward_edges_ws <- function(
 
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
-    rel <- as.character(NA)
+    rel <- NA_character_
   }
 
   # Get a vector of edges available in the

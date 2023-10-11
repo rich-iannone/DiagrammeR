@@ -347,7 +347,7 @@ trav_in <- function(
     nodes <-
       nodes %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::select(id, type, label, dplyr::everything()) %>%
+      dplyr::relocate("id", "type", "label") %>%
       dplyr::arrange(id) %>%
       as.data.frame(stringsAsFactors = FALSE)
 

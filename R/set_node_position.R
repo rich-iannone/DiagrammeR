@@ -142,7 +142,7 @@ set_node_position <- function(
   if (!("x" %in% colnames(ndf))) {
     ndf <-
       ndf %>%
-      dplyr::mutate(x = as.numeric(NA))
+      dplyr::mutate(x = NA_real_)
   }
 
   # If the `y` node attribute doesn't exist, create
@@ -150,7 +150,7 @@ set_node_position <- function(
   if (!("y" %in% colnames(ndf))) {
     ndf <-
       ndf %>%
-      dplyr::mutate(y = as.numeric(NA))
+      dplyr::mutate(y = NA_real_)
   }
 
   if (use_labels == TRUE) {

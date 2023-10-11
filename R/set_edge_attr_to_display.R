@@ -190,7 +190,7 @@ set_edge_attr_to_display <- function(
 
     display_col <-
       dplyr::case_when(
-        display_col == "is_na" ~ as.character(NA),
+        display_col == "is_na" ~ NA_character_,
         TRUE ~ display_col) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
@@ -206,8 +206,7 @@ set_edge_attr_to_display <- function(
   # modify the ordering of the columns
   edf <-
     dplyr::bind_cols(edf, display_col) %>%
-    dplyr::select(
-      id, from, to, rel, display, dplyr::everything())
+    dplyr::relocate(id, from, to, rel, display)
 
   # Replace the graph's edge data frame with `edf`
   graph$edges_df <- edf

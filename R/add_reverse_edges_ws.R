@@ -76,7 +76,7 @@ add_reverse_edges_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -84,7 +84,7 @@ add_reverse_edges_ws <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -92,7 +92,7 @@ add_reverse_edges_ws <- function(
   }
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
+  if (!graph_contains_edge_selection(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -104,7 +104,7 @@ add_reverse_edges_ws <- function(
 
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
-    rel <- as.character(NA)
+    rel <- NA_character_
   }
 
   # Get a vector of edges available in the
