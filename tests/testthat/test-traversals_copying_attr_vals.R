@@ -1,4 +1,4 @@
-context("Copying attribute values as part of a traversal")
+# Copying attribute values as part of a traversal
 
 test_that("copying values with `trav_out_edge()` works", {
 

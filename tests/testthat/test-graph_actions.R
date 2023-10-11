@@ -1,4 +1,4 @@
-context("Using graph actions")
+# Using graph actions")
 
 test_that("actions can be added to a graph object", {
 

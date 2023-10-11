@@ -1,4 +1,4 @@
-context("Generate dot syntax from graph objects")
+# Generate dot syntax from graph objects
 
 # helper functions
 node <- function(id, label = NA) {

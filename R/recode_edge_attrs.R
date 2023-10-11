@@ -63,7 +63,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 recode_edge_attrs <- function(
     graph,

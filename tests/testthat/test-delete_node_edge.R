@@ -1,4 +1,4 @@
-context("Deletion of nodes and edges from an existing graph")
+# Deletion of nodes and edges from an existing graph
 
 test_that("nodes and edges can be deleted from a graph", {
 

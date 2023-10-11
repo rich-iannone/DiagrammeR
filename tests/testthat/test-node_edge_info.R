@@ -1,4 +1,4 @@
-context("Getting info about nodes and edges")
+# Getting info about nodes and edges
 
 test_that("getting info about a graph's nodes is possible", {
 

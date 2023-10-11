@@ -83,7 +83,6 @@
 #'
 #' @family Edge creation and removal
 #'
-#' @import rlang
 #' @export
 add_edges_from_table <- function(
     graph,
@@ -103,7 +102,7 @@ add_edges_from_table <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -111,7 +110,7 @@ add_edges_from_table <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -210,8 +209,8 @@ add_edges_from_table <- function(
     dplyr::left_join(
       ndf %>% dplyr::select(id, !!from_to_map),
       by = stats::setNames(from_to_map, from_col)) %>%
-    dplyr::select(id) %>%
-    dplyr::rename(from = id) %>%
+    dplyr::select("id") %>%
+    dplyr::rename(from = "id") %>%
     dplyr::mutate(from = as.integer(from))
 
   # Get the `to` col
@@ -221,8 +220,8 @@ add_edges_from_table <- function(
     dplyr::left_join(
       ndf %>% dplyr::select(id, !!from_to_map),
       by = stats::setNames(from_to_map, to_col)) %>%
-    dplyr::select(id) %>%
-    dplyr::rename(to = id) %>%
+    dplyr::select("id") %>%
+    dplyr::rename(to = "id") %>%
     dplyr::mutate(to = as.integer(to))
 
   # Combine the `from` and `to` columns together along
@@ -236,9 +235,7 @@ add_edges_from_table <- function(
   # Add in a `rel` column (filled with NAs) if it's not
   # already in the table
   if (!("rel" %in% colnames(edf))) {
-    edf <-
-      edf %>%
-      dplyr::mutate(rel = NA_character_)
+    edf$rel <- NA_character_
   }
 
   # Use the `select()` function to arrange the
@@ -261,10 +258,8 @@ add_edges_from_table <- function(
 
   # Optionally set the `rel` attribute with a single
   # value repeated down
-  if (is.null(rel_col) & !is.null(set_rel)) {
-    edf <-
-      edf %>%
-      dplyr::mutate(rel = as.character(set_rel))
+  if (is.null(rel_col) && !is.null(set_rel)) {
+    edf$rel <- as.character(set_rel)
   }
 
   # If values for `drop_cols` provided, filter the CSV

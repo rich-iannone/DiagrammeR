@@ -1,4 +1,4 @@
-context("Determining neighbors and non-neighbors of nodes")
+# Determining neighbors and non-neighbors of nodes")
 
 test_that("Getting all neighbors of one or more nodes is possible", {
 

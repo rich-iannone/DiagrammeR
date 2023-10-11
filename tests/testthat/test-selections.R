@@ -1,8 +1,4 @@
-context("Selecting nodes or edges in a graph object")
-
 test_that("selecting a node in a graph is possible", {
-
-  library(magrittr)
 
   # Create a simple graph
   nodes <-

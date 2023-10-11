@@ -1,4 +1,4 @@
-context("Get graph metrics")
+# Get graph metrics
 
 test_that("Getting a degree histogram is possible", {
 

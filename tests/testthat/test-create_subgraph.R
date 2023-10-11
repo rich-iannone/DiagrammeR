@@ -1,4 +1,4 @@
-context("Creating a subgraph")
+# Creating a subgraph
 
 test_that("a subgraph can be created and such an object is correct", {
 

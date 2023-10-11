@@ -1,4 +1,4 @@
-context("Performing the dfs and bfs algorithms")
+# Performing the dfs and bfs algorithms
 
 test_that("the dfs algorithm is functional", {
 

@@ -60,7 +60,6 @@
 #'     color == "blue" &
 #'     value > 5)
 #'
-#' @import rlang
 #' @export
 get_edge_ids <- function(
     graph,
@@ -96,5 +95,5 @@ get_edge_ids <- function(
     return(NA)
   }
 
-  edges_df %>% dplyr::pull(id)
+  edges_df %>% dplyr::pull("id")
 }

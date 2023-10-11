@@ -51,7 +51,6 @@
 #'   get_node_attrs_ws(
 #'     node_attr = value)
 #'
-#' @import rlang
 #' @export
 get_node_attrs_ws <- function(
     graph,

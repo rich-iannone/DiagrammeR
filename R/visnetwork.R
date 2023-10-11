@@ -38,7 +38,6 @@
 #'
 #' # visnetwork(graph)
 #'
-#' @import visNetwork
 #' @export
 visnetwork <- function(graph) {
 

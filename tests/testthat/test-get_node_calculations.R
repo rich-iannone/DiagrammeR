@@ -1,4 +1,4 @@
-context("Get node calculations")
+# Get node calculations
 
 test_that("Getting betweenness is possible", {
 

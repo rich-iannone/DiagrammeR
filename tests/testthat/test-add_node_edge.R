@@ -1,4 +1,4 @@
-context("Adding nodes and/or edges to an existing graph object")
+# Adding nodes and/or edges to an existing graph object
 
 test_that("adding a node to a graph is possible", {
 

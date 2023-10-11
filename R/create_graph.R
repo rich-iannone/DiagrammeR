@@ -306,7 +306,7 @@ create_graph <- function(
         d_e = nrow(graph$edges_df)
       )
 
-  } else if (!is.null(nodes_df) & is.null(edges_df)) {
+  } else if (!is.null(nodes_df) && is.null(edges_df)) {
 
     # If only an ndf is provided, create a graph
     # just containing nodes

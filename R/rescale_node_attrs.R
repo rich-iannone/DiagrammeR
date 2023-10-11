@@ -85,7 +85,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 rescale_node_attrs <- function(
     graph,

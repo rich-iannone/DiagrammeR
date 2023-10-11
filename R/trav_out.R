@@ -205,7 +205,6 @@
 #' # frame after this change
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @export
 trav_out <- function(
     graph,

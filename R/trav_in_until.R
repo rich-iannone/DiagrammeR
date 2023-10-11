@@ -99,7 +99,6 @@
 #' # Get the graph's node selection
 #' graph %>% get_selection()
 #'
-#' @import rlang
 #' @export
 trav_in_until <- function(
     graph,

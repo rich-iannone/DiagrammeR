@@ -1,8 +1,6 @@
-context("Getting node IDs in traversal paths")
+# Getting node IDs in traversal paths
 
 test_that("getting lists of node IDs using `get_paths()` is possible", {
-
-  library(magrittr)
 
   # Create a simple graph
   graph <-

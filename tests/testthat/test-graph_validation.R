@@ -1,4 +1,4 @@
-context("Graph validation")
+# Graph validation")
 
 test_that("Using an invalid graph with trigger an error", {
 

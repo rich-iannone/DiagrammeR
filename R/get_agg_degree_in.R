@@ -54,7 +54,6 @@
 #'     agg = "mean",
 #'     conditions = value > 5.0)
 #'
-#' @import rlang
 #' @export
 get_agg_degree_in <- function(
     graph,

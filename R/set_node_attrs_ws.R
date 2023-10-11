@@ -50,7 +50,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 set_node_attrs_ws <- function(
     graph,

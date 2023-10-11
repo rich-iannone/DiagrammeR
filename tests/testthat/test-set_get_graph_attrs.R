@@ -1,5 +1,3 @@
-context("Setting graph/global attributes")
-
 test_that("Setting a graph name can be done", {
 
   # Create an empty graph

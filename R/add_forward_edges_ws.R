@@ -70,7 +70,7 @@ add_forward_edges_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -78,7 +78,7 @@ add_forward_edges_ws <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -86,7 +86,7 @@ add_forward_edges_ws <- function(
   }
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
+  if (!graph_contains_edge_selection(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -102,10 +102,10 @@ add_forward_edges_ws <- function(
   # graph's selection
   edges_in_selection <-
     graph$edge_selection %>%
-    dplyr::select(from, to)
+    dplyr::select("from", "to")
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- count_edges(graph)
 
   # Add new edges to the graph for every edge
   # in the graph's active selection

@@ -46,7 +46,6 @@
 #' # attribute had been copied
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
 #' @family Edge creation and removal
 #' @export
 copy_edge_attrs <- function(

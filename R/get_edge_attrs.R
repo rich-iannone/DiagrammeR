@@ -68,7 +68,6 @@
 #'     from = c(1, 2),
 #'       to = c(2, 3))
 #'
-#' @import rlang
 #' @export
 get_edge_attrs <- function(
     graph,

@@ -75,7 +75,6 @@
 #'   get_edge_attrs_ws(
 #'     edge_attr = value)
 #'
-#' @import rlang
 #' @export
 get_edge_attrs_ws <- function(
     graph,

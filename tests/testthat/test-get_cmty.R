@@ -1,4 +1,4 @@
-context("Community detection algorithms")
+# Community detection algorithms
 
 test_that("the edge betweeness algorithm is functional", {
 

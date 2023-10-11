@@ -41,7 +41,6 @@
 #'     node_attr = value,
 #'     nodes = c(1, 3))
 #'
-#' @import rlang
 #' @export
 get_node_attrs <- function(
     graph,

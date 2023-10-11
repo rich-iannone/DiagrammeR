@@ -1,4 +1,4 @@
-context("Getting counts of nodes and edges in graph objects")
+# Getting counts of nodes and edges in graph objects
 
 test_that("getting a node count (with `count_nodes()`) is possible", {
 

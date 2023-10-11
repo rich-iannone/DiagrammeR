@@ -1,4 +1,4 @@
-context("Adding node and/or edge data frames to an existing graph object")
+# Adding node and/or edge data frames to an existing graph object
 
 test_that("adding a node df to a graph is possible", {
 

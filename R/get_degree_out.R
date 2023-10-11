@@ -50,7 +50,7 @@ get_degree_out <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -62,7 +62,7 @@ get_degree_out <- function(
 
   # Get the outdegree values for each of the
   # graph's nodes
-  if (normalized == TRUE) {
+  if (normalized) {
     outdegree_values <-
       igraph::degree(
         ig_graph,
@@ -70,7 +70,7 @@ get_degree_out <- function(
         normalized = TRUE)
   }
 
-  if (normalized == FALSE) {
+  if (!normalized) {
     outdegree_values <-
       igraph::degree(
         ig_graph,

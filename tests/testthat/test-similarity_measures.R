@@ -1,5 +1,3 @@
-context("Similarity measures for whole graphs")
-
 test_that("the dice similarity algorithm is functional", {
 
   # Create a random graph

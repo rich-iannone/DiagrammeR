@@ -1,5 +1,3 @@
-context("Getting information on a graph series")
-
 test_that("graph series information can be obtained", {
 
   # Create an empty graph series

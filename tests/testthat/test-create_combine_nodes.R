@@ -1,4 +1,4 @@
-context("Creating and combining node data frames")
+# Creating and combining node data frames
 
 test_that("a correct node data frame is generated", {
   # Create 'nodes_1' node data frame

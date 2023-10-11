@@ -1,4 +1,4 @@
-context("Getting a table of X11 color names and hexadecimal values")
+# "Getting a table of X11 color names and hexadecimal values"
 
 test_that("a data frame X11 color names and hexadecimal values can be made", {
 

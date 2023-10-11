@@ -90,7 +90,7 @@ trigger_graph_actions <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,

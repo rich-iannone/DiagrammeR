@@ -94,7 +94,7 @@ trav_reverse_edge <- function(
   }
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  if (!graph_contains_edges(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -102,7 +102,7 @@ trav_reverse_edge <- function(
   }
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
+  if (!graph_contains_edge_selection(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -118,7 +118,7 @@ trav_reverse_edge <- function(
 
   # Get the available reverse edges
   reverse_edges_df <- data.frame(to = edges_from, from = edges_to)
-  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df)
+  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df, by = c("from", "to"))
 
   # Add the reverse edges to the existing,
   # selected edges
@@ -126,7 +126,7 @@ trav_reverse_edge <- function(
     edges_df <- data.frame(to = edges_to, from = edges_from)
     edges <-
       edf %>%
-      dplyr::inner_join(edges_df) %>%
+      dplyr::inner_join(edges_df, by = c("from", "to")) %>%
       dplyr::bind_rows(reverse_edges)
   } else {
     edges <- reverse_edges
@@ -135,8 +135,7 @@ trav_reverse_edge <- function(
   # Modify `edges` to create a correct esdf
   edges <-
     edges %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id) %>%
+    dplyr::select(edge = "id", "from", "to") %>%
     dplyr::arrange(edge)
 
   # Add the edge ID values to the active selection

@@ -117,7 +117,6 @@
 #' #    end
 #' # ")
 #'
-#' @import htmlwidgets
 #' @export
 mermaid <- function(
     diagram = "",

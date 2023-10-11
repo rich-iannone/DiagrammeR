@@ -81,7 +81,6 @@
 #' # `3`->`1` have values for `value` > 3.0
 #' graph %>% get_selection()
 #'
-#' @import rlang
 #' @export
 select_edges <- function(
     graph,

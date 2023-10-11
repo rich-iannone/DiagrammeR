@@ -1,4 +1,4 @@
-context("Rescaling node or edge attribute values in a graph object")
+# Rescaling node or edge attribute values in a graph object
 
 test_that("rescaling node attributes in a graph is possible", {
 

@@ -76,7 +76,7 @@ add_edges_w_string <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -84,7 +84,7 @@ add_edges_w_string <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -123,7 +123,7 @@ add_edges_w_string <- function(
 
   # Split the edge expressions in an undirected
   # graph into `from` and `to` vectors
-  if (graph$directed == FALSE) {
+  if (!graph$directed) {
     from <-
       sapply(strsplit(edges_split, "--"), "[[", 1)
 

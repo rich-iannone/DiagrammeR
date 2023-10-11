@@ -74,7 +74,6 @@
 #' # for `value` greater than 3.0
 #' graph %>% get_selection()
 #'
-#' @import rlang
 #' @export
 select_nodes <- function(
     graph,

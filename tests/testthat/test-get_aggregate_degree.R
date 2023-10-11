@@ -1,4 +1,4 @@
-context("Get aggregate degree values")
+# Get aggregate degree values
 
 test_that("Getting aggregated indegree values is possible", {
 

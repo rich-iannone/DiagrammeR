@@ -1,4 +1,4 @@
-context("Caching attributes")
+# Caching attributes
 
 test_that("Setting a cache is possible", {
 
@@ -28,7 +28,7 @@ test_that("Setting a cache is possible", {
 
   # Expect that the column `closeness` in the df
   # is equivalent to the values in the cache
-  expect_equivalent(
+  expect_equal(
     closeness_df$closeness,
     graph_cache$cache$closeness_vector)
 
@@ -62,7 +62,7 @@ test_that("Setting a cache is possible", {
 
   # Expect that the cache (originating from a vector)
   # is equivalent to the `closeness_vec` vector
-  expect_equivalent(
+  expect_equal(
     closeness_vec,
     graph_cache_from_vec$cache$closeness_vector)
 
@@ -79,7 +79,7 @@ test_that("Setting a cache is possible", {
   # Expect that an unnamed cache
   # object with no other caches
   # available will have the name `1`
-  expect_equivalent(
+  expect_equal(
     closeness_df$closeness,
     graph_cache_no_name$cache$`1`)
 
@@ -137,7 +137,7 @@ test_that("Getting a cache is possible", {
 
   # Expect that the cached values in `cached` are
   # equivalent to those in `graph$cache`
-  expect_equivalent(
+  expect_equal(
     cached, graph_cache$cache$closeness_vector)
 
   # Get the last cached vector

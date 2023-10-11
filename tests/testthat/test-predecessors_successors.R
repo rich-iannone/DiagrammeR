@@ -1,4 +1,4 @@
-context("Getting info about a node's predecessors and successors")
+# Getting info about a node's predecessors and successors
 
 test_that("getting a node's predecessors/successors is possible", {
 

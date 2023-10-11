@@ -54,7 +54,7 @@ add_edge_df <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -62,7 +62,7 @@ add_edge_df <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,

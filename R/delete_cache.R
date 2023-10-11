@@ -39,7 +39,6 @@
 #'   graph %>%
 #'   delete_cache()
 #'
-#' @import glue
 #' @export
 delete_cache <- function(
     graph,
@@ -80,7 +79,7 @@ delete_cache <- function(
 
     } else {
 
-      if (name %in% (graph$cache %>% names())) {
+      if (name %in% names(graph$cache)) {
 
         graph$cache[name] <- NULL
 

@@ -1,4 +1,4 @@
-context("Creating and manipulating graph series objects")
+# Creating and manipulating graph series objects")
 
 test_that("creating an empty series is possible", {
 
@@ -109,13 +109,13 @@ test_that("adding graphs to a series is also possible", {
 
   # Expect that the graphs within the graph series object
   # are the same as those outside the series
-  expect_equivalent(
+  expect_equal(
     graph_1, series$graphs[[1]])
 
-  expect_equivalent(
+  expect_equal(
     graph_2, series$graphs[[2]])
 
-  expect_equivalent(
+  expect_equal(
     graph_3, series$graphs[[3]])
 
   # Create a series with a graph
@@ -355,7 +355,7 @@ test_that("Getting a graph from a series is possible", {
 
   # Expect the equivalent object among
   # `extracted_graph` and `graph_2`
-  expect_equivalent(
+  expect_equal(
     extracted_graph, graph_2)
 
   # Expect an error if extracting a graph from

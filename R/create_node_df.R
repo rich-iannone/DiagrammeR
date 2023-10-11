@@ -147,13 +147,12 @@ create_node_df <- function(
   # Interpret node label values
   if (is.null(label)) {
     label <- rep(NA_character_, n)
-  } else if (inherits(label, "numeric") |
-             inherits(label, "character")) {
+  } else if (rlang::inherits_any(label, c("numeric", "character"))) {
     label <- as.character(label)
-  } else if (inherits(label, "logical") &
+  } else if (inherits(label, "logical") &&
              length(label) == 1) {
-    if (label == TRUE) {
-      label <- as.character(1:n)
+    if (label) {
+      label <- as.character(seq_len(n))
     } else {
       label <- rep(NA_character_, n)
     }

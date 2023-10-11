@@ -1,4 +1,4 @@
-context("Colorizing based on node and edge attrs")
+# Colorizing based on node and edge attrs
 
 test_that("Adding color based on node attributes is possible", {
 

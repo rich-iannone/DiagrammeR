@@ -1,4 +1,4 @@
-context("Creating objects with DiagrammeR, mermaid, and grViz")
+# Creating objects with DiagrammeR, mermaid, and grViz")
 
 test_that("htmlwidgets object can be created", {
 

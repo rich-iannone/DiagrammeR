@@ -1,4 +1,4 @@
-context("Getting degree information for all nodes in a graph")
+# Getting degree information for all nodes in a graph
 
 test_that("a degree data frame can be generated", {
 

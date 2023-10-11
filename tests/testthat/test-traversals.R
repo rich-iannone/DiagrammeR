@@ -1,4 +1,4 @@
-context("Traversals through nodes and edges in a graph object")
+# Traversals through nodes and edges in a graph object
 
 test_that("simple traversals are possible", {
 

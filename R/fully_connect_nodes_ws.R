@@ -81,7 +81,7 @@ fully_connect_nodes_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  if (!graph_object_valid(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -89,7 +89,7 @@ fully_connect_nodes_ws <- function(graph) {
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -97,7 +97,7 @@ fully_connect_nodes_ws <- function(graph) {
   }
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
+  if (!graph_contains_node_selection(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -115,7 +115,7 @@ fully_connect_nodes_ws <- function(graph) {
     utils::combn(suppressMessages(get_selection(graph = graph)), 2) %>%
     t() %>%
     as.data.frame() %>%
-    dplyr::rename(from = V1, to = V2)
+    dplyr::rename(from = "V1", to = "V2")
 
   # Determine the complete set of edges
   # to add to the graph
@@ -138,7 +138,7 @@ fully_connect_nodes_ws <- function(graph) {
       dplyr::setdiff(
         edge_candidates,
         edf %>%
-          dplyr::select(from, to))
+          dplyr::select("from", "to"))
   }
 
   # Add new edges to the graph for every edge

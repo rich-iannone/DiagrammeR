@@ -65,7 +65,7 @@ get_common_nbrs <- function(
 
   if (length(common_nbrs) == 0) {
     return(NA)
-  } else {
-    return(sort(as.integer(common_nbrs)))
   }
+
+  sort(as.integer(common_nbrs))
 }

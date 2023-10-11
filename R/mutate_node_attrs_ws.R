@@ -119,7 +119,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 mutate_node_attrs_ws <- function(
     graph,

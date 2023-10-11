@@ -1,4 +1,4 @@
-context("Getting node IDs from the entire graph or within edges")
+# Getting node IDs from the entire graph or within edges")
 
 test_that("getting node IDs from various objects is possible", {
 

@@ -1,4 +1,4 @@
-context("Is this thing what we think it is?")
+# Is this thing what we think it is?")
 
 test_that("Detecting a directed or undirected graph is possible", {
 

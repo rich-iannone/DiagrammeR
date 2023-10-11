@@ -77,7 +77,6 @@
 #'
 #' @family Node creation and removal
 #'
-#' @import rlang
 #' @export
 recode_node_attrs <- function(
     graph,
