@@ -84,7 +84,7 @@ do_bfs <- function(
   }
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  if (!graph_contains_nodes(graph)) {
 
     emit_error(
       fcn_name = fcn_name,
@@ -107,7 +107,7 @@ do_bfs <- function(
       igraph::bfs(
         graph = ig_graph,
         root = node,
-        neimode = "all")
+        mode = "all")
 
   } else if (direction == "out") {
 
@@ -115,7 +115,7 @@ do_bfs <- function(
       igraph::bfs(
         graph = ig_graph,
         root = node,
-        neimode = "out")
+        mode = "out")
 
   } else if (direction == "in") {
 
@@ -123,7 +123,7 @@ do_bfs <- function(
       igraph::bfs(
         graph = ig_graph,
         root = node,
-        neimode = "in")
+        mode = "in")
 
   } else if (!(direction %in% c("all", "out", "in"))) {
 

@@ -238,14 +238,14 @@ add_edges_from_table <- function(
   if (!("rel" %in% colnames(edf))) {
     edf <-
       edf %>%
-      dplyr::mutate(rel = as.character(NA))
+      dplyr::mutate(rel = NA_character_)
   }
 
   # Use the `select()` function to arrange the
   # column rows and then convert to a data frame
   edf <-
     edf %>%
-    dplyr::select(from, to, rel, dplyr::everything()) %>%
+    dplyr::relocate(from, to, rel) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
   # Remove any rows where there is an NA in either

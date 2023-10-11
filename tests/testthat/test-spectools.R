@@ -14,7 +14,7 @@ test_that("the specification tools are functional", {
   replaced_spec <- grViz(replace_in_spec(spec))
 
   # Expect that the object inherits from 'grViz' and 'htmlwidget'
-  expect_is(
+  expect_s3_class(
     replaced_spec, c("grViz", "htmlwidget"))
 
   # Create a simple Graphviz graph specification and perform
@@ -42,7 +42,7 @@ test_that("the specification tools are functional", {
   replaced_spec <- grViz(replace_in_spec(spec))
 
   # Expect that the object inherits from 'grViz' and 'htmlwidget'
-  expect_is(
+  expect_s3_class(
     replaced_spec, c("grViz", "htmlwidget"))
 })
 

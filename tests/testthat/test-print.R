@@ -327,15 +327,13 @@ test_that("Describing if a graph is a simple graph works", {
     add_edges_w_string(
       edges = "1->2")
 
-  expect_true(
-    stringr::str_detect(
-      graph_simple %>% get_printed_output(2),
-      "simple"))
+  expect_match(
+    graph_simple %>% get_printed_output(2),
+    "simple")
 
-  expect_false(
-    stringr::str_detect(
-      graph_not_simple %>% get_printed_output(2),
-      "simple"))
+  expect_no_match(
+    graph_not_simple %>% get_printed_output(2),
+    "simple")
 })
 
 test_that("Describing if a graph is a connected or not works", {
@@ -349,15 +347,13 @@ test_that("Describing if a graph is a connected or not works", {
     create_graph() %>%
     add_n_nodes(n = 4)
 
-  expect_true(
-    stringr::str_detect(
-      graph_connected %>% get_printed_output(2),
-      " connected "))
+  expect_match(
+    graph_connected %>% get_printed_output(2),
+    " connected ")
 
-  expect_true(
-    stringr::str_detect(
-      graph_not_connected %>% get_printed_output(2),
-      " disconnected "))
+  expect_match(
+    graph_not_connected %>% get_printed_output(2),
+    " disconnected ")
 })
 
 test_that("The number of reported nodes is correct", {

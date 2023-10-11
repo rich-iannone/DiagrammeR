@@ -16,7 +16,7 @@ test_that("Converting to igraph is possible", {
     to_igraph(graph)
 
   # Expect that the new object is an igraph object
-  expect_is(
+  expect_s3_class(
     igraph_graph, "igraph")
 })
 
@@ -30,9 +30,8 @@ test_that("Changing to undirected mode is possible", {
   undirected_graph <-
     set_graph_undirected(graph)
 
-  # Expect the the graph is undirected
-  expect_true(
-    graph$directed)
+  # Expect the the graph is directed
+  expect_true(graph$directed)
 })
 
 test_that("Changing to directed mode is possible", {

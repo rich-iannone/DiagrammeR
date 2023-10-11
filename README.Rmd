@@ -24,12 +24,11 @@ library(DiagrammeR)
 
 <!-- badges: start -->
 <a href="https://cran.r-project.org/package=DiagrammeR"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status" /></a>
-<a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status" /></a>
+[![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
 <a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Coverage status" /></a>
 
 <a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/DiagrammeR" alt="Monthly Downloads"></a>
 <a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR" alt="Total Downloads"></a>
-
 <a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
 <!-- badges: end -->
 <hr style="color:transparent" />

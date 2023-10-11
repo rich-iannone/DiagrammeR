@@ -19,8 +19,7 @@ test_that("the dfs algorithm is functional", {
     do_dfs(node = 1)
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_all, "integer")
+  expect_type(dfs_all, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -39,8 +38,7 @@ test_that("the dfs algorithm is functional", {
     do_dfs()
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_all_no_start, "integer")
+  expect_type(dfs_all_no_start, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -56,8 +54,7 @@ test_that("the dfs algorithm is functional", {
       direction = "in")
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_in, "integer")
+  expect_type(dfs_in, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -78,8 +75,7 @@ test_that("the dfs algorithm is functional", {
       direction = "out")
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_out, "integer")
+  expect_type(dfs_out, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -123,8 +119,7 @@ test_that("the bfs algorithm is functional", {
     do_bfs(node = 1)
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_all, "integer")
+  expect_type(bfs_all, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -143,8 +138,7 @@ test_that("the bfs algorithm is functional", {
     do_bfs()
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_all_no_start, "integer")
+  expect_type(bfs_all_no_start, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -161,8 +155,7 @@ test_that("the bfs algorithm is functional", {
       direction = "in")
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_in, "integer")
+  expect_type(bfs_in, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
@@ -183,8 +176,7 @@ test_that("the bfs algorithm is functional", {
       direction = "out")
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_out, "integer")
+  expect_type(bfs_out, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph

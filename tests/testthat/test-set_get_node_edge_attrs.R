@@ -59,8 +59,7 @@ test_that("setting node attributes is possible", {
       values = 5)
 
   # Expect that all nodes have the attribute set
-  expect_true(
-    all(graph_set_all$nodes_df$value == 5))
+  expect_in(graph_set_all$nodes_df$value, 5)
 
   # Select node `1` and apply a node attribute
   # using that node selection
@@ -150,9 +149,7 @@ test_that("setting edge attributes is possible", {
       values = 5)
 
   # Expect that all edges have the attribute set
-  expect_true(
-    all(
-      graph_set_all$edges_df$value == 5))
+  expect_in(graph_set_all$edges_df$value, 5)
 
   # Select edge `1`->`2` and apply an edge attribute using that
   # edge selection
@@ -191,17 +188,12 @@ test_that("Getting node attributes is possible", {
       graph = graph,
       node_attr = value)
 
-  # Expect a vector of integer values
-  expect_is(
-    all_nodes, "integer")
-
-  # Expect the vector to have length 4
-  expect_equal(
-    length(all_nodes), 4)
-
+  # Expect a vector of integer values (length 4)
+  expect_type(all_nodes, "integer")
+  expect_length(all_nodes, 4)
   # Expect certain names to be in the vector
-  expect_true(
-    all(1:4 %in% names(all_nodes)))
+
+  expect_named(all_nodes, as.character(1:4))
 
   # Expect certain values to be in the vector
   expect_equal(
@@ -223,13 +215,9 @@ test_that("Getting node attributes is possible", {
       node_attr = value,
       nodes = c(1, 3))
 
-  # Expect the vector to have length 2
-  expect_equal(
-    length(nodes_1_3), 2)
-
-  # Expect certain names to be in the vector
-  expect_true(
-    all(c(1, 3) %in% names(nodes_1_3)))
+  # Expect the vector to have length 2 (named 1, 3)
+  expect_length(nodes_1_3, 2)
+  expect_named(nodes_1_3, c("1", "3"))
 
   # Expect certain values to be in the vector
   expect_equal(
@@ -291,17 +279,17 @@ test_that("Getting edge attributes is possible", {
       edge_attr = value)
 
   # Expect a numeric vector
-  expect_is(
-    all_edges, "numeric")
+  expect_type(
+    all_edges, "double")
 
   # Expect the vector to have length 4
-  expect_equal(
-    length(all_edges), 4)
+  expect_length(all_edges, 4)
 
   # Expect certain names to be in the vector
-  expect_true(
-    all(c("1->2", "2->3", "1->4", "4->3") %in%
-          names(all_edges)))
+  expect_contains(
+    names(all_edges),
+    c("1->2", "2->3", "1->4", "4->3")
+    )
 
   # Expect certain values to be in the vector
   expect_equal(
@@ -326,13 +314,13 @@ test_that("Getting edge attributes is possible", {
         to = c(2, 3))
 
   # Expect the vector to have length 2
-  expect_equal(
-    length(some_edges), 2)
+  expect_length(some_edges, 2)
 
   # Expect certain names to be in the vector
-  expect_true(
-    all(c("1->2", "2->3") %in%
-          names(some_edges)))
+  expect_contains(
+    names(some_edges),
+    c("1->2", "2->3")
+  )
 
   # Expect certain values to be in the vector
   expect_equal(
@@ -385,16 +373,16 @@ test_that("Getting node attributes with a selection is possible", {
       node_attr = value)
 
   # Expect a vector of integer values
-  expect_is(
-    nodes_1_3, "integer")
+  expect_type(nodes_1_3, "integer")
 
   # Expect the vector to have length 2
-  expect_equal(
-    length(nodes_1_3), 2)
+  expect_length(nodes_1_3, 2)
 
   # Expect certain names to be in the vector
-  expect_true(
-    all(c(1, 3) %in% names(nodes_1_3)))
+  expect_named(
+    nodes_1_3,
+    c("1", "3")
+  )
 
   # Expect certain values to be in the vector
   expect_equal(
@@ -471,16 +459,19 @@ test_that("Getting edge attributes with a selection is possible", {
       edge_attr = value)
 
   # Expect a numeric vector
-  expect_is(
-    edge_attr_values, "numeric")
+  expect_type(
+    edge_attr_values, "double")
 
   # Expect the vector to have length 2
-  expect_equal(
-    length(edge_attr_values), 2)
+  expect_length(edge_attr_values, 2)
 
   # Expect certain names to be in the vector
-  expect_true(
-    all(c("1->2", "2->3") %in% names(edge_attr_values)))
+  # expect_contains == expect_true(all(expected %in% object))
+  expect_named(
+    edge_attr_values,
+    c("1->2", "2->3"),
+    ignore.order = TRUE
+    )
 
   # Expect certain values to be in the vector
   expect_equal(

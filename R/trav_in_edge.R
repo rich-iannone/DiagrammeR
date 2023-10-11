@@ -337,9 +337,9 @@ trav_in_edge <- function(
       edges <-
         ndf_2 %>%
         dplyr::right_join(edf, c("id" = "to")) %>%
-        dplyr::rename(to = id) %>%
-        dplyr::rename(id = id.y) %>%
-        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::rename(to = "id") %>%
+        dplyr::rename(id = "id.y") %>%
+        dplyr::relocate("id", "from", "to", "rel") %>%
         dplyr::arrange(id)
     }
 
@@ -375,7 +375,7 @@ trav_in_edge <- function(
       # Reorder columns
       edges <-
         edges %>%
-        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::relocate("id", "from", "to", "rel") %>%
         dplyr::arrange(id)
     }
 

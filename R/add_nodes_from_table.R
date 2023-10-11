@@ -247,10 +247,10 @@ add_nodes_from_table <- function(
   # Move any additional columns from the
   # external table to `ndf`
   ndf <-
-    ndf %>%
     dplyr::bind_cols(
-      csv %>%
-        dplyr::select(columns_to_add))
+      ndf,
+      dplyr::select(csv, dplyr::all_of(columns_to_add))
+      )
 
   # Get the number of nodes in the graph
   nodes_graph_1 <- graph %>% count_nodes()

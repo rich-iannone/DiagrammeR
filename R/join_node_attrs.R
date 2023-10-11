@@ -150,7 +150,7 @@ join_node_attrs <- function(
   # Ensure that the column ordering is correct
   nodes <-
     nodes %>%
-    dplyr::select(id, type, label, dplyr::everything())
+    dplyr::relocate(id, type, label)
 
   # Modify the graph object
   graph$nodes_df <- nodes

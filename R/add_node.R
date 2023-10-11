@@ -87,11 +87,11 @@ add_node <- function(
   edges_created <- graph$last_edge
 
   if (is.null(type)) {
-    type <- as.character(NA)
+    type <- NA_character_
   }
 
   if (is.null(label)) {
-    label <- as.character(NA)
+    label <- NA_character_
   }
 
   # Collect node aesthetic attributes

@@ -42,7 +42,7 @@ count_unconnected_node_pairs <- function(graph) {
 
   # If the graph is empty, then return NA
   if (nrow(graph$nodes_df) == 0) {
-    return(as.numeric(NA))
+    return(NA_real_)
   }
 
   # Convert the graph to an igraph object

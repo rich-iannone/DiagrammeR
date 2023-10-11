@@ -126,7 +126,7 @@ add_nodes_from_df_cols <- function(
   # Exclude any columns that are not character class
   df <-
     dplyr::as_tibble(df) %>%
-    dplyr::select(columns) %>%
+    dplyr::select(dplyr::all_of(columns)) %>%
     dplyr::select_if(is.character)
 
   # Create an empty `nodes` vector

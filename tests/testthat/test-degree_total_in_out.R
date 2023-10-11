@@ -15,7 +15,7 @@ test_that("a degree data frame can be generated", {
   total_degree_df <- get_degree_total(graph)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     total_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
@@ -44,7 +44,7 @@ test_that("a degree data frame can be generated", {
       normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     total_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame
@@ -72,7 +72,7 @@ test_that("a degree data frame can be generated", {
   in_degree_df <- get_degree_in(graph)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     in_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
@@ -101,7 +101,7 @@ test_that("a degree data frame can be generated", {
       normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     in_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame
@@ -129,7 +129,7 @@ test_that("a degree data frame can be generated", {
   out_degree_df <- get_degree_out(graph)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     out_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
@@ -158,7 +158,7 @@ test_that("a degree data frame can be generated", {
       normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(
+  expect_s3_class(
     out_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame

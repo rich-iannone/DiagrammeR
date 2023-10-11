@@ -33,8 +33,7 @@ test_that("joining a data frame to an ndf is possible", {
 
   # Expect a column named `values` in the graph's
   # node data frame
-  expect_true(
-    "values" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "values")
 
   # Expect that the `values` column in the graph's
   # node data frame is equivalent to the first 5 values
@@ -99,8 +98,7 @@ test_that("joining a data frame to an edf is possible", {
 
   # Expect a column named `values` in the graph's
   # edge data frame
-  expect_true(
-    "values" %in% colnames(graph$edges_df))
+  expect_contains(colnames(graph$edges_df), "values")
 
   # Expect that the `values` column in the graph's
   # node data frame is equivalent to the first 5 values

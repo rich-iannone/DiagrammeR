@@ -119,7 +119,7 @@ join_edge_attrs <- function(
   # Sort the columns in `edges`
   edges <-
     edges %>%
-    dplyr::select(id, from, to, rel, dplyr::everything())
+    dplyr::relocate(id, from, to, rel)
 
   # Modify the graph object
   graph$edges_df <- edges

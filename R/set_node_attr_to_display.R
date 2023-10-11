@@ -186,7 +186,7 @@ set_node_attr_to_display <- function(
 
     display_col <-
       dplyr::case_when(
-        display_col == "is_na" ~ as.character(NA),
+        display_col == "is_na" ~ NA_character_,
         TRUE ~ display_col) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
@@ -202,8 +202,7 @@ set_node_attr_to_display <- function(
   # modify the ordering of the columns
   ndf <-
     dplyr::bind_cols(ndf, display_col) %>%
-    dplyr::select(
-      id, type, label, display, dplyr::everything())
+    dplyr::relocate(id, type, label, display)
 
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf

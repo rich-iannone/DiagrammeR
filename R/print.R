@@ -53,12 +53,12 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$nodes_df$type %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$nodes_df$type %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
   } else if (!any(is.na(x$nodes_df$type))) {
@@ -67,7 +67,7 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$nodes_df$type %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
   }
 
@@ -81,12 +81,12 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$nodes_df$label %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$nodes_df$label %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
   } else if (!any(is.na(x$nodes_df$label))) {
@@ -95,10 +95,10 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$nodes_df$label %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
 
-    if (any(duplicated(x$nodes_df$label)) == FALSE) {
+    if (!any(duplicated(x$nodes_df$label))) {
 
       node_label_status <-
         paste0(
@@ -157,12 +157,12 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$edges_df$rel %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$edges_df$rel %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
   } else if (!any(is.na(x$edges_df$rel))) {
@@ -170,7 +170,7 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         x$edges_df$rel %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
   }
 

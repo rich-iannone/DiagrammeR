@@ -31,10 +31,11 @@ test_that("getting a node's predecessors/successors is possible", {
       edges_df = edges)
 
   # Tests for `get_predecessors()`
-  expect_is(
+  expect_type(
     get_predecessors(
       graph = graph,
-      node = 26), "integer")
+      node = 26),
+    "integer")
 
   expect_equal(
     get_predecessors(
@@ -42,10 +43,11 @@ test_that("getting a node's predecessors/successors is possible", {
       node = 26), 1)
 
   # Tests for `get_successors()`
-  expect_is(
+  expect_type(
     get_successors(
       graph = graph,
-      node = 1), "integer")
+      node = 1),
+    "integer")
 
   expect_equal(
     get_successors(

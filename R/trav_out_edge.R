@@ -319,8 +319,8 @@ trav_out_edge <- function(
       edges <-
         ndf_2 %>%
         dplyr::right_join(edf, c("id" = "from")) %>%
-        dplyr::rename(from = id.y) %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
+        dplyr::rename(from = "id.y") %>%
+        dplyr::relocate("id", "from", "to", "rel")
     }
 
     # If the node attribute exists as a column in the edf
@@ -356,7 +356,7 @@ trav_out_edge <- function(
       # Reorder columns
       edges <-
         edges %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
+        dplyr::relocate("id", "from", "to", "rel")
     }
 
     # Update the graph's internal node data frame

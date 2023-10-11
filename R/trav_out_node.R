@@ -344,7 +344,7 @@ trav_out_node <- function(
                          match.fun(!! agg)(!! as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::select(id, type, label, dplyr::everything()) %>%
+      dplyr::relocate(id, type, label) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # If edge attribute exists as a column in the ndf
@@ -374,7 +374,7 @@ trav_out_node <- function(
       # Reorder columns
       nodes <-
         nodes %>%
-        dplyr::select(id, type, label, dplyr::everything())
+        dplyr::relocate("id", "type", "label")
     }
 
     # Update the graph's internal node data frame

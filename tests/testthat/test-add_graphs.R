@@ -980,7 +980,7 @@ test_that("Adding a full graph is possible", {
   # Expect type values to be character NA values
   expect_equal(
     unique(graph$nodes_df$type),
-    as.character(NA))
+    NA_character_)
 
   # Create a graph and add a full graph
   # with 3 nodes to it; discard loops
@@ -1337,7 +1337,7 @@ test_that("Adding a full graph is possible", {
   # character NA values
   expect_equal(
     graph$nodes_df$label,
-    rep(as.character(NA), 3))
+    rep(NA_character_, 3))
 
   # Expect that the `rel` edge attr
   # has the value `connected_to` for

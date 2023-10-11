@@ -348,13 +348,13 @@ trav_both_edge <- function(
         dplyr::bind_rows(
           from_join, to_join) %>%
         dplyr::left_join(edf, by = c("e_id" = "id")) %>%
-        dplyr::rename(id = e_id) %>%
+        dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
         dplyr::summarize(!! copy_attrs_from :=
                            match.fun(!! agg)(!! as.name(copy_attrs_from),
                                              na.rm = TRUE)) %>%
         dplyr::right_join(edf, by = "id") %>%
-        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::relocate("id", "from", "to", "rel") %>%
         as.data.frame(stringsAsFractions = FALSE)
     }
 
@@ -483,12 +483,11 @@ trav_both_edge <- function(
       joined_edges <-
         edges %>%
         dplyr::arrange(e_id) %>%
-        dplyr::rename(id = e_id) %>%
+        dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
         dplyr::summarize(!! copy_attrs_from :=
                             match.fun(!! agg)(!! as.name(copy_attrs_from),
-                                              na.rm = TRUE)) %>%
-        dplyr::ungroup() %>%
+                                              na.rm = TRUE), .groups = "drop") %>%
         dplyr::right_join(edf, by = "id")
 
       # Get column numbers that end with ".x" or ".y"
@@ -514,7 +513,7 @@ trav_both_edge <- function(
 
       edges <-
         joined_edges %>%
-        dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+        dplyr::relocate("id", "from", "to", "rel") %>%
         dplyr::arrange(id) %>%
         as.data.frame(stringsAsFractions = FALSE)
     }

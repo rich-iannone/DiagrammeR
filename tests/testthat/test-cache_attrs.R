@@ -130,13 +130,10 @@ test_that("Getting a cache is possible", {
       graph = graph_cache,
       name = "closeness_vector")
 
-  # Expect a vector of length 10
-  expect_equal(
-    length(cached), 10)
+  # Expect a numeric vector of length 10
+  expect_length(cached, 10)
+  expect_type(cached, "double")
 
-  # Expect the vector to be `numeric`
-  expect_is(
-    cached, "numeric")
 
   # Expect that the cached values in `cached` are
   # equivalent to those in `graph$cache`
@@ -148,13 +145,9 @@ test_that("Getting a cache is possible", {
     get_cache(
       graph = graph_cache)
 
-  # Expect a vector of length 10
-  expect_equal(
-    length(cached_last), 10)
-
-  # Expect the vector to be `numeric`
-  expect_is(
-    cached_last, "numeric")
+  # Expect a numeric vector of length 10
+  expect_length(cached_last, 10)
+  expect_type(cached_last, "double")
 
   # Create a new graph
   graph <-
@@ -168,6 +161,5 @@ test_that("Getting a cache is possible", {
 
   # Expect NA when trying to obtain a cache that is
   # not present
-  expect_true(
-    is.na(get_cache(graph)))
+  expect_true(is.na(get_cache(graph)))
 })

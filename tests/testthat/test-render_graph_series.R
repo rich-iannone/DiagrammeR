@@ -36,7 +36,7 @@ test_that("rendering a graph is indeed possible", {
 
   # Expect that the `rendered_graph` object inherits
   # from `grViz` & `htmlwidget`
-  expect_is(
+  expect_s3_class(
     rendered_graph, c("grViz", "htmlwidget"))
 })
 
