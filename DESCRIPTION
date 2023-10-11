@@ -14,7 +14,7 @@ Description:
     the graphs and take advantage of any aesthetic properties assigned to
     nodes and edges.
 License: MIT + file LICENSE
-URL: https://github.com/rich-iannone/DiagrammeR
+URL: https://rich-iannone.github.io/DiagrammeR/, https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Depends:
     R (>= 3.2)
