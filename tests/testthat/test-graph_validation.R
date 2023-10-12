@@ -28,7 +28,8 @@ test_that("Using an invalid graph with trigger an error", {
     add_gnm_graph(invalid_graph)
     add_gnp_graph(invalid_graph)
     add_graph_action(invalid_graph)
-    add_graph_to_graph_series(invalid_graph)
+    # graph is the second argument here.
+    add_graph_to_graph_series(graph_series = invalid_graph)
     add_grid_2d(invalid_graph)
     add_grid_3d(invalid_graph)
     add_growing_graph(invalid_graph)

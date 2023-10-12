@@ -68,10 +68,8 @@
     Code
       add_graph_to_graph_series(invalid_graph)
     Condition
-      Error in `c("graph_info", "nodes_df", "edges_df", "global_attrs", "directed", "last_node",
-          "last_edge", "node_selection", "edge_selection", "cache", "graph_log") %in%
-          names(graph)`:
-      ! argument "graph" is missing, with no default
+      Error in `add_graph_to_graph_series()`:
+      ! `graph` is absent but must be supplied.
     Code
       add_grid_2d(invalid_graph)
     Condition

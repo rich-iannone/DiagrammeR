@@ -47,16 +47,14 @@ add_graph_to_graph_series <- function(
     graph
 ) {
 
+
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  rlang::check_required(graph)
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
 
   # Get the series type
   series_type <- graph_series$series_type
