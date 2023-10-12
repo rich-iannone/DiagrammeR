@@ -355,12 +355,11 @@ test_that("Getting a graph from a series is possible", {
 
   # Expect the equivalent object among
   # `extracted_graph` and `graph_2`
-  expect_equal(
-    extracted_graph, graph_2)
+  expect_equal(extracted_graph, graph_2)
 
   # Expect an error if extracting a graph from
   # an empty graph series
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph_series() %>%
       get_graph_from_graph_series(
         graph_no = 1))

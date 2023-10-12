@@ -329,26 +329,19 @@ test_that("Getting edge attributes is possible", {
   expect_equal(
     some_edges[[2]], 2.9)
 
-  # Expect an error if referencing `from`
-  expect_error(
-    get_edge_attrs(
-      graph = graph,
-      edge_attr = from))
-
-  # Expect an error if referencing `to`
-  expect_error(
-    get_edge_attrs(
-      graph = graph,
-      edge_attr = to))
-
-  # Expect an error if unequal vector lengths
-  # provided for `from` and `to`
-  expect_error(
+  expect_snapshot(error = TRUE, {
+    # Expect an error if referencing `from`
+    get_edge_attrs(graph = graph, edge_attr = from)
+    # Expect an error if referencing `to`
+    get_edge_attrs(graph = graph, edge_attr = to)
+    # Expect an error if unequal vector lengths
+    # provided for `from` and `to`
     get_edge_attrs(
       graph = graph,
       edge_attr = value,
       from = c(1, 2),
-        to = 2))
+      to = 2)
+  })
 })
 
 test_that("Getting node attributes with a selection is possible", {

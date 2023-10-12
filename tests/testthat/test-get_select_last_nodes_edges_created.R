@@ -96,11 +96,11 @@ test_that("getting or selecting the last nodes created is possible", {
 
   # Expect that the selection available in
   # the graph is a node selection
-  expect_true(
-    nrow(graph_n$node_selection) > 0)
+  expect_gt(
+    nrow(graph_n$node_selection), 0)
 
-  expect_true(
-    nrow(graph_n$edge_selection) == 0)
+  expect_equal(
+    nrow(graph_n$edge_selection), 0)
 
   # Expect that the nodes selected are
   # those that have `type == 'tree'` as a
@@ -130,16 +130,10 @@ test_that("getting or selecting the last nodes created is possible", {
     delete_node(node = 10)
 
   # Expect an error when attempting to
-  # get the last nodes created after
+  # get or select the last nodes created after
   # having just deleted a node
-  expect_error(
-    graph_node_deleted %>%
-      get_last_nodes_created())
-
-  # Expect an error when attempting to
-  # select the last nodes created after
-  # having just deleted a node
-  expect_error(
-    graph_node_deleted %>%
-      select_last_nodes_created())
+  expect_snapshot(error = TRUE, {
+    get_last_nodes_created(graph_node_deleted)
+    select_last_nodes_created(graph_node_deleted)
+  })
 })

@@ -243,8 +243,8 @@ test_that("graph actions can be triggered to modify the graph", {
 
   # Expect certain columns to be available
   # in the graph's internal node data frame
-  expect_equal(
-    colnames(graph$nodes_df),
+  expect_named(
+    graph$nodes_df,
     c("id", "type", "label",
       "pagerank", "width", "fillcolor"))
 

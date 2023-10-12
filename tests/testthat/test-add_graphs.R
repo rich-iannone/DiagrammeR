@@ -32,30 +32,29 @@ test_that("Adding a balanced tree is possible", {
     as.character(1:40))
 
   # Expect type values to all be `a`
-  expect_equal(
-    unique(graph$nodes_df$type), "a")
+  expect_in(graph$nodes_df$type, "a")
 
   # Expect rel values to all be `z`
-  expect_equal(
-    unique(graph$edges_df$rel), "z")
+  expect_in(graph$edges_df$rel, "z")
 
-  # Expect an error if k is <2
-  expect_error(
+  # Expect an error if h <2 or k <2
+  expect_snapshot(error = TRUE, {
+    # k < 2
     add_balanced_tree(
       graph = graph,
       k = 1,
       h = 3,
       type = "a",
-      rel = "z"))
-
-  # Expect an error if h is <2
-  expect_error(
+      rel = "z")
+    # h < 2
     add_balanced_tree(
       graph = graph,
       k = 3,
       h = 1,
       type = "a",
-      rel = "z"))
+      rel = "z")
+  }
+  )
 
   # Add another balanced tree to the graph
   graph <-
@@ -67,12 +66,10 @@ test_that("Adding a balanced tree is possible", {
       rel = "y")
 
   # Expect that 47 nodes are now in the graph
-  expect_equal(
-    count_nodes(graph = graph), 47)
+  expect_equal(count_nodes(graph = graph), 47)
 
   # Expect 45 edges are now in the graph
-  expect_equal(
-    count_edges(graph = graph), 45)
+  expect_equal(count_edges(graph = graph), 45)
 
   # Expect node ID values from 1 to 47
   expect_identical(
@@ -84,14 +81,10 @@ test_that("Adding a balanced tree is possible", {
     as.character(1:47))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
-    c("a", "b"))
+  expect_in(graph$nodes_df$type, c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_in(graph$edges_df$rel, c("y", "z"))
 })
 
 test_that("Adding a cycle is possible", {
@@ -166,14 +159,10 @@ test_that("Adding a cycle is possible", {
     as.character(1:6))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
-    c("a", "b"))
+  expect_in(graph$nodes_df$type, c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_in(graph$edges_df$rel,c("y", "z"))
 
   # Create a graph with a cycle that
   # has different types of node and edge

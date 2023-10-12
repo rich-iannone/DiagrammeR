@@ -91,7 +91,7 @@ test_that("reverse edges can be added given a selection of edges", {
 
   # Expect an error if the graph does not
   # have an active selection of edges
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph() %>%
       add_n_nodes(
         n = 2,

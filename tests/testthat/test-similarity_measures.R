@@ -103,7 +103,7 @@ test_that("the dice similarity algorithm is functional", {
 
   # Expect an error if one or more node IDs
   # provided are not in the graph
-  expect_error(
+  expect_snapshot(error = TRUE,
     get_dice_similarity(
       graph = graph,
       nodes = 8:12,
@@ -123,7 +123,7 @@ test_that("the Jaccard similarity algorithm is functional", {
   # Expect an error when using a value
   # for `direction` that is not one of
   # three accepted values
-  expect_error(
+  expect_snapshot(error = TRUE,
     get_jaccard_similarity(
       graph = graph,
       nodes = 5:7,
@@ -176,25 +176,16 @@ test_that("the Jaccard similarity algorithm is functional", {
   expect_type(jaccard_in[, 2], "double")
   expect_type(jaccard_in[, 3], "double")
 
-  # Expect specific column names in this data frame
-  expect_equal(
-    colnames(jaccard_all), c("5", "6", "7"))
+  # Expect specific column names in this matrix
+  # Expect specific row names in this matrix
+  m_names <- list(
+    c("5", "6", "7"),
+    c("5", "6", "7")
+  )
 
-  expect_equal(
-    colnames(jaccard_out), c("5", "6", "7"))
-
-  expect_equal(
-    colnames(jaccard_in), c("5", "6", "7"))
-
-  # Expect specific row names in this data frame
-  expect_equal(
-    rownames(jaccard_all), c("5", "6", "7"))
-
-  expect_equal(
-    rownames(jaccard_out), c("5", "6", "7"))
-
-  expect_equal(
-    rownames(jaccard_in), c("5", "6", "7"))
+  expect_equal(dimnames(jaccard_all), m_names)
+  expect_equal(dimnames(jaccard_out), m_names)
+  expect_equal(dimnames(jaccard_in), m_names)
 
   # Expect all values in the matrix to be less than
   # or equal to 1.0

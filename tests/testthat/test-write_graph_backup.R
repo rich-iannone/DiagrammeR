@@ -13,8 +13,7 @@ test_that("Graph backups for `add_balanced_tree()` works", {
     add_balanced_tree(
       k = 2, h = 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -34,8 +33,7 @@ test_that("Graph backups for `add_cycle()` works", {
   create_graph(write_backups = TRUE) %>%
     add_cycle(n = 6)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -59,8 +57,7 @@ test_that("Graph backups for `add_edge()` works", {
       from = 1,
       to = 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -88,8 +85,7 @@ test_that("Graph backups for `add_edge_clone()` works", {
       from = 2,
       to = 3)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -117,8 +113,7 @@ test_that("Graph backups for `add_edge_clone()` works", {
       from = 2,
       to = 3)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -157,8 +152,7 @@ test_that("Graph backups for `add_edge_df()` works", {
     add_edge_df(
       edge_df = edf)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -184,8 +178,7 @@ test_that("Graph backups for `add_edge_df()` works", {
       to_col = to_currency,
       from_to_map = iso_4217_code)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -207,8 +200,7 @@ test_that("Graph backups for `add_edges_w_string()` works", {
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->3")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -235,8 +227,7 @@ test_that("Graph backups for `add_forward_edges_ws()` works", {
     select_edges() %>%
     add_forward_edges_ws(rel = "b")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -256,8 +247,7 @@ test_that("Graph backups for `add_full_graph()` works", {
   create_graph(write_backups = TRUE) %>%
     add_full_graph(n = 5)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -277,8 +267,7 @@ test_that("Graph backups for `add_gnm_graph()` works", {
   create_graph(write_backups = TRUE) %>%
     add_gnm_graph(n = 100, m = 120)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -298,8 +287,7 @@ test_that("Graph backups for `add_gnp_graph()` works", {
   create_graph(write_backups = TRUE) %>%
     add_gnp_graph(n = 100, p = 0.05)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -322,8 +310,7 @@ test_that("Graph backups for `add_node_clones_ws()` works", {
     select_nodes() %>%
     add_node_clones_ws()
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -347,8 +334,7 @@ test_that("Graph backups for `add_n_node_clones()` works", {
       n = 2,
       node = 1)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -371,8 +357,7 @@ test_that("Graph backups for `add_global_graph_attrs()` works", {
       value = 12,
       attr_type = "node")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -394,8 +379,7 @@ test_that("Graph backups for `delete_global_graph_attrs()` works", {
       attr = "outputorder",
       attr_type = "graph")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -421,8 +405,7 @@ test_that("Graph backups for `add_graph_action()` works", {
       column_name = "btwns",
       action_name = "get_btwns")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -450,8 +433,7 @@ test_that("Graph backups for `delete_graph_actions()` works", {
     delete_graph_actions(
       actions = "get_btwns")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -484,8 +466,7 @@ test_that("Graph backups for `reorder_graph_actions()` works", {
     reorder_graph_actions(
       indices = c(2, 1))
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -506,8 +487,7 @@ test_that("Graph backups for `transform_to_complement_graph()` works", {
     add_cycle(n = 4) %>%
     transform_to_complement_graph()
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -533,8 +513,7 @@ test_that("Graph backups for `copy_node_attrs()` works", {
       node_attr_from = color,
       node_attr_to = color_2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -560,8 +539,7 @@ test_that("Graph backups for `copy_edge_attrs()` works", {
       edge_attr_from = color,
       edge_attr_to = color_2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -593,8 +571,7 @@ test_that("Graph backups for `colorize_node_attrs()` works", {
       cut_points = c(1, 3, 5, 7, 9),
       alpha = 90)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -626,8 +603,7 @@ test_that("Graph backups for `colorize_edge_attrs()` works", {
       cut_points = c(1, 3, 5, 7, 9),
       alpha = 90)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -652,8 +628,7 @@ test_that("Graph backups for `drop_node_attrs()` works", {
     drop_node_attrs(
       node_attr = color)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -678,8 +653,7 @@ test_that("Graph backups for `drop_edge_attrs()` works", {
     drop_edge_attrs(
       edge_attr = color)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -705,8 +679,7 @@ test_that("Graph backups for `join_node_attrs()` works", {
     add_path(n = 5) %>%
     join_node_attrs(df = df)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -733,8 +706,7 @@ test_that("Graph backups for `join_edge_attrs()` works", {
     add_path(n = 5) %>%
     join_edge_attrs(df = df)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -760,8 +732,7 @@ test_that("Graph backups for `mutate_node_attrs()` works", {
     mutate_node_attrs(
       half_weight = weight / 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -787,8 +758,7 @@ test_that("Graph backups for `mutate_edge_attrs()` works", {
     mutate_edge_attrs(
       half_weight = weight / 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -815,8 +785,7 @@ test_that("Graph backups for `mutate_node_attrs_ws()` works", {
     mutate_node_attrs_ws(
       half_weight = weight / 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -843,8 +812,7 @@ test_that("Graph backups for `mutate_edge_attrs_ws()` works", {
     mutate_edge_attrs_ws(
       half_weight = weight / 2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -871,8 +839,7 @@ test_that("Graph backups for `rename_node_attrs()` works", {
       node_attr_from = weight,
       node_attr_to = weight_2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -899,8 +866,7 @@ test_that("Graph backups for `rename_edge_attrs()` works", {
       edge_attr_from = weight,
       edge_attr_to = weight_2)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -933,8 +899,7 @@ test_that("Graph backups for `recode_node_attrs()` works", {
       "circle -> square",
       "rectangle -> triangle")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -964,8 +929,7 @@ test_that("Graph backups for `recode_edge_attrs()` works", {
       "circle -> square",
       "rectangle -> triangle")
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -993,8 +957,7 @@ test_that("Graph backups for `rescale_node_attrs()` works", {
       to_lower_bound = 0,
       to_upper_bound = 1)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1022,8 +985,7 @@ test_that("Graph backups for `rescale_edge_attrs()` works", {
       to_lower_bound = 0,
       to_upper_bound = 1)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1044,8 +1006,7 @@ test_that("Graph backups for `rev_edge_dir()` works", {
     add_path(n = 2) %>%
     rev_edge_dir()
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1067,8 +1028,7 @@ test_that("Graph backups for `rev_edge_dir_ws()` works", {
     select_edges_by_edge_id(edges = 1) %>%
     rev_edge_dir_ws()
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1090,8 +1050,7 @@ test_that("Graph backups for `set_node_position()` works", {
     set_node_position(
       node = 1, x = 1, y = 1)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1116,8 +1075,7 @@ test_that("Graph backups for `nudge_node_positions_ws()` works", {
     nudge_node_positions_ws(
       dx = 2, dy = 0)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)
@@ -1142,8 +1100,7 @@ test_that("Graph backups for `nudge_node_positions_ws()` works", {
     nudge_node_positions_ws(
       dx = 2, dy = 0)
 
-  expect_equal(
-    list.files() %>% length(), 1)
+  expect_length(list.files(), 1)
 
   setwd(main_wd)
   unlink(random_dir, recursive = TRUE)

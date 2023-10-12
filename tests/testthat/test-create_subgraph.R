@@ -57,20 +57,19 @@ test_that("a subgraph can be created and such an object is correct", {
     transform_to_subgraph_ws(graph_es)
 
   # Expect that only those edges with a value >4 are in the subgraph
-  expect_true(
-    all(c(4, 7, 8, 10) %in% get_edge_ids(subgraph_es)))
+  expect_contains(get_edge_ids(subgraph_es), c(4, 7, 8, 10))
 
   # Expect only certain edges to be present in the subgraph
-  expect_true(
-    all(
-      c("7->3", "8->4", "6->5", "3->4") %in% get_edges(
-        graph = subgraph_es,
-        return_type = "vector")))
+  expect_contains(
+    get_edges(
+      graph = subgraph_es,
+      return_type = "vector"),
+    c("7->3", "8->4", "6->5", "3->4") )
 
   # Expect an error when attempting to create a subgraph with
   # a graph without an active selection
   graph <- clear_selection(graph)
 
-  expect_error(
+  expect_snapshot(error = TRUE,
     transform_to_subgraph_ws(graph))
 })

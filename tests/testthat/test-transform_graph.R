@@ -135,7 +135,7 @@ test_that("Reversing edges in a selection is possible", {
 
   # Expect an error if the graph
   # is undirected
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph(
       directed = FALSE) %>%
       add_balanced_tree(
@@ -305,7 +305,7 @@ test_that("Fully disconnecting selected nodes is possible", {
 
   # Expect an error if there is no valid
   # selection of node
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph() %>%
       add_path(n = 2) %>%
       fully_disconnect_nodes_ws())
@@ -343,7 +343,6 @@ test_that("Removing loop edges via a selection is possible", {
   # Expect an error if there is
   # isn't a valid node selection
   expect_error(
-    graph %>%
-      delete_loop_edges_ws()
+    delete_loop_edges_ws(graph)
   )
 })

@@ -143,32 +143,23 @@ test_that("simple traversals are possible", {
   expect_equal(
     get_selection(graph), c(4, 5))
 
-  # Expect an error if attempting to perform a node
-  # traversal without any selection of nodes
-  graph <-
-    graph %>%
-    clear_selection()
 
-  expect_error(
-    graph %>% trav_in())
 
-  expect_error(
-    graph %>% trav_out())
+  expect_snapshot(error = TRUE, {
+    # Expect an error if attempting to perform a node
+    # traversal without any selection of nodes
+    graph <-
+      graph %>%
+      clear_selection()
 
-  expect_error(
-    graph %>% trav_both())
-
-  expect_error(
-    graph %>% trav_in_node())
-
-  expect_error(
-    graph %>% trav_out_node())
-
-  expect_error(
-    graph %>% trav_in_edge())
-
-  expect_error(
-    graph %>% trav_out_edge())
+    trav_in(graph)
+    trav_out(graph)
+    trav_both(graph)
+    trav_in_node(graph)
+    trav_out_node(graph)
+    trav_in_edge(graph)
+    trav_out_edge(graph)
+  })
 })
 
 test_that("selective traversals with `trav_out()` are possible", {

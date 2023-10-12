@@ -83,11 +83,12 @@ test_that("a correct node data frame is generated", {
   expect_equal(nodes_var_2$color,
                c("green", "green", "green", "green"))
 
-  # Expect an error if not supplying an integer
-  expect_error(create_node_df(n = "a"))
-
-  # Expect an error if supplying 2 values for `n`
-  expect_error(create_node_df(n = c(1, 2)))
+  # Expect an error if not supplying an integer or
+  # supplying 2 values for `n`
+  expect_snapshot(error = TRUE, {
+    create_node_df(n = "a")
+    create_node_df(n = c(1, 2))
+  })
 
   # Create a node data frame using a vector with
   # `type` having length > n
@@ -128,11 +129,8 @@ test_that("node data frames can be successfully combined", {
   # Combine the 2 node data frames
   all_nodes <- combine_ndfs(ndf_1, ndf_2)
 
-  # Expect that the combined node data frame has 8 rows
-  expect_equal(nrow(all_nodes), 8)
-
-  # Expect that the combined node data frame has 7 columns
-  expect_equal(ncol(all_nodes), 7)
+  # Expect that the combined node data frame has 8 rows and 7 columns
+  expect_equal(dim(all_nodes), c(8, 7))
 
   # Expect that the 'label' columns has spaces for labels
   expect_equal(all_nodes$label, rep(NA_character_, 8))

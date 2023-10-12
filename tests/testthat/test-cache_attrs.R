@@ -34,20 +34,19 @@ test_that("Setting a cache is possible", {
 
   # Expect an error if providing a data frame
   # and not specifying a column to extract as a vector
-  expect_error(
+  # or specifying a column that doesn't exist
+  expect_snapshot(error = TRUE, {
     set_cache(
       graph = graph,
       name = "closeness_df_2",
-      to_cache = closeness_df))
+      to_cache = closeness_df)
 
-  # Expect an error if providing a data frame
-  # and specifying a column that doesn't exist
-  expect_error(
     set_cache(
       graph = graph,
       name = "closeness_df_3",
       to_cache = closeness_df,
-      col = "nonexistent"))
+      col = "nonexistent")
+  })
 
   # Get the closeness values (as a vector)
   closeness_vec <- closeness_df$closeness
