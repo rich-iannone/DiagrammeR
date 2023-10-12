@@ -7,8 +7,6 @@
         edge_attr_from = rel, edge_attr_to = color, palette = c("#458b00l15", "foo",
           "#00eeee", "bar", "orange"))
     Condition
-      Error:
-      ! `colorize_edge_attrs()` REASON:
-      * The color palette contains invalid hexadecimal values.`()` REASON:
-      * The color palette contains invalid hexadecimal values.
+      Error in `colorize_edge_attrs()`:
+      ! The color palette contains invalid hexadecimal values.
 

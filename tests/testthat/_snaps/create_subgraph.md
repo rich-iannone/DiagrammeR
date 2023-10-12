@@ -3,7 +3,6 @@
     Code
       transform_to_subgraph_ws(graph)
     Condition
-      Error:
-      ! `transform_to_subgraph_ws()` REASON:
-      * There is no selection of node or edges available.
+      Error in `transform_to_subgraph_ws()`:
+      ! There is no selection of node or edges available.
 
