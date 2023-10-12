@@ -86,7 +86,7 @@ add_pa_graph <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If a seed value is supplied, set a seed

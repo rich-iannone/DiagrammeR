@@ -51,7 +51,7 @@ is_node_present <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Stop function if `node` not a single value

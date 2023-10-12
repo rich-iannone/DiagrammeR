@@ -90,7 +90,7 @@ set_node_attr_to_display <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -98,7 +98,7 @@ set_node_attr_to_display <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
+      reasons = "The graph contains no nodes.")
   }
 
   # Get the requested `attr`

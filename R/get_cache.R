@@ -55,7 +55,7 @@ get_cache <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If there is no cached vector available, return NA

@@ -52,7 +52,7 @@ get_coreness <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Ensure that values provided for the

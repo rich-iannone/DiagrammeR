@@ -65,7 +65,7 @@ rev_edge_dir_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -73,7 +73,7 @@ rev_edge_dir_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid edge selection
@@ -81,7 +81,7 @@ rev_edge_dir_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
+      reasons = "The graph contains no selection of edges.")
   }
 
   # If graph is undirected, stop function

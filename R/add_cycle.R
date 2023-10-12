@@ -92,7 +92,7 @@ add_cycle <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph object is not valid.")
   }
 
   # Stop if n is too small
@@ -100,7 +100,7 @@ add_cycle <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 3")
+      reasons = "The value for `n` must be at least 3.")
   }
 
   # Get the number of nodes ever created for

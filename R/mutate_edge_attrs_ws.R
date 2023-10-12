@@ -134,7 +134,7 @@ mutate_edge_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -142,7 +142,7 @@ mutate_edge_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid edge selection
@@ -150,7 +150,7 @@ mutate_edge_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
+      reasons = "The graph contains no selection of edges.")
   }
 
   # Collect expressions

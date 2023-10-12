@@ -40,7 +40,7 @@ set_graph_undirected <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Set the `directed` vector to FALSE

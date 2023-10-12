@@ -69,7 +69,7 @@ transform_to_min_spanning_tree <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Transform the graph to an igraph object

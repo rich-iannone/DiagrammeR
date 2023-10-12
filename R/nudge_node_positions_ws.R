@@ -108,7 +108,7 @@ nudge_node_positions_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -116,7 +116,7 @@ nudge_node_positions_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
+      reasons = "The graph contains no nodes.")
   }
 
   # Validation: Graph object has valid node selection

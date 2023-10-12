@@ -36,7 +36,7 @@ count_s_connected_cmpts <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If the graph is empty, then return NA

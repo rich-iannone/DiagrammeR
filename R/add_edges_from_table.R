@@ -106,7 +106,7 @@ add_edges_from_table <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -114,7 +114,7 @@ add_edges_from_table <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added")
+      reasons = "The graph contains no nodes, so, edges cannot be added.")
   }
 
   # Get the requested `from_col`
@@ -163,7 +163,7 @@ add_edges_from_table <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value specified in `from_col` is not in the table")
+      reasons = "The value specified in `from_col` is not in the table.")
   }
 
   # Verify that value for `to_col` is in the table
@@ -171,7 +171,7 @@ add_edges_from_table <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value specified in `to_col` is not in the table")
+      reasons = "The value specified in `to_col` is not in the table.")
   }
 
   # Verify that value for `from_to_map` is in the
@@ -180,7 +180,7 @@ add_edges_from_table <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value specified in `from_to_map` is not in the graph")
+      reasons = "The value specified in `from_to_map` is not in the graph.")
   }
 
   # Optionally set the `rel` attribute from a
@@ -189,7 +189,7 @@ add_edges_from_table <- function(
 
     if (any(colnames(csv) == rel_col)) {
       colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
-      csv <- dplyr::mutate(csv, rel = as.character(rel))
+      csv$rel <- as.character(csv$rel)
     }
   }
 

@@ -84,7 +84,7 @@ get_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   edge_attr <- rlang::enquo(edge_attr)

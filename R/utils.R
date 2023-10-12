@@ -527,7 +527,8 @@ emit_warning <- function(fcn_name,
 #'
 #' @noRd
 emit_error <- function(fcn_name,
-                       reasons) {
+                       reasons,
+                       error_call = rlang::caller_env()) {
 
   header_text <-
       ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
@@ -553,9 +554,13 @@ emit_error <- function(fcn_name,
       as.character()
   }
 
-  glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
-    as.character() %>%
-    stop(call. = FALSE)
+  # glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
+  #   as.character() %>%
+  #   stop(call. = FALSE)
+  cli::cli_abort(
+    reasons,
+    call = error_call
+  )
 }
 
 #' Get the calling function as a formatted character string

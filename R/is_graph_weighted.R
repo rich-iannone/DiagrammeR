@@ -47,7 +47,7 @@ is_graph_weighted <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If the graph is empty, it cannot be

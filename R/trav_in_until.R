@@ -119,7 +119,7 @@ trav_in_until <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -127,7 +127,7 @@ trav_in_until <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
+      reasons = "The graph contains no nodes.")
   }
 
   # Validation: Graph contains edges
@@ -135,7 +135,7 @@ trav_in_until <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid node selection

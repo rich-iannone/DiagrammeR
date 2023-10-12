@@ -50,7 +50,7 @@ get_cmty_fast_greedy <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If graph is directed, transform to undirected

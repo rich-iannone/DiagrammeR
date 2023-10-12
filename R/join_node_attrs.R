@@ -83,7 +83,7 @@ join_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   if (is.null(by_graph) & !is.null(by_df)) {

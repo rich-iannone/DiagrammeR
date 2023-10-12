@@ -88,7 +88,7 @@ add_nodes_from_df_cols <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Get the df column numbers from which nodes

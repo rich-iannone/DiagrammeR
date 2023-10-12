@@ -32,7 +32,7 @@ get_node_info <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If graph is empty, return NULL

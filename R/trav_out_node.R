@@ -223,7 +223,7 @@ trav_out_node <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -231,7 +231,7 @@ trav_out_node <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
+      reasons = "The graph contains no nodes.")
   }
 
   # Validation: Graph contains edges
@@ -239,7 +239,7 @@ trav_out_node <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid edge selection
@@ -248,7 +248,7 @@ trav_out_node <- function(
     emit_error(
       fcn_name = fcn_name,
       reasons = c(
-        "The graph contains no selection of edges",
+        "The graph contains no selection of edges.",
         "any traversal requires an active selection",
         "this type of traversal requires a selection of edges"))
   }

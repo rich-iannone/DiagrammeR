@@ -99,7 +99,7 @@ transform_to_subgraph_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph object has valid selection of

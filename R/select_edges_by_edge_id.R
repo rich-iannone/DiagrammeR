@@ -69,7 +69,7 @@ select_edges_by_edge_id <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -77,7 +77,7 @@ select_edges_by_edge_id <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Extract the graph's internal edf

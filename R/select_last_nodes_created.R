@@ -53,7 +53,7 @@ select_last_nodes_created <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains nodes
@@ -61,7 +61,7 @@ select_last_nodes_created <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
+      reasons = "The graph contains no nodes.")
   }
 
   graph_transform_steps <-

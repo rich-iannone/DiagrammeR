@@ -52,7 +52,7 @@ get_cmty_l_eigenvec <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If graph is directed, transform to undirected

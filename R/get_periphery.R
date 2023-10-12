@@ -31,7 +31,7 @@ get_periphery <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Get the eccentricity for each of the graph's nodes

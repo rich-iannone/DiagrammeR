@@ -106,7 +106,7 @@ add_balanced_tree <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph object is not valid.")
   }
 
   # Stop if k is too small
@@ -114,7 +114,7 @@ add_balanced_tree <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `k` must be at least 2")
+      reasons = "The value for `k` must be at least 2.")
   }
 
   # Stop if h is too small
@@ -122,7 +122,7 @@ add_balanced_tree <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `h` must be at least 2")
+      reasons = "The value for `h` must be at least 2.")
   }
 
   # Determine the number of nodes in the balanced tree

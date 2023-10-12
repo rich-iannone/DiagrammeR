@@ -101,7 +101,7 @@ layout_nodes_w_string <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Get the graph's internal node data frame

@@ -69,7 +69,7 @@ export_graph <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If no `file_name` or `file_type` provided, default to

@@ -72,7 +72,7 @@ copy_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Get the requested `node_attr_from`

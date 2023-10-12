@@ -56,7 +56,7 @@ get_edge_df_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph object has a valid edge selection

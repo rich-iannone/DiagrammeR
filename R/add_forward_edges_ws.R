@@ -74,7 +74,7 @@ add_forward_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -82,7 +82,7 @@ add_forward_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid edge selection
@@ -90,7 +90,7 @@ add_forward_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
+      reasons = "The graph contains no selection of edges.")
   }
 
   # If no value(s) provided for `rel`, set to NA

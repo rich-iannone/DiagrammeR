@@ -42,7 +42,7 @@ get_common_nbrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Get predecessors and successors for all nodes

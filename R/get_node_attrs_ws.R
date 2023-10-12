@@ -65,7 +65,7 @@ get_node_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph object has a valid node selection

@@ -76,7 +76,7 @@ set_cache <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   if (inherits(to_cache, c("numeric", "integer", "character"))) {

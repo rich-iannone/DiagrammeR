@@ -86,7 +86,7 @@ add_edge_clone <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph object is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -94,7 +94,7 @@ add_edge_clone <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Stop function if edge is not a single numerical value

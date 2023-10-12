@@ -33,7 +33,7 @@ get_graph_name <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   graph$graph_info$graph_name

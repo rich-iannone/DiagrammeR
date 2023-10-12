@@ -72,7 +72,7 @@ get_all_connected_nodes <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Verify that the node ID provided is in the graph

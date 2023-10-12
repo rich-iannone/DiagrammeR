@@ -63,7 +63,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -71,7 +71,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Get the requested `edge_attr_from`

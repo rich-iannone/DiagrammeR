@@ -80,7 +80,7 @@ add_reverse_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Validation: Graph contains edges
@@ -88,7 +88,7 @@ add_reverse_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
+      reasons = "The graph contains no edges.")
   }
 
   # Validation: Graph object has valid edge selection
@@ -96,7 +96,7 @@ add_reverse_edges_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
+      reasons = "The graph contains no selection of edges.")
   }
 
   # Get the number of edges in the graph
@@ -144,7 +144,7 @@ add_reverse_edges_ws <- function(
 
     if (nrow(edge_aes_tbl) < edges_added) {
 
-      edge_aes$index__ <- 1:edges_added
+      edge_aes$index__ <- seq_len(edges_added)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%

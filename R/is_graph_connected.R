@@ -39,7 +39,7 @@ is_graph_connected <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   wc_components <- get_w_connected_cmpts(graph)

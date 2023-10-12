@@ -33,7 +33,7 @@ get_edge_info <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # For graphs with no edges, return NA

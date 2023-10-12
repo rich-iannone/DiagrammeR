@@ -60,7 +60,7 @@ get_successors <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # If the graph contains no edges, return NA

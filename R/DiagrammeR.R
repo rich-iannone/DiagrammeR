@@ -142,7 +142,7 @@ DiagrammeR <- function(
   } else {
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The type should be `mermaid` or `grViz`")
+      reasons = "The type should be `mermaid` or `grViz`.")
   }
 }
 

@@ -92,7 +92,7 @@ add_path <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "The graph is not valid.")
   }
 
   # Stop if n is too small
