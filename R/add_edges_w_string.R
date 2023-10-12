@@ -84,18 +84,12 @@ add_edges_w_string <- function(
   }
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Remove linebreak characters from `edges`
   edges_cleaned <-
@@ -164,13 +158,13 @@ add_edges_w_string <- function(
   }
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- count_edges(graph)
 
   # Add the new edges to the graph
   graph <- add_edge_df(graph, new_edges)
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- count_edges(graph)
 
   # Get the number of edges added to
   # the graph

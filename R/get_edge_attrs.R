@@ -95,7 +95,7 @@ get_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "This is not an edge attribute")
+      reasons = "This is not an edge attribute.")
   }
 
   if (!is.null(from) & !is.null(to)) {
@@ -103,7 +103,7 @@ get_edge_attrs <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The number of nodes in `from` and `to` must be the same")
+        reasons = "The number of nodes in `from` and `to` must be the same.")
     }
   }
 
@@ -111,7 +111,7 @@ get_edge_attrs <- function(
   # from the graph
   edf <- graph$edges_df
 
-  if (is.null(from) | is.null(to)) {
+  if (is.null(from) || is.null(to)) {
 
     # Extract the edge attribute values
     edge_attr_vals <-
@@ -126,7 +126,7 @@ get_edge_attrs <- function(
     names(edge_attr_vals) <- edge_names
   }
 
-  if (!is.null(from) & !is.null(to)) {
+  if (!is.null(from) && !is.null(to)) {
 
     # Get edges as strings for filtering
     # the `edf` object

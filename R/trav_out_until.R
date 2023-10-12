@@ -114,7 +114,7 @@ trav_out_until <- function(
   # Validation: Graph object is valid
   check_graph_valid(graph)
   # Validation: Graph contains nodes
-  check_graph_contain_nodes(graph)
+  check_graph_contains_nodes(graph)
   # Validation: Graph contains edges
   check_graph_contains_edges(graph)
   # Validation: Graph object has valid node selection
@@ -139,7 +139,7 @@ trav_out_until <- function(
     graph %>%
     get_node_ids(conditions = !!conditions)
 
-  if (exclude_unmatched & all(is.na(all_nodes_conditions_met))) {
+  if (exclude_unmatched && all(is.na(all_nodes_conditions_met))) {
 
     # Clear the active selection
     graph <-
@@ -277,6 +277,7 @@ trav_out_until <- function(
   }
 
   # Update the `graph_log` df with an action
+  fcn_name <- get_calling_fcn()
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
@@ -290,8 +291,7 @@ trav_out_until <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

@@ -64,7 +64,7 @@ combine_graphs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object supplied to `x` is not valid")
+      reasons = "The graph object supplied to `x` is not valid.")
   }
 
   # Validation: Graph object `y` is valid
@@ -72,7 +72,7 @@ combine_graphs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object supplied to `y` is not valid")
+      reasons = "The graph object supplied to `y` is not valid.")
   }
 
   # Get the number of nodes ever created for

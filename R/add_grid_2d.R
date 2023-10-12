@@ -96,7 +96,7 @@ add_grid_2d <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `x` must be at least 2")
+      reasons = "The value for `x` must be at least 2.")
   }
 
   # Stop if `y` is too small
@@ -104,7 +104,7 @@ add_grid_2d <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `y` must be at least 2")
+      reasons = "The value for `y` must be at least 2.")
   }
 
   # Get the number of nodes ever created for

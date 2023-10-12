@@ -526,38 +526,40 @@ emit_warning <- function(fcn_name,
 #' Construct a consistent message string, passing it to `stop()`
 #'
 #' @noRd
+# The package is in transition of using rlang::abort() instead.
+
 emit_error <- function(fcn_name,
                        reasons,
                        error_call = rlang::caller_env()) {
 
-  header_text <-
-      ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
-
-  if (length(reasons <= 5)) {
-
-    message_body <-
-      paste(paste0("* ", reasons), collapse = "\n")
-
-  } else {
-
-    excess_errors <- length(reasons) - 5
-
-    message_body <-
-      paste(paste0("* ", reasons[1:5]), collapse = "\n")
-
-    error_pl_str <-
-      ifelse(excess_errors == 1, "error", "errors")
-
-    excess_errors_str <-
-      glue::glue(
-        "* ... and {excess_errors} more {error_pl_str}") %>%
-      as.character()
-  }
+  # header_text <-
+  #     ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
+  #
+  # if (length(reasons <= 5)) {
+  #
+  #   message_body <-
+  #     paste(paste0("* ", reasons), collapse = "\n")
+  #
+  # } else {
+  #
+  #   excess_errors <- length(reasons) - 5
+  #
+  #   message_body <-
+  #     paste(paste0("* ", reasons[1:5]), collapse = "\n")
+  #
+  #   error_pl_str <-
+  #     ifelse(excess_errors == 1, "error", "errors")
+  #
+  #   excess_errors_str <-
+  #     glue::glue(
+  #       "* ... and {excess_errors} more {error_pl_str}") %>%
+  #     as.character()
+  # }
 
   # glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
   #   as.character() %>%
   #   stop(call. = FALSE)
-  cli::cli_abort(
+  rlang::abort(
     reasons,
     call = error_call
   )

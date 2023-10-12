@@ -148,13 +148,11 @@ add_reverse_edges_ws <- function(
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -169,13 +167,11 @@ add_reverse_edges_ws <- function(
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 

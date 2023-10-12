@@ -84,19 +84,14 @@ add_grid_3d <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Stop if `x` is too small
   if (x < 2) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `x` must be at least 2")
+      reasons = "The value for `x` must be at least 2.")
   }
 
   # Stop if `y` is too small
@@ -104,7 +99,7 @@ add_grid_3d <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `y` must be at least 2")
+      reasons = "The value for `y` must be at least 2.")
   }
 
   # Stop if `z` is too small
@@ -112,7 +107,7 @@ add_grid_3d <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The value for `z` must be at least 2")
+      reasons = "The value for `z` must be at least 2.")
   }
 
   # Get the number of nodes ever created for
