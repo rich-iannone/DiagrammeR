@@ -66,7 +66,7 @@
       Error in `add_graph_action()`:
       ! The graph is not valid.
     Code
-      add_graph_to_graph_series(invalid_graph)
+      add_graph_to_graph_series(graph_series = invalid_graph)
     Condition
       Error in `add_graph_to_graph_series()`:
       ! `graph` is absent but must be supplied.
