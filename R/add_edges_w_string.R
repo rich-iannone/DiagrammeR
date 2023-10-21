@@ -72,16 +72,8 @@ add_edges_w_string <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
   check_graph_contains_nodes(graph)
@@ -181,6 +173,9 @@ add_edges_w_string <- function(
     graph$graph_log %>%
     dplyr::filter(version_id <= current_graph_log_version_id)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
@@ -195,8 +190,7 @@ add_edges_w_string <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

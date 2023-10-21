@@ -29,7 +29,7 @@ Imports:
     purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),
     readr (>= 2.1.1),
-    rlang (>= 0.4),
+    rlang (>= 1.1.0),
     rstudioapi (>= 0.7),
     scales (>= 1.1),
     stringr (>= 1.4),

@@ -312,7 +312,8 @@ graph_function_sys_time <- function() {
 graph_function_duration <- function(start_time) {
   end_time <- Sys.time()
   time_diff_s <- (end_time - start_time)[[1]]
-  return(time_diff_s)
+
+  time_diff_s
 }
 
 #' Add a log line for a graph `action`
@@ -329,7 +330,7 @@ add_action_to_log <- function(graph_log,
                               d_e = 0) {
 
   # Ensure that `time_modified` inherits from POSIXct
-  if (inherits(time_modified, "POSIXct") == FALSE) {
+  if (!inherits(time_modified, "POSIXct")) {
 
     stop(
       "The `time_modified` value must inherit from POSIXct.",

@@ -81,26 +81,13 @@ add_grid_2d <- function(
   time_function_start <- Sys.time()
 
   # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
-  # Stop if `x` is too small
-  if (x < 2) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `x` must be at least 2.")
-  }
-
-  # Stop if `y` is too small
-  if (y < 2) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `y` must be at least 2.")
-  }
+  # Stop if `x` or `y` are too small
+  check_number_whole(x, min = 2)
+  check_number_whole(y, min = 2)
 
   # Get the number of nodes ever created for
   # this graph
@@ -190,13 +177,13 @@ add_grid_2d <- function(
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
       node_data_tbl <-
         node_data_tbl %>%
-        dplyr::select(-id)
+        dplyr::select(-"id")
     }
   }
 
@@ -207,7 +194,7 @@ add_grid_2d <- function(
 
     if (nrow(edge_aes_tbl) < nrow(grid_graph$edges_df)) {
 
-      edge_aes$index__ <- 1:nrow(grid_graph$edges_df)
+      edge_aes$index__ <- seq_len(nrow(grid_graph$edges_df))
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
@@ -215,9 +202,7 @@ add_grid_2d <- function(
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -232,13 +217,11 @@ add_grid_2d <- function(
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -287,6 +270,8 @@ add_grid_2d <- function(
 
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(grid_edges)
+
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph_log <-

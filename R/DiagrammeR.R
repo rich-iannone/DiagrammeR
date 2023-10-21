@@ -128,9 +128,6 @@ DiagrammeR <- function(
     ...
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if (grepl(x = type, pattern = "[m,M](erm).*")) {
 
@@ -140,9 +137,7 @@ DiagrammeR <- function(
     grViz(diagram, ... )
 
   } else {
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The type should be `mermaid` or `grViz`.")
+    abort("The type should be `mermaid` or `grViz`.")
   }
 }
 
@@ -157,16 +152,16 @@ DiagrammeR <- function(
 #' @export
 DiagrammeROutput <- function(
     outputId,
-    width = '100%',
-    height = 'auto'
+    width = "100%",
+    height = "auto"
 ) {
 
   htmlwidgets::shinyWidgetOutput(
     outputId,
-    'DiagrammeR',
+    "DiagrammeR",
     width,
     height,
-    package = 'DiagrammeR'
+    package = "DiagrammeR"
   )
 }
 

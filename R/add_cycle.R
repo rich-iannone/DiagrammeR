@@ -84,24 +84,11 @@ add_cycle <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Stop if n is too small
-  if (n <= 2) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 3.")
-  }
+  check_number_whole(n, min = 3)
 
   # Get the number of nodes ever created for
   # this graph
@@ -277,6 +264,9 @@ add_cycle <- function(
 
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(cycle_edges)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph_log <-

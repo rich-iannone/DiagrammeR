@@ -68,21 +68,13 @@ add_global_graph_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Coerce any logical value for `value` to a
   # lowercase character value
   if (length(value) == 1) {
-    if (inherits(value, "logical") &
+    if (inherits(value, "logical") &&
         value %in% c(TRUE, FALSE)) {
       value <- tolower(as.character(value))
     }
@@ -107,14 +99,18 @@ add_global_graph_attrs <- function(
     dplyr::full_join(
       global_attrs_to_add,
       by = c("attr", "attr_type")) %>%
-    dplyr::transmute(
+    dplyr::mutate(
       attr, attr_type,
-      value = dplyr::coalesce(value.y, value.x)) %>%
-    dplyr::select(attr, value, attr_type)
+      value = dplyr::coalesce(value.y, value.x),
+      .keep = "none") %>%
+    dplyr::select("attr", "value", "attr_type")
 
   # Replace the graph's global attributes with
   # the revised set
   graph$global_attrs <- global_attrs_joined
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

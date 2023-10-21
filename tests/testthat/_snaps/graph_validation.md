@@ -4,12 +4,12 @@
       add_balanced_tree(invalid_graph)
     Condition
       Error in `add_balanced_tree()`:
-      ! The graph object is not valid.
+      ! The graph is not valid.
     Code
       add_cycle(invalid_graph)
     Condition
       Error in `add_cycle()`:
-      ! The graph object is not valid.
+      ! The graph is not valid.
     Code
       add_edge(invalid_graph)
     Condition
@@ -19,7 +19,7 @@
       add_edge_clone(invalid_graph)
     Condition
       Error in `add_edge_clone()`:
-      ! The graph object is not valid.
+      ! The graph is not valid.
     Code
       add_edge_df(invalid_graph)
     Condition
@@ -403,7 +403,8 @@
       add_edge_df(empty_graph)
     Condition
       Error in `add_edge_df()`:
-      ! The graph contains no nodes, so, edges cannot be added
+      ! The graph does not contain nodes.
+      *  so, edges cannot be added
 
 # Using a graph with no edges with trigger an error
 

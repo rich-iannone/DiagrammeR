@@ -98,24 +98,11 @@ add_edges_from_table <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added.")
-  }
+  check_graph_contains_nodes(graph, "so, edges cannot be added.")
 
   # Get the requested `from_col`
   from_col <-
@@ -161,26 +148,23 @@ add_edges_from_table <- function(
   # Verify that value for `from_col` is in the table
   if (!(from_col %in% colnames(csv))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `from_col` is not in the table.")
+    abort(
+      "The value specified in `from_col` is not in the table.")
   }
 
   # Verify that value for `to_col` is in the table
   if (!(to_col %in% colnames(csv))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `to_col` is not in the table.")
+    abort(
+      "The value specified in `to_col` is not in the table.")
   }
 
   # Verify that value for `from_to_map` is in the
   # graph's ndf
   if (!(from_to_map %in% colnames(get_node_df(graph)))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `from_to_map` is not in the graph.")
+    abort(
+      "The value specified in `from_to_map` is not in the graph.")
   }
 
   # Optionally set the `rel` attribute from a
@@ -218,7 +202,7 @@ add_edges_from_table <- function(
     dplyr::as_tibble(csv) %>%
     dplyr::select(!!to_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, !!from_to_map),
+      ndf %>% dplyr::select("id", !!from_to_map),
       by = stats::setNames(from_to_map, to_col)) %>%
     dplyr::select("id") %>%
     dplyr::rename(to = "id") %>%
@@ -242,7 +226,7 @@ add_edges_from_table <- function(
   # column rows and then convert to a data frame
   edf <-
     edf %>%
-    dplyr::relocate(from, to, rel) %>%
+    dplyr::relocate("from", "to", "rel") %>%
     as.data.frame(stringsAsFactors = FALSE)
 
   # Remove any rows where there is an NA in either
@@ -313,6 +297,9 @@ add_edges_from_table <- function(
 
   # Update the `last_edge` value in the graph
   graph$last_edge <- nrow(graph$edges_df)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   graph$graph_log <-
     add_action_to_log(

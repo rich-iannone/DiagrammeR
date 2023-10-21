@@ -98,56 +98,31 @@ add_n_nodes_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes and existing nodes are required")
-  }
+  check_graph_contains_nodes(graph, extra_msg = "Existing nodes are required." )
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # If the graph is directed and there is no value
   # given for the `direction` argument, stop function
-  if (is_graph_directed(graph) &
+  if (is_graph_directed(graph) &&
       is.null(direction)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "An edge `direction` must be provided")
+    cli::cli_abort("A `direction` edge must be provided for a directed graph.")
   }
 
   # If the graph is undirected, set the direction
   # to `to`
-  if (is_graph_directed(graph) == FALSE) {
+  if (!is_graph_directed(graph)) {
     direction <- "to"
   }
 
-  if (is.null(type)) {
-    type <- NA_character_
-  }
-
-  if (is.null(label)) {
-    label <- NA_character_
-  }
-
-  if (is.null(rel)) {
-    rel <- NA_character_
-  }
+  # If `type`, `label`, or `rel` is NULL, convert to NA
+  type  <- type %||% NA_character_
+  label <- label %||% NA_character_
+  rel   <-   rel %||% NA_character_
 
   # Get the number of nodes in the graph
   nodes_graph_1 <- graph %>% count_nodes()
@@ -163,7 +138,7 @@ add_n_nodes_ws <- function(
   # selected nodes
   if (direction == "to") {
 
-    for (i in 1:length(nodes_in_selection)) {
+    for (i in seq_along(nodes_in_selection)) {
 
       graph <-
         add_n_nodes(
@@ -194,7 +169,7 @@ add_n_nodes_ws <- function(
   # selected nodes
   if (direction == "from") {
 
-    for (i in 1:length(nodes_in_selection)) {
+    for (i in seq_along(nodes_in_selection)) {
 
       graph <-
         add_n_nodes(
@@ -222,9 +197,7 @@ add_n_nodes_ws <- function(
   }
 
   # Modify the graph object
-  graph$directed <-
-    ifelse(is_graph_directed(graph),
-           TRUE, FALSE)
+  graph$directed <- is_graph_directed(graph)
 
   # Get the updated number of nodes in the graph
   nodes_graph_2 <- graph %>% count_nodes()
@@ -245,18 +218,16 @@ add_n_nodes_ws <- function(
   new_edge_id <-
     graph %>%
     get_edge_df() %>%
-    dplyr::select(id) %>%
     utils::tail(edges_added) %>%
-    dplyr::pull(id)
+    dplyr::pull("id")
 
   # Get the node ID values for the
   # last nodes created
   new_node_id <-
     graph %>%
     get_node_df() %>%
-    dplyr::select(id) %>%
     utils::tail(nodes_added) %>%
-    dplyr::pull(id)
+    dplyr::pull("id")
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -265,17 +236,15 @@ add_n_nodes_ws <- function(
 
     if (nrow(node_aes_tbl) < nodes_added) {
 
-      node_aes$index__ <- 1:nodes_added
+      node_aes$index__ <- seq_len(nodes_added)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -286,7 +255,7 @@ add_n_nodes_ws <- function(
 
     if (nrow(node_data_tbl) < nodes_added) {
 
-      node_data$index__ <- 1:nodes_added
+      node_data$index__ <- seq_len(nodes_added)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
@@ -294,9 +263,7 @@ add_n_nodes_ws <- function(
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-"id")
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -307,17 +274,15 @@ add_n_nodes_ws <- function(
 
     if (nrow(edge_aes_tbl) < edges_added) {
 
-      edge_aes$index__ <- 1:edges_added
+      edge_aes$index__ <- seq_len(edges_added)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -328,17 +293,15 @@ add_n_nodes_ws <- function(
 
     if (nrow(edge_data_tbl) < edges_added) {
 
-      edge_data$index__ <- 1:edges_added
+      edge_data$index__ <- seq_len(edges_added)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -421,6 +384,8 @@ add_n_nodes_ws <- function(
           dplyr::select(dplyr::all_of(columns_to_select)) %>%
           dplyr::left_join(edge_data_tbl, by = "id"))
   }
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
@@ -438,8 +403,7 @@ add_n_nodes_ws <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set
