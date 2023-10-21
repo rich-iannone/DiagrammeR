@@ -30,6 +30,7 @@ Imports:
     RColorBrewer (>= 1.1-2),
     readr (>= 2.1.1),
     rlang (>= 1.1.0),
+    cli,
     rstudioapi (>= 0.7),
     scales (>= 1.1),
     stringr (>= 1.4),
