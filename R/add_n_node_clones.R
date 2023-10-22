@@ -60,9 +60,6 @@ add_n_node_clones <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -75,15 +72,17 @@ add_n_node_clones <- function(
   # Stop function the node ID does not correspond
   # to a node in the graph
   if (!(node %in% graph$nodes_df$id)) {
+
     cli::cli_abort(c(
-      "The value provided in `node` ({node}) must correspond to a node in the graph.",
-      "Any of {.or {unique(graph$nodes_df$id)}}"
-    ))
+      "The value of `node` ({node}) must correspond to a node in the graph.",
+      "Any of {.or {unique(graph$nodes_df$id)}} is acceptable.")
+      )
   }
 
   # Stop function if vector provided for label but it
   # is not of length `n`
   if (!is.null(label)) {
+
     # a check_length should exist soon in rlang
     # https://github.com/r-lib/rlang/issues/1618
     check_number_whole(length(label), min = n, max = n)
@@ -144,7 +143,7 @@ add_n_node_clones <- function(
 
   if (exists("node_attr_vals")) {
 
-    for (i in 1:ncol(node_attr_vals)) {
+    for (i in seq_len(ncol(node_attr_vals))) {
       for (j in seq_along(new_node_ids)) {
 
         graph$nodes_df[
@@ -158,8 +157,7 @@ add_n_node_clones <- function(
   # Clear the graph's active selection
   graph <-
     suppressMessages(
-      graph %>%
-        clear_selection())
+      clear_selection(graph))
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-

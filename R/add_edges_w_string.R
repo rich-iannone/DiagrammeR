@@ -150,13 +150,13 @@ add_edges_w_string <- function(
   }
 
   # Get the number of edges in the graph
-  edges_graph_1 <- count_edges(graph)
+  edges_graph_1 <- graph %>% count_edges()
 
   # Add the new edges to the graph
   graph <- add_edge_df(graph, new_edges)
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- count_edges(graph)
+  edges_graph_2 <- graph %>% count_edges()
 
   # Get the number of edges added to
   # the graph

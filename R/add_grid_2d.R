@@ -80,8 +80,6 @@ add_grid_2d <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -132,10 +130,10 @@ add_grid_2d <- function(
     create_edge_df(
       from = grid %>%
         get_edge_df() %>%
-        dplyr::pull(from),
+        dplyr::pull("from"),
       to = grid %>%
         get_edge_df() %>%
-        dplyr::pull(to),
+        dplyr::pull("to"),
       rel = rel)
 
   # Create the grid graph
@@ -152,17 +150,15 @@ add_grid_2d <- function(
 
     if (nrow(node_aes_tbl) < nrow(grid_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(grid_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(grid_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -173,7 +169,7 @@ add_grid_2d <- function(
 
     if (nrow(node_data_tbl) < nrow(grid_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(grid_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(grid_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
@@ -181,9 +177,7 @@ add_grid_2d <- function(
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-"id")
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -198,7 +192,7 @@ add_grid_2d <- function(
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
@@ -213,7 +207,7 @@ add_grid_2d <- function(
 
     if (nrow(edge_data_tbl) < nrow(grid_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(grid_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(grid_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
@@ -271,6 +265,7 @@ add_grid_2d <- function(
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(grid_edges)
 
+  # Get the name of the function
   fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
@@ -293,8 +288,7 @@ add_grid_2d <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

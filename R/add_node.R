@@ -59,7 +59,9 @@ add_node <- function(
     node_aes = NULL,
     edge_aes = NULL,
     node_data = NULL,
-    edge_data = NULL) {
+    edge_data = NULL
+  ) {
+
   # Get the time of function start
   time_function_start <- Sys.time()
 
@@ -82,9 +84,11 @@ add_node <- function(
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
+
     node_aes_tbl <- dplyr::as_tibble(node_aes)
 
     if (nrow(node_aes_tbl) == 1) {
+
       node_aes$index__ <- 1
 
       node_aes_tbl <-
@@ -99,9 +103,11 @@ add_node <- function(
 
   # Collect node data attributes
   if (!is.null(node_data)) {
+
     node_data_tbl <- dplyr::as_tibble(node_data)
 
     if (nrow(node_data_tbl) == 1) {
+
       node_data$index__ <- 1
 
       node_data_tbl <-
@@ -117,17 +123,18 @@ add_node <- function(
   # Modify graph if neither `to` nor `from`
   # values provided
   if (is.null(from) && is.null(to)) {
+
     new_node <-
       create_node_df(
         n = 1,
         label = as.character(label),
-        type = as.character(type)
-      )
+        type = as.character(type))
 
     new_node[1, 1] <- node
 
     # Add node aesthetics if available
     if (exists("node_aes_tbl")) {
+
       new_node <-
         new_node %>%
         dplyr::bind_cols(node_aes_tbl)
@@ -135,6 +142,7 @@ add_node <- function(
 
     # Add node data if available
     if (exists("node_data_tbl")) {
+
       new_node <-
         new_node %>%
         dplyr::bind_cols(node_data_tbl)
@@ -161,8 +169,7 @@ add_node <- function(
         duration = graph_function_duration(time_function_start),
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df),
-        d_n = 1
-      )
+        d_n = 1)
 
     # Write graph backup if the option is set
     if (graph$graph_info$write_backups) {
@@ -174,14 +181,17 @@ add_node <- function(
 
   # Modify graph if only `from` values provided
   if (!is.null(from) && is.null(to)) {
+
     from_nodes_available <-
       all(from %in% get_node_ids(graph))
 
     if (!from_nodes_available) {
+
       cli::cli_abort(c(
         "The nodes from which edges should be applied to the new node are not available."
       ))
     }
+
     # All code until return assumes from_nodes_available = TRUE
     new_node <-
       create_node_df(
@@ -318,18 +328,19 @@ add_node <- function(
       cli::cli_abort(
         "The nodes to which edges should be applied from the new node are not available.")
     }
+
     # Assume to_nodes is available.
     new_node <-
       create_node_df(
         n = 1,
         label = as.character(label),
-        type = as.character(type)
-      )
+        type = as.character(type))
 
     new_node[1, 1] <- node
 
     # Add node aesthetics if available
     if (exists("node_aes_tbl")) {
+
       new_node <-
         new_node %>%
         dplyr::bind_cols(node_aes_tbl)
@@ -337,6 +348,7 @@ add_node <- function(
 
     # Add node data if available
     if (exists("node_data_tbl")) {
+
       new_node <-
         new_node %>%
         dplyr::bind_cols(node_data_tbl)
@@ -347,6 +359,7 @@ add_node <- function(
 
     # Collect edge aesthetic attributes
     if (!is.null(edge_aes)) {
+
       edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
       if (nrow(edge_aes_tbl) < length(from)) {
@@ -364,6 +377,7 @@ add_node <- function(
 
     # Collect edge data attributes
     if (!is.null(edge_data)) {
+
       edge_data_tbl <- dplyr::as_tibble(edge_data)
 
       if (nrow(edge_data_tbl) < length(from)) {
@@ -382,14 +396,14 @@ add_node <- function(
     new_edges <-
       create_edge_df(
         from = rep(node, length(to)),
-        to = to
-      )
+        to = to)
 
     new_edges$id <-
       new_edges$id + edges_created
 
     # Add edge aesthetics if available
     if (exists("edge_aes_tbl")) {
+
       new_edges <-
         new_edges %>%
         dplyr::bind_cols(edge_aes_tbl)
@@ -407,8 +421,7 @@ add_node <- function(
     combined_edges <-
       dplyr::bind_rows(
         graph$edges_df,
-        new_edges
-      )
+        new_edges)
 
     edges_in_graph_2 <- nrow(combined_edges)
     edges_added <- edges_in_graph_2 - edges_in_graph
@@ -433,8 +446,7 @@ add_node <- function(
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df),
         d_n = 1,
-        d_e = length(to)
-      )
+        d_e = length(to))
 
     # Write graph backup if the option is set
     if (graph$graph_info$write_backups) {
@@ -446,6 +458,7 @@ add_node <- function(
 
   # Modify graph if both `to` and `from` values provided
   if (!is.null(from) && !is.null(to)) {
+
     from_nodes_available <-
       all(from %in% get_node_ids(graph))
 
@@ -453,11 +466,13 @@ add_node <- function(
       all(to %in% get_node_ids(graph))
 
     if (!from_nodes_available) {
+
       cli::cli_abort(
         "The nodes from which edges should be applied to the new node are not available.")
     }
 
     if (!to_nodes_available) {
+
       cli::cli_abort(
         "The nodes to which edges should be applied from the new node are not available."
       )
@@ -467,8 +482,7 @@ add_node <- function(
         create_node_df(
           n = 1,
           label = as.character(label),
-          type = as.character(type)
-        )
+          type = as.character(type))
 
       new_node[1, 1] <- node
 
@@ -481,6 +495,7 @@ add_node <- function(
 
       # Add node data if available
       if (exists("node_data_tbl")) {
+
         new_node <-
           new_node %>%
           dplyr::bind_cols(node_data_tbl)
@@ -494,19 +509,17 @@ add_node <- function(
         combine_edfs(
           create_edge_df(
             from = rep(node, length(to)),
-            to = to
-          ),
+            to = to),
           create_edge_df(
             from = from,
-            to = rep(node, length(from))
-          )
-        )
+            to = rep(node, length(from))))
 
       new_edges$id <-
         new_edges$id + edges_created
 
       # Collect edge aesthetic attributes
       if (!is.null(edge_aes)) {
+
         edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
         if (nrow(edge_aes_tbl) < (length(from) + length(to))) {
@@ -524,9 +537,11 @@ add_node <- function(
 
       # Collect edge data attributes
       if (!is.null(edge_data)) {
+
         edge_data_tbl <- dplyr::as_tibble(edge_data)
 
         if (nrow(edge_data_tbl) < (length(from) + length(to))) {
+
           edge_data$index__ <- seq_len(length(from) + length(to))
 
           edge_data_tbl <-
@@ -541,6 +556,7 @@ add_node <- function(
 
       # Add edge aesthetics if available
       if (exists("edge_aes_tbl")) {
+
         new_edges <-
           new_edges %>%
           dplyr::bind_cols(edge_aes_tbl)
@@ -548,6 +564,7 @@ add_node <- function(
 
       # Add edge data if available
       if (exists("edge_data_tbl")) {
+
         new_edges <-
           new_edges %>%
           dplyr::bind_cols(edge_data_tbl)
@@ -558,8 +575,7 @@ add_node <- function(
       combined_edges <-
         dplyr::bind_rows(
           graph$edges_df,
-          new_edges
-        )
+          new_edges)
 
       edges_in_graph_2 <- nrow(combined_edges)
       edges_added <- edges_in_graph_2 - edges_in_graph
@@ -584,8 +600,7 @@ add_node <- function(
           nodes = nrow(graph$nodes_df),
           edges = nrow(graph$edges_df),
           d_n = 1,
-          d_e = length(from) + length(to)
-        )
+          d_e = length(from) + length(to))
 
       # Perform graph actions, if any are available
       if (nrow(graph$graph_actions) > 0) {
