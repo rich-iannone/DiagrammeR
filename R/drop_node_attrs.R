@@ -42,7 +42,7 @@
 #' # removed
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 drop_node_attrs <- function(

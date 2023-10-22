@@ -93,7 +93,7 @@
 #'     to = "two") %>%
 #'   count_edges()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 delete_edge <- function(

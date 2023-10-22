@@ -75,7 +75,7 @@
 #' # to see the change
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 recode_node_attrs <- function(

@@ -69,7 +69,7 @@
 #'     attr = id) %>%
 #'   get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 set_node_attr_to_display <- function(

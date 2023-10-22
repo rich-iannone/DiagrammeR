@@ -55,7 +55,7 @@
 #' # Display the edge data frame
 #' edf
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
 create_edge_df <- function(
     from,

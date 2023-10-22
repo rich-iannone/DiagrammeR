@@ -85,7 +85,7 @@
 #'   get_node_df() %>%
 #'   colnames()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 add_nodes_from_table <- function(

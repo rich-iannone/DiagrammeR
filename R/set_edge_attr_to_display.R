@@ -69,7 +69,7 @@
 #'     attr = id) %>%
 #'   get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 set_edge_attr_to_display <- function(

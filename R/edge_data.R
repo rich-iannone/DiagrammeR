@@ -29,7 +29,7 @@
 #' graph %>% get_edge_df()
 #' }
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 edge_data <- function(...) {

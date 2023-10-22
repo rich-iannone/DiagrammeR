@@ -52,7 +52,7 @@
 #' # attribute had been copied
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 copy_node_attrs <- function(

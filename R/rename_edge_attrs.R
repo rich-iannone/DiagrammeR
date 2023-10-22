@@ -43,7 +43,7 @@
 #' # attribute had been renamed
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 rename_edge_attrs <- function(

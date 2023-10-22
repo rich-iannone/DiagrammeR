@@ -73,7 +73,7 @@
 #' # together (with new attr `area`)
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 mutate_node_attrs <- function(

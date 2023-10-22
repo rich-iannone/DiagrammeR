@@ -83,7 +83,7 @@
 #' # node attributes
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 rescale_node_attrs <- function(

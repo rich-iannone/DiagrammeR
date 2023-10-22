@@ -115,7 +115,7 @@
 #' # those of the other edges
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 mutate_edge_attrs_ws <- function(

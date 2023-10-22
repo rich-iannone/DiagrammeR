@@ -103,7 +103,7 @@
 #' graph_2 %>% get_edge_df()
 #'
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_edge <- function(

@@ -52,7 +52,7 @@
 #' # Get the graph's internal edf to show that the
 #' # join has been made
 #' graph %>% get_edge_df()
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
 join_edge_attrs <- function(
     graph,

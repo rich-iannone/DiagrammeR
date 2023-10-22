@@ -39,7 +39,7 @@
 #'   get_edges(
 #'     return_type = "vector")
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_edge_df <- function(

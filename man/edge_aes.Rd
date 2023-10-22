@@ -192,8 +192,8 @@ graph \%>\%
 
 }
 \seealso{
-Other Aesthetics: 
+Other aesthetics: 
 \code{\link{node_aes}()},
 \code{\link{node_edge_aes_data}}
 }
-\concept{Aesthetics}
+\concept{aesthetics}

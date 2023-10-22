@@ -75,7 +75,7 @@
 #'     values = "black",
 #'     to = 1)
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 set_edge_attrs <- function(

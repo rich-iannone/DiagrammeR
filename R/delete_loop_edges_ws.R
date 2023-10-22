@@ -44,7 +44,7 @@
 #' # edges remaining in the graph
 #' graph %>% count_loop_edges()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 delete_loop_edges_ws <- function(graph) {

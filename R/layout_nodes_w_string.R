@@ -78,7 +78,7 @@
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#' @family node creation and removal
 #' @export
 layout_nodes_w_string <- function(
     graph,

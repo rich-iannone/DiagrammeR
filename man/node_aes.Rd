@@ -177,8 +177,8 @@ graph <-
   )
 }
 \seealso{
-Other Aesthetics: 
+Other aesthetics: 
 \code{\link{edge_aes}()},
 \code{\link{node_edge_aes_data}}
 }
-\concept{Aesthetics}
+\concept{aesthetics}

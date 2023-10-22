@@ -90,7 +90,7 @@
 #' # View the graph's node data frame
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 set_node_position <- function(

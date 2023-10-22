@@ -75,7 +75,7 @@
 #' # Get the graph's edges
 #' graph %>% get_edges()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 add_n_nodes_ws <- function(

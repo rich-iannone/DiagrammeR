@@ -81,7 +81,7 @@
 #'   get_edge_df() %>%
 #'   head()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_edges_from_table <- function(

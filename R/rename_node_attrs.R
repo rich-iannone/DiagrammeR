@@ -49,7 +49,7 @@
 #' # attribute had been renamed
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 rename_node_attrs <- function(

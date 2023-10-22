@@ -43,7 +43,7 @@
 #' # removed
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 drop_edge_attrs <- function(
