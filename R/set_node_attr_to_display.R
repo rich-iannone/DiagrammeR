@@ -86,20 +86,10 @@ set_node_attr_to_display <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `attr`
   attr <-
@@ -143,9 +133,7 @@ set_node_attr_to_display <- function(
   # If the `display` node attribute doesn't exist,
   # create that column and fill with the default value
   if (!("display" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(display = as.character(default))
+    ndf$display <- as.character(default)
   }
 
   # Create a tibble with the node ID values and the
@@ -170,8 +158,8 @@ set_node_attr_to_display <- function(
 
   # Get the column numbers for the `.x`
   # and `.y` columns
-  x_col <- which(grepl("\\.x$", colnames(ndf)))
-  y_col <- which(grepl("\\.y$", colnames(ndf)))
+  x_col <- grep("\\.x$", colnames(ndf))
+  y_col <- grep("\\.y$", colnames(ndf))
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
@@ -194,14 +182,14 @@ set_node_attr_to_display <- function(
   colnames(display_col)[1] <- "display"
 
   # Remove column numbers that end with ".x" or ".y"
-  ndf <- ndf[-which(grepl("\\.x$", colnames(ndf)))]
-  ndf <- ndf[-which(grepl("\\.y$", colnames(ndf)))]
+  ndf <- ndf[-grep("\\.x$", colnames(ndf))]
+  ndf <- ndf[-grep("\\.y$", colnames(ndf))]
 
   # Bind the `display_col` df to the `ndf` df and
   # modify the ordering of the columns
   ndf <-
     dplyr::bind_cols(ndf, display_col) %>%
-    dplyr::relocate(id, type, label, display)
+    dplyr::relocate("id", "type", "label", "display")
 
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf

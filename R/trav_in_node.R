@@ -353,10 +353,10 @@ trav_in_node <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(nodes)))
+        grep("\\.x$", colnames(nodes))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(nodes)))
+        grep("\\.y$", colnames(nodes))
 
       # Selectively merge in values to the existing
       # edge attribute column

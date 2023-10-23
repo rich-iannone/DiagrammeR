@@ -351,10 +351,10 @@ trav_in <- function(
 
     # Get column numbers that end with ".x" or ".y"
     split_var_x_col <-
-      which(grepl("\\.x$", colnames(nodes)))
+      grep("\\.x$", colnames(nodes))
 
     split_var_y_col <-
-      which(grepl("\\.y$", colnames(nodes)))
+      grep("\\.y$", colnames(nodes))
 
     if (is.null(copy_attrs_as)) {
 

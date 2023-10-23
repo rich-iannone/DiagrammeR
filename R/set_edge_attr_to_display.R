@@ -142,9 +142,7 @@ set_edge_attr_to_display <- function(
   # create that column and fill with the default value
   if (!("display" %in% colnames(edf))) {
 
-    edf <-
-      edf %>%
-      dplyr::mutate(display = as.character(default))
+    edf$display <- as.character(default)
   }
 
   # Create a tibble with the edge ID values and the
@@ -161,7 +159,7 @@ set_edge_attr_to_display <- function(
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(edges),
-        display = as.character("is_na"))
+        display = "is_na")
   }
 
   # Join the `attr_to_display` table with the `edf`
@@ -198,14 +196,14 @@ set_edge_attr_to_display <- function(
   colnames(display_col)[1] <- "display"
 
   # Remove column numbers that end with ".x" or ".y"
-  edf <- edf[-which(grepl("\\.x$", colnames(edf)))]
-  edf <- edf[-which(grepl("\\.y$", colnames(edf)))]
+  edf <- edf[-grep("\\.x$", colnames(edf))]
+  edf <- edf[-grep("\\.y$", colnames(edf))]
 
   # Bind the `display_col` df to the `edf` df and
   # modify the ordering of the columns
   edf <-
     dplyr::bind_cols(edf, display_col) %>%
-    dplyr::relocate(id, from, to, rel, display)
+    dplyr::relocate("id", "from", "to", "rel", "display")
 
   # Replace the graph's edge data frame with `edf`
   graph$edges_df <- edf

@@ -206,28 +206,13 @@ trav_in_edge <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
@@ -348,14 +333,14 @@ trav_in_edge <- function(
       edges <-
         ndf_2 %>%
         dplyr::right_join(edf, by = c("id" = "to")) %>%
-        dplyr::rename(to = id, id = id.y)
+        dplyr::rename(to = "id", id = "id.y")
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(edges)))
+        grep("\\.x$", colnames(edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(edges)))
+        grep("\\.y$", colnames(edges))
 
       # Selectively merge in values to the existing
       # edge attribute column

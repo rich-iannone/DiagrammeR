@@ -386,14 +386,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(from_join)))
+        grep("\\.x$", colnames(from_join))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(from_join)))
+        grep("\\.y$", colnames(from_join))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(from_join)) {
+      for (i in seq_len(nrow(from_join))) {
         if (!is.na(from_join[i, split_var_x_col])) {
           from_join[i, split_var_y_col] <- from_join[i, split_var_x_col]
         }
@@ -432,14 +432,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(to_join)))
+        grep("\\.x$", colnames(to_join))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(to_join)))
+        greps("\\.y$", colnames(to_join))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(to_join)) {
+      for (i in seq_len(nrow(to_join))) {
         if (!is.na(to_join[i, split_var_x_col])) {
           to_join[i, split_var_y_col] <- to_join[i, split_var_x_col]
         }
@@ -460,14 +460,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(edges)))
+        grep("\\.x$", colnames(edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(edges)))
+        grep("\\.y$", colnames(edges))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(edges)) {
+      for (i in seq_len(nrow(edges))) {
         if (!is.na(edges[i, split_var_x_col])) {
           edges[i, split_var_y_col] <- edges[i, split_var_x_col]
         }
@@ -491,10 +491,10 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(joined_edges)))
+        grep("\\.x$", colnames(joined_edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(joined_edges)))
+        grep("\\.y$", colnames(joined_edges))
 
       # Selectively merge in values to the existing
       # edge attribute column

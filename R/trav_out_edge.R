@@ -333,10 +333,10 @@ trav_out_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(edges)))
+        grep("\\.x$", colnames(edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(edges)))
+        grep("\\.y$", colnames(edges))
 
       # Selectively merge in values to the existing
       # edge attribute column
