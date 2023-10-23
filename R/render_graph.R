@@ -173,8 +173,11 @@ render_graph <- function(
             graph %>%
             to_igraph() %>%
             igraph::layout_in_circle() %>%
-            dplyr::as_tibble() %>%
-            dplyr::rename(x = V1, y = V2) %>%
+            dplyr::as_tibble(.name_repair = "unique") %>%
+            purrr::set_names(c("x", "y")) %>%
+            # created a test in test-render_graph to avoid tibble deprecation warning
+            # as_tibble.matrix must have name repair present.
+            # dplyr::rename(x = V1, y = V2) %>%
             dplyr::mutate(x = x * (((count_nodes(graph) + (0.25 * count_nodes(graph)))) / count_nodes(graph))) %>%
             dplyr::mutate(y = y * (((count_nodes(graph) + (0.25 * count_nodes(graph)))) / count_nodes(graph)))
         }
