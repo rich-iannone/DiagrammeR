@@ -949,8 +949,11 @@ get_svg_tbl <- function(svg_vec) {
 
   svg_tbl <-
     dplyr::tibble(
-      index = integer(0), type = character(0), node_id = integer(0),
-      from = integer(0), to = integer(0))
+      index = integer(),
+      type = character(),
+      node_id = integer(),
+      from = integer(),
+      to = integer())
 
   for (i in seq(svg_vec)) {
 

@@ -45,7 +45,7 @@ edge_data <- function(...) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes")
+      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.")
   }
 
   edge_data_values

@@ -61,21 +61,13 @@ export_graph <- function(
     height = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # If no `file_name` or `file_type` provided, default to
   # writing a PDF with a unique `file_name` value based
   # on user's current date/time
-  if (is.null(file_name) & is.null(file_type)) {
+  if (is.null(file_name) && is.null(file_type)) {
     file_name <-
       paste0("graph_", format(Sys.time(), "%Y_%m_%d__%H_%M_%S"), ".pdf")
     file_type <- "pdf"

@@ -80,12 +80,7 @@ get_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   edge_attr <- rlang::enquo(edge_attr)
 
@@ -98,13 +93,10 @@ get_edge_attrs <- function(
       reasons = "This is not an edge attribute.")
   }
 
-  if (!is.null(from) & !is.null(to)) {
-    if (length(from) != length(to)) {
-
+  if (length(from) != length(to)) {
       emit_error(
         fcn_name = fcn_name,
         reasons = "The number of nodes in `from` and `to` must be the same.")
-    }
   }
 
   # Extract the edge data frame (ndf)

@@ -6,6 +6,6 @@
     Condition
       Error in `trav_in_until()`:
       ! There is no selection of nodes available.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of nodes
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of nodes.
 

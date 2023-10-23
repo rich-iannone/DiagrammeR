@@ -65,7 +65,7 @@ from_adj_matrix <- function(
 
   # If FALSE provided for `weighted`, change value to
   # NULL for `graph_from_adjacency_matrix()`
-  if (weighted == FALSE) {
+  if (!weighted) {
     weighted <- NULL
   }
 

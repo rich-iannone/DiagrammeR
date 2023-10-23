@@ -78,16 +78,9 @@ render_graph <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
-
-  if (is.null(output)) {
-    output <- "graph"
-  }
+  output <- output %||% "graph"
 
   if (output == "graph") {
 

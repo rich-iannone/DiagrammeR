@@ -157,9 +157,9 @@ create_graph <- function(
   # Create an empty table for global graph attributes
   global_attrs <-
     dplyr::tibble(
-      attr = character(0),
-      value = character(0),
-      attr_type = character(0)
+      attr = character(),
+      value = character(),
+      attr_type = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -187,9 +187,9 @@ create_graph <- function(
 
     global_attrs <-
       dplyr::tibble(
-        attr = character(0),
-        value = character(0),
-        attr_type = character(0)
+        attr = character(),
+        value = character(),
+        attr_type = character()
       ) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
@@ -199,9 +199,9 @@ create_graph <- function(
   # Create an empty node data frame (`ndf`)
   ndf <-
     dplyr::tibble(
-      id = integer(0),
-      type = character(0),
-      label = character(0)
+      id = integer(),
+      type = character(),
+      label = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -210,10 +210,10 @@ create_graph <- function(
   # Create an empty edge data frame (`edf`)
   edf <-
     dplyr::tibble(
-      id = integer(0),
-      from = integer(0),
-      to = integer(0),
-      rel = character(0)
+      id = integer(),
+      from = integer(),
+      to = integer(),
+      rel = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -229,9 +229,9 @@ create_graph <- function(
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
     dplyr::tibble(
-      edge = integer(0),
-      from = integer(0),
-      to = integer(0)
+      edge = integer(),
+      from = integer(),
+      to = integer()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -240,9 +240,9 @@ create_graph <- function(
   # Create an empty `graph_actions` data frame
   graph_actions <-
     dplyr::tibble(
-      action_index = integer(0),
-      action_name = character(0),
-      expression = character(0)
+      action_index = integer(),
+      action_name = character(),
+      expression = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -251,14 +251,14 @@ create_graph <- function(
   # Create an empty `graph_log` data frame
   graph_log <-
     dplyr::tibble(
-      version_id = integer(0),
-      function_used = character(0),
+      version_id = integer(),
+      function_used = character(),
       time_modified = graph_time,
-      duration = numeric(0),
-      nodes = integer(0),
-      edges = integer(0),
-      d_n = integer(0),
-      d_e = integer(0)
+      duration = numeric(),
+      nodes = integer(),
+      edges = integer(),
+      d_n = integer(),
+      d_e = integer()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 

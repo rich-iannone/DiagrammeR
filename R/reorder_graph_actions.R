@@ -80,12 +80,7 @@ reorder_graph_actions <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Determine whether there any
   # available graph actions
@@ -93,7 +88,7 @@ reorder_graph_actions <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "There are no graph actions to reorder")
+      reasons = "There are no graph actions to reorder.")
   }
 
   # Get the `action_index` values

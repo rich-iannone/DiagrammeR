@@ -186,7 +186,7 @@ add_nodes_from_table <- function(
 
     colnames(csv)[which(colnames(csv) == "id")] <- "id_external"
 
-    ndf$id_external <- csd$id_external
+    ndf$id_external <- csv$id_external
   }
 
   # Optionally set the `type` attribute with a single

@@ -81,20 +81,10 @@ fully_connect_nodes_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, there are no nodes to connect")
-  }
+  check_graph_contains_nodes(graph, "So, there are no nodes to connect.")
 
   # Validation: Graph object has valid node selection
   if (!graph_contains_node_selection(graph)) {

@@ -450,7 +450,7 @@ generate_dot <- function(graph) {
 
         cluster_vals <- nodes_df$cluster
 
-        clustered_node_block <- character(0)
+        clustered_node_block <- character(0L)
         clusters <- split(node_block, cluster_vals)
 
         for (i in seq_along(clusters)) {
