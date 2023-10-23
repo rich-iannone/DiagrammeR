@@ -90,6 +90,7 @@ add_edge_clone <- function(
   # Stop function the edge ID does not correspond
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
+
     abort(
       "The value provided in `edge` does not correspond to an edge in the graph.")
   }
@@ -165,8 +166,7 @@ add_edge_clone <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

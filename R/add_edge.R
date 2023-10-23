@@ -118,15 +118,14 @@ add_edge <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
+
   # Validation: Graph contains nodes
   check_graph_contains_nodes(graph, extra_msg = "An edge cannot be added.")
 
-
   if (length(from) > 1 || length(to) > 1) {
+
     rlang::abort("Only one edge can be specified in `from` or `to`")
   }
 
@@ -135,9 +134,7 @@ add_edge <- function(
   current_graph_log_version_id <-
     max(graph$graph_log$version_id)
 
-  if (is.null(rel)) {
-    rel <- NA_character_
-  }
+  rel <- rel %||% NA_character_
 
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
@@ -187,8 +184,7 @@ add_edge <- function(
     if (!(from %in% graph$nodes_df$label)) {
 
       rlang::abort(
-        "The value provided in `from` does not exist as a node `label` value."
-        )
+        "The value provided in `from` does not exist as a node `label` value.")
     }
 
     # Stop function if the label for
@@ -216,8 +212,9 @@ add_edge <- function(
         dplyr::select(label) %>%
         dplyr::filter(label == to) %>%
         nrow() > 1) {
+
       rlang::abort(
-        reasons = "The node `label` provided in `to` is not distinct in the graph.")
+        "The node `label` provided in `to` is not distinct in the graph.")
     }
 
     # Use the `translate_to_node_id()` helper function to map
@@ -275,8 +272,7 @@ add_edge <- function(
       # Clear the graph's active selection
       graph <-
         suppressMessages(
-          graph %>%
-            clear_selection())
+          clear_selection(graph))
     }
 
     if (exists("edge_data_tbl")) {
@@ -292,7 +288,7 @@ add_edge <- function(
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(edge_data_tbl)) {
+      for (i in seq_len(ncol(edge_data_tbl))) {
         graph <-
           graph %>%
           set_edge_attrs_ws(
@@ -303,19 +299,22 @@ add_edge <- function(
 
       # Clear the graph's active selection
       graph <-
-        suppressMessages(clear_selection(graph))
+        suppressMessages(
+          clear_selection(graph))
     }
 
     # Modify the `last_edge` vector
-    graph$last_edge <- as.integer(graph$last_edge + 1)
+    graph$last_edge <- as.integer(graph$last_edge + 1L)
 
     # Remove extra items from the `graph_log`
     graph$graph_log <-
       graph$graph_log %>%
       dplyr::filter(version_id <= current_graph_log_version_id)
 
-    # Update the `graph_log` df with an action
+    # Get the name of the function
     fcn_name <- get_calling_fcn()
+
+    # Update the `graph_log` df with an action
     graph$graph_log <-
       add_action_to_log(
         graph_log = graph$graph_log,
@@ -330,8 +329,7 @@ add_edge <- function(
     # Perform graph actions, if any are available
     if (nrow(graph$graph_actions) > 0) {
       graph <-
-        graph %>%
-        trigger_graph_actions()
+        trigger_graph_actions(graph)
     }
 
     # Write graph backup if the option is set
