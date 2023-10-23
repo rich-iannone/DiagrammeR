@@ -64,16 +64,11 @@ delete_global_graph_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # If no `attr` or `attr_type` provided then
   # all global graph attributes will be removed
-  if (is.null(attr) & is.null(attr_type)) {
+  if (is.null(attr) && is.null(attr_type)) {
 
     # Clear the global graph attributes data frame
     # by removing all rows from it

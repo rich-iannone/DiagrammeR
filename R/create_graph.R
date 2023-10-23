@@ -411,5 +411,5 @@ create_graph <- function(
 
   # If neither an ndf nor both ndf & edf provided,
   # return the initialized graph with no nodes or edges
-  return(graph)
+  graph
 }

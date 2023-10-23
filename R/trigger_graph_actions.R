@@ -86,16 +86,8 @@ trigger_graph_actions <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   if (nrow(graph$graph_actions) == 0) {
 
@@ -111,7 +103,7 @@ trigger_graph_actions <- function(graph) {
 
     expr_error_at_index <- 0
 
-    for (i in 1:length(graph_actions)) {
+    for (i in seq_along(graph_actions)) {
 
       if (class(
         tryCatch(
@@ -135,7 +127,7 @@ trigger_graph_actions <- function(graph) {
       action_name_at_error <-
         graph$graph_actions %>%
         dplyr::filter(action_index == expr_error_at_index) %>%
-        dplyr::pull(action_name)
+        dplyr::pull("action_name")
 
       if (!is.na(action_name_at_error)) {
         message(
@@ -150,6 +142,9 @@ trigger_graph_actions <- function(graph) {
             action_name_at_error, "`)."))
       }
     }
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph$graph_log <-

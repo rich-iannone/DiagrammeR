@@ -58,16 +58,8 @@ add_node_df <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Get the number of nodes ever created for
   # this graph
@@ -99,6 +91,9 @@ add_node_df <- function(
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -114,8 +109,7 @@ add_node_df <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

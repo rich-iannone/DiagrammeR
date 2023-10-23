@@ -100,16 +100,8 @@ add_nodes_from_table <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Get the requested `label_col`
   label_col <-
@@ -194,17 +186,13 @@ add_nodes_from_table <- function(
 
     colnames(csv)[which(colnames(csv) == "id")] <- "id_external"
 
-    ndf <-
-      ndf %>%
-      dplyr::mutate(id_external = csv$id_external)
+    ndf$id_external <- csd$id_external
   }
 
   # Optionally set the `type` attribute with a single
   # value repeated down
-  if (is.null(type_col) & !is.null(set_type)) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(type = as.character(set_type))
+  if (is.null(type_col) && !is.null(set_type)) {
+    ndf$type <- as.character(set_type)
   }
 
   # Get the remaining columns from `csv`
@@ -270,6 +258,9 @@ add_nodes_from_table <- function(
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + nodes_added
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

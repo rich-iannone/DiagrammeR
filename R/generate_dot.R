@@ -327,7 +327,7 @@ generate_dot <- function(graph) {
 
         color_attr_column_name <-
           unlist(strsplit(colnames(nodes_df)[
-            (which(grepl("alpha:.*", colnames(nodes_df))))
+            (grep("alpha:.*", colnames(nodes_df)))
           ], ":"))[-1]
 
         color_attr_column_no <-

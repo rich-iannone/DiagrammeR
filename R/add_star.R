@@ -89,24 +89,11 @@ add_star <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Stop if n is too small
-  if (n <= 3) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 4")
-  }
+  check_number_whole(n, min = 4)
 
   # Get the number of nodes ever created for
   # this graph
@@ -130,7 +117,7 @@ add_star <- function(
   graph_directed <- graph$directed
 
   # Get the sequence of nodes required
-  nodes <- seq(1, n)
+  nodes <- seq_len(n)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -139,17 +126,15 @@ add_star <- function(
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -160,17 +145,15 @@ add_star <- function(
 
     if (nrow(node_data_tbl) < n) {
 
-      node_data$index__ <- 1:n
+      node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -181,17 +164,15 @@ add_star <- function(
 
     if (nrow(edge_aes_tbl) < (n - 1)) {
 
-      edge_aes$index__ <- 1:(n - 1)
+      edge_aes$index__ <- seq_len(n - 1)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -202,17 +183,15 @@ add_star <- function(
 
     if (nrow(edge_data_tbl) < (n - 1)) {
 
-      edge_data$index__ <- 1:(n - 1)
+      edge_data$index__ <- seq_len(n - 1)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -283,6 +262,9 @@ add_star <- function(
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + n - 1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
@@ -303,8 +285,7 @@ add_star <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

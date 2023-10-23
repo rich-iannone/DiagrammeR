@@ -76,20 +76,10 @@ add_reverse_edges_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (!graph_contains_edges(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
   if (!graph_contains_edge_selection(graph)) {
@@ -103,19 +93,17 @@ add_reverse_edges_ws <- function(
   edges_graph_1 <- graph %>% count_edges()
 
   # If no value(s) provided for `rel`, set to NA
-  if (is.null(rel)) {
-    rel <- NA_character_
-  }
+  rel <- rel %||% NA_character_
 
   # Get a vector of edges available in the
   # graph's selection
   edges_in_selection <-
     graph$edge_selection %>%
-    dplyr::select(to, from)
+    dplyr::select("to", "from")
 
   # Add new edges to the graph for every edge
   # in the graph's active selection
-  for (i in 1:nrow(edges_in_selection)) {
+  for (i in seq_len(nrow(edges_in_selection))) {
 
     # Create a graph edge
     graph <-
@@ -163,7 +151,7 @@ add_reverse_edges_ws <- function(
 
     if (nrow(edge_data_tbl) < edges_added) {
 
-      edge_data$index__ <- 1:edges_added
+      edge_data$index__ <- seq_len(edges_added)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
@@ -212,8 +200,7 @@ add_reverse_edges_ws <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

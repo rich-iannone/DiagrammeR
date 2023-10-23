@@ -171,8 +171,8 @@ set_edge_attr_to_display <- function(
 
   # Get the column numbers for the `.x`
   # and `.y` columns
-  x_col <- which(grepl("\\.x$", colnames(edf)))
-  y_col <- which(grepl("\\.y$", colnames(edf)))
+  x_col <- grep("\\.x$", colnames(edf))
+  y_col <- grep("\\.y$", colnames(edf))
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame

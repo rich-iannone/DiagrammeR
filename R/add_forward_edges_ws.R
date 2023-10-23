@@ -97,7 +97,7 @@ add_forward_edges_ws <- function(
 
   # Add new edges to the graph for every edge
   # in the graph's active selection
-  for (i in 1:nrow(edges_in_selection)) {
+  for (i in seq_len(nrow(edges_in_selection))) {
 
     # Create a graph edge
     graph <-

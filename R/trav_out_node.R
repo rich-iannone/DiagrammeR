@@ -219,28 +219,13 @@ trav_out_node <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
@@ -291,8 +276,7 @@ trav_out_node <- function(
   # starting edges
   valid_nodes <-
     starting_edges %>%
-    dplyr::select(from) %>%
-    dplyr::distinct() %>%
+    dplyr::distinct(from) %>%
     dplyr::left_join(ndf, by = c("from" = "id"))
 
   # If traversal conditions are provided then
@@ -337,13 +321,13 @@ trav_out_node <- function(
 
     nodes <-
       nodes %>%
-      dplyr::rename(id = from.y) %>%
+      dplyr::rename(id = "from.y") %>%
       dplyr::group_by(id) %>%
-      dplyr::summarize(!! copy_attrs_from :=
+      dplyr::summarize(!!copy_attrs_from :=
                          match.fun(!! agg)(!! as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::relocate(id, type, label) %>%
+      dplyr::relocate("id", "type", "label") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # If edge attribute exists as a column in the ndf
@@ -351,14 +335,14 @@ trav_out_node <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(nodes)))
+        grep("\\.x$", colnames(nodes))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(nodes)))
+        grep("\\.y$", colnames(nodes))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(nodes)) {
+      for (i in seq_len(nrow(nodes))) {
         if (!is.na(nodes[i, split_var_x_col])) {
           nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
         }

@@ -20,3 +20,5 @@ PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
 PackageCheckArgs: --as-cran --no-manual
 PackageRoxygenize: rd,collate,namespace
+
+UseNativePipeOperator: No

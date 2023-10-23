@@ -113,14 +113,14 @@ add_n_node_clones <- function(
 
   # Create one or more clones of
   # the selected node in the graph
-  graph_type <- as.character(
+  group_id <- as.character(
     get_node_attrs(graph = graph, node_attr = type, nodes = node))
 
   graph <-
     graph %>%
     add_n_nodes(
       n = n,
-      type = graph_type,
+      type = group_id,
       label = label)
 
   # Obtain the node ID values for
