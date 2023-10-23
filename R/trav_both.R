@@ -210,12 +210,6 @@ trav_both <- function(
 
   # Validation: Graph object has valid node selection
   check_graph_contains_node_selection(graph)
-  #     fcn_name = fcn_name,
-  #     reasons = c(
-  #       "There is no selection of nodes available.",
-  #       "any traversal requires an active selection",
-  #       "this type of traversal requires a selection of nodes"))
-  # }
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)

@@ -13,15 +13,15 @@
     Condition
       Error in `trav_out()`:
       ! There is no selection of nodes available.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of nodes
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of nodes.
     Code
       trav_both(graph)
     Condition
       Error in `trav_both()`:
       ! There is no selection of nodes available.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of nodes
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of nodes.
     Code
       trav_in_node(graph)
     Condition

@@ -42,18 +42,6 @@
 #'
 #' @export
 get_graph_actions <- function(graph) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
-
-  graph$graph_actions %>%
-    dplyr::as_tibble()
+  check_graph_valid(graph)
+  dplyr::as_tibble(graph$graph_actions)
 }

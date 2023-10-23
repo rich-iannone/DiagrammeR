@@ -84,12 +84,7 @@ display_metagraph <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object is a property graph
   if (is_property_graph(graph) == FALSE) {
@@ -102,8 +97,7 @@ display_metagraph <- function(graph) {
   # Get a distinct list of node `type` values
   unique_node_list <-
     graph$nodes_df %>%
-    dplyr::select(type) %>%
-    dplyr::distinct()
+    dplyr::distinct(type)
 
   # Get a distinct list of edges between types
   unique_edge_list <-
@@ -118,8 +112,7 @@ display_metagraph <- function(graph) {
         dplyr::select(id, type),
       by = c("to" = "id")) %>%
     dplyr::rename(to_type = type) %>%
-    dplyr::select(rel, from_type, to_type) %>%
-    dplyr::distinct()
+    dplyr::distinct(rel, from_type, to_type)
 
   # Create the initial metagraph
   metagraph <-

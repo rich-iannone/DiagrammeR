@@ -52,19 +52,11 @@ deselect_nodes <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # If no node selection available, return graph
-  if (graph_contains_node_selection(graph) == FALSE) {
+  if (!graph_contains_node_selection(graph)) {
     return(graph)
   }
 
@@ -72,6 +64,9 @@ deselect_nodes <- function(
   graph$node_selection <-
     graph$node_selection %>%
     dplyr::filter(!(node %in% nodes))
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

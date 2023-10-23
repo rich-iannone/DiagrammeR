@@ -435,7 +435,7 @@ trav_both_edge <- function(
         grep("\\.x$", colnames(to_join))
 
       split_var_y_col <-
-        greps("\\.y$", colnames(to_join))
+        grep("\\.y$", colnames(to_join))
 
       # Selectively merge in values to the existing
       # edge attribute column

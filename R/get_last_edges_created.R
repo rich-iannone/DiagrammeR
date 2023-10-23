@@ -28,24 +28,11 @@
 #' @export
 get_last_edges_created <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   graph_transform_steps <-
     graph$graph_log %>%
@@ -57,7 +44,9 @@ get_last_edges_created <- function(graph) {
       function_used %in% graph_init_functions() &
         edges > 0, 1, 0)) %>%
     dplyr::filter(
-      step_created_edges == 1 | step_deleted_edges == 1 | step_init_with_edges) %>%
+      dplyr::if_any(
+        .cols = c(step_created_edges, step_deleted_edges, step_init_with_edges),
+        .fns = ~ .x == 1)) %>%
     dplyr::select(-version_id, -time_modified, -duration)
 
   if (nrow(graph_transform_steps) > 0) {
@@ -66,9 +55,7 @@ get_last_edges_created <- function(graph) {
         utils::tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The previous graph transformation function resulted in a removal of edges")
+      abort("The previous graph transformation function resulted in a removal of edges.")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {

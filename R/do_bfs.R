@@ -72,24 +72,11 @@ do_bfs <- function(
     direction = "all"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # If no node provided, choose a random node
   if (is.null(node)) {
@@ -101,6 +88,8 @@ do_bfs <- function(
 
   # Perform the breadth-first search algorithm in
   # the direction requested
+  rlang::arg_match0(direction, c("all", "out", "in"))
+
   if (direction == "all") {
 
     bfs_result <-
@@ -125,11 +114,6 @@ do_bfs <- function(
         root = node,
         mode = "in")
 
-  } else if (!(direction %in% c("all", "out", "in"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `direction` must be either `all`, `out`, or `in`")
   }
 
   # Get the nodes visited during the bfs

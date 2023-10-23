@@ -218,43 +218,17 @@ trav_out <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
+  check_graph_contains_node_selection(graph)
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -297,12 +271,11 @@ trav_out <- function(
     edf %>%
     dplyr::filter(to != from) %>%
     dplyr::filter(from %in% starting_nodes) %>%
-    dplyr::select(to) %>%
-    dplyr::distinct()
+    dplyr::distinct(to)
 
   valid_nodes <-
     dplyr::as_tibble(valid_nodes) %>%
-    dplyr::rename(id = to) %>%
+    dplyr::rename(id = "to") %>%
     dplyr::inner_join(ndf, by = "id")
 
   # If no rows returned, then there are no
@@ -431,6 +404,9 @@ trav_out <- function(
 
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
