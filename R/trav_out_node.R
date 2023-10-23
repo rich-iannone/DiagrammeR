@@ -305,7 +305,7 @@ trav_out_node <- function(
       starting_edges %>%
       dplyr::semi_join(valid_nodes, by = "from") %>%
       dplyr::left_join(edf, by = c("edge" = "id")) %>%
-      dplyr::select("from.y",!! enquo(copy_attrs_from))
+      dplyr::select("from.y",!!enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 
@@ -324,7 +324,7 @@ trav_out_node <- function(
       dplyr::rename(id = "from.y") %>%
       dplyr::group_by(id) %>%
       dplyr::summarize(!!copy_attrs_from :=
-                         match.fun(!! agg)(!! as.name(copy_attrs_from),
+                         match.fun(!!agg)(!!as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
       dplyr::relocate("id", "type", "label") %>%

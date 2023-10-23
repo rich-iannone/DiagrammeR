@@ -183,19 +183,19 @@ layout_nodes_w_string <- function(
     # Filter the graph `ndf`
     ndf_part <-
       ndf %>%
-      dplyr::filter(!! rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
+      dplyr::filter(!!rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
 
     # Optionally apply sorting
     if (!is.null(sort)) {
       if (sort_dir == "desc") {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange(dplyr::desc(!! sym(sort_attr)))
+          dplyr::arrange(dplyr::desc(!!sym(sort_attr)))
 
       } else {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange(!! sym(sort_attr))
+          dplyr::arrange(!!sym(sort_attr))
       }
     }
 

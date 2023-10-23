@@ -119,7 +119,7 @@ mutate_node_attrs <- function(
       reasons = "The variable `id` cannot undergo mutation")
   }
 
-  ndf <- ndf %>% dplyr::mutate(!!! enquos(...))
+  ndf <- ndf %>% dplyr::mutate(!!!enquos(...))
 
   # Update the graph
   graph$nodes_df <- ndf

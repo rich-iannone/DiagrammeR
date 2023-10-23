@@ -77,12 +77,7 @@ colorize_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -104,7 +99,7 @@ colorize_edge_attrs <- function(
   if (is.null(cut_points)) {
     num_recodings <-
       nrow(unique(edges_df[col_to_recode_no]))
-  } else if (!is.null(cut_points)) {
+  } else {
     num_recodings <- length(cut_points) - 1
   }
 
@@ -113,9 +108,11 @@ colorize_edge_attrs <- function(
     # Verify colors are valid
     is_valid_hex <- grepl(toupper(palette), pattern = "#[0-9A-F]{6}")
     if (!all(is_valid_hex)) {
-      emit_error(fcn_name = fcn_name,
-                 reasons = "The color palette contains invalid hexadecimal values.")
+
+      cli::cli_abort(
+        "The color palette contains invalid hexadecimal values.")
     }
+
     if (length(palette) < num_recodings) {
       # Revert to viridis if provided color vector is too short
       palette <- "viridis"
@@ -128,7 +125,7 @@ colorize_edge_attrs <- function(
   if (length(palette) == 1) {
     # If the number of recodings lower than any Color
     # Brewer palette, shift palette to `viridis`
-    if ((num_recodings < 3 | num_recodings > 10) & palette %in%
+    if ((num_recodings < 3 || num_recodings > 10) && palette %in%
         c(row.names(RColorBrewer::brewer.pal.info))) {
       palette <- "viridis"
     }

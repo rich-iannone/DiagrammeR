@@ -121,7 +121,7 @@ mutate_edge_attrs <- function(
       reasons = "The variables `id`, `from`, or `to` cannot undergo mutation")
   }
 
-  edf <- edf %>% dplyr::mutate(!!! enquos(...))
+  edf <- edf %>% dplyr::mutate(!!!enquos(...))
 
   # Update the graph
   graph$edges_df <- edf

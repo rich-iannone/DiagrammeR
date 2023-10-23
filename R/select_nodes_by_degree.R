@@ -128,7 +128,7 @@ select_nodes_by_degree <- function(
   node_degree <-
     get_node_info(graph) %>%
     dplyr::select(id, deg, indeg, outdeg) %>%
-    dplyr::filter(!!! parse_exprs(expressions))
+    dplyr::filter(!!!parse_exprs(expressions))
 
   # Get the node ID values from the filtered table
   nodes_selected <- node_degree$id

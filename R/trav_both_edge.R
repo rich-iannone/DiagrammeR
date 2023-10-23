@@ -309,25 +309,25 @@ trav_both_edge <- function(
 
       from_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "from")) %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "to")) %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       if (!is.null(copy_attrs_as)) {
 
@@ -349,8 +349,8 @@ trav_both_edge <- function(
         dplyr::left_join(edf, by = c("e_id" = "id")) %>%
         dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize(!! copy_attrs_from :=
-                           match.fun(!! agg)(!! as.name(copy_attrs_from),
+        dplyr::summarize(!!copy_attrs_from :=
+                           match.fun(!!agg)(!!as.name(copy_attrs_from),
                                              na.rm = TRUE)) %>%
         dplyr::right_join(edf, by = "id") %>%
         dplyr::relocate("id", "from", "to", "rel") %>%
@@ -361,7 +361,7 @@ trav_both_edge <- function(
 
       from_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -405,11 +405,11 @@ trav_both_edge <- function(
       # Drop the ".x" column
       from_join <-
         from_join %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -451,7 +451,7 @@ trav_both_edge <- function(
       # Drop the ".x" column
       to_join <-
         to_join %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       edges <-
         dplyr::bind_rows(
@@ -484,8 +484,8 @@ trav_both_edge <- function(
         dplyr::arrange(e_id) %>%
         dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize(!! copy_attrs_from :=
-                            match.fun(!! agg)(!! as.name(copy_attrs_from),
+        dplyr::summarize(!!copy_attrs_from :=
+                            match.fun(!!agg)(!!as.name(copy_attrs_from),
                                               na.rm = TRUE), .groups = "drop") %>%
         dplyr::right_join(edf, by = "id")
 
