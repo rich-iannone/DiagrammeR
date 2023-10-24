@@ -5,7 +5,7 @@
         select_edges_by_node_id(nodes = 1:2) %>% rev_edge_dir_ws()
     Condition
       Error in `rev_edge_dir_ws()`:
-      ! The input graph must be a directed graph
+      ! The input graph must be a directed graph.
 
 # Fully disconnecting selected nodes is possible
 

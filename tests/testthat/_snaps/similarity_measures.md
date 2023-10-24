@@ -12,5 +12,5 @@
       get_jaccard_similarity(graph = graph, nodes = 5:7, direction = "away")
     Condition
       Error in `get_jaccard_similarity()`:
-      ! Valid options for `direction` are `all`, `in`, or `out`
+      ! `direction` must be one of "all", "in", or "out", not "away".
 
