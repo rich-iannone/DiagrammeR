@@ -63,12 +63,7 @@ get_agg_degree_out <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -88,7 +83,7 @@ get_agg_degree_out <- function(
     # Get a vector of node ID values
     node_ids <-
       ndf %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   }
 
   # Get a data frame with outdegree values for
@@ -103,14 +98,7 @@ get_agg_degree_out <- function(
 
   # Verify that the value provided for `agg`
   # is one of the accepted aggregation types
-  if (!(agg %in% c("sum", "min", "max", "mean", "median"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "The specified aggregation method is not valid",
-        "allowed choices are: `min`, `max`, `mean`, `median`, or `sum`"))
-  }
+  arg_match0(agg, c("sum", "min", "max", "mean", "median"))
 
   # Get the aggregate value of total degree based
   # on the aggregate function provided
@@ -119,8 +107,7 @@ get_agg_degree_out <- function(
   outdegree_agg <-
     outdegree_df %>%
     dplyr::group_by() %>%
-    dplyr::summarize(fun(outdegree, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
+    dplyr::summarize(fun(outdegree, na.rm = TRUE), .groups = "drop") %>%
     purrr::flatten_dbl()
 
   outdegree_agg

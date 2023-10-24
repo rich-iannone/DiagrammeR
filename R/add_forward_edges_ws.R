@@ -76,12 +76,7 @@ add_forward_edges_ws <- function(
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (!graph_contains_edge_selection(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # If no value(s) provided for `rel`, set to NA
   rel <- rel %||% NA_character_

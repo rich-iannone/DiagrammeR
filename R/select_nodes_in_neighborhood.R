@@ -64,24 +64,11 @@ select_nodes_in_neighborhood <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -92,7 +79,7 @@ select_nodes_in_neighborhood <- function(
   nodes <- list()
 
   # Find nodes belonging to the neighborhood
-  for (i in 1:distance) {
+  for (i in seq_len(distance)) {
     if (i == 1) {
 
       nodes[[i]] <- vector(mode = "integer")
@@ -118,7 +105,7 @@ select_nodes_in_neighborhood <- function(
     }
 
     if (i > 1) {
-      for (j in 1:length(nodes[[i - 1]])) {
+      for (j in seq_along(nodes[[i - 1]])) {
         if (j == 1) {
           nodes[[i]] <- vector(mode = "integer")
         }
@@ -185,6 +172,9 @@ select_nodes_in_neighborhood <- function(
   # selection properties
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

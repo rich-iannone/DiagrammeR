@@ -54,16 +54,8 @@ drop_edge_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Get the requested `edge_attr`
   edge_attr <-
@@ -73,10 +65,8 @@ drop_edge_attrs <- function(
   # `from`, `to`, or `rel`
   if (any(c("from", "to", "rel") %in%
           edge_attr)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot drop this column")
+    cli::cli_abort(c(
+      "You cannot drop {.val from}, {.val to} or {.val rel} column."))
   }
 
   # Extract the graph's edf
@@ -88,10 +78,8 @@ drop_edge_attrs <- function(
   # Stop function if `edge_attr` is not one
   # of the graph's column
   if (!any(column_names_graph %in% edge_attr)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The edge attribute to drop is not in the ndf")
+    cli::cli_abort(
+      "The edge attribute to drop is not in the ndf.")
   }
 
   # Get the column number for the edge attr to drop
@@ -103,6 +91,9 @@ drop_edge_attrs <- function(
 
   # Update the graph object
   graph$edges_df <- edges
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

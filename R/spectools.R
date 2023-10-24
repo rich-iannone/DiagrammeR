@@ -89,7 +89,7 @@ replace_in_spec <- function(spec, envir = parent.frame()) {
       gsub("\\[[0-9]+\\]:[ ]?", "", unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
 
       if (i == 1) {
         eval_expressions <- list()
@@ -103,7 +103,7 @@ replace_in_spec <- function(spec, envir = parent.frame()) {
     }
 
     # Make replacements to the spec body for each replacement that has no hyphen
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
       while (grepl(paste0("@@", i, "([^-0-9])"), spec_body)) {
         spec_body <-
           gsub(paste0("@@", i, "(?=[^-0-9])"), eval_expressions[[i]][1], spec_body, perl = TRUE)
@@ -112,7 +112,7 @@ replace_in_spec <- function(spec, envir = parent.frame()) {
 
     # If the replacement has a hyphen, then obtain the digit(s) immediately
     # following and return the value from that index
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
       while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)) {
 
         the_index <-
@@ -147,7 +147,7 @@ replace_in_spec <- function(spec, envir = parent.frame()) {
     return(spec_body)
   }
 
-  if (grepl("@@", spec) == FALSE) {
+  if (!grepl("@@", spec)) {
     return(spec)
   }
 }

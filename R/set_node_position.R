@@ -108,27 +108,17 @@ set_node_position <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the graph's node data frame
   ndf <- graph$nodes_df
 
   # Stop function if the node ID provided doesn't
   # exist in the graph
-  if (use_labels == FALSE) {
+  if (!use_labels) {
     if (!(node %in% graph$nodes_df[, 1])) {
 
       emit_error(
@@ -140,20 +130,16 @@ set_node_position <- function(
   # If the `x` node attribute doesn't exist, create
   # that column in the `ndf`
   if (!("x" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(x = NA_real_)
+    ndf$x <- NA_real_
   }
 
   # If the `y` node attribute doesn't exist, create
   # that column in the `ndf`
   if (!("y" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(y = NA_real_)
+    ndf$y <- NA_real_
   }
 
-  if (use_labels == TRUE) {
+  if (use_labels) {
 
     # Ensure that the label column contains unique,
     # non-NA values
@@ -165,7 +151,7 @@ set_node_position <- function(
 
     # Stop function if `label` doesn't contain
     # unique, non-NA values
-    if (unique_labels_available == FALSE) {
+    if (!unique_labels_available) {
 
       emit_error(
         fcn_name = fcn_name,
@@ -178,15 +164,15 @@ set_node_position <- function(
     x_attr_new <-
       dplyr::case_when(
         ndf$label == node ~ x,
-        TRUE ~ as.numeric(ndf$x))
+        .default = as.numeric(ndf$x))
 
     y_attr_new <-
       dplyr::case_when(
         ndf$label == node ~ y,
-        TRUE ~ as.numeric(ndf$y))
+        .default = as.numeric(ndf$y))
   }
 
-  if (use_labels == FALSE) {
+  if (!use_labels) {
 
     # Use `case_when` statements to selectively perform
     # a vectorized `if` statement across all nodes for

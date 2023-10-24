@@ -132,28 +132,13 @@ mutate_node_attrs_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Collect expressions
   exprs <- rlang::exprs(...)
@@ -168,7 +153,7 @@ mutate_node_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The variable `id` cannot undergo mutation")
+      reasons = "The variable `id` cannot undergo mutation.")
   }
 
   # Determine which nodes are not

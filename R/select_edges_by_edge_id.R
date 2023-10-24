@@ -61,24 +61,11 @@ select_edges_by_edge_id <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Extract the graph's internal edf
   edges_df <- graph$edges_df
@@ -117,8 +104,7 @@ select_edges_by_edge_id <- function(
   edges_combined <-
     graph$edges_df %>%
     dplyr::filter(id %in% edges_combined) %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id)
+    dplyr::select(edge = "id", from, to)
 
   # Add the edge ID values to the active selection
   # of edges in `graph$edge_selection`
@@ -131,6 +117,9 @@ select_edges_by_edge_id <- function(
   # selection properties
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

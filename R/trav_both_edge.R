@@ -205,39 +205,16 @@ trav_both_edge <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
+  check_graph_contains_node_selection(graph)
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)

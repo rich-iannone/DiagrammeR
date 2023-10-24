@@ -19,24 +19,22 @@ graph_object_valid <- function(graph) {
   }
 
   # Check for specific graph classes
-  if (any(
-    inherits(graph$graph_info, "data.frame") == FALSE,
-    inherits(graph$nodes_df, "data.frame") == FALSE,
-    inherits(graph$edges_df, "data.frame") == FALSE,
-    inherits(graph$global_attrs, "data.frame") == FALSE,
-    inherits(graph$global_attrs$attr, "character") == FALSE,
-    inherits(graph$global_attrs$value, "character") == FALSE,
-    inherits(graph$global_attrs$attr_type, "character") == FALSE,
-    inherits(graph$directed, "logical") == FALSE,
-    inherits(graph$node_selection, "data.frame") == FALSE,
-    inherits(graph$edge_selection, "data.frame") == FALSE,
-    inherits(graph$cache, "list") == FALSE,
-    inherits(graph$graph_log, "data.frame") == FALSE)) {
+  graph_valid <- all(
+    inherits(graph$graph_info, "data.frame"),
+    inherits(graph$nodes_df, "data.frame"),
+    inherits(graph$edges_df, "data.frame"),
+    inherits(graph$global_attrs, "data.frame"),
+    inherits(graph$global_attrs$attr, "character"),
+    inherits(graph$global_attrs$value, "character"),
+    inherits(graph$global_attrs$attr_type, "character"),
+    inherits(graph$directed, "logical"),
+    inherits(graph$node_selection, "data.frame"),
+    inherits(graph$edge_selection, "data.frame"),
+    inherits(graph$cache, "list"),
+    inherits(graph$graph_log, "data.frame")
+  )
 
-    return(FALSE)
-  }
-
-  return(TRUE)
+  TRUE
 }
 
 #' Check whether a graph contains any nodes

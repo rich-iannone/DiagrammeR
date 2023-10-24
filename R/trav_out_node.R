@@ -228,15 +228,10 @@ trav_out_node <- function(
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "The graph contains no selection of edges.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of edges"))
-  }
+  check_graph_contains_edge_selection(
+    graph,
+    extra_msg = c("Any traversal requires an active selection.",
+                  "This type of traversal requires a selection of edges."))
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -257,7 +252,7 @@ trav_out_node <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }

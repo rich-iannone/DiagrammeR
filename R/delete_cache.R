@@ -48,25 +48,17 @@ delete_cache <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # If there are no cached vectors available,
   # return the graph unchanged with a warning
   if (length(graph$cache) == 0) {
 
-    warning(
-      glue::glue(
-        "`delete_cache()`: There are no cached vectors, so, the graph is unchanged."),
-      call. = FALSE)
+    cli::cli_warn(
+        "There are no cached vectors, so, the graph is unchanged.",
+        call = current_env()
+      )
 
     return(graph)
   }
@@ -85,15 +77,17 @@ delete_cache <- function(
 
       } else {
 
-        warning(
-          glue::glue(
-            "`delete_cache()`: The supplied `name` (`{name}`) does not match a \\
-            name of any of the cached vectors, so, the graph is unchanged."),
-          call. = FALSE)
+        cli::cli_warn(c(
+          "The supplied `name` (`{name}`) does not match the name of a cached vector.",
+          "So, the graph is unchanged."
+        ), call = current_env())
         return(graph)
       }
     }
   }
+
+  # Get current function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

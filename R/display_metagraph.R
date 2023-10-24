@@ -87,12 +87,7 @@ display_metagraph <- function(graph) {
   check_graph_valid(graph)
 
   # Validation: Graph object is a property graph
-  if (is_property_graph(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not a property graph")
-  }
+  check_property_graph(graph)
 
   # Get a distinct list of node `type` values
   unique_node_list <-
@@ -104,14 +99,12 @@ display_metagraph <- function(graph) {
     graph$edges_df %>%
     dplyr::inner_join(
       graph$nodes_df %>%
-        dplyr::select(id, type),
-      by = c("from" = "id")) %>%
-    dplyr::rename(from_type = type) %>%
+        dplyr::select(from = "id", from_type = "type"),
+      by = "from") %>%
     dplyr::inner_join(
       graph$nodes_df %>%
-        dplyr::select(id, type),
-      by = c("to" = "id")) %>%
-    dplyr::rename(to_type = type) %>%
+        dplyr::select(to = "id", to_type = "type"),
+      by = "to") %>%
     dplyr::distinct(rel, from_type, to_type)
 
   # Create the initial metagraph
@@ -128,9 +121,7 @@ display_metagraph <- function(graph) {
       rel_col = rel)
 
   # Copy the `label` values to the `type` attribute
-  metagraph$nodes_df <-
-    metagraph$nodes_df %>%
-    dplyr::mutate(type = label)
+  metagraph$nodes_df$type <- metagraph$nodes_df$label
 
   # Apply coloring and other aesthetics to nodes and edges
   metagraph <-
@@ -170,5 +161,5 @@ display_metagraph <- function(graph) {
       attr_type = "graph")
 
   # Render the `metagraph` object
-  metagraph %>% render_graph()
+  render_graph(metagraph)
 }

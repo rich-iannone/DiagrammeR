@@ -64,12 +64,7 @@ delete_edges_ws <- function(graph) {
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Get vectors of the nodes in edges to be deleted
   from_delete <- graph$edge_selection$from

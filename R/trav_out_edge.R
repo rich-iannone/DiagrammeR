@@ -184,43 +184,17 @@ trav_out_edge <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
+  check_graph_contains_node_selection(graph)
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -241,7 +215,7 @@ trav_out_edge <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -302,10 +276,8 @@ trav_out_edge <- function(
     if (!is.null(copy_attrs_as)) {
 
       if (copy_attrs_as %in% c("id", "from", "to")) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
+        cli::cli_abort(
+          "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
       }
 
       colnames(ndf_2)[2] <- copy_attrs_from <- copy_attrs_as
@@ -361,6 +333,9 @@ trav_out_edge <- function(
     # Update the graph's internal node data frame
     graph$edges_df <- edges
   }
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Add the edge information to the active selection
   # of edges in `graph$edge_selection`

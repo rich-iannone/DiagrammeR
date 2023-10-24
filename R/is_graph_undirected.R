@@ -49,5 +49,5 @@ is_graph_undirected <- function(graph) {
   # Determine if graph is
   # undirected by using a
   # statement with `graph$directed`
-  graph$directed == FALSE
+  !graph$directed
 }

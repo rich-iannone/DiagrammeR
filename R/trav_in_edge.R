@@ -202,9 +202,6 @@ trav_in_edge <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -215,15 +212,7 @@ trav_in_edge <- function(
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
+  check_graph_contains_node_selection(graph)
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -244,7 +233,7 @@ trav_in_edge <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -305,10 +294,7 @@ trav_in_edge <- function(
     if (!is.null(copy_attrs_as)) {
 
       if (copy_attrs_as %in% c("id", "from", "to")) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
+        cli::cli_abort("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
       }
 
       colnames(ndf_2)[2] <- copy_attrs_from <- copy_attrs_as
@@ -378,6 +364,9 @@ trav_in_edge <- function(
 
   # Replace `graph$node_selection` with an empty df
   graph$node_selection <- create_empty_nsdf()
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

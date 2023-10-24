@@ -27,27 +27,27 @@
     Condition
       Error in `trav_in_node()`:
       ! The graph contains no selection of edges.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of edges
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of edges.
     Code
       trav_out_node(graph)
     Condition
       Error in `trav_out_node()`:
       ! The graph contains no selection of edges.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of edges
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of edges.
     Code
       trav_in_edge(graph)
     Condition
       Error in `trav_in_edge()`:
       ! There is no selection of nodes available.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of nodes
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of nodes.
     Code
       trav_out_edge(graph)
     Condition
       Error in `trav_out_edge()`:
       ! There is no selection of nodes available.
-      * any traversal requires an active selection
-      * this type of traversal requires a selection of nodes
+      * Any traversal requires an active selection.
+      * This type of traversal requires a selection of nodes.
 

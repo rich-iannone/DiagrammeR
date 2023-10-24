@@ -61,35 +61,17 @@ rev_edge_dir_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # If graph is undirected, stop function
-  if (graph$directed == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The input graph must be a directed graph")
+  if (!graph$directed) {
+    cli::cli_abort("The input graph must be a directed graph.")
   }
 
   # Get the graph nodes in the `from` and `to` columns
@@ -111,7 +93,7 @@ rev_edge_dir_ws <- function(graph) {
     dplyr::filter(from != to) %>%
     dplyr::rename(from = to, to = from) %>%
     dplyr::relocate("id", "from", "to") %>%
-    dplyr::bind_rows(., edges %>% dplyr::filter(!(id %in% edge_ids)))
+    dplyr::bind_rows(edges %>% dplyr::filter(!(id %in% edge_ids)))
 
   # Modify the graph object
   graph$edges_df <- edges_new

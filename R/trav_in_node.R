@@ -220,39 +220,19 @@ trav_in_node <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "The graph contains no selection of edges.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of edges"))
-  }
+  check_graph_contains_edge_selection(
+    graph,
+    c("Any traversal requires an active selection.",
+      "This type of traversal requires a selection of edges."))
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
@@ -273,7 +253,7 @@ trav_in_node <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -292,8 +272,7 @@ trav_in_node <- function(
   # starting edges
   valid_nodes <-
     starting_edges %>%
-    dplyr::select(to) %>%
-    dplyr::distinct() %>%
+    dplyr::distinct(to) %>%
     dplyr::left_join(ndf, by = c("to" = "id"))
 
   # If traversal conditions are provided then

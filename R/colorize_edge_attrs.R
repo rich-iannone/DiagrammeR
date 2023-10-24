@@ -73,9 +73,6 @@ colorize_edge_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -133,9 +130,10 @@ colorize_edge_attrs <- function(
     # or any of the RColorBrewer palettes
     if (!(palette %in% c(row.names(RColorBrewer::brewer.pal.info),
                          "viridis"))) {
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The color palette is not an `RColorBrewer` or `viridis` palette")
+      cli::cli_abort(c(
+        "The color palette is not an `RColorBrewer` or `viridis` palette",
+        i = "See {.topic RColorBrewer::brewer.pal.info}."
+      ))
     }
 
     # Obtain a color palette
@@ -200,7 +198,7 @@ colorize_edge_attrs <- function(
 
   # Recode according to provided cut points
   if (!is.null(cut_points)) {
-    for (i in 1:(length(cut_points) - 1)) {
+    for (i in seq_len(length(cut_points) - 1)) {
       recode_rows <-
         which(
           as.numeric(edges_df[, col_to_recode_no]) >=
@@ -239,6 +237,9 @@ colorize_edge_attrs <- function(
 
   # Remove last action from the `graph_log`
   graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

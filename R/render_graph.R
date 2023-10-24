@@ -74,9 +74,6 @@ render_graph <- function(
     height = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -101,7 +98,7 @@ render_graph <- function(
           graph$nodes_df$fillcolor <-
             graph$global_attrs %>%
             dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
-            dplyr::select(value) %>%
+            dplyr::select("value") %>%
             purrr::flatten_chr()
         } else {
           graph$nodes_df$fillcolor <- "white"
@@ -187,8 +184,7 @@ render_graph <- function(
             (graph %>%
                to_igraph() %>%
                igraph::layout_with_sugiyama())[[2]] %>%
-            dplyr::as_tibble() %>%
-            dplyr::rename(x = V1, y = V2)
+            dplyr::as_tibble(.name_repair = function(x) c("x", "y"))
         }
 
         if (layout == "kk") {
@@ -301,6 +297,8 @@ render_graph <- function(
           paste0(svg_vec[svg_line_no + 1], "\n\n", filter_lines, "\n")
       }
 
+      # # Get the name of the function
+      # fcn_name <- get_calling_fcn()
       # if ("fa_icon" %in% colnames(graph %>% get_node_df())) {
       #
       #   # Using a fontawesome icon requires the fontawesome package;
