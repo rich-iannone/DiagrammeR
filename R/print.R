@@ -215,47 +215,27 @@ print.dgr_graph <- function(x, ...) {
   }
 
   # Determine if the graph is directed
-  if (is_graph_directed(x)) {
-    directed_undirected <- "directed"
-  } else if (is_graph_directed(x) == FALSE) {
-    directed_undirected <- "undirected"
-  }
+  directed_undirected <- ifelse(
+    is_graph_directed(x),
+    "directed",
+    "undirected"
+  )
 
   # Determine if the graph is weighted
-  if (is_graph_weighted(x)) {
-    weighted_graph_status <- TRUE
-  } else if (!is_graph_weighted(x)) {
-    weighted_graph_status <- FALSE
-  }
+  weighted_graph_status <- is_graph_weighted(x)
 
   # Determine if the graph is a DAG
-  if (is_graph_dag(x)) {
-    dag_graph_status <- TRUE
-  } else if (is_graph_dag(x) == FALSE) {
-    dag_graph_status <- FALSE
-  }
+  dag_graph_status <- is_graph_dag(x)
 
   # Determine if the graph is a property graph
-  if (is_property_graph(x)) {
-    property_graph_status <- TRUE
-  } else if (!is_property_graph(x)) {
-    property_graph_status <- FALSE
-  }
+  property_graph_status <- is_property_graph(x)
 
   # Determine if the graph is a simple graph
-  if (is_graph_simple(x)) {
-    simple_graph_status <- TRUE
-  } else if (!is_graph_simple(x)) {
-    simple_graph_status <- FALSE
-  }
+  simple_graph_status <- is_graph_simple(x)
 
   # Determine if the graph is connected
   # or disconnected
-  if (is_graph_connected(x)) {
-    connected_graph_status <- TRUE
-  } else if (is_graph_connected(x) == FALSE) {
-    connected_graph_status <- FALSE
-  }
+  connected_graph_status <- is_graph_connected(x)
 
   # Generate a string describing the number of
   # nodes in the graph

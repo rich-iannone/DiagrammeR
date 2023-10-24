@@ -130,28 +130,13 @@ mutate_edge_attrs_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Collect expressions
   exprs <- rlang::exprs(...)
@@ -162,13 +147,13 @@ mutate_edge_attrs_ws <- function(
   # Stop function if any supplied
   # expressions mutate columns that
   # should not be changed
-  if ("id" %in% names(exprs) |
-      "from" %in% names(exprs) |
+  if ("id" %in% names(exprs) ||
+      "from" %in% names(exprs) ||
       "to" %in% names(exprs)) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The variables `id`, `from`, or `to` cannot undergo mutation")
+      reasons = "The variables `id`, `from`, or `to` cannot undergo mutation.")
   }
 
   # Determine which edges are not

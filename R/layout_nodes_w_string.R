@@ -97,12 +97,7 @@ layout_nodes_w_string <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Get the graph's internal node data frame
   # (ndf) into a separate object
@@ -135,7 +130,7 @@ layout_nodes_w_string <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "Each row must have the same length")
+      reasons = "Each row must have the same length.")
   }
 
   layout_column_number <- layout_row_length <- layout_row_length[1]
@@ -149,7 +144,7 @@ layout_nodes_w_string <- function(
   # Create a tibble called `ndf_parts`
   ndf_parts <- dplyr::tibble()
 
-  for (k in 1:node_group_count) {
+  for (k in seq_len(node_group_count)) {
 
     # Create empty table with position and node ID
     position_table <- dplyr::tibble(x = numeric(0), y = numeric(0))
@@ -163,8 +158,8 @@ layout_nodes_w_string <- function(
     sort_attr <- unlist(stringr::str_split(sort[k], ":"))[1]
     sort_dir <- unlist(stringr::str_split(sort[k], ":"))[2]
 
-    for (i in 1:layout_row_number) {
-      for (j in 1:layout_column_number) {
+    for (i in seq_len(layout_row_number)) {
+      for (j in seq_len(layout_column_number)) {
 
         if (unlist(stringr::str_split(layout[i], ""))[j] == k) {
 

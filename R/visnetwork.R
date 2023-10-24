@@ -79,7 +79,7 @@ visnetwork <- function(graph) {
   }
 
   # Create the visNetwork object
-  if (all(c("x", "y") %in% colnames(nodes)) == FALSE) {
+  if (!all(c("x", "y") %in% colnames(nodes))) {
 
     if (nrow(graph$edges_df) == 0) {
 

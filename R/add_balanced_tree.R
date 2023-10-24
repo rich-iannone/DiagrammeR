@@ -101,7 +101,7 @@ add_balanced_tree <- function(
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
-  # Stop if k is too small
+  # Stop if k or n is too small
   check_number_whole(k, min = 2)
   check_number_whole(h, min = 2)
 
@@ -161,17 +161,15 @@ add_balanced_tree <- function(
 
     if (nrow(node_aes_tbl) < n_nodes_tree) {
 
-      node_aes$index__ <- 1:n_nodes_tree
+      node_aes$index__ <- seq_len(n_nodes_tree)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -182,17 +180,15 @@ add_balanced_tree <- function(
 
     if (nrow(node_data_tbl) < n_nodes_tree) {
 
-      node_data$index__ <- 1:n_nodes_tree
+      node_data$index__ <- seq_len(n_nodes_tree)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -203,17 +199,15 @@ add_balanced_tree <- function(
 
     if (nrow(edge_aes_tbl) < n_edges_tree) {
 
-      edge_aes$index__ <- 1:n_edges_tree
+      edge_aes$index__ <- seq_len(n_edges_tree)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -224,17 +218,15 @@ add_balanced_tree <- function(
 
     if (nrow(edge_data_tbl) < n_edges_tree) {
 
-      edge_data$index__ <- 1:n_edges_tree
+      edge_data$index__ <- seq_len(n_edges_tree)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 

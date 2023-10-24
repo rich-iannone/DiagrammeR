@@ -68,25 +68,20 @@ join_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
+
+  if (is.null(by_graph) && !is.null(by_df)) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
+      reasons = "Both column specifications must be provided.")
   }
 
-  if (is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && is.null(by_df)) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
-  }
-
-  if (!is.null(by_graph) & is.null(by_df)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
+      reasons = "Both column specifications must be provided.")
   }
 
   # Extract the graph's edf
@@ -118,8 +113,7 @@ join_edge_attrs <- function(
 
   # Sort the columns in `edges`
   edges <-
-    edges %>%
-    dplyr::relocate(id, from, to, rel)
+    edges %>% dplyr::relocate("id", "from", "to", "rel")
 
   # Modify the graph object
   graph$edges_df <- edges

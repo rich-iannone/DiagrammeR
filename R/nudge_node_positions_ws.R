@@ -100,44 +100,25 @@ nudge_node_positions_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Get the graph's node data frame as an object
   ndf <- graph$nodes_df
 
   # If both the `x` and `y` attributes do not exist,
   # stop the function
-  if (!("x" %in% colnames(ndf)) |
+  if (!("x" %in% colnames(ndf)) ||
       !("y" %in% colnames(ndf))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no `x` and `y` attribute values to modify")
+    cli::cli_abort(
+      "There are no `x` and `y` attribute values to modify.")
   }
 
   # Get the current selection of nodes
@@ -155,9 +136,8 @@ nudge_node_positions_ws <- function(
   # stop function
   if (nrow(ndf_filtered) == 0) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no nodes can be moved to different `x` or `y` locations")
+    cli::cli_abort(
+      "There are no nodes can be moved to different `x` or `y` locations.")
 
   } else {
     nodes <- ndf_filtered$id
@@ -177,6 +157,9 @@ nudge_node_positions_ws <- function(
 
   # Replace the graph's node data frame with `ndf_new`
   graph$nodes_df <- ndf_new
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
