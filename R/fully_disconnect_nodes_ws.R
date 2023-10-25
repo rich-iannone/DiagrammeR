@@ -55,10 +55,6 @@ fully_disconnect_nodes_ws <- function(graph) {
   check_graph_contains_nodes(graph, extra_msg = "So, there are no nodes to disconnect.")
 
   # Validation: Graph object has valid node selection
-  if (!graph_contains_node_selection(graph)) {
-    # FIXME use check_graph_contains_node_selection.
-    cli::cli_abort("There is no selection of nodes available.")
-  }
   check_graph_contains_node_selection(graph)
 
   # Get the graph's edf

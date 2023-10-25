@@ -248,7 +248,7 @@ add_node <- function(
 
         edge_data_tbl <-
           dplyr::as_tibble(edge_data) %>%
-          dplyr::select(-index__)
+          dplyr::select(-"index__")
       }
 
       if ("id" %in% colnames(edge_data_tbl)) {

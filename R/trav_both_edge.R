@@ -214,7 +214,10 @@ trav_both_edge <- function(
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  check_graph_contains_node_selection(graph)
+  check_graph_contains_node_selection(
+    graph,
+    c("Any traversal requires an active selection.",
+      "This type of traversal requires a selection of nodes."))
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)

@@ -72,9 +72,6 @@ add_reverse_edges_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -82,12 +79,7 @@ add_reverse_edges_ws <- function(
   check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (!graph_contains_edge_selection(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
@@ -168,7 +160,7 @@ add_reverse_edges_ws <- function(
 
     graph$edges_df <-
       dplyr::bind_rows(
-        graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
+        graph$edges_df[seq_len(nrow(graph$edges_df) - edges_added), ],
         dplyr::bind_cols(
           graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
           edge_aes_tbl))
@@ -184,6 +176,9 @@ add_reverse_edges_ws <- function(
           graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
           edge_data_tbl))
   }
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

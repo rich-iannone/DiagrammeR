@@ -128,9 +128,9 @@ render_graph <- function(
             dplyr::as_tibble() %>%
             dplyr::mutate(hex = toupper(hex)),
           by = c("fillcolor" = "x11_name")) %>%
-        dplyr::mutate(new_fillcolor = dplyr::coalesce(hex, fillcolor)) %>%
-        dplyr::select(-fillcolor, -hex) %>%
-        dplyr::rename(fillcolor = new_fillcolor)
+        dplyr::mutate(
+          fillcolor = dplyr::coalesce(hex, fillcolor),
+          .keep = "unused")
     }
 
     # Use adaptive font coloring for nodes that have a fill color

@@ -64,7 +64,6 @@ get_node_attrs_ws <- function(
   check_graph_valid(graph)
 
   # Validation: Graph object has a valid node selection
-  # FIXME Don't need the 3 reasons.
   check_graph_contains_node_selection(graph)
 
   node_attr <- rlang::enquo(node_attr)
