@@ -27,14 +27,16 @@ check_graph_contains_edges <- function(graph, error_call = rlang::caller_env()) 
 }
 
 check_graph_contains_node_selection <- function(graph,
+                                                extra_msg = NULL,
                                                 error_call = rlang::caller_env()) {
   # FIXME add there is no selection of nodes available as extra_msg.
   if (!graph_contains_node_selection(graph)) {
     rlang::abort(c(
       "There is no selection of nodes available.",
       "Any traversal requires an active selection.",
-      "This type of traversal requires a selection of nodes."
-    ), call = error_call)
+      "This type of traversal requires a selection of nodes.",
+      extra_msg),
+      call = error_call)
   }
 }
 

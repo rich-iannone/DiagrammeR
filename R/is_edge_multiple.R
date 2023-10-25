@@ -72,12 +72,12 @@ is_edge_multiple <- function(
   from <-
     edf %>%
     dplyr::filter(id == !!edge) %>%
-    dplyr::pull(from)
+    dplyr::pull("from")
 
   to <-
     edf %>%
     dplyr::filter(id == !!edge) %>%
-    dplyr::pull(to)
+    dplyr::pull("to")
 
   # Determine if there are mulitple rows
   # where the definition of `from` and `to`
@@ -86,9 +86,6 @@ is_edge_multiple <- function(
     edf %>%
     dplyr::filter(from == !!from & to == !!to)
 
-  if (nrow(multiple_edges) > 1) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  res <- nrow(multiple_edges) > 1
+  res
 }

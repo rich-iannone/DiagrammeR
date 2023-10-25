@@ -101,10 +101,11 @@ generate_dot <- function(graph) {
 
       nodes_df <-
         nodes_df %>%
-        dplyr::mutate_at(
-          .vars = vars,
-          .funs =  ~ tidyr::replace_na(., "")
-        )
+        dplyr::mutate(
+          dplyr::across(
+            .cols = dplyr::all_of(vars),
+            .fns = ~ dplyr::coalesce(.x, "")
+          ))
     }
   }
 
@@ -266,7 +267,7 @@ generate_dot <- function(graph) {
 
       column_with_y <- which(colnames(nodes_df) %in% "y")[1]
 
-      if (!is.na(column_with_x) & !is.na(column_with_y)) {
+      if (!is.na(column_with_x) && !is.na(column_with_y)) {
         pos <-
           paste0(
             nodes_df %>% dplyr::pull(column_with_x), ",",

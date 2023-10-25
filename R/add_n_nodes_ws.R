@@ -110,6 +110,7 @@ add_n_nodes_ws <- function(
   # given for the `direction` argument, stop function
   if (is_graph_directed(graph) &&
       is.null(direction)) {
+
     cli::cli_abort("A `direction` edge must be provided for a directed graph.")
   }
 
@@ -384,6 +385,7 @@ add_n_nodes_ws <- function(
           dplyr::select(dplyr::all_of(columns_to_select)) %>%
           dplyr::left_join(edge_data_tbl, by = "id"))
   }
+
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 

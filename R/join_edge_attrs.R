@@ -90,13 +90,13 @@ join_edge_attrs <- function(
   # Get column names from the graph's edf
   column_names <- colnames(edges)
 
-  if (is.null(by_graph) & is.null(by_df)) {
+  if (is.null(by_graph) && is.null(by_df)) {
 
     # Perform a left join on the `edges` data frame
     edges <- merge(edges, df, all.x = TRUE)
   }
 
-  if (!is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && !is.null(by_df)) {
 
     # Perform a left join on the `edges` data frame
     edges <-

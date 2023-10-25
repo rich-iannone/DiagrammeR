@@ -112,7 +112,7 @@ add_cycle <- function(
   graph_directed <- graph$directed
 
   # Get the sequence of nodes required
-  nodes <- seq(1, n)
+  nodes <- seq_len(n)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -121,17 +121,15 @@ add_cycle <- function(
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -142,17 +140,15 @@ add_cycle <- function(
 
     if (nrow(edge_aes_tbl) < n) {
 
-      edge_aes$index__ <- 1:n
+      edge_aes$index__ <- seq_len(n)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -163,17 +159,15 @@ add_cycle <- function(
 
     if (nrow(node_data_tbl) < n) {
 
-      node_data$index__ <- 1:n
+      node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -184,17 +178,15 @@ add_cycle <- function(
 
     if (nrow(edge_data_tbl) < n) {
 
-      edge_data$index__ <- 1:n
+      edge_data$index__ <- seq_len(n)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -288,8 +280,7 @@ add_cycle <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

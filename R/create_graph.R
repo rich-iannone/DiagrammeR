@@ -179,7 +179,7 @@ create_graph <- function(
         kk = attr_theme_kk(),
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The value for `attr_theme` doesn't refer to any available theme"
+          reasons = "The value for `attr_theme` doesn't refer to any available theme."
         )
       )
 

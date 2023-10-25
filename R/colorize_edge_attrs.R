@@ -114,7 +114,7 @@ colorize_edge_attrs <- function(
       # Revert to viridis if provided color vector is too short
       palette <- "viridis"
     } else {
-      color_palette <- toupper(palette)[1:num_recodings]
+      color_palette <- toupper(palette)[seq_len(num_recodings)]
     }
   }
 
@@ -131,7 +131,7 @@ colorize_edge_attrs <- function(
     if (!(palette %in% c(row.names(RColorBrewer::brewer.pal.info),
                          "viridis"))) {
       cli::cli_abort(c(
-        "The color palette is not an `RColorBrewer` or `viridis` palette",
+        "The color palette is not an `RColorBrewer` or `viridis` palette.",
         i = "See {.topic RColorBrewer::brewer.pal.info}."
       ))
     }

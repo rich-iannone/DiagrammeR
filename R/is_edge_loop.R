@@ -61,7 +61,7 @@ is_edge_loop <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The provided edge ID is not present in the graph")
+      reasons = "The provided edge ID is not present in the graph.")
   }
 
   # Obtain the edge definition

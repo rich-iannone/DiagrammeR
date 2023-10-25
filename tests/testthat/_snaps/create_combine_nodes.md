@@ -4,10 +4,10 @@
       create_node_df(n = "a")
     Condition
       Error in `create_node_df()`:
-      ! The value supplied to `n` must be numeric
+      ! `n` must be a whole number, not the string "a".
     Code
       create_node_df(n = c(1, 2))
     Condition
       Error in `create_node_df()`:
-      ! The value supplied to `n` must be a single numeric value
+      ! `n` must be a whole number, not a double vector.
 

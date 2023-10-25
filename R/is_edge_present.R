@@ -81,17 +81,9 @@ is_edge_present <- function(
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
-  if (!is.null(edge)) {
-    use_edge <- TRUE
-  } else {
-    use_edge <- FALSE
-  }
+  use_edge <- !is.null(edge)
 
-  if (!is.null(from) && !is.null(to)) {
-    use_from_to <- TRUE
-  } else {
-    use_from_to <- FALSE
-  }
+  use_from_to <- !is.null(from) && !is.null(to)
 
   if (use_edge && use_from_to) {
     use_from_to <- FALSE
@@ -174,7 +166,7 @@ is_edge_present <- function(
 
       # Determine whether the pair of
       # labels provided are in the graph
-      if (from_is_single_value & to_is_single_value) {
+      if (from_is_single_value && to_is_single_value) {
         nodes_available_in_graph <-
           all(c(from, to) %in% get_node_ids(graph))
       }

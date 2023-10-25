@@ -209,7 +209,7 @@ add_edge <- function(
     # Stop function if the label for
     # `to` is not distinct in the graph
     if (graph$nodes_df %>%
-        dplyr::select(label) %>%
+        dplyr::select("label") %>%
         dplyr::filter(label == to) %>%
         nrow() > 1) {
 
@@ -283,7 +283,7 @@ add_edge <- function(
         suppressMessages(
           graph %>%
             select_edges_by_edge_id(
-              edges = graph$edges_df$id %>% max())
+              edges = max(graph$edges_df$id))
         )
 
       # Iteratively set edge attribute values for

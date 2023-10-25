@@ -73,18 +73,17 @@ transform_to_complement_graph <- function(
   edf_new <- from_igraph(ig_graph) %>% get_edge_df()
 
   # Add edge ID values to the complement graph edf
-  edf_new$id <- seq(1, nrow(edf_new), 1) %>% as.integer()
+  edf_new$id <- seq_len(nrow(edf_new))
 
   # Replace the input graph's edf with its complement
   graph$edges_df <- edf_new
 
   # Manually update the graph's edge counter
-  graph$last_edge <- nrow(edf_new) %>% as.integer()
+  graph$last_edge <- nrow(edf_new)
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
-    remove_linked_dfs()
+    remove_linked_dfs(graph)
 
   # Get the updated number of nodes in the graph
   nodes_graph_2 <- graph %>% count_nodes()

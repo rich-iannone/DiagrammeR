@@ -103,7 +103,7 @@ create_edge_df <- function(
     # Trim vectors with number of values exceeding
     # the number of edges
     if (length(rel) > length(from)) {
-      rel <- rel[1:length(from)]
+      rel <- rel[seq_along(from)]
     }
   }
 
@@ -111,7 +111,7 @@ create_edge_df <- function(
   extras <- list(...)
 
   if (length(extras) > 0) {
-    for (i in 1:length(extras)) {
+    for (i in seq_along(extras)) {
 
       # Expand vectors with single values to fill to
       # the number of edges
@@ -121,7 +121,7 @@ create_edge_df <- function(
 
       # Expand vectors with `length` > `1` and
       # `length` < `length(from)`
-      if (length(extras[[i]]) > 1 &
+      if (length(extras[[i]]) > 1 &&
           length(extras[[i]]) < length(from)) {
         extras[[i]] <-
           c(extras[[i]],
@@ -133,7 +133,7 @@ create_edge_df <- function(
       # Trim vectors with number of values exceeding
       # the number of edges
       if (length(extras[[i]]) > length(from)) {
-        extras[[i]] <- extras[[i]][1:length(from)]
+        extras[[i]] <- extras[[i]][seq_along(from)]
       }
     }
 
@@ -147,7 +147,7 @@ create_edge_df <- function(
     edges_df <-
       dplyr::bind_cols(
         data.frame(
-          id = 1:n,
+          id = seq_len(n),
           from = from,
           to = to,
           rel = rel,
@@ -156,7 +156,7 @@ create_edge_df <- function(
   } else {
     edges_df <-
       data.frame(
-        id = 1:n,
+        id = seq_len(n),
         from = from,
         to = to,
         rel = rel,

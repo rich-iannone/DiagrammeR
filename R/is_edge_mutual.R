@@ -64,7 +64,7 @@ is_edge_mutual <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The provided edge ID is not present in the graph")
+      reasons = "The provided edge ID is not present in the graph.")
   }
 
   # Obtain the edge definition
@@ -83,11 +83,8 @@ is_edge_mutual <- function(
   # reversed
   mutual_edges <-
     edf %>%
-    dplyr::filter(from == !!to & to == !!from)
+    dplyr::filter(from == !!to, to == !!from)
 
-  if (nrow(mutual_edges) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  res <- nrow(mutual_edges) > 0
+  res
 }

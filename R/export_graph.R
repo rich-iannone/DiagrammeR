@@ -76,7 +76,7 @@ export_graph <- function(
   # If `file_name` provided but `file_type` is not, infer
   # the output file type based on the extension; if no
   # extension provided, default to PDF export
-  if (is.null(file_type) & !is.null(file_name)) {
+  if (is.null(file_type) && !is.null(file_name)) {
     if (grepl("\\.", file_name)) {
       file_type <- gsub(".*\\.([A-Za-z])", "\\1", file_name)
     } else {
@@ -111,7 +111,7 @@ export_graph <- function(
     )
   }
 
-  if (file_type == "PDF" || file_type == "pdf") {
+  if (tolower(file_type) == "pdf") {
 
     # Stop function if `DiagrammeRsvg` or `rsvg` package is not available
     rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a PDF file.")
@@ -136,7 +136,7 @@ export_graph <- function(
     )
   }
 
-  if (file_type == "SVG" | file_type == "svg") {
+  if (tolower(file_type) == "svg") {
 
     # Stop function if `DiagrammeRsvg` or `rsvg` package is not available
     rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a SVG file.")
@@ -162,7 +162,7 @@ export_graph <- function(
     )
   }
 
-  if ((file_type == "PS" | file_type == "ps")) {
+  if (tolower(file_type) == "ps") {
 
     rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a PS file.")
 

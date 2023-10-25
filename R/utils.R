@@ -34,7 +34,7 @@ graph_object_valid <- function(graph) {
     inherits(graph$graph_log, "data.frame")
   )
 
-  TRUE
+  graph_valid
 }
 
 #' Check whether a graph contains any nodes
@@ -42,11 +42,7 @@ graph_object_valid <- function(graph) {
 #' @noRd
 graph_contains_nodes <- function(graph) {
 
-  if (nrow(graph$nodes_df) == 0) {
-    return(FALSE)
-  } else {
-    return(TRUE)
-  }
+  nrow(graph$nodes_df > 0)
 }
 
 #' Check whether a graph contains any edges
@@ -54,11 +50,7 @@ graph_contains_nodes <- function(graph) {
 #' @noRd
 graph_contains_edges <- function(graph) {
 
-  if (nrow(graph$edges_df) == 0) {
-    return(FALSE)
-  } else {
-    return(TRUE)
-  }
+  nrow(graph$edges_df) > 0
 }
 
 #' Check whether a graph contains a valid node selection
@@ -66,12 +58,7 @@ graph_contains_edges <- function(graph) {
 #' @noRd
 graph_contains_node_selection <- function(graph) {
 
-  # Check if graph contains a node selection
-  if (nrow(graph$node_selection) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  nrow(graph$node_selection) > 0
 }
 
 #' Check whether a graph contains a valid edge selection
@@ -79,12 +66,7 @@ graph_contains_node_selection <- function(graph) {
 #' @noRd
 graph_contains_edge_selection <- function(graph) {
 
-  # Check if graph contains an edge selection
-  if (nrow(graph$edge_selection) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  nrow(graph$edge_selection) > 0
 }
 
 #' Get a list of node/edge selection properties
@@ -95,17 +77,15 @@ node_edge_selection_properties <- function(graph) {
   # Determine if there is an existing
   # selection of nodes
   node_selection_available <-
-    ifelse(
-      graph_contains_node_selection(graph = graph), TRUE, FALSE)
+    graph_contains_node_selection(graph = graph)
 
   # Determine if there is an existing
   # selection of edges
   edge_selection_available <-
-    ifelse(
-      graph_contains_edge_selection(graph = graph), TRUE, FALSE)
+    graph_contains_edge_selection(graph)
 
   # Get the existing node/edge count
-  if (node_selection_available | edge_selection_available) {
+  if (node_selection_available || edge_selection_available) {
 
     selection_type <-
       ifelse(node_selection_available, "node", "edge")
@@ -179,12 +159,11 @@ create_empty_nsdf <- function() {
 create_empty_esdf <- function() {
 
   # Create empty `esdf`
-  dplyr::tibble(
-    edge = integer(0),
-    from = integer(0),
-    to = integer(0)
-  ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+  data.frame(
+    edge = integer(),
+    from = integer(),
+    to = integer()
+  )
 }
 
 #' Is an attribute unique and fully free of `NA`s?
@@ -216,18 +195,14 @@ is_attr_unique_and_non_na <- function(graph,
   # Are all values not NA?
   all_is_not_na <-
     df %>% dplyr::select(!!enquo(attr)) %>%
-    is.na %>% magrittr::not() %>% all()
+    is.na() %>% magrittr::not() %>% all()
 
   # Are all values distinct?
   all_values_distinct <-
     df %>% dplyr::select(!!enquo(attr)) %>% dplyr::distinct() %>% nrow() ==
     nrow(df)
 
-  if (all_is_not_na & all_values_distinct) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  all_is_not_na && all_values_distinct
 }
 
 ###
@@ -265,7 +240,7 @@ translate_to_node_id <- function(graph, from, to) {
 
   # Get an ordered vector of node ID values
   # as `from` nodes
-  for (i in 1:length(from)) {
+  for (i in seq_along(from)) {
     from_id <-
       c(from_id,
         graph$nodes_df[
@@ -274,7 +249,7 @@ translate_to_node_id <- function(graph, from, to) {
 
   # Get an ordered vector of node ID values
   # as `to` nodes
-  for (i in 1:length(to)) {
+  for (i in seq_along(to)) {
     to_id <-
       c(to_id,
         graph$nodes_df[
@@ -297,7 +272,7 @@ translate_to_node_id <- function(graph, from, to) {
 #'
 #' @noRd
 graph_function_sys_time <- function() {
-  return(Sys.time())
+  Sys.time()
 }
 
 #' Get the time taken for a graph function to execute

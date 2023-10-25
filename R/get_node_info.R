@@ -116,13 +116,13 @@ get_node_info <- function(graph) {
               ordered_nodes[i])
 
       # Get indegree for each node
-      if (ordered_nodes[i] %in%
-          top_nodes | degree == 0) {
+      if (ordered_nodes[i] %in% top_nodes ||
+          degree == 0) {
         indegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in%
-            top_nodes) & degree != 0) {
+      if (!(ordered_nodes[i] %in% top_nodes) &&
+          degree != 0) {
         for (j in 1:sum(edge_to %in%
                         ordered_nodes[i])) {
           if (j == 1) {
@@ -137,12 +137,12 @@ get_node_info <- function(graph) {
       }
 
       # Get outdegree for each node
-      if (ordered_nodes[i] %in%
-          bottom_nodes | degree == 0) {
+      if (ordered_nodes[i] %in% bottom_nodes ||
+          degree == 0) {
         outdegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in% bottom_nodes) &
+      if (!(ordered_nodes[i] %in% bottom_nodes) &&
           degree != 0) {
         for (j in 1:sum(edge_from %in%
                         ordered_nodes[i])) {

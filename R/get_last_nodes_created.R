@@ -42,16 +42,18 @@ get_last_nodes_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_nodes = dplyr::if_else(
-      function_used %in% node_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_nodes = dplyr::if_else(
-      function_used %in% node_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_nodes = dplyr::if_else(
-      function_used %in% graph_init_functions() &
-        nodes > 0, 1, 0)) %>%
+    dplyr::mutate(
+      step_created_nodes = dplyr::if_else(
+        function_used %in% node_creation_functions(), 1, 0),
+      step_deleted_nodes = dplyr::if_else(
+        function_used %in% node_deletion_functions(), 1, 0),
+      step_init_with_nodes = dplyr::if_else(
+        function_used %in% graph_init_functions() &
+        nodes > 0, 1, 0)
+      ) %>%
     dplyr::filter(
       step_created_nodes == 1 | step_deleted_nodes == 1 | step_init_with_nodes) %>%
-    dplyr::select(-version_id, -time_modified, -duration)
+    dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {
 
@@ -61,7 +63,7 @@ get_last_nodes_created <- function(graph) {
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The previous graph transformation function resulted in a removal of nodes")
+        reasons = "The previous graph transformation function resulted in a removal of nodes.")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {
@@ -77,15 +79,15 @@ get_last_nodes_created <- function(graph) {
       } else {
         number_of_nodes_created <-
           graph_transform_steps %>%
-          dplyr::pull(nodes)
+          dplyr::pull("nodes")
       }
     }
 
     node_id_values <-
       graph$nodes_df %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       utils::tail(number_of_nodes_created) %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   } else {
     node_id_values <- NA
   }

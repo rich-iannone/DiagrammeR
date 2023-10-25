@@ -121,7 +121,7 @@ add_path <- function(graph,
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%

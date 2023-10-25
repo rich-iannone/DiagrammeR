@@ -177,7 +177,7 @@ add_node_clones_ws <- function(
 
     # Iteratively set node attribute values for
     # the new nodes in the graph
-    for (j in 1:ncol(node_attr_vals)) {
+    for (j in seq_len(ncol(node_attr_vals))) {
       for (k in seq_along(new_node_id)) {
 
         graph$nodes_df[
@@ -211,8 +211,7 @@ add_node_clones_ws <- function(
     # Clear the graph's active selection
     graph <-
       suppressMessages(
-        graph %>%
-          clear_selection())
+        clear_selection(graph))
   }
 
   # Remove extra items from the `graph_log`

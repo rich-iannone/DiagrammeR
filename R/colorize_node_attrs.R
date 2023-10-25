@@ -170,7 +170,7 @@ colorize_node_attrs <- function(
   if (length(palette) == 1) {
     # If the number of recodings lower than any Color
     # Brewer palette, shift palette to `viridis`
-    if ((num_recodings < 3 | num_recodings > 10) & palette %in%
+    if ((num_recodings < 3 || num_recodings > 10) && palette %in%
         c(row.names(RColorBrewer::brewer.pal.info))) {
       palette <- "viridis"
     }
@@ -180,7 +180,7 @@ colorize_node_attrs <- function(
                          "viridis"))) {
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The color palette is not an `RColorBrewer` or `viridis` palette")
+        reasons = "The color palette is not an `RColorBrewer` or `viridis` palette.")
     }
 
     # Obtain a color palette
@@ -245,7 +245,7 @@ colorize_node_attrs <- function(
 
   # Recode according to provided cut points
   if (!is.null(cut_points)) {
-    for (i in 1:(length(cut_points) - 1)) {
+    for (i in seq_len(length(cut_points) - 1)) {
       recode_rows <-
         which(
           as.numeric(nodes_df[, col_to_recode_no]) >=

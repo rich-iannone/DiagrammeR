@@ -352,7 +352,7 @@ render_graph <- function(
       #     svg_text_nos <- svg_shape_nos + 1
       #
       #     # Modify shape lines
-      #     for (i in seq(node_id_svg)) {
+      #     for (i in seq_len(node_id_svg)) {
       #
       #       svg_vec[svg_shape_nos[i]] <-
       #         sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])

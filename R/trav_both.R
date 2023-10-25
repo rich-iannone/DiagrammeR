@@ -230,7 +230,7 @@ trav_both <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -289,7 +289,7 @@ trav_both <- function(
 
     to_join <-
       valid_nodes %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
       dplyr::inner_join(ndf %>% dplyr::select("id",!!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
       dplyr::select("id", !!enquo(copy_attrs_from))

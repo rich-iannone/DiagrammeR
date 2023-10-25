@@ -88,12 +88,7 @@ get_edge_attrs_ws <- function(
   check_graph_valid(graph)
 
   # Validation: Graph object has a valid edge selection
-  if (!graph_contains_edge_selection(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of edges available.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   edge_attr <- rlang::enquo(edge_attr)
 

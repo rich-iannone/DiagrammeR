@@ -71,7 +71,7 @@ add_node_df <- function(
   # Combine the incoming node data frame with the
   # existing node definitions in the graph object
   node_df[, 1] <-
-    as.integer(nodes_created + seq(1:nrow(node_df)))
+    as.integer(nodes_created + seq_len(nrow(node_df)))
 
   node_df[, 2] <- as.character(node_df[, 2])
   node_df[, 3] <- as.character(node_df[, 3])

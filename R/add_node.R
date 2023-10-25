@@ -60,7 +60,7 @@ add_node <- function(
     edge_aes = NULL,
     node_data = NULL,
     edge_data = NULL
-  ) {
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -222,6 +222,7 @@ add_node <- function(
 
     # Collect edge aesthetic attributes
     if (!is.null(edge_aes)) {
+
       edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
       if (nrow(edge_aes_tbl) < length(from)) {

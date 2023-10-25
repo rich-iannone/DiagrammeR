@@ -62,7 +62,7 @@ get_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "This is not a node attribute")
+      reasons = "This is not a node attribute.")
   }
 
   # Extract the node data frame (ndf)

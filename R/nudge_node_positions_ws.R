@@ -128,8 +128,7 @@ nudge_node_positions_ws <- function(
   # information set (i.e., not NA)
   ndf_filtered <-
     ndf %>%
-    dplyr::filter(id %in% nodes) %>%
-    dplyr::filter(!is.na(x) & !is.na(y))
+    dplyr::filter(id %in% nodes, !is.na(x), !is.na(y))
 
   # If there are nodes to move, replace the `nodes`
   # vector with those node ID values; otherwise,

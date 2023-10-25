@@ -174,7 +174,6 @@ mutate_edge_attrs_ws <- function(
 
   graph$edges_df <- edf
 
-
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(

@@ -73,7 +73,7 @@ delete_global_graph_attrs <- function(
     # Clear the global graph attributes data frame
     # by removing all rows from it
     graph$global_attrs <-
-      graph$global_attrs[-(1:(nrow(graph$global_attrs))), ]
+      graph$global_attrs[-(seq_len(nrow(graph$global_attrs))), ]
 
     message(
       glue::glue("Deleted all existing global graph attributes."))
@@ -82,7 +82,7 @@ delete_global_graph_attrs <- function(
   # If an `attr` is provided but not an
   # `attr_type`, then delete all of those
   # `attr`s without regard to their type
-  if (is.null(attr_type) & !is.null(attr)) {
+  if (is.null(attr_type) && !is.null(attr)) {
 
     # Capture provided attr
     attr <- rlang::enquo(attr)
@@ -92,16 +92,14 @@ delete_global_graph_attrs <- function(
       dplyr::filter(!(attr %in% !!attr))
   }
 
-  if (!is.null(attr_type) & is.null(attr)) {
+  if (!is.null(attr_type) && is.null(attr)) {
 
     # Stop function if `attr_type` is not a valid
     # attribute type
-    if (!any(attr_type %in% c("graph", "node", "edge"))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `attr_type` should be either `graph`, `node`, or `edge`")
+    if (length(attr_type) > 1) {
+      cli::cli_abort("Problem. attr_type must be")
     }
+    rlang::arg_match(attr_type, c("graph", "node", "edge"), multiple = TRUE)
 
     # Capture provided `attr_type`
     attr_type <- rlang::enquo(attr_type)
@@ -111,16 +109,11 @@ delete_global_graph_attrs <- function(
       dplyr::filter(!(attr_type %in% !!attr_type))
   }
 
-  if (!is.null(attr_type) & !is.null(attr)) {
+  if (!is.null(attr_type) && !is.null(attr)) {
 
     # Stop function if `attr_type` is not a valid
     # attribute type
-    if (!any(attr_type %in% c("graph", "node", "edge"))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `attr_type` should be either `graph`, `node`, or `edge`")
-    }
+    rlang::arg_match(attr_type, c("graph", "node", "edge"), multiple = TRUE)
 
     # Get the global graph attributes already set
     # in the graph object

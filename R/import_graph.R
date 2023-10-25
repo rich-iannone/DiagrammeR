@@ -70,7 +70,7 @@ import_graph <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The file type as specified cannot be imported")
+        reasons = "The file type as specified cannot be imported.")
     }
   }
 
@@ -80,7 +80,7 @@ import_graph <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The file as specified doesn't exist")
+        reasons = "The file as specified doesn't exist.")
     }
   }
 

@@ -147,7 +147,7 @@ get_similar_nbrs <- function(
           match + match * tol_pct[2]/100)
     }
 
-    if (is.null(tol_abs) & is.null(tol_pct)) {
+    if (is.null(tol_abs) && is.null(tol_pct)) {
       match_range <- c(match, match)
     }
 

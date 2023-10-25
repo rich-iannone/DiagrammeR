@@ -96,7 +96,7 @@ reorder_graph_actions <- function(
   available_indices <-
     graph %>%
     get_graph_actions() %>%
-    dplyr::pull(action_index)
+    dplyr::pull("action_index")
 
   # Verify that the provided values
   # do not refer to an `action_index`
@@ -105,7 +105,7 @@ reorder_graph_actions <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "One or more provided indices do not exist in the graph")
+      reasons = "One or more provided indices do not exist in the graph.")
   }
 
   remaining_indices <-

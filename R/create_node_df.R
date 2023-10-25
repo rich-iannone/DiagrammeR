@@ -69,44 +69,27 @@ create_node_df <- function(
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  if (!(inherits(n, "numeric") | inherits(n, "integer"))) {
+  check_number_whole(n)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value supplied to `n` must be numeric")
+  type <- type %||% rep(NA_character_, n)
+
+  # Expand vectors with single values to fill to
+  # the number of nodes
+  if (length(type) == 1) {
+    type <- rep(type, n)
   }
 
-  if (length(n) > 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value supplied to `n` must be a single numeric value")
+  # Expand vectors with `length` > `1` and
+  # `length` < `length(nodes)`
+  if (length(type) > 1 &&
+      length(type) < n) {
+    type <- c(type, rep(NA_character_, (n - length(type))))
   }
 
-  if (is.null(type)) {
-    type <- rep(NA_character_, n)
-  }
-
-  if (!is.null(type)) {
-    # Expand vectors with single values to fill to
-    # the number of nodes
-    if (length(type) == 1) {
-      type <- rep(type, n)
-    }
-
-    # Expand vectors with `length` > `1` and
-    # `length` < `length(nodes)`
-    if (length(type) > 1 &
-        length(type) < n) {
-      type <-
-        c(type, rep(NA_character_, (n - length(type))))
-    }
-
-    # Trim vectors with number of values exceeding the
-    # number of nodes
-    if (length(type) > n) {
-      type <- type[1:n]
-    }
+  # Trim vectors with number of values exceeding the
+  # number of nodes
+  if (length(type) > n) {
+    type <- type[seq_len(n)]
   }
 
   # Collect extra vectors of data as `extras`
@@ -114,7 +97,7 @@ create_node_df <- function(
 
   if (length(extras) > 0) {
 
-    for (i in 1:length(extras)) {
+    for (i in seq_along(extras)) {
 
       # Expand vectors with single values to fill to
       # the number of nodes
@@ -124,7 +107,7 @@ create_node_df <- function(
 
       # Expand vectors with `length` > `1` and
       # `length` < `length(nodes)`
-      if (length(extras[[i]]) > 1 &
+      if (length(extras[[i]]) > 1 &&
           length(extras[[i]]) < n) {
         extras[[i]] <-
           c(extras[[i]],
@@ -134,7 +117,7 @@ create_node_df <- function(
       # Trim vectors with number of values exceeding
       # the number of nodes
       if (length(extras[[i]]) > n) {
-        extras[[i]] <- extras[[i]][1:n]
+        extras[[i]] <- extras[[i]][seq_len(n)]
       }
     }
 
@@ -162,7 +145,7 @@ create_node_df <- function(
     nodes_df <-
       dplyr::bind_cols(
         data.frame(
-          id = 1:n,
+          id = seq_len(n),
           type = type,
           label = label,
           stringsAsFactors = FALSE),
@@ -171,7 +154,7 @@ create_node_df <- function(
   } else {
     nodes_df <-
       data.frame(
-        id = 1:n,
+        id = seq_len(n),
         type = type,
         label = label,
         stringsAsFactors = FALSE)

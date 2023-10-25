@@ -249,7 +249,7 @@ trav_out <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }

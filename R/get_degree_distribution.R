@@ -51,7 +51,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         total_degree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -63,7 +63,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         indegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -75,7 +75,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         outdegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }

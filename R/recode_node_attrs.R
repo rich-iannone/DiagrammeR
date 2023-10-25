@@ -182,7 +182,7 @@ recode_node_attrs <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "You cannot use the names `id` or `nodes`")
+        reasons = "You cannot use the names `id` or `nodes`.")
     }
 
     if (any(column_names_graph %in% node_attr_to)) {

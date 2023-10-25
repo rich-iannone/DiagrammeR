@@ -48,7 +48,7 @@ get_eigen_centrality <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights does not exist in the graph")
+          reasons = "The edge attribute to be used as weights does not exist in the graph.")
       }
 
       # Stop function if the edge attribute is not numeric
@@ -56,7 +56,7 @@ get_eigen_centrality <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights is not numeric")
+          reasons = "The edge attribute to be used as weights is not numeric.")
       }
 
       weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
