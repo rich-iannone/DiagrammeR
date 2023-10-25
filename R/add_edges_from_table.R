@@ -106,30 +106,26 @@ add_edges_from_table <- function(
 
   # Get the requested `from_col`
   from_col <-
-    rlang::enquo(from_col) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(from_col) %>% rlang::as_string()
 
   # Get the requested `to_col`
   to_col <-
-    rlang::enquo(to_col) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(to_col) %>% rlang::as_string()
 
   # Get the requested `from_to_map`
   from_to_map <-
-    rlang::enquo(from_to_map) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(from_to_map) %>% rlang::as_string()
 
   # Get the requested `rel_col`
-  rel_col <-
-    rlang::enquo(rel_col) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `drop_cols`
-  drop_cols <-
-    rlang::enquo(drop_cols) %>% rlang::get_expr() %>% as.character()
-
-  if (length(rel_col) == 0) {
-    rel_col <- NULL
+  if (!rlang::quo_is_null(rlang::enquo(rel_col))) {
+    rel_col <-
+      rlang::ensym(rel_col) %>% rlang::as_string()
   }
 
-  if (length(drop_cols) == 0) {
-    drop_cols <- NULL
+  # Get the requested `drop_cols`
+  if (!rlang::quo_is_null(rlang::enquo(drop_cols))) {
+    drop_cols <-
+      rlang::ensym(drop_cols) %>% rlang::as_string()
   }
 
   # Determine whether the table is a file connection
