@@ -192,7 +192,7 @@ add_node <- function(
       ))
     }
 
-    # All code until return assumes from_nodes_available = TRUE
+    # from_nodes_available
 
     new_node <-
       create_node_df(
