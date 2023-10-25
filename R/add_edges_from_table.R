@@ -187,10 +187,9 @@ add_edges_from_table <- function(
     dplyr::as_tibble(csv) %>%
     dplyr::select(!!from_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, !!from_to_map),
+      ndf %>% dplyr::select("id", !!from_to_map),
       by = stats::setNames(from_to_map, from_col)) %>%
-    dplyr::select("id") %>%
-    dplyr::rename(from = "id") %>%
+    dplyr::select(from = "id") %>%
     dplyr::mutate(from = as.integer(from))
 
   # Get the `to` col
@@ -200,8 +199,7 @@ add_edges_from_table <- function(
     dplyr::left_join(
       ndf %>% dplyr::select("id", !!from_to_map),
       by = stats::setNames(from_to_map, to_col)) %>%
-    dplyr::select("id") %>%
-    dplyr::rename(to = "id") %>%
+    dplyr::select(to = "id") %>%
     dplyr::mutate(to = as.integer(to))
 
   # Combine the `from` and `to` columns together along
@@ -311,8 +309,7 @@ add_edges_from_table <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

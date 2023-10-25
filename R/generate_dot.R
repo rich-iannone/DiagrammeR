@@ -217,7 +217,7 @@ generate_dot <- function(graph) {
 
     # Create the default attributes statement
     # for graph attributes
-    if (!(any(is.na(graph_attrs)))) {
+    if (!(anyNA(graph_attrs))) {
       graph_attr_stmt <-
         paste0("graph [",
                paste(graph_attrs,

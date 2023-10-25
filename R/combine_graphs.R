@@ -91,7 +91,7 @@ combine_graphs <- function(
   y_nodes_df <- get_node_df(y)
 
   # Is label a copy of node IDs in graph `y`?
-  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &
+  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &&
       !any(is.na(y_nodes_df[, 3]))) {
     y_label_node <- TRUE
   } else {
