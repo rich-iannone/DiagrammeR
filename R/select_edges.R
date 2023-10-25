@@ -117,9 +117,6 @@ select_edges <- function(
     }
   }
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract the graph's internal edf
   edges_df <- graph$edges_df
 
@@ -131,11 +128,9 @@ select_edges <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If a `from` vector provided, filter the edf
@@ -146,7 +141,7 @@ select_edges <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `from` not part of an edge")
+        reasons = "One of more of the nodes specified as `from` not part of an edge.")
     }
 
     from_val <- from
@@ -164,7 +159,7 @@ select_edges <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `to` are not part of an edge")
+        reasons = "One of more of the nodes specified as `to` are not part of an edge.")
     }
 
     to_val <- to
@@ -177,8 +172,7 @@ select_edges <- function(
   # Select only the `id`, `to`, and `from` columns
   edges_selected <-
     edges_df %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id)
+    dplyr::select(edge = id, from, to)
 
   # Create an integer vector representing edges
   edges_selected <- edges_selected$edge

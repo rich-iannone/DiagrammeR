@@ -69,9 +69,6 @@ get_edge_ids <- function(
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # If the graph contains no edges, return NA
   if (nrow(graph$edges_df) == 0) {
     return(NA)
@@ -83,11 +80,9 @@ get_edge_ids <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If no edges remain then return NA

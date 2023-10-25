@@ -64,9 +64,6 @@ get_node_ids <- function(
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   if (is_graph_empty(graph)) {
     return(NA)
   }
@@ -77,11 +74,9 @@ get_node_ids <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    nodes_df <- dplyr::filter(.data = nodes_df, !!conditions)
+    nodes_df <- dplyr::filter(.data = nodes_df, {{ conditions }})
   }
 
   # If no nodes remain then return NA
@@ -89,5 +84,5 @@ get_node_ids <- function(
     return(NA)
   }
 
-  nodes_df %>% dplyr::pull(id)
+  nodes_df %>% dplyr::pull("id")
 }

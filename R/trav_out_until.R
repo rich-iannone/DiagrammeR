@@ -123,9 +123,6 @@ trav_out_until <- function(
     c("Any traversal requires an active selection.",
       "This type of traversal requires a selection of nodes."))
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Initialize the node stack and
   # the step count
   node_stack <- vector(mode = "integer")
@@ -140,7 +137,7 @@ trav_out_until <- function(
   # conditions provided
   all_nodes_conditions_met <-
     graph %>%
-    get_node_ids(conditions = !!conditions)
+    get_node_ids(conditions = {{ conditions }})
 
   if (exclude_unmatched && all(is.na(all_nodes_conditions_met))) {
 
@@ -168,8 +165,7 @@ trav_out_until <- function(
     # Perform graph actions, if any are available
     if (nrow(graph$graph_actions) > 0) {
       graph <-
-        graph %>%
-        trigger_graph_actions()
+        trigger_graph_actions(graph)
     }
 
     # Write graph backup if the option is set

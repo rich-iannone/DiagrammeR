@@ -65,20 +65,15 @@ get_agg_degree_out <- function(
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)
 
     # Apply filtering conditions to the ndf
-    ndf <- dplyr::filter(.data = ndf, !!conditions)
+    ndf <- dplyr::filter(.data = ndf, {{ conditions }})
 
     # Get a vector of node ID values
     node_ids <-

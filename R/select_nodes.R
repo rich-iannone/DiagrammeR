@@ -105,9 +105,6 @@ select_nodes <- function(
     }
   }
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df
 
@@ -119,11 +116,9 @@ select_nodes <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    nodes_df <- dplyr::filter(.data = nodes_df, !!conditions)
+    nodes_df <- dplyr::filter(.data = nodes_df, {{ conditions }})
   }
 
   # Get the nodes as a vector

@@ -84,8 +84,7 @@ get_edge_attrs <- function(
 
   edge_attr <- rlang::enquo(edge_attr)
 
-  if (rlang::enquo(edge_attr) %>%
-      rlang::get_expr() %>%
+  if (rlang::get_expr(edge_attr) %>%
       as.character() %in% c("id", "from", "to")) {
 
     emit_error(

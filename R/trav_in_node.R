@@ -234,9 +234,6 @@ trav_in_node <- function(
     c("Any traversal requires an active selection.",
       "This type of traversal requires a selection of edges."))
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
     rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
@@ -278,11 +275,9 @@ trav_in_node <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
+    valid_nodes <- dplyr::filter(.data = valid_nodes, {{ conditions }})
   }
 
   # If no rows returned, then there are no
@@ -310,7 +305,7 @@ trav_in_node <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
+          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
       }
 
       colnames(nodes)[2] <- copy_attrs_from <- copy_attrs_as

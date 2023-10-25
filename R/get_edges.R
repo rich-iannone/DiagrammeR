@@ -110,9 +110,6 @@ get_edges <- function(
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract edge data frame from the graph
   edges_df <- graph$edges_df
 
@@ -129,11 +126,9 @@ get_edges <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If no edges remain then return NA

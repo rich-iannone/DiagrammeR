@@ -126,9 +126,6 @@ trav_in_until <- function(
     c("Any traversal requires an active selection.",
       "This type of traversal requires a selection of nodes."))
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Initialize the node stack and
   # the step count
   node_stack <- vector(mode = "integer")
@@ -143,7 +140,7 @@ trav_in_until <- function(
   # conditions provided
   all_nodes_conditions_met <-
     graph %>%
-    get_node_ids(conditions = !!conditions)
+    get_node_ids(conditions = {{ conditions }})
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

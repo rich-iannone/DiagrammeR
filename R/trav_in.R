@@ -215,46 +215,19 @@ trav_in <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph is not valid.")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes.")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (!graph_contains_edges(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges.")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has a valid node selection
-  if (!graph_contains_node_selection(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
+  check_graph_contains_node_selection(graph, c(
         "any traversal requires an active selection",
         "this type of traversal requires a selection of nodes"))
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
@@ -298,7 +271,7 @@ trav_in <- function(
 
   valid_nodes <-
     dplyr::as_tibble(valid_nodes) %>%
-    dplyr::rename(id = from) %>%
+    dplyr::rename(id = "from") %>%
     dplyr::inner_join(ndf, by = "id")
 
   # If no rows returned, then there are no
@@ -311,11 +284,9 @@ trav_in <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
+    valid_nodes <- dplyr::filter(.data = valid_nodes, {{ conditions }})
   }
 
   # If the option is taken to copy node attribute
@@ -371,7 +342,7 @@ trav_in <- function(
 
       # Reorder the columns generated
       nodes <-
-        nodes[, c(c(1:(ncol(nodes) - 2)), split_var_y_col, split_var_x_col)]
+        nodes[, c(c(seq_len(ncol(nodes) - 2)), split_var_y_col, split_var_x_col)]
     }
 
     # Rename the ".y" column
@@ -428,6 +399,9 @@ trav_in <- function(
 
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

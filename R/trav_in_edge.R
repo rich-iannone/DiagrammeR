@@ -217,9 +217,6 @@ trav_in_edge <- function(
     c("Any traversal requires an active selection.",
       "This type of traversal requires a selection of nodes."))
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
     rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
@@ -270,11 +267,9 @@ trav_in_edge <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_edges <- dplyr::filter(.data = valid_edges, !!conditions)
+    valid_edges <- dplyr::filter(.data = valid_edges, {{ conditions }})
   }
 
   # If no rows returned, then there are no
@@ -333,7 +328,7 @@ trav_in_edge <- function(
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(edges)) {
+      for (i in seq_len(nrow(edges))) {
         if (!is.na(edges[i, split_var_x_col])) {
           edges[i, split_var_y_col] <- edges[i, split_var_x_col]
         }
