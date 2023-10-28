@@ -117,7 +117,7 @@ graph \%>\% get_edges()
 
 }
 \seealso{
-Other Node creation and removal: 
+Other node creation and removal: 
 \code{\link{add_n_node_clones}()},
 \code{\link{add_n_nodes}()},
 \code{\link{add_node_clones_ws}()},
@@ -145,4 +145,4 @@ Other Node creation and removal:
 \code{\link{set_node_attrs}()},
 \code{\link{set_node_position}()}
 }
-\concept{Node creation and removal}
+\concept{node creation and removal}

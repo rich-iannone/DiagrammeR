@@ -31,7 +31,7 @@
 #' # after their reversal
 #' graph %>% get_edges()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 rev_edge_dir <- function(graph) {
@@ -43,27 +43,15 @@ rev_edge_dir <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # If graph is undirected, stop function
-  if (graph$directed == FALSE) {
+  if (!graph$directed) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The input graph must be a directed graph")
+    cli::cli_abort("The input graph must be a directed graph.")
   }
 
   # Get the graph nodes in the `from` and `to` columns

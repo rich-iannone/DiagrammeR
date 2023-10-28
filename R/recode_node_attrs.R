@@ -75,7 +75,7 @@
 #' # to see the change
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 recode_node_attrs <- function(
@@ -93,20 +93,10 @@ recode_node_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `node_attr_from`
   node_attr_from <-
@@ -135,7 +125,7 @@ recode_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The node attribute to recode is not in the ndf")
+      reasons = "The node attribute to recode is not in the ndf.")
   }
 
   # Get the column number for the node attr to recode
@@ -192,7 +182,7 @@ recode_node_attrs <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "You cannot use the names `id` or `nodes`")
+        reasons = "You cannot use the names `id` or `nodes`.")
     }
 
     if (any(column_names_graph %in% node_attr_to)) {

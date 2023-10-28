@@ -66,7 +66,7 @@
 #' # edge data frame
 #' graph_3 %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
 add_edge_clone <- function(
     graph,
@@ -78,40 +78,21 @@ add_edge_clone <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (!graph_contains_edges(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Stop function if edge is not a single numerical value
-  if (length(edge) > 1 || rlang::inherits_any(edge, c("character", "logical"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `edge` must be a single, numeric value")
-  }
+  check_number_decimal(edge)
 
   # Stop function the edge ID does not correspond
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value provided in `edge` does not correspond to an edge in the graph")
+    abort(
+      "The value provided in `edge` does not correspond to an edge in the graph.")
   }
 
   # Get the value for the latest `version_id` for
@@ -160,13 +141,15 @@ add_edge_clone <- function(
   # Clear the graph's active selection
   graph <-
     suppressMessages(
-      graph %>%
-        clear_selection())
+      clear_selection(graph))
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
     graph$graph_log %>%
     dplyr::filter(version_id <= current_graph_log_version_id)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
@@ -183,8 +166,7 @@ add_edge_clone <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

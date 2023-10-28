@@ -70,17 +70,17 @@ import_graph <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The file type as specified cannot be imported")
+        reasons = "The file type as specified cannot be imported.")
     }
   }
 
   # Stop function if file doesn't exist
-  if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file) == FALSE) {
-    if (file.exists(graph_file) == FALSE) {
+  if (!grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file)) {
+    if (!file.exists(graph_file)) {
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The file as specified doesn't exist")
+        reasons = "The file as specified doesn't exist.")
     }
   }
 
@@ -168,7 +168,7 @@ import_graph <- function(
 
     edges <-
       edges %>%
-      dplyr::mutate(id = 1:n_rows) %>%
+      dplyr::mutate(id = seq_len(n_rows)) %>%
       dplyr::mutate(rel = NA_character_) %>%
       dplyr::relocate(id, from, to, rel) %>%
       as.data.frame(stringsAsFactors = FALSE)
@@ -188,8 +188,8 @@ import_graph <- function(
             purrr::flatten_int())) %>%
       dplyr::distinct() %>%
       dplyr::arrange(id) %>%
-      dplyr::mutate(type = NA_character_) %>%
-      dplyr::mutate(label = as.character(id)) %>%
+      dplyr::mutate(type = NA_character_,
+                    label = as.character(id)) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create the graph
@@ -333,11 +333,11 @@ import_graph <- function(
 
     if (any(stringr::str_detect(edge_defs, "value"))) {
       edge_value <-
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "value [a-z0-9\\.]*"),
-          "value ", "")
+          "value ")
     }
 
     # Create all nodes for graph
@@ -367,8 +367,7 @@ import_graph <- function(
       create_graph(
         nodes_df = all_nodes,
         edges_df = all_edges,
-        directed = ifelse(graph_directed == "1",
-                          TRUE, FALSE),
+        directed = graph_directed == "1",
         graph_name = graph_name,
         write_backups = write_backups,
         display_msgs = display_msgs
@@ -407,7 +406,7 @@ import_graph <- function(
         label = nodes)
 
     # Determine which lines have single nodes
-    if (any(!stringr::str_detect(sif_document, "\\t"))) {
+    if (!all(stringr::str_detect(sif_document, "\\t"))) {
       single_nodes <- which(!stringr::str_detect(sif_document, "\\t"))
     }
 
@@ -430,11 +429,9 @@ import_graph <- function(
         to_label = to,
         rel = rel) %>%
       dplyr::right_join(ndf, c("from_label" = "label")) %>%
-      dplyr::select(id, to_label, rel) %>%
-      dplyr::rename(from = id) %>%
+      dplyr::select(from = "id", "to_label", "rel") %>%
       dplyr::right_join(ndf, c("to_label" = "label")) %>%
-      dplyr::select(from, id, rel) %>%
-      dplyr::rename(to = id) %>%
+      dplyr::select("from", to = "id", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a graph object

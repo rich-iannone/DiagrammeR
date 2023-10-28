@@ -89,20 +89,10 @@ select_nodes <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Stop function if `nodes` refers to node ID
   # values that are not in the graph
@@ -115,9 +105,6 @@ select_nodes <- function(
     }
   }
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df
 
@@ -129,17 +116,15 @@ select_nodes <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    nodes_df <- dplyr::filter(.data = nodes_df, !!conditions)
+    nodes_df <- dplyr::filter(.data = nodes_df, {{ conditions }})
   }
 
   # Get the nodes as a vector
   nodes_selected <-
     nodes_df %>%
-    dplyr::pull(id)
+    dplyr::pull("id")
 
   # If a `nodes` vector provided, get the intersection
   # of that vector with the filtered node IDs

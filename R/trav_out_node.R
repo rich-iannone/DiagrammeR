@@ -219,42 +219,19 @@ trav_out_node <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "The graph contains no selection of edges",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of edges"))
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
+  check_graph_contains_edge_selection(
+    graph,
+    extra_msg = c("Any traversal requires an active selection.",
+                  "This type of traversal requires a selection of edges."))
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
@@ -272,7 +249,7 @@ trav_out_node <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -291,18 +268,15 @@ trav_out_node <- function(
   # starting edges
   valid_nodes <-
     starting_edges %>%
-    dplyr::select(from) %>%
-    dplyr::distinct() %>%
+    dplyr::distinct(from) %>%
     dplyr::left_join(ndf, by = c("from" = "id"))
 
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
+    valid_nodes <- dplyr::filter(.data = valid_nodes, {{ conditions }})
   }
 
   # If no rows returned, then there are no
@@ -321,7 +295,7 @@ trav_out_node <- function(
       starting_edges %>%
       dplyr::semi_join(valid_nodes, by = "from") %>%
       dplyr::left_join(edf, by = c("edge" = "id")) %>%
-      dplyr::select("from.y",!! enquo(copy_attrs_from))
+      dplyr::select("from.y",!!enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 
@@ -337,13 +311,13 @@ trav_out_node <- function(
 
     nodes <-
       nodes %>%
-      dplyr::rename(id = from.y) %>%
+      dplyr::rename(id = "from.y") %>%
       dplyr::group_by(id) %>%
-      dplyr::summarize(!! copy_attrs_from :=
-                         match.fun(!! agg)(!! as.name(copy_attrs_from),
+      dplyr::summarize(!!copy_attrs_from :=
+                         match.fun(!!agg)(!!as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::relocate(id, type, label) %>%
+      dplyr::relocate("id", "type", "label") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # If edge attribute exists as a column in the ndf
@@ -351,14 +325,14 @@ trav_out_node <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(nodes)))
+        grep("\\.x$", colnames(nodes))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(nodes)))
+        grep("\\.y$", colnames(nodes))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(nodes)) {
+      for (i in seq_len(nrow(nodes))) {
         if (!is.na(nodes[i, split_var_x_col])) {
           nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
         }

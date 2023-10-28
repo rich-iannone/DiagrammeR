@@ -100,24 +100,11 @@ select_nodes_by_degree <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -127,8 +114,8 @@ select_nodes_by_degree <- function(
   # Get a data frame with node ID and degree types
   node_degree <-
     get_node_info(graph) %>%
-    dplyr::select(id, deg, indeg, outdeg) %>%
-    dplyr::filter(!!! parse_exprs(expressions))
+    dplyr::select("id", "deg", "indeg", "outdeg") %>%
+    dplyr::filter(!!!parse_exprs(expressions))
 
   # Get the node ID values from the filtered table
   nodes_selected <- node_degree$id
@@ -170,6 +157,9 @@ select_nodes_by_degree <- function(
   # selection properties
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

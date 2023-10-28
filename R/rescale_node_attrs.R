@@ -83,7 +83,7 @@
 #' # node attributes
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 rescale_node_attrs <- function(
@@ -103,20 +103,10 @@ rescale_node_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `node_attr_from`
   node_attr_from <-
@@ -151,11 +141,11 @@ rescale_node_attrs <- function(
     dplyr::mutate_at(.vars = node_attr_from, .funs = ~as.numeric(.)) %>%
     dplyr::pull(var = !!node_attr_from)
 
-  if ((!is.null(from_lower_bound) &
-       is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
-       !is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
+  if ((!is.null(from_lower_bound) &&
+       is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
+       !is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
        is.null(from_upper_bound))) {
 
     from <- range(vector_to_rescale, na.rm = TRUE, finite = TRUE)
@@ -166,7 +156,7 @@ rescale_node_attrs <- function(
 
   # Get vector of rescaled, numeric node
   # attribute values
-  if (is.numeric(to_lower_bound) &
+  if (is.numeric(to_lower_bound) &&
       is.numeric(to_upper_bound)) {
 
     nodes_attr_vector_rescaled <-
@@ -180,7 +170,7 @@ rescale_node_attrs <- function(
   }
 
   # Get vector of rescaled, node attribute color values
-  if ((to_lower_bound %in% grDevices::colors()) &
+  if ((to_lower_bound %in% grDevices::colors()) &&
       (to_upper_bound %in% grDevices::colors())) {
 
     nodes_attr_vector_rescaled <-

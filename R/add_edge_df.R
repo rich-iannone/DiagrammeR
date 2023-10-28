@@ -39,7 +39,7 @@
 #'   get_edges(
 #'     return_type = "vector")
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_edge_df <- function(
@@ -50,24 +50,11 @@ add_edge_df <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (!graph_contains_nodes(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added")
-  }
+  check_graph_contains_nodes(graph,extra_msg = " so, edges cannot be added")
 
   # Get the number of edges ever created for
   # this graph
@@ -97,6 +84,9 @@ add_edge_df <- function(
 
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(combined_edges)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

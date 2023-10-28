@@ -43,18 +43,10 @@ set_graph_time <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  if (is.null(time) & is.null(tz)) {
+  if (is.null(time) && is.null(tz)) {
     time <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
     tz <- Sys.timezone()
   }
@@ -68,22 +60,23 @@ set_graph_time <- function(
     time <- format(time, "%Y-%m-%d %H:%M:%S")
   }
 
-  if (!is.null(tz)) {
-    if (!(tz %in% OlsonNames())) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The time zone provided must be available in `OlsonNames()`")
-    }
+  if (!is.null(tz) && !(tz %in% OlsonNames())) {
+      cli::cli_abort(
+        "The time zone provided must be available in `OlsonNames()`."
+      )
   }
 
-  if (is.null(tz) & is.null(graph$graph_tz)) {
+  if (is.null(tz) && is.null(graph$graph_tz)) {
     tz <- "GMT"
   }
 
   # Modify the graph's time and time zone attributes
   graph$graph_info$graph_time[1] <- time
   graph$graph_info$graph_tz[1] <- tz
+
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

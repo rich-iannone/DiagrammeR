@@ -133,24 +133,21 @@ filter_graph_series <- function(
     }
 
     is_tz_in_correct_format <-
-      ifelse(tz %in% OlsonNames(), TRUE, FALSE)
+      tz %in% OlsonNames()
 
-    if (is_tz_in_correct_format == FALSE) {
+    if (!is_tz_in_correct_format) {
 
       return(graph_series)
     }
 
-    for (i in 1:length(values)) {
+    for (i in seq_along(values)) {
 
       is_time_in_correct_format <-
-        ifelse(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-                     values[i]) |
-                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
-                       values[i]) |
-                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
-                       values[i]), TRUE, FALSE)
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", values[i]) ||
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$", values[i]) ||
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$", values[i])
 
-      if (is_time_in_correct_format == FALSE) {
+      if (!is_time_in_correct_format) {
 
         return(graph_series)
       }

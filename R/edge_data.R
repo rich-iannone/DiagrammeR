@@ -29,7 +29,7 @@
 #' graph %>% get_edge_df()
 #' }
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 edge_data <- function(...) {
@@ -45,7 +45,7 @@ edge_data <- function(...) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes")
+      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.")
   }
 
   edge_data_values

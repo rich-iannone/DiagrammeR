@@ -12,18 +12,10 @@
 #' @export
 generate_dot <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  # Extract objects from the graph objecct
+  # Extract objects from the graph object
   nodes_df <- graph$nodes_df
   edges_df <- graph$edges_df
   directed <- graph$directed
@@ -37,7 +29,7 @@ generate_dot <- function(graph) {
 
     graph_attrs <-
       graph_attrs %>%
-      dplyr::pull(string)
+      dplyr::pull("string")
 
   } else {
     graph_attrs <- NA
@@ -51,7 +43,7 @@ generate_dot <- function(graph) {
 
     node_attrs <-
       node_attrs %>%
-      dplyr::pull(string)
+      dplyr::pull("string")
 
     # Fill in NA attribute values with global preset values
     for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "node"))) {
@@ -79,7 +71,7 @@ generate_dot <- function(graph) {
 
     edge_attrs <-
       edge_attrs %>%
-      dplyr::pull(string)
+      dplyr::pull("string")
 
     # Fill in NA attribute values with global preset values
     for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "edge"))) {
@@ -109,10 +101,11 @@ generate_dot <- function(graph) {
 
       nodes_df <-
         nodes_df %>%
-        dplyr::mutate_at(
-          .vars = vars,
-          .funs =  ~ tidyr::replace_na(., "")
-        )
+        dplyr::mutate(
+          dplyr::across(
+            .cols = dplyr::all_of(vars),
+            .fns = ~ dplyr::coalesce(.x, "")
+          ))
     }
   }
 
@@ -126,10 +119,11 @@ generate_dot <- function(graph) {
 
       edges_df <-
         edges_df %>%
-        dplyr::mutate_at(
-          .vars = vars,
-          .funs =  ~ tidyr::replace_na(., "")
-        )
+        dplyr::mutate(
+          dplyr::across(
+            .cols = dplyr::all_of(vars),
+            .fns = ~ dplyr::coalesce(.x, "")
+            ))
     }
   }
 
@@ -178,9 +172,7 @@ generate_dot <- function(graph) {
 
     if (!("label" %in% colnames(edges_df))) {
 
-      edges_df <-
-        edges_df %>%
-        dplyr::mutate(label = NA_character_)
+      edges_df$label <- NA_character_
     }
 
     label_col <- which(colnames(edges_df) == "label")
@@ -208,7 +200,7 @@ generate_dot <- function(graph) {
   # Create vector of edge attributes
   edge_attributes <- gv_edge_attributes()
 
-  if (nrow(nodes_df) == 0 &
+  if (nrow(nodes_df) == 0 &&
       nrow(edges_df) == 0) {
 
     # Create DOT code with nothing in graph
@@ -225,7 +217,7 @@ generate_dot <- function(graph) {
 
     # Create the default attributes statement
     # for graph attributes
-    if (!(any(is.na(graph_attrs)))) {
+    if (!(anyNA(graph_attrs))) {
       graph_attr_stmt <-
         paste0("graph [",
                paste(graph_attrs,
@@ -275,7 +267,7 @@ generate_dot <- function(graph) {
 
       column_with_y <- which(colnames(nodes_df) %in% "y")[1]
 
-      if (!is.na(column_with_x) & !is.na(column_with_y)) {
+      if (!is.na(column_with_x) && !is.na(column_with_y)) {
         pos <-
           paste0(
             nodes_df %>% dplyr::pull(column_with_x), ",",
@@ -327,7 +319,7 @@ generate_dot <- function(graph) {
 
         color_attr_column_name <-
           unlist(strsplit(colnames(nodes_df)[
-            (which(grepl("alpha:.*", colnames(nodes_df))))
+            (grep("alpha:.*", colnames(nodes_df)))
           ], ":"))[-1]
 
         color_attr_column_no <-
@@ -455,11 +447,11 @@ generate_dot <- function(graph) {
                    })
           )
 
-      } else if ('cluster' %in% colnames(nodes_df)) {
+      } else if ("cluster" %in% colnames(nodes_df)) {
 
         cluster_vals <- nodes_df$cluster
 
-        clustered_node_block <- character(0)
+        clustered_node_block <- character(0L)
         clusters <- split(node_block, cluster_vals)
 
         for (i in seq_along(clusters)) {
@@ -507,8 +499,7 @@ generate_dot <- function(graph) {
       # Determine whether `from` or `to` columns are
       # in `edges_df`
       from_to_columns <-
-        ifelse(any(c("from", "to") %in%
-                     colnames(edges_df)), TRUE, FALSE)
+        any(c("from", "to") %in% colnames(edges_df))
 
       # Determine which columns in `edges_df`
       # contain edge attributes
@@ -540,7 +531,7 @@ generate_dot <- function(graph) {
       if (exists("from_column") &
           exists("to_column")) {
 
-        if (length(from_column) == 1 &
+        if (length(from_column) == 1 &&
             length(from_column) == 1) {
 
           for (i in 1:nrow(edges_df)) {

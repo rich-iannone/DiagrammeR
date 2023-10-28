@@ -86,7 +86,7 @@
 #' # edge attribute
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 rescale_edge_attrs <- function(
@@ -106,20 +106,10 @@ rescale_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -145,20 +135,23 @@ rescale_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The edge attribute to rescale is not in the edf")
+      reasons = "The edge attribute to rescale is not in the edf.")
   }
 
   # Extract the vector to rescale from the `edges` df
   vector_to_rescale <-
     edges %>%
-    dplyr::mutate_at(.vars = edge_attr_from, .funs = ~as.numeric(.)) %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(edge_attr_from),
+        as.numeric)) %>%
     dplyr::pull(var = !!edge_attr_from)
 
-  if ((!is.null(from_lower_bound) &
-       is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
-       !is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
+  if ((!is.null(from_lower_bound) &&
+       is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
+       !is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
        is.null(from_upper_bound))) {
 
     from <- range(vector_to_rescale, na.rm = TRUE, finite = TRUE)
@@ -169,7 +162,7 @@ rescale_edge_attrs <- function(
 
   # Get vector of rescaled, numeric edge
   # attribute values
-  if (is.numeric(to_lower_bound) &
+  if (is.numeric(to_lower_bound) &&
       is.numeric(to_upper_bound)) {
 
     edges_attr_vector_rescaled <-

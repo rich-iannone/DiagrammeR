@@ -286,20 +286,20 @@ test_that("edges can be deleted from a graph using node label values", {
 
   # Expect an error when specifying a node
   # label that does not exist
-  expect_error(
+  expect_snapshot(error = TRUE, {
     graph_labeled_nodes %>%
       delete_edge(
         from = "zero",
-        to = "two"))
+        to = "two")
 
-  expect_error(
     graph_labeled_nodes %>%
       delete_edge(
         from = "one",
-        to = "three"))
+        to = "three")
+  })
 
   # Create a directed graph with 3
-  # labeled nodes (with indistinct labels)
+  # labelled nodes (with indistinct labels)
   # and 1 edge
   graph_labeled_nodes_not_distinct_labels_1 <-
     create_graph() %>%

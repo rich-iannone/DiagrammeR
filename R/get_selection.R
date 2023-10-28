@@ -42,12 +42,7 @@ get_selection <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -65,7 +60,7 @@ get_selection <- function(graph) {
       # Issue a message to the user
       emit_message(
         fcn_name = fcn_name,
-        message_body = "there is no active selection of nodes or edges")
+        message_body = "There is no active selection of nodes or edges.")
     }
 
     return(NA)

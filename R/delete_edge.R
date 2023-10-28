@@ -93,7 +93,7 @@
 #'     to = "two") %>%
 #'   count_edges()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 delete_edge <- function(
@@ -110,28 +110,13 @@ delete_edge <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, there cannot be edges to delete")
-  }
+  check_graph_contains_nodes(graph, "So, there cannot be edges to delete.")
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # If a value is supplied for `id`, determine which
   # node ID values the edge ID references
@@ -140,10 +125,10 @@ delete_edge <- function(
     # Stop function if the edge ID value supplied is
     # not in the graph's edf
     if (!(id %in% graph$edges_df$id)) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The edge specified is not present in the graph")
+      cli::cli_abort(c(
+        "The edge specified is not present in the graph.",
+        "The edge can be any of {.val {unique(graph$edges_df$id)}}."
+      ))
     }
 
     # Get the node ID values for the edge ID

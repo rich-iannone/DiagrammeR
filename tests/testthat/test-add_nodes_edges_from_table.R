@@ -675,39 +675,34 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Expect certain columns to exist in the graph's
   # edge data frame
-  expect_equal(
-    colnames(graph_nodes_edges$edges_df),
+  expect_named(
+    graph_nodes_edges$edges_df,
     c("id", "from", "to", "rel", "cost_unit"))
 
-  # Expect an error if value for `from_col` is
+  # Expect an error if value for `from_col` or `to_col` or `from_to_map` is
   # not in the table
-  expect_error(
+  expect_snapshot(error = TRUE, {
     graph %>%
       add_edges_from_table(
         edge_table,
         from_col = from,
         to_col = to_currency,
-        from_to_map = iso_4217_code))
+        from_to_map = iso_4217_code)
 
-  # Expect an error if value for `to_col` is
-  # not in the table
-  expect_error(
     graph %>%
       add_edges_from_table(
         edge_table,
         from_col = from_currency,
         to_col = to,
-        from_to_map = iso_4217_code))
+        from_to_map = iso_4217_code)
 
-  # Expect an error if value for `from_to_map` is
-  # not in the table
-  expect_error(
     graph %>%
       add_edges_from_table(
         edge_table,
         from_col = from_currency,
         to_col = to_currency,
-        from_to_map = iso_4217))
+        from_to_map = iso_4217)
+  })
 
   # Augment the graph by first
   # adding edges from a table
@@ -751,14 +746,14 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Expect certain columns to exist in the graph's
   # edge data frame
-  expect_equal(
-    colnames(graph_nodes_edges_set_rel$edges_df),
+  expect_named(
+    graph_nodes_edges_set_rel$edges_df,
     c("id", "from", "to", "rel", "cost_unit"))
 
   # Expect the same value (repeated down)
   # for the `rel` edge attribute
-  expect_equal(
-    unique(graph_nodes_edges_set_rel$edges_df$rel),
+  expect_in(
+    graph_nodes_edges_set_rel$edges_df$rel,
     "change_to")
 })
 
@@ -789,7 +784,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
 
   # Expect a certain sequence of node `label` values
   expect_equal(
-    graph %>% get_node_df() %>% .$label,
+    get_node_df(graph)$label,
     c("1", "2", "f", "p", "q", "x"))
 
   # Add new nodes from columns 3 and 4; we are here
@@ -802,7 +797,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
 
   # Expect a certain sequence of node `label` values
   expect_equal(
-    graph %>% get_node_df() %>% .$label,
+    get_node_df(graph)$label,
     c("1", "2", "f", "p", "q", "x",
       "a", "v", "h"))
 
@@ -815,7 +810,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
 
   # Expect no change in the graph
   expect_equal(
-    graph %>% get_node_df() %>% .$label,
+    get_node_df(graph)$label,
     c("1", "2", "f", "p", "q", "x",
       "a", "v", "h"))
 
@@ -830,7 +825,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
 
   # Expect duplicated labels in the graph
   expect_equal(
-    graph %>% get_node_df() %>% .$label,
+    get_node_df(graph)$label,
     c("1", "2", "f", "p", "q", "x",
       "a", "v", "h", "a", "v", "h"))
 
@@ -847,7 +842,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
 
   # Expect more duplicated labels in the graph
   expect_equal(
-    graph %>% get_node_df() %>% .$label,
+    get_node_df(graph)$label,
     c("1", "2", "f", "p", "q", "x",
       "a", "v", "h", "a", "v", "h",
       "a", "v", "h"))

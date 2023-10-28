@@ -59,21 +59,16 @@ invert_selection <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object has valid selection of
   # nodes or edges
-  if (!(graph_contains_node_selection(graph) |
+  if (!(graph_contains_node_selection(graph) ||
         graph_contains_edge_selection(graph))) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "There is no selection of nodes or edges available")
+      reasons = "There is no selection of nodes or edges available.")
   }
 
   # Obtain the input graph's node and edge
@@ -91,7 +86,7 @@ invert_selection <- function(graph) {
     inverted_nodes <-
       ndf %>%
       dplyr::filter(!(id %in% selection_nodes)) %>%
-      dplyr::select(id)
+      dplyr::select("id")
 
     # Add the node ID values to the active selection
     # of nodes in `graph$node_selection`
@@ -114,7 +109,7 @@ invert_selection <- function(graph) {
     inverted_edges <-
       edf %>%
       dplyr::filter(!(id %in% selection_edges)) %>%
-      dplyr::select(id, from, to)
+      dplyr::select("id", "from", "to")
 
     # Add the node ID values to the active selection
     # of nodes in `graph$node_selection`

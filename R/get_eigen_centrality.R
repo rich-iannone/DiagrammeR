@@ -31,19 +31,14 @@ get_eigen_centrality <- function(
     weights_attr = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   if (!is.null(weights_attr)) {
 
@@ -53,7 +48,7 @@ get_eigen_centrality <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights does not exist in the graph")
+          reasons = "The edge attribute to be used as weights does not exist in the graph.")
       }
 
       # Stop function if the edge attribute is not numeric
@@ -61,7 +56,7 @@ get_eigen_centrality <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights is not numeric")
+          reasons = "The edge attribute to be used as weights is not numeric.")
       }
 
       weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]

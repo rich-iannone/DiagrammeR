@@ -43,7 +43,7 @@
 #' # attribute had been renamed
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 rename_edge_attrs <- function(
@@ -59,20 +59,10 @@ rename_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -88,7 +78,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot rename using the same name")
+      reasons = "You cannot rename using the same name.")
   }
 
   # Stop function if `edge_attr_to` is `from`, `to`,
@@ -99,7 +89,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot use that name for `edge_attr_to`")
+      reasons = "You cannot use that name for `edge_attr_to`.")
   }
 
   # Stop function if `edge_attr_from` is `from`, `to`
@@ -109,7 +99,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot use that name for `edge_attr_from`")
+      reasons = "You cannot use that name for `edge_attr_from`.")
   }
 
   # Get the number of nodes ever created for
@@ -128,7 +118,7 @@ rename_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The edge attribute to rename is not in the edf")
+      reasons = "The edge attribute to rename is not in the edf.")
   }
 
   # Set the column name for the renamed attr

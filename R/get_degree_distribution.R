@@ -35,24 +35,11 @@ get_degree_distribution <- function(
     mode = "total"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -64,7 +51,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         total_degree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -76,7 +63,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         indegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -88,7 +75,7 @@ get_degree_distribution <- function(
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         outdegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }

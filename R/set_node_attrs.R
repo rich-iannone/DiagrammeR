@@ -59,7 +59,7 @@
 #' # Display the graph's ndf
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 set_node_attrs <- function(
@@ -89,7 +89,7 @@ set_node_attrs <- function(
   # Extract the graph's ndf
   ndf <- graph$nodes_df
 
-  if (length(values) != 1 &
+  if (length(values) != 1 &&
       length(values) != nrow(ndf)) {
 
     emit_error(

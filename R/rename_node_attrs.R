@@ -49,7 +49,7 @@
 #' # attribute had been renamed
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 rename_node_attrs <- function(
@@ -65,20 +65,10 @@ rename_node_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `node_attr_from`
   node_attr_from <-
@@ -94,7 +84,7 @@ rename_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot rename using the same name")
+      reasons = "You cannot rename using the same name.")
   }
 
   # Stop function if `node_attr_to` is `id` or any
@@ -105,7 +95,7 @@ rename_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot use that name for `node_attr_to`")
+      reasons = "You cannot use that name for `node_attr_to`.")
   }
 
   # Stop function if `node_attr_from` is `id`, `label`
@@ -115,7 +105,7 @@ rename_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot use that name for `node_attr_from`")
+      reasons = "You cannot use that name for `node_attr_from`.")
   }
 
   # Get the number of nodes ever created for
@@ -134,7 +124,7 @@ rename_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The node attribute to rename is not in the ndf")
+      reasons = "The node attribute to rename is not in the ndf.")
   }
 
   # Set the column name for the renamed attr

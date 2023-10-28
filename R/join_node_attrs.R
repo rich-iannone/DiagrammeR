@@ -63,7 +63,7 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#' @family node creation and removal
 #' @export
 join_node_attrs <- function(
     graph,
@@ -79,25 +79,20 @@ join_node_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
+
+  if (is.null(by_graph) && !is.null(by_df)) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+      reasons = "Both column specifications must be provided.")
   }
 
-  if (is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && is.null(by_df)) {
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
-  }
-
-  if (!is.null(by_graph) & is.null(by_df)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
+      reasons = "Both column specifications must be provided.")
   }
 
   # Get the number of nodes ever created for
@@ -113,7 +108,7 @@ join_node_attrs <- function(
   # Get column names from the df
   column_names_df <- colnames(df)
 
-  if (is.null(by_graph) & is.null(by_df)) {
+  if (is.null(by_graph) && is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
     if ("id" %in% colnames(df)) {
@@ -129,7 +124,7 @@ join_node_attrs <- function(
     }
   }
 
-  if (!is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && !is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
     nodes <-
@@ -149,8 +144,7 @@ join_node_attrs <- function(
 
   # Ensure that the column ordering is correct
   nodes <-
-    nodes %>%
-    dplyr::relocate(id, type, label)
+    nodes %>% dplyr::relocate("id", "type", "label")
 
   # Modify the graph object
   graph$nodes_df <- nodes

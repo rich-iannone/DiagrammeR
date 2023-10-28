@@ -202,46 +202,20 @@ trav_in_edge <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
+  check_graph_contains_node_selection(
+    graph,
+    c("Any traversal requires an active selection.",
+      "This type of traversal requires a selection of nodes."))
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
@@ -259,7 +233,7 @@ trav_in_edge <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -293,11 +267,9 @@ trav_in_edge <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_edges <- dplyr::filter(.data = valid_edges, !!conditions)
+    valid_edges <- dplyr::filter(.data = valid_edges, {{ conditions }})
   }
 
   # If no rows returned, then there are no
@@ -315,15 +287,12 @@ trav_in_edge <- function(
     ndf_2 <-
       ndf %>%
       dplyr::filter(id %in% starting_nodes) %>%
-      dplyr::select("id",!! enquo(copy_attrs_from))
+      dplyr::select("id",!!enquo(copy_attrs_from))
 
     if (!is.null(copy_attrs_as)) {
 
       if (copy_attrs_as %in% c("id", "from", "to")) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
+        cli::cli_abort("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
       }
 
       colnames(ndf_2)[2] <- copy_attrs_from <- copy_attrs_as
@@ -348,18 +317,18 @@ trav_in_edge <- function(
       edges <-
         ndf_2 %>%
         dplyr::right_join(edf, by = c("id" = "to")) %>%
-        dplyr::rename(to = id, id = id.y)
+        dplyr::rename(to = "id", id = "id.y")
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(edges)))
+        grep("\\.x$", colnames(edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(edges)))
+        grep("\\.y$", colnames(edges))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(edges)) {
+      for (i in seq_len(nrow(edges))) {
         if (!is.na(edges[i, split_var_x_col])) {
           edges[i, split_var_y_col] <- edges[i, split_var_x_col]
         }
@@ -393,6 +362,9 @@ trav_in_edge <- function(
 
   # Replace `graph$node_selection` with an empty df
   graph$node_selection <- create_empty_nsdf()
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

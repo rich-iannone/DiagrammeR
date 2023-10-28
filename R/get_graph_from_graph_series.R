@@ -50,17 +50,14 @@ get_graph_from_graph_series <- function(
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no graphs in this graph series")
+    rlang::abort("There are no graphs in this graph series.")
   }
 
   # Stop function if `graph_no` out of range
   if (!(graph_no %in% 1:count_graphs_in_graph_series(graph_series))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The index chosen doesn't correspond to that of a graph in the series")
+    rlang::abort(
+      "The index chosen doesn't correspond to that of a graph in the series.")
   }
 
   # Extract the specified graph from the series

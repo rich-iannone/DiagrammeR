@@ -45,26 +45,13 @@ get_radiality <- function(
     direction = "all"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  # Ensure that values provided for the
+  # Validation Ensure that values provided for the
   # `direction` argument are from the
   # valid options
-  if (!(direction %in% c("all", "in", "out"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Valid options for `direction` are `all`, `in`, or `out`")
-  }
+  rlang::arg_match0(direction, c("all", "in", "out"))
 
   # Get the number of nodes in the graph
   n_nodes <- count_nodes(graph)
@@ -81,10 +68,12 @@ get_radiality <- function(
       weights = NA)
 
   # Get the graph diameter
+  is_directed <- direction != "all"
+
   diam <-
     igraph::diameter(
       graph = ig_graph,
-      directed = ifelse(direction == "all", FALSE, TRUE))
+      directed = is_directed)
 
   # Get the radiality values for all
   # nodes in the graph
@@ -93,11 +82,11 @@ get_radiality <- function(
       X = sp_matrix,
       MARGIN = 1,
       FUN = function(x) {
-        if (all(x == Inf)) {
+        if (all(is.infinite(x))) {
           return(0)
         }
         else {
-          return(sum(diam + 1 - x[x != Inf])/(n_nodes - 1))
+          return(sum(diam + 1 - x[!is.infinite(x)])/(n_nodes - 1))
         }
       })
 

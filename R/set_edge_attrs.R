@@ -75,7 +75,7 @@
 #'     values = "black",
 #'     to = 1)
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 set_edge_attrs <- function(
@@ -100,15 +100,15 @@ set_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "You cannot alter edge ID values or attributes associated with node IDs")
+      reasons = "You cannot alter edge ID values or attributes associated with node IDs.")
   }
 
-  if (!is.null(from) & !is.null(to)) {
+  if (!is.null(from) && !is.null(to)) {
     if (length(from) != length(to)) {
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "The number of values specified in `from` and `to` must be the same")
+        reasons = "The number of values specified in `from` and `to` must be the same.")
     }
   }
 
@@ -120,19 +120,19 @@ set_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The length of values provided must either be 1 or that of the number of rows in the edf")
+      reasons = "The length of values provided must either be 1 or that of the number of rows in the edf.")
   }
 
   # Get the indices for the edge data frame
   # that require modification
-  if (is.null(from) & !is.null(to)) {
+  if (is.null(from) && !is.null(to)) {
     indices <-
       which(edf$to %in% to)
-  } else if (!is.null(from) & is.null(to)) {
+  } else if (!is.null(from) && is.null(to)) {
     indices <-
       which(edf$from %in% from)
-  } else if (is.null(from) & is.null(to)) {
-    indices <- 1:nrow(edf)
+  } else if (is.null(from) && is.null(to)) {
+    indices <- seq_len(nrow(edf))
   } else {
     indices <-
       which((edf$from %in% from) &

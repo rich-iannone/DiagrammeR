@@ -66,7 +66,7 @@ render_graph_from_graph_series <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "There are no graphs in this graph series")
+      reasons = "There are no graphs in this graph series.")
   }
 
   # Stop function if `graph_no` is out of range
@@ -74,7 +74,7 @@ render_graph_from_graph_series <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The index chosen doesn't correspond to that of a graph in the series")
+      reasons = "The index chosen doesn't correspond to that of a graph in the series.")
   }
 
   # Extract the specified graph from the series

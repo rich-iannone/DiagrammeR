@@ -49,16 +49,8 @@
 #' @export
 is_property_graph <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   if (is_graph_empty(graph)) {
     return(FALSE)

@@ -79,49 +79,28 @@ is_edge_present <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  use_edge <- !is.null(edge)
 
-  if (!is.null(edge)) {
-    use_edge <- TRUE
-  } else {
-    use_edge <- FALSE
-  }
+  use_from_to <- !is.null(from) && !is.null(to)
 
-  if (!is.null(from) & !is.null(to)) {
-    use_from_to <- TRUE
-  } else {
+  if (use_edge && use_from_to) {
     use_from_to <- FALSE
   }
 
-  if (use_edge & use_from_to) {
-    use_from_to <- FALSE
-  }
-
-  if (use_edge == FALSE & use_from_to == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Either provide an edge ID or a pair of nodes to test for edge presence")
+  if (!use_edge && !use_from_to) {
+    cli::cli_abort(
+      "Either provide an edge ID or a pair of nodes to test for edge presence.")
   }
 
   if (use_edge) {
 
     # Verify that what is provided for `edge`
     # is a numeric value of length 1
-    if (!inherits(edge, "numeric") | length(edge) != 1) {
+    check_number_decimal(edge)
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "For `edge`, a single, numeric value must be provided")
-    }
-
-    edge_is_in_graph <-
-      ifelse(edge %in% graph$edges_df$id, TRUE, FALSE)
+    edge_is_in_graph <- edge %in% graph$edges_df$id
 
     return(edge_is_in_graph)
   }
@@ -130,32 +109,25 @@ is_edge_present <- function(
 
     # Verify that each of the values for `from` and
     # `to` are given as a single value
-    from_is_single_value <-
-      ifelse(length(from) == 1, TRUE, FALSE)
-
-    to_is_single_value <-
-      ifelse(length(to) == 1, TRUE, FALSE)
+    from_is_single_value <- length(from) == 1
+    to_is_single_value   <-   length(to) == 1
 
     # Stop function if either node is not a single value
-    if (from_is_single_value == FALSE |
-        to_is_single_value == FALSE) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "Only single nodes for `from` and `to` should be specified")
+    if (!from_is_single_value || !to_is_single_value) {
+      cli::cli_abort(
+        "Only single nodes for `from` and `to` should be specified.")
     }
 
-    if (inherits(from, "character") & inherits(to, "character")) {
+    if (inherits(from, "character") && inherits(to, "character")) {
 
       # Determine whether the pair of
       # labels provided are in the graph
       nodes_available_in_graph <-
-        ifelse(all(c(from, to) %in%
-                     graph$nodes_df$label), TRUE, FALSE)
+        all(c(from, to) %in% graph$nodes_df$label)
 
       # Return FALSE if both nodes not
       # present in graph
-      if (nodes_available_in_graph == FALSE) {
+      if (!nodes_available_in_graph) {
         return(FALSE)
       }
 
@@ -175,38 +147,33 @@ is_edge_present <- function(
       if (graph$directed) {
 
         edge_is_in_graph <-
-          ifelse(
             any(graph$edges_df$from == from &
-                  graph$edges_df$to == to),
-            TRUE, FALSE)
+                  graph$edges_df$to == to)
 
-      } else if (graph$directed == FALSE) {
+      } else if (!graph$directed) {
 
         edge_is_in_graph <-
-          ifelse(
             any(graph$edges_df$from == from &
                   graph$edges_df$to == to) |
               any(graph$edges_df$from == to &
-                    graph$edges_df$to == from),
-            TRUE, FALSE)
+                    graph$edges_df$to == from)
       }
 
       return(edge_is_in_graph)
     }
 
-    if (inherits(from, "numeric") & inherits(to, "numeric")) {
+    if (inherits(from, "numeric") && inherits(to, "numeric")) {
 
       # Determine whether the pair of
       # labels provided are in the graph
-      if (from_is_single_value & to_is_single_value) {
+      if (from_is_single_value && to_is_single_value) {
         nodes_available_in_graph <-
-          ifelse(all(c(from, to) %in%
-                       get_node_ids(graph)), TRUE, FALSE)
+          all(c(from, to) %in% get_node_ids(graph))
       }
 
       # Return FALSE if both nodes not
       # present in graph
-      if (nodes_available_in_graph == FALSE) {
+      if (!nodes_available_in_graph) {
         return(FALSE)
       }
 
@@ -215,20 +182,16 @@ is_edge_present <- function(
       if (graph$directed) {
 
         edge_is_in_graph <-
-          ifelse(
             any(graph$edges_df$from == from &
-                  graph$edges_df$to == to),
-            TRUE, FALSE)
+                  graph$edges_df$to == to)
 
-      } else if (graph$directed == FALSE) {
+      } else if (!graph$directed) {
 
         edge_is_in_graph <-
-          ifelse(
             any(graph$edges_df$from == from &
                   graph$edges_df$to == to) |
               any(graph$edges_df$from == to &
-                    graph$edges_df$to == from),
-            TRUE, FALSE)
+                    graph$edges_df$to == from)
       }
 
       return(edge_is_in_graph)

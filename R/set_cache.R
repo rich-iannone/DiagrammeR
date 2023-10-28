@@ -72,14 +72,9 @@ set_cache <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  if (inherits(to_cache, c("numeric", "integer", "character"))) {
+  if (rlang::inherits_any(to_cache, c("numeric", "integer", "character"))) {
 
     # Cache vector in the graph's `cache` list object
     if (!is.null(name)) {
@@ -101,7 +96,7 @@ set_cache <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "You must provide a column name from the data frame")
+        reasons = "You must provide a column name from the data frame.")
     }
 
     if (!is.null(col)) {
@@ -110,7 +105,7 @@ set_cache <- function(
 
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The column name provided doesn't exist in the data frame")
+          reasons = "The column name provided doesn't exist in the data frame.")
       }
 
       # Extract the vector from the data frame and cache

@@ -61,7 +61,7 @@
 #' # new node attribute
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 recode_edge_attrs <- function(
@@ -79,20 +79,10 @@ recode_edge_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -122,7 +112,7 @@ recode_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The edge attribute to recode is not in the edf")
+      reasons = "The edge attribute to recode is not in the edf.")
   }
 
   # Get the column number for the edge attr to recode
@@ -139,7 +129,7 @@ recode_edge_attrs <- function(
   indices_stack <- vector("numeric")
 
   # Parse the recoding pairs
-  for (i in 1:length(replacements)) {
+  for (i in seq_along(replacements)) {
 
     pairing <-
       trimws(unlist(stringr::str_split(replacements[[i]], "->")))
@@ -160,7 +150,7 @@ recode_edge_attrs <- function(
   if (!is.null(otherwise)) {
 
     otherwise_indices <-
-      which(!(1:nrow(edges) %in% indices_stack))
+      which(!(seq_len(nrow(edges)) %in% indices_stack))
 
     if (length(otherwise_indices) > 0) {
       vector_to_recode[otherwise_indices] <-
@@ -179,7 +169,7 @@ recode_edge_attrs <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "You cannot use the names `from` or `to`")
+        reasons = "You cannot use the names `from` or `to`.")
     }
 
     if (any(column_names_graph %in% edge_attr_to)) {

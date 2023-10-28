@@ -85,20 +85,10 @@ get_edge_attrs_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object has a valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of edges available.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   edge_attr <- rlang::enquo(edge_attr)
 
@@ -108,7 +98,7 @@ get_edge_attrs_ws <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "This is not an edge attribute")
+      reasons = "This is not an edge attribute.")
   }
 
   # Extract the edge data frame (edf)

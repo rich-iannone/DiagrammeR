@@ -69,7 +69,7 @@
 #'     attr = id) %>%
 #'   get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 set_edge_attr_to_display <- function(
@@ -86,20 +86,10 @@ set_edge_attr_to_display <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `attr`
   attr <-
@@ -114,9 +104,7 @@ set_edge_attr_to_display <- function(
 
   # If `edges` is NULL, assume that all edges to
   # be assigned a `display` value
-  if (is.null(edges)) {
-    edges <- get_edge_ids(graph)
-  }
+  edges <- edges %||% get_edge_ids(graph)
 
   # Stop function if any of the edge ID values
   # provided in `edges` do not exist in the graph
@@ -142,9 +130,7 @@ set_edge_attr_to_display <- function(
   # create that column and fill with the default value
   if (!("display" %in% colnames(edf))) {
 
-    edf <-
-      edf %>%
-      dplyr::mutate(display = as.character(default))
+    edf$display <- as.character(default)
   }
 
   # Create a tibble with the edge ID values and the
@@ -161,7 +147,7 @@ set_edge_attr_to_display <- function(
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(edges),
-        display = as.character("is_na"))
+        display = "is_na")
   }
 
   # Join the `attr_to_display` table with the `edf`
@@ -171,8 +157,8 @@ set_edge_attr_to_display <- function(
 
   # Get the column numbers for the `.x`
   # and `.y` columns
-  x_col <- which(grepl("\\.x$", colnames(edf)))
-  y_col <- which(grepl("\\.y$", colnames(edf)))
+  x_col <- grep("\\.x$", colnames(edf))
+  y_col <- grep("\\.y$", colnames(edf))
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
@@ -198,14 +184,14 @@ set_edge_attr_to_display <- function(
   colnames(display_col)[1] <- "display"
 
   # Remove column numbers that end with ".x" or ".y"
-  edf <- edf[-which(grepl("\\.x$", colnames(edf)))]
-  edf <- edf[-which(grepl("\\.y$", colnames(edf)))]
+  edf <- edf[-grep("\\.x$", colnames(edf))]
+  edf <- edf[-grep("\\.y$", colnames(edf))]
 
   # Bind the `display_col` df to the `edf` df and
   # modify the ordering of the columns
   edf <-
     dplyr::bind_cols(edf, display_col) %>%
-    dplyr::relocate(id, from, to, rel, display)
+    dplyr::relocate("id", "from", "to", "rel", "display")
 
   # Replace the graph's edge data frame with `edf`
   graph$edges_df <- edf

@@ -41,29 +41,18 @@ save_graph <- function(
     file
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+  check_string(file)
 
-  if (!inherits(file, "character")) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Provide a character string for the file")
+  # Check if the object is a graph or graph series.
+  if (!rlang::inherits_any(x, c("dgr_graph", "dgr_graph_1D"))) {
+    cli::cli_abort(
+      "The object provided is not a graph or graph series."
+    )
   }
 
-  if (inherits(x, "dgr_graph") |
-      inherits(x, "dgr_graph_1D")) {
+  # Append the file extension to the file path
+  file_name <- file %>% paste0(".dgr")
 
-    # Append the file extension to the file path
-    file_name <- file %>% paste0(".dgr")
-
-    # Save the graph or graph series
-    saveRDS(x, file = file_name, compress = "xz")
-
-  } else {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The object provided is not a graph or graph series")
-  }
+  # Save the graph or graph series
+  saveRDS(x, file = file_name, compress = "xz")
 }

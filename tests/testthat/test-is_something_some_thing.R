@@ -358,13 +358,11 @@ test_that("Identifying the graph as a DAG is possible", {
 
   # Expect that this graph is classified
   # as a directed acyclic graph (DAG)
-  expect_true(
-    is_graph_dag(a_dag))
+  expect_true(is_graph_dag(a_dag))
 
   # If a graph contains no nodes, then
   # that graph is not a DAG
-  expect_false(
-    is_graph_dag(create_graph()))
+  expect_false(is_graph_dag(create_graph()))
 })
 
 test_that("Detecting whether a graph is simple is possible", {

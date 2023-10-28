@@ -29,7 +29,8 @@ Imports:
     purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),
     readr (>= 2.1.1),
-    rlang (>= 0.4),
+    rlang (>= 1.1.0),
+    cli,
     rstudioapi (>= 0.7),
     scales (>= 1.1),
     stringr (>= 1.4),
@@ -42,7 +43,8 @@ Suggests:
     knitr,
     rmarkdown,
     rsvg,
-    testthat (>= 3.1.0)
+    testthat (>= 3.1.0),
+    withr
 VignetteBuilder:
     knitr
 Config/testthat/edition: 3

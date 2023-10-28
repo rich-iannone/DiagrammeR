@@ -29,16 +29,8 @@
 #' @export
 count_unconnected_nodes <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
@@ -49,27 +41,23 @@ count_unconnected_nodes <- function(graph) {
   # of edges
   nodes_in_edf <-
     dplyr::bind_rows(
-      graph$edges_df %>%
-        dplyr::select(from) %>%
-        dplyr::rename(node_id = from),
-      graph$edges_df %>%
-        dplyr::select(to) %>%
-        dplyr::rename(node_id = to)) %>%
+      graph$edges_df %>% dplyr::select(node_id = "from"),
+      graph$edges_df %>% dplyr::select(node_id = "to")
+      ) %>%
     dplyr::distinct()
 
   # Get tbl with all nodes that are
   # in the node data frame
   nodes_in_ndf <-
     graph$nodes_df %>%
-    dplyr::select(id) %>%
-    dplyr::rename(node_id = id)
+    dplyr::select(node_id = id)
 
   # Get nodes not in edge definitions
   nodes_not_in_edf <-
     dplyr::setdiff(
       nodes_in_ndf,
       nodes_in_edf) %>%
-    dplyr::pull(node_id)
+    dplyr::pull("node_id")
 
   if (length(nodes_in_edf > 0)) {
     return(length(nodes_not_in_edf))

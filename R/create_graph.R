@@ -157,9 +157,9 @@ create_graph <- function(
   # Create an empty table for global graph attributes
   global_attrs <-
     dplyr::tibble(
-      attr = character(0),
-      value = character(0),
-      attr_type = character(0)
+      attr = character(),
+      value = character(),
+      attr_type = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -179,7 +179,7 @@ create_graph <- function(
         kk = attr_theme_kk(),
         emit_error(
           fcn_name = fcn_name,
-          reasons = "The value for `attr_theme` doesn't refer to any available theme"
+          reasons = "The value for `attr_theme` doesn't refer to any available theme."
         )
       )
 
@@ -187,9 +187,9 @@ create_graph <- function(
 
     global_attrs <-
       dplyr::tibble(
-        attr = character(0),
-        value = character(0),
-        attr_type = character(0)
+        attr = character(),
+        value = character(),
+        attr_type = character()
       ) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
@@ -199,9 +199,9 @@ create_graph <- function(
   # Create an empty node data frame (`ndf`)
   ndf <-
     dplyr::tibble(
-      id = integer(0),
-      type = character(0),
-      label = character(0)
+      id = integer(),
+      type = character(),
+      label = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -210,10 +210,10 @@ create_graph <- function(
   # Create an empty edge data frame (`edf`)
   edf <-
     dplyr::tibble(
-      id = integer(0),
-      from = integer(0),
-      to = integer(0),
-      rel = character(0)
+      id = integer(),
+      from = integer(),
+      to = integer(),
+      rel = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -229,9 +229,9 @@ create_graph <- function(
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
     dplyr::tibble(
-      edge = integer(0),
-      from = integer(0),
-      to = integer(0)
+      edge = integer(),
+      from = integer(),
+      to = integer()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -240,9 +240,9 @@ create_graph <- function(
   # Create an empty `graph_actions` data frame
   graph_actions <-
     dplyr::tibble(
-      action_index = integer(0),
-      action_name = character(0),
-      expression = character(0)
+      action_index = integer(),
+      action_name = character(),
+      expression = character()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -251,14 +251,14 @@ create_graph <- function(
   # Create an empty `graph_log` data frame
   graph_log <-
     dplyr::tibble(
-      version_id = integer(0),
-      function_used = character(0),
+      version_id = integer(),
+      function_used = character(),
       time_modified = graph_time,
-      duration = numeric(0),
-      nodes = integer(0),
-      edges = integer(0),
-      d_n = integer(0),
-      d_e = integer(0)
+      duration = numeric(),
+      nodes = integer(),
+      edges = integer(),
+      d_n = integer(),
+      d_e = integer()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -313,7 +313,7 @@ create_graph <- function(
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns
@@ -342,19 +342,19 @@ create_graph <- function(
         d_e = nrow(graph$edges_df)
       )
 
-  } else if (!is.null(nodes_df) & !is.null(edges_df)) {
+  } else if (!is.null(nodes_df) && !is.null(edges_df)) {
 
     # If an ndf and edf both provided, create a graph
     # initially populated with both nodes and edges
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(edges_df, "tbl_df")) {
-      edges_df <- edges_df %>% as.data.frame(stringsAsFactors = FALSE)
+      edges_df <- as.data.frame(edges_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns
@@ -411,5 +411,5 @@ create_graph <- function(
 
   # If neither an ndf nor both ndf & edf provided,
   # return the initialized graph with no nodes or edges
-  return(graph)
+  graph
 }

@@ -121,7 +121,7 @@
 #' graph %>%
 #'   get_edge_df()
 #'
-#' @family Aesthetics
+#' @family aesthetics
 #'
 #' @export
 edge_aes <- function(style = NULL,

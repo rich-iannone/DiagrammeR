@@ -95,16 +95,11 @@ transform_to_subgraph_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object has valid selection of
   # nodes or edges
-  if (!(graph_contains_node_selection(graph) |
+  if (!(graph_contains_node_selection(graph) ||
         graph_contains_edge_selection(graph))) {
 
     emit_error(

@@ -74,20 +74,10 @@ render_graph <- function(
     height = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  if (is.null(output)) {
-    output <- "graph"
-  }
+  output <- output %||% "graph"
 
   if (output == "graph") {
 
@@ -108,7 +98,7 @@ render_graph <- function(
           graph$nodes_df$fillcolor <-
             graph$global_attrs %>%
             dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
-            dplyr::select(value) %>%
+            dplyr::select("value") %>%
             purrr::flatten_chr()
         } else {
           graph$nodes_df$fillcolor <- "white"
@@ -138,9 +128,9 @@ render_graph <- function(
             dplyr::as_tibble() %>%
             dplyr::mutate(hex = toupper(hex)),
           by = c("fillcolor" = "x11_name")) %>%
-        dplyr::mutate(new_fillcolor = dplyr::coalesce(hex, fillcolor)) %>%
-        dplyr::select(-fillcolor, -hex) %>%
-        dplyr::rename(fillcolor = new_fillcolor)
+        dplyr::mutate(
+          fillcolor = dplyr::coalesce(hex, fillcolor),
+          .keep = "unused")
     }
 
     # Use adaptive font coloring for nodes that have a fill color
@@ -180,8 +170,11 @@ render_graph <- function(
             graph %>%
             to_igraph() %>%
             igraph::layout_in_circle() %>%
-            dplyr::as_tibble() %>%
-            dplyr::rename(x = V1, y = V2) %>%
+            dplyr::as_tibble(.name_repair = "unique") %>%
+            purrr::set_names(c("x", "y")) %>%
+            # created a test in test-render_graph to avoid tibble deprecation warning
+            # as_tibble.matrix must have name repair present.
+            # dplyr::rename(x = V1, y = V2) %>%
             dplyr::mutate(x = x * (((count_nodes(graph) + (0.25 * count_nodes(graph)))) / count_nodes(graph))) %>%
             dplyr::mutate(y = y * (((count_nodes(graph) + (0.25 * count_nodes(graph)))) / count_nodes(graph)))
         }
@@ -191,8 +184,7 @@ render_graph <- function(
             (graph %>%
                to_igraph() %>%
                igraph::layout_with_sugiyama())[[2]] %>%
-            dplyr::as_tibble() %>%
-            dplyr::rename(x = V1, y = V2)
+            dplyr::as_tibble(.name_repair = function(x) c("x", "y"))
         }
 
         if (layout == "kk") {
@@ -230,23 +222,15 @@ render_graph <- function(
       }
     }
 
-    if (("image" %in% colnames(graph %>% get_node_df()) ||
+    if ("image" %in% colnames(graph %>% get_node_df()) ||
          "fa_icon" %in% colnames(graph %>% get_node_df()) ||
-         as_svg) &
-        requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
+         as_svg) {
+      if (!rlang::is_installed("DiagrammeRsvg") && as_svg) {
+        rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
+      }
 
       # Stop function if `DiagrammeRsvg` package is not available
-      if (!("DiagrammeRsvg" %in%
-            rownames(utils::installed.packages()))) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = c(
-            "Cannot currently render the graph to an SVG",
-            "please install the `DiagrammeRsvg` package and retry",
-            "pkg installed using `install.packages('DiagrammeRsvg')`",
-            "otherwise, set `as_svg = FALSE`"))
-      }
+      rlang::check_installed("DiagrammeRsvg", "to render the graph to SVG.")
 
       # Generate DOT code
       dot_code <- generate_dot(graph)
@@ -275,17 +259,17 @@ render_graph <- function(
         node_id_images <-
           graph %>%
           get_node_df() %>%
-          dplyr::select(id, image) %>%
+          dplyr::select("id", "image") %>%
           dplyr::filter(image != "") %>%
-          dplyr::pull(id)
+          dplyr::pull("id")
 
         filter_lines <-
           graph %>%
           get_node_df() %>%
-          dplyr::select(id, image) %>%
+          dplyr::select("id", "image") %>%
           dplyr::filter(image != "") %>%
           dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
-          dplyr::pull(filter_lines) %>%
+          dplyr::pull("filter_lines") %>%
           paste(collapse = "\n")
 
         filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
@@ -294,7 +278,7 @@ render_graph <- function(
           svg_tbl %>%
           dplyr::filter(node_id %in% node_id_images) %>%
           dplyr::filter(type == "node_block") %>%
-          dplyr::pull(index)
+          dplyr::pull("index")
 
         svg_shape_nos <- svg_shape_nos + 3
         svg_text_nos <- svg_shape_nos + 1
@@ -313,6 +297,8 @@ render_graph <- function(
           paste0(svg_vec[svg_line_no + 1], "\n\n", filter_lines, "\n")
       }
 
+      # # Get the name of the function
+      # fcn_name <- get_calling_fcn()
       # if ("fa_icon" %in% colnames(graph %>% get_node_df())) {
       #
       #   # Using a fontawesome icon requires the fontawesome package;
@@ -366,7 +352,7 @@ render_graph <- function(
       #     svg_text_nos <- svg_shape_nos + 1
       #
       #     # Modify shape lines
-      #     for (i in seq(node_id_svg)) {
+      #     for (i in seq_len(node_id_svg)) {
       #
       #       svg_vec[svg_shape_nos[i]] <-
       #         sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])

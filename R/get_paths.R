@@ -77,20 +77,12 @@ get_paths <- function(
     distance = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   reverse_paths <- FALSE
 
-  if (is.null(from) & !is.null(to)) {
+  if (is.null(from) && !is.null(to)) {
 
     from_switch <- graph$edges_df$from
     to_switch <- graph$edges_df$to
@@ -104,15 +96,15 @@ get_paths <- function(
     reverse_paths <- TRUE
   }
 
-  for (m in 1:length(from)) {
+  for (m in seq_along(from)) {
     if (m == 1) all_paths <- list()
 
     # Initialize paths with starting node
     paths <- list(from[m])
 
     repeat {
-      for (i in 1:length(paths)) {
-        if (any(!is.na(
+      for (i in seq_along(paths)) {
+        if (!all(is.na(
           get_successors(
             graph,
             paths[[i]][
@@ -137,7 +129,7 @@ get_paths <- function(
           # Apply traversed nodes to each of the
           # path vectors in a multiple degree context
           if (length(next_nodes) > 1) {
-            for (j in 1:length(next_nodes)) {
+            for (j in seq_along(next_nodes)) {
               if (j == 1) paths[[i]] <-
                   c(paths[[i]], next_nodes[1])
 
@@ -159,7 +151,7 @@ get_paths <- function(
       # Check each node visited in the present
       # iteration for whether their traversals
       # should end
-      for (k in 1:length(paths)) {
+      for (k in seq_along(paths)) {
         if (k == 1) check <- vector()
 
         check <-
@@ -184,7 +176,7 @@ get_paths <- function(
       if (all(check)) break
     }
 
-    if (!(length(paths) == 1 & is.na(paths[1]))) {
+    if (!(length(paths) == 1 && is.na(paths[1]))) {
       all_paths <- c(all_paths, paths)
     }
 
@@ -193,10 +185,10 @@ get_paths <- function(
 
   # Arrange vectors in list in order of
   # increasing length
-  order <- sapply(1:length(paths),
+  order <- sapply(seq_along(paths),
                   function(x) length(paths[[x]]))
 
-  names(order) <- 1:length(paths)
+  names(order) <- seq_along(paths)
   order <- sort(order)
   order <- as.numeric(names(order))
   paths <- paths[order]
@@ -207,7 +199,7 @@ get_paths <- function(
   }
 
   # Remove paths of single length
-  for (i in 1:length(paths)) {
+  for (i in seq_along(paths)) {
     if (i == 1) {
       single_length_paths <- vector(mode = "numeric")
     }
@@ -230,12 +222,12 @@ get_paths <- function(
     if (shortest_path && !longest_path) {
 
       # Remove paths not of shortest length
-      for (i in 1:length(paths)) {
+      for (i in seq_along(paths)) {
         if (i == 1) {
           not_shortest_length_paths <-
             vector(mode = "numeric")
           shortest_length <-
-            min(sapply(1:length(paths),
+            min(sapply(seq_along(paths),
                        function(x) length(paths[[x]])))
         }
 
@@ -252,7 +244,7 @@ get_paths <- function(
     } else if (!shortest_path && longest_path) {
 
       # Remove paths not of longest length
-      for (i in 1:length(paths)) {
+      for (i in seq_along(paths)) {
         if (i == 1) {
           not_longest_length_paths <-
             vector(mode = "numeric")
@@ -274,7 +266,7 @@ get_paths <- function(
     } else if (!is.null(distance)) {
 
       # Remove paths not of the specified distances
-      for (i in 1:length(paths)) {
+      for (i in seq_along(paths)) {
         if (i == 1) {
           not_specified_length_paths <-
             vector(mode = "numeric")
@@ -293,9 +285,9 @@ get_paths <- function(
       }
 
       # Trim paths to specified distance
-      for (i in 1:length(paths)) {
+      for (i in seq_along(paths)) {
         paths[[i]] <-
-          paths[[i]][1:(specified_lengths + 1)]
+          paths[[i]][seq_len(specified_lengths + 1)]
       }
 
       # Create a unique list of paths
@@ -355,7 +347,7 @@ get_paths <- function(
     # Modify `paths` list of vectors such that nodes
     # at the beginning and end of each vector are the
     # `from` and `to` nodes
-    for (i in 1:length(paths)) {
+    for (i in seq_along(paths)) {
       paths[[i]] <-
         paths[[i]][1:which(paths[[i]] == to)]
     }
@@ -363,7 +355,7 @@ get_paths <- function(
 
   if (reverse_paths) {
 
-    for (i in 1:length(paths)) {
+    for (i in seq_along(paths)) {
       paths[[i]] <- rev(paths[[i]])
     }
   }

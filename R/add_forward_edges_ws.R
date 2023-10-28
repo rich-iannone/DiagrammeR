@@ -55,7 +55,7 @@
 #' # Get the graph's edge data frame
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_forward_edges_ws <- function(
@@ -70,33 +70,16 @@ add_forward_edges_ws <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (!graph_contains_edges(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (!graph_contains_edge_selection(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # If no value(s) provided for `rel`, set to NA
-  if (is.null(rel)) {
-    rel <- NA_character_
-  }
+  rel <- rel %||% NA_character_
 
   # Get a vector of edges available in the
   # graph's selection
@@ -109,7 +92,7 @@ add_forward_edges_ws <- function(
 
   # Add new edges to the graph for every edge
   # in the graph's active selection
-  for (i in 1:nrow(edges_in_selection)) {
+  for (i in seq_len(nrow(edges_in_selection))) {
 
     # Create a graph edge
     graph <-

@@ -52,12 +52,7 @@ get_node_attrs <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   node_attr <- rlang::enquo(node_attr)
 
@@ -67,7 +62,7 @@ get_node_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "This is not a node attribute")
+      reasons = "This is not a node attribute.")
   }
 
   # Extract the node data frame (ndf)

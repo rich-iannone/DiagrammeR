@@ -43,7 +43,7 @@
 #' # Get a count of edges in the graph
 #' graph %>% count_edges()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 delete_edges_ws <- function(graph) {
@@ -55,36 +55,16 @@ delete_edges_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, there cannot be edges to delete")
-  }
+  check_graph_contains_nodes(graph, "So, there cannot be edges to delete.")
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Get vectors of the nodes in edges to be deleted
   from_delete <- graph$edge_selection$from
@@ -94,7 +74,7 @@ delete_edges_ws <- function(graph) {
   edges_graph_1 <- graph %>% count_edges()
 
   # Delete all edges in selection
-  for (i in 1:length(from_delete)) {
+  for (i in seq_along(from_delete)) {
     graph <-
       delete_edge(
         graph = graph,
@@ -114,8 +94,7 @@ delete_edges_ws <- function(graph) {
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
-    remove_linked_dfs()
+    remove_linked_dfs(graph)
 
   # Get the updated number of edges in the graph
   edges_graph_2 <- graph %>% count_edges()
@@ -139,13 +118,12 @@ delete_edges_ws <- function(graph) {
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set
   if (graph$graph_info$write_backups) {
-    save_graph_as_rds(graph = graph)
+    save_graph_as_rds(graph)
   }
 
   graph

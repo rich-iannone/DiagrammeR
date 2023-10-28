@@ -98,28 +98,13 @@ select_edges <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Stop function if `edges` refers to edge ID
   # values that are not in the graph
@@ -132,9 +117,6 @@ select_edges <- function(
     }
   }
 
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract the graph's internal edf
   edges_df <- graph$edges_df
 
@@ -146,11 +128,9 @@ select_edges <- function(
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If a `from` vector provided, filter the edf
@@ -161,7 +141,7 @@ select_edges <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `from` not part of an edge")
+        reasons = "One of more of the nodes specified as `from` not part of an edge.")
     }
 
     from_val <- from
@@ -179,7 +159,7 @@ select_edges <- function(
 
       emit_error(
         fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `to` are not part of an edge")
+        reasons = "One of more of the nodes specified as `to` are not part of an edge.")
     }
 
     to_val <- to
@@ -192,8 +172,7 @@ select_edges <- function(
   # Select only the `id`, `to`, and `from` columns
   edges_selected <-
     edges_df %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id)
+    dplyr::select(edge = id, from, to)
 
   # Create an integer vector representing edges
   edges_selected <- edges_selected$edge
@@ -225,8 +204,7 @@ select_edges <- function(
   edges_combined <-
     graph$edges_df %>%
     dplyr::filter(id %in% edges_combined) %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id)
+    dplyr::select(edge = "id", from, to)
 
   # Add the edge ID values to the active selection
   # of nodes in `graph$node_selection`
@@ -262,7 +240,7 @@ select_edges <- function(
       graph$graph_info$display_msgs) {
 
     # Construct message body
-    if (!n_e_select_properties_in[["node_selection_available"]] &
+    if (!n_e_select_properties_in[["node_selection_available"]] &&
         !n_e_select_properties_in[["edge_selection_available"]]) {
 
       msg_body <-

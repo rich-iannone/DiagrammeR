@@ -29,7 +29,7 @@ test_that("Getting the graph object log is possible", {
     c("version_id", "function_used", "time_modified",
       "duration", "nodes", "edges", "d_n", "d_e"))
 
-  # Expect 2 rows in this graph log
+  # Expect 3 rows in this graph log
   expect_equal(
     nrow(graph_log), 3)
 })

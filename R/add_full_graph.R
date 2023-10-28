@@ -145,16 +145,8 @@ add_full_graph <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (!graph_object_valid(graph)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the number of nodes ever created for
   # this graph
@@ -184,7 +176,7 @@ add_full_graph <- function(
 
   # Remove loops by making the diagonal of the
   # adjacency matrix all 0
-  if (keep_loops == FALSE) {
+  if (!keep_loops) {
     adj_matrix <-
       adj_matrix -
       diag(1, nrow = nrow(adj_matrix), ncol = ncol(adj_matrix))
@@ -210,7 +202,7 @@ add_full_graph <- function(
     }
   }
 
-  if (is_graph_directed(graph) == FALSE) {
+  if (!is_graph_directed(graph)) {
 
     new_graph <-
       from_adj_matrix(
@@ -229,7 +221,7 @@ add_full_graph <- function(
           values = edge_wt_matrix[
             lower.tri(
               edge_wt_matrix,
-              diag = ifelse(keep_loops == FALSE,
+              diag = ifelse(!keep_loops,
                             FALSE, TRUE))])
     }
   }
@@ -275,7 +267,7 @@ add_full_graph <- function(
   }
 
   # Add `rel` values to all new edges
-  if (!is.null(rel) &
+  if (!is.null(rel) &&
       length(rel) == 1) {
     new_graph$edges_df[, 4] <- rel
   }
@@ -325,11 +317,11 @@ add_full_graph <- function(
 
     if (nrow(edge_aes_tbl) < nrow(new_graph$edges_df)) {
 
-      edge_aes$index__ <- 1:nrow(new_graph$edges_df)
+      edge_aes$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
@@ -344,11 +336,11 @@ add_full_graph <- function(
 
     if (nrow(edge_data_tbl) < nrow(new_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(new_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
@@ -411,6 +403,9 @@ add_full_graph <- function(
     # the graph
     edges_added <- edges_graph_2 - edges_graph_1
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
@@ -450,6 +445,9 @@ add_full_graph <- function(
     # the graph
     edges_added <- edges_graph_2 - edges_graph_1
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
@@ -470,8 +468,7 @@ add_full_graph <- function(
     # Perform graph actions, if any are available
     if (nrow(graph$graph_actions) > 0) {
       graph <-
-        graph %>%
-        trigger_graph_actions()
+        trigger_graph_actions(graph)
     }
 
     # Write graph backup if the option is set

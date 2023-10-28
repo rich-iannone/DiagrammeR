@@ -205,42 +205,19 @@ trav_both_edge <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
+  check_graph_contains_node_selection(
+    graph,
+    c("Any traversal requires an active selection.",
+      "This type of traversal requires a selection of nodes."))
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
@@ -258,7 +235,7 @@ trav_both_edge <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
     if (copy_attrs_as == copy_attrs_from) {
       copy_attrs_as <- NULL
     }
@@ -286,11 +263,9 @@ trav_both_edge <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_edges <- dplyr::filter(.data = valid_edges, !!conditions)
+    valid_edges <- dplyr::filter(.data = valid_edges, {{ conditions }})
   }
 
   # If no rows returned, then there are no
@@ -309,25 +284,25 @@ trav_both_edge <- function(
 
       from_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "from")) %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes) %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "to")) %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       if (!is.null(copy_attrs_as)) {
 
@@ -349,8 +324,8 @@ trav_both_edge <- function(
         dplyr::left_join(edf, by = c("e_id" = "id")) %>%
         dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize(!! copy_attrs_from :=
-                           match.fun(!! agg)(!! as.name(copy_attrs_from),
+        dplyr::summarize(!!copy_attrs_from :=
+                           match.fun(!!agg)(!!as.name(copy_attrs_from),
                                              na.rm = TRUE)) %>%
         dplyr::right_join(edf, by = "id") %>%
         dplyr::relocate("id", "from", "to", "rel") %>%
@@ -361,7 +336,7 @@ trav_both_edge <- function(
 
       from_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -386,14 +361,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(from_join)))
+        grep("\\.x$", colnames(from_join))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(from_join)))
+        grep("\\.y$", colnames(from_join))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(from_join)) {
+      for (i in seq_len(nrow(from_join))) {
         if (!is.na(from_join[i, split_var_x_col])) {
           from_join[i, split_var_y_col] <- from_join[i, split_var_x_col]
         }
@@ -405,11 +380,11 @@ trav_both_edge <- function(
       # Drop the ".x" column
       from_join <-
         from_join %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       to_join <-
         ndf %>%
-        dplyr::select("id",!! enquo(copy_attrs_from)) %>%
+        dplyr::select("id",!!enquo(copy_attrs_from)) %>%
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -432,14 +407,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(to_join)))
+        grep("\\.x$", colnames(to_join))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(to_join)))
+        grep("\\.y$", colnames(to_join))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(to_join)) {
+      for (i in seq_len(nrow(to_join))) {
         if (!is.na(to_join[i, split_var_x_col])) {
           to_join[i, split_var_y_col] <- to_join[i, split_var_x_col]
         }
@@ -451,7 +426,7 @@ trav_both_edge <- function(
       # Drop the ".x" column
       to_join <-
         to_join %>%
-        dplyr::select("e_id",!! enquo(copy_attrs_from))
+        dplyr::select("e_id",!!enquo(copy_attrs_from))
 
       edges <-
         dplyr::bind_rows(
@@ -460,14 +435,14 @@ trav_both_edge <- function(
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(edges)))
+        grep("\\.x$", colnames(edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(edges)))
+        grep("\\.y$", colnames(edges))
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(edges)) {
+      for (i in seq_len(nrow(edges))) {
         if (!is.na(edges[i, split_var_x_col])) {
           edges[i, split_var_y_col] <- edges[i, split_var_x_col]
         }
@@ -484,17 +459,17 @@ trav_both_edge <- function(
         dplyr::arrange(e_id) %>%
         dplyr::rename(id = "e_id") %>%
         dplyr::group_by(id) %>%
-        dplyr::summarize(!! copy_attrs_from :=
-                            match.fun(!! agg)(!! as.name(copy_attrs_from),
+        dplyr::summarize(!!copy_attrs_from :=
+                            match.fun(!!agg)(!!as.name(copy_attrs_from),
                                               na.rm = TRUE), .groups = "drop") %>%
         dplyr::right_join(edf, by = "id")
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
-        which(grepl("\\.x$", colnames(joined_edges)))
+        grep("\\.x$", colnames(joined_edges))
 
       split_var_y_col <-
-        which(grepl("\\.y$", colnames(joined_edges)))
+        grep("\\.y$", colnames(joined_edges))
 
       # Selectively merge in values to the existing
       # edge attribute column

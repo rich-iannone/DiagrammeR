@@ -66,7 +66,7 @@ remove_graph_from_graph_series <- function(
     return(graph_series)
   }
 
-  if (inherits(index, "numeric") | inherits(index, "integer")) {
+  if (rlang::inherits_any(index, c("numeric", "integer"))) {
     graph_series$graphs[[index]] <- NULL
     return(graph_series)
   }

@@ -17,5 +17,5 @@
 #' @name node_edge_aes_data
 #'
 #' @keywords internal
-#' @family Aesthetics
+#' @family aesthetics
 NULL

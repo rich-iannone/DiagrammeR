@@ -66,7 +66,7 @@
 #' # are not character class columns
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 add_nodes_from_df_cols <- function(
@@ -80,16 +80,8 @@ add_nodes_from_df_cols <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the df column numbers from which nodes
   # will be generated
@@ -98,10 +90,9 @@ add_nodes_from_df_cols <- function(
     # Verify that the none of the values provided
     # are greater than the number of df columns
     if (max(columns) > ncol(df)) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One or more of the column numbers exceeds the number of columns in `df`")
+      cli::cli_abort(c(
+        "One or more of the column numbers exceeds the number of columns in `df`."
+      ))
     }
   }
 
@@ -110,13 +101,7 @@ add_nodes_from_df_cols <- function(
   # number is returned
   if (inherits(columns, "character")) {
     columns <- which(colnames(df) %in% columns)
-
-    if (length(columns) < 1) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "None of the columns specified are in the `df` object")
-    }
+    check_number_whole(length(columns), min = 1)
   }
 
   # Get the number of nodes in the graph
@@ -126,8 +111,7 @@ add_nodes_from_df_cols <- function(
   # Exclude any columns that are not character class
   df <-
     dplyr::as_tibble(df) %>%
-    dplyr::select(dplyr::all_of(columns)) %>%
-    dplyr::select_if(is.character)
+    dplyr::select(dplyr::all_of(columns) & dplyr::where(is.character))
 
   # Create an empty `nodes` vector
   nodes <- vector(mode = "character")
@@ -153,7 +137,7 @@ add_nodes_from_df_cols <- function(
 
   # If `keep_duplicates` is set to FALSE, exclude
   # duplicate labels from being added to the graph
-  if (keep_duplicates == FALSE) {
+  if (!keep_duplicates) {
     existing_labels <- graph$nodes_df$label
     nodes <- base::setdiff(nodes, existing_labels)
   }
@@ -197,6 +181,9 @@ add_nodes_from_df_cols <- function(
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -212,8 +199,7 @@ add_nodes_from_df_cols <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

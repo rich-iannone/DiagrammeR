@@ -411,7 +411,7 @@ test_that("Adding color based on edge attributes is possible", {
     "#[0-9A-F]{6}")
 
   # Expect error message if given invalid hexadecimal color
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph() %>%
     add_gnm_graph(
       n = 10,
