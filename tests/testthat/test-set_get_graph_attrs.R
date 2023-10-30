@@ -145,7 +145,7 @@ test_that("Getting global graph attrs is possible", {
       attr_type = c("graph", "node", "edge"))
 
   # Get a table with the attributes
-  # using `get_global_graph_attrs()`
+  # using `get_global_graph_attr_info()`
   global_graph_attrs <-
     graph %>%
     get_global_graph_attr_info()

@@ -516,10 +516,10 @@
       Error in `get_girth()`:
       ! The graph is not valid.
     Code
-      get_global_graph_attrs(invalid_graph)
+      get_global_graph_attr_info(invalid_graph)
     Condition
-      Error in `get_global_graph_attrs()`:
-      ! could not find function "get_global_graph_attrs"
+      Error in `get_global_graph_attr_info()`:
+      ! The graph is not valid.
     Code
       get_graph_actions(invalid_graph)
     Condition

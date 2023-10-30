@@ -119,7 +119,7 @@ test_that("Using an invalid graph with trigger an error", {
     get_edge_info(invalid_graph)
     get_eigen_centrality(invalid_graph)
     get_girth(invalid_graph)
-    get_global_graph_attrs(invalid_graph)
+    get_global_graph_attr_info(invalid_graph)
     get_graph_actions(invalid_graph)
     get_graph_log(invalid_graph)
     get_graph_name(invalid_graph)

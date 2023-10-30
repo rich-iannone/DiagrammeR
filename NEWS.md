@@ -138,7 +138,7 @@
 
 * Degree data for plots can now be easily obtained using the `get_degree_distribution()` and `get_degree_histogram()` functions
 
-* Global graph attributes are now more easily modifiable using a set of functions for this purpose: `add_global_graph_attrs()`, `clear_global_graph_attrs()`, `delete_global_graph_attrs()`, `get_global_graph_attrs()`, `set_global_graph_attrs()`
+* Global graph attributes are now more easily modifiable using a set of functions for this purpose: `add_global_graph_attrs()`, `clear_global_graph_attrs()`, `delete_global_graph_attrs()`, `get_global_graph_attr_info()`, `set_global_graph_attrs()`
 
 * Added option to display different text labels on nodes via the `display` node attribute; this is easily set with the `set_node_attr_to_display()` function
 
