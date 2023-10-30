@@ -1078,4 +1078,169 @@
     Condition
       Error in `add_forward_edges_ws()`:
       ! The graph contains no edges.
+    Code
+      add_reverse_edges_ws(graph_no_edges)
+    Condition
+      Error in `add_reverse_edges_ws()`:
+      ! The graph contains no edges.
+    Code
+      delete_edge(graph_no_edges)
+    Condition
+      Error in `delete_edge()`:
+      ! The graph contains no edges.
+    Code
+      delete_edges_ws(graph_no_edges)
+    Condition
+      Error in `delete_edges_ws()`:
+      ! The graph contains no edges.
+    Code
+      get_edge_count_w_multiedge(graph_no_edges)
+    Condition
+      Error in `get_edge_count_w_multiedge()`:
+      ! The graph contains no edges.
+    Code
+      get_last_edges_created(graph_no_edges)
+    Condition
+      Error in `get_last_edges_created()`:
+      ! The graph contains no edges.
+    Code
+      get_multiedge_count(graph_no_edges)
+    Condition
+      Error in `get_multiedge_count()`:
+      ! The graph contains no edges.
+    Code
+      is_edge_loop(graph_no_edges)
+    Condition
+      Error in `is_edge_loop()`:
+      ! The graph contains no edges.
+    Code
+      is_edge_multiple(graph_no_edges)
+    Condition
+      Error in `is_edge_multiple()`:
+      ! The graph contains no edges.
+    Code
+      is_edge_mutual(graph_no_edges)
+    Condition
+      Error in `is_edge_mutual()`:
+      ! The graph contains no edges.
+    Code
+      mutate_edge_attrs_ws(graph_no_edges)
+    Condition
+      Error in `mutate_edge_attrs_ws()`:
+      ! The graph contains no edges.
+    Code
+      recode_edge_attrs(graph_no_edges)
+    Condition
+      Error in `recode_edge_attrs()`:
+      ! The graph contains no edges.
+    Code
+      rename_edge_attrs(graph_no_edges)
+    Condition
+      Error in `rename_edge_attrs()`:
+      ! The graph contains no edges.
+    Code
+      rescale_edge_attrs(graph_no_edges)
+    Condition
+      Error in `rescale_edge_attrs()`:
+      ! The graph contains no edges.
+    Code
+      rev_edge_dir(graph_no_edges)
+    Condition
+      Error in `rev_edge_dir()`:
+      ! The graph contains no edges.
+    Code
+      rev_edge_dir_ws(graph_no_edges)
+    Condition
+      Error in `rev_edge_dir_ws()`:
+      ! The graph contains no edges.
+    Code
+      select_edges(graph_no_edges)
+    Condition
+      Error in `select_edges()`:
+      ! The graph contains no edges.
+    Code
+      select_edges_by_edge_id(graph_no_edges)
+    Condition
+      Error in `select_edges_by_edge_id()`:
+      ! The graph contains no edges.
+    Code
+      select_edges_by_node_id(graph_no_edges)
+    Condition
+      Error in `select_edges_by_node_id()`:
+      ! The graph contains no edges.
+    Code
+      select_last_edges_created(graph_no_edges)
+    Condition
+      Error in `select_last_edges_created()`:
+      ! The graph contains no edges.
+    Code
+      set_df_as_edge_attr(graph_no_edges)
+    Condition
+      Error in `set_df_as_edge_attr()`:
+      ! could not find function "set_df_as_edge_attr"
+    Code
+      set_edge_attr_to_display(graph_no_edges)
+    Condition
+      Error in `set_edge_attr_to_display()`:
+      ! The graph contains no edges.
+    Code
+      set_edge_attrs_ws(graph_no_edges)
+    Condition
+      Error in `set_edge_attrs_ws()`:
+      ! The graph contains no edges.
+    Code
+      trav_both(graph_no_edges)
+    Condition
+      Error in `trav_both()`:
+      ! The graph contains no edges.
+    Code
+      trav_both_edge(graph_no_edges)
+    Condition
+      Error in `trav_both_edge()`:
+      ! The graph contains no edges.
+    Code
+      trav_in(graph_no_edges)
+    Condition
+      Error in `trav_in()`:
+      ! The graph contains no edges.
+    Code
+      trav_in_edge(graph_no_edges)
+    Condition
+      Error in `trav_in_edge()`:
+      ! The graph contains no edges.
+    Code
+      trav_in_node(graph_no_edges)
+    Condition
+      Error in `trav_in_node()`:
+      ! The graph contains no edges.
+    Code
+      trav_in_until(graph_no_edges)
+    Condition
+      Error in `trav_in_until()`:
+      ! The graph contains no edges.
+    Code
+      trav_out(graph_no_edges)
+    Condition
+      Error in `trav_out()`:
+      ! The graph contains no edges.
+    Code
+      trav_out_edge(graph_no_edges)
+    Condition
+      Error in `trav_out_edge()`:
+      ! The graph contains no edges.
+    Code
+      trav_out_node(graph_no_edges)
+    Condition
+      Error in `trav_out_node()`:
+      ! The graph contains no edges.
+    Code
+      trav_out_until(graph_no_edges)
+    Condition
+      Error in `trav_out_until()`:
+      ! The graph contains no edges.
+    Code
+      trav_reverse_edge(graph_no_edges)
+    Condition
+      Error in `trav_reverse_edge()`:
+      ! The graph contains no edges.
 
