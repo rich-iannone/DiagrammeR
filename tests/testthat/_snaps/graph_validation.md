@@ -376,11 +376,6 @@
       Error in `get_articulation_points()`:
       ! The graph is not valid.
     Code
-      get_attr_dfs(invalid_graph)
-    Condition
-      Error in `get_attr_dfs()`:
-      ! could not find function "get_attr_dfs"
-    Code
       get_authority_centrality(invalid_graph)
     Condition
       Error in `get_authority_centrality()`:
@@ -896,16 +891,6 @@
       Error in `set_cache()`:
       ! The graph is not valid.
     Code
-      set_df_as_edge_attr(invalid_graph)
-    Condition
-      Error in `set_df_as_edge_attr()`:
-      ! could not find function "set_df_as_edge_attr"
-    Code
-      set_df_as_node_attr(invalid_graph)
-    Condition
-      Error in `set_df_as_node_attr()`:
-      ! could not find function "set_df_as_node_attr"
-    Code
       set_edge_attr_to_display(invalid_graph)
     Condition
       Error in `set_edge_attr_to_display()`:
@@ -1173,11 +1158,6 @@
     Condition
       Error in `select_last_edges_created()`:
       ! The graph contains no edges.
-    Code
-      set_df_as_edge_attr(graph_no_edges)
-    Condition
-      Error in `set_df_as_edge_attr()`:
-      ! could not find function "set_df_as_edge_attr"
     Code
       set_edge_attr_to_display(graph_no_edges)
     Condition

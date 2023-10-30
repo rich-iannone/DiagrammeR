@@ -33,7 +33,6 @@ print.dgr_graph <- function(x, ...) {
       "get_edge_df" = " info: `get_edge_df()`",
       "get_selection" = " info: `get_selection()`",
       "get_cache" = " info: `get_cache()",
-      "get_attr_dfs" = " info: `get_attr_dfs()`",
       "get_global_graph_attr_info" = " info: `get_global_graph_attr_info()`")
 
   # Get a count of all nodes in the graph
