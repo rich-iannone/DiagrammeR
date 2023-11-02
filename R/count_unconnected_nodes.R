@@ -34,7 +34,7 @@ count_unconnected_nodes <- function(graph) {
 
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
-    return(0)
+    return(0L)
   }
 
   # Get tbl with all nodes that are part
@@ -50,7 +50,7 @@ count_unconnected_nodes <- function(graph) {
   # in the node data frame
   nodes_in_ndf <-
     graph$nodes_df %>%
-    dplyr::select(node_id = id)
+    dplyr::select(node_id = "id")
 
   # Get nodes not in edge definitions
   nodes_not_in_edf <-
@@ -62,6 +62,6 @@ count_unconnected_nodes <- function(graph) {
   if (length(nodes_in_edf > 0)) {
     return(length(nodes_not_in_edf))
   } else {
-    return(0)
+    return(0L)
   }
 }

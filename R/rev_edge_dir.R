@@ -39,9 +39,6 @@ rev_edge_dir <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -68,6 +65,9 @@ rev_edge_dir <- function(graph) {
 
   # Modify the graph object
   graph$edges_df <- edges
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

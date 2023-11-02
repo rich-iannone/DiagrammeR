@@ -1,6 +1,6 @@
-# Graph validation")
+# Graph validation
 
-test_that("Using an invalid graph with trigger an error", {
+test_that("Using an invalid graph triggers an error.", {
 
   # Create an empty graph
   graph <- create_graph()

@@ -723,8 +723,8 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Expect certain columns to exist in the graph's
   # edge data frame
-  expect_equal(
-    colnames(graph_nodes_edges_drop$edges_df),
+  expect_named(
+    graph_nodes_edges_drop$edges_df,
     c("id", "from", "to", "rel"))
 
   # Augment the graph by first
@@ -850,7 +850,7 @@ test_that("adding nodes from several table columns to a graph is possible", {
   # Expect the `type` value of `new` to appear
   # for the last three nodes (others are not set)
   expect_equal(
-    graph %>% get_node_df() %>% .$type,
+    get_node_df(graph)$type,
     c(rep(NA_character_, 12),
       rep("new", 3)))
 })

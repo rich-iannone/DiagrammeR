@@ -39,9 +39,6 @@
 #' @export
 is_graph_weighted <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -56,8 +53,8 @@ is_graph_weighted <- function(graph) {
   # numerical values
   if ("weight" %in% colnames(graph$edges_df)) {
 
-    if (inherits(graph$edges_df$weight, c("numeric", "integer")) &
-        !any(is.na(graph$edges_df$weight))) {
+    if (inherits(graph$edges_df$weight, c("numeric", "integer")) &&
+        !anyNA(graph$edges_df$weight)) {
       return(TRUE)
     } else {
       return(FALSE)

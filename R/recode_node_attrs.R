@@ -142,7 +142,7 @@ recode_node_attrs <- function(
   indices_stack <- vector("numeric")
 
   # Parse the recoding pairs
-  for (i in 1:length(replacements)) {
+  for (i in seq_along(replacements)) {
 
     pairing <-
       trimws(unlist(stringr::str_split(replacements[[i]], "->")))
@@ -163,7 +163,7 @@ recode_node_attrs <- function(
   if (!is.null(otherwise)) {
 
     otherwise_indices <-
-      which(!(1:nrow(nodes) %in% indices_stack))
+      which(!(seq_len(nrow(nodes)) %in% indices_stack))
 
     if (length(otherwise_indices) > 0) {
       vector_to_recode[otherwise_indices] <-

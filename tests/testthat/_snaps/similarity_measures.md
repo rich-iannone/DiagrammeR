@@ -4,7 +4,7 @@
       get_dice_similarity(graph = graph, nodes = 8:12, direction = "all")
     Condition
       Error in `get_dice_similarity()`:
-      ! One or more nodes provided not in graph
+      ! One or more nodes provided not in graph.
 
 # the Jaccard similarity algorithm is functional
 

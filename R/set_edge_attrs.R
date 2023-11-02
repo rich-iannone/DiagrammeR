@@ -115,7 +115,7 @@ set_edge_attrs <- function(
   # Extract the graph's edf
   edf <- graph$edges_df
 
-  if (length(values) != 1 &
+  if (length(values) != 1 &&
       length(values) != nrow(edf)) {
 
     emit_error(

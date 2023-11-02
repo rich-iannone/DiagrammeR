@@ -219,7 +219,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # node `2` with a match expression (==)
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     trav_out(
       conditions = data_value == 10)
@@ -234,7 +234,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # expression (<)
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     trav_out(
       conditions = data_value < 15)
@@ -248,7 +248,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # node `2`, using a different match expression (>)
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     trav_out(
       conditions = data_value > 5)
@@ -262,7 +262,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # node `2`, using a different match expression (!=)
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     trav_out(
       conditions = data_value != 5)
@@ -277,7 +277,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # expression that won't yield a match
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     trav_out(
       conditions = data_value != 10)
@@ -292,7 +292,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # node `4` using a match on a character field
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 3) %>%
     trav_out(
       conditions = shape == "square")
@@ -307,7 +307,7 @@ test_that("selective traversals with `trav_out()` are possible", {
   # expression that won't yield a match
   graph <-
     graph %>%
-    clear_selection %>%
+    clear_selection() %>%
     select_nodes_by_id(nodes = 3) %>%
     trav_out(
       conditions = shape == "triangle")

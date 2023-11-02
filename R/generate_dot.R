@@ -150,9 +150,9 @@ generate_dot <- function(graph) {
     display_col <- which(colnames(nodes_df) == "display")
     label_col <- which(colnames(nodes_df) == "label")
 
-    for (i in 1:nrow(nodes_df)) {
+    for (i in seq_len(nrow(nodes_df))) {
 
-      if (nodes_df[i, display_col] != "") {
+      if (nzchar(nodes_df[i, display_col])) {
 
         nodes_df[i, label_col] <-
           nodes_df[
@@ -177,9 +177,9 @@ generate_dot <- function(graph) {
 
     label_col <- which(colnames(edges_df) == "label")
 
-    for (i in 1:nrow(edges_df)) {
+    for (i in seq_len(nrow(edges_df))) {
       if (!is.na(edges_df[i, display_col]) ) {
-        if (edges_df[i, display_col] != "") {
+        if (nzchar(edges_df[i, display_col])) {
 
           edges_df[i, label_col] <-
             edges_df[
@@ -229,24 +229,28 @@ generate_dot <- function(graph) {
 
     # Create the default attributes statement
     # for node attributes
-    if (!(any(is.na(node_attrs)))) {
+    if (anyNA(node_attrs)) {
+      node_attr_stmt <- ""
+
+    } else {
       node_attr_stmt <-
         paste0("node [", paste(node_attrs,
                                collapse = ",\n      "),
                "]\n")
-    } else {
-      node_attr_stmt <- ""
+
     }
 
     # Create the default attributes statement
     # for edge attributes
-    if (!(any(is.na(edge_attrs)))) {
+    if (anyNA(edge_attrs)) {
+      edge_attr_stmt <- ""
+
+    } else {
       edge_attr_stmt <-
         paste0("edge [", paste(edge_attrs,
                                collapse = ",\n     "),
                "]\n")
-    } else {
-      edge_attr_stmt <- ""
+
     }
 
     # Combine default attributes into a single block
@@ -337,7 +341,7 @@ generate_dot <- function(graph) {
               all(as.character(nodes_df[, color_attr_column_no]) %in%
                   x11_hex()[, 1])) {
 
-            for (i in 1:nrow(nodes_df)) {
+            for (i in seq_len(nrow(nodes_df))) {
               nodes_df[i, color_attr_column_no] <-
                 paste0(x11_hex()[
                   which(x11_hex()[, 1] %in%
@@ -352,7 +356,7 @@ generate_dot <- function(graph) {
           if (all(grepl("#[0-9a-fA-F]{6}$",
                         as.character(nodes_df[, color_attr_column_no])))) {
 
-            for (i in 1:nrow(nodes_df)) {
+            for (i in seq_len(nrow(nodes_df))) {
               nodes_df[, color_attr_column_no] <-
                 as.character(nodes_df[, color_attr_column_no])
 
@@ -370,7 +374,7 @@ generate_dot <- function(graph) {
         which(colnames(nodes_df) %in% node_attributes)
 
       # Construct the 'node_block' character object
-      for (i in 1:nrow(nodes_df)) {
+      for (i in seq_len(nrow(nodes_df))) {
         if (i == 1) {
           node_block <- vector(mode = "character", length = 0)
         }
@@ -528,7 +532,7 @@ generate_dot <- function(graph) {
       }
 
       # Construct the `edge_block` character object
-      if (exists("from_column") &
+      if (exists("from_column") &&
           exists("to_column")) {
 
         if (length(from_column) == 1 &&

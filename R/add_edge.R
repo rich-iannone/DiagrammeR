@@ -260,7 +260,7 @@ add_edge <- function(
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(edge_aes_tbl)) {
+      for (i in seq_len(ncol(edge_aes_tbl))) {
         graph <-
           graph %>%
           set_edge_attrs_ws(

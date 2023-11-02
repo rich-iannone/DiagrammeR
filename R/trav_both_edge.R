@@ -473,7 +473,7 @@ trav_both_edge <- function(
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(joined_edges)) {
+      for (i in seq_len(nrow(joined_edges))) {
         if (!is.na(joined_edges[i, split_var_x_col])) {
           joined_edges[i, split_var_y_col] <- joined_edges[i, split_var_x_col]
         }

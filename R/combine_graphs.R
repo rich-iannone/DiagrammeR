@@ -92,7 +92,7 @@ combine_graphs <- function(
 
   # Is label a copy of node IDs in graph `y`?
   if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &&
-      !any(is.na(y_nodes_df[, 3]))) {
+      !anyNA(y_nodes_df[, 3])) {
     y_label_node <- TRUE
   } else {
     y_label_node <- FALSE
@@ -182,11 +182,7 @@ combine_graphs <- function(
   # from the first graph provided (`x`)
   x$nodes_df <- combined_nodes
   x$edges_df <- combined_edges
-  x$directed <-
-    ifelse(
-      !is_graph_directed(x) ||
-        !is_graph_directed(y),
-      FALSE, TRUE)
+  x$directed <- is_graph_directed(x) && is_graph_directed(y)
   x$last_node <- nrow(combined_nodes)
   x$last_edge <- nrow(combined_edges)
 

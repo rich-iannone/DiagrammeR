@@ -386,7 +386,7 @@ import_graph <- function(
     nodes <- vector(mode = "character")
 
     # Determine which nodes are present in the graph
-    for (i in 1:length(sif_document)) {
+    for (i in seq_along(sif_document)) {
       nodes <-
         c(nodes,
           ifelse(

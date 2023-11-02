@@ -152,7 +152,7 @@ replace_graph_edge_selection <- function(graph,
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  dplyr::tibble(node = integer(0)) %>%
+  dplyr::tibble(node = integer()) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
 
@@ -484,17 +484,6 @@ emit_message <- function(fcn_name,
   glue::glue("`{fcn_name}()` INFO: {message_body}") %>%
     as.character() %>%
     message()
-}
-
-#' Construct a consistent message string, passing it to `warning()`
-#'
-#' @noRd
-emit_warning <- function(fcn_name,
-                         message_body) {
-
-  glue::glue("`{fcn_name}()` WARNING: {message_body}") %>%
-    as.character() %>%
-    warning()
 }
 
 #' Construct a consistent message string, passing it to `stop()`
@@ -844,7 +833,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(ndf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(ndf_df_id_to_remove)) {
+      for (i in seq_along(ndf_df_id_to_remove)) {
 
         graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
       }
@@ -869,7 +858,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(edf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(edf_df_id_to_remove)) {
+      for (i in seq_along(edf_df_id_to_remove)) {
 
         graph$df_storage[edf_df_id_to_remove[i]] <- NULL
       }

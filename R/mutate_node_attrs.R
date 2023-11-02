@@ -84,9 +84,6 @@ mutate_node_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -103,16 +100,16 @@ mutate_node_attrs <- function(
   # expressions mutate columns that
   # should not be changed
   if ("id" %in% names(exprs)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The variable `id` cannot undergo mutation.")
+    cli::cli_abort("The variable `id` cannot undergo mutation.")
   }
 
   ndf <- ndf %>% dplyr::mutate(!!!enquos(...))
 
   # Update the graph
   graph$nodes_df <- ndf
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

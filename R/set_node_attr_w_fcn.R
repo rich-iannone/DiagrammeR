@@ -176,10 +176,10 @@ set_node_attr_w_fcn <- function(
   # if there is, replace its contents with that of the
   # new column
   if (colnames(nodes_df)[length(colnames(nodes_df))] %in%
-      colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)]) {
+      colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)]) {
 
     col_no_matching <-
-      which(colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)] ==
+      which(colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)] ==
               colnames(nodes_df)[length(colnames(nodes_df))])
 
     # Move contents of new column to matching column
@@ -194,7 +194,7 @@ set_node_attr_w_fcn <- function(
       colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)]) {
 
     col_no_matching <-
-      which(colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)] ==
+      which(colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)] ==
               paste0(colnames(nodes_df)[length(colnames(nodes_df))], ".x"))
 
     # Get the column name of the new column

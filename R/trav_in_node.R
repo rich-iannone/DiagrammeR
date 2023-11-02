@@ -334,7 +334,7 @@ trav_in_node <- function(
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(nodes)) {
+      for (i in seq_len(nrow(nodes))) {
         if (!is.na(nodes[i, split_var_x_col])) {
           nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
         }

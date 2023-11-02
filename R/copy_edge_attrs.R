@@ -100,7 +100,7 @@ copy_edge_attrs <- function(
 
     emit_error(
       fcn_name = fcn_name,
-      reasons = "The edge attribute to copy is not in the ndf")
+      reasons = "The edge attribute to copy is not in the ndf.")
   }
 
   # Get the column number for the edge attr to copy

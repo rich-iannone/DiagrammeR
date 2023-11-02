@@ -125,12 +125,11 @@ add_edge_clone <- function(
   # Create an edge selection for the
   # new edge in the graph
   graph <-
-    graph %>%
-    select_last_edges_created()
+    select_last_edges_created(graph)
 
   # Iteratively set edge attribute values for
   # the new edges in the graph
-  for (i in 1:ncol(edge_attr_vals)) {
+  for (i in seq_len(ncol(edge_attr_vals))) {
 
     graph$edges_df[
       nrow(graph$edges_df),

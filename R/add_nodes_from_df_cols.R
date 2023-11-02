@@ -118,7 +118,7 @@ add_nodes_from_df_cols <- function(
 
   # Obtain a vector of values from each column
   # in the tibble object
-  for (i in 1:ncol(df)) {
+  for (i in seq_len(ncol(df))) {
     nodes <-
       c(nodes,
         df[, i] %>%
