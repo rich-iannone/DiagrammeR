@@ -45,9 +45,6 @@ select_last_nodes_created <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -73,9 +70,8 @@ select_last_nodes_created <- function(graph) {
         utils::tail(1) %>%
         dplyr::pull(step_deleted_nodes) == 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The previous graph transformation function resulted in a removal of nodes")
+      cli::cli_abort(
+        "The previous graph transformation function resulted in a removal of nodes.")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {
@@ -91,20 +87,20 @@ select_last_nodes_created <- function(graph) {
       } else {
         number_of_nodes_created <-
           graph_transform_steps %>%
-          dplyr::pull(nodes)
+          dplyr::pull("nodes")
       }
     }
 
     node_id_values <-
       graph$nodes_df %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       utils::tail(number_of_nodes_created) %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   } else {
     node_id_values <- NA
   }
 
-  if (!any(is.na(node_id_values))) {
+  if (!anyNA(node_id_values)) {
 
     # Apply the selection of nodes to the graph
     graph <-
@@ -113,11 +109,14 @@ select_last_nodes_created <- function(graph) {
           graph = graph,
           nodes = node_id_values))
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph$graph_log <-
       graph$graph_log[-nrow(graph$graph_log),] %>%
       add_action_to_log(
-        version_id = nrow(graph$graph_log) + 1,
+        version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),

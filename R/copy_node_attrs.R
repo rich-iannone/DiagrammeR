@@ -82,17 +82,15 @@ copy_node_attrs <- function(
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use make a copy with the same name.")
+    cli::cli_abort(
+      "You cannot use make a copy with the same name.")
   }
 
   # Stop function if `node_attr_to` is `nodes` or `node`
   if (any(c("nodes", "node") %in% node_attr_to)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use `nodes` or `node` as names.")
+    cli::cli_abort(
+      "You cannot use `nodes` or `node` as names.")
   }
 
   # Extract the graph's ndf
@@ -104,7 +102,9 @@ copy_node_attrs <- function(
   # Stop function if `node_attr_from` is not one
   # of the graph's column
   if (!any(column_names_graph %in% node_attr_from)) {
-    cli::cli_abort("The node attribute to copy is not in the ndf.")
+
+    cli::cli_abort(
+      "The node attribute to copy is not in the ndf.")
   }
 
   # Get the column number for the node attr to copy

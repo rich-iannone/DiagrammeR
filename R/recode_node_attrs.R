@@ -89,9 +89,6 @@ recode_node_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -123,9 +120,8 @@ recode_node_attrs <- function(
   # of the graph's node attributes
   if (!any(column_names_graph %in% node_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node attribute to recode is not in the ndf.")
+    cli::cli_abort(
+      "The node attribute to recode is not in the ndf.")
   }
 
   # Get the column number for the node attr to recode
@@ -180,9 +176,8 @@ recode_node_attrs <- function(
     # `id` or `nodes`
     if (any(c("id", "nodes") %in% node_attr_to)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "You cannot use the names `id` or `nodes`.")
+      cli::cli_abort(
+        "You cannot use the names `id` or `nodes`.")
     }
 
     if (any(column_names_graph %in% node_attr_to)) {
@@ -218,11 +213,14 @@ recode_node_attrs <- function(
   # with the `nodes` object
   graph$nodes_df <- nodes
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

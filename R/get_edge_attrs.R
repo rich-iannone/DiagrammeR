@@ -76,9 +76,6 @@ get_edge_attrs <- function(
     to = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -87,15 +84,13 @@ get_edge_attrs <- function(
   if (rlang::get_expr(edge_attr) %>%
       as.character() %in% c("id", "from", "to")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not an edge attribute.")
+    cli::cli_abort(
+      "This is not an edge attribute.")
   }
 
   if (length(from) != length(to)) {
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The number of nodes in `from` and `to` must be the same.")
+      cli::cli_abort(
+        "The number of nodes in `from` and `to` must be the same.")
   }
 
   # Extract the edge data frame (ndf)

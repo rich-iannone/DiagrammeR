@@ -91,14 +91,15 @@ select_nodes <- function(
   # Validation: Graph contains nodes
   check_graph_contains_nodes(graph)
 
-  # Stop function if `nodes` refers to node ID
+  # Stop function if all `nodes` refer to node ID
   # values that are not in the graph
+  # If there is one node in graph and one out of bound, no error.
   if (!is.null(nodes)) {
     if (!any(nodes %in% graph$nodes_df$id)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The values provided in `nodes` do not all correspond to node ID values in the graph")
+      cli::cli_abort(c(
+        "`nodes` must correspond to values in the graph.",
+        i = "`Graph values IDs include {unique(graph$nodes_df$id)}, not {nodes}."))
     }
   }
 
@@ -165,7 +166,7 @@ select_nodes <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

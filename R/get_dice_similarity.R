@@ -44,9 +44,6 @@ get_dice_similarity <- function(
     round_to = 3
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -63,9 +60,8 @@ get_dice_similarity <- function(
     # the graph
     if (!all(nodes %in% get_node_ids(graph))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One or more nodes provided not in graph")
+      cli::cli_abort(
+        "One or more nodes provided not in graph.")
     }
 
     # Get an igraph representation of node ID values

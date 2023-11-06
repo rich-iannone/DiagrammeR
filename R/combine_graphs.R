@@ -56,18 +56,14 @@ combine_graphs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object `x` is valid
-  check_graph_valid(x)
+  if (!graph_object_valid(x)) {
+    cli::cli_abort("The graph object supplied to `x` is not valid.")
+  }
 
   # Validation: Graph object `y` is valid
   if (!graph_object_valid(y)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object supplied to `y` is not valid.")
+    cli::cli_abort("The graph object supplied to `y` is not valid.")
   }
 
   # Get the number of nodes ever created for
@@ -199,6 +195,9 @@ combine_graphs <- function(
   # Get the number of edges added to
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   x$graph_log <-

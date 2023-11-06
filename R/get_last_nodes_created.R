@@ -31,9 +31,6 @@
 #' @export
 get_last_nodes_created <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -61,9 +58,8 @@ get_last_nodes_created <- function(graph) {
         utils::tail(1) %>%
         dplyr::pull(step_deleted_nodes) == 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The previous graph transformation function resulted in a removal of nodes.")
+      cli::cli_abort(
+        "The previous graph transformation function resulted in a removal of nodes.")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {

@@ -43,37 +43,28 @@ is_node_present <- function(
     node
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
   # Stop function if `node` not a single value
   if (length(node) != 1) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Only a single node can be queried using `is_node_present()`")
+    cli::cli_abort(
+      "Only a single node can be queried using `is_node_present()`")
   }
 
   if (inherits(node, "character")) {
 
     # Determine whether the label value
     # corresponds to a label in the graph
-    node_is_present <-
-      ifelse(node %in% graph$nodes_df$label, TRUE, FALSE)
+    node_is_present <- node %in% graph$nodes_df$label
 
-    return(node_is_present)
-  }
-
-  if (inherits(node, "numeric")) {
+  } else if (inherits(node, "numeric")) {
 
     # Determine whether the node ID value
     # corresponds to a node ID in the graph
-    node_is_present <-
-      ifelse(node %in% get_node_ids(graph), TRUE, FALSE)
-
-    return(node_is_present)
+    node_is_present <- node %in% get_node_ids(graph)
   }
+
+  node_is_present
 }

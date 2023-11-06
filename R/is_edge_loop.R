@@ -40,9 +40,6 @@ is_edge_loop <- function(
     edge
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -59,9 +56,8 @@ is_edge_loop <- function(
   # is not a valid edge ID
   if (!(edge %in% edf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The provided edge ID is not present in the graph.")
+    cli::cli_abort(
+      "The provided edge ID is not present in the graph.")
   }
 
   # Obtain the edge definition

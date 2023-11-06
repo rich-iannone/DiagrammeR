@@ -44,23 +44,18 @@ from_adj_matrix <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Stop function if x is not a matrix object
   if (!inherits(x, "matrix")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The input for this function must be a matrix object")
+    cli::cli_abort(
+      "The input for this function must be a square matrix object.")
   }
 
   # Stop function if the matrix is not a square matrix
   if (ncol(x) != nrow(x)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The input matrix must be a square matrix")
+    cli::cli_abort(
+      "The input matrix must be a square matrix.")
   }
 
   # If FALSE provided for `weighted`, change value to
@@ -101,7 +96,7 @@ from_adj_matrix <- function(
 
   # Add edge ID values to `graph`
   if (nrow(graph$edges_df) > 0) {
-    graph$edges_df$id <- as.integer(1:nrow(graph$edges_df))
+    graph$edges_df$id <- seq_len(nrow(graph$edges_df))
   }
 
   graph

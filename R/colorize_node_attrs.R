@@ -154,10 +154,12 @@ colorize_node_attrs <- function(
   if (length(palette) > 1) {
     # Verify colors are valid
     is_valid_hex <- grepl(toupper(palette), pattern = "#[0-9A-F]{6}")
+
     if (!all(is_valid_hex)) {
-      emit_error(fcn_name = fcn_name,
-                 reasons = "The color palette contains invalid hexadecimal values.")
+      cli::cli_abort(
+        "The color palette contains invalid hexadecimal values.")
     }
+
     if (length(palette) < num_recodings) {
       # Revert to viridis if provided color vector is too short
       palette <- "viridis"

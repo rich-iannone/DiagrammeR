@@ -177,90 +177,87 @@ create_graph <- function(
         bt = attr_theme_bt(),
         fdp = attr_theme_fdp(),
         kk = attr_theme_kk(),
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The value for `attr_theme` doesn't refer to any available theme."
+        cli::cli_abort(
+          "The value for `attr_theme` doesn't refer to any available theme."
         )
       )
 
   } else if (is.null(attr_theme)) {
 
     global_attrs <-
-      dplyr::tibble(
+      data.frame(
         attr = character(),
         value = character(),
-        attr_type = character()
-      ) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+        attr_type = character(),
+        stringsAsFactors = FALSE)
   }
 
   ## DF: `nodes_df`
 
   # Create an empty node data frame (`ndf`)
   ndf <-
-    dplyr::tibble(
+    data.frame(
       id = integer(),
       type = character(),
-      label = character()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      label = character(),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `edges_df`
 
   # Create an empty edge data frame (`edf`)
   edf <-
-    dplyr::tibble(
+    data.frame(
       id = integer(),
       from = integer(),
       to = integer(),
-      rel = character()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      rel = character(),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `node_selection`
 
   # Create an empty node selection data frame (`nsdf`)
   nsdf <-
-    dplyr::tibble(node = integer(0)) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+    data.frame(node = integer(), stringsAsFactors = FALSE)
 
   ## DF: `edge_selection`
 
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
-    dplyr::tibble(
+    data.frame(
       edge = integer(),
       from = integer(),
-      to = integer()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      to = integer(),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `graph_actions`
 
   # Create an empty `graph_actions` data frame
   graph_actions <-
-    dplyr::tibble(
+    data.frame(
       action_index = integer(),
       action_name = character(),
-      expression = character()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      expression = character(),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `graph_log`
 
   # Create an empty `graph_log` data frame
   graph_log <-
-    dplyr::tibble(
-      version_id = integer(),
-      function_used = character(),
+    data.frame(
+      version_id = integer(1L),
+      function_used = character(1L),
       time_modified = graph_time,
-      duration = numeric(),
-      nodes = integer(),
-      edges = integer(),
-      d_n = integer(),
-      d_e = integer()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      duration = numeric(1L),
+      nodes = integer(1L),
+      edges = integer(1L),
+      d_n = integer(1L),
+      d_e = integer(1L),
+      stringsAsFactors = FALSE
+    )
 
   ## list: `cache`
 
@@ -290,7 +287,7 @@ create_graph <- function(
 
   # If neither an ndf nor both ndf & edf provided,
   # create an initialized graph with no nodes or edges
-  if (all(c(is.null(nodes_df), is.null(edges_df)))) {
+  if (is.null(nodes_df) && is.null(edges_df)) {
 
     # Update the `graph_log` df with an action
     graph_log <-

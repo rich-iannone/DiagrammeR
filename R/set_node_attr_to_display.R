@@ -82,9 +82,6 @@ set_node_attr_to_display <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -114,9 +111,8 @@ set_node_attr_to_display <- function(
   # provided in `nodes` do not exist in the graph
   if (!any(nodes %in% ndf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One or more node ID values in `nodes` are not present in the graph")
+    cli::cli_abort(
+      "One or more node ID values in `nodes` are not present in the graph.")
   }
 
   # Stop function if the node attribute supplied as
@@ -124,9 +120,8 @@ set_node_attr_to_display <- function(
   if (!is.null(attr)) {
     if (!(attr %in% colnames(ndf))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node attribute given in `attr` is not in the graph's ndf")
+      cli::cli_abort(
+        "The node attribute given in `attr` is not in the graph's ndf.")
     }
   }
 
@@ -194,11 +189,14 @@ set_node_attr_to_display <- function(
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

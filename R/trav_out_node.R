@@ -215,9 +215,6 @@ trav_out_node <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -301,9 +298,8 @@ trav_out_node <- function(
 
       if (copy_attrs_as %in% c("id", "from", "to")) {
 
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
+        cli::cli_abort(
+          "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
       }
 
       colnames(nodes)[2] <- copy_attrs_from <- copy_attrs_as
@@ -364,11 +360,14 @@ trav_out_node <- function(
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

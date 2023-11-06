@@ -43,9 +43,6 @@ get_authority_centrality <- function(
     weights_attr = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -59,17 +56,15 @@ get_authority_centrality <- function(
       # Stop function if the edge attribute does not exist
       if (!(weights_attr %in% colnames(graph$edges_df))) {
 
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights does not exist in the graph")
+        cli::cli_abort(
+          "The edge attribute to be used as weights must exist in the graph.")
       }
 
       # Stop function if the edge attribute is not numeric
       if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
 
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights is not numeric")
+        cli::cli_abort(
+          "The edge attribute to be used as weights must be numeric.")
       }
 
       weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]

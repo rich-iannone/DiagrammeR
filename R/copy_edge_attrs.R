@@ -75,17 +75,15 @@ copy_edge_attrs <- function(
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot make a copy with the same name.")
+    cli::cli_abort(
+      "You cannot make a copy with the same name.")
   }
 
   # Stop function if `edge_attr_to` is `from` or `to`
   if (any(c("from", "to") %in% edge_attr_to)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use `from` or `to` as names.")
+    cli::cli_abort(
+      "You cannot use `from` or `to` as names.")
   }
 
   # Extract the graph's edf
@@ -98,9 +96,8 @@ copy_edge_attrs <- function(
   # of the graph's column
   if (!any(column_names_graph %in% edge_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The edge attribute to copy is not in the ndf.")
+    cli::cli_abort(
+      "The edge attribute to copy is not in the ndf.")
   }
 
   # Get the column number for the edge attr to copy

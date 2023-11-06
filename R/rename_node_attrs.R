@@ -61,9 +61,6 @@ rename_node_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -82,9 +79,8 @@ rename_node_attrs <- function(
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot rename using the same name.")
+    cli::cli_abort(
+      "`node_attr_from` must be different than `node_attr_to` for renaming.")
   }
 
   # Stop function if `node_attr_to` is `id` or any
@@ -93,9 +89,8 @@ rename_node_attrs <- function(
                    colnames(get_node_df(graph)))) %in%
           node_attr_to)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use that name for `node_attr_to`.")
+    cli::cli_abort(
+      "You cannot use {node_attr_to} as a name for `node_attr_to`.")
   }
 
   # Stop function if `node_attr_from` is `id`, `label`
@@ -103,9 +98,8 @@ rename_node_attrs <- function(
   if (any(c("id", "label", "type") %in%
           node_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use that name for `node_attr_from`.")
+    cli::cli_abort(
+      "You cannot use {node_attr_from} as a name for `node_attr_from`.")
   }
 
   # Get the number of nodes ever created for
@@ -122,9 +116,8 @@ rename_node_attrs <- function(
   # of the graph's columns
   if (!any(column_names_graph %in% node_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node attribute to rename is not in the ndf.")
+    cli::cli_abort(
+      "The node attribute to rename is not in the ndf.")
   }
 
   # Set the column name for the renamed attr
@@ -138,11 +131,14 @@ rename_node_attrs <- function(
   # Update the `last_node` counter
   graph$last_node <- nodes_created
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
