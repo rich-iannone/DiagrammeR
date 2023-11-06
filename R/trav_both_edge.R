@@ -391,8 +391,8 @@ trav_both_edge <- function(
         to_join %>%
         dplyr::right_join(
           valid_edges %>%
-            dplyr::select(-rel) %>%
-            dplyr::rename(e_id = id),
+            dplyr::select(-"rel") %>%
+            dplyr::rename(e_id = "id"),
           by = c("id" = "to"))
 
       if (!is.null(copy_attrs_as)) {

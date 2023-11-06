@@ -168,7 +168,7 @@ get_paths <- function(
         # Remove nodes from vectors within paths
         # if they were previously traversed
         if (paths[[k]][length(paths[[k]])] %in%
-            paths[[k]][1:length(paths[[k]]) - 1]) {
+            paths[[k]][seq_along(paths[[k]]) - 1]) {
           paths[[k]] <- paths[[k]][-length(paths[[k]])]
         }
       }

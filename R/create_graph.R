@@ -118,9 +118,6 @@ create_graph <- function(
     display_msgs = FALSE
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   ## DF: `graph_info`
 
   # Get the time of graph creation
@@ -156,12 +153,12 @@ create_graph <- function(
 
   # Create an empty table for global graph attributes
   global_attrs <-
-    dplyr::tibble(
-      attr = character(),
-      value = character(),
-      attr_type = character()
-    ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+    data.frame(
+      attr = character(0L),
+      value = character(0L),
+      attr_type = character(0L),
+      stringsAsFactors = FALSE
+    )
 
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
@@ -186,9 +183,9 @@ create_graph <- function(
 
     global_attrs <-
       data.frame(
-        attr = character(),
-        value = character(),
-        attr_type = character(),
+        attr = character(0L),
+        value = character(0L),
+        attr_type = character(0L),
         stringsAsFactors = FALSE)
   }
 
@@ -197,9 +194,9 @@ create_graph <- function(
   # Create an empty node data frame (`ndf`)
   ndf <-
     data.frame(
-      id = integer(),
-      type = character(),
-      label = character(),
+      id = integer(0L),
+      type = character(0L),
+      label = character(0L),
       stringsAsFactors = FALSE
     )
 
@@ -208,10 +205,10 @@ create_graph <- function(
   # Create an empty edge data frame (`edf`)
   edf <-
     data.frame(
-      id = integer(),
-      from = integer(),
-      to = integer(),
-      rel = character(),
+      id = integer(0L),
+      from = integer(0L),
+      to = integer(0L),
+      rel = character(0L),
       stringsAsFactors = FALSE
     )
 
@@ -219,16 +216,16 @@ create_graph <- function(
 
   # Create an empty node selection data frame (`nsdf`)
   nsdf <-
-    data.frame(node = integer(), stringsAsFactors = FALSE)
+    data.frame(node = integer(0L), stringsAsFactors = FALSE)
 
   ## DF: `edge_selection`
 
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
     data.frame(
-      edge = integer(),
-      from = integer(),
-      to = integer(),
+      edge = integer(0L),
+      from = integer(0L),
+      to = integer(0L),
       stringsAsFactors = FALSE
     )
 
@@ -237,25 +234,27 @@ create_graph <- function(
   # Create an empty `graph_actions` data frame
   graph_actions <-
     data.frame(
-      action_index = integer(),
-      action_name = character(),
-      expression = character(),
+      action_index = integer(0L),
+      action_name = character(0L),
+      expression = character(0L),
       stringsAsFactors = FALSE
     )
 
   ## DF: `graph_log`
 
   # Create an empty `graph_log` data frame
+
   graph_log <-
     data.frame(
-      version_id = integer(1L),
-      function_used = character(1L),
-      time_modified = graph_time,
-      duration = numeric(1L),
-      nodes = integer(1L),
-      edges = integer(1L),
-      d_n = integer(1L),
-      d_e = integer(1L),
+      version_id = integer(0L),
+      function_used = character(0L),
+      # Datetime of length 0
+      time_modified = structure(numeric(0L), class = c("POSIXct", "POSIXt")),
+      duration = numeric(0L),
+      nodes = integer(0L),
+      edges = integer(0L),
+      d_n = integer(0L),
+      d_e = integer(0L),
       stringsAsFactors = FALSE
     )
 
@@ -288,6 +287,9 @@ create_graph <- function(
   # If neither an ndf nor both ndf & edf provided,
   # create an initialized graph with no nodes or edges
   if (is.null(nodes_df) && is.null(edges_df)) {
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -324,6 +326,9 @@ create_graph <- function(
 
     # Modify the `last_node` vector
     graph$last_node <- nrow(nodes_df)
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -383,6 +388,9 @@ create_graph <- function(
 
     # Modify the `last_edge` vector
     graph$last_edge <- nrow(edges_df)
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph_log <-

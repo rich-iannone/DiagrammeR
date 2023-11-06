@@ -166,10 +166,7 @@ set_node_attr_to_display <- function(
     display_col <-
       dplyr::coalesce(ndf[, y_col], ndf[, x_col])
 
-    display_col <-
-      dplyr::case_when(
-        display_col == "is_na" ~ NA_character_,
-        TRUE ~ display_col) %>%
+    display_col <- dplyr::na_if(display_col, "is_na") %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
 

@@ -371,9 +371,8 @@ render_graph <- function(
       #
       # } else {
       #
-      #   emit_error(
-      #     fcn_name = fcn_name,
-      #     reasons = c(
+      #   cli::cli_abort(
+      #     c(
       #       "Cannot currently render FontAwesome icons.",
       #       "please install the `fontawesome` package and retry",
       #       "pkg installed using `devtools::install_github('rstudio/fontawesome')`"))

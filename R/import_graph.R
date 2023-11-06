@@ -164,7 +164,7 @@ import_graph <- function(
       edges %>%
       dplyr::mutate(id = seq_len(n_rows)) %>%
       dplyr::mutate(rel = NA_character_) %>%
-      dplyr::relocate(id, from, to, rel) %>%
+      dplyr::relocate("id", "from", "to", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame

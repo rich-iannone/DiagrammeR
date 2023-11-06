@@ -87,16 +87,13 @@ combine_graphs <- function(
   y_nodes_df <- get_node_df(y)
 
   # Is label a copy of node IDs in graph `y`?
-  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &&
-      !anyNA(y_nodes_df[, 3])) {
-    y_label_node <- TRUE
-  } else {
-    y_label_node <- FALSE
-  }
+  y_label_node <-
+    all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &&
+    !anyNA(y_nodes_df[, 3])
 
   # Add a new node attribute `new_node_id`
   y_nodes_df$new_node_id <-
-    seq(nodes_created + 1,
+    seq(nodes_created + 1L,
         nodes_created + nrow(y_nodes_df))
 
   # Get the edge data frame for graph `x`

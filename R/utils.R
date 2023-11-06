@@ -782,7 +782,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "node") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(ndf_df_ids)
@@ -806,7 +806,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "edge") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(edf_df_ids)
@@ -826,7 +826,7 @@ remove_linked_dfs <- function(graph) {
   # Check the type of list that remains
   if (length(graph$df_storage) == 0) {
     graph$df_storage <-
-      graph$df_storage %>% unname()
+      unname(graph$df_storage)
   }
 
   # Remove the `df_id` column from the
@@ -836,9 +836,7 @@ remove_linked_dfs <- function(graph) {
 
     if (all(is.na(graph$nodes_df$df_id))) {
 
-      graph$nodes_df <-
-        graph$nodes_df %>%
-        dplyr::select(-df_id)
+      graph$nodes_df$df_id <- NULL
     }
   }
 
@@ -849,9 +847,7 @@ remove_linked_dfs <- function(graph) {
 
     if (all(is.na(graph$edges_df$df_id))) {
 
-      graph$edges_df <-
-        graph$edges_df %>%
-        dplyr::select(-df_id)
+      graph$edges_df$df_id <- NULL
     }
   }
 

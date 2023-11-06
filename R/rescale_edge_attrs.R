@@ -143,6 +143,8 @@ rescale_edge_attrs <- function(
         as.numeric)) %>%
     dplyr::pull(var = !!edge_attr_from)
 
+  # TODO condition could be simplified to
+  # is.null(from_lower) || (!is.null(from_lower) && is.null(from_upper))?
   if ((!is.null(from_lower_bound) &&
        is.null(from_upper_bound)) ||
       (is.null(from_lower_bound) &&

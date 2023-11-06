@@ -91,7 +91,7 @@ add_edge_clone <- function(
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    abort(
+    cli::cli_abort(
       "The value provided in `edge` does not correspond to an edge in the graph.")
   }
 
@@ -154,7 +154,7 @@ add_edge_clone <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
