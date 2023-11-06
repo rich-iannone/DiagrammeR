@@ -32,8 +32,7 @@ test_that("adding a node to a graph is possible", {
     graph, "dgr_graph")
 
   # Expect that the `global_attrs` components is not NULL
-  expect_true(
-    !is.null(graph$global_attrs))
+  expect_false(is.null(graph$global_attrs))
 
   # Expect that the `nodes_df` and  `edges_df`  component are a data frame
   expect_s3_class(graph$nodes_df, "data.frame")

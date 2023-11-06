@@ -186,6 +186,5 @@ test_that("getting info about a graph's edges is possible", {
   info_graph_no_edges <- get_edge_info(graph)
 
   # Expect an NA value
-  expect_true(
-    is.na(info_graph_no_edges))
+  expect_true(is.na(info_graph_no_edges))
 })

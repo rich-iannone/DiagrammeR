@@ -11,3 +11,24 @@
       Error in `add_balanced_tree()`:
       ! `h` must be a whole number larger than or equal to 2, not the number 1.
 
+# Adding a path is possible
+
+    Code
+      add_path(graph = graph, n = 1, type = "a", rel = "z")
+    Condition
+      Error in `add_path()`:
+      ! `n` must be a whole number larger than or equal to 2, not the number 1.
+
+# Adding a preferential attachment graph is possible
+
+    Code
+      create_graph() %>% add_pa_graph(n = 0, m = 1)
+    Condition
+      Error in `add_pa_graph()`:
+      ! `n` must be a whole number larger than or equal to 1, not the number 0.
+    Code
+      create_graph() %>% add_pa_graph(n = 0, m = 1, algo = "plumtree")
+    Condition
+      Error in `add_pa_graph()`:
+      ! `n` must be a whole number larger than or equal to 1, not the number 0.
+

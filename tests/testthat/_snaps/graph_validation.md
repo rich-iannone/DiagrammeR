@@ -1,4 +1,4 @@
-# Using an invalid graph with trigger an error
+# Using an invalid graph triggers an error.
 
     Code
       add_balanced_tree(invalid_graph)
@@ -160,11 +160,6 @@
     Condition
       Error in `add_reverse_edges_ws()`:
       ! The graph is not valid.
-    Code
-      clear_global_graph_attrs(invalid_graph)
-    Condition
-      Error in `clear_global_graph_attrs()`:
-      ! could not find function "clear_global_graph_attrs"
     Code
       clear_selection(invalid_graph)
     Condition
@@ -1049,7 +1044,7 @@
     Condition
       Error in `add_edge_df()`:
       ! The graph does not contain nodes.
-      *  so, edges cannot be added
+      * So, edges cannot be added.
 
 # Using a graph with no edges with trigger an error
 

@@ -48,7 +48,8 @@ test_that("Using an invalid graph triggers an error.", {
     add_smallworld_graph(invalid_graph)
     add_star(invalid_graph)
     add_reverse_edges_ws(invalid_graph)
-    clear_global_graph_attrs(invalid_graph)
+    # clear_global_graph_attrs() does not exist.
+    # clear_global_graph_attrs(invalid_graph)
     clear_selection(invalid_graph)
     colorize_edge_attrs(invalid_graph)
     colorize_node_attrs(invalid_graph)

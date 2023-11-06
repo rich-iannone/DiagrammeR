@@ -47,8 +47,11 @@ test_that("Setting a time for the graph can be done", {
       time = "2015-10-25 15:23:00")
 
   # Expect that the time value was passed in properly
-  expect_true(
-    graph_1$graph_info$graph_time == "2015-10-25 15:23:00")
+  expect_equal(
+    graph_1$graph_info$graph_time,
+    as.POSIXct("2015-10-25 15:23:00"),
+    ignore_attr = TRUE
+    )
 
   # Expect that the time zone is set to `GMT`
   expect_equal(
