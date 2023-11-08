@@ -23,6 +23,7 @@ library(DiagrammeR)
 <hr style="color:transparent"/>
 
 <!-- badges: start -->
+
 [![CRAN status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
 [![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main)
@@ -30,6 +31,7 @@ library(DiagrammeR)
 [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
 <!-- badges: end -->
+
 <hr style="color:transparent" />
 <br />
 </div>
