@@ -19,7 +19,7 @@ library(DiagrammeR)
 <div align="center">
 
 <hr style="color:transparent" />
-<a href='http://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
 <hr style="color:transparent"/>
 
 <!-- badges: start -->
