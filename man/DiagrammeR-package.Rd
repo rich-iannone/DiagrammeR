@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Richard Iannone \email{riannone@me.com} (\href{https://orcid.org/0000-0003-3925-190X}{ORCID})
 
+Authors:
+\itemize{
+  \item Olivier Roy \email{olivierroy71@hotmail.com}
+}
+
 }
 \keyword{internal}
