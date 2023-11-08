@@ -152,7 +152,7 @@ replace_graph_edge_selection <- function(graph,
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  dplyr::tibble(node = integer(0)) %>%
+  dplyr::tibble(node = integer()) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
 
@@ -299,13 +299,13 @@ add_action_to_log <- function(graph_log,
                               duration,
                               nodes,
                               edges,
-                              d_n = 0,
-                              d_e = 0) {
+                              d_n = 0L,
+                              d_e = 0L) {
 
   # Ensure that `time_modified` inherits from POSIXct
   if (!inherits(time_modified, "POSIXct")) {
 
-    stop(
+    cli::cli_abort(
       "The `time_modified` value must inherit from POSIXct.",
       call. = FALSE)
   }
@@ -313,12 +313,12 @@ add_action_to_log <- function(graph_log,
   # Create a log line
   graph_log_line <-
     data.frame(
-      version_id = as.integer(version_id),
+      version_id = version_id,
       function_used = as.character(function_used),
       time_modified = time_modified,
       duration = as.numeric(duration),
-      nodes = as.integer(nodes),
-      edges = as.integer(edges),
+      nodes = nodes,
+      edges = edges,
       d_n = as.integer(d_n),
       d_e = as.integer(d_e),
       stringsAsFactors = FALSE)
@@ -484,59 +484,6 @@ emit_message <- function(fcn_name,
   glue::glue("`{fcn_name}()` INFO: {message_body}") %>%
     as.character() %>%
     message()
-}
-
-#' Construct a consistent message string, passing it to `warning()`
-#'
-#' @noRd
-emit_warning <- function(fcn_name,
-                         message_body) {
-
-  glue::glue("`{fcn_name}()` WARNING: {message_body}") %>%
-    as.character() %>%
-    warning()
-}
-
-#' Construct a consistent message string, passing it to `stop()`
-#'
-#' @noRd
-# The package is in transition of using rlang::abort() instead.
-
-emit_error <- function(fcn_name,
-                       reasons,
-                       error_call = rlang::caller_env()) {
-
-  # header_text <-
-  #     ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
-  #
-  # if (length(reasons <= 5)) {
-  #
-  #   message_body <-
-  #     paste(paste0("* ", reasons), collapse = "\n")
-  #
-  # } else {
-  #
-  #   excess_errors <- length(reasons) - 5
-  #
-  #   message_body <-
-  #     paste(paste0("* ", reasons[1:5]), collapse = "\n")
-  #
-  #   error_pl_str <-
-  #     ifelse(excess_errors == 1, "error", "errors")
-  #
-  #   excess_errors_str <-
-  #     glue::glue(
-  #       "* ... and {excess_errors} more {error_pl_str}") %>%
-  #     as.character()
-  # }
-
-  # glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
-  #   as.character() %>%
-  #   stop(call. = FALSE)
-  rlang::abort(
-    reasons,
-    call = error_call
-  )
 }
 
 #' Get the calling function as a formatted character string
@@ -835,7 +782,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "node") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(ndf_df_ids)
@@ -844,7 +791,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(ndf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(ndf_df_id_to_remove)) {
+      for (i in seq_along(ndf_df_id_to_remove)) {
 
         graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
       }
@@ -859,7 +806,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "edge") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(edf_df_ids)
@@ -869,7 +816,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(edf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(edf_df_id_to_remove)) {
+      for (i in seq_along(edf_df_id_to_remove)) {
 
         graph$df_storage[edf_df_id_to_remove[i]] <- NULL
       }
@@ -879,7 +826,7 @@ remove_linked_dfs <- function(graph) {
   # Check the type of list that remains
   if (length(graph$df_storage) == 0) {
     graph$df_storage <-
-      graph$df_storage %>% unname()
+      unname(graph$df_storage)
   }
 
   # Remove the `df_id` column from the
@@ -889,9 +836,7 @@ remove_linked_dfs <- function(graph) {
 
     if (all(is.na(graph$nodes_df$df_id))) {
 
-      graph$nodes_df <-
-        graph$nodes_df %>%
-        dplyr::select(-df_id)
+      graph$nodes_df$df_id <- NULL
     }
   }
 
@@ -902,9 +847,7 @@ remove_linked_dfs <- function(graph) {
 
     if (all(is.na(graph$edges_df$df_id))) {
 
-      graph$edges_df <-
-        graph$edges_df %>%
-        dplyr::select(-df_id)
+      graph$edges_df$df_id <- NULL
     }
   }
 

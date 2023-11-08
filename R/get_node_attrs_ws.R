@@ -57,9 +57,6 @@ get_node_attrs_ws <- function(
     node_attr
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -72,9 +69,8 @@ get_node_attrs_ws <- function(
       rlang::get_expr() %>%
       as.character() %in% c("id", "nodes")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not a node attribute.")
+    cli::cli_abort(
+      "This is not a node attribute.")
   }
 
   # Extract the node data frame (ndf)

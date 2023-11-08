@@ -259,7 +259,7 @@ test_that("Adding a path is possible", {
     unique(graph$edges_df$rel), "z")
 
   # Expect an error if n is <2
-  expect_error(
+  expect_snapshot(error = TRUE,
     add_path(
       graph = graph,
       n = 1,
@@ -292,14 +292,14 @@ test_that("Adding a path is possible", {
     as.character(1:6))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
+  expect_setequal(
+    graph$nodes_df$type,
     c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_setequal(
+    graph$edges_df$rel,
+    c("y", "z"))
 
   # Create a graph with a path that
   # has different types of node and edge
@@ -1799,17 +1799,19 @@ test_that("Adding a preferential attachment graph is possible", {
     pa_graph_added$nodes_df$id,
     1:200)
 
-  # Expect an error if the value for
-  # `n` is too small (< 1)
-  expect_error(
-    create_graph() %>%
-      add_pa_graph(n = 0, m = 1))
 
-  # Expect an error if the value for
-  # `algo` is not a valid value
-  expect_error(
+  expect_snapshot(error = TRUE, {
+    # Expect an error if the value for
+    # `n` is too small (< 1)
     create_graph() %>%
-      add_pa_graph(n = 0, m = 1, algo = "plumtree"))
+      add_pa_graph(n = 0, m = 1)
+
+    # Expect an error if the value for
+    # `algo` is not a valid value
+    create_graph() %>%
+      add_pa_graph(n = 0, m = 1, algo = "plumtree")
+    })
+
 })
 
 test_that("Adding a small world graph is possible", {

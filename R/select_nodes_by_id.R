@@ -41,9 +41,6 @@ select_nodes_by_id <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -55,11 +52,10 @@ select_nodes_by_id <- function(
 
   # Stop function if any nodes specified are not
   # in the graph
-  if (any(!(nodes %in% nodes_in_graph))) {
+  if (!all(nodes %in% nodes_in_graph)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One of more of the nodes specified are not available in the graph")
+    cli::cli_abort(
+      "One of more of the nodes specified are not available in the graph.")
   }
 
   # Obtain vector with node ID selection of nodes
@@ -99,11 +95,14 @@ select_nodes_by_id <- function(
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

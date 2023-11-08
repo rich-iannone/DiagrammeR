@@ -91,20 +91,16 @@ transform_to_subgraph_ws <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
   # Validation: Graph object has valid selection of
   # nodes or edges
-  if (!(graph_contains_node_selection(graph) ||
-        graph_contains_edge_selection(graph))) {
+  if (!graph_contains_node_selection(graph) &&
+      !graph_contains_edge_selection(graph)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of node or edges available.")
+    cli::cli_abort(
+      "There is no selection of node or edges available.")
   }
 
   # Get the number of nodes in the graph
@@ -154,8 +150,7 @@ transform_to_subgraph_ws <- function(graph) {
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
-    remove_linked_dfs()
+    remove_linked_dfs(graph)
 
   # Get the updated number of nodes in the graph
   nodes_graph_2 <- graph %>% count_nodes()
@@ -171,11 +166,14 @@ transform_to_subgraph_ws <- function(graph) {
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

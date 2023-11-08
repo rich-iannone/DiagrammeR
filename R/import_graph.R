@@ -59,18 +59,14 @@ import_graph <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Stop function if `file_type` specified is not part
   # of the group that can be imported
   if (!is.null(file_type)) {
     if (!(tolower(file_type) %in%
           c("gml", "sif", "edges", "mtx"))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file type as specified cannot be imported.")
+      cli::cli_abort(
+        "The file type as specified cannot be imported.")
     }
   }
 
@@ -78,9 +74,8 @@ import_graph <- function(
   if (!grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file)) {
     if (!file.exists(graph_file)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file as specified doesn't exist.")
+      cli::cli_abort(
+        "The file as specified doesn't exist.")
     }
   }
 
@@ -124,9 +119,8 @@ import_graph <- function(
       file_type <- "mtx"
     } else {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file type is not known so it can't be imported")
+      cli::cli_abort(
+        "The file type is not known so it can't be imported.")
     }
   }
 
@@ -170,7 +164,7 @@ import_graph <- function(
       edges %>%
       dplyr::mutate(id = seq_len(n_rows)) %>%
       dplyr::mutate(rel = NA_character_) %>%
-      dplyr::relocate(id, from, to, rel) %>%
+      dplyr::relocate("id", "from", "to", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
@@ -386,7 +380,7 @@ import_graph <- function(
     nodes <- vector(mode = "character")
 
     # Determine which nodes are present in the graph
-    for (i in 1:length(sif_document)) {
+    for (i in seq_along(sif_document)) {
       nodes <-
         c(nodes,
           ifelse(

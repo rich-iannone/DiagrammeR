@@ -260,7 +260,7 @@ add_edge <- function(
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(edge_aes_tbl)) {
+      for (i in seq_len(ncol(edge_aes_tbl))) {
         graph <-
           graph %>%
           set_edge_attrs_ws(
@@ -318,7 +318,7 @@ add_edge <- function(
     graph$graph_log <-
       add_action_to_log(
         graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
+        version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),

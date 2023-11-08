@@ -93,9 +93,6 @@ layout_nodes_w_string <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -115,12 +112,12 @@ layout_nodes_w_string <- function(
     unlist()
 
   layout <-
-    layout[which(layout != "")]
+    layout[which(nzchar(layout))]
 
   # Determine the row length from the layout text
   layout_row_length <- vector(mode = "numeric")
 
-  for (i in 1:length(layout)) {
+  for (i in seq_along(layout)) {
     layout_row_length <-
       c(layout_row_length, nchar(layout[i]))
   }
@@ -128,9 +125,8 @@ layout_nodes_w_string <- function(
   # Stop function if not all rows are of equal length
   if (mean(layout_row_length) != layout_row_length[1]) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Each row must have the same length.")
+    cli::cli_abort(
+      "Each row must have the same length ({layout_row_length[1]}).")
   }
 
   layout_column_number <- layout_row_length <- layout_row_length[1]
@@ -147,7 +143,7 @@ layout_nodes_w_string <- function(
   for (k in seq_len(node_group_count)) {
 
     # Create empty table with position and node ID
-    position_table <- dplyr::tibble(x = numeric(0), y = numeric(0))
+    position_table <- dplyr::tibble(x = numeric(), y = numeric())
 
     node_group <- names(nodes)[k]
     node_select <- nodes[[k]]
@@ -219,11 +215,14 @@ layout_nodes_w_string <- function(
   # Replace the graph's ndf with the revised version
   graph$nodes_df <- ndf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

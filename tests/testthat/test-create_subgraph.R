@@ -35,16 +35,16 @@ test_that("a subgraph can be created and such an object is correct", {
     transform_to_subgraph_ws(graph_ns)
 
   # Expect that only those nodes with a value >3 are in the subgraph
-  expect_true(
-    all(
-      c(1, 3, 5, 7, 8) %in% get_node_ids(subgraph_ns)))
+  expect_setequal(
+    get_node_ids(subgraph_ns),
+    c(1, 3, 5, 7, 8))
 
   # Expect only certain edges to be present in the subgraph
-  expect_true(
-    all(
-      c("3->1", "7->3", "5->8") %in% get_edges(
-        graph = subgraph_ns,
-        return_type = "vector")))
+  expect_setequal(
+    get_edges(
+      graph = subgraph_ns,
+      return_type = "vector"),
+      c("3->1", "7->3", "5->8"))
 
   # Create a selection of edges, stored within the
   # graph object

@@ -66,7 +66,7 @@ add_graph_action <- function(
   # Create a character expression for the
   # function to evaluate at every graph
   # transformation step
-  if (length(fcn_args) == 0) {
+  if (length(fcn_args) == 0L) {
     char_expr <-
       paste0(
         fcn,
@@ -111,8 +111,8 @@ add_graph_action <- function(
   # Create a data frame row with the new graph action
   new_graph_action <-
     data.frame(
-      action_index = ifelse(nrow(graph$graph_actions) == 0, 1,
-                            max(graph$graph_actions$action_index) + 1),
+      action_index = ifelse(nrow(graph$graph_actions) == 0L, 1L,
+                            max(graph$graph_actions$action_index) + 1L),
       action_name = action_name %||% NA_character_,
       expression = char_expr,
       stringsAsFactors = FALSE)
@@ -128,7 +128,7 @@ add_graph_action <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

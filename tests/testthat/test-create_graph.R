@@ -163,8 +163,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
     graph, "dgr_graph")
 
   # Expect that the `global_attrs` component is not NULL
-  expect_true(
-    !is.null(graph$global_attrs))
+  expect_false(is.null(graph$global_attrs))
 
   # Expect that the `nodes_df` component is
   # a data frame
@@ -177,8 +176,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
     graph$edges_df , "data.frame")
 
   # Expect that the graph is a directed graph
-  expect_true(
-    graph$directed)
+  expect_true(graph$directed)
 
   # Expect that the `nodes_df` df has 7 columns
   expect_equal(

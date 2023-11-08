@@ -35,6 +35,6 @@ count_loop_edges <- function(graph) {
     return(0L)
   }
 
-  n_match <- length(which( graph$edges_df$from == graph$edges$to))
+  n_match <- length(which(graph$edges_df$from == graph$edges$to))
   n_match
 }

@@ -129,12 +129,8 @@ add_grid_3d <- function(
   # Create an edge data frame for the grid graph
   grid_edges <-
     create_edge_df(
-      from = grid %>%
-        get_edge_df() %>%
-        dplyr::pull(from),
-      to = grid %>%
-        get_edge_df() %>%
-        dplyr::pull(to),
+      from = get_edge_df(grid)$from,
+      to = get_edge_df(grid)$to,
       rel = rel)
 
   # Create the grid graph
@@ -273,7 +269,7 @@ add_grid_3d <- function(
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

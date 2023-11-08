@@ -225,7 +225,7 @@ render_graph <- function(
     if ("image" %in% colnames(graph %>% get_node_df()) ||
          "fa_icon" %in% colnames(graph %>% get_node_df()) ||
          as_svg) {
-      if (!rlang::is_installed("DiagrammeRsvg") && as_svg) {
+      if (as_svg && !rlang::is_installed("DiagrammeRsvg")) {
         rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
       }
 
@@ -249,7 +249,7 @@ render_graph <- function(
 
       svg_line_no <- svg_tbl %>%
         dplyr::filter(type == "svg") %>%
-        dplyr::pull(index)
+        dplyr::pull("index")
 
       # Modify <svg> attrs
       svg_vec[svg_line_no] <- svg_lines
@@ -260,14 +260,14 @@ render_graph <- function(
           graph %>%
           get_node_df() %>%
           dplyr::select("id", "image") %>%
-          dplyr::filter(image != "") %>%
+          dplyr::filter(nzchar(image)) %>%
           dplyr::pull("id")
 
         filter_lines <-
           graph %>%
           get_node_df() %>%
           dplyr::select("id", "image") %>%
-          dplyr::filter(image != "") %>%
+          dplyr::filter(nzchar(image)) %>%
           dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
           dplyr::pull("filter_lines") %>%
           paste(collapse = "\n")
@@ -371,10 +371,9 @@ render_graph <- function(
       #
       # } else {
       #
-      #   emit_error(
-      #     fcn_name = fcn_name,
-      #     reasons = c(
-      #       "Cannot currently render FontAwesome icons",
+      #   cli::cli_abort(
+      #     c(
+      #       "Cannot currently render FontAwesome icons.",
       #       "please install the `fontawesome` package and retry",
       #       "pkg installed using `devtools::install_github('rstudio/fontawesome')`"))
       # }

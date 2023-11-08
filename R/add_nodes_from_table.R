@@ -102,7 +102,7 @@ add_nodes_from_table <- function(
 
   # Validation: Graph object is valid
   check_graph_valid(graph)
-
+  # TODO use new technique to convert to string.
   # Get the requested `label_col`
   label_col <-
     rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
@@ -266,7 +266,7 @@ add_nodes_from_table <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

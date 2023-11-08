@@ -95,7 +95,7 @@ set_node_attrs_ws <- function(
   graph$graph_log <-
     graph$graph_log[-nrow(graph$graph_log),] %>%
     add_action_to_log(
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

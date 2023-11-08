@@ -81,9 +81,6 @@ get_edge_attrs_ws <- function(
     edge_attr
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -96,9 +93,8 @@ get_edge_attrs_ws <- function(
       rlang::get_expr() %>%
       as.character() %in% c("id", "from", "to")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not an edge attribute.")
+    cli::cli_abort(
+      "This is not an edge attribute.")
   }
 
   # Extract the edge data frame (edf)

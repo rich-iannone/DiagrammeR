@@ -44,7 +44,7 @@ count_graphs_in_graph_series <- function(graph_series) {
 
   if (inherits(graph_series, "dgr_graph_1D")) {
     if (is.null(graph_series$graphs)) {
-      return(0)
+      return(0L)
     }
     return(length(graph_series$graphs))
   }

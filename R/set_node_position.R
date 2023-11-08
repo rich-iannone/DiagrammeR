@@ -104,9 +104,6 @@ set_node_position <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -121,9 +118,8 @@ set_node_position <- function(
   if (!use_labels) {
     if (!(node %in% graph$nodes_df[, 1])) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node ID provided doesn't exist in the graph")
+      cli::cli_abort(
+        "The node ID provided doesn't exist in the graph.")
     }
   }
 
@@ -153,9 +149,8 @@ set_node_position <- function(
     # unique, non-NA values
     if (!unique_labels_available) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `label` attribute in the graph's ndf must contain unique, non-NA values")
+      cli::cli_abort(
+        "The `label` attribute in the graph's ndf must contain unique, non-NA values.")
     }
 
     # Use `case_when` statements to selectively perform
@@ -180,12 +175,12 @@ set_node_position <- function(
     x_attr_new <-
       dplyr::case_when(
         ndf$id == node ~ x,
-        TRUE ~ as.numeric(ndf$x))
+        .default = as.numeric(ndf$x))
 
     y_attr_new <-
       dplyr::case_when(
         ndf$id == node ~ y,
-        TRUE ~ as.numeric(ndf$y))
+        .default = as.numeric(ndf$y))
   }
 
   # Replace the `x` column to the ndf with a
@@ -199,11 +194,14 @@ set_node_position <- function(
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

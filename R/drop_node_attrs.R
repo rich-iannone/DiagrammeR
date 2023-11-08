@@ -53,9 +53,6 @@ drop_node_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -67,9 +64,8 @@ drop_node_attrs <- function(
   # greater than one
   if (length(node_attr) > 1) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You can only provide a single column")
+    cli::cli_abort(
+      "You can only provide a single column to `node_attr`.")
   }
 
   # Stop function if `node_attr` is any of
@@ -77,9 +73,8 @@ drop_node_attrs <- function(
   if (any(c("nodes", "node", "type", "label") %in%
           node_attr)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot drop this column")
+    cli::cli_abort(
+      "You cannot drop the {.code {node_attr}} column.")
   }
 
   # Extract the graph's ndf
@@ -92,9 +87,8 @@ drop_node_attrs <- function(
   # of the graph's column
   if (!any(column_names_graph %in% node_attr)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node attribute to drop is not in the ndf")
+    cli::cli_abort(
+      "The node attribute to drop is not in the ndf.")
   }
 
   # Get the column number for the node attr to drop
@@ -107,11 +101,14 @@ drop_node_attrs <- function(
   # Create a new graph object
   graph$nodes_df <- nodes
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

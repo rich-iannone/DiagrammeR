@@ -94,9 +94,6 @@ select_edges <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -111,9 +108,8 @@ select_edges <- function(
   if (!is.null(edges)) {
     if (!any(edges %in% graph$edges_df$id)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The values provided in `edges` do not all correspond to edge ID values in the graph")
+      cli::cli_abort(
+        "The values provided in `edges` do not all correspond to edge ID values in the graph.")
     }
   }
 
@@ -137,11 +133,10 @@ select_edges <- function(
   # to get those edges where the specified node IDs
   # are present
   if (!is.null(from)) {
-    if (any(!(from %in% edges_df$from))) {
+    if (!all(from %in% edges_df$from)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `from` not part of an edge.")
+      cli::cli_abort(
+        "One of more of the nodes specified as `from` not part of an edge.")
     }
 
     from_val <- from
@@ -155,11 +150,10 @@ select_edges <- function(
   # to get those edges where the specified node IDs
   # are present
   if (!is.null(to)) {
-    if (any(!(to %in% edges_df$to))) {
+    if (!all(to %in% edges_df$to)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One of more of the nodes specified as `to` are not part of an edge.")
+      cli::cli_abort(
+        "One of more of the nodes specified as `to` are not part of an edge.")
     }
 
     to_val <- to
@@ -172,7 +166,7 @@ select_edges <- function(
   # Select only the `id`, `to`, and `from` columns
   edges_selected <-
     edges_df %>%
-    dplyr::select(edge = id, from, to)
+    dplyr::select(edge = "id", "from", "to")
 
   # Create an integer vector representing edges
   edges_selected <- edges_selected$edge
@@ -204,7 +198,7 @@ select_edges <- function(
   edges_combined <-
     graph$edges_df %>%
     dplyr::filter(id %in% edges_combined) %>%
-    dplyr::select(edge = "id", from, to)
+    dplyr::select(edge = "id", "from", "to")
 
   # Add the edge ID values to the active selection
   # of nodes in `graph$node_selection`
@@ -218,11 +212,14 @@ select_edges <- function(
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

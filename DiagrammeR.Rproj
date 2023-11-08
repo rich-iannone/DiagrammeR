@@ -22,3 +22,5 @@ PackageCheckArgs: --as-cran --no-manual
 PackageRoxygenize: rd,collate,namespace
 
 UseNativePipeOperator: No
+
+SpellingDictionary: en_US

@@ -410,7 +410,7 @@ add_full_graph <- function(
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
+        version_id = nrow(graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
@@ -452,7 +452,7 @@ add_full_graph <- function(
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
+        version_id = nrow(graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),

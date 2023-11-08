@@ -46,10 +46,9 @@ test_that("rescaling node attributes in a graph is possible", {
 
   # Expect that the `fillcolor` and `fontcolor` node
   # attribute columns are now available
-  expect_true(
-    all(
-      c("fillcolor", "fontcolor") %in%
-        colnames(graph_r_value_fill_font_color$nodes_df)))
+  expect_contains(
+    colnames(graph_r_value_fill_font_color$nodes_df),
+    c("fillcolor", "fontcolor"))
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf

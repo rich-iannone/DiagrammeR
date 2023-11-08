@@ -91,7 +91,7 @@ add_edge_clone <- function(
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    abort(
+    cli::cli_abort(
       "The value provided in `edge` does not correspond to an edge in the graph.")
   }
 
@@ -125,12 +125,11 @@ add_edge_clone <- function(
   # Create an edge selection for the
   # new edge in the graph
   graph <-
-    graph %>%
-    select_last_edges_created()
+    select_last_edges_created(graph)
 
   # Iteratively set edge attribute values for
   # the new edges in the graph
-  for (i in 1:ncol(edge_attr_vals)) {
+  for (i in seq_len(ncol(edge_attr_vals))) {
 
     graph$edges_df[
       nrow(graph$edges_df),
@@ -155,7 +154,7 @@ add_edge_clone <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

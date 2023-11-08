@@ -82,9 +82,6 @@ set_edge_attr_to_display <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -110,9 +107,8 @@ set_edge_attr_to_display <- function(
   # provided in `edges` do not exist in the graph
   if (!any(edges %in% edf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One or more edge ID values in `edges` are not present in the graph")
+    cli::cli_abort(
+      "One or more edge ID values in `edges` are not present in the graph.")
   }
 
   # Stop function if the edge attribute supplied as
@@ -120,9 +116,8 @@ set_edge_attr_to_display <- function(
   if (!is.null(attr)) {
     if (!(attr %in% colnames(edf))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The edge attribute given in `attr` is not in the graph's edf")
+      cli::cli_abort(
+        "The edge attribute given in `attr` is not in the graph's edf.")
     }
   }
 
@@ -176,7 +171,7 @@ set_edge_attr_to_display <- function(
     display_col <-
       dplyr::case_when(
         display_col == "is_na" ~ NA_character_,
-        TRUE ~ display_col) %>%
+        .default = display_col) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
 
@@ -196,11 +191,14 @@ set_edge_attr_to_display <- function(
   # Replace the graph's edge data frame with `edf`
   graph$edges_df <- edf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

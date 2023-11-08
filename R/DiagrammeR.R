@@ -2,7 +2,7 @@
 #'
 #' @description
 #'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
+#' Make diagrams in R using \href{https://github.com/mdaines/viz-js}{viz.js} or
 #' \href{https://github.com/mermaid-js/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'

@@ -54,12 +54,14 @@ is_property_graph <- function(graph) {
 
   if (is_graph_empty(graph)) {
     return(FALSE)
-  } else if
-  (all(
-    !any(is.na(graph$nodes_df$type)), !any(graph$nodes_df$type == ""),
-    !any(is.na(graph$edges_df$rel)), !any(graph$edges_df$rel == ""))) {
-    return(TRUE)
-  } else {
-    return(FALSE)
   }
+  if (
+    all(
+    !any(is.na(graph$nodes_df$type)), !any(graph$nodes_df$type == ""),
+    !any(is.na(graph$edges_df$rel)), !any(graph$edges_df$rel == ""))
+    ) {
+    return(TRUE)
+  }
+
+  FALSE
 }

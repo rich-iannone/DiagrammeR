@@ -9,5 +9,5 @@
       select_last_nodes_created(graph_node_deleted)
     Condition
       Error in `select_last_nodes_created()`:
-      ! The previous graph transformation function resulted in a removal of nodes
+      ! The previous graph transformation function resulted in a removal of nodes.
 
