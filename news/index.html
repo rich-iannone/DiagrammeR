@@ -56,7 +56,11 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="diagrammer-development-version">DiagrammeR (development version)<a class="anchor" aria-label="anchor" href="#diagrammer-development-version"></a></h2>
-</div>
+<ul><li><p>DiagrammeR nows uses testthat 3rd edition (<a href="https://github.com/olivroy" class="external-link">@olivroy</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/498" class="external-link">#498</a>)</p></li>
+<li><p>No longer use deprecated features from igraph and tidyselect (&gt;= 1.2.0) (<a href="https://github.com/olivroy" class="external-link">@olivroy</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/497" class="external-link">#497</a>)</p></li>
+<li><p>Error messages have been reviewed and now use cli (<a href="https://github.com/olivroy" class="external-link">@olivroy</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/499" class="external-link">#499</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/502" class="external-link">#502</a>)</p></li>
+<li><p>It is now easier to install suggested packages on the fly. DiagrammeR now uses <code><a href="https://rlang.r-lib.org/reference/is_installed.html" class="external-link">rlang::check_installed()</a></code> internally. (<a href="https://github.com/olivroy" class="external-link">@olivroy</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/499" class="external-link">#499</a>)</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.10" id="diagrammer-1010">DiagrammeR 1.0.10<a class="anchor" aria-label="anchor" href="#diagrammer-1010"></a></h2><p class="text-muted">CRAN release: 2023-05-18</p>
 <ul><li>Remove dependency on the <strong>influenceR</strong> package, which also means removing the <code>get_constraint()</code> and <code>get_bridging()</code> graph inspection functions.</li>
@@ -148,7 +152,7 @@
 <li><p>The edge direction may be reversed for an entire graph (<code><a href="../reference/rev_edge_dir.html">rev_edge_dir()</a></code>) or for part of a graph using an edge selection (<code><a href="../reference/rev_edge_dir_ws.html">rev_edge_dir_ws()</a></code>)</p></li>
 <li><p>Depth-first search and breadth-first search algorithms are available in the <code><a href="../reference/do_dfs.html">do_dfs()</a></code> and <code><a href="../reference/do_bfs.html">do_bfs()</a></code> functions</p></li>
 <li><p>Degree data for plots can now be easily obtained using the <code><a href="../reference/get_degree_distribution.html">get_degree_distribution()</a></code> and <code><a href="../reference/get_degree_histogram.html">get_degree_histogram()</a></code> functions</p></li>
-<li><p>Global graph attributes are now more easily modifiable using a set of functions for this purpose: <code><a href="../reference/add_global_graph_attrs.html">add_global_graph_attrs()</a></code>, <code>clear_global_graph_attrs()</code>, <code><a href="../reference/delete_global_graph_attrs.html">delete_global_graph_attrs()</a></code>, <code>get_global_graph_attrs()</code>, <code>set_global_graph_attrs()</code></p></li>
+<li><p>Global graph attributes are now more easily modifiable using a set of functions for this purpose: <code><a href="../reference/add_global_graph_attrs.html">add_global_graph_attrs()</a></code>, <code><a href="../reference/delete_global_graph_attrs.html">delete_global_graph_attrs()</a></code>, <code><a href="../reference/get_global_graph_attr_info.html">get_global_graph_attr_info()</a></code>.</p></li>
 <li><p>Added option to display different text labels on nodes via the <code>display</code> node attribute; this is easily set with the <code><a href="../reference/set_node_attr_to_display.html">set_node_attr_to_display()</a></code> function</p></li>
 <li><p>Rewrote many graph functions (e.g. traversals) so that they are faster for very large graphs</p></li>
 <li><p>A log of all graph functions that directly modify the graph is now part of the graph object (<code>graph$graph_log</code>)</p></li>
@@ -203,7 +207,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Richard Iannone.</p>
+  <p></p><p>Developed by Richard Iannone, Olivier Roy.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -91,11 +91,9 @@
 <div class="row">
   <main id="main" class="col-md-9"><div align="center">
 <hr style="color:transparent">
-<a href="http://rich-iannone.github.io/DiagrammeR/" class="external-link"><img src="reference/figures/logo.svg" width="350px"></a>
+<a href="https://rich-iannone.github.io/DiagrammeR/" class="external-link"><img src="reference/figures/logo.svg" width="350px"></a>
 <hr style="color:transparent">
 <!-- badges: start -->
-
- <!-- badges: end -->
 <hr style="color:transparent">
 <p><br></p>
 </div>
@@ -418,7 +416,7 @@
 <h2 id="a-network-graph-example">A Network Graph Example<a class="anchor" aria-label="anchor" href="#a-network-graph-example"></a>
 </h2>
 <p>Let’s create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes <code>name</code>, <code>age</code>, <code>join_date</code>, <code>email</code>, <code>follower_count</code>, <code>following_count</code>, and <code>starred_count</code> are specific to the <code>person</code> nodes while the <code>project</code>, <code>start_date</code>, <code>stars</code>, and <code>language</code> attributes apply to the <code>project</code> nodes. The edges represent the relationships between the people and the project.</p>
-<p>The example graph file <code>repository.dgr</code> is available in the <code>extdata/example_graphs_dgr/</code> directory in the <strong>DiagrammeR</strong> package (currently, only for the <strong>Github</strong> version). We can load it into memory by using the <code><a href="reference/open_graph.html">open_graph()</a></code> function, where <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code> helps to provide the location of the file within the package.</p>
+<p>The example graph file <code>repository.dgr</code> is available in the <code>extdata/example_graphs_dgr/</code> directory in the <strong>DiagrammeR</strong> package (currently, only for the <strong>GitHub</strong> version). We can load it into memory by using the <code><a href="reference/open_graph.html">open_graph()</a></code> function, where <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code> helps to provide the location of the file within the package.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load in a the small repository graph</span></span>
 <span><span class="va">graph</span> <span class="op">&lt;-</span></span>
@@ -588,17 +586,19 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Richard Iannone <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3925-190X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Olivier Roy <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=DiagrammeR" class="external-link"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status"></a></li>
-<li><a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a></li>
-<li><a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main" class="external-link"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=DiagrammeR" class="external-link"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status"></a></li>
+<li><a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main" class="external-link"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://CRAN.R-project.org/package=DiagrammeR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/DiagrammeR" alt="Monthly Downloads"></a></li>
 <li><a href="https://CRAN.R-project.org/package=DiagrammeR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR" alt="Total Downloads"></a></li>
+<li><a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html" class="external-link"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant"></a></li>
 </ul>
 </div>
 
@@ -608,7 +608,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Richard Iannone.</p>
+<p>Developed by Richard Iannone, Olivier Roy.</p>
 </div>
 
 <div class="pkgdown-footer-right">
