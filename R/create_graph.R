@@ -295,7 +295,7 @@ create_graph <- function(
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
@@ -334,7 +334,7 @@ create_graph <- function(
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
@@ -396,7 +396,7 @@ create_graph <- function(
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),

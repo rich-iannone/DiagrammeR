@@ -200,7 +200,7 @@ combine_graphs <- function(
   x$graph_log <-
     add_action_to_log(
       graph_log = x$graph_log,
-      version_id = nrow(x$graph_log) + 1,
+      version_id = nrow(x$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

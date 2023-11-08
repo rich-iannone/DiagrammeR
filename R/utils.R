@@ -299,13 +299,13 @@ add_action_to_log <- function(graph_log,
                               duration,
                               nodes,
                               edges,
-                              d_n = 0,
-                              d_e = 0) {
+                              d_n = 0L,
+                              d_e = 0L) {
 
   # Ensure that `time_modified` inherits from POSIXct
   if (!inherits(time_modified, "POSIXct")) {
 
-    stop(
+    cli::cli_abort(
       "The `time_modified` value must inherit from POSIXct.",
       call. = FALSE)
   }
@@ -313,12 +313,12 @@ add_action_to_log <- function(graph_log,
   # Create a log line
   graph_log_line <-
     data.frame(
-      version_id = as.integer(version_id),
+      version_id = version_id,
       function_used = as.character(function_used),
       time_modified = time_modified,
       duration = as.numeric(duration),
-      nodes = as.integer(nodes),
-      edges = as.integer(edges),
+      nodes = nodes,
+      edges = edges,
       d_n = as.integer(d_n),
       d_e = as.integer(d_e),
       stringsAsFactors = FALSE)

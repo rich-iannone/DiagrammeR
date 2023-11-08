@@ -102,7 +102,7 @@ add_nodes_from_table <- function(
 
   # Validation: Graph object is valid
   check_graph_valid(graph)
-
+  # TODO use new technique to convert to string.
   # Get the requested `label_col`
   label_col <-
     rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
