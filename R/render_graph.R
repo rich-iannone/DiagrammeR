@@ -241,6 +241,9 @@ render_graph <- function(
           grViz(diagram = dot_code)), "\n") %>%
         unlist()
 
+      # create display to make return work when `as_svg = TRUE` #482
+      display <- grViz(diagram = dot_code, width = width, height = height)
+
       # Get a tibble of SVG data
       svg_tbl <- get_svg_tbl(svg_vec)
 
