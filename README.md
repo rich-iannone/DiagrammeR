@@ -6,6 +6,7 @@
 <hr style="color:transparent" />
 <a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
 <hr style="color:transparent"/>
+
 <!-- badges: start -->
 [![CRAN
 status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
@@ -19,6 +20,7 @@ Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CR
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
 <!-- badges: end -->
+
 <hr style="color:transparent" />
 
 <br />
