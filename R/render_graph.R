@@ -134,13 +134,14 @@ render_graph <- function(
     }
 
     # Use adaptive font coloring for nodes that have a fill color
-    if (!("fontcolor" %in% colnames(graph$nodes_df)) &
-        "fillcolor" %in% colnames(graph$nodes_df)) {
+    if ("fillcolor" %in% colnames(graph$nodes_df) &&
+        !"fontcolor" %in% colnames(graph$nodes_df)
+        ) {
 
       graph$nodes_df$fontcolor <-
         tibble::tibble(value = graph$nodes_df$fillcolor) %>%
         dplyr::mutate(value_x = contrasting_text_color(background_color = value)) %>%
-        dplyr::pull(value_x)
+        dplyr::pull("value_x")
     }
 
     if (!is.null(layout)) {
@@ -154,15 +155,11 @@ render_graph <- function(
             attr_type = "graph")
 
         if ("x" %in% colnames(graph$nodes_df)) {
-          graph$nodes_df <-
-            graph$nodes_df %>%
-            dplyr::select(-x)
+          graph$nodes_df$x <- NULL
         }
 
         if ("y" %in% colnames(graph$nodes_df)) {
-          graph$nodes_df <-
-            graph$nodes_df %>%
-            dplyr::select(-y)
+          graph$nodes_df$y <- NULL
         }
 
         if (layout == "circle") {
@@ -222,9 +219,8 @@ render_graph <- function(
       }
     }
 
-    if ("image" %in% colnames(graph %>% get_node_df()) ||
-         "fa_icon" %in% colnames(graph %>% get_node_df()) ||
-         as_svg) {
+    if (as_svg || any(c("image", "fa_icon") %in% colnames(get_node_df(graph)))) {
+
       if (as_svg && !rlang::is_installed("DiagrammeRsvg")) {
         rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
       }
