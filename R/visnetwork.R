@@ -46,7 +46,7 @@ visnetwork <- function(graph) {
   edges <- graph %>% get_edge_df()
 
   # Render an empty graph if no nodes or edges exist
-  if (graph %>% is_graph_empty()) {
+  if (is_graph_empty(graph)) {
 
     nodes <- create_node_df(n = 1)
     nodes <- nodes[-1, ]
@@ -161,7 +161,7 @@ visnetwork <- function(graph) {
 
       if ("arrow" %in% colnames(edges)) {
 
-        if (all(edges[which(colnames(edges) %in% "arrow")] == FALSE)) {
+        if (!all(edges[which(colnames(edges) %in% "arrow")])) {
 
           arrows_for_edges <- FALSE
         } else {
