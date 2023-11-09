@@ -216,7 +216,8 @@ get_similar_nbrs <- function(
   # If there are no matching nodes return `NA`
   if (length(matching_nodes) == 0) {
     return(NA)
-  } else {
-    return(sort(matching_nodes))
   }
+
+  sort(matching_nodes)
+
 }

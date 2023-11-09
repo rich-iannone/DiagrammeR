@@ -37,25 +37,22 @@ get_eigen_centrality <- function(
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  if (!is.null(weights_attr)) {
+  if (inherits(weights_attr, "character")) {
+    # Stop function if the edge attribute does not exist
+    if (!(weights_attr %in% colnames(graph$edges_df))) {
 
-    if (inherits(weights_attr, "character")) {
-      # Stop function if the edge attribute does not exist
-      if (!(weights_attr %in% colnames(graph$edges_df))) {
-
-        cli::cli_abort(
-          "The edge attribute to be used as weights does not exist in the graph.")
-      }
-
-      # Stop function if the edge attribute is not numeric
-      if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
-
-        cli::cli_abort(
-          "The edge attribute to be used as weights is not numeric.")
-      }
-
-      weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
+      cli::cli_abort(
+        "The edge attribute to be used as weights does not exist in the graph.")
     }
+
+    # Stop function if the edge attribute is not numeric
+    if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
+
+      cli::cli_abort(
+        "The edge attribute to be used as weights is not numeric.")
+    }
+
+    weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
   }
 
   # Get the eigen centrality values for each of the

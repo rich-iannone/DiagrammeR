@@ -44,9 +44,6 @@ get_graph_from_graph_series <- function(
     graph_no
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
 
@@ -54,7 +51,7 @@ get_graph_from_graph_series <- function(
   }
 
   # Stop function if `graph_no` out of range
-  if (!(graph_no %in% 1:count_graphs_in_graph_series(graph_series))) {
+  if (!(graph_no %in% seq_len(count_graphs_in_graph_series(graph_series)))) {
 
     rlang::abort(
       "The index chosen doesn't correspond to that of a graph in the series.")

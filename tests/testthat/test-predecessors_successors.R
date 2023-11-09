@@ -13,7 +13,7 @@ test_that("getting a node's predecessors/successors is possible", {
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-

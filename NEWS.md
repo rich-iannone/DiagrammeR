@@ -2,7 +2,7 @@
 
 * DiagrammeR nows uses testthat 3rd edition (@olivroy, #498)
 
-* No longer use deprecated features from igraph and tidyselect (>= 1.2.0) (@olivroy, #497)
+* No longer use deprecated features from tibble, igraph and tidyselect (>= 1.2.0) (@olivroy, #497, #504)
 
 * Error messages have been reviewed and now use cli (@olivroy, #499, #502)
 

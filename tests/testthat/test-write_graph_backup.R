@@ -1,3 +1,4 @@
+skip_on_os("windows")
 test_that("Graph backups for `add_balanced_tree()` works", {
 
   #

@@ -132,7 +132,7 @@ add_prism <- function(
 
     node_aes_tbl <- dplyr::as_tibble(node_aes)
 
-    if (nrow(node_aes_tbl) < (2 * n) ) {
+    if (nrow(node_aes_tbl) < (2 * n)) {
 
       node_aes$index__ <- seq_len(2 * n)
 
@@ -229,19 +229,19 @@ add_prism <- function(
   # Create an edge data frame for the prism graph
   prism_edges <-
     create_edge_df(
-      from = c(nodes[1:(length(nodes)/2)],
-               nodes[((length(nodes)/2) + 1):length(nodes)],
-               nodes[1:(length(nodes)/2)]),
-      to = c(nodes[2:(length(nodes)/2)],
+      from = c(nodes[1:(length(nodes) / 2)],
+               nodes[((length(nodes) / 2) + 1):length(nodes)],
+               nodes[1:(length(nodes) / 2)]),
+      to = c(nodes[2:(length(nodes) / 2)],
              nodes[1],
-             nodes[((length(nodes)/2) + 2):length(nodes)],
-             nodes[((length(nodes)/2) + 1)],
-             nodes[1:(length(nodes)/2)] + n),
+             nodes[((length(nodes) / 2) + 2):length(nodes)],
+             nodes[((length(nodes) / 2) + 1)],
+             nodes[1:(length(nodes) / 2)] + n),
       rel = rel)
 
-  n_nodes = nrow(prism_nodes)
+  n_nodes <- nrow(prism_nodes)
 
-  n_edges = nrow(prism_edges)
+  n_edges <- nrow(prism_edges)
 
   # Add edge aesthetics if available
   if (exists("edge_aes_tbl")) {
@@ -268,10 +268,10 @@ add_prism <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, prism_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- prism_graph
+  } else {
+    graph <- combine_graphs(graph, prism_graph)
   }
 
   # Update the `last_node` counter

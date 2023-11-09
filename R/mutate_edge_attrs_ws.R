@@ -166,7 +166,8 @@ mutate_edge_attrs_ws <- function(
     dplyr::bind_rows(
       edf %>% dplyr::filter(!(!!enquo(s))) %>% dplyr::mutate(!!!enquos(...)),
       edf %>% dplyr::filter( (!!enquo(s)))
-    ) %>% dplyr::arrange(!!enquo(order))
+    ) %>%
+    dplyr::arrange(!!enquo(order))
 
   graph$edges_df <- edf
 

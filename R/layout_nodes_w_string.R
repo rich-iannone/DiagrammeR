@@ -134,8 +134,8 @@ layout_nodes_w_string <- function(
 
   # Define the exact `x` and `y` positions in which
   # the nodes could be placed
-  x_pts <- seq(0, width, width/(layout_column_number - 1)) + ll[1]
-  y_pts <- rev(seq(0, height, height/(layout_row_number - 1))) + ll[2]
+  x_pts <- seq(0, width, width / (layout_column_number - 1)) + ll[1]
+  y_pts <- rev(seq(0, height, height / (layout_row_number - 1))) + ll[2]
 
   # Create a tibble called `ndf_parts`
   ndf_parts <- dplyr::tibble()

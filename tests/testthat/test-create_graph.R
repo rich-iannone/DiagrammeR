@@ -31,7 +31,7 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect that the `nodes_df` and  `edges_df` components are
   # a data frame
   expect_s3_class(graph$nodes_df, "data.frame")
-  expect_s3_class(graph$edges_df , "data.frame")
+  expect_s3_class(graph$edges_df, "data.frame")
 
   # Expect that the use of `is_graph_empty()` function
   # will result in TRUE
@@ -97,7 +97,7 @@ test_that("a graph object with nodes can be created correctly", {
   # Expect that the `nodes_df` and `edges_df` component is
   # a data frame
   expect_s3_class(graph$nodes_df, "data.frame")
-  expect_s3_class(graph$edges_df , "data.frame")
+  expect_s3_class(graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed)
@@ -173,7 +173,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
   # Expect that the `edges_df` component is
   # a data frame
   expect_s3_class(
-    graph$edges_df , "data.frame")
+    graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed)

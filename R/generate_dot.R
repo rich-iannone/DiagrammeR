@@ -46,7 +46,7 @@ generate_dot <- function(graph) {
       dplyr::pull("string")
 
     # Fill in NA attribute values with global preset values
-    for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "node"))) {
+    for (i in seq_len(nrow(global_attrs %>% dplyr::filter(attr_type == "node")))) {
 
       node_attr_to_set <- (global_attrs %>% dplyr::filter(attr_type == "node"))[i, 1]
 
@@ -132,7 +132,7 @@ generate_dot <- function(graph) {
   if ("equation" %in% colnames(nodes_df)) {
     equation_col <- which(colnames(nodes_df) == "equation")
 
-    for (i in 1:nrow(nodes_df)) {
+    for (i in seq_len(nrow(nodes_df))) {
       if (grepl("^\\$.*\\$$", nodes_df[i, equation_col])) {
         nodes_df[i, equation_col] <-
           stringr::str_replace_all(
@@ -217,14 +217,15 @@ generate_dot <- function(graph) {
 
     # Create the default attributes statement
     # for graph attributes
-    if (!(anyNA(graph_attrs))) {
-      graph_attr_stmt <-
-        paste0("graph [",
-               paste(graph_attrs,
-                     collapse = ",\n       "),
-               "]\n")
-    } else {
+    if (anyNA(graph_attrs)) {
       graph_attr_stmt <- ""
+    } else {
+      graph_attr_stmt <-
+        paste0(
+          "graph [",
+          paste(graph_attrs, collapse = ",\n       "),
+          "]\n"
+          )
     }
 
     # Create the default attributes statement
@@ -234,9 +235,11 @@ generate_dot <- function(graph) {
 
     } else {
       node_attr_stmt <-
-        paste0("node [", paste(node_attrs,
-                               collapse = ",\n      "),
-               "]\n")
+        paste0(
+          "node [",
+          paste(node_attrs, collapse = ",\n      "),
+          "]\n"
+          )
 
     }
 
@@ -247,9 +250,11 @@ generate_dot <- function(graph) {
 
     } else {
       edge_attr_stmt <-
-        paste0("edge [", paste(edge_attrs,
-                               collapse = ",\n     "),
-               "]\n")
+        paste0(
+          "edge [",
+          paste(edge_attrs, collapse = ",\n     "),
+          "]\n"
+          )
 
     }
 
@@ -514,10 +519,7 @@ generate_dot <- function(graph) {
       # columns is present
       if (from_to_columns) {
         both_from_to_columns <-
-          all(c(any(c("from") %in%
-                      colnames(edges_df))),
-              any(c("to") %in%
-                    colnames(edges_df)))
+          all(c("from", "to") %in% colnames(edges_df))
       }
 
       # If the complementary set of columns is present,
@@ -536,7 +538,7 @@ generate_dot <- function(graph) {
           exists("to_column")) {
 
         if (length(from_column) == 1 &&
-            length(from_column) == 1) {
+            length(to_column) == 1) { # CHECK before it was length(from_column) == 1 && length(to_column) == 1
 
           for (i in 1:nrow(edges_df)) {
 
@@ -633,13 +635,13 @@ generate_dot <- function(graph) {
     # Create the graph code from the chosen attributes,
     # and the nodes and edges blocks
     if (exists("combined_attr_stmts")) {
-      if (exists("edge_block") & exists("node_block")) {
+      if (exists("edge_block") && exists("node_block")) {
         combined_block <-
           paste(combined_attr_stmts,
                 node_block, edge_block,
                 sep = "\n")
       }
-      if (!exists("edge_block") & exists("node_block")) {
+      if (!exists("edge_block") && exists("node_block")) {
         combined_block <-
           paste(combined_attr_stmts,
                 node_block,
@@ -650,8 +652,7 @@ generate_dot <- function(graph) {
       if (exists("edge_block")) {
         combined_block <- paste(node_block, edge_block,
                                 sep = "\n")
-      }
-      if (!exists("edge_block")) {
+      } else {
         combined_block <- node_block
       }
     }

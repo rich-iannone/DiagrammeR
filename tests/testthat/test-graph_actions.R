@@ -90,7 +90,7 @@ test_that("actions can be deleted from a graph object", {
       node_attr_to = "fillcolor",
       action_name = "pagerank_fillcolor")
 
-  number_of_graph_actions_before_deletion <-
+  n_graph_actions_before_deletion <-
     nrow(graph$graph_actions)
 
   # Delete two of the graph actions
@@ -103,7 +103,7 @@ test_that("actions can be deleted from a graph object", {
   # Expect a single row in the data frame
   expect_equal(
     nrow(graph_delete_2$graph_actions),
-    number_of_graph_actions_before_deletion - 2)
+    n_graph_actions_before_deletion - 2)
 
   # Expect that the first graph action
   # remains in the graph
@@ -132,7 +132,7 @@ test_that("actions can be deleted from a graph object", {
   # Expect a single row in the data frame
   expect_equal(
     nrow(graph_delete_2_by_name$graph_actions),
-    number_of_graph_actions_before_deletion - 2)
+    n_graph_actions_before_deletion - 2)
 
   # Expect that the first graph action
   # remains in the graph

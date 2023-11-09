@@ -566,7 +566,7 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect that all edges have a `rel` set
   expect_in(
-    graph$edges_df$rel,"related")
+    graph$edges_df$rel, "related")
 
   # Expect that all new nodes have a `type` set
   expect_in(
@@ -771,15 +771,14 @@ test_that("adding node clones with a selection is possible", {
   # Expect nodes with ID values
   # from 1 to 6
   expect_equal(
-    (graph_1 %>%
-       get_node_df)[, 1], 1:6)
+    get_node_df(graph_1)[, 1],
+    1:6)
 
   # Expect cloned values for the
   # `type` attribute for the
   # last 3 nodes in the graph
   expect_equal(
-    (graph_1 %>%
-       get_node_df())[4:6, 2],
+    get_node_df(graph_1)[4:6, 2],
     c("a", "b", "c"))
 
   # Expect NA values for the

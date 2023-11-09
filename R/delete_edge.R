@@ -153,7 +153,7 @@ delete_edge <- function(
     if (is.character(from) && is.character(to)) {
 
       # Stop function if the label for `from` exists in the graph
-      if (!(from %in% graph$nodes_df$label)) {
+      if (!from %in% graph$nodes_df$label) {
 
         cli::cli_abort(
           "The value provided in `from` does not exist as a node `label` value.")
@@ -170,7 +170,7 @@ delete_edge <- function(
       }
 
       # Stop function if the label for `to` exists in the graph
-      if (!(to %in% graph$nodes_df$label)) {
+      if (!to %in% graph$nodes_df$label) {
 
         cli::cli_abort(
           "The value provided in `to` does not exist as a node `label` value.")
@@ -225,8 +225,8 @@ delete_edge <- function(
     # Stop function if the edge provided is not
     # in the edge data frame
     if (edf %>%
-        dplyr::filter(from == from_id & to == to_id) %>%
-        nrow == 0) {
+        dplyr::filter(from == from_id, to == to_id) %>%
+        nrow() == 0) {
 
       cli::cli_abort(
         "The edge provided is not in the graph.")
@@ -252,7 +252,7 @@ delete_edge <- function(
     if (edf %>%
         dplyr::filter((from == from_id & to == to_id) |
                       (from == to_id & to == from_id)) %>%
-        nrow == 0) {
+        nrow() == 0) {
 
       cli::cli_abort(
         "The edge provided is not in the graph.")

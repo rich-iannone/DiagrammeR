@@ -195,12 +195,12 @@ edge_aes <- function(style = NULL,
       decorate = decorate)
 
   non_null_attrs <-
-    1:length(attr_values) %>%
+    seq_along(attr_values) %>% # 1:length(attr_values)
     purrr::map_chr(.f = function(x) {
-      if (!is.null(attr_values[[x]])) {
-        attr_values[x] %>% names()
+      if (is.null(attr_values[[x]])) {
+        NA_character_
       } else {
-        NA
+        names(attr_values[x])
       }
     })
 

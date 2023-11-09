@@ -290,7 +290,7 @@ trav_both <- function(
       valid_nodes %>%
       dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
       dplyr::select("id", !!enquo(copy_attrs_from))
 
     nodes <-

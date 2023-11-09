@@ -165,7 +165,8 @@ mutate_node_attrs_ws <- function(
     dplyr::bind_rows(
       ndf %>% dplyr::filter(!(!!enquo(s))) %>% dplyr::mutate(!!!enquos(...)),
       ndf %>% dplyr::filter( (!!enquo(s)))
-    ) %>% dplyr::arrange(!!enquo(order))
+    ) %>%
+    dplyr::arrange(!!enquo(order))
 
   graph$nodes_df <- ndf
 

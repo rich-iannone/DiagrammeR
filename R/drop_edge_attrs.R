@@ -65,8 +65,8 @@ drop_edge_attrs <- function(
   # `from`, `to`, or `rel`
   if (any(c("from", "to", "rel") %in%
           edge_attr)) {
-    cli::cli_abort(c(
-      "You cannot drop {.val from}, {.val to} or {.val rel} column."))
+    cli::cli_abort(
+      "You cannot drop {.val from}, {.val to} or {.val rel} column.")
   }
 
   # Extract the graph's edf

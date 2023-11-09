@@ -356,7 +356,7 @@ save_graph_as_rds <- function(graph) {
   }
 
   # Save the graph as an RDS file in the subdirectory
-  saveRDS(graph, file = paste0(rds_dir_name, "/", rds_filename))
+  saveRDS(graph, file = file.path(rds_dir_name, rds_filename, fsep = "/"))
 }
 
 ###
@@ -368,18 +368,22 @@ save_graph_as_rds <- function(graph) {
 #' @noRd
 get_col_selection <- function(col_selection_stmt) {
 
-  if (all(stringr::str_detect(
-    string = col_selection_stmt,
-    pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$")) & length(col_selection_stmt) == 1) {
+  if (length(col_selection_stmt) == 1 &&
+      all(stringr::str_detect(
+        string = col_selection_stmt,
+        pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$")
+        )) {
 
     selection_type <- "single_column_name"
 
     # Get the column names
     column_selection <- col_selection_stmt
 
-  } else if (all(stringr::str_detect(
-    string = col_selection_stmt,
-    pattern = "(.* & ).*")) & length(col_selection_stmt) == 1) {
+  } else if (length(col_selection_stmt) == 1 &&
+             all(stringr::str_detect(
+               string = col_selection_stmt,
+               pattern = "(.* & ).*")
+               )) {
 
     selection_type <- "column_names"
 
@@ -832,23 +836,19 @@ remove_linked_dfs <- function(graph) {
   # Remove the `df_id` column from the
   # graph's ndf if there are no referenced
   # data frames within (i.e., all NA)
-  if ("df_id" %in% colnames(graph$nodes_df)) {
+  if (rlang::has_name(graph$nodes_df, "df_id") &&
+      all(is.na(graph$nodes_df$df_id))) {
 
-    if (all(is.na(graph$nodes_df$df_id))) {
-
-      graph$nodes_df$df_id <- NULL
-    }
+    graph$nodes_df$df_id <- NULL
   }
 
   # Remove the `df_id` column from the
   # graph's edf if there are no referenced
   # data frames within (i.e., all NA)
-  if ("df_id" %in% colnames(graph$edges_df)) {
+  if (rlang::has_name(graph$edges_df, "df_id") &&
+      all(is.na(graph$edges_df$df_id))) {
 
-    if (all(is.na(graph$edges_df$df_id))) {
-
-      graph$edges_df$df_id <- NULL
-    }
+    graph$edges_df$df_id <- NULL
   }
 
   graph
@@ -936,7 +936,8 @@ get_attr_tbl <- function(line) {
   el_attrs <-
     strsplit(line, "' ") %>%
     unlist() %>%
-    gsub("'", "", .) %>% strsplit("=")
+    gsub("'", "", .) %>%
+    strsplit("=")
 
   stats::setNames(
     sapply(el_attrs, `[[`, 2),

@@ -224,10 +224,10 @@ add_islands_graph <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, sample_islands_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- sample_islands_graph
+  } else {
+    graph <- combine_graphs(graph, sample_islands_graph)
   }
 
   # Update the `last_node` counter

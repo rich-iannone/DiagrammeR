@@ -53,7 +53,7 @@ get_nbrs <- function(
   # in `nodes`
   for (i in seq_along(nodes)) {
     if (i == 1) {
-      node_nbrs <- vector(mode = 'numeric')
+      node_nbrs <- vector(mode = "numeric")
     }
     node_nbrs <-
       c(node_nbrs,

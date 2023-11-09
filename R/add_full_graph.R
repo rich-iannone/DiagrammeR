@@ -221,8 +221,8 @@ add_full_graph <- function(
           values = edge_wt_matrix[
             lower.tri(
               edge_wt_matrix,
-              diag = ifelse(!keep_loops,
-                            FALSE, TRUE))])
+              diag = ifelse(keep_loops,
+                            TRUE, FALSE))])
     }
   }
 
@@ -279,7 +279,7 @@ add_full_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(new_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
@@ -298,7 +298,7 @@ add_full_graph <- function(
 
     if (nrow(node_data_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(new_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%

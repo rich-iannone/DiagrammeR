@@ -16,7 +16,7 @@ test_that("No warning is produced.", {
       set_seed = 23
     ) %>%
     add_gnp_graph(
-      n = 50, p = 1/100,
+      n = 50, p = 1 / 100,
       set_seed = 23
     ) %>%
     join_node_attrs(df = get_betweenness(.)) %>%
@@ -59,7 +59,7 @@ test_that("Output to svg works as expected", {
       set_seed = 23
     ) %>%
     add_gnp_graph(
-      n = 50, p = 1/100,
+      n = 50, p = 1 / 100,
       set_seed = 23
     ) %>%
     join_node_attrs(df = get_betweenness(.)) %>%

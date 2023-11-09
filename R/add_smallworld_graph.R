@@ -135,7 +135,7 @@ add_smallworld_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(sample_smallworld_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(sample_smallworld_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(sample_smallworld_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
@@ -238,10 +238,10 @@ add_smallworld_graph <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, sample_smallworld_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- sample_smallworld_graph
+  } else {
+    graph <- combine_graphs(graph, sample_smallworld_graph)
   }
 
   # Update the `last_node` counter

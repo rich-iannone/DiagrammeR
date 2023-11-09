@@ -173,9 +173,8 @@ rescale_edge_attrs <- function(
         3)
   }
 
-  # Get vector of rescaled, edge attribute color values
-  if ((to_lower_bound %in% grDevices::colors()) &
-      (to_upper_bound %in% grDevices::colors())) {
+  # Get vector of rescaled, edge attribute color values if both to_lower and
+  if (all(c(to_lower_bound, to_upper_bound) %in% grDevices::colors())) {
 
     edges_attr_vector_rescaled <-
       scales::cscale(
@@ -203,7 +202,7 @@ rescale_edge_attrs <- function(
       values = edges_attr_vector_rescaled)
 
   # Remove last action from the `graph_log`
-  graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
+  graph$graph_log <- graph$graph_log[seq_len(nrow(graph$graph_log) - 1), ]
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

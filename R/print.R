@@ -551,7 +551,7 @@ print.dgr_graph <- function(x, ...) {
 
   if (console_width -
       cache_detail_str_length -
-      info_labels_cache_length >= 5 &
+      info_labels_cache_length >= 5 &&
       !is.na(get_cache(x))[1]) {
 
     cache_detail_str <-

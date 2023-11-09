@@ -66,8 +66,8 @@ test_that("Getting closeness is possible", {
 
   # Expect node ID values in the first column
   expect_identical(
-    closeness_vals_all[,1],
-    as.integer(1:10))
+    closeness_vals_all[, 1],
+    1:10)
 })
 
 test_that("Getting coreness values is possible", {
@@ -98,7 +98,7 @@ test_that("Getting coreness values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     coreness_vals_all[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numeric values in the second column
   expect_type(
@@ -126,7 +126,7 @@ test_that("Getting coreness values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     coreness_vals_in[, 1],
-    as.integer(1:10))
+    1:10)
 
   # Expect numeric values in the second column
   expect_type(
@@ -232,8 +232,8 @@ test_that("Getting alpha centrality is possible", {
 
   # Expect node ID values in the first column
   expect_identical(
-    alpha_central_vals[,1],
-    as.integer(1:15))
+    alpha_central_vals[, 1],
+    1:15)
 
   # Expect numerical values in the
   # second column
@@ -269,7 +269,7 @@ test_that("Getting leverage centrality is possible", {
 
   # Expect node ID values in the first column
   expect_identical(
-    leverage_central_vals[,1],
+    leverage_central_vals[, 1],
     1:10)
 
   # Expect numerical values in the
@@ -448,7 +448,7 @@ test_that("Getting eigenvector centrality is possible", {
     select_edges() %>%
     set_edge_attrs_ws(
       edge_attr = weight,
-      value = 1:6 %>% as.character()) %>%
+      value = as.character(1:6)) %>%
     clear_selection()
 
   # Expect an error when the specified

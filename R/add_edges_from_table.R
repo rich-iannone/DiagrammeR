@@ -165,12 +165,9 @@ add_edges_from_table <- function(
 
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
-  if (!is.null(rel_col)) {
-
-    if (any(colnames(csv) == rel_col)) {
+  if (!is.null(rel_col) && any(colnames(csv) == rel_col)) {
       colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
       csv$rel <- as.character(csv$rel)
-    }
   }
 
   # Extract the ndf from the graph
@@ -231,7 +228,7 @@ add_edges_from_table <- function(
   # Add in an `id` column
   edf <-
     dplyr::bind_cols(
-      data.frame(id = as.integer(1:nrow(edf)) + graph$last_edge),
+      data.frame(id = seq_len(nrow(edf)) + as.integer(graph$last_edge)),
       edf)
 
   # Optionally set the `rel` attribute with a single

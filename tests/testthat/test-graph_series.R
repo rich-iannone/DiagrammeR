@@ -83,8 +83,7 @@ test_that("adding graphs to a series is also possible", {
     series$series_type, "sequential")
 
   # Expect that the `graphs` component is not `NULL`
-  expect_true(
-    !is.null(series$graphs))
+  expect_false(is.null(series$graphs))
 
   # Expect that several series components are `NULL`
   expect_null(series$series_name)
@@ -133,8 +132,7 @@ test_that("adding graphs to a series is also possible", {
     series_w_graph$series_type, "sequential")
 
   # Expect that the 'graphs' component is not `NULL`
-  expect_true(
-    !is.null(series_w_graph$graphs))
+  expect_false(is.null(series_w_graph$graphs))
 
   # Expect that the series has a graph count of 1
   expect_equal(

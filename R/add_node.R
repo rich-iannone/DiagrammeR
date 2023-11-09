@@ -69,7 +69,7 @@ add_node <- function(
   check_graph_valid(graph)
 
   # Get the node ID for the node to be added
-  node <- graph$last_node + 1
+  node <- graph$last_node + 1L
 
   # Get the number of edges in the graph
   edges_in_graph <- nrow(graph$edges_df)
@@ -479,6 +479,7 @@ add_node <- function(
         "The nodes to which edges should be applied from the new node are not available."
       )
     }
+
     # If both to_nodes and from_nodes are available, continue.
       new_node <-
         create_node_df(

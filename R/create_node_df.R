@@ -66,9 +66,6 @@ create_node_df <- function(
     ...
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   check_number_whole(n)
 
   type <- type %||% rep(NA_character_, n)
@@ -95,7 +92,7 @@ create_node_df <- function(
   # Collect extra vectors of data as `extras`
   extras <- list(...)
 
-  if (length(extras) > 0) {
+  if (length(extras) > 0L) {
 
     for (i in seq_along(extras)) {
 
@@ -132,8 +129,7 @@ create_node_df <- function(
     label <- rep(NA_character_, n)
   } else if (rlang::inherits_any(label, c("numeric", "character"))) {
     label <- as.character(label)
-  } else if (inherits(label, "logical") &&
-             length(label) == 1) {
+  } else if (rlang::is_logical(label, 1)) {
     if (label) {
       label <- as.character(seq_len(n))
     } else {

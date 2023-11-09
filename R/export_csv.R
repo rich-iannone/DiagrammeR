@@ -93,13 +93,11 @@ export_csv <- function(
   # Write the CSV files to the output directory
   utils::write.csv(
     nodes_df,
-    file = paste0(output_path,
-                  "/", ndf_name),
+    file = file.path(output_path, ndf_name, fsep = "/"),
     row.names = FALSE, quote = FALSE)
 
   utils::write.csv(
     edges_df,
-    file = paste0(output_path,
-                  "/", edf_name),
+    file = file.path(output_path, edf_name, fsep = "/"),
     row.names = FALSE, quote = FALSE)
 }

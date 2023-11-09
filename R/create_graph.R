@@ -272,7 +272,7 @@ create_graph <- function(
       nodes_df = ndf,
       edges_df = edf,
       global_attrs = global_attrs,
-      directed = ifelse(directed, TRUE, FALSE),
+      directed = directed, # TRUE or FALSE
       last_node = 0,
       last_edge = 0,
       node_selection = nsdf,
@@ -373,13 +373,10 @@ create_graph <- function(
     graph$last_node <- nrow(nodes_df)
 
     # Ensure that the edf has the correct classes
-    if (inherits(edges_df, "data.frame")) {
+    if (inherits(edges_df, "data.frame") && ncol(edges_df) > 2) {
 
-      if (ncol(edges_df) > 2) {
-
-        # Force the rel column to be of the character class
-        edges_df$rel <- as.character(edges_df$rel)
-      }
+      # Force the rel column to be of the character class
+      edges_df$rel <- as.character(edges_df$rel)
     }
 
     # Bind the edges to the `edges_df` df in the graph

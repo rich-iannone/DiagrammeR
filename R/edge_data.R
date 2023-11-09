@@ -38,7 +38,7 @@ edge_data <- function(...) {
   # attribute values into a list object
   edge_data_values <- list(...)
 
-  if (any(names(edge_data_values) %in% gv_edge_attributes())){
+  if (any(names(edge_data_values) %in% gv_edge_attributes())) {
 
     cli::cli_abort(
       "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.")

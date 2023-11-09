@@ -93,8 +93,8 @@ test_that("Setting a cache is possible", {
       col = "closeness")
 
   # Expect two vectors in [graph]$cache
-  expect_equal(
-    length(graph_cache_no_name_2$cache), 2)
+  expect_length(
+    graph_cache_no_name_2$cache, 2)
 })
 
 test_that("Getting a cache is possible", {

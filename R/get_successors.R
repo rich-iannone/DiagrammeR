@@ -72,11 +72,11 @@ get_successors <- function(
       nrow(get_edge_info(graph)) > 0) {
 
     if (length(graph$edges_df[graph$edges_df$from ==
-                              node,]$to) == 0) {
+                              node, ]$to) == 0) {
       successors <- NA
     } else {
       successors <-
-        graph$edges_df[graph$edges_df$from == node,]$to
+        graph$edges_df[graph$edges_df$from == node, ]$to
     }
     return(successors)
   }

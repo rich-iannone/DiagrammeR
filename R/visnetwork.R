@@ -188,7 +188,7 @@ visnetwork <- function(graph) {
           arrows = list(
             to =
               list(
-                enabled = ifelse(arrows_for_edges, TRUE, FALSE),
+                enabled = arrows_for_edges, # TRUE or FALSE
                 scaleFactor = 1)),
           smooth = FALSE,
           font = list(

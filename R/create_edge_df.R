@@ -92,7 +92,7 @@ create_edge_df <- function(
 
     # Expand vectors with `length` > `1` and
     # `length` < `length(from)`
-    if (length(rel) > 1 &
+    if (length(rel) > 1 &&
         length(rel) < length(from)) {
       rel <-
         c(rel,

@@ -124,7 +124,7 @@ get_paths <- function(
               which(!(
                 next_nodes %in%
                   paths[[i]][
-                    1:length(paths[[i]]) - 1]))]
+                    seq_along(length(paths[[i]])) - 1]))]
 
           # Apply traversed nodes to each of the
           # path vectors in a multiple degree context
@@ -159,7 +159,7 @@ get_paths <- function(
             any(is.na(
               get_successors(
                 graph,
-                paths[[k]][length(paths[[k]])]))|
+                paths[[k]][length(paths[[k]])])) |
                 all(get_successors(
                   graph,
                   paths[[k]][length(paths[[k]])]) %in%
@@ -249,7 +249,7 @@ get_paths <- function(
           not_longest_length_paths <-
             vector(mode = "numeric")
           longest_length <-
-            max(sapply(1:length(paths),
+            max(sapply(seq_along(paths),
                        function(x) length(paths[[x]])))
         }
 

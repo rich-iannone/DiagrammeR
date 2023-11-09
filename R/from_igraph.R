@@ -38,9 +38,6 @@ from_igraph <- function(igraph,
                         write_backups = FALSE,
                         display_msgs = FALSE) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Get vectors of all node and edge attributes
   node_attrs <- igraph::vertex_attr_names(igraph)
   edge_attrs <- igraph::edge_attr_names(igraph)

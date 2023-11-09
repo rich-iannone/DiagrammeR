@@ -143,7 +143,7 @@ set_node_attr_to_display <- function(
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(nodes),
-        display = as.character("is_na"))
+        display = "is_na")
   }
 
   # Join the `attr_to_display` table with the `ndf`

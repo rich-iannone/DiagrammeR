@@ -57,7 +57,7 @@ get_leverage_centrality <- function(graph) {
   # all nodes in the graph
   leverage_centrality_values <-
     purrr::map(
-      1:length(degree_vals),
+      seq_along(degree_vals),
       function(x) {
         mean(
           (degree_vals[x] - degree_vals[igraph::neighbors(ig_graph, degree_vals)]) /

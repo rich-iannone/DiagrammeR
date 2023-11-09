@@ -107,19 +107,14 @@ get_edges <- function(
     return_values = "id"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Extract edge data frame from the graph
   edges_df <- graph$edges_df
 
   if (return_values == "label") {
     edges_df <-
       edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("from" = "id")) %>%
-      dplyr::rename(from_label_ = label) %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("to" = "id")) %>%
-      dplyr::rename(to_label_ = label)
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id",from_label_ = "label"), by = c("from" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", to_label_ = "label"), by = c("to" = "id"))
   }
 
 
