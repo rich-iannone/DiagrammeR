@@ -256,7 +256,7 @@ render_graph <- function(
     # Generate DOT code
     dot_code <- generate_dot(graph)
 
-    # create display to make it work #475
+    # create display to make return work when `as_svg = TRUE` #482
     display <- grViz(diagram = dot_code, width = width, height = height)
 
     # Get a vector of SVG lines
