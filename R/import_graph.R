@@ -86,6 +86,7 @@ import_graph <- function(
         length(unlist(strsplit(graph_file, "/")))]
 
     # Download the file
+    rlang::check_installed("curl", "to download a graph file.")
     curl::curl_download(graph_file, destfile = dest_file)
 
     # Extract the file and get the filename of the extracted file
@@ -109,19 +110,10 @@ import_graph <- function(
     file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
     # Determine file type from file extension
-    if (file_extension == "gml") {
-      file_type <- "gml"
-    } else if (file_extension == "sif") {
-      file_type <- "sif"
-    } else if (file_extension == "edges") {
-      file_type <- "edges"
-    } else if (file_extension == "mtx") {
-      file_type <- "mtx"
-    } else {
+    rlang::arg_match0(file_extension, c("gml", "sif", "edges", "mtx"))
 
-      cli::cli_abort(
-        "The file type is not known so it can't be imported.")
-    }
+    # one of gml, sif, edges, or mtx
+    file_type <- file_extension
   }
 
   if (file_type == "edges") {
@@ -133,7 +125,7 @@ import_graph <- function(
     first_line <- grep("^[^%].*", edges_document)[1]
 
     # Determine the number of lines to skip
-    lines_to_skip <- first_line - 1
+    lines_to_skip <- first_line - 1L
 
     # Set default attribute names and column types
     # for an `edges` file
@@ -162,29 +154,28 @@ import_graph <- function(
 
     edges <-
       edges %>%
-      dplyr::mutate(id = seq_len(n_rows)) %>%
-      dplyr::mutate(rel = NA_character_) %>%
+      dplyr::mutate(
+        id = seq_len(n_rows),
+        rel = NA_character_
+        ) %>%
       dplyr::relocate("id", "from", "to", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
+    # taking edges$from and edges$to
+    edge_id_from <- as.integer(edges$from)
+    edge_id_to <- as.integer(edges$to)
+
+    nodes_raw <- unique(c(edge_id_from, edge_id_to))
+
     nodes <-
-      dplyr::bind_rows(
-        dplyr::tibble(
-          id = edges %>%
-            dplyr::as_tibble() %>%
-            dplyr::select("from") %>%
-            purrr::flatten_int()),
-        dplyr::tibble(
-          id = edges %>%
-            dplyr::as_tibble() %>%
-            dplyr::select("to") %>%
-            purrr::flatten_int())) %>%
-      dplyr::distinct() %>%
-      dplyr::arrange(id) %>%
-      dplyr::mutate(type = NA_character_,
-                    label = as.character(id)) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+      data.frame(
+        id = nodes_raw,
+        type = NA_character_,
+        label = as.character(nodes_raw),
+        stringsAsFactors = FALSE
+    )
+    nodes <- dplyr::arrange(nodes, .data$id)
 
     # Create the graph
     the_graph <-
@@ -259,10 +250,10 @@ import_graph <- function(
     # Extract information on whether graph is directed
     graph_directed <-
       unlist(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(gml_document,
                           "directed [0-1]"),
-          "directed ", ""))
+          "directed "))
 
     # Extract all node definitions
     node_defs <-
@@ -273,11 +264,11 @@ import_graph <- function(
     # Get all node ID values
     node_id <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             node_defs,
             "id [a-z0-9_]*"),
-          "id ", ""))
+          "id "))
 
     # Get all node label values, if they exist
     if (any(stringr::str_detect(node_defs, "label"))) {
@@ -299,19 +290,19 @@ import_graph <- function(
 
     edges_from <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "source [a-z0-9_]*"),
-          "source ", ""))
+          "source "))
 
     edges_to <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "target [a-z0-9_]*"),
-          "target ", ""))
+          "target "))
 
 
     if (any(stringr::str_detect(edge_defs, "label"))) {
@@ -336,11 +327,11 @@ import_graph <- function(
 
     # Create all nodes for graph
     all_nodes <-
-      dplyr::tibble(
+      data.frame(
         id = node_id,
         type = NA_character_,
-        label = NA_character_) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+        label = NA_character_,
+        stringsAsFactors = FALSE)
 
     if (exists("node_label")) {
       all_nodes$label <- node_label
