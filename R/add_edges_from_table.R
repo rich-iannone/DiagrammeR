@@ -166,8 +166,9 @@ add_edges_from_table <- function(
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
   if (!is.null(rel_col) && any(colnames(csv) == rel_col)) {
-      colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
-      csv$rel <- as.character(csv$rel)
+
+    colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
+    csv$rel <- as.character(csv$rel)
   }
 
   # Extract the ndf from the graph
