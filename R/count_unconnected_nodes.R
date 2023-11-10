@@ -59,7 +59,7 @@ count_unconnected_nodes <- function(graph) {
       nodes_in_edf) %>%
     dplyr::pull("node_id")
 
-  if (length(nodes_in_edf) > 0) {
+  if (length(nodes_in_edf > 0)) {
     return(length(nodes_not_in_edf))
   } else {
     return(0L)

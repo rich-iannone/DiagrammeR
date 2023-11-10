@@ -212,7 +212,7 @@ trav_out_until <- function(
     if (step == max_steps) break
   }
 
-  if (length(node_stack) > 0) {
+  if (length(node_stack > 0)) {
 
     if (add_to_selection) {
 
