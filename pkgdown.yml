@@ -7,5 +7,8 @@ articles:
   selections: selections.html
   simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
   traversals: traversals.html
-last_built: 2023-11-09T02:20Z
+last_built: 2023-11-11T00:05Z
+urls:
+  reference: https://rich-iannone.github.io/DiagrammeR/reference
+  article: https://rich-iannone.github.io/DiagrammeR/articles
 

@@ -1,795 +1,795 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/404.html</loc>
   </url>
   <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/graphviz-mermaid.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/graphviz-mermaid.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/node-edge-data-frames.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/node-edge-data-frames.html</loc>
   </url>
   <url>
-    <loc>/articles/selections.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/selections.html</loc>
   </url>
   <url>
-    <loc>/articles/simple-graphs-ndfs-edfs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/simple-graphs-ndfs-edfs.html</loc>
   </url>
   <url>
-    <loc>/articles/traversals.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/articles/traversals.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/DiagrammeR-package.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/DiagrammeR-package.html</loc>
   </url>
   <url>
-    <loc>/reference/DiagrammeR.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/DiagrammeR.html</loc>
   </url>
   <url>
-    <loc>/reference/DiagrammeROutput.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/DiagrammeROutput.html</loc>
   </url>
   <url>
-    <loc>/reference/add_balanced_tree.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_balanced_tree.html</loc>
   </url>
   <url>
-    <loc>/reference/add_cycle.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_cycle.html</loc>
   </url>
   <url>
-    <loc>/reference/add_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/add_edge_clone.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_edge_clone.html</loc>
   </url>
   <url>
-    <loc>/reference/add_edge_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_edge_df.html</loc>
   </url>
   <url>
-    <loc>/reference/add_edges_from_table.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_edges_from_table.html</loc>
   </url>
   <url>
-    <loc>/reference/add_edges_w_string.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_edges_w_string.html</loc>
   </url>
   <url>
-    <loc>/reference/add_forward_edges_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_forward_edges_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/add_full_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_full_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_global_graph_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_global_graph_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/add_gnm_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_gnm_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_gnp_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_gnp_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_graph_action.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_graph_action.html</loc>
   </url>
   <url>
-    <loc>/reference/add_graph_to_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_graph_to_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/add_grid_2d.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_grid_2d.html</loc>
   </url>
   <url>
-    <loc>/reference/add_grid_3d.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_grid_3d.html</loc>
   </url>
   <url>
-    <loc>/reference/add_growing_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_growing_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_islands_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_islands_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_mathjax.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_mathjax.html</loc>
   </url>
   <url>
-    <loc>/reference/add_n_node_clones.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_n_node_clones.html</loc>
   </url>
   <url>
-    <loc>/reference/add_n_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_n_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/add_n_nodes_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_n_nodes_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/add_node.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_node.html</loc>
   </url>
   <url>
-    <loc>/reference/add_node_clones_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_node_clones_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/add_node_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_node_df.html</loc>
   </url>
   <url>
-    <loc>/reference/add_nodes_from_df_cols.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_nodes_from_df_cols.html</loc>
   </url>
   <url>
-    <loc>/reference/add_nodes_from_table.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_nodes_from_table.html</loc>
   </url>
   <url>
-    <loc>/reference/add_pa_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_pa_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_path.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_path.html</loc>
   </url>
   <url>
-    <loc>/reference/add_prism.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_prism.html</loc>
   </url>
   <url>
-    <loc>/reference/add_reverse_edges_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_reverse_edges_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/add_smallworld_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_smallworld_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/add_star.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/add_star.html</loc>
   </url>
   <url>
-    <loc>/reference/clear_selection.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/clear_selection.html</loc>
   </url>
   <url>
-    <loc>/reference/colorize_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/colorize_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/colorize_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/colorize_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/combine_edfs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/combine_edfs.html</loc>
   </url>
   <url>
-    <loc>/reference/combine_graphs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/combine_graphs.html</loc>
   </url>
   <url>
-    <loc>/reference/combine_ndfs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/combine_ndfs.html</loc>
   </url>
   <url>
-    <loc>/reference/copy_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/copy_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/copy_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/copy_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/count_asymmetric_node_pairs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_asymmetric_node_pairs.html</loc>
   </url>
   <url>
-    <loc>/reference/count_automorphisms.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_automorphisms.html</loc>
   </url>
   <url>
-    <loc>/reference/count_edges.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_edges.html</loc>
   </url>
   <url>
-    <loc>/reference/count_graphs_in_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_graphs_in_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/count_loop_edges.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_loop_edges.html</loc>
   </url>
   <url>
-    <loc>/reference/count_mutual_node_pairs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_mutual_node_pairs.html</loc>
   </url>
   <url>
-    <loc>/reference/count_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/count_s_connected_cmpts.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_s_connected_cmpts.html</loc>
   </url>
   <url>
-    <loc>/reference/count_unconnected_node_pairs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_unconnected_node_pairs.html</loc>
   </url>
   <url>
-    <loc>/reference/count_unconnected_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_unconnected_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/count_w_connected_cmpts.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/count_w_connected_cmpts.html</loc>
   </url>
   <url>
-    <loc>/reference/create_edge_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/create_edge_df.html</loc>
   </url>
   <url>
-    <loc>/reference/create_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/create_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/create_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/create_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/create_node_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/create_node_df.html</loc>
   </url>
   <url>
-    <loc>/reference/currencies.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/currencies.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_cache.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_cache.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_edges_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_edges_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_global_graph_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_global_graph_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_graph_actions.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_graph_actions.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_loop_edges_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_loop_edges_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_node.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_node.html</loc>
   </url>
   <url>
-    <loc>/reference/delete_nodes_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/delete_nodes_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/deselect_edges.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/deselect_edges.html</loc>
   </url>
   <url>
-    <loc>/reference/deselect_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/deselect_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/display_metagraph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/display_metagraph.html</loc>
   </url>
   <url>
-    <loc>/reference/do_bfs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/do_bfs.html</loc>
   </url>
   <url>
-    <loc>/reference/do_dfs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/do_dfs.html</loc>
   </url>
   <url>
-    <loc>/reference/drop_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/drop_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/drop_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/drop_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/edge_aes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/edge_aes.html</loc>
   </url>
   <url>
-    <loc>/reference/edge_data.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/edge_data.html</loc>
   </url>
   <url>
-    <loc>/reference/edge_list_1.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/edge_list_1.html</loc>
   </url>
   <url>
-    <loc>/reference/edge_list_2.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/edge_list_2.html</loc>
   </url>
   <url>
-    <loc>/reference/export_csv.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/export_csv.html</loc>
   </url>
   <url>
-    <loc>/reference/export_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/export_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/filter_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/from_adj_matrix.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/from_adj_matrix.html</loc>
   </url>
   <url>
-    <loc>/reference/from_igraph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/from_igraph.html</loc>
   </url>
   <url>
-    <loc>/reference/fully_connect_nodes_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/fully_connect_nodes_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/fully_disconnect_nodes_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/fully_disconnect_nodes_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/generate_dot.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/generate_dot.html</loc>
   </url>
   <url>
-    <loc>/reference/get_adhesion.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_adhesion.html</loc>
   </url>
   <url>
-    <loc>/reference/get_agg_degree_in.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_agg_degree_in.html</loc>
   </url>
   <url>
-    <loc>/reference/get_agg_degree_out.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_agg_degree_out.html</loc>
   </url>
   <url>
-    <loc>/reference/get_agg_degree_total.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_agg_degree_total.html</loc>
   </url>
   <url>
-    <loc>/reference/get_all_connected_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_all_connected_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/get_alpha_centrality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_alpha_centrality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_articulation_points.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_articulation_points.html</loc>
   </url>
   <url>
-    <loc>/reference/get_authority_centrality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_authority_centrality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_betweenness.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_betweenness.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cache.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cache.html</loc>
   </url>
   <url>
-    <loc>/reference/get_closeness.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_closeness.html</loc>
   </url>
   <url>
-    <loc>/reference/get_closeness_vitality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_closeness_vitality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cmty_edge_btwns.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cmty_edge_btwns.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cmty_fast_greedy.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cmty_fast_greedy.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cmty_l_eigenvec.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cmty_l_eigenvec.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cmty_louvain.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cmty_louvain.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cmty_walktrap.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_cmty_walktrap.html</loc>
   </url>
   <url>
-    <loc>/reference/get_common_nbrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_common_nbrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_coreness.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_coreness.html</loc>
   </url>
   <url>
-    <loc>/reference/get_degree_distribution.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_degree_distribution.html</loc>
   </url>
   <url>
-    <loc>/reference/get_degree_histogram.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_degree_histogram.html</loc>
   </url>
   <url>
-    <loc>/reference/get_degree_in.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_degree_in.html</loc>
   </url>
   <url>
-    <loc>/reference/get_degree_out.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_degree_out.html</loc>
   </url>
   <url>
-    <loc>/reference/get_degree_total.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_degree_total.html</loc>
   </url>
   <url>
-    <loc>/reference/get_dice_similarity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_dice_similarity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eccentricity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_eccentricity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_count_w_multiedge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_count_w_multiedge.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_df.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_df_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_df_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_ids.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_ids.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edge_info.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edge_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_edges.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_edges.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eigen_centrality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_eigen_centrality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_girth.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_girth.html</loc>
   </url>
   <url>
-    <loc>/reference/get_global_graph_attr_info.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_global_graph_attr_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_actions.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_actions.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_from_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_from_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_info.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_log.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_log.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_name.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_name.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_series_info.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_series_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_graph_time.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_graph_time.html</loc>
   </url>
   <url>
-    <loc>/reference/get_jaccard_similarity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_jaccard_similarity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_last_edges_created.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_last_edges_created.html</loc>
   </url>
   <url>
-    <loc>/reference/get_last_nodes_created.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_last_nodes_created.html</loc>
   </url>
   <url>
-    <loc>/reference/get_leverage_centrality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_leverage_centrality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_max_eccentricity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_max_eccentricity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_mean_distance.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_mean_distance.html</loc>
   </url>
   <url>
-    <loc>/reference/get_min_cut_between.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_min_cut_between.html</loc>
   </url>
   <url>
-    <loc>/reference/get_min_eccentricity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_min_eccentricity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_multiedge_count.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_multiedge_count.html</loc>
   </url>
   <url>
-    <loc>/reference/get_nbrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_nbrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_df.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_df.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_df_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_df_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_ids.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_ids.html</loc>
   </url>
   <url>
-    <loc>/reference/get_node_info.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_node_info.html</loc>
   </url>
   <url>
-    <loc>/reference/get_non_nbrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_non_nbrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_pagerank.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_pagerank.html</loc>
   </url>
   <url>
-    <loc>/reference/get_paths.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_paths.html</loc>
   </url>
   <url>
-    <loc>/reference/get_periphery.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_periphery.html</loc>
   </url>
   <url>
-    <loc>/reference/get_predecessors.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_predecessors.html</loc>
   </url>
   <url>
-    <loc>/reference/get_radiality.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_radiality.html</loc>
   </url>
   <url>
-    <loc>/reference/get_reciprocity.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_reciprocity.html</loc>
   </url>
   <url>
-    <loc>/reference/get_s_connected_cmpts.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_s_connected_cmpts.html</loc>
   </url>
   <url>
-    <loc>/reference/get_selection.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_selection.html</loc>
   </url>
   <url>
-    <loc>/reference/get_similar_nbrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_similar_nbrs.html</loc>
   </url>
   <url>
-    <loc>/reference/get_successors.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_successors.html</loc>
   </url>
   <url>
-    <loc>/reference/get_w_connected_cmpts.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/get_w_connected_cmpts.html</loc>
   </url>
   <url>
-    <loc>/reference/grViz.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/grViz.html</loc>
   </url>
   <url>
-    <loc>/reference/grVizOutput.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/grVizOutput.html</loc>
   </url>
   <url>
-    <loc>/reference/import_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/import_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/invert_selection.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/invert_selection.html</loc>
   </url>
   <url>
-    <loc>/reference/is_edge_loop.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_edge_loop.html</loc>
   </url>
   <url>
-    <loc>/reference/is_edge_multiple.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_edge_multiple.html</loc>
   </url>
   <url>
-    <loc>/reference/is_edge_mutual.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_edge_mutual.html</loc>
   </url>
   <url>
-    <loc>/reference/is_edge_present.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_edge_present.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_connected.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_connected.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_dag.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_dag.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_directed.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_directed.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_empty.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_empty.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_simple.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_simple.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_undirected.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_undirected.html</loc>
   </url>
   <url>
-    <loc>/reference/is_graph_weighted.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_graph_weighted.html</loc>
   </url>
   <url>
-    <loc>/reference/is_node_present.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_node_present.html</loc>
   </url>
   <url>
-    <loc>/reference/is_property_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/is_property_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/join_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/join_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/join_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/join_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/layout_nodes_w_string.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/layout_nodes_w_string.html</loc>
   </url>
   <url>
-    <loc>/reference/mermaid.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/mermaid.html</loc>
   </url>
   <url>
-    <loc>/reference/mutate_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/mutate_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/mutate_edge_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/mutate_edge_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/mutate_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/mutate_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/mutate_node_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/mutate_node_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/node_aes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/node_aes.html</loc>
   </url>
   <url>
-    <loc>/reference/node_data.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/node_data.html</loc>
   </url>
   <url>
-    <loc>/reference/node_edge_aes_data.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/node_edge_aes_data.html</loc>
   </url>
   <url>
-    <loc>/reference/node_list_1.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/node_list_1.html</loc>
   </url>
   <url>
-    <loc>/reference/node_list_2.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/node_list_2.html</loc>
   </url>
   <url>
-    <loc>/reference/nudge_node_positions_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/nudge_node_positions_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/open_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/open_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/pipe.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/print.dgr_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/print.dgr_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/recode_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/recode_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/recode_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/recode_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/remove_graph_from_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/remove_graph_from_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/rename_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rename_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/rename_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rename_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/renderDiagrammeR.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/renderDiagrammeR.html</loc>
   </url>
   <url>
-    <loc>/reference/renderGrViz.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/renderGrViz.html</loc>
   </url>
   <url>
-    <loc>/reference/render_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/render_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/render_graph_from_graph_series.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/render_graph_from_graph_series.html</loc>
   </url>
   <url>
-    <loc>/reference/reorder_graph_actions.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/reorder_graph_actions.html</loc>
   </url>
   <url>
-    <loc>/reference/replace_in_spec.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/replace_in_spec.html</loc>
   </url>
   <url>
-    <loc>/reference/rescale_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rescale_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/rescale_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rescale_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/rev_edge_dir.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rev_edge_dir.html</loc>
   </url>
   <url>
-    <loc>/reference/rev_edge_dir_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/rev_edge_dir_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/save_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/save_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/select_edges.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_edges.html</loc>
   </url>
   <url>
-    <loc>/reference/select_edges_by_edge_id.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_edges_by_edge_id.html</loc>
   </url>
   <url>
-    <loc>/reference/select_edges_by_node_id.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_edges_by_node_id.html</loc>
   </url>
   <url>
-    <loc>/reference/select_last_edges_created.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_last_edges_created.html</loc>
   </url>
   <url>
-    <loc>/reference/select_last_nodes_created.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_last_nodes_created.html</loc>
   </url>
   <url>
-    <loc>/reference/select_nodes.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_nodes.html</loc>
   </url>
   <url>
-    <loc>/reference/select_nodes_by_degree.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_nodes_by_degree.html</loc>
   </url>
   <url>
-    <loc>/reference/select_nodes_by_id.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_nodes_by_id.html</loc>
   </url>
   <url>
-    <loc>/reference/select_nodes_in_neighborhood.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/select_nodes_in_neighborhood.html</loc>
   </url>
   <url>
-    <loc>/reference/set_cache.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_cache.html</loc>
   </url>
   <url>
-    <loc>/reference/set_edge_attr_to_display.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attr_to_display.html</loc>
   </url>
   <url>
-    <loc>/reference/set_edge_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/set_edge_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/set_graph_directed.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_graph_directed.html</loc>
   </url>
   <url>
-    <loc>/reference/set_graph_name.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_graph_name.html</loc>
   </url>
   <url>
-    <loc>/reference/set_graph_time.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_graph_time.html</loc>
   </url>
   <url>
-    <loc>/reference/set_graph_undirected.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_graph_undirected.html</loc>
   </url>
   <url>
-    <loc>/reference/set_node_attr_to_display.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_node_attr_to_display.html</loc>
   </url>
   <url>
-    <loc>/reference/set_node_attr_w_fcn.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_node_attr_w_fcn.html</loc>
   </url>
   <url>
-    <loc>/reference/set_node_attrs.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_node_attrs.html</loc>
   </url>
   <url>
-    <loc>/reference/set_node_attrs_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_node_attrs_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/set_node_position.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/set_node_position.html</loc>
   </url>
   <url>
-    <loc>/reference/to_igraph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/to_igraph.html</loc>
   </url>
   <url>
-    <loc>/reference/transform_to_complement_graph.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/transform_to_complement_graph.html</loc>
   </url>
   <url>
-    <loc>/reference/transform_to_min_spanning_tree.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/transform_to_min_spanning_tree.html</loc>
   </url>
   <url>
-    <loc>/reference/transform_to_subgraph_ws.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/transform_to_subgraph_ws.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_both.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_both.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_both_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_both_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_in.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_in.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_in_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_in_node.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_in_node.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_in_until.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_in_until.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_out.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_out.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_out_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_out_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_out_node.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_out_node.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_out_until.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_out_until.html</loc>
   </url>
   <url>
-    <loc>/reference/trav_reverse_edge.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trav_reverse_edge.html</loc>
   </url>
   <url>
-    <loc>/reference/trigger_graph_actions.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/trigger_graph_actions.html</loc>
   </url>
   <url>
-    <loc>/reference/usd_exchange_rates.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/usd_exchange_rates.html</loc>
   </url>
   <url>
-    <loc>/reference/visnetwork.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/visnetwork.html</loc>
   </url>
   <url>
-    <loc>/reference/x11_hex.html</loc>
+    <loc>https://rich-iannone.github.io/DiagrammeR/reference/x11_hex.html</loc>
   </url>
 </urlset>
