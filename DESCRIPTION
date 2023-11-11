@@ -21,7 +21,6 @@ BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Depends:
     R (>= 3.2)
 Imports:
-    curl,
     dplyr (>= 1.0.7),
     glue (>= 1.5.0),
     htmltools (>= 0.5.2),
@@ -41,6 +40,7 @@ Imports:
     viridis (>= 0.6.2),
     visNetwork (>= 2.1.0)
 Suggests:
+    curl,
     DiagrammeRsvg,
     knitr,
     rmarkdown,
