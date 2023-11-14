@@ -22,7 +22,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       from = 1)
 
   # Expect a list of 4 components
-  expect_length(paths_from_1, 4)
+  expect_length(
+    paths_from_1, 4)
 
   # Expect specific node IDs in each list
   expect_true(

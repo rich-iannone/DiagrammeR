@@ -987,8 +987,7 @@ test_that("Adding a full graph is possible", {
 
   # Expect that there are no loops in the graph
   expect_length(
-    which(
-      graph$edges_df$from == graph$edges_df$to),
+    which(graph$edges_df$from == graph$edges_df$to),
     0)
 
   # Create a graph, add a full graph

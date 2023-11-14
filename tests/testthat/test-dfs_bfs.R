@@ -24,7 +24,8 @@ test_that("the dfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_length(
-    dfs_all, count_nodes(graph = graph))
+    dfs_all,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
