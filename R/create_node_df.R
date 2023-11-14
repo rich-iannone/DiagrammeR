@@ -129,7 +129,7 @@ create_node_df <- function(
     label <- rep(NA_character_, n)
   } else if (rlang::inherits_any(label, c("numeric", "character"))) {
     label <- as.character(label)
-  } else if (rlang::is_logical(label, 1)) {
+  } else if (rlang::is_logical(label, n = 1)) {
     if (label) {
       label <- as.character(seq_len(n))
     } else {

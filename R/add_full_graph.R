@@ -210,8 +210,7 @@ add_full_graph <- function(
     new_graph <-
       from_adj_matrix(
         adj_matrix,
-        mode = "undirected"
-      )
+        mode = "undirected")
 
     # If a matrix of edge weights provided, apply those
     # from the bottom triangle to each of the edges in a
