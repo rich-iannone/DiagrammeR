@@ -14,7 +14,7 @@ test_that("getting node IDs from various objects is possible", {
         rep("a_to_g", 7),
         rep("h_to_p", 9),
         rep("q_to_x", 8),
-        rep("y_and_z",2)))
+        rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
@@ -53,7 +53,8 @@ test_that("getting node IDs from various objects is possible", {
   # used on an empty graph returns NA
   expect_true(
     create_graph() %>%
-      get_node_ids() %>% is.na())
+      get_node_ids() %>%
+      is.na())
 
   # Expect that `get_node_ids()` when
   # used on graph where the conditions
@@ -120,7 +121,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-

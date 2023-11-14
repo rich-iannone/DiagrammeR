@@ -137,7 +137,7 @@ transform_to_subgraph_ws <- function(graph) {
 
     edf <-
       graph$edges_df %>%
-      dplyr::semi_join(selection_df, by = c("id"))
+      dplyr::semi_join(selection_df, by = "id")
 
     ndf <-
       graph$nodes_df %>%

@@ -434,7 +434,7 @@ test_that("Getting the reciprocity for a graph is possible", {
   # edges (4) to the total number
   # of graph edges (7)
   expect_equal(
-    get_reciprocity(graph), 4/7)
+    get_reciprocity(graph), 4 / 7)
 
   # Expect that a graph with no
   # edges will return NA

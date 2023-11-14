@@ -115,12 +115,10 @@ set_node_position <- function(
 
   # Stop function if the node ID provided doesn't
   # exist in the graph
-  if (!use_labels) {
-    if (!(node %in% graph$nodes_df[, 1])) {
+  if (!use_labels && !(node %in% graph$nodes_df[, 1])) {
 
-      cli::cli_abort(
-        "The node ID provided doesn't exist in the graph.")
-    }
+    cli::cli_abort(
+      "The node ID provided doesn't exist in the graph.")
   }
 
   # If the `x` node attribute doesn't exist, create

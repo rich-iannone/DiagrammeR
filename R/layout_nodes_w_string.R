@@ -193,7 +193,7 @@ layout_nodes_w_string <- function(
     # Trim rows from the position table if its
     # row count is greater than that of `ndf_part`
     if (nrow(position_table) > nrow(ndf_part)) {
-      position_table <- position_table[1:nrow(ndf_part), ]
+      position_table <- position_table[seq_len(nrow(ndf_part)), ]
     }
 
     # Bind `position_table` to the split `ndf_part`

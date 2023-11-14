@@ -160,6 +160,7 @@ visnetwork <- function(graph) {
     if (nrow(graph$edges_df) > 0) {
 
       if ("arrow" %in% colnames(edges)) {
+        # TODO Check if logic is okay.
 
         if (!all(edges[which(colnames(edges) %in% "arrow")])) {
 

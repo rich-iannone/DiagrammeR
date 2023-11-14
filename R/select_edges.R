@@ -105,12 +105,10 @@ select_edges <- function(
 
   # Stop function if `edges` refers to edge ID
   # values that are not in the graph
-  if (!is.null(edges)) {
-    if (!any(edges %in% graph$edges_df$id)) {
+  if (!is.null(edges) && !any(edges %in% graph$edges_df$id)) {
 
-      cli::cli_abort(
-        "The values provided in `edges` do not all correspond to edge ID values in the graph.")
-    }
+    cli::cli_abort(
+      "The values provided in `edges` do not all correspond to edge ID values in the graph.")
   }
 
   # Extract the graph's internal edf
@@ -245,7 +243,7 @@ select_edges <- function(
           "created a new selection of \\
         {n_e_select_properties_out[['selection_count_str']]}")
 
-    } else if (n_e_select_properties_in[["node_selection_available"]] |
+    } else if (n_e_select_properties_in[["node_selection_available"]] ||
                n_e_select_properties_in[["edge_selection_available"]]) {
 
       if (n_e_select_properties_in[["edge_selection_available"]]) {

@@ -113,7 +113,7 @@ get_edges <- function(
   if (return_values == "label") {
     edges_df <-
       edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id",from_label_ = "label"), by = c("from" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", from_label_ = "label"), by = c("from" = "id")) %>%
       dplyr::left_join(graph$nodes_df %>% dplyr::select("id", to_label_ = "label"), by = c("to" = "id"))
   }
 

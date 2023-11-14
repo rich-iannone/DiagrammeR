@@ -194,12 +194,11 @@ is_attr_unique_and_non_na <- function(graph,
 
   # Are all values not NA?
   all_is_not_na <-
-    df %>% dplyr::select(!!enquo(attr)) %>%
-    is.na() %>% magrittr::not() %>% all()
+    !all(is.na(dplyr::pull(df, !!enquo(attr))))
 
   # Are all values distinct?
   all_values_distinct <-
-    df %>% dplyr::select(!!enquo(attr)) %>% dplyr::distinct() %>% nrow() ==
+    dplyr::pull(df, !!enquo(attr)) %>% dplyr::n_distinct() ==
     nrow(df)
 
   all_is_not_na && all_values_distinct

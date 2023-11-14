@@ -23,8 +23,8 @@ test_that("the dfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_all), count_nodes(graph = graph))
+  expect_length(
+    dfs_all, count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -42,8 +42,9 @@ test_that("the dfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_all_no_start), count_nodes(graph = graph))
+  expect_length(
+    dfs_all_no_start,
+    count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the dfs
   # routine to visit nodes along inward edges
@@ -58,8 +59,9 @@ test_that("the dfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_in), count_nodes(graph = graph))
+  expect_length(
+    dfs_in,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -79,8 +81,9 @@ test_that("the dfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_out), count_nodes(graph = graph))
+  expect_length(
+    dfs_out,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -123,8 +126,9 @@ test_that("the bfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_all), count_nodes(graph = graph))
+  expect_length(
+    bfs_all,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -142,8 +146,8 @@ test_that("the bfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_all_no_start),
+  expect_length(
+    bfs_all_no_start,
     count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the bfs
@@ -159,8 +163,9 @@ test_that("the bfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_in), count_nodes(graph = graph))
+  expect_length(
+    bfs_in,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -180,8 +185,9 @@ test_that("the bfs algorithm is functional", {
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_out), count_nodes(graph = graph))
+  expect_length(
+    bfs_out,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(

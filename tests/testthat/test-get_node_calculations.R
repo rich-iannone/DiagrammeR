@@ -312,7 +312,7 @@ test_that("Getting authority centrality is possible", {
     select_edges() %>%
     set_edge_attrs_ws(
       edge_attr = weight,
-      value = 1:6 %>% as.character()) %>%
+      value = as.character(1:6)) %>%
     clear_selection()
 
   # Expect an error when the specified

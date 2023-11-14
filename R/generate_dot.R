@@ -342,7 +342,7 @@ generate_dot <- function(graph) {
           # Append alpha for color values that are
           # X11 color names
           if (all(grepl("[a-z]*",
-                        as.character(nodes_df[, color_attr_column_no]))) &
+                        as.character(nodes_df[, color_attr_column_no]))) &&
               all(as.character(nodes_df[, color_attr_column_no]) %in%
                   x11_hex()[, 1])) {
 
@@ -538,7 +538,7 @@ generate_dot <- function(graph) {
           exists("to_column")) {
 
         if (length(from_column) == 1 &&
-            length(from_to_columns) == 1) {
+            length(from_column) == 1) {
 
           for (i in 1:nrow(edges_df)) {
 

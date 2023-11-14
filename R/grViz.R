@@ -144,7 +144,7 @@ add_mathjax <- function(gv = NULL,
         src = c(href = "https://cdn.rawgit.com/timelyportfolio/svg_mathjax2/master/"),
         script = "svg_mathjax2.js")))
 
-  if (include_mathjax){
+  if (include_mathjax) {
     htmltools::browsable(
       htmltools::tagList(
         gv,

@@ -245,7 +245,7 @@ edf <-
 
 # Create a new graph from
 # the NDF and EDF
-graph <- 
+graph <-
   create_graph(
     nodes_df = ndf,
     edges_df = edf

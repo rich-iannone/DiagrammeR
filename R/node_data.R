@@ -33,7 +33,7 @@ node_data <- function(...) {
   # attribute values into a list object
   node_data_values <- list(...)
 
-  if (any(names(node_data_values) %in% c(gv_node_attributes(), "x", "y"))){
+  if (any(names(node_data_values) %in% c(gv_node_attributes(), "x", "y"))) {
 
     cli::cli_abort(
       "Names for node data attributes shouldn't be any of those reserved for node aesthetic attributes.")

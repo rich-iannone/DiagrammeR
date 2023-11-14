@@ -133,7 +133,7 @@ DiagrammeR <- function(
 
     mermaid(diagram, ...)
 
-  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )) {
+  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*")) {
     grViz(diagram, ...)
 
   } else {

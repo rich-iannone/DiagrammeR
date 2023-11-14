@@ -164,7 +164,7 @@ mutate_node_attrs_ws <- function(
   ndf <-
     dplyr::bind_rows(
       ndf %>% dplyr::filter(!(!!enquo(s))) %>% dplyr::mutate(!!!enquos(...)),
-      ndf %>% dplyr::filter( (!!enquo(s)))
+      ndf %>% dplyr::filter(!!enquo(s))
     ) %>%
     dplyr::arrange(!!enquo(order))
 
