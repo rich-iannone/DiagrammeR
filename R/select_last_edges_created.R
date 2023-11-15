@@ -54,10 +54,15 @@ select_last_edges_created <- function(graph) {
     dplyr::mutate(
       step_created_edges = as.integer(function_used %in% edge_creation_functions()),
       step_deleted_edges = as.integer(function_used %in% edge_deletion_functions()),
-      step_init_with_edges = as.integer(function_used %in% graph_init_functions())
+      step_init_with_edges = as.integer(function_used %in% graph_init_functions() &
+                                          edges > 0)
     ) %>%
     dplyr::filter(
-      step_created_edges == 1 | step_deleted_edges == 1 | step_init_with_edges) %>%
+      dplyr::if_any(
+        .cols = c(step_created_edges, step_deleted_edges, step_init_with_edges),
+        .fns = function(x) x == 1
+      )
+    ) %>%
     dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {

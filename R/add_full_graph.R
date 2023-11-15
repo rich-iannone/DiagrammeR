@@ -259,14 +259,13 @@ add_full_graph <- function(
   }
 
   # Add `type` values to all new nodes
-  if (!is.null(type) &&
-    length(type) == 1) {
+  if (length(type) == 1) {
     new_graph$nodes_df[, 2] <- type
   }
 
   # Add `rel` values to all new edges
-  if (!is.null(rel) &&
-    length(rel) == 1) {
+  # NULL is length 0
+  if (length(rel) == 1) {
     new_graph$edges_df[, 4] <- rel
   }
 

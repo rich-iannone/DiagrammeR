@@ -137,7 +137,7 @@ rescale_node_attrs <- function(
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(node_attr_from),
-        .fn = as.numeric)
+        .fns = as.numeric)
       ) %>%
     dplyr::pull(var = !!node_attr_from)
 
