@@ -114,6 +114,7 @@ set_edge_attr_to_display <- function(
   # Stop function if the edge attribute supplied as
   # `attr` does not exist in the edf
   if (!is.null(attr) && !rlang::has_name(edf, attr)) {
+
     cli::cli_abort(
       "The edge attribute given in `attr` is not in the graph's edf.")
   }
@@ -128,6 +129,7 @@ set_edge_attr_to_display <- function(
   # Create a tibble with the edge ID values and the
   # requested edge attribute to display
   if (is.null(attr)) {
+
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(edges),

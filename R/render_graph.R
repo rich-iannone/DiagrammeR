@@ -19,6 +19,7 @@
 #'   resulting graphic in pixels.
 #' @examples
 #' if (interactive()) {
+#'
 #'   # Render a graph that's a
 #'   # balanced tree
 #'   create_graph() %>%
@@ -79,6 +80,7 @@ render_graph <- function(
     width = NULL,
     height = NULL
 ) {
+
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -86,7 +88,6 @@ render_graph <- function(
 
   # Not allowing partial matching.
   output <- rlang::arg_match0(output, c("graph", "visNetwork"))
-
   # Check layout is a single string or NULL
   check_string(layout, allow_null = TRUE)
 
@@ -103,6 +104,7 @@ render_graph <- function(
 
   # Add title as attribute
   if (!is.null(title)) {
+
     graph <- add_global_graph_attrs(graph, "label", title, "graph")
     graph <- add_global_graph_attrs(graph, "labelloc", "t", "graph")
     graph <- add_global_graph_attrs(graph, "labeljust", "c", "graph")
@@ -112,8 +114,10 @@ render_graph <- function(
 
   # If no fillcolor provided, use default; if no default available, use white
   if (nrow(graph$nodes_df) > 0 &&
-    !("fillcolor" %in% colnames(graph$nodes_df))) {
+      !("fillcolor" %in% colnames(graph$nodes_df))) {
+
     if ("fillcolor" %in% graph$global_attrs$attr) {
+
       graph$nodes_df$fillcolor <-
         graph$global_attrs %>%
         dplyr::filter(attr == "fillcolor", attr_type == "node") %>%
@@ -127,14 +131,16 @@ render_graph <- function(
   # If fillcolor is available and there are NA values,
   # replace NAs with default color if available
   if (nrow(graph$nodes_df) > 0 &&
-    rlang::has_name(graph$nodes_df, "fillcolor") &&
-    "fillcolor" %in% graph$global_attrs$attr) {
+      rlang::has_name(graph$nodes_df, "fillcolor") &&
+      "fillcolor" %in% graph$global_attrs$attr) {
+
     graph$nodes_df$fillcolor[which(is.na(graph$nodes_df$fillcolor))] <-
       graph$global_attrs[which(graph$global_attrs$attr == "fillcolor"), 2]
   }
 
   # Translate X11 colors to hexadecimal colors
   if ("fillcolor" %in% colnames(graph$nodes_df)) {
+
     graph$nodes_df <-
       graph$nodes_df %>%
       dplyr::left_join(
@@ -151,8 +157,9 @@ render_graph <- function(
 
   # Use adaptive font coloring for nodes that have a fill color
   if ("fillcolor" %in% colnames(graph$nodes_df) &&
-    !"fontcolor" %in% colnames(graph$nodes_df)
+      !"fontcolor" %in% colnames(graph$nodes_df)
   ) {
+
     graph$nodes_df$fontcolor <-
       tibble::tibble(value = graph$nodes_df$fillcolor) %>%
       dplyr::mutate(value_x = contrasting_text_color(background_color = value)) %>%
@@ -162,6 +169,7 @@ render_graph <- function(
   # Modify nodes df if a specific layout is requested.
   # and is one of the accepted values ("circle", "tree", "kk", "fr", "nicely")
   if (!is.null(layout)) {
+
     graph <-
       add_global_graph_attrs(
         graph,
@@ -190,6 +198,7 @@ render_graph <- function(
 
       # Safety
       if (!is.matrix(m_coords) && nrow(m_coords) == 0) {
+
         cli::cli_abort("The tree coords should be a matrix", .internal = TRUE)
       }
 
@@ -246,6 +255,7 @@ render_graph <- function(
   }
 
   if (as_svg || any(c("image", "fa_icon") %in% colnames(get_node_df(graph)))) {
+
     if (as_svg && !rlang::is_installed("DiagrammeRsvg")) {
       rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
     }
