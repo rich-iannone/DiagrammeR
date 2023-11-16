@@ -5,7 +5,6 @@ test_that("No warning is produced.", {
   withr::local_seed(10)
   expect_no_warning(create_graph() %>%
     add_balanced_tree(
-      k = 2, h = 3
-    ) %>%
+      k = 2, h = 3) %>%
     render_graph(layout = "tree"))
 })
