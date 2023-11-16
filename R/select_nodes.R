@@ -94,13 +94,11 @@ select_nodes <- function(
   # Stop function if all `nodes` refer to node ID
   # values that are not in the graph
   # If there is one node in graph and one out of bound, no error.
-  if (!is.null(nodes)) {
-    if (!any(nodes %in% graph$nodes_df$id)) {
+  if (!is.null(nodes) && !any(nodes %in% graph$nodes_df$id)) {
 
-      cli::cli_abort(c(
-        "`nodes` must correspond to values in the graph.",
-        i = "`Graph values IDs include {unique(graph$nodes_df$id)}, not {nodes}."))
-    }
+    cli::cli_abort(c(
+      "`nodes` must correspond to values in the graph.",
+      i = "`Graph values IDs include {unique(graph$nodes_df$id)}, not {nodes}."))
   }
 
   # Extract the graph's internal ndf
@@ -192,7 +190,7 @@ select_nodes <- function(
           "created a new selection of \\
          {n_e_select_properties_out[['selection_count_str']]}")
 
-    } else if (n_e_select_properties_in[["node_selection_available"]] |
+    } else if (n_e_select_properties_in[["node_selection_available"]] ||
                n_e_select_properties_in[["edge_selection_available"]]) {
 
       if (n_e_select_properties_in[["node_selection_available"]]) {

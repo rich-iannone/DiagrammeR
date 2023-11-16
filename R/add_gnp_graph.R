@@ -128,7 +128,7 @@ add_gnp_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(sample_gnp_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(sample_gnp_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(sample_gnp_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
@@ -185,7 +185,7 @@ add_gnp_graph <- function(
 
     if (nrow(edge_data_tbl) < nrow(sample_gnp_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(sample_gnp_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(sample_gnp_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
@@ -231,10 +231,10 @@ add_gnp_graph <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, sample_gnp_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- sample_gnp_graph
+  } else {
+    graph <- combine_graphs(graph, sample_gnp_graph)
   }
 
   # Update the `last_node` counter

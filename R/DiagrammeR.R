@@ -129,10 +129,10 @@ DiagrammeR <- function(
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if (grepl(x = type, pattern = "[m,M](erm).*")) {
 
-    mermaid(diagram, ... )
+    mermaid(diagram, ...)
 
-  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )) {
-    grViz(diagram, ... )
+  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*")) {
+    grViz(diagram, ...)
 
   } else {
     abort("The type should be `mermaid` or `grViz`.")

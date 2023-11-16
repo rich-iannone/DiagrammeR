@@ -72,11 +72,11 @@ get_predecessors <- function(
       nrow(get_edge_info(graph)) > 0) {
 
     if (length(graph$edges_df[graph$edges_df$to ==
-                              node,]$from) == 0) {
+                              node, ]$from) == 0) {
       predecessors <- NA
     } else {
       predecessors <-
-        graph$edges_df[graph$edges_df$to == node,]$from
+        graph$edges_df[graph$edges_df$to == node, ]$from
     }
     return(predecessors)
   }

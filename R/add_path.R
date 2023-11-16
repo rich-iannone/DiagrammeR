@@ -140,7 +140,7 @@ add_path <- function(graph,
 
     if (nrow(edge_aes_tbl) < (n - 1)) {
 
-      edge_aes$index__ <-seq_len(n - 1)
+      edge_aes$index__ <- seq_len(n - 1)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
@@ -216,7 +216,7 @@ add_path <- function(graph,
   # Create an edge data frame for the path graph
   path_edges <-
     create_edge_df(
-      from = nodes[1:length(nodes) - 1],
+      from = nodes[seq_along(nodes) - 1L],
       to = nodes[2:length(nodes)],
       rel = rel)
 

@@ -40,7 +40,8 @@ grViz <- function(diagram = "",
 
   diagram <- paste0(diagram, collapse = "\n")
 
-  if (allow_subst == TRUE) {
+  # If allow_subst = TRUE
+  if (allow_subst) {
     diagram <- replace_in_spec(diagram, envir = envir)
   }
 
@@ -140,10 +141,10 @@ add_mathjax <- function(gv = NULL,
       list(htmltools::htmlDependency(
         name = "svg_mathjax2",
         version = "0.1.0",
-        src = c(href="https://cdn.rawgit.com/timelyportfolio/svg_mathjax2/master/"),
+        src = c(href = "https://cdn.rawgit.com/timelyportfolio/svg_mathjax2/master/"),
         script = "svg_mathjax2.js")))
 
-  if (include_mathjax){
+  if (include_mathjax) {
     htmltools::browsable(
       htmltools::tagList(
         gv,

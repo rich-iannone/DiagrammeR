@@ -230,10 +230,10 @@ trav_both <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from)) {
-    if (copy_attrs_as == copy_attrs_from) {
-      copy_attrs_as <- NULL
-    }
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from) &&
+      copy_attrs_as == copy_attrs_from) {
+
+    copy_attrs_as <- NULL
   }
 
   # Get the selection of nodes as the starting
@@ -281,16 +281,16 @@ trav_both <- function(
 
     from_join <-
       valid_nodes %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!!enquo(copy_attrs_from)), by = c("to" = "id")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("to" = "id")) %>%
       dplyr::select("id", !!enquo(copy_attrs_from))
 
     to_join <-
       valid_nodes %>%
       dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
       dplyr::select("id", !!enquo(copy_attrs_from))
 
     nodes <-

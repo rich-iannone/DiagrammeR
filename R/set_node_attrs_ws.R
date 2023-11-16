@@ -93,7 +93,7 @@ set_node_attrs_ws <- function(
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
-    graph$graph_log[-nrow(graph$graph_log),] %>%
+    graph$graph_log[-nrow(graph$graph_log), ] %>%
     add_action_to_log(
       version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,

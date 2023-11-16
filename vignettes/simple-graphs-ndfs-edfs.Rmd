@@ -171,7 +171,7 @@ If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it d
 # Take the graph object and generate a character
 # vector with Graphviz DOT code (using cat() for
 # a better appearance)
-graph %>% 
+graph %>%
   generate_dot() %>%
   cat()
 ```

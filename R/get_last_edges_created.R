@@ -36,18 +36,19 @@ get_last_edges_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_edges = dplyr::if_else(
-      function_used %in% edge_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_edges = dplyr::if_else(
-      function_used %in% edge_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_edges = dplyr::if_else(
-      function_used %in% graph_init_functions() &
-        edges > 0, 1, 0)) %>%
+    dplyr::mutate(
+      step_created_edges = as.integer(function_used %in% edge_creation_functions()),
+      step_deleted_edges = as.integer(function_used %in% edge_deletion_functions()),
+      step_init_with_edges = as.integer(function_used %in% graph_init_functions() &
+                                          edges > 0)
+    ) %>%
     dplyr::filter(
       dplyr::if_any(
         .cols = c(step_created_edges, step_deleted_edges, step_init_with_edges),
-        .fns = ~ .x == 1)) %>%
-    dplyr::select(-version_id, -time_modified, -duration)
+        .fns = function(x) x == 1
+        )
+    ) %>%
+    dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {
 
@@ -61,25 +62,25 @@ get_last_edges_created <- function(graph) {
       if (nrow(graph_transform_steps) > 1) {
         number_of_edges_created <-
           (graph_transform_steps %>%
-             dplyr::select(edges) %>%
+             dplyr::select("edges") %>%
              utils::tail(2) %>%
-             dplyr::pull(edges))[2] -
+             dplyr::pull("edges"))[2] -
           (graph_transform_steps %>%
-             dplyr::select(edges) %>%
+             dplyr::select("edges") %>%
              utils::tail(2) %>%
-             dplyr::pull(edges))[1]
+             dplyr::pull("edges"))[1]
       } else {
         number_of_edges_created <-
           graph_transform_steps %>%
-          dplyr::pull(edges)
+          dplyr::pull("edges")
       }
     }
 
     edge_id_values <-
       graph$edges_df %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       utils::tail(number_of_edges_created) %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   } else {
     edge_id_values <- NA
   }

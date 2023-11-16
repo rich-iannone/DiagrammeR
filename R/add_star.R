@@ -250,10 +250,10 @@ add_star <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, star_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- star_graph
+  } else {
+    graph <- combine_graphs(graph, star_graph)
   }
 
   # Update the `last_node` counter

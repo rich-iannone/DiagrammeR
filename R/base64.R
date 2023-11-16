@@ -9,8 +9,8 @@ get_file_ext <- function(file) {
 encode_base64 <- function(raw) {
 
   b64 <- c(LETTERS, letters, 0:9, "+", "/")
-
-  n <- length(s <- as.integer(raw))
+  s <- as.integer(raw)
+  n <- length(s)
   res <- rep(NA, (n + 2) / 3 * 4)
   i <- 0L
   j <- 1L
@@ -55,7 +55,8 @@ get_mime_type <- function(file) {
     extension,
     svg = "image/svg+xml",
     jpg = "image/jpeg",
-    paste("image", extension, sep = "/"))
+    file.path("image", extension, fsep = "/")
+    )
 }
 
 # Get an image URI from an on-disk graphics file

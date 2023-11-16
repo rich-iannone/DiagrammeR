@@ -51,15 +51,18 @@ select_last_edges_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_edges = dplyr::if_else(
-      function_used %in% edge_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_edges = dplyr::if_else(
-      function_used %in% edge_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_edges = dplyr::if_else(
-      function_used %in% graph_init_functions() &
-        edges > 0, 1, 0)) %>%
+    dplyr::mutate(
+      step_created_edges = as.integer(function_used %in% edge_creation_functions()),
+      step_deleted_edges = as.integer(function_used %in% edge_deletion_functions()),
+      step_init_with_edges = as.integer(function_used %in% graph_init_functions() &
+                                          edges > 0)
+    ) %>%
     dplyr::filter(
-      step_created_edges == 1 | step_deleted_edges == 1 | step_init_with_edges) %>%
+      dplyr::if_any(
+        .cols = c(step_created_edges, step_deleted_edges, step_init_with_edges),
+        .fns = function(x) x == 1
+      )
+    ) %>%
     dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {
@@ -113,7 +116,7 @@ select_last_edges_created <- function(graph) {
 
     # Update the `graph_log` df with an action
     graph$graph_log <-
-      graph$graph_log[-nrow(graph$graph_log),] %>%
+      graph$graph_log[-nrow(graph$graph_log), ] %>%
       add_action_to_log(
         version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,

@@ -8,6 +8,8 @@
 
 * It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
 
+* `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
+
 # DiagrammeR 1.0.10
 
 * Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions.

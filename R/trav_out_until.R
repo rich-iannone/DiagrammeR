@@ -253,7 +253,7 @@ trav_out_until <- function(
 
   } else if (length(node_stack) < 1) {
 
-    if (exclude_unmatched &
+    if (exclude_unmatched &&
         !all(is.na(suppressMessages(get_selection(graph))))) {
 
       new_selection <- suppressMessages(get_selection(graph))

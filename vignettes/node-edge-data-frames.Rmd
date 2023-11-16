@@ -59,7 +59,7 @@ In the following examples, node data frames are created. There are a few worthwh
 # Create a node data frame
 nodes_1 <-
   create_node_df(
-    n = 4, 
+    n = 4,
     type = "lower",
     label = c("a", "b", "c", "d"),
     style = "filled",

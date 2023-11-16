@@ -296,8 +296,8 @@ test_that("Getting graph info is possible", {
     nrow(graph_i), 1)
 
   # Expect that `graph_i` has certain column names
-  expect_identical(
-    colnames(graph_i),
+  expect_named(
+    graph_i,
     c("name", "n", "e", "dens", "mn_deg",
       "mx_deg", "avg_deg", "time", "tz"))
 })
@@ -434,7 +434,7 @@ test_that("Getting the reciprocity for a graph is possible", {
   # edges (4) to the total number
   # of graph edges (7)
   expect_equal(
-    get_reciprocity(graph), 4/7)
+    get_reciprocity(graph), 4 / 7)
 
   # Expect that a graph with no
   # edges will return NA

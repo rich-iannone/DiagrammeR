@@ -24,11 +24,11 @@ test_that("getting or selecting the last edges created is possible", {
 
   # Expect that the selection available in
   # the graph is an edge selection
-  expect_true(
-    nrow(graph_e$edge_selection) > 0)
+  expect_gt(
+    nrow(graph_e$edge_selection), 0)
 
-  expect_true(
-    nrow(graph_e$node_selection) == 0)
+  expect_equal(
+    nrow(graph_e$node_selection), 0)
 
   # Expect that the edges selected are
   # those that have `rel == 'b'` as an

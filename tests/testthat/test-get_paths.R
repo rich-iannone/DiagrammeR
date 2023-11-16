@@ -22,8 +22,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       from = 1)
 
   # Expect a list of 4 components
-  expect_equal(
-    length(paths_from_1), 4)
+  expect_length(
+    paths_from_1, 4)
 
   # Expect specific node IDs in each list
   expect_true(
@@ -45,8 +45,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       to = 6)
 
   # Expect a list of 1 component
-  expect_equal(
-    length(paths_to_6), 1)
+  expect_length(
+    paths_to_6, 1)
 
   # Expect specific node IDs in the list
   expect_true(
@@ -60,8 +60,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       to = 5)
 
   # Expect a list of 2 components
-  expect_equal(
-    length(paths_from_1_to_5), 2)
+  expect_length(
+    paths_from_1_to_5, 2)
 
   # Expect specific node IDs in each list
   expect_true(
@@ -79,8 +79,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       distance = 2)
 
   # Expect a list of 3 components
-  expect_equal(
-    length(paths_from_1_dist_2), 3)
+  expect_length(
+    paths_from_1_dist_2, 3)
 
   # Expect specific node IDs in each list
   expect_true(
@@ -101,8 +101,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       shortest_path = TRUE)
 
   # Expect a list of 1 component
-  expect_equal(
-    length(paths_from_1_to_5_shortest), 1)
+  expect_length(
+    paths_from_1_to_5_shortest, 1)
 
   # Expect specific node IDs for the one list
   expect_true(
@@ -117,8 +117,8 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
       longest_path = TRUE)
 
   # Expect a list of 1 component
-  expect_equal(
-    length(paths_from_1_to_5_longest), 1)
+  expect_length(
+    paths_from_1_to_5_longest, 1)
 
   # Expect specific node IDs for the one list
   expect_true(

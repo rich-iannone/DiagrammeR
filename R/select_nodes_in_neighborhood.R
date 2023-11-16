@@ -198,7 +198,7 @@ select_nodes_in_neighborhood <- function(
       graph$graph_info$display_msgs) {
 
     # Construct message body
-    if (!n_e_select_properties_in[["node_selection_available"]] &
+    if (!n_e_select_properties_in[["node_selection_available"]] &&
         !n_e_select_properties_in[["edge_selection_available"]]) {
 
       msg_body <-
@@ -206,7 +206,7 @@ select_nodes_in_neighborhood <- function(
           "created a new selection of \\
         {n_e_select_properties_out[['selection_count_str']]}")
 
-    } else if (n_e_select_properties_in[["node_selection_available"]] |
+    } else if (n_e_select_properties_in[["node_selection_available"]] ||
                n_e_select_properties_in[["edge_selection_available"]]) {
 
       if (n_e_select_properties_in[["edge_selection_available"]]) {

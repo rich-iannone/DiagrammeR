@@ -75,9 +75,6 @@ is_edge_present <- function(
     to = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
   check_graph_valid(graph)
 
@@ -110,7 +107,7 @@ is_edge_present <- function(
     # Verify that each of the values for `from` and
     # `to` are given as a single value
     from_is_single_value <- length(from) == 1
-    to_is_single_value   <-   length(to) == 1
+    to_is_single_value   <- length(to) == 1
 
     # Stop function if either node is not a single value
     if (!from_is_single_value || !to_is_single_value) {

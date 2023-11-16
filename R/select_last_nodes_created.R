@@ -53,16 +53,19 @@ select_last_nodes_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_nodes = dplyr::if_else(
-      function_used %in% node_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_nodes = dplyr::if_else(
-      function_used %in% node_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_nodes = dplyr::if_else(
-      function_used %in% graph_init_functions() &
-        nodes > 0, 1, 0)) %>%
+    dplyr::mutate(
+      step_created_nodes = as.integer(function_used %in% node_creation_functions()),
+      step_deleted_nodes = as.integer(function_used %in% node_deletion_functions()),
+      step_init_with_nodes = as.integer(function_used %in% graph_init_functions() &
+                                          nodes > 0)
+    ) %>%
     dplyr::filter(
-      step_created_nodes == 1 | step_deleted_nodes == 1 | step_init_with_nodes) %>%
-    dplyr::select(-version_id, -time_modified, -duration)
+      dplyr::if_any(
+        c(step_created_nodes, step_deleted_nodes, step_init_with_nodes),
+        .fns = function(x) x == 1
+      )
+    ) %>%
+    dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {
 
@@ -114,7 +117,7 @@ select_last_nodes_created <- function(graph) {
 
     # Update the `graph_log` df with an action
     graph$graph_log <-
-      graph$graph_log[-nrow(graph$graph_log),] %>%
+      graph$graph_log[-nrow(graph$graph_log), ] %>%
       add_action_to_log(
         version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,

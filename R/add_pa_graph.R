@@ -163,7 +163,7 @@ add_pa_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(sample_pa_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(sample_pa_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(sample_pa_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%

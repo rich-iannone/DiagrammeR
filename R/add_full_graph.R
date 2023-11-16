@@ -101,7 +101,8 @@
 #'     label = TRUE,
 #'     rel = "related_to",
 #'     edge_wt_matrix = edge_wt_matrix,
-#'     keep_loops = FALSE)
+#'     keep_loops = FALSE
+#'   )
 #'
 #' # Show the graph's node
 #' # data frame (ndf)
@@ -198,7 +199,9 @@ add_full_graph <- function(
           new_graph,
           edge_attr = "weight",
           values = as.numeric(edge_wt_matrix)[
-            which(as.numeric(adj_matrix) == 1)])
+            which(as.numeric(adj_matrix) == 1)
+          ]
+        )
     }
   }
 
@@ -221,8 +224,8 @@ add_full_graph <- function(
           values = edge_wt_matrix[
             lower.tri(
               edge_wt_matrix,
-              diag = ifelse(!keep_loops,
-                            FALSE, TRUE))])
+              diag = keep_loops # TRUE or FALSE
+            )])
     }
   }
 
@@ -236,39 +239,33 @@ add_full_graph <- function(
     }
   }
 
-  if (length(label) > 1) {
-    if (length(label) == n) {
-      new_graph$nodes_df[, 3] <- label
-    }
+  if (n > 1 && length(label) == n) {
+    new_graph$nodes_df[, 3] <- label
   }
 
-  if (length(label) == 1) {
-    if (label) {
-      if (!is.null(edge_wt_matrix)) {
+  if (isTRUE(label) && !is.null(edge_wt_matrix)) {
 
-        if (!is.null(colnames(edge_wt_matrix))) {
-          ewm_names <- colnames(edge_wt_matrix)
-        }
-        if (!is.null(rownames(edge_wt_matrix))) {
-          ewm_names <- rownames(edge_wt_matrix)
-        }
+    if (!is.null(colnames(edge_wt_matrix))) {
+      ewm_names <- colnames(edge_wt_matrix)
+    }
 
-        if (length(ewm_names) == n) {
-          new_graph$nodes_df[, 3] <- ewm_names
-        }
-      }
+    if (!is.null(rownames(edge_wt_matrix))) {
+      ewm_names <- rownames(edge_wt_matrix)
+    }
+
+    if (length(ewm_names) == n) {
+      new_graph$nodes_df[, 3] <- ewm_names
     }
   }
 
   # Add `type` values to all new nodes
-  if (!is.null(type) &&
-      length(type) == 1) {
+  if (length(type) == 1) {
     new_graph$nodes_df[, 2] <- type
   }
 
   # Add `rel` values to all new edges
-  if (!is.null(rel) &&
-      length(rel) == 1) {
+  # NULL is length 0
+  if (length(rel) == 1) {
     new_graph$edges_df[, 4] <- rel
   }
 
@@ -279,7 +276,7 @@ add_full_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(new_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
@@ -298,7 +295,7 @@ add_full_graph <- function(
 
     if (nrow(node_data_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(new_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%

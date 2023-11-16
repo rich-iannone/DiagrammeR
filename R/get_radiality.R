@@ -84,8 +84,7 @@ get_radiality <- function(
       FUN = function(x) {
         if (all(is.infinite(x))) {
           return(0)
-        }
-        else {
+        } else {
           return(sum(diam + 1 - x[!is.infinite(x)])/(n_nodes - 1))
         }
       })

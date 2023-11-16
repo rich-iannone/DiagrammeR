@@ -64,7 +64,7 @@ test_that("a subgraph can be created and such an object is correct", {
     get_edges(
       graph = subgraph_es,
       return_type = "vector"),
-    c("7->3", "8->4", "6->5", "3->4") )
+    c("7->3", "8->4", "6->5", "3->4"))
 
   # Expect an error when attempting to create a subgraph with
   # a graph without an active selection

@@ -95,8 +95,8 @@ test_that("Getting the graph name is possible", {
     get_graph_name(graph), "character")
 
   # Expect that the returned vector has a length of 1
-  expect_equal(
-    length(get_graph_name(graph)), 1)
+  expect_length(
+    get_graph_name(graph), 1)
 
   # Expect that the graph name that was set is returned
   expect_equal(

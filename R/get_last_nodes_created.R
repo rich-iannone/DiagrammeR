@@ -40,16 +40,18 @@ get_last_nodes_created <- function(graph) {
   graph_transform_steps <-
     graph$graph_log %>%
     dplyr::mutate(
-      step_created_nodes = dplyr::if_else(
-        function_used %in% node_creation_functions(), 1, 0),
-      step_deleted_nodes = dplyr::if_else(
-        function_used %in% node_deletion_functions(), 1, 0),
-      step_init_with_nodes = dplyr::if_else(
-        function_used %in% graph_init_functions() &
-        nodes > 0, 1, 0)
-      ) %>%
+      step_created_nodes = as.integer(function_used %in% node_creation_functions()),
+      step_deleted_nodes = as.integer(function_used %in% node_deletion_functions()),
+      step_init_with_nodes = as.integer(function_used %in% graph_init_functions() &
+                                          nodes > 0)
+    ) %>%
     dplyr::filter(
-      step_created_nodes == 1 | step_deleted_nodes == 1 | step_init_with_nodes) %>%
+      # if any step is TRUE (1)
+      dplyr::if_any(
+        .cols = c(step_created_nodes, step_deleted_nodes, step_init_with_nodes),
+        .fns = function(x) x == 1
+        )
+    ) %>%
     dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {

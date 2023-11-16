@@ -145,10 +145,10 @@ mermaid <- function(
       if (length(nosep) < length(diagram)) {
 
         diagram[-nosep] <-
-          sapply(diagram[-nosep], function(c) { paste0(c, ";") })
+          sapply(diagram[-nosep], function(c) paste0(c, ";"))
       }
 
-      diagram = paste0(diagram, collapse = "")
+      diagram <- paste0(diagram, collapse = "")
     }
   }
 

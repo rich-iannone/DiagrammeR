@@ -66,8 +66,6 @@ get_edge_ids <- function(
     conditions = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # If the graph contains no edges, return NA
   if (nrow(graph$edges_df) == 0) {

@@ -54,7 +54,7 @@ add_edge_df <- function(
   check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  check_graph_contains_nodes(graph,extra_msg = "So, edges cannot be added.")
+  check_graph_contains_nodes(graph, extra_msg = "So, edges cannot be added.")
 
   # Get the number of edges ever created for
   # this graph

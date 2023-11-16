@@ -80,7 +80,7 @@ is_edge_multiple <- function(
   # is valid
   multiple_edges <-
     edf %>%
-    dplyr::filter(from == !!from & to == !!to)
+    dplyr::filter(from == !!from, to == !!to)
 
   res <- nrow(multiple_edges) > 1
   res
