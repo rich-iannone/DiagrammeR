@@ -10,3 +10,4 @@ x11_hex()
 Create a data frame containing information on X11 colors and their
 corresponding hexadecimal color values.
 }
+\keyword{internal}

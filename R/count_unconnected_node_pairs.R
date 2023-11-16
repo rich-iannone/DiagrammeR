@@ -1,5 +1,7 @@
 #' Get the number of unconnected node pairs
 #'
+#' @description
+#'
 #' Get the number of unconnected node pairs. This works for directed graphs.
 #'
 #' @inheritParams render_graph
@@ -27,20 +29,12 @@
 #' @export
 count_unconnected_node_pairs <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If the graph is empty, then return NA
   if (nrow(graph$nodes_df) == 0) {
-    return(as.numeric(NA))
+    return(NA_real_)
   }
 
   # Convert the graph to an igraph object

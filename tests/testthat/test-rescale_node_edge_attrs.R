@@ -1,4 +1,4 @@
-context("Rescaling node or edge attribute values in a graph object")
+# Rescaling node or edge attribute values in a graph object
 
 test_that("rescaling node attributes in a graph is possible", {
 
@@ -6,11 +6,10 @@ test_that("rescaling node attributes in a graph is possible", {
   graph <-
     create_graph() %>%
     add_gnm_graph(
-      n = 10,
-      m = 22,
-      node_data = node_data(
-        value = 1:10),
-      set_seed = 23)
+      n = 10, m = 22,
+      node_data = node_data(value = 1:10),
+      set_seed = 23
+    )
 
   # Rescale the `value` node attribute, so that
   # its values are rescaled between 0 and 1
@@ -19,7 +18,8 @@ test_that("rescaling node attributes in a graph is possible", {
     rescale_node_attrs(
       node_attr_from = value,
       to_lower_bound = 0,
-      to_upper_bound = 1)
+      to_upper_bound = 1
+    )
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf
@@ -46,10 +46,9 @@ test_that("rescaling node attributes in a graph is possible", {
 
   # Expect that the `fillcolor` and `fontcolor` node
   # attribute columns are now available
-  expect_true(
-    all(
-      c("fillcolor", "fontcolor") %in%
-        colnames(graph_r_value_fill_font_color$nodes_df)))
+  expect_contains(
+    colnames(graph_r_value_fill_font_color$nodes_df),
+    c("fillcolor", "fontcolor"))
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf

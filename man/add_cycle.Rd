@@ -105,4 +105,5 @@ graph_w_attrs \%>\% get_node_df()
 
 # Get the graph's edge data frame
 graph_w_attrs \%>\% get_edge_df()
+
 }

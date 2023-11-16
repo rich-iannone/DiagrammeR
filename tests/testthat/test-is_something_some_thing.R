@@ -1,4 +1,4 @@
-context("Is this thing what we think it is?")
+# Is this thing what we think it is?")
 
 test_that("Detecting a directed or undirected graph is possible", {
 
@@ -358,13 +358,11 @@ test_that("Identifying the graph as a DAG is possible", {
 
   # Expect that this graph is classified
   # as a directed acyclic graph (DAG)
-  expect_true(
-    is_graph_dag(a_dag))
+  expect_true(is_graph_dag(a_dag))
 
   # If a graph contains no nodes, then
   # that graph is not a DAG
-  expect_false(
-    is_graph_dag(create_graph()))
+  expect_false(is_graph_dag(create_graph()))
 })
 
 test_that("Detecting whether a graph is simple is possible", {
@@ -440,7 +438,7 @@ test_that("Identifying the graph as weighted is possible", {
     select_edges() %>%
     set_edge_attrs_ws(
       edge_attr = "weight",
-      value = c(3, 5, as.numeric(NA), 9, as.numeric(NA))) %>%
+      value = c(3, 5, NA_real_, 9, NA_real_)) %>%
     clear_selection()
 
   # Expect that this graph won't be

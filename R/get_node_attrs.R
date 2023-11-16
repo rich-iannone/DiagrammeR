@@ -1,5 +1,7 @@
 #' Get node attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get node attribute values for one
 #' or more nodes.
 #'
@@ -39,22 +41,15 @@
 #'     node_attr = value,
 #'     nodes = c(1, 3))
 #'
-#' @import rlang
 #' @export
-get_node_attrs <- function(graph,
-                           node_attr,
-                           nodes = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_node_attrs <- function(
+    graph,
+    node_attr,
+    nodes = NULL
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   node_attr <- rlang::enquo(node_attr)
 
@@ -62,9 +57,8 @@ get_node_attrs <- function(graph,
       rlang::get_expr() %>%
       as.character() %in% c("id", "nodes")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not a node attribute")
+    cli::cli_abort(
+      "This is not a node attribute.")
   }
 
   # Extract the node data frame (ndf)

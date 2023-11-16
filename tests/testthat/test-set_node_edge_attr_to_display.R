@@ -1,5 +1,3 @@
-context("Set edge and node attribute values to display")
-
 test_that("node attributes can be chosen for display", {
 
   # Create a graph with a path

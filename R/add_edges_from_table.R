@@ -1,5 +1,7 @@
 #' Add edges and attributes to graph from a table
 #'
+#' @description
+#'
 #' Add edges and their attributes to an existing graph object from data in a CSV
 #' file or a data frame.
 #'
@@ -78,65 +80,52 @@
 #' graph_2 %>%
 #'   get_edge_df() %>%
 #'   head()
-#' @import rlang
+#'
+#' @family edge creation and removal
+#'
 #' @export
-add_edges_from_table <- function(graph,
-                                 table,
-                                 from_col,
-                                 to_col,
-                                 from_to_map,
-                                 rel_col = NULL,
-                                 set_rel = NULL,
-                                 drop_cols = NULL) {
+add_edges_from_table <- function(
+    graph,
+    table,
+    from_col,
+    to_col,
+    from_to_map,
+    rel_col = NULL,
+    set_rel = NULL,
+    drop_cols = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added")
-  }
+  check_graph_contains_nodes(graph, "so, edges cannot be added.")
 
   # Get the requested `from_col`
   from_col <-
-    rlang::enquo(from_col) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(from_col) %>% rlang::as_string()
 
   # Get the requested `to_col`
   to_col <-
-    rlang::enquo(to_col) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(to_col) %>% rlang::as_string()
 
   # Get the requested `from_to_map`
   from_to_map <-
-    rlang::enquo(from_to_map) %>% rlang::get_expr() %>% as.character()
+    rlang::ensym(from_to_map) %>% rlang::as_string()
 
   # Get the requested `rel_col`
-  rel_col <-
-    rlang::enquo(rel_col) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `drop_cols`
-  drop_cols <-
-    rlang::enquo(drop_cols) %>% rlang::get_expr() %>% as.character()
-
-  if (length(rel_col) == 0) {
-    rel_col <- NULL
+  if (!rlang::quo_is_null(rlang::enquo(rel_col))) {
+    rel_col <-
+      rlang::ensym(rel_col) %>% rlang::as_string()
   }
 
-  if (length(drop_cols) == 0) {
-    drop_cols <- NULL
+  # Get the requested `drop_cols`
+  if (!rlang::quo_is_null(rlang::enquo(drop_cols))) {
+    drop_cols <-
+      rlang::ensym(drop_cols) %>% rlang::as_string()
   }
 
   # Determine whether the table is a file connection
@@ -155,36 +144,31 @@ add_edges_from_table <- function(graph,
   # Verify that value for `from_col` is in the table
   if (!(from_col %in% colnames(csv))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `from_col` is not in the table")
+    abort(
+      "The value specified in `from_col` is not in the table.")
   }
 
   # Verify that value for `to_col` is in the table
   if (!(to_col %in% colnames(csv))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `to_col` is not in the table")
+    abort(
+      "The value specified in `to_col` is not in the table.")
   }
 
   # Verify that value for `from_to_map` is in the
   # graph's ndf
   if (!(from_to_map %in% colnames(get_node_df(graph)))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value specified in `from_to_map` is not in the graph")
+    abort(
+      "The value specified in `from_to_map` is not in the graph.")
   }
 
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
-  if (!is.null(rel_col)) {
+  if (!is.null(rel_col) && any(colnames(csv) == rel_col)) {
 
-    if (any(colnames(csv) == rel_col)) {
-      colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
-      csv <- dplyr::mutate(csv, rel = as.character(rel))
-    }
+    colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
+    csv$rel <- as.character(csv$rel)
   }
 
   # Extract the ndf from the graph
@@ -201,10 +185,9 @@ add_edges_from_table <- function(graph,
     dplyr::as_tibble(csv) %>%
     dplyr::select(!!from_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, !!from_to_map),
+      ndf %>% dplyr::select("id", !!from_to_map),
       by = stats::setNames(from_to_map, from_col)) %>%
-    dplyr::select(id) %>%
-    dplyr::rename(from = id) %>%
+    dplyr::select(from = "id") %>%
     dplyr::mutate(from = as.integer(from))
 
   # Get the `to` col
@@ -212,10 +195,9 @@ add_edges_from_table <- function(graph,
     dplyr::as_tibble(csv) %>%
     dplyr::select(!!to_col) %>%
     dplyr::left_join(
-      ndf %>% dplyr::select(id, !!from_to_map),
+      ndf %>% dplyr::select("id", !!from_to_map),
       by = stats::setNames(from_to_map, to_col)) %>%
-    dplyr::select(id) %>%
-    dplyr::rename(to = id) %>%
+    dplyr::select(to = "id") %>%
     dplyr::mutate(to = as.integer(to))
 
   # Combine the `from` and `to` columns together along
@@ -229,16 +211,14 @@ add_edges_from_table <- function(graph,
   # Add in a `rel` column (filled with NAs) if it's not
   # already in the table
   if (!("rel" %in% colnames(edf))) {
-    edf <-
-      edf %>%
-      dplyr::mutate(rel = as.character(NA))
+    edf$rel <- NA_character_
   }
 
   # Use the `select()` function to arrange the
   # column rows and then convert to a data frame
   edf <-
     edf %>%
-    dplyr::select(from, to, rel, dplyr::everything()) %>%
+    dplyr::relocate("from", "to", "rel") %>%
     as.data.frame(stringsAsFactors = FALSE)
 
   # Remove any rows where there is an NA in either
@@ -249,15 +229,13 @@ add_edges_from_table <- function(graph,
   # Add in an `id` column
   edf <-
     dplyr::bind_cols(
-      data.frame(id = as.integer(1:nrow(edf)) + graph$last_edge),
+      data.frame(id = seq_len(nrow(edf)) + as.integer(graph$last_edge)),
       edf)
 
   # Optionally set the `rel` attribute with a single
   # value repeated down
-  if (is.null(rel_col) & !is.null(set_rel)) {
-    edf <-
-      edf %>%
-      dplyr::mutate(rel = as.character(set_rel))
+  if (is.null(rel_col) && !is.null(set_rel)) {
+    edf$rel <- as.character(set_rel)
   }
 
   # If values for `drop_cols` provided, filter the CSV
@@ -312,10 +290,13 @@ add_edges_from_table <- function(graph,
   # Update the `last_edge` value in the graph
   graph$last_edge <- nrow(graph$edges_df)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -326,8 +307,7 @@ add_edges_from_table <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

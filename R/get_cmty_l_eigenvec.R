@@ -1,8 +1,11 @@
 #' Get community membership by leading eigenvector
 #'
+#' @description
+#'
 #' Through the calculation of the leading non-negative eigenvector of the
-#'   modularity matrix of the graph, obtain the group membership values for each
-#'   of the nodes in the graph.
+#' modularity matrix of the graph, obtain the group membership values for each
+#' of the nodes in the graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return A data frame with group membership assignments for each of the nodes.
@@ -41,16 +44,8 @@
 #' @export
 get_cmty_l_eigenvec <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If graph is directed, transform to undirected
   graph <- set_graph_undirected(graph)

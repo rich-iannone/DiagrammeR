@@ -1,5 +1,7 @@
 #' Set edge attribute values
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, set edge attribute values for one
 #' or more edges.
 #'
@@ -73,19 +75,19 @@
 #'     values = "black",
 #'     to = 1)
 #'
-#' @import rlang
+#' @family edge creation and removal
+#'
 #' @export
-set_edge_attrs <- function(graph,
-                           edge_attr,
-                           values,
-                           from = NULL,
-                           to = NULL) {
+set_edge_attrs <- function(
+    graph,
+    edge_attr,
+    values,
+    from = NULL,
+    to = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Get the requested `edge_attr`
   edge_attr <-
@@ -93,41 +95,36 @@ set_edge_attrs <- function(graph,
 
   if (edge_attr %in% c("id", "from", "to")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot alter edge ID values or attributes associated with node IDs")
+    cli::cli_abort(
+      "You cannot alter edge ID values or attributes associated with node IDs.")
   }
 
-  if (!is.null(from) & !is.null(to)) {
-    if (length(from) != length(to)) {
+  if (!is.null(from) && !is.null(to) && (length(from) != length(to))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The number of values specified in `from` and `to` must be the same")
-    }
+    cli::cli_abort(
+      "The number of values specified in `from` and `to` must be the same.")
   }
 
   # Extract the graph's edf
   edf <- graph$edges_df
 
-  if (length(values) != 1 &
+  if (length(values) != 1 &&
       length(values) != nrow(edf)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The length of values provided must either be 1 or that of the number of rows in the edf")
+    cli::cli_abort(
+      "The length of values provided must either be 1 or that of the number of rows in the edf.")
   }
 
   # Get the indices for the edge data frame
   # that require modification
-  if (is.null(from) & !is.null(to)) {
+  if (is.null(from) && !is.null(to)) {
     indices <-
       which(edf$to %in% to)
-  } else if (!is.null(from) & is.null(to)) {
+  } else if (!is.null(from) && is.null(to)) {
     indices <-
       which(edf$from %in% from)
-  } else if (is.null(from) & is.null(to)) {
-    indices <- 1:nrow(edf)
+  } else if (is.null(from) && is.null(to)) {
+    indices <- seq_len(nrow(edf))
   } else {
     indices <-
       which((edf$from %in% from) &
@@ -168,7 +165,7 @@ set_edge_attrs <- function(graph,
     if (!(edge_attr %in% colnames(edf))) {
       edf <-
         cbind(edf,
-              rep(as.character(NA), nrow(edf)))
+              rep(NA_character_, nrow(edf)))
 
       edf[, ncol(edf)] <-
         edf[, ncol(edf)]
@@ -180,13 +177,16 @@ set_edge_attrs <- function(graph,
   }
 
   # Update the graph object
-  graph$edges_df = edf
+  graph$edges_df <- edf
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

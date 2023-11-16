@@ -1,5 +1,7 @@
 #' Delete one or more graph actions stored within a graph object
 #'
+#' @description
+#'
 #' Delete one or more graph actions stored within a graph object of class
 #' `dgr_graph`).
 #'
@@ -58,30 +60,22 @@
 #' graph %>% get_graph_actions()
 #'
 #' @export
-delete_graph_actions <- function(graph,
-                                 actions) {
+delete_graph_actions <- function(
+    graph,
+    actions
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no graph actions to delete")
+    cli::cli_abort("There are no graph actions to delete")
   }
 
   if (inherits(actions, "character")) {
@@ -89,13 +83,12 @@ delete_graph_actions <- function(graph,
     graph_action_names <-
       graph %>%
       get_graph_actions() %>%
-      dplyr::pull(action_name)
+      dplyr::pull("action_name")
 
     if (!any(actions %in% graph_action_names)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One or more provided `actions` do not exist in the graph")
+      cli::cli_abort(
+        "One or more provided `actions` do not exist in the graph.")
     }
 
     # Get a revised data frame with graph actions
@@ -114,10 +107,7 @@ delete_graph_actions <- function(graph,
       dplyr::pull(action_index)
 
     if (!any(actions %in% graph_action_indices)) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One or more provided `actions` do not exist in the graph")
+      cli::cli_abort("One or more provided `actions` do not exist in the graph.")
     }
 
     # Get a revised data frame with graph actions
@@ -132,11 +122,14 @@ delete_graph_actions <- function(graph,
   # revised version
   graph$graph_actions <- revised_graph_actions
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

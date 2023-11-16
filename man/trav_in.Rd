@@ -46,8 +46,7 @@ From a graph object of class \code{dgr_graph} move along inward edges from one o
 more nodes present in a selection to other connected nodes, replacing the
 current nodes in the selection with those nodes traversed to. An optional
 filter by node attribute can limit the set of nodes traversed to.
-}
-\details{
+
 This traversal function makes use of an active selection of nodes. After the
 traversal, depending on the traversal conditions, there will either be a
 selection of nodes or no selection at all.

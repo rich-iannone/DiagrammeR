@@ -1,5 +1,7 @@
 #' Is the graph a directed graph?
 #'
+#' @description
+#'
 #' Determines whether a graph is set to be directed or not and returns a logical
 #' value to that effect.
 #'
@@ -26,18 +28,7 @@
 #'
 #' @export
 is_graph_directed <- function(graph) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
+  check_graph_valid(graph)
   # Determine if graph is directed by getting the
   # value at `graph$directed`
   graph$directed

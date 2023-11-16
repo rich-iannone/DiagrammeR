@@ -1,5 +1,7 @@
 #' Get edge attribute values from a selection of edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get edge attribute values for one
 #' or more edges.
 #'
@@ -73,29 +75,17 @@
 #'   get_edge_attrs_ws(
 #'     edge_attr = value)
 #'
-#' @import rlang
 #' @export
-get_edge_attrs_ws <- function(graph,
-                              edge_attr) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_edge_attrs_ws <- function(
+    graph,
+    edge_attr
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object has a valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of edges available.")
-  }
+  check_graph_contains_edge_selection(graph)
 
   edge_attr <- rlang::enquo(edge_attr)
 
@@ -103,9 +93,8 @@ get_edge_attrs_ws <- function(graph,
       rlang::get_expr() %>%
       as.character() %in% c("id", "from", "to")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not an edge attribute")
+    cli::cli_abort(
+      "This is not an edge attribute.")
   }
 
   # Extract the edge data frame (edf)

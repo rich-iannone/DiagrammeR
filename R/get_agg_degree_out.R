@@ -1,5 +1,7 @@
 #' Get an aggregate value from the outdegree of nodes
 #'
+#' @description
+#'
 #' Get a single, aggregate value from the outdegree values for all nodes in a
 #' graph, or, a subset of graph nodes.
 #'
@@ -50,42 +52,30 @@
 #'     agg = "mean",
 #'     conditions = value < 5.0)
 #'
-#' @import rlang
 #' @export
-get_agg_degree_out <- function(graph,
-                               agg,
-                               conditions = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_agg_degree_out <- function(
+    graph,
+    agg,
+    conditions = NULL
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
+  check_graph_valid(graph)
 
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)
 
     # Apply filtering conditions to the ndf
-    ndf <- dplyr::filter(.data = ndf, !!conditions)
+    ndf <- dplyr::filter(.data = ndf, {{ conditions }})
 
     # Get a vector of node ID values
     node_ids <-
       ndf %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   }
 
   # Get a data frame with outdegree values for
@@ -100,14 +90,7 @@ get_agg_degree_out <- function(graph,
 
   # Verify that the value provided for `agg`
   # is one of the accepted aggregation types
-  if (!(agg %in% c("sum", "min", "max", "mean", "median"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "The specified aggregation method is not valid",
-        "allowed choices are: `min`, `max`, `mean`, `median`, or `sum`"))
-  }
+  arg_match0(agg, c("sum", "min", "max", "mean", "median"))
 
   # Get the aggregate value of total degree based
   # on the aggregate function provided
@@ -116,8 +99,7 @@ get_agg_degree_out <- function(graph,
   outdegree_agg <-
     outdegree_df %>%
     dplyr::group_by() %>%
-    dplyr::summarize(fun(outdegree, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
+    dplyr::summarize(fun(outdegree, na.rm = TRUE), .groups = "drop") %>%
     purrr::flatten_dbl()
 
   outdegree_agg

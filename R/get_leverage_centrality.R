@@ -1,5 +1,7 @@
 #' Get leverage centrality
 #'
+#' @description
+#'
 #' Get the leverage centrality values for all nodes in the graph. Leverage
 #' centrality is a measure of the relationship between the degree of a given
 #' node and the degree of each of its neighbors, averaged over all neighbors. A
@@ -42,16 +44,8 @@
 #' @export
 get_leverage_centrality <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -63,7 +57,7 @@ get_leverage_centrality <- function(graph) {
   # all nodes in the graph
   leverage_centrality_values <-
     purrr::map(
-      1:length(degree_vals),
+      seq_along(degree_vals),
       function(x) {
         mean(
           (degree_vals[x] - degree_vals[igraph::neighbors(ig_graph, degree_vals)]) /

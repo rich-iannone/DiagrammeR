@@ -1,5 +1,7 @@
 #' Use the depth-first search (dfs) algorithm
 #'
+#' @description
+#'
 #' With a chosen or random node serving as the starting point, perform a
 #' depth-first search of the whole graph and return the node ID values visited.
 #' The dfs algorithm differs from breadth-first search (bfs) in that dfs will
@@ -64,28 +66,20 @@
 #'     direction = "out")
 #'
 #' @export
-do_dfs <- function(graph,
-                   node = NULL,
-                   direction = "all") {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+do_dfs <- function(
+    graph,
+    node = NULL,
+    direction = "all"
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  check_graph_contains_nodes(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  # Validation: direction is in the allowed values.
+  rlang::arg_match0(direction, c("all", "out", "in"))
 
   # If no node provided, choose a random node
   if (is.null(node)) {
@@ -103,7 +97,7 @@ do_dfs <- function(graph,
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "all")
+        mode = "all")
 
   } else if (direction == "out") {
 
@@ -111,7 +105,7 @@ do_dfs <- function(graph,
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "out")
+        mode = "out")
 
   } else if (direction == "in") {
 
@@ -119,13 +113,8 @@ do_dfs <- function(graph,
       igraph::dfs(
         graph = ig_graph,
         root = node,
-        neimode = "in")
+        mode = "in")
 
-  } else if (!(direction %in% c("all", "out", "in"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `direction` must be either `all`, `out`, or `in`")
   }
 
   # Get the nodes visited during the dfs

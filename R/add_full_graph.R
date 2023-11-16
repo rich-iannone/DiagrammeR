@@ -1,5 +1,7 @@
 #' Add a fully connected graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a fully connected graph either
 #' with or without loops. If the graph object set as directed, the added graph
 #' will have edges to and from each pair of nodes. In the undirected case, a
@@ -99,7 +101,8 @@
 #'     label = TRUE,
 #'     rel = "related_to",
 #'     edge_wt_matrix = edge_wt_matrix,
-#'     keep_loops = FALSE)
+#'     keep_loops = FALSE
+#'   )
 #'
 #' # Show the graph's node
 #' # data frame (ndf)
@@ -126,31 +129,25 @@
 #'   get_edge_df()
 #'
 #' @export
-add_full_graph <- function(graph,
-                           n,
-                           type = NULL,
-                           label = TRUE,
-                           rel = NULL,
-                           edge_wt_matrix = NULL,
-                           keep_loops = FALSE,
-                           node_aes = NULL,
-                           edge_aes = NULL,
-                           node_data = NULL,
-                           edge_data = NULL) {
+add_full_graph <- function(
+    graph,
+    n,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    edge_wt_matrix = NULL,
+    keep_loops = FALSE,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the number of nodes ever created for
   # this graph
@@ -180,7 +177,7 @@ add_full_graph <- function(graph,
 
   # Remove loops by making the diagonal of the
   # adjacency matrix all 0
-  if (keep_loops == FALSE) {
+  if (!keep_loops) {
     adj_matrix <-
       adj_matrix -
       diag(1, nrow = nrow(adj_matrix), ncol = ncol(adj_matrix))
@@ -202,11 +199,13 @@ add_full_graph <- function(graph,
           new_graph,
           edge_attr = "weight",
           values = as.numeric(edge_wt_matrix)[
-            which(as.numeric(adj_matrix) == 1)])
+            which(as.numeric(adj_matrix) == 1)
+          ]
+        )
     }
   }
 
-  if (is_graph_directed(graph) == FALSE) {
+  if (!is_graph_directed(graph)) {
 
     new_graph <-
       from_adj_matrix(
@@ -225,58 +224,48 @@ add_full_graph <- function(graph,
           values = edge_wt_matrix[
             lower.tri(
               edge_wt_matrix,
-              diag = ifelse(keep_loops == FALSE,
-                            FALSE, TRUE))])
+              diag = keep_loops # TRUE or FALSE
+            )])
     }
   }
 
   # Add label values to nodes
   if (length(label) == 1) {
-    if (label == TRUE) {
+    if (label) {
       new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
-    }
-  }
-
-  if (length(label) == 1) {
-    if (label == FALSE) {
+    } else {
       new_graph$nodes_df[, 3] <-
         as.character(new_graph$nodes_df[, 1])
     }
   }
 
-  if (length(label) > 1) {
-    if (length(label) == n) {
-      new_graph$nodes_df[, 3] <- label
-    }
+  if (n > 1 && length(label) == n) {
+    new_graph$nodes_df[, 3] <- label
   }
 
-  if (length(label) == 1) {
-    if (label == TRUE) {
-      if (!is.null(edge_wt_matrix)) {
+  if (isTRUE(label) && !is.null(edge_wt_matrix)) {
 
-        if (!is.null(colnames(edge_wt_matrix))) {
-          ewm_names <- colnames(edge_wt_matrix)
-        }
-        if (!is.null(rownames(edge_wt_matrix))) {
-          ewm_names <- rownames(edge_wt_matrix)
-        }
+    if (!is.null(colnames(edge_wt_matrix))) {
+      ewm_names <- colnames(edge_wt_matrix)
+    }
 
-        if (length(ewm_names) == n) {
-          new_graph$nodes_df[, 3] <- ewm_names
-        }
-      }
+    if (!is.null(rownames(edge_wt_matrix))) {
+      ewm_names <- rownames(edge_wt_matrix)
+    }
+
+    if (length(ewm_names) == n) {
+      new_graph$nodes_df[, 3] <- ewm_names
     }
   }
 
   # Add `type` values to all new nodes
-  if (!is.null(type) &
-      length(type) == 1) {
+  if (length(type) == 1) {
     new_graph$nodes_df[, 2] <- type
   }
 
   # Add `rel` values to all new edges
-  if (!is.null(rel) &
-      length(rel) == 1) {
+  # NULL is length 0
+  if (length(rel) == 1) {
     new_graph$edges_df[, 4] <- rel
   }
 
@@ -287,17 +276,15 @@ add_full_graph <- function(graph,
 
     if (nrow(node_aes_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(new_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -308,7 +295,7 @@ add_full_graph <- function(graph,
 
     if (nrow(node_data_tbl) < nrow(new_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(new_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
@@ -316,9 +303,7 @@ add_full_graph <- function(graph,
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -329,17 +314,15 @@ add_full_graph <- function(graph,
 
     if (nrow(edge_aes_tbl) < nrow(new_graph$edges_df)) {
 
-      edge_aes$index__ <- 1:nrow(new_graph$edges_df)
+      edge_aes$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -350,17 +333,15 @@ add_full_graph <- function(graph,
 
     if (nrow(edge_data_tbl) < nrow(new_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(new_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -419,11 +400,14 @@ add_full_graph <- function(graph,
     # the graph
     edges_added <- edges_graph_2 - edges_graph_1
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
+        version_id = nrow(graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
@@ -458,11 +442,14 @@ add_full_graph <- function(graph,
     # the graph
     edges_added <- edges_graph_2 - edges_graph_1
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
+        version_id = nrow(graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
@@ -478,8 +465,7 @@ add_full_graph <- function(graph,
     # Perform graph actions, if any are available
     if (nrow(graph$graph_actions) > 0) {
       graph <-
-        graph %>%
-        trigger_graph_actions()
+        trigger_graph_actions(graph)
     }
 
     # Write graph backup if the option is set

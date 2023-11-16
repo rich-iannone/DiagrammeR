@@ -4,12 +4,14 @@
 \name{usd_exchange_rates}
 \alias{usd_exchange_rates}
 \title{US Dollar exchange rates.}
-\format{A data frame with 196 rows and 3 variables:
+\format{
+A data frame with 196 rows and 3 variables:
 \describe{
 \item{from_currency}{the currency from which units will be used to buy units in the alternate currency (this is always USD)}
 \item{to_currency}{the currency that is to be bought}
 \item{cost_unit}{the cost per unit of the currency to be bought}
-}}
+}
+}
 \usage{
 usd_exchange_rates
 }

@@ -1,5 +1,7 @@
 #' Traverse to any reverse edges
 #'
+#' @description
+#'
 #' From an active selection of edges in a graph object of class `dgr_graph`,
 #' traverse to any available reverse edges between the nodes common to the
 #' selected edges. For instance, if an active selection has the edge `1->2` but
@@ -72,38 +74,22 @@
 #' graph %>% get_selection()
 #'
 #' @export
-trav_reverse_edge <- function(graph,
-                              add_to_selection = FALSE) {
+trav_reverse_edge <- function(
+    graph,
+    add_to_selection = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Extract the selection of edges
   edges_from <- graph$edge_selection$from
@@ -114,7 +100,7 @@ trav_reverse_edge <- function(graph,
 
   # Get the available reverse edges
   reverse_edges_df <- data.frame(to = edges_from, from = edges_to)
-  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df)
+  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df, by = c("from", "to"))
 
   # Add the reverse edges to the existing,
   # selected edges
@@ -122,7 +108,7 @@ trav_reverse_edge <- function(graph,
     edges_df <- data.frame(to = edges_to, from = edges_from)
     edges <-
       edf %>%
-      dplyr::inner_join(edges_df) %>%
+      dplyr::inner_join(edges_df, by = c("from", "to")) %>%
       dplyr::bind_rows(reverse_edges)
   } else {
     edges <- reverse_edges
@@ -131,8 +117,7 @@ trav_reverse_edge <- function(graph,
   # Modify `edges` to create a correct esdf
   edges <-
     edges %>%
-    dplyr::select(id, from, to) %>%
-    dplyr::rename(edge = id) %>%
+    dplyr::select(edge = "id", "from", "to") %>%
     dplyr::arrange(edge)
 
   # Add the edge ID values to the active selection
@@ -142,11 +127,14 @@ trav_reverse_edge <- function(graph,
   # Replace `graph$node_selection` with an empty df
   graph$node_selection <- create_empty_nsdf()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

@@ -1,4 +1,4 @@
-context("Creating objects with DiagrammeR, mermaid, and grViz")
+# Creating objects with DiagrammeR, mermaid, and grViz")
 
 test_that("htmlwidgets object can be created", {
 
@@ -15,7 +15,7 @@ test_that("htmlwidgets object can be created", {
 
   # Expect that the object inherits
   # from `DiagrammeR` and `htmlwidget`
-  expect_is(
+  expect_s3_class(
     diagrammer_htmlwidget, c("DiagrammeR", "htmlwidget"))
 
   mermaid_htmlwidget <-
@@ -31,6 +31,6 @@ test_that("htmlwidgets object can be created", {
 
   # Expect that the object inherits
   # from `DiagrammeR` and `htmlwidget`
-  expect_is(
+  expect_s3_class(
     mermaid_htmlwidget, c("DiagrammeR", "htmlwidget"))
 })

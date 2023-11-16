@@ -1,5 +1,7 @@
 #' Export a graph to various image formats
 #'
+#' @description
+#'
 #' Export a graph to a variety of image formats such as PNG, PDF, SVG, and
 #' PostScript.
 #'
@@ -47,29 +49,25 @@
 #' #     file_type = "PNG"
 #' #   )
 #'
+#' @family Display and Save
+#'
 #' @export
-export_graph <- function(graph,
-                         file_name = NULL,
-                         file_type = NULL,
-                         title = NULL,
-                         width = NULL,
-                         height = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+export_graph <- function(
+    graph,
+    file_name = NULL,
+    file_type = NULL,
+    title = NULL,
+    width = NULL,
+    height = NULL
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If no `file_name` or `file_type` provided, default to
   # writing a PDF with a unique `file_name` value based
   # on user's current date/time
-  if (is.null(file_name) & is.null(file_type)) {
+  if (is.null(file_name) && is.null(file_type)) {
     file_name <-
       paste0("graph_", format(Sys.time(), "%Y_%m_%d__%H_%M_%S"), ".pdf")
     file_type <- "pdf"
@@ -78,7 +76,7 @@ export_graph <- function(graph,
   # If `file_name` provided but `file_type` is not, infer
   # the output file type based on the extension; if no
   # extension provided, default to PDF export
-  if (is.null(file_type) & !is.null(file_name)) {
+  if (is.null(file_type) && !is.null(file_name)) {
     if (grepl("\\.", file_name)) {
       file_type <- gsub(".*\\.([A-Za-z])", "\\1", file_name)
     } else {
@@ -87,31 +85,10 @@ export_graph <- function(graph,
     }
   }
 
-  if ((file_type == "PNG" | file_type == "png") &&
-      requireNamespace("DiagrammeRsvg", quietly = TRUE) &&
-      requireNamespace("rsvg", quietly = TRUE)) {
+  if (tolower(file_type) == "png") {
 
-    # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PNG file",
-          "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PNG file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
-    }
+    # Stop function if `DiagrammeRsvg` or `rsvg` package is not available
+    rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a PNG file.")
 
     if (!is.null(title)) {
 
@@ -134,31 +111,10 @@ export_graph <- function(graph,
     )
   }
 
-  if ((file_type == "PDF" | file_type == "pdf") &&
-    requireNamespace("DiagrammeRsvg", quietly = TRUE) &&
-    requireNamespace("rsvg", quietly = TRUE)) {
+  if (tolower(file_type) == "pdf") {
 
-    # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PDF file",
-          "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PDF file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
-    }
+    # Stop function if `DiagrammeRsvg` or `rsvg` package is not available
+    rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a PDF file.")
 
     if (!is.null(title)) {
       graph <- add_global_graph_attrs(graph, "label", title, "graph")
@@ -180,31 +136,10 @@ export_graph <- function(graph,
     )
   }
 
-  if ((file_type == "SVG" | file_type == "svg") &&
-      requireNamespace("DiagrammeRsvg", quietly = TRUE) &&
-      requireNamespace("rsvg", quietly = TRUE)) {
+  if (tolower(file_type) == "svg") {
 
-    # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce an SVG file",
-          "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce an SVG file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
-    }
+    # Stop function if `DiagrammeRsvg` or `rsvg` package is not available
+    rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a SVG file.")
 
     if (!is.null(title)) {
 
@@ -227,31 +162,9 @@ export_graph <- function(graph,
     )
   }
 
-  if ((file_type == "PS" | file_type == "ps") &&
-    requireNamespace("DiagrammeRsvg", quietly = TRUE) &&
-    requireNamespace("rsvg", quietly = TRUE)) {
+  if (tolower(file_type) == "ps") {
 
-    # Stop function if `DiagrammeRsvg` package is not available
-    if (!("DiagrammeRsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PS file",
-          "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in% rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PS file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
-    }
+    rlang::check_installed(c("DiagrammeRsvg", "rsvg"), "to produce a PS file.")
 
     if (!is.null(title)) {
 

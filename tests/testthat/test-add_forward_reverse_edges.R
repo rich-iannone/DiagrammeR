@@ -1,4 +1,4 @@
-context("Adding forward and reverse edges through a selection")
+# Adding forward and reverse edges through a selection
 
 test_that("forward edges can be added given a selection of edges", {
   # Create an empty graph, add 2 nodes to it,
@@ -25,21 +25,22 @@ test_that("forward edges can be added given a selection of edges", {
     clear_selection()
 
   # Expect that there are 3 edges in the graph
-  expect_equivalent(
+  expect_equal(
     count_edges(graph = graph), 3)
 
   # Expect edge `id` values of `1`, `2`, and `3`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$id,
     c(1, 2, 3))
 
   # Expect the edges have the same definition
   # of `1->2`
-  expect_true(
-    all(get_edges(graph) == "1->2"))
+  expect_in(
+    get_edges(graph),
+    "1->2")
 
   # Expect `rel` values of `a`, `b`, and `c`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$rel,
     c("a", "b", "c"))
 })
@@ -70,27 +71,27 @@ test_that("reverse edges can be added given a selection of edges", {
     clear_selection()
 
   # Expect that there are 3 edges in the graph
-  expect_equivalent(
+  expect_equal(
     count_edges(graph = graph), 3)
 
   # Expect edge `id` values of `1`, `2`, and `3`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$id, c(1, 2, 3))
 
   # Expect the last 2 edges have the definition
   # of `2->1` whereas the original edge is `1->2`
-  expect_equivalent(
+  expect_equal(
     get_edges(graph),
     c("1->2", "2->1", "2->1"))
 
   # Expect `rel` values of `a`, `b`, and `c`
-  expect_equivalent(
+  expect_equal(
     graph$edges_df$rel,
     c("a", "b", "c"))
 
   # Expect an error if the graph does not
   # have an active selection of edges
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph() %>%
       add_n_nodes(
         n = 2,

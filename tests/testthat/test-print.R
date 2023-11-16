@@ -1,4 +1,4 @@
-context("Print graph summary")
+# Print graph summary
 
 get_printed_output <- function(graph, line = NULL) {
 
@@ -65,22 +65,17 @@ test_that("Printing a summary of an empty graph works", {
 
   expect_equal(
     graph %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / <none>")
-
-  expect_equal(
-    graph %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / 17 are set")
 
   expect_equal(
     graph %>%
-      get_printed_output(12) %>% substr(1, 45) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 45) %>% stringr::str_trim(),
     "GRAPH ACTIONS / <none>")
 
   expect_equal(
     graph %>%
-      get_printed_output(13) %>% substr(1, 45) %>% stringr::str_trim(),
+      get_printed_output(12) %>% substr(1, 45) %>% stringr::str_trim(),
     "GRAPH LOG / create_graph()")
 })
 
@@ -258,15 +253,13 @@ test_that("Describing if a graph is weighted works", {
     create_graph() %>%
     add_path(n = 5)
 
-  expect_true(
-    stringr::str_detect(
-      graph_weighted %>% get_printed_output(2),
-      "weighted"))
+  expect_match(
+    graph_weighted %>% get_printed_output(2),
+    "weighted")
 
-  expect_false(
-    stringr::str_detect(
-      graph_unweighted %>% get_printed_output(2),
-      "weighted"))
+  expect_no_match(
+    graph_unweighted %>% get_printed_output(2),
+    "weighted")
 })
 
 test_that("Describing if a graph is a DAG works", {
@@ -279,15 +272,13 @@ test_that("Describing if a graph is a DAG works", {
     create_graph() %>%
     add_cycle(n = 5)
 
-  expect_true(
-    stringr::str_detect(
-      graph_dag %>% get_printed_output(2),
-      "DAG"))
+  expect_match(
+    graph_dag %>% get_printed_output(2),
+    "DAG")
 
-  expect_false(
-    stringr::str_detect(
-      graph_cycle %>% get_printed_output(2),
-      "DAG"))
+  expect_no_match(
+    graph_cycle %>% get_printed_output(2),
+    "DAG")
 })
 
 test_that("Describing if a graph is a property graph works", {
@@ -307,15 +298,13 @@ test_that("Describing if a graph is a property graph works", {
       label = 1:4,
       rel = c("a", "a", "b", "b"))
 
-  expect_true(
-    stringr::str_detect(
-      graph_pg %>% get_printed_output(2),
-      "property graph"))
+  expect_match(
+    graph_pg %>% get_printed_output(2),
+    "property graph")
 
-  expect_false(
-    stringr::str_detect(
-      graph_not_pg %>% get_printed_output(2),
-      "property graph"))
+  expect_no_match(
+    graph_not_pg %>% get_printed_output(2),
+    "property graph")
 })
 
 test_that("Describing if a graph is a simple graph works", {
@@ -332,15 +321,13 @@ test_that("Describing if a graph is a simple graph works", {
     add_edges_w_string(
       edges = "1->2")
 
-  expect_true(
-    stringr::str_detect(
-      graph_simple %>% get_printed_output(2),
-      "simple"))
+  expect_match(
+    graph_simple %>% get_printed_output(2),
+    "simple")
 
-  expect_false(
-    stringr::str_detect(
-      graph_not_simple %>% get_printed_output(2),
-      "simple"))
+  expect_no_match(
+    graph_not_simple %>% get_printed_output(2),
+    "simple")
 })
 
 test_that("Describing if a graph is a connected or not works", {
@@ -354,15 +341,13 @@ test_that("Describing if a graph is a connected or not works", {
     create_graph() %>%
     add_n_nodes(n = 4)
 
-  expect_true(
-    stringr::str_detect(
-      graph_connected %>% get_printed_output(2),
-      " connected "))
+  expect_match(
+    graph_connected %>% get_printed_output(2),
+    " connected ")
 
-  expect_true(
-    stringr::str_detect(
-      graph_not_connected %>% get_printed_output(2),
-      " disconnected "))
+  expect_match(
+    graph_not_connected %>% get_printed_output(2),
+    " disconnected ")
 })
 
 test_that("The number of reported nodes is correct", {
@@ -378,20 +363,17 @@ test_that("The number of reported nodes is correct", {
     create_graph() %>%
     add_n_nodes(n = 4)
 
-  expect_true(
-    stringr::str_detect(
-      graph_no_nodes %>% get_printed_output(1),
-      " no nodes"))
+  expect_match(
+    graph_no_nodes %>% get_printed_output(1),
+    " no nodes")
 
-  expect_true(
-    stringr::str_detect(
-      graph_1_node %>% get_printed_output(1),
-      " 1 node"))
+  expect_match(
+    graph_1_node %>% get_printed_output(1),
+    " 1 node")
 
-  expect_true(
-    stringr::str_detect(
-      graph_4_nodes %>% get_printed_output(1),
-      " 4 nodes"))
+  expect_match(
+    graph_4_nodes %>% get_printed_output(1),
+    " 4 nodes")
 })
 
 test_that("The number of reported edges is correct", {
@@ -408,25 +390,21 @@ test_that("The number of reported edges is correct", {
     create_graph() %>%
     add_path(n = 4)
 
-  expect_false(
-    stringr::str_detect(
-      graph_no_edges %>% get_printed_output(1),
-      " edge"))
+  expect_no_match(
+    graph_no_edges %>% get_printed_output(1),
+    " edge")
 
-  expect_true(
-    stringr::str_detect(
-      graph_1_edge %>% get_printed_output(1),
-      " 1 edge"))
+  expect_match(
+    graph_1_edge %>% get_printed_output(1),
+    " 1 edge")
 
-  expect_true(
-    stringr::str_detect(
-      graph_3_edges %>% get_printed_output(1),
-      " 3 edges"))
+  expect_match(
+    graph_3_edges %>% get_printed_output(1),
+    " 3 edges")
 
-  expect_true(
-    stringr::str_detect(
-      graph_3_edges %>% get_printed_output(1),
-      "DiagrammeR Graph // 4 nodes / 3 edges"))
+  expect_match(
+    graph_3_edges %>% get_printed_output(1),
+    "DiagrammeR Graph // 4 nodes / 3 edges")
 })
 
 test_that("Printing a summary line for node/edge selections works", {
@@ -511,103 +489,6 @@ test_that("Printing a summary line for graph caches works", {
     "CACHE / 2 caches")
 })
 
-test_that("Printing a summary line for stored data frames works", {
-
-  graph_no_df_stored <-
-    create_graph() %>%
-    add_path(n = 4)
-
-  graph_w_1_df_at_node <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_1_df_at_edge <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_2_dfs_at_nodes <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_node_attr(
-      node = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_2_dfs_at_edges <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  graph_w_4_dfs_at_nodes_and_edges <-
-    create_graph() %>%
-    add_path(n = 3) %>%
-    set_df_as_node_attr(
-      node = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_node_attr(
-      node = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 1,
-      df = letters %>%
-        as.data.frame(stringsAsFactors = FALSE)) %>%
-    set_df_as_edge_attr(
-      edge = 2,
-      df = LETTERS %>%
-        as.data.frame(stringsAsFactors = FALSE))
-
-  expect_equal(
-    graph_no_df_stored %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / <none>")
-
-  expect_equal(
-    graph_w_1_df_at_node %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 1: 1 with nodes & 0 with edges")
-
-  expect_equal(
-    graph_w_1_df_at_edge %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 1: 0 with nodes & 1 with edges")
-
-  expect_equal(
-    graph_w_2_dfs_at_nodes %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 2: 2 with nodes & 0 with edges")
-
-  expect_equal(
-    graph_w_2_dfs_at_edges %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 2: 0 with nodes & 2 with edges")
-
-  expect_equal(
-    graph_w_4_dfs_at_nodes_and_edges %>%
-      get_printed_output(10) %>% substr(1, 45) %>% stringr::str_trim(),
-    "STORED DFs / 4: 2 with nodes & 2 with edges")
-})
-
 test_that("Printing a summary line for global graph attributes works", {
 
   graph_default_global_attrs <-
@@ -619,12 +500,12 @@ test_that("Printing a summary line for global graph attributes works", {
 
   expect_equal(
     graph_default_global_attrs %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / 17 are set")
 
   expect_equal(
     graph_no_global_attrs %>%
-      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(10) %>% substr(1, 30) %>% stringr::str_trim(),
     "GLOBAL ATTRS / <none>")
 })
 
@@ -664,16 +545,16 @@ test_that("Printing a summary line for graph actions works", {
 
   expect_equal(
     graph_no_actions %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / <none>")
 
   expect_equal(
     graph_w_1_action %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / 1 is set")
 
   expect_equal(
     graph_w_2_actions %>%
-      get_printed_output(12) %>% substr(1, 30) %>% stringr::str_trim(),
+      get_printed_output(11) %>% substr(1, 30) %>% stringr::str_trim(),
     "GRAPH ACTIONS / 2 are set")
 })

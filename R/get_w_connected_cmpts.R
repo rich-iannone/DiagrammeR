@@ -1,5 +1,7 @@
 #' Get all nodes associated with connected components
 #'
+#' @description
+#'
 #' Determine which nodes in a graph belong to different weakly connected
 #' components (i.e., distinct sets of nodes with traversable paths to and from
 #' each node in the set).
@@ -27,16 +29,8 @@
 #' @export
 get_w_connected_cmpts <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Create a graph where only mandatory
   # node and edge attributes are retained;

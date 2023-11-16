@@ -1,10 +1,13 @@
 #' Insert edge data attributes during edge creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `edge_data` argument, which is present in any function where edges are
 #' created.
 #'
 #' @param ... Edge data attributes provided as one or more named vectors.
+#'
 #' @examples
 #' \dontrun{
 #' # Create a new graph and add
@@ -26,21 +29,19 @@
 #' graph %>% get_edge_df()
 #' }
 #'
+#' @family edge creation and removal
+#'
 #' @export
 edge_data <- function(...) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Collect vectors of edge data
   # attribute values into a list object
   edge_data_values <- list(...)
 
-  if (any(names(edge_data_values) %in% gv_edge_attributes())){
+  if (any(names(edge_data_values) %in% gv_edge_attributes())) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes")
+    cli::cli_abort(
+      "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.")
   }
 
   edge_data_values

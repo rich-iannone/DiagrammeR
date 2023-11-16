@@ -1,4 +1,4 @@
-context("Getting counts of nodes and edges in graph objects")
+# Getting counts of nodes and edges in graph objects
 
 test_that("getting a node count (with `count_nodes()`) is possible", {
 
@@ -13,7 +13,7 @@ test_that("getting a node count (with `count_nodes()`) is possible", {
 
   # Expect that the `total_count_of_nodes` object
   # is a named vector
-  expect_is(
+  expect_type(
     n_nodes, "integer")
 
   expect_equal(
@@ -33,11 +33,7 @@ test_that("getting an edge count (with `count_edges()`) is possible", {
 
   # Expect that the `n_edges` object is
   # an integer
-  expect_is(
-    n_edges, "integer")
-
-  expect_equal(
-    n_edges, 4)
+  expect_equal(n_edges, 4L)
 })
 
 test_that("getting a node/edge count for an empty graph is possible", {
@@ -133,7 +129,7 @@ test_that("counting the number of strongly connected components is possible", {
      add_islands_graph(
        n_islands = 4,
        island_size = 10,
-       p = 1/5,
+       p = 1 / 5,
        edges_between = 1,
        set_seed = 23)
 

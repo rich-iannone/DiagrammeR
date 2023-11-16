@@ -1,4 +1,4 @@
-context("Using graph actions")
+# Using graph actions")
 
 test_that("actions can be added to a graph object", {
 
@@ -21,7 +21,7 @@ test_that("actions can be added to a graph object", {
 
   # Expect a `data.frame` object with in
   # `graph$graph_actions`
-  expect_is(
+  expect_s3_class(
     graph$graph_actions, "data.frame")
 
   # Extract `graph$graph_actions` to a
@@ -90,7 +90,7 @@ test_that("actions can be deleted from a graph object", {
       node_attr_to = "fillcolor",
       action_name = "pagerank_fillcolor")
 
-  number_of_graph_actions_before_deletion <-
+  n_graph_actions_before_deletion <-
     nrow(graph$graph_actions)
 
   # Delete two of the graph actions
@@ -103,7 +103,7 @@ test_that("actions can be deleted from a graph object", {
   # Expect a single row in the data frame
   expect_equal(
     nrow(graph_delete_2$graph_actions),
-    number_of_graph_actions_before_deletion - 2)
+    n_graph_actions_before_deletion - 2)
 
   # Expect that the first graph action
   # remains in the graph
@@ -132,7 +132,7 @@ test_that("actions can be deleted from a graph object", {
   # Expect a single row in the data frame
   expect_equal(
     nrow(graph_delete_2_by_name$graph_actions),
-    number_of_graph_actions_before_deletion - 2)
+    n_graph_actions_before_deletion - 2)
 
   # Expect that the first graph action
   # remains in the graph
@@ -243,34 +243,36 @@ test_that("graph actions can be triggered to modify the graph", {
 
   # Expect certain columns to be available
   # in the graph's internal node data frame
-  expect_equal(
-    colnames(graph$nodes_df),
+  expect_named(
+    graph$nodes_df,
     c("id", "type", "label",
       "pagerank", "width", "fillcolor"))
 
   # Expect the `pagerank` column to have
   # numeric values less than 1
-  expect_is(
-    graph$nodes_df$pagerank, "numeric")
+  expect_type(
+    graph$nodes_df$pagerank, "double")
 
   expect_true(
     all(graph$nodes_df$pagerank <= 1))
 
   # Expect the `width` column to have
   # numeric values less than 1
-  expect_is(
-    graph$nodes_df$width, "numeric")
+  expect_type(
+    graph$nodes_df$width, "double")
 
   expect_true(
     all(graph$nodes_df$width <= 1))
 
   # Expect the `fillcolor` column to have
   # character values with color codes
-  expect_is(
+  expect_type(
     graph$nodes_df$fillcolor, "character")
 
-  expect_true(
-    all(grepl("#[A-F0-9]*", graph$nodes_df$fillcolor)))
+  expect_match(
+    graph$nodes_df$fillcolor,
+    "#[A-F0-9]*"
+  )
 
   # Expect a warning if using the
   # `trigger_graph_actions()` function

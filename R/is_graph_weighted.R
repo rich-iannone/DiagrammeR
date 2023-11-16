@@ -1,5 +1,7 @@
 #' Is the graph a weighted graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is weighted. A graph is
 #' considered to be weighted when it contains edges that all have a edge
 #' `weight` attribute with numerical values assigned for all edges.
@@ -37,26 +39,12 @@
 #' @export
 is_graph_weighted <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  # If the graph is empty, it cannot be
+  # If the graph is empty or contains no edges, it cannot be
   # classified as a weighted graph
-  if (nrow(graph$nodes_df) == 0) {
-    return(FALSE)
-  }
-
-  # If the graph contains no edges, it
-  # cannot be a weighted graph
-  if (nrow(graph$edges_df) == 0) {
+  if (nrow(graph$nodes_df) == 0 || nrow(graph$edges_df) == 0) {
     return(FALSE)
   }
 
@@ -65,8 +53,8 @@ is_graph_weighted <- function(graph) {
   # numerical values
   if ("weight" %in% colnames(graph$edges_df)) {
 
-    if (inherits(graph$edges_df$weight, c("numeric", "integer")) &
-        !any(is.na(graph$edges_df$weight))) {
+    if (inherits(graph$edges_df$weight, c("numeric", "integer")) &&
+        !anyNA(graph$edges_df$weight)) {
       return(TRUE)
     } else {
       return(FALSE)

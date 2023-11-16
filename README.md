@@ -1,24 +1,36 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DiagrammeR <img src="man/figures/logo.svg" align="right" height="250px" />
+<div align="center">
 
-[![Build
-Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
-[![Coverage
-Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
+<hr style="color:transparent" />
+<a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<hr style="color:transparent"/>
+
+<!-- badges: start -->
 [![CRAN
-status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
-![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
+status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main)
+[![Monthly
+Downloads](https://cranlogs.r-pkg.org/badges/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Contributor
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
+<!-- badges: end -->
+
+<hr style="color:transparent" />
+
+<br />
+
+</div>
 
 With the **DiagrammeR** package you can create, modify, analyze, and
 visualize network graph diagrams. The output can be incorporated into
 **R Markdown** documents, integrated with **Shiny** web apps, converted
 to other graph formats, or exported as image files.
-
-This package is made possible by the
-[**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides
-an easy-to-use framework for bringing together R and JavaScript.
 
 <img src="man/figures/simple_graph.png">
 
@@ -26,48 +38,39 @@ The graph above can be created with this combination of **DiagrammeR**
 functions:
 
 ``` r
-library(DiagrammeR)
-
 example_graph <-
   create_graph() %>%
   add_pa_graph(
-    n = 50,
-    m = 1,
-    set_seed = 23) %>%
+    n = 50, m = 1,
+    set_seed = 23
+  ) %>%
   add_gnp_graph(
-    n = 50,
-    p = 1/100,
-    set_seed = 23) %>%
-  join_node_attrs(
-    df = get_betweenness(.)) %>%
-  join_node_attrs(
-    df = get_degree_total(.)) %>%
+    n = 50, p = 1/100,
+    set_seed = 23
+  ) %>%
+  join_node_attrs(df = get_betweenness(.)) %>%
+  join_node_attrs(df = get_degree_total(.)) %>%
   colorize_node_attrs(
     node_attr_from = total_degree,
     node_attr_to = fillcolor,
     palette = "Greens",
-    alpha = 90) %>%
+    alpha = 90
+  ) %>%
   rescale_node_attrs(
     node_attr_from = betweenness,
     to_lower_bound = 0.5,
     to_upper_bound = 1.0,
-      node_attr_to = height) %>%
-  select_nodes_by_id(
-    nodes = get_articulation_points(.)) %>%
-  set_node_attrs_ws(
-    node_attr = peripheries,
-    value = 2) %>%
-  set_node_attrs_ws(
-    node_attr = penwidth,
-    value = 3) %>%
+    node_attr_to = height
+  ) %>%
+  select_nodes_by_id(nodes = get_articulation_points(.)) %>%
+  set_node_attrs_ws(node_attr = peripheries, value = 2) %>%
+  set_node_attrs_ws(node_attr = penwidth, value = 3) %>%
   clear_selection() %>%
-  set_node_attr_to_display(
-    attr = NULL)
+  set_node_attr_to_display(attr = NULL)
 ```
 
 ``` r
-example_graph %>%
-  render_graph(layout = "nicely")
+render_graph(example_graph, layout = "nicely")
 ```
 
 **DiagrammeR**’s graph functions allow you to create graph objects,
@@ -92,9 +95,7 @@ a_graph <-
   create_graph() %>%
   add_node() %>%
   add_node() %>%
-  add_edge(
-    from = 1,
-    to = 2)
+  add_edge(from = 1, to = 2)
 ```
 
 <img src="man/figures/a_graph.png">
@@ -102,11 +103,7 @@ a_graph <-
 We can take away an edge by using `delete_edge()`.
 
 ``` r
-b_graph <-
-  a_graph %>%
-  delete_edge(
-    from = 1,
-    to = 2)
+b_graph <- a_graph %>% delete_edge(from = 1, to = 2)
 ```
 
 <img src="man/figures/b_graph.png">
@@ -115,11 +112,7 @@ We can add a node to the graph while, at the same time, defining edges
 to or from existing nodes in the graph.
 
 ``` r
-c_graph <-
-  b_graph %>%
-  add_node(
-    from = 1,
-    to = 2)
+c_graph <- b_graph %>% add_node(from = 1, to = 2)
 ```
 
 <img src="man/figures/c_graph.png">
@@ -133,14 +126,13 @@ c_graph
 #> DiagrammeR Graph // 3 nodes / 2 edges
 #>   -- directed / connected / DAG / simple
 #> 
-#>   NODES / type: <unused> / label: <unused>            info: `get_node_df()`
+#>   NODES / type: <unused> / label: <unused>                 info: `get_node_df()`
 #>     -- no additional node attributes
-#>   EDGES / rel: <unused>                               info: `get_edge_df()`
+#>   EDGES / rel: <unused>                                    info: `get_edge_df()`
 #>     -- no additional edge attributes
 #>   SELECTION / <none>
 #>   CACHE / <none>
-#>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
+#>   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
 #>   GRAPH LOG / <3 actions> -> add_edge() -> delete_edge() -> add_node()
 ```
@@ -173,19 +165,24 @@ d_graph <-
     node_aes = node_aes(
       color = "steelblue",
       fillcolor = "lightblue",
-      fontcolor = "gray35"),
+      fontcolor = "gray35"
+    ),
     node_data = node_data(
-      value = 2.5)) %>%
+      value = 2.5
+    )
+  ) %>%
   add_edge(
-    from = 1,
-    to = 3,
+    from = 1, to = 3,
     rel = "interacted_with",
     edge_aes = edge_aes(
       color = "red",
       arrowhead = "vee",
-      tooltip = "Red Arrow"),
+      tooltip = "Red Arrow"
+    ),
     edge_data = edge_data(
-      value = 5.2))
+      value = 5.2
+    )
+  )
 ```
 
 <img src="man/figures/d_graph.png">
@@ -209,12 +206,8 @@ attribute and modify its `color` node aesthetic attribute:
 ``` r
 e_graph <-
   d_graph %>%
-  select_nodes(
-    conditions = 
-      value == 2.5) %>%
-  set_node_attrs_ws(
-    node_attr = fillcolor,
-    value = "orange") %>%
+  select_nodes(conditions = value == 2.5) %>%
+  set_node_attrs_ws(node_attr = fillcolor, value = "orange") %>%
   clear_selection()
 ```
 
@@ -250,8 +243,7 @@ f_graph <-
   create_graph() %>%
   add_path(n = 3) %>%
   add_cycle(n = 4) %>%
-  add_balanced_tree(
-    k = 2, h = 2)
+  add_balanced_tree(k = 2, h = 2)
 ```
 
 <img src="man/figures/f_graph.png">
@@ -264,9 +256,9 @@ Here, let’s add a directed GNM graph with 10 nodes and 15 edges (the
 g_graph <-
   create_graph() %>%
   add_gnm_graph(
-    n = 15,
-    m = 20,
-    set_seed = 23)
+    n = 15, m = 20,
+    set_seed = 23
+  )
 ```
 
 <img src="man/figures/g_graph.png">
@@ -275,12 +267,11 @@ The undirected version of this graph is can be made using:
 
 ``` r
 h_graph <-
-  create_graph(
-    directed = FALSE) %>%
+  create_graph(directed = FALSE) %>%
   add_gnm_graph(
-    n = 15,
-    m = 20,
-    set_seed = 23)
+    n = 15, m = 20,
+    set_seed = 23
+  )
 ```
 
 <img src="man/figures/h_graph.png">
@@ -289,8 +280,7 @@ We can view the graph using `render_graph()`. There are several layouts
 to choose from as well (e.g., `nicely`, `tree`, `kk`, `fr`, etc.).
 
 ``` r
-h_graph %>%
-  render_graph(layout = "fr")
+render_graph(h_graph, layout = "fr")
 ```
 
 <img src="man/figures/h_graph_2.png">
@@ -305,28 +295,26 @@ we’re working with.
 
     node_list_1     edge_list_1
 
-``` 
-   id label        from to 
-1   1     A     1     1  2 
-2   2     B     2     1  3 
-3   3     C     3     1  4 
-4   4     D     4     1  9 
-5   5     E     5     2  8 
-6   6     F     6     2  7 
-7   7     G     7     2  1 
-8   8     H     8     2 10 
-9   9     I     9     3  1 
-10 10     J     10    3  6 
-                11    3  8
-                12    4  1
-                13    5  7
-                14    6  2
-                15    6  9
-                16    8  1
-                17    9  3
-                18    9 10
-                19   10  1
-```
+       id label        from to 
+    1   1     A     1     1  2 
+    2   2     B     2     1  3 
+    3   3     C     3     1  4 
+    4   4     D     4     1  9 
+    5   5     E     5     2  8 
+    6   6     F     6     2  7 
+    7   7     G     7     2  1 
+    8   8     H     8     2 10 
+    9   9     I     9     3  1 
+    10 10     J     10    3  6 
+                    11    3  8
+                    12    4  1
+                    13    5  7
+                    14    6  2
+                    15    6  9
+                    16    8  1
+                    17    9  3
+                    18    9 10
+                    19   10  1
 
 To fashion this into a graph, we need to ensure that both the nodes and
 their attributes (in this case, just a `label`) are added, and, that the
@@ -347,12 +335,10 @@ actually happening. First, create the graph object with
 
 ``` r
 # Create the graph object
-i_graph_1 <-
-  create_graph()
+i_graph_1 <- create_graph()
   
 # It will start off as empty
-i_graph_1 %>%
-  is_graph_empty()
+i_graph_1 %>% is_graph_empty()
 #> [1] TRUE
 ```
 
@@ -364,16 +350,15 @@ i_graph_2 <-
   i_graph_1 %>%
   add_nodes_from_table(
     table = node_list_1,
-    label_col = label)
+    label_col = label
+  )
 ```
 
 Inspect the graph’s internal node data frame (ndf) with `get_node_df()`:
 
 ``` r
-# View the graph's internal
-# node data frame
-i_graph_2 %>%
-  get_node_df()
+# View the graph's internal node data frame
+i_graph_2 %>% get_node_df()
 #>    id type label id_external
 #> 1   1 <NA>     A           1
 #> 2   2 <NA>     B           2
@@ -411,15 +396,15 @@ i_graph_3 <-
     table = edge_list_1,
     from_col = from,
     to_col = to,
-    from_to_map = id_external)
+    from_to_map = id_external
+  )
 ```
 
 Inspect the graph’s internal edge data frame (edf) with `get_edge_df()`:
 
 ``` r
 # View the edge data frame
-i_graph_3 %>%
-  get_edge_df()
+i_graph_3 %>% get_edge_df()
 #>    id from to  rel
 #> 1   1    1  2 <NA>
 #> 2   2    1  3 <NA>
@@ -453,12 +438,11 @@ i_graph_3
 #> 
 #>   NODES / type: <unused> / label: 10 vals - complete & unique
 #>     -- 1 additional node attribute (id_external)
-#>   EDGES / rel: <unused>                               info: `get_edge_df()`
+#>   EDGES / rel: <unused>                                    info: `get_edge_df()`
 #>     -- no additional edge attributes
 #>   SELECTION / <none>
 #>   CACHE / <none>
-#>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
+#>   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
 #>   GRAPH LOG / <1 action> -> add_nodes_from_table() -> add_edges_from_table() -> ()
 ```
@@ -468,12 +452,12 @@ There are two other similar datasets included in the package
 data. Let’s have a quick look at their column names:
 
 ``` r
-node_list_2 %>% colnames()
+colnames(node_list_2)
 #> [1] "id"      "label"   "type"    "value_1" "value_2"
 ```
 
 ``` r
-edge_list_2 %>% colnames()
+colnames(edge_list_2)
 #> [1] "from"    "to"      "rel"     "value_1" "value_2"
 ```
 
@@ -490,15 +474,16 @@ j_graph <-
   add_nodes_from_table(
     table = node_list_2,
     label_col = label,
-    type_col = type) %>%
+    type_col = type
+  ) %>%
   add_edges_from_table(
     table = edge_list_2,
     from_col = from,
     to_col = to,
     from_to_map = id_external,
-    rel_col = rel) %>%
-  drop_node_attrs(
-    node_attr = id_external)
+    rel_col = rel
+  ) %>%
+  drop_node_attrs(node_attr = id_external)
 ```
 
 Let’s again view the graph summary in the console. Note that the
@@ -512,12 +497,11 @@ j_graph
 #> 
 #>   NODES / type: 2 vals - complete / label: 10 vals - complete & unique
 #>     -- 2 additional node attributes (value_1, value_2)
-#>   EDGES / rel: 3 vals - complete                      info: `get_edge_df()`
+#>   EDGES / rel: 3 vals - complete                           info: `get_edge_df()`
 #>     -- 2 additional edge attributes (value_1, value_2)
 #>   SELECTION / <none>
 #>   CACHE / <none>
-#>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
+#>   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
 #>   GRAPH LOG / <3 actions> -> add_edges_from_table() -> () -> drop_node_attrs()
 ```
@@ -530,52 +514,30 @@ the sums of `value_1` and `value_2` as `value_3` (for both the nodes and
 the edges). Then, let’s color the nodes and edges `forestgreen` if
 `value_3` is greater than `10` (`red` otherwise). Finally, let’s display
 the values of `value_3` for the nodes when rendering the graph diagram.
-Here we go\!
+Here we go!
 
 ``` r
 k_graph <-
   j_graph %>%
-  mutate_node_attrs(
-    value_3 = value_1 + value_2) %>%
-  mutate_edge_attrs(
-    value_3 = value_1 + value_2) %>%
-  select_nodes(
-    conditions = value_3 > 10) %>%
-  set_node_attrs_ws(
-    node_attr = fillcolor,
-    value = "forestgreen") %>%
+  mutate_node_attrs(value_3 = value_1 + value_2) %>%
+  mutate_edge_attrs(value_3 = value_1 + value_2) %>%
+  select_nodes(conditions = value_3 > 10) %>%
+  set_node_attrs_ws(node_attr = fillcolor, value = "forestgreen") %>%
   invert_selection() %>%
-  set_node_attrs_ws(
-    node_attr = fillcolor,
-    value = "red") %>%
-  select_edges(
-    conditions = value_3 > 10) %>%
-  set_edge_attrs_ws(
-    edge_attr = color,
-    value = "forestgreen") %>%
+  set_node_attrs_ws(node_attr = fillcolor, value = "red") %>%
+  select_edges(conditions = value_3 > 10) %>%
+  set_edge_attrs_ws(edge_attr = color, value = "forestgreen") %>%
   invert_selection() %>%
-  set_edge_attrs_ws(
-    edge_attr = color,
-    value = "red") %>%
+  set_edge_attrs_ws(edge_attr = color, value = "red") %>%
   clear_selection() %>%
-  set_node_attr_to_display(
-    attr = value_3)
+  set_node_attr_to_display(attr = value_3)
 ```
 
 ``` r
-k_graph %>% render_graph()
+render_graph(k_graph)
 ```
 
 <img src="man/figures/k_graph.png">
-
-## Functions in the Package
-
-There are a lot of functions for working with graphs. If you need help
-with any given function, try `help([function_name])`. Each function is
-well documented, with explanations for each argument and many usage
-examples.
-
-<img src="man/figures/functions.png">
 
 ## A Network Graph Example
 
@@ -589,19 +551,19 @@ the relationships between the people and the project.
 
 The example graph file `repository.dgr` is available in the
 `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package
-(currently, only for the **Github** version). We can load it into memory
+(currently, only for the **GitHub** version). We can load it into memory
 by using the `open_graph()` function, where `system.file()` helps to
 provide the location of the file within the package.
 
 ``` r
-library(DiagrammeR)
-
 # Load in a the small repository graph
 graph <-
   open_graph(
     system.file(
       "extdata/example_graphs_dgr/repository.dgr",
-      package = "DiagrammeR"))
+      package = "DiagrammeR"
+    )
+  )
 ```
 
 We can always view this property graph with the `render_graph()`
@@ -623,10 +585,8 @@ and then calculate the mean with R’s `mean()` function.
 
 ``` r
 graph %>% 
-  select_nodes(
-    conditions = type == "person") %>%
-  get_node_attrs_ws(
-    node_attr = age) %>%
+  select_nodes(conditions = type == "person") %>%
+  get_node_attrs_ws(node_attr = age) %>%
   mean()
 #> [1] 33.6
 ```
@@ -640,8 +600,7 @@ commits to all projects).
 ``` r
 graph %>% 
   select_edges() %>%
-  get_edge_attrs_ws(
-    edge_attr = commits) %>%
+  get_edge_attrs_ws(edge_attr = commits) %>%
   sum()
 #> [1] 5182
 ```
@@ -659,11 +618,9 @@ and then calculate the `sum()`. This is the total number of commits.
 
 ``` r
 graph %>% 
-  select_nodes(
-    conditions = name == "Josh") %>%
+  select_nodes(conditions = name == "Josh") %>%
   trav_out_edge() %>%
-  get_edge_attrs_ws(
-    edge_attr = commits) %>%
+  get_edge_attrs_ws(edge_attr = commits) %>%
   sum()
 #> [1] 227
 ```
@@ -678,12 +635,9 @@ vector length, especially in big graphs).
 
 ``` r
 graph %>% 
-  select_nodes(
-    conditions = name == "Louisa") %>%
-  trav_out_edge(
-    conditions = rel == "maintainer") %>%
-  get_edge_attrs_ws(
-    edge_attr = commits) %>%
+  select_nodes(conditions = name == "Louisa") %>%
+  trav_out_edge(conditions = rel == "maintainer") %>%
+  get_edge_attrs_ws(edge_attr = commits) %>%
   sum()
 #> [1] 236
 ```
@@ -703,13 +657,9 @@ each vector component.
 
 ``` r
 graph %>% 
-  select_nodes(
-    conditions = type == "person") %>%
-  select_nodes(
-    conditions = age > 32,
-    set_op = "intersect") %>%
-  get_node_attrs_ws(
-    node_attr = name) %>%
+  select_nodes(conditions = type == "person") %>%
+  select_nodes(conditions = age > 32, set_op = "intersect") %>%
+  get_node_attrs_ws(node_attr = name) %>%
   sort() %>%
   unname()
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
@@ -725,11 +675,9 @@ are `1676` commits).
 
 ``` r
 graph %>% 
-  select_nodes(
-    conditions = project == "supercalc") %>%
+  select_nodes(conditions = project == "supercalc") %>%
   trav_in_edge() %>%
-  get_edge_attrs_ws(
-    edge_attr = commits) %>%
+  get_edge_attrs_ws(edge_attr = commits) %>%
   sum()
 #> [1] 1676
 ```
@@ -740,8 +688,8 @@ Kim is now a contributor to the **stringbuildeR** project and has made
 First, add an edge with `add_edge()`. Note that `add_edge()` usually
 relies on node IDs in `from` and `to` when creating the new edge. This
 is almost always inconvenient so we can instead use node labels (we know
-they are unique in this graph) to compose the edge, setting `use_labels
-= TRUE`.
+they are unique in this graph) to compose the edge, setting
+`use_labels = TRUE`.
 
 The `rel` value in `add_edge()` was set to `contributor` – in a property
 graph we always have values set for all node `type` and edge `rel`
@@ -757,11 +705,10 @@ graph <-
   add_edge(
     from = "Kim",
     to = "stringbuildeR",
-    rel = "contributor") %>%
+    rel = "contributor"
+  ) %>%
   select_last_edges_created() %>%
-  set_edge_attrs_ws(
-    edge_attr = commits,
-    value = 15) %>%
+  set_edge_attrs_ws(edge_attr = commits, value = 15) %>%
   clear_selection()
 ```
 
@@ -783,12 +730,11 @@ graph %>%
   select_nodes(
     conditions = 
       project == "randomizer" | 
-      project == "supercalc") %>%
-  trav_in_edge(
-    conditions = rel == "contributor") %>%
+      project == "supercalc"
+  ) %>%
+  trav_in_edge(conditions = rel == "contributor") %>%
   trav_out_node() %>%
-  get_node_attrs_ws(
-    node_attr = email) %>%
+  get_node_attrs_ws(node_attr = email) %>%
   sort() %>%
   unname()
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
@@ -808,10 +754,8 @@ character vector of names.
 
 ``` r
 graph %>%
-  select_nodes_by_degree(
-    expressions = "outdeg > 1") %>%
-  get_node_attrs_ws(
-    node_attr = name) %>%
+  select_nodes_by_degree(expressions = "outdeg > 1") %>%
+  get_node_attrs_ws(node_attr = name) %>%
   sort() %>%
   unname()
 #> [1] "Josh"   "Kim"    "Louisa"
@@ -842,10 +786,20 @@ make this package better, feel free to file an
 
 ## Code of Conduct
 
-[Contributor Code of
-Conduct](https://github.com/rich-iannone/DiagrammeR/blob/master/CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+Please note that the **DiagrammeR** project is released with a
+[contributor code of
+conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).<br>By
+participating in this project you agree to abide by its terms.
 
-## License
+## 📄 License
 
-MIT © Richard Iannone
+**DiagrammeR** is licensed under the MIT license. See the
+[`LICENSE.md`](LICENSE.md) file for more details.
+
+## 🏛️ Governance
+
+This project is primarily maintained by [Rich
+Iannone](https://twitter.com/riannone). Other authors may occasionally
+assist with some of these duties.
+
+<hr>

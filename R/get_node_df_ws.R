@@ -1,5 +1,7 @@
 #' Get the graph's ndf filtered by a selection of nodes
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get the graph's internal node data
 #' frame that is filtered by the node ID values currently active as a selection.
 #'
@@ -48,24 +50,11 @@
 #' @export
 get_node_df_ws <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph object has a valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Extract the node data frame (ndf)
   # from the graph and get only those nodes

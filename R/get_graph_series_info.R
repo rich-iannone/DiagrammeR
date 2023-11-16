@@ -1,5 +1,7 @@
 #' Get information on a graph series
 #'
+#' @description
+#'
 #' Obtain a data frame with information on the graphs within a graph series.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`.
@@ -42,15 +44,16 @@ get_graph_series_info <- function(graph_series) {
     count_graphs_in_graph_series(graph_series)
 
   series_info_df <-
-    data.frame(
-      graph = as.integer(NA),
-      name = as.character(NA),
+    dplyr::tibble(
+      graph = integer(),
+      name = character(),
       date_time = Sys.time(),
-      tz = as.character(NA),
-      nodes = as.integer(NA),
-      edges = as.integer(NA),
-      directed = as.logical(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      tz = character(),
+      nodes = integer(),
+      edges = integer(),
+      directed = logical()
+    ) %>%
+    as.data.frame(stringsAsFactors = FALSE)
 
   if (graphs_in_series == 0) {
     return(series_info_df)

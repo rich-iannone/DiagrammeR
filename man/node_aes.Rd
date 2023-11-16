@@ -175,5 +175,10 @@ graph <-
     ),
     edge_aes = edge_aes(color = "blue")
   )
-
 }
+\seealso{
+Other aesthetics: 
+\code{\link{edge_aes}()},
+\code{\link{node_edge_aes_data}}
+}
+\concept{aesthetics}

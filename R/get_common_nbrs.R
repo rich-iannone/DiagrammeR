@@ -1,6 +1,9 @@
 #' Get all common neighbors between two or more nodes
 #'
+#' @description
+#'
 #' With two or more nodes, get the set of common neighboring nodes.
+#'
 #' @inheritParams render_graph
 #' @param nodes a vector of node ID values of length at least 2.
 #'
@@ -26,23 +29,17 @@
 #'     nodes = c(1, 3))
 #'
 #' @export
-get_common_nbrs <- function(graph,
-                            nodes) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_common_nbrs <- function(
+    graph,
+    nodes
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get predecessors and successors for all nodes
   # in `nodes`
-  for (i in 1:length(nodes)) {
+  for (i in seq_along(nodes)) {
     if (i == 1) {
       nbrs <- list()
     }
@@ -60,7 +57,7 @@ get_common_nbrs <- function(graph,
 
   if (length(common_nbrs) == 0) {
     return(NA)
-  } else {
-    return(sort(as.integer(common_nbrs)))
   }
+
+  sort(as.integer(common_nbrs))
 }

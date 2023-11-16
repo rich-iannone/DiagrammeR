@@ -10,7 +10,7 @@ mermaid(diagram = "", ..., width = NULL, height = NULL)
 \item{diagram}{Diagram in mermaid markdown-like language or file (as a
 connection or file name) containing a diagram specification. If no diagram
 is provided \code{diagram = ""} then the function will assume that a diagram
-will be provided by \code{\link[htmltools:tags]{htmltools::tags()}} and \code{DiagrammeR} is just being used
+will be provided by \code{\link[htmltools:builder]{htmltools::tags()}} and \code{DiagrammeR} is just being used
 for dependency injection.}
 
 \item{...}{Other arguments and parameters you would like to send to
@@ -27,11 +27,10 @@ Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using
-\href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+\href{https://github.com/mermaid-js/mermaid/wiki}{mermaid.js} with
+infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
-\donttest{
 # Create a simple graph running left to right (note
 # that the whitespace is not important)
 # DiagrammeR("
@@ -129,6 +128,5 @@ library(htmltools)
 #      ticket seller->>customer: sorry;
 #    end
 # ")
-}
 
 }

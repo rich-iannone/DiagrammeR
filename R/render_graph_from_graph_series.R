@@ -1,5 +1,7 @@
 #' Render a graph available in a series
 #'
+#' @description
+#'
 #' Using a graph series object of type `dgr_graph_1D`, either render graph in
 #' the Viewer or output in various formats.
 #'
@@ -44,30 +46,30 @@
 #'   graph_series = series,
 #'   graph_no = 2)
 #' }
+#'
+#' @family Display and Save
+#'
 #' @export
-render_graph_from_graph_series <- function(graph_series,
-                                           graph_no,
-                                           output = "graph",
-                                           width = NULL,
-                                           height = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+render_graph_from_graph_series <- function(
+    graph_series,
+    graph_no,
+    output = "graph",
+    width = NULL,
+    height = NULL
+) {
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no graphs in this graph series")
+    cli::cli_abort(
+      "There are no graphs in this graph series.")
   }
 
   # Stop function if `graph_no` is out of range
   if (!(graph_no %in% 1:count_graphs_in_graph_series(graph_series))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The index chosen doesn't correspond to that of a graph in the series")
+    cli::cli_abort(
+      "The index chosen doesn't correspond to that of a graph in the series.")
   }
 
   # Extract the specified graph from the series

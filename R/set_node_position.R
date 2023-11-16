@@ -1,5 +1,7 @@
 #' Apply a layout position to a single node
 #'
+#' @description
+#'
 #' Apply position information for a single node. This is done by setting the `x`
 #' and `y` attrs for a node `id` or node `label` supplied in `node`. When
 #' rendering the graph, nodes with attribute values set for `x` and `y` will be
@@ -88,66 +90,50 @@
 #' # View the graph's node data frame
 #' graph %>% get_node_df()
 #'
+#' @family node creation and removal
+#'
 #' @export
-set_node_position <- function(graph,
-                              node,
-                              x,
-                              y,
-                              use_labels = FALSE) {
+set_node_position <- function(
+    graph,
+    node,
+    x,
+    y,
+    use_labels = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the graph's node data frame
   ndf <- graph$nodes_df
 
   # Stop function if the node ID provided doesn't
   # exist in the graph
-  if (use_labels == FALSE) {
-    if (!(node %in% graph$nodes_df[, 1])) {
+  if (!use_labels && !(node %in% graph$nodes_df[, 1])) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node ID provided doesn't exist in the graph")
-    }
+    cli::cli_abort(
+      "The node ID provided doesn't exist in the graph.")
   }
 
   # If the `x` node attribute doesn't exist, create
   # that column in the `ndf`
   if (!("x" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(x = as.numeric(NA))
+    ndf$x <- NA_real_
   }
 
   # If the `y` node attribute doesn't exist, create
   # that column in the `ndf`
   if (!("y" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(y = as.numeric(NA))
+    ndf$y <- NA_real_
   }
 
-  if (use_labels == TRUE) {
+  if (use_labels) {
 
     # Ensure that the label column contains unique,
     # non-NA values
@@ -159,11 +145,10 @@ set_node_position <- function(graph,
 
     # Stop function if `label` doesn't contain
     # unique, non-NA values
-    if (unique_labels_available == FALSE) {
+    if (!unique_labels_available) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `label` attribute in the graph's ndf must contain unique, non-NA values")
+      cli::cli_abort(
+        "The `label` attribute in the graph's ndf must contain unique, non-NA values.")
     }
 
     # Use `case_when` statements to selectively perform
@@ -172,15 +157,15 @@ set_node_position <- function(graph,
     x_attr_new <-
       dplyr::case_when(
         ndf$label == node ~ x,
-        TRUE ~ as.numeric(ndf$x))
+        .default = as.numeric(ndf$x))
 
     y_attr_new <-
       dplyr::case_when(
         ndf$label == node ~ y,
-        TRUE ~ as.numeric(ndf$y))
+        .default = as.numeric(ndf$y))
   }
 
-  if (use_labels == FALSE) {
+  if (!use_labels) {
 
     # Use `case_when` statements to selectively perform
     # a vectorized `if` statement across all nodes for
@@ -188,12 +173,12 @@ set_node_position <- function(graph,
     x_attr_new <-
       dplyr::case_when(
         ndf$id == node ~ x,
-        TRUE ~ as.numeric(ndf$x))
+        .default = as.numeric(ndf$x))
 
     y_attr_new <-
       dplyr::case_when(
         ndf$id == node ~ y,
-        TRUE ~ as.numeric(ndf$y))
+        .default = as.numeric(ndf$y))
   }
 
   # Replace the `x` column to the ndf with a
@@ -207,11 +192,14 @@ set_node_position <- function(graph,
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

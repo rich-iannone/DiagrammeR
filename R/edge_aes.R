@@ -1,5 +1,7 @@
 #' Insert edge aesthetic attributes during edge creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `edge_aes` argument, which is present in any function where edges are
 #' created.
@@ -98,6 +100,7 @@
 #' @param decorate If `TRUE` then attach any edge label to the edge line via a
 #'   2-segment polyline, underlining the label text and partially overlapping
 #'   the edge line.
+#'
 #' @examples
 #' # Create a new graph and add
 #' # a path with several edge
@@ -117,6 +120,8 @@
 #' # been inserted
 #' graph %>%
 #'   get_edge_df()
+#'
+#' @family aesthetics
 #'
 #' @export
 edge_aes <- function(style = NULL,
@@ -190,12 +195,12 @@ edge_aes <- function(style = NULL,
       decorate = decorate)
 
   non_null_attrs <-
-    1:length(attr_values) %>%
+    seq_along(attr_values) %>% # 1:length(attr_values)
     purrr::map_chr(.f = function(x) {
-      if (!is.null(attr_values[[x]])) {
-        attr_values[x] %>% names()
+      if (is.null(attr_values[[x]])) {
+        NA_character_
       } else {
-        NA
+        names(attr_values[x])
       }
     })
 

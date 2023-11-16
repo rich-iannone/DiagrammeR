@@ -1,5 +1,7 @@
 #' Import a graph from various graph formats
 #'
+#' @description
+#'
 #' Import a variety of graphs from different graph formats and create a graph
 #' object.
 #'
@@ -43,20 +45,19 @@
 #' }
 #'
 #' @export
-import_graph <- function(graph_file,
-                         file_type = NULL,
-                         edges_extra_attr_names = NULL,
-                         edges_extra_attr_coltypes = NULL,
-                         graph_name = NULL,
-                         attr_theme = "default",
-                         write_backups = FALSE,
-                         display_msgs = FALSE) {
+import_graph <- function(
+    graph_file,
+    file_type = NULL,
+    edges_extra_attr_names = NULL,
+    edges_extra_attr_coltypes = NULL,
+    graph_name = NULL,
+    attr_theme = "default",
+    write_backups = FALSE,
+    display_msgs = FALSE
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Stop function if `file_type` specified is not part
   # of the group that can be imported
@@ -64,19 +65,17 @@ import_graph <- function(graph_file,
     if (!(tolower(file_type) %in%
           c("gml", "sif", "edges", "mtx"))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file type as specified cannot be imported")
+      cli::cli_abort(
+        "The file type as specified cannot be imported.")
     }
   }
 
   # Stop function if file doesn't exist
-  if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file) == FALSE) {
-    if (file.exists(graph_file) == FALSE) {
+  if (!grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file)) {
+    if (!file.exists(graph_file)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file as specified doesn't exist")
+      cli::cli_abort(
+        "The file as specified doesn't exist.")
     }
   }
 
@@ -87,7 +86,8 @@ import_graph <- function(graph_file,
         length(unlist(strsplit(graph_file, "/")))]
 
     # Download the file
-    downloader::download(graph_file, destfile = dest_file)
+    rlang::check_installed("curl", "to download a graph file.")
+    curl::curl_download(graph_file, destfile = dest_file)
 
     # Extract the file and get the filename of the extracted file
     if (gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file) == "zip") {
@@ -110,20 +110,10 @@ import_graph <- function(graph_file,
     file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
     # Determine file type from file extension
-    if (file_extension == "gml") {
-      file_type <- "gml"
-    } else if (file_extension == "sif") {
-      file_type <- "sif"
-    } else if (file_extension == "edges") {
-      file_type <- "edges"
-    } else if (file_extension == "mtx") {
-      file_type <- "mtx"
-    } else {
+    rlang::arg_match0(file_extension, c("gml", "sif", "edges", "mtx"))
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The file type is not known so it can't be imported")
-    }
+    # one of gml, sif, edges, or mtx
+    file_type <- file_extension
   }
 
   if (file_type == "edges") {
@@ -135,7 +125,7 @@ import_graph <- function(graph_file,
     first_line <- grep("^[^%].*", edges_document)[1]
 
     # Determine the number of lines to skip
-    lines_to_skip <- first_line - 1
+    lines_to_skip <- first_line - 1L
 
     # Set default attribute names and column types
     # for an `edges` file
@@ -164,29 +154,28 @@ import_graph <- function(graph_file,
 
     edges <-
       edges %>%
-      dplyr::mutate(id = 1:n_rows) %>%
-      dplyr::mutate(rel = as.character(NA)) %>%
-      dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+      dplyr::mutate(
+        id = seq_len(n_rows),
+        rel = NA_character_
+        ) %>%
+      dplyr::relocate("id", "from", "to", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
+    # taking edges$from and edges$to
+    edge_id_from <- as.integer(edges$from)
+    edge_id_to <- as.integer(edges$to)
+
+    nodes_raw <- unique(c(edge_id_from, edge_id_to))
+
     nodes <-
-      dplyr::bind_rows(
-        dplyr::tibble(
-          id = edges %>%
-            dplyr::as_tibble() %>%
-            dplyr::select(from) %>%
-            purrr::flatten_int()),
-        dplyr::tibble(
-          id = edges %>%
-            dplyr::as_tibble() %>%
-            dplyr::select(to) %>%
-            purrr::flatten_int())) %>%
-      dplyr::distinct() %>%
-      dplyr::arrange(id) %>%
-      dplyr::mutate(type = as.character(NA)) %>%
-      dplyr::mutate(label = as.character(id)) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+      data.frame(
+        id = nodes_raw,
+        type = NA_character_,
+        label = as.character(nodes_raw),
+        stringsAsFactors = FALSE
+    )
+    nodes <- dplyr::arrange(nodes, .data$id)
 
     # Create the graph
     the_graph <-
@@ -230,7 +219,7 @@ import_graph <- function(graph_file,
             strsplit(
               mtx_document[first_line:length(mtx_document)],
               " ")))),
-        type = as.character(NA),
+        type = NA_character_,
         label = as.integer(unique(
           unlist(
             strsplit(
@@ -261,10 +250,10 @@ import_graph <- function(graph_file,
     # Extract information on whether graph is directed
     graph_directed <-
       unlist(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(gml_document,
                           "directed [0-1]"),
-          "directed ", ""))
+          "directed "))
 
     # Extract all node definitions
     node_defs <-
@@ -275,11 +264,11 @@ import_graph <- function(graph_file,
     # Get all node ID values
     node_id <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             node_defs,
             "id [a-z0-9_]*"),
-          "id ", ""))
+          "id "))
 
     # Get all node label values, if they exist
     if (any(stringr::str_detect(node_defs, "label"))) {
@@ -301,19 +290,19 @@ import_graph <- function(graph_file,
 
     edges_from <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "source [a-z0-9_]*"),
-          "source ", ""))
+          "source "))
 
     edges_to <-
       as.integer(
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "target [a-z0-9_]*"),
-          "target ", ""))
+          "target "))
 
 
     if (any(stringr::str_detect(edge_defs, "label"))) {
@@ -329,20 +318,20 @@ import_graph <- function(graph_file,
 
     if (any(stringr::str_detect(edge_defs, "value"))) {
       edge_value <-
-        stringr::str_replace_all(
+        stringr::str_remove_all(
           stringr::str_extract_all(
             edge_defs,
             "value [a-z0-9\\.]*"),
-          "value ", "")
+          "value ")
     }
 
     # Create all nodes for graph
     all_nodes <-
-      dplyr::tibble(
+      data.frame(
         id = node_id,
-        type = as.character(NA),
-        label = as.character(NA)) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+        type = NA_character_,
+        label = NA_character_,
+        stringsAsFactors = FALSE)
 
     if (exists("node_label")) {
       all_nodes$label <- node_label
@@ -363,8 +352,7 @@ import_graph <- function(graph_file,
       create_graph(
         nodes_df = all_nodes,
         edges_df = all_edges,
-        directed = ifelse(graph_directed == "1",
-                          TRUE, FALSE),
+        directed = graph_directed == "1",
         graph_name = graph_name,
         write_backups = write_backups,
         display_msgs = display_msgs
@@ -383,7 +371,7 @@ import_graph <- function(graph_file,
     nodes <- vector(mode = "character")
 
     # Determine which nodes are present in the graph
-    for (i in 1:length(sif_document)) {
+    for (i in seq_along(sif_document)) {
       nodes <-
         c(nodes,
           ifelse(
@@ -403,7 +391,7 @@ import_graph <- function(graph_file,
         label = nodes)
 
     # Determine which lines have single nodes
-    if (any(!stringr::str_detect(sif_document, "\\t"))) {
+    if (!all(stringr::str_detect(sif_document, "\\t"))) {
       single_nodes <- which(!stringr::str_detect(sif_document, "\\t"))
     }
 
@@ -426,11 +414,9 @@ import_graph <- function(graph_file,
         to_label = to,
         rel = rel) %>%
       dplyr::right_join(ndf, c("from_label" = "label")) %>%
-      dplyr::select(id, to_label, rel) %>%
-      dplyr::rename(from = id) %>%
+      dplyr::select(from = "id", "to_label", "rel") %>%
       dplyr::right_join(ndf, c("to_label" = "label")) %>%
-      dplyr::select(from, id, rel) %>%
-      dplyr::rename(to = id) %>%
+      dplyr::select("from", to = "id", "rel") %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a graph object

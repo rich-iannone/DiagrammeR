@@ -1,5 +1,7 @@
 #' Is the graph a directed acyclic graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is a directed acyclic graph
 #' (DAG). The conditions for a graph that is a DAG are that it should be a
 #' directed graph and it should not contain any cycles.
@@ -48,16 +50,8 @@
 #' @export
 is_graph_dag <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If the graph contains no nodes, it
   # cannot be a DAG

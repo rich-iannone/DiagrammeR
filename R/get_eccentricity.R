@@ -1,6 +1,9 @@
 #' Get node eccentricities
 #'
+#' @description
+#'
 #' Get a data frame with node eccentricity values.
+#'
 #' @inheritParams render_graph
 #' @param mode the mode with which the shortest paths to or from the given
 #'   vertices should be calculated for directed graphs. If `out` (the
@@ -27,27 +30,16 @@
 #' graph %>% get_eccentricity()
 #'
 #' @export
-get_eccentricity <- function(graph,
-                             mode = "out") {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_eccentricity <- function(
+    graph,
+    mode = "out"
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

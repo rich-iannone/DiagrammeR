@@ -1,7 +1,9 @@
 #' R + mermaid.js
 #'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
-#' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
+#' @description
+#'
+#' Make diagrams in R using \href{https://github.com/mdaines/viz-js}{viz.js} or
+#' \href{https://github.com/mermaid-js/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
 #' @param diagram The diagram in `graphviz` or `mermaid` format, or, a file (as
@@ -51,7 +53,7 @@
 #' )
 #'
 #' # Load in the 'mtcars' dataset
-#' data(mtcars)
+#' mtcars
 #' connections <- sapply(
 #'  1:ncol(mtcars)
 #'   ,function(i) {
@@ -100,8 +102,6 @@
 #' #   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 #' # draw some sequence diagrams with DiagrammeR
 #'
-#' library(DiagrammeR)
-#'
 #' DiagrammeR("
 #' sequenceDiagram;
 #'    customer->>ticket seller: ask for ticket;
@@ -119,26 +119,23 @@
 #' ")
 #' }
 #'
-#' @import htmlwidgets
 #' @export
-DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+DiagrammeR <- function(
+    diagram = "",
+    type = "mermaid",
+    ...
+) {
 
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if (grepl(x = type, pattern = "[m,M](erm).*")) {
 
-    mermaid(diagram, ... )
+    mermaid(diagram, ...)
 
-  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )) {
-    grViz(diagram, ... )
+  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*")) {
+    grViz(diagram, ...)
 
   } else {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The type should be `mermaid` or `grViz`")
+    abort("The type should be `mermaid` or `grViz`.")
   }
 }
 
@@ -149,17 +146,21 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #'   coerced to a string and have `px` appended.
 #' @param height A valid CSS unit for the height or a number, which will be
 #'   coerced to a string and have `px` appended.
+#'
 #' @export
-DiagrammeROutput <- function(outputId,
-                             width = '100%',
-                             height = 'auto') {
+DiagrammeROutput <- function(
+    outputId,
+    width = "100%",
+    height = "auto"
+) {
 
   htmlwidgets::shinyWidgetOutput(
     outputId,
-    'DiagrammeR',
+    "DiagrammeR",
     width,
     height,
-    package = 'DiagrammeR')
+    package = "DiagrammeR"
+  )
 }
 
 #' Widget render function for use in Shiny
@@ -168,10 +169,13 @@ DiagrammeROutput <- function(outputId,
 #' @param env The environment in which to evaluate expr.
 #' @param quoted Is expr a quoted expression (with quote())? This is useful if
 #'   you want to save an expression in a variable.
+#'
 #' @export
-renderDiagrammeR <- function(expr,
-                             env = parent.frame(),
-                             quoted = FALSE) {
+renderDiagrammeR <- function(
+    expr,
+    env = parent.frame(),
+    quoted = FALSE
+) {
 
   if (!quoted) expr <- substitute(expr)
 
@@ -179,5 +183,6 @@ renderDiagrammeR <- function(expr,
     expr,
     DiagrammeROutput,
     env,
-    quoted = TRUE)
+    quoted = TRUE
+  )
 }

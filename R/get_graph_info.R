@@ -1,5 +1,7 @@
 #' Get metrics for a graph
 #'
+#' @description
+#'
 #' Get a data frame with metrics for a graph.
 #'
 #' @inheritParams render_graph
@@ -26,20 +28,12 @@
 #' @export
 get_graph_info <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the graph density
   density <-
-    round(count_nodes(graph) / ((count_nodes(graph) * (count_nodes(graph) - 1))/2), 4)
+    round(count_nodes(graph) / ((count_nodes(graph) * (count_nodes(graph) - 1)) / 2), 4)
 
   # Get a table of node degree values
   degree_table <-

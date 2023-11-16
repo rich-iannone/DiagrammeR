@@ -1,7 +1,10 @@
 #' Get community membership using the Walktrap method
 #'
+#' @description
+#'
 #' With the Walktrap community finding algorithm, obtain the group membership
-#'   values for each of the nodes in the graph.
+#' values for each of the nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param steps the number of steps to take for each of the random walks.
 #'
@@ -38,19 +41,13 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_cmty_walktrap <- function(graph,
-                              steps = 4) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_cmty_walktrap <- function(
+    graph,
+    steps = 4
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

@@ -1,4 +1,4 @@
-context("Creating and combining edge data frames")
+# Creating and combining edge data frames
 
 test_that("a correct edge data frame is generated", {
 
@@ -21,11 +21,9 @@ test_that("a correct edge data frame is generated", {
       color = "red")
 
   # Expect that data frames are generated
-  expect_is(
-    edges_1, "data.frame")
+  expect_s3_class(edges_1, "data.frame")
 
-  expect_is(
-    edges_2, "data.frame")
+  expect_s3_class(edges_2, "data.frame")
 
   # Expect that each of the edfs has 4 rows
   expect_equal(
@@ -52,7 +50,7 @@ test_that("a correct edge data frame is generated", {
       data = c(2.7, 8.9, 2.6, 0.6))
 
   # Expect that a data frame is generated
-  expect_is(
+  expect_s3_class(
     edges_var_1, "data.frame")
 
   # Expect that the data frame has 4 rows
@@ -77,7 +75,7 @@ test_that("a correct edge data frame is generated", {
       data = c(2.7, 8.9, 2.6, 0.6))
 
   # Expect that a data frame is generated
-  expect_is(
+  expect_s3_class(
     edges_var_2, "data.frame")
 
   # Expect that the data frame has 4 rows
@@ -115,7 +113,7 @@ test_that("two edge data frames can be successfully combined", {
     combine_edfs(edges_1, edges_2)
 
   # Expect that a data frame is generated
-  expect_is(
+  expect_s3_class(
     all_edges, "data.frame")
 
   # Expect that the combined edf has 8 rows
@@ -162,7 +160,7 @@ test_that("three edge data frames can be successfully combined", {
       edges_1, edges_2, edges_3)
 
   # Expect that a data frame is generated
-  expect_is(
+  expect_s3_class(
     all_edges, "data.frame")
 
   # Expect that the combined edf has 8 rows

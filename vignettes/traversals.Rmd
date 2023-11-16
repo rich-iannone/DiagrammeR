@@ -30,7 +30,7 @@ Let's perform two types of traversals from a single node using `trav_out()` and 
 
 
 ```{r}
-pre <- 
+pre <-
   create_graph() %>%
   add_node() %>%
   add_node() %>%
@@ -99,7 +99,7 @@ create_graph() %>%
 Traversals are commonly performed where an initial selection contains multiple nodes (usually, these are nodes that have something in common with each other). Let's have a look at a slightly more complex graph and how multiple nodes in an initial selection can be migrated to a final selection after a traversal.
 
 ```{r}
-graph_1 <- 
+graph_1 <-
   create_graph() %>%
   add_node() %>%
   select_nodes_by_id(nodes = 1) %>%

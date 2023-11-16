@@ -1,5 +1,7 @@
 #' Combine multiple edge data frames into a single edge data frame
 #'
+#' @description
+#'
 #' Combine several edge data frames in the style of `rbind()`, except, it works
 #' regardless of the number and ordering of the columns.
 #'
@@ -38,12 +40,12 @@ combine_edfs <- function(...) {
 
   data_frames <- list(...)
 
-  for (l in 1:length(data_frames)) {
+  for (l in seq_along(data_frames)) {
     if (l == 1) {
       df1 <- data_frames[l][[1]]
       df2 <- data_frames[l + 1][[1]]
     }
-    if (l > 1 & l < length(data_frames)) {
+    if (l > 1 && l < length(data_frames)) {
       df1 <- edf_new
       df2 <- data_frames[l + 1][[1]]
     }
@@ -56,9 +58,7 @@ combine_edfs <- function(...) {
     }
   }
 
-  edf_new <-
-    edf_new %>%
-    dplyr::mutate(id = as.integer(1:nrow(edf_new)))
+  edf_new$id <- seq_len(nrow(edf_new))
 
   edf_new
 }

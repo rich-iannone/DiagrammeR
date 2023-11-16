@@ -1,5 +1,7 @@
 #' Get the current selection available in a graph object
 #'
+#' @description
+#'
 #' Get the current selection of node IDs or edge IDs from a graph object of
 #' class `dgr_graph`.
 #'
@@ -40,12 +42,7 @@ get_selection <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -57,13 +54,12 @@ get_selection <- function(graph) {
 
     # Emit a message about the modification of a selection
     # if that option is set
-    if (!is.null(graph$graph_info$display_msgs) &&
-        graph$graph_info$display_msgs) {
+    if (isTRUE(graph$graph_info$display_msgs)) {
 
       # Issue a message to the user
       emit_message(
         fcn_name = fcn_name,
-        message_body = "there is no active selection of nodes or edges")
+        message_body = "There is no active selection of nodes or edges.")
     }
 
     return(NA)
@@ -75,8 +71,7 @@ get_selection <- function(graph) {
 
     # Emit a message about the modification of a selection
     # if that option is set
-    if (!is.null(graph$graph_info$display_msgs) &&
-        graph$graph_info$display_msgs) {
+    if (isTRUE(graph$graph_info$display_msgs)) {
 
     # Issue a message to the user
     emit_message(
@@ -95,8 +90,7 @@ get_selection <- function(graph) {
 
     # Emit a message about the modification of a selection
     # if that option is set
-    if (!is.null(graph$graph_info$display_msgs) &&
-        graph$graph_info$display_msgs) {
+    if (isTRUE(graph$graph_info$display_msgs)) {
 
       # Issue a message to the user
       emit_message(

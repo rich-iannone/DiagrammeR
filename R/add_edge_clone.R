@@ -1,5 +1,7 @@
 #' Add a clone of an existing edge to the graph
 #'
+#' @description
+#'
 #' Add a new edge to a graph object of class `dgr_graph` which is a clone of an
 #' edge already in the graph. All edge attributes are preserved.
 #'
@@ -63,56 +65,40 @@
 #' # Display the graph's internal
 #' # edge data frame
 #' graph_3 %>% get_edge_df()
+#'
+#' @family edge creation and removal
 #' @export
-add_edge_clone <- function(graph,
-                           edge,
-                           from,
-                           to) {
+add_edge_clone <- function(
+    graph,
+    edge,
+    from,
+    to
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Stop function if edge is not a single numerical value
-  if (length(edge) > 1 | inherits(edge, "character") | inherits(edge, "logical")) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `edge` must be a single, numeric value")
-  }
+  check_number_decimal(edge)
 
   # Stop function the edge ID does not correspond
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value provided in `edge` does not correspond to an edge in the graph")
+    cli::cli_abort(
+      "The value provided in `edge` does not correspond to an edge in the graph.")
   }
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Get the number of columns in the graph's
   # internal edge data frame
@@ -127,7 +113,7 @@ add_edge_clone <- function(graph,
     graph %>%
     get_edge_df() %>%
     dplyr::filter(id == edge) %>%
-    dplyr::select(4:n_col_edf)
+    dplyr::select(4:dplyr::all_of(n_col_edf))
 
   # Create the requested edge
   graph <-
@@ -139,12 +125,11 @@ add_edge_clone <- function(graph,
   # Create an edge selection for the
   # new edge in the graph
   graph <-
-    graph %>%
-    select_last_edges_created()
+    select_last_edges_created(graph)
 
   # Iteratively set edge attribute values for
   # the new edges in the graph
-  for (i in 1:ncol(edge_attr_vals)) {
+  for (i in seq_len(ncol(edge_attr_vals))) {
 
     graph$edges_df[
       nrow(graph$edges_df),
@@ -155,19 +140,21 @@ add_edge_clone <- function(graph,
   # Clear the graph's active selection
   graph <-
     suppressMessages(
-      graph %>%
-        clear_selection())
+      clear_selection(graph))
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
     graph$graph_log %>%
     dplyr::filter(version_id <= current_graph_log_version_id)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -178,8 +165,7 @@ add_edge_clone <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

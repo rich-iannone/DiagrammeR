@@ -1,5 +1,7 @@
 #' Get detailed information on edges
 #'
+#' @description
+#'
 #' Obtain a data frame with detailed information on edges and their
 #' interrelationships within the graph.
 #'
@@ -23,16 +25,8 @@
 #' @export
 get_edge_info <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # For graphs with no edges, return NA
   if (nrow(graph$edges_df) == 0) {

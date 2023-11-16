@@ -1,5 +1,7 @@
 #' Create a graph object
 #'
+#' @description
+#'
 #' Generates a graph object with the option to use node data frames (ndfs)
 #' and/or edge data frames (edfs) to populate the initial graph.
 #'
@@ -106,16 +108,15 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-create_graph <- function(nodes_df = NULL,
-                         edges_df = NULL,
-                         directed = TRUE,
-                         graph_name = NULL,
-                         attr_theme = "default",
-                         write_backups = FALSE,
-                         display_msgs = FALSE) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+create_graph <- function(
+    nodes_df = NULL,
+    edges_df = NULL,
+    directed = TRUE,
+    graph_name = NULL,
+    attr_theme = "default",
+    write_backups = FALSE,
+    display_msgs = FALSE
+) {
 
   ## DF: `graph_info`
 
@@ -128,8 +129,7 @@ create_graph <- function(nodes_df = NULL,
   # Generate a random 8-character, alphanumeric
   # string to use as a graph ID
   graph_id <-
-    replicate(
-      8, sample(c(LETTERS, letters, 0:9), 1)) %>%
+    replicate(8, sample(c(LETTERS, letters, 0:9), 1)) %>%
     paste(collapse = "")
 
   # Create the `graph_info` data frame
@@ -141,7 +141,8 @@ create_graph <- function(nodes_df = NULL,
       graph_tz = graph_tz,
       write_backups = write_backups,
       display_msgs = display_msgs,
-      stringsAsFactors = FALSE)
+      stringsAsFactors = FALSE
+    )
 
   # Insert a user-defined `graph_name` if supplied
   if (!is.null(graph_name)) {
@@ -153,10 +154,11 @@ create_graph <- function(nodes_df = NULL,
   # Create an empty table for global graph attributes
   global_attrs <-
     data.frame(
-      attr = as.character(NA),
-      value = as.character(NA),
-      attr_type = as.character(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      attr = character(0L),
+      value = character(0L),
+      attr_type = character(0L),
+      stringsAsFactors = FALSE
+    )
 
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
@@ -172,19 +174,19 @@ create_graph <- function(nodes_df = NULL,
         bt = attr_theme_bt(),
         fdp = attr_theme_fdp(),
         kk = attr_theme_kk(),
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The value for `attr_theme` doesn't refer to any available theme")
+        cli::cli_abort(
+          "The value for `attr_theme` doesn't refer to any available theme."
+        )
       )
 
   } else if (is.null(attr_theme)) {
 
     global_attrs <-
       data.frame(
-        attr = as.character(NA),
-        value = as.character(NA),
-        attr_type = as.character(NA),
-        stringsAsFactors = FALSE)[-1, ]
+        attr = character(0L),
+        value = character(0L),
+        attr_type = character(0L),
+        stringsAsFactors = FALSE)
   }
 
   ## DF: `nodes_df`
@@ -192,64 +194,69 @@ create_graph <- function(nodes_df = NULL,
   # Create an empty node data frame (`ndf`)
   ndf <-
     data.frame(
-      id = as.integer(NA),
-      type = as.character(NA),
-      label = as.character(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      id = integer(0L),
+      type = character(0L),
+      label = character(0L),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `edges_df`
 
   # Create an empty edge data frame (`edf`)
   edf <-
     data.frame(
-      id = as.integer(NA),
-      from = as.integer(NA),
-      to = as.integer(NA),
-      rel = as.character(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      id = integer(0L),
+      from = integer(0L),
+      to = integer(0L),
+      rel = character(0L),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `node_selection`
 
   # Create an empty node selection data frame (`nsdf`)
   nsdf <-
-    dplyr::tibble(
-      node = as.integer(NA))[-1, ] %>%
-    as.data.frame(stringsAsFactors = FALSE)
+    data.frame(node = integer(0L), stringsAsFactors = FALSE)
 
   ## DF: `edge_selection`
 
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
-    dplyr::tibble(
-      edge = as.integer(NA),
-      from = as.integer(NA),
-      to = as.integer(NA))[-1, ] %>%
-    as.data.frame(stringsAsFactors = FALSE)
+    data.frame(
+      edge = integer(0L),
+      from = integer(0L),
+      to = integer(0L),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `graph_actions`
 
   # Create an empty `graph_actions` data frame
   graph_actions <-
     data.frame(
-      action_index = as.integer(NA),
-      action_name = as.character(NA),
-      expression = as.character(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      action_index = integer(0L),
+      action_name = character(0L),
+      expression = character(0L),
+      stringsAsFactors = FALSE
+    )
 
   ## DF: `graph_log`
 
   # Create an empty `graph_log` data frame
+
   graph_log <-
     data.frame(
-      version_id = as.integer(NA),
-      function_used = as.character(NA),
-      time_modified = graph_time,
-      duration = as.numeric(NA),
-      nodes = as.integer(NA),
-      edges = as.integer(NA),
-      d_n = as.integer(NA),
-      d_e = as.integer(NA),
-      stringsAsFactors = FALSE)[-1, ]
+      version_id = integer(0L),
+      function_used = character(0L),
+      # Datetime of length 0
+      time_modified = structure(numeric(0L), class = c("POSIXct", "POSIXt")),
+      duration = numeric(0L),
+      nodes = integer(0L),
+      edges = integer(0L),
+      d_n = integer(0L),
+      d_e = integer(0L),
+      stringsAsFactors = FALSE
+    )
 
   ## list: `cache`
 
@@ -265,42 +272,47 @@ create_graph <- function(nodes_df = NULL,
       nodes_df = ndf,
       edges_df = edf,
       global_attrs = global_attrs,
-      directed = ifelse(directed, TRUE, FALSE),
+      directed = directed, # TRUE or FALSE
       last_node = 0,
       last_edge = 0,
       node_selection = nsdf,
       edge_selection = esdf,
       cache = cache,
       graph_actions = graph_actions,
-      graph_log = graph_log)
+      graph_log = graph_log
+    )
 
   attr(graph, "class") <- "dgr_graph"
 
   # If neither an ndf nor both ndf & edf provided,
   # create an initialized graph with no nodes or edges
-  if (all(c(is.null(nodes_df), is.null(edges_df)))) {
+  if (is.null(nodes_df) && is.null(edges_df)) {
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df),
         d_n = nrow(graph$nodes_df),
-        d_e = nrow(graph$edges_df))
+        d_e = nrow(graph$edges_df)
+      )
 
-  } else if (!is.null(nodes_df) & is.null(edges_df)) {
+  } else if (!is.null(nodes_df) && is.null(edges_df)) {
 
     # If only an ndf is provided, create a graph
     # just containing nodes
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns
@@ -310,38 +322,41 @@ create_graph <- function(nodes_df = NULL,
     }
 
     # Bind the nodes to the `nodes_df` df in the graph
-    graph$nodes_df <-
-      dplyr::bind_rows(graph$nodes_df, nodes_df)
+    graph$nodes_df <- dplyr::bind_rows(graph$nodes_df, nodes_df)
 
     # Modify the `last_node` vector
     graph$last_node <- nrow(nodes_df)
+
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
 
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df),
         d_n = nrow(graph$nodes_df),
-        d_e = nrow(graph$edges_df))
+        d_e = nrow(graph$edges_df)
+      )
 
-  } else if (!is.null(nodes_df) & !is.null(edges_df)) {
+  } else if (!is.null(nodes_df) && !is.null(edges_df)) {
 
     # If an ndf and edf both provided, create a graph
     # initially populated with both nodes and edges
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(nodes_df, "tbl_df")) {
-      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+      nodes_df <- as.data.frame(nodes_df, stringsAsFactors = FALSE)
     }
 
     # Transform any `tbl_df` object to a `data.frame`
     if (inherits(edges_df, "tbl_df")) {
-      edges_df <- edges_df %>% as.data.frame(stringsAsFactors = FALSE)
+      edges_df <- as.data.frame(edges_df, stringsAsFactors = FALSE)
     }
 
     # Force the `type` and `label` columns
@@ -358,13 +373,10 @@ create_graph <- function(nodes_df = NULL,
     graph$last_node <- nrow(nodes_df)
 
     # Ensure that the edf has the correct classes
-    if (inherits(edges_df, "data.frame")) {
+    if (inherits(edges_df, "data.frame") && ncol(edges_df) > 2) {
 
-      if (ncol(edges_df) > 2) {
-
-        # Force the rel column to be of the character class
-        edges_df$rel <- as.character(edges_df$rel)
-      }
+      # Force the rel column to be of the character class
+      edges_df$rel <- as.character(edges_df$rel)
     }
 
     # Bind the edges to the `edges_df` df in the graph
@@ -374,11 +386,14 @@ create_graph <- function(nodes_df = NULL,
     # Modify the `last_edge` vector
     graph$last_edge <- nrow(edges_df)
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
         graph_log = graph_log,
-        version_id = 1,
+        version_id = 1L,
         function_used = fcn_name,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
@@ -398,5 +413,5 @@ create_graph <- function(nodes_df = NULL,
 
   # If neither an ndf nor both ndf & edf provided,
   # return the initialized graph with no nodes or edges
-  return(graph)
+  graph
 }

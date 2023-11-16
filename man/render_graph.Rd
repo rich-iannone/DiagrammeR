@@ -39,46 +39,61 @@ resulting graphic in pixels.}
 Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 }
 \examples{
-\donttest{
-# Render a graph that's a
-# balanced tree
-create_graph() \%>\%
-  add_balanced_tree(
-    k = 2, h = 3) \%>\%
-  render_graph()
+if (interactive()) {
 
-# Use the `tree` layout for
-# better node placement in this
-# hierarchical graph
-create_graph() \%>\%
-  add_balanced_tree(
-    k = 2, h = 3) \%>\%
-  render_graph(layout = "tree")
+  # Render a graph that's a
+  # balanced tree
+  create_graph() \%>\%
+    add_balanced_tree(
+      k = 2, h = 3
+    ) \%>\%
+    render_graph()
 
-# Plot the same tree graph but
-# don't show the node ID values
-create_graph() \%>\%
-  add_balanced_tree(
-    k = 2, h = 3) \%>\%
-  set_node_attr_to_display() \%>\%
-  render_graph(layout = "tree")
+  # Use the `tree` layout for
+  # better node placement in this
+  # hierarchical graph
+  create_graph() \%>\%
+    add_balanced_tree(
+      k = 2, h = 3
+    ) \%>\%
+    render_graph(layout = "tree")
 
-# Create a circle graph
-create_graph() \%>\%
-  add_gnm_graph(
-    n = 55,
-    m = 75,
-    set_seed = 23) \%>\%
-  render_graph(
-    layout = "circle")
+  # Plot the same tree graph but
+  # don't show the node ID values
+  create_graph() \%>\%
+    add_balanced_tree(
+      k = 2, h = 3
+    ) \%>\%
+    set_node_attr_to_display() \%>\%
+    render_graph(layout = "tree")
 
-# Render the graph using the
-# `visNetwork` output option
-create_graph() \%>\%
-  add_balanced_tree(
-    k = 2, h = 3) \%>\%
-  render_graph(
-    output = "visNetwork")
+  # Create a circle graph
+  create_graph() \%>\%
+    add_gnm_graph(
+      n = 55,
+      m = 75,
+      set_seed = 23
+    ) \%>\%
+    render_graph(
+      layout = "circle"
+    )
+
+  # Render the graph using the
+  # `visNetwork` output option
+  create_graph() \%>\%
+    add_balanced_tree(
+      k = 2, h = 3
+    ) \%>\%
+    render_graph(
+      output = "visNetwork"
+    )
 }
 
 }
+\seealso{
+Other Display and Save: 
+\code{\link{export_graph}()},
+\code{\link{render_graph_from_graph_series}()},
+\code{\link{save_graph}()}
+}
+\concept{Display and Save}

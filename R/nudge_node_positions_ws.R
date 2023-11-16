@@ -1,5 +1,7 @@
 #' Move layout positions of a selection of nodes
 #'
+#' @description
+#'
 #' With an active selection of nodes, move the position in either the `x` or `y`
 #' directions, or both. Nodes in the selection that do not have position
 #' information (i.e., `NA` values for the `x` or `y` node attributes) will be
@@ -89,51 +91,34 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-nudge_node_positions_ws <- function(graph,
-                                    dx,
-                                    dy) {
+nudge_node_positions_ws <- function(
+    graph,
+    dx,
+    dy
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Get the graph's node data frame as an object
   ndf <- graph$nodes_df
 
   # If both the `x` and `y` attributes do not exist,
   # stop the function
-  if (!("x" %in% colnames(ndf)) |
+  if (!("x" %in% colnames(ndf)) ||
       !("y" %in% colnames(ndf))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no `x` and `y` attribute values to modify")
+    cli::cli_abort(
+      "There are no `x` and `y` attribute values to modify.")
   }
 
   # Get the current selection of nodes
@@ -143,17 +128,15 @@ nudge_node_positions_ws <- function(graph,
   # information set (i.e., not NA)
   ndf_filtered <-
     ndf %>%
-    dplyr::filter(id %in% nodes) %>%
-    dplyr::filter(!is.na(x) & !is.na(y))
+    dplyr::filter(id %in% nodes, !is.na(x), !is.na(y))
 
   # If there are nodes to move, replace the `nodes`
   # vector with those node ID values; otherwise,
   # stop function
   if (nrow(ndf_filtered) == 0) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no nodes can be moved to different `x` or `y` locations")
+    cli::cli_abort(
+      "There are no nodes can be moved to different `x` or `y` locations.")
 
   } else {
     nodes <- ndf_filtered$id
@@ -174,11 +157,14 @@ nudge_node_positions_ws <- function(graph,
   # Replace the graph's node data frame with `ndf_new`
   graph$nodes_df <- ndf_new
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

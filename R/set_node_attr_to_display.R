@@ -1,5 +1,7 @@
 #' Set the node attribute values to be rendered
 #'
+#' @description
+#'
 #' Set a node attribute type to display as node text when calling the
 #' [render_graph()] function. This allows for display of different types of node
 #' attribute values on a per-node basis. Without setting the `display`
@@ -67,34 +69,24 @@
 #'     attr = id) %>%
 #'   get_node_df()
 #'
-#' @import rlang
+#' @family node creation and removal
+#'
 #' @export
-set_node_attr_to_display <- function(graph,
-                                     attr = NULL,
-                                     nodes = NULL,
-                                     default = "label") {
+set_node_attr_to_display <- function(
+    graph,
+    attr = NULL,
+    nodes = NULL,
+    default = "label"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `attr`
   attr <-
@@ -119,43 +111,38 @@ set_node_attr_to_display <- function(graph,
   # provided in `nodes` do not exist in the graph
   if (!any(nodes %in% ndf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One or more node ID values in `nodes` are not present in the graph")
+    cli::cli_abort(
+      "One or more node ID values in `nodes` are not present in the graph.")
   }
 
   # Stop function if the node attribute supplied as
   # `attr` does not exist in the ndf
-  if (!is.null(attr)) {
-    if (!(attr %in% colnames(ndf))) {
+  if (!is.null(attr) && !(attr %in% colnames(ndf))) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node attribute given in `attr` is not in the graph's ndf")
-    }
+    cli::cli_abort(
+      "The node attribute given in `attr` is not in the graph's ndf.")
   }
 
   # If the `display` node attribute doesn't exist,
   # create that column and fill with the default value
   if (!("display" %in% colnames(ndf))) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(display = as.character(default))
+    ndf$display <- as.character(default)
   }
 
   # Create a tibble with the node ID values and the
   # requested node attribute to display
-  if (!is.null(attr)) {
+  if (is.null(attr)) {
+    attr_to_display <-
+      dplyr::tibble(
+        id = as.integer(nodes),
+        display = "is_na")
+
+  } else {
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(nodes),
         display = as.character(attr))
 
-  } else if (is.null(attr)) {
-    attr_to_display <-
-      dplyr::tibble(
-        id = as.integer(nodes),
-        display = as.character("is_na"))
   }
 
   # Join the `attr_to_display` table with the `ndf`
@@ -165,23 +152,21 @@ set_node_attr_to_display <- function(graph,
 
   # Get the column numbers for the `.x`
   # and `.y` columns
-  x_col <- which(grepl("\\.x$", colnames(ndf)))
-  y_col <- which(grepl("\\.y$", colnames(ndf)))
+  x_col <- grep("\\.x$", colnames(ndf))
+  y_col <- grep("\\.y$", colnames(ndf))
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
-  if (!is.null(attr)) {
-    display_col <-
-      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
-      as.data.frame(stringsAsFactors = FALSE)
-  } else if (is.null(attr)) {
+  if (is.null(attr)) {
     display_col <-
       dplyr::coalesce(ndf[, y_col], ndf[, x_col])
 
+    display_col <- dplyr::na_if(display_col, "is_na") %>%
+      as.data.frame(stringsAsFactors = FALSE)
+
+  } else {
     display_col <-
-      dplyr::case_when(
-        display_col == "is_na" ~ as.character(NA),
-        TRUE ~ display_col) %>%
+      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
 
@@ -189,24 +174,26 @@ set_node_attr_to_display <- function(graph,
   colnames(display_col)[1] <- "display"
 
   # Remove column numbers that end with ".x" or ".y"
-  ndf <- ndf[-which(grepl("\\.x$", colnames(ndf)))]
-  ndf <- ndf[-which(grepl("\\.y$", colnames(ndf)))]
+  ndf <- ndf[-grep("\\.x$", colnames(ndf))]
+  ndf <- ndf[-grep("\\.y$", colnames(ndf))]
 
   # Bind the `display_col` df to the `ndf` df and
   # modify the ordering of the columns
   ndf <-
     dplyr::bind_cols(ndf, display_col) %>%
-    dplyr::select(
-      id, type, label, display, dplyr::everything())
+    dplyr::relocate("id", "type", "label", "display")
 
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

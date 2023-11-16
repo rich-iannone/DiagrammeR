@@ -1,5 +1,7 @@
 #' Get a count of all edges
 #'
+#' @description
+#'
 #' From a graph object of class `dgr_graph`, get a count of edges in the graph.
 #'
 #' @inheritParams render_graph
@@ -23,20 +25,12 @@
 #' @export
 count_edges <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
-    return(0)
+    return(0L)
   }
 
   nrow(graph$edges_df)

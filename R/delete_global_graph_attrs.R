@@ -1,5 +1,7 @@
 #' Delete one of the global graph attributes stored within a graph object
 #'
+#' @description
+#'
 #' Delete one of the global attributes stored within a graph object of class
 #' `dgr_graph`).
 #'
@@ -48,12 +50,12 @@
 #' graph %>%
 #'   get_global_graph_attr_info()
 #'
-#' @import glue
-#' @import rlang
 #' @export
-delete_global_graph_attrs <- function(graph,
-                                      attr = NULL,
-                                      attr_type = NULL) {
+delete_global_graph_attrs <- function(
+    graph,
+    attr = NULL,
+    attr_type = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -62,21 +64,16 @@ delete_global_graph_attrs <- function(graph,
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If no `attr` or `attr_type` provided then
   # all global graph attributes will be removed
-  if (is.null(attr) & is.null(attr_type)) {
+  if (is.null(attr) && is.null(attr_type)) {
 
     # Clear the global graph attributes data frame
     # by removing all rows from it
     graph$global_attrs <-
-      graph$global_attrs[-(1:(nrow(graph$global_attrs))), ]
+      graph$global_attrs[-(seq_len(nrow(graph$global_attrs))), ]
 
     message(
       glue::glue("Deleted all existing global graph attributes."))
@@ -85,7 +82,7 @@ delete_global_graph_attrs <- function(graph,
   # If an `attr` is provided but not an
   # `attr_type`, then delete all of those
   # `attr`s without regard to their type
-  if (is.null(attr_type) & !is.null(attr)) {
+  if (is.null(attr_type) && !is.null(attr)) {
 
     # Capture provided attr
     attr <- rlang::enquo(attr)
@@ -95,16 +92,14 @@ delete_global_graph_attrs <- function(graph,
       dplyr::filter(!(attr %in% !!attr))
   }
 
-  if (!is.null(attr_type) & is.null(attr)) {
+  if (!is.null(attr_type) && is.null(attr)) {
 
     # Stop function if `attr_type` is not a valid
     # attribute type
-    if (!any(attr_type %in% c("graph", "node", "edge"))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `attr_type` should be either `graph`, `node`, or `edge`")
+    if (length(attr_type) > 1) {
+      cli::cli_abort("Problem. attr_type must be")
     }
+    rlang::arg_match(attr_type, c("graph", "node", "edge"), multiple = TRUE)
 
     # Capture provided `attr_type`
     attr_type <- rlang::enquo(attr_type)
@@ -114,16 +109,11 @@ delete_global_graph_attrs <- function(graph,
       dplyr::filter(!(attr_type %in% !!attr_type))
   }
 
-  if (!is.null(attr_type) & !is.null(attr)) {
+  if (!is.null(attr_type) && !is.null(attr)) {
 
     # Stop function if `attr_type` is not a valid
     # attribute type
-    if (!any(attr_type %in% c("graph", "node", "edge"))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The `attr_type` should be either `graph`, `node`, or `edge`")
-    }
+    rlang::arg_match(attr_type, c("graph", "node", "edge"), multiple = TRUE)
 
     # Get the global graph attributes already set
     # in the graph object
@@ -134,7 +124,7 @@ delete_global_graph_attrs <- function(graph,
     global_attrs_to_remove <-
       dplyr::tibble(
         attr = as.character(attr),
-        value = as.character(NA),
+        value = NA_character_,
         attr_type = as.character(attr_type)) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
@@ -155,7 +145,7 @@ delete_global_graph_attrs <- function(graph,
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

@@ -191,3 +191,9 @@ graph \%>\%
   get_edge_df()
 
 }
+\seealso{
+Other aesthetics: 
+\code{\link{node_aes}()},
+\code{\link{node_edge_aes_data}}
+}
+\concept{aesthetics}

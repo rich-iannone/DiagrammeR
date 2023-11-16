@@ -1,4 +1,4 @@
-context("Getting info about a node's predecessors and successors")
+# Getting info about a node's predecessors and successors
 
 test_that("getting a node's predecessors/successors is possible", {
 
@@ -13,7 +13,7 @@ test_that("getting a node's predecessors/successors is possible", {
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
@@ -31,10 +31,11 @@ test_that("getting a node's predecessors/successors is possible", {
       edges_df = edges)
 
   # Tests for `get_predecessors()`
-  expect_is(
+  expect_type(
     get_predecessors(
       graph = graph,
-      node = 26), "integer")
+      node = 26),
+    "integer")
 
   expect_equal(
     get_predecessors(
@@ -42,10 +43,11 @@ test_that("getting a node's predecessors/successors is possible", {
       node = 26), 1)
 
   # Tests for `get_successors()`
-  expect_is(
+  expect_type(
     get_successors(
       graph = graph,
-      node = 1), "integer")
+      node = 1),
+    "integer")
 
   expect_equal(
     get_successors(

@@ -120,4 +120,5 @@ graph_w_attrs \%>\%
 graph_w_attrs \%>\%
   get_edge_df() \%>\%
   head(3)
+
 }
