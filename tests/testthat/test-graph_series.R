@@ -83,8 +83,7 @@ test_that("adding graphs to a series is also possible", {
     series$series_type, "sequential")
 
   # Expect that the `graphs` component is not `NULL`
-  expect_true(
-    !is.null(series$graphs))
+  expect_false(is.null(series$graphs))
 
   # Expect that several series components are `NULL`
   expect_null(series$series_name)
@@ -133,8 +132,7 @@ test_that("adding graphs to a series is also possible", {
     series_w_graph$series_type, "sequential")
 
   # Expect that the 'graphs' component is not `NULL`
-  expect_true(
-    !is.null(series_w_graph$graphs))
+  expect_false(is.null(series_w_graph$graphs))
 
   # Expect that the series has a graph count of 1
   expect_equal(
@@ -223,8 +221,9 @@ test_that("removing graphs from a series is possible", {
 
   # Expect that `graph_1` in the series is
   # equivalent to the `graph_2` object
-  expect_true(
-    count_nodes(graph = series_removed_1$graphs[[1]]) == count_nodes(graph = graph_2))
+  expect_equal(
+    count_nodes(graph = series_removed_1$graphs[[1]]),
+    count_nodes(graph = graph_2))
 
   # Remove the first graph from the series using
   # the `first` character vector
@@ -303,9 +302,9 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Expect that this subset graph is the same
   # as `graph_time_2`
-  expect_true(
-    count_nodes(graph = series_sequence_subset$graphs[[1]]) ==
-      count_nodes(graph = graph_time_2))
+  expect_equal(
+    count_nodes(graph = series_sequence_subset$graphs[[1]]),
+    count_nodes(graph = graph_time_2))
 
   # Subset graph series by date-time
   series_time_subset <-

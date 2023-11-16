@@ -129,7 +129,7 @@ test_that("counting the number of strongly connected components is possible", {
      add_islands_graph(
        n_islands = 4,
        island_size = 10,
-       p = 1/5,
+       p = 1 / 5,
        edges_between = 1,
        set_seed = 23)
 

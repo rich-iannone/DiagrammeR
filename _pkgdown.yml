@@ -1,7 +1,7 @@
-destination: docs
-
 home:
   strip_header: true
+
+url: https://rich-iannone.github.io/DiagrammeR/
 
 template:
   bootstrap: 5
@@ -347,6 +347,3 @@ reference:
       - edge_list_2
       - currencies
       - usd_exchange_rates
-
-development:
-  version_tooltip: "Development version"

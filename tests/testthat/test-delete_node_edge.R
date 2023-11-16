@@ -63,14 +63,11 @@ test_that("nodes and edges can be deleted from a graph", {
 
   # Expect that node ID `4` will not be present in
   # the revised graph
-  expect_true(
-    !(4 %in% graph_nodes_delete_node))
+  expect_false(4 %in% graph_nodes_delete_node)
 
-  expect_true(
-    !(4 %in% graph_edges_delete_node[[1]]))
+  expect_false(4 %in% graph_edges_delete_node[[1]])
 
-  expect_true(
-    !(4 %in% graph_edges_delete_node[[2]]))
+  expect_false(4 %in% graph_edges_delete_node[[2]])
 
   # Remove an edge (removing an edge retains nodes)
   graph <-

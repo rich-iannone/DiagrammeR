@@ -99,12 +99,10 @@ set_edge_attrs <- function(
       "You cannot alter edge ID values or attributes associated with node IDs.")
   }
 
-  if (!is.null(from) && !is.null(to)) {
-    if (length(from) != length(to)) {
+  if (!is.null(from) && !is.null(to) && (length(from) != length(to))) {
 
-      cli::cli_abort(
-        "The number of values specified in `from` and `to` must be the same.")
-    }
+    cli::cli_abort(
+      "The number of values specified in `from` and `to` must be the same.")
   }
 
   # Extract the graph's edf
@@ -179,7 +177,7 @@ set_edge_attrs <- function(
   }
 
   # Update the graph object
-  graph$edges_df = edf
+  graph$edges_df <- edf
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

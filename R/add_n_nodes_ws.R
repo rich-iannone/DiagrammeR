@@ -98,15 +98,14 @@ add_n_nodes_ws <- function(
   check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  check_graph_contains_nodes(graph, extra_msg = "Existing nodes are required." )
+  check_graph_contains_nodes(graph, extra_msg = "Existing nodes are required.")
 
   # Validation: Graph object has valid node selection
   check_graph_contains_node_selection(graph)
 
   # If the graph is directed and there is no value
   # given for the `direction` argument, stop function
-  if (is_graph_directed(graph) &&
-      is.null(direction)) {
+  if (is_graph_directed(graph) && is.null(direction)) {
 
     cli::cli_abort("A `direction` edge must be provided for a directed graph.")
   }

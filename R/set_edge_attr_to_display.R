@@ -113,36 +113,34 @@ set_edge_attr_to_display <- function(
 
   # Stop function if the edge attribute supplied as
   # `attr` does not exist in the edf
-  if (!is.null(attr)) {
-    if (!(attr %in% colnames(edf))) {
+  if (!is.null(attr) && !rlang::has_name(edf, attr)) {
 
-      cli::cli_abort(
-        "The edge attribute given in `attr` is not in the graph's edf.")
-    }
+    cli::cli_abort(
+      "The edge attribute given in `attr` is not in the graph's edf.")
   }
 
   # If the `display` edge attribute doesn't exist,
   # create that column and fill with the default value
-  if (!("display" %in% colnames(edf))) {
+  if (!rlang::has_name(edf, "display")) {
 
     edf$display <- as.character(default)
   }
 
   # Create a tibble with the edge ID values and the
   # requested edge attribute to display
-  if (!is.null(attr)) {
-
-    attr_to_display <-
-      dplyr::tibble(
-        id = as.integer(edges),
-        display = as.character(attr))
-
-  } else if (is.null(attr)) {
+  if (is.null(attr)) {
 
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(edges),
         display = "is_na")
+
+  } else {
+
+    attr_to_display <-
+      dplyr::tibble(
+        id = as.integer(edges),
+        display = as.character(attr))
   }
 
   # Join the `attr_to_display` table with the `edf`

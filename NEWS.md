@@ -2,13 +2,15 @@
 
 * DiagrammeR nows uses testthat 3rd edition (@olivroy, #498)
 
-* No longer use deprecated features from igraph and tidyselect (>= 1.2.0) (@olivroy, #497)
+* No longer use deprecated features from tibble, igraph and tidyselect (>= 1.2.0) (@olivroy, #497, #507)
 
 * Error messages have been reviewed and now use cli (@olivroy, #499, #502)
 
 * It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
 
 * Some conditions were corrected in `trav_in_until()` and `trav_out_until()` (@olivroy, #504)
+
+* `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
 
 # DiagrammeR 1.0.10
 

@@ -301,9 +301,9 @@ trav_out <- function(
     nodes <-
       valid_nodes %>%
       dplyr::select(id) %>%
-      dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
-      dplyr::select("id",!!enquo(copy_attrs_from))
+      dplyr::inner_join(edf %>% dplyr::select("from", "to"), by = c("id" = "to")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::select("id", !!enquo(copy_attrs_from))
 
     # If the values to be copied are numeric,
     # perform aggregation on the values
@@ -313,8 +313,8 @@ trav_out <- function(
         dplyr::group_by(id) %>%
         dplyr::summarize(!!copy_attrs_from :=
                            match.fun(!!agg)(!!as.name(copy_attrs_from),
-                                             na.rm = TRUE)) %>%
-        dplyr::ungroup()
+                                             na.rm = TRUE),
+                         .groups = "drop")
     }
 
     nodes <-
@@ -345,7 +345,7 @@ trav_out <- function(
 
       # Reorder the columns generated
       nodes <-
-        nodes[, c(c(1:(ncol(nodes) - 2)), split_var_y_col, split_var_x_col)]
+        nodes[, c(seq_len(ncol(nodes) - 2), split_var_y_col, split_var_x_col)]
     }
 
     # Rename the ".y" column

@@ -117,12 +117,10 @@ set_node_attr_to_display <- function(
 
   # Stop function if the node attribute supplied as
   # `attr` does not exist in the ndf
-  if (!is.null(attr)) {
-    if (!(attr %in% colnames(ndf))) {
+  if (!is.null(attr) && !(attr %in% colnames(ndf))) {
 
-      cli::cli_abort(
-        "The node attribute given in `attr` is not in the graph's ndf.")
-    }
+    cli::cli_abort(
+      "The node attribute given in `attr` is not in the graph's ndf.")
   }
 
   # If the `display` node attribute doesn't exist,
@@ -133,17 +131,18 @@ set_node_attr_to_display <- function(
 
   # Create a tibble with the node ID values and the
   # requested node attribute to display
-  if (!is.null(attr)) {
+  if (is.null(attr)) {
+    attr_to_display <-
+      dplyr::tibble(
+        id = as.integer(nodes),
+        display = "is_na")
+
+  } else {
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(nodes),
         display = as.character(attr))
 
-  } else if (is.null(attr)) {
-    attr_to_display <-
-      dplyr::tibble(
-        id = as.integer(nodes),
-        display = as.character("is_na"))
   }
 
   # Join the `attr_to_display` table with the `ndf`
@@ -158,15 +157,16 @@ set_node_attr_to_display <- function(
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
-  if (!is.null(attr)) {
-    display_col <-
-      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
-      as.data.frame(stringsAsFactors = FALSE)
-  } else if (is.null(attr)) {
+  if (is.null(attr)) {
     display_col <-
       dplyr::coalesce(ndf[, y_col], ndf[, x_col])
 
     display_col <- dplyr::na_if(display_col, "is_na") %>%
+      as.data.frame(stringsAsFactors = FALSE)
+
+  } else {
+    display_col <-
+      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
 

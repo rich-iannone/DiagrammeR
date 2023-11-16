@@ -150,7 +150,8 @@ add_balanced_tree <- function(
         rep(seq(nodes[1],
                 nodes[length(
                   seq(nodes[2],
-                      nodes[length(nodes)]))/k]), k)),
+                      nodes[length(nodes)])) / k]),
+            k)),
       to = seq(nodes[2], nodes[length(nodes)]),
       rel = rel)
 
@@ -271,10 +272,10 @@ add_balanced_tree <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, tree_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- tree_graph
+  } else {
+    graph <- combine_graphs(graph, tree_graph)
   }
 
   # Update the `last_node` counter

@@ -33,7 +33,7 @@ get_graph_info <- function(graph) {
 
   # Get the graph density
   density <-
-    round(count_nodes(graph) / ((count_nodes(graph) * (count_nodes(graph) - 1))/2), 4)
+    round(count_nodes(graph) / ((count_nodes(graph) * (count_nodes(graph) - 1)) / 2), 4)
 
   # Get a table of node degree values
   degree_table <-

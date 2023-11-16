@@ -131,7 +131,7 @@ add_gnm_graph <- function(
 
     if (nrow(node_aes_tbl) < nrow(sample_gnm_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(sample_gnm_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(sample_gnm_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
@@ -150,7 +150,7 @@ add_gnm_graph <- function(
 
     if (nrow(node_data_tbl) < nrow(sample_gnm_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(sample_gnm_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(sample_gnm_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
@@ -169,11 +169,11 @@ add_gnm_graph <- function(
 
     if (nrow(edge_aes_tbl) < nrow(sample_gnm_graph$edges_df)) {
 
-      edge_aes$index__ <- 1:nrow(sample_gnm_graph$edges_df)
+      edge_aes$index__ <- seq_len(nrow(sample_gnm_graph$edges_df))
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
@@ -188,7 +188,7 @@ add_gnm_graph <- function(
 
     if (nrow(edge_data_tbl) < nrow(sample_gnm_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(sample_gnm_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(sample_gnm_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
@@ -234,10 +234,10 @@ add_gnm_graph <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, sample_gnm_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- sample_gnm_graph
+  } else {
+    graph <- combine_graphs(graph, sample_gnm_graph)
   }
 
   # Update the `last_node` counter

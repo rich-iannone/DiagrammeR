@@ -73,20 +73,18 @@ add_global_graph_attrs <- function(
 
   # Coerce any logical value for `value` to a
   # lowercase character value
-  if (length(value) == 1) {
-    if (inherits(value, "logical") &&
-        value %in% c(TRUE, FALSE)) {
-      value <- tolower(as.character(value))
-    }
+  # If value is a single true or false
+  if (rlang::is_bool(value)) {
+    value <- tolower(as.character(value))
   }
 
   # Create a table for the attributes
   global_attrs_to_add <-
-    dplyr::tibble(
+    data.frame(
       attr = as.character(attr),
       value = as.character(value),
-      attr_type = as.character(attr_type)) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      attr_type = as.character(attr_type),
+      stringsAsFactors = FALSE)
 
   # Get the global graph attributes already set
   # in the graph object

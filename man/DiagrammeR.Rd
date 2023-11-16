@@ -62,7 +62,7 @@ DiagrammeR("graph LR;A(Rounded)-->B[Squared];B-->C{A Decision};
 )
 
 # Load in the 'mtcars' dataset
-data(mtcars)
+mtcars
 connections <- sapply(
  1:ncol(mtcars)
   ,function(i) {
@@ -110,8 +110,6 @@ html_print(tagList(
 # Using this "How to Draw a Sequence Diagram"
 #   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 # draw some sequence diagrams with DiagrammeR
-
-library(DiagrammeR)
 
 DiagrammeR("
 sequenceDiagram;

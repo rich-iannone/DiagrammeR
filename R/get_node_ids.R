@@ -61,9 +61,6 @@ get_node_ids <- function(
     conditions = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   if (is_graph_empty(graph)) {
     return(NA)
   }

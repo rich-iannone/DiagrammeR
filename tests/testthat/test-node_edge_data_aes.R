@@ -124,8 +124,8 @@ test_that("creating node aesthetic attribute values is possible", {
     node_aes, "list")
 
   # Expect specific names in the object
-  expect_equal(
-    names(node_aes),
+  expect_named(
+    node_aes,
     c("shape", "style", "penwidth", "color",
       "fillcolor", "fontname", "fontsize",
       "fontcolor", "peripheries", "height",
