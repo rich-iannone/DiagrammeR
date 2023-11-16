@@ -120,45 +120,52 @@ resulting graphic in pixels.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Render a graph that's a</span></span></span>
-<span class="r-in"><span><span class="co"># balanced tree</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">render_graph</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Render a graph that's a</span></span></span>
+<span class="r-in"><span>  <span class="co"># balanced tree</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">render_graph</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Use the `tree` layout for</span></span></span>
-<span class="r-in"><span><span class="co"># better node placement in this</span></span></span>
-<span class="r-in"><span><span class="co"># hierarchical graph</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">render_graph</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"tree"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Use the `tree` layout for</span></span></span>
+<span class="r-in"><span>  <span class="co"># better node placement in this</span></span></span>
+<span class="r-in"><span>  <span class="co"># hierarchical graph</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">render_graph</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"tree"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Plot the same tree graph but</span></span></span>
-<span class="r-in"><span><span class="co"># don't show the node ID values</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="set_node_attr_to_display.html">set_node_attr_to_display</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">render_graph</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"tree"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the same tree graph but</span></span></span>
+<span class="r-in"><span>  <span class="co"># don't show the node ID values</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="set_node_attr_to_display.html">set_node_attr_to_display</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">render_graph</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"tree"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Create a circle graph</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    n <span class="op">=</span> <span class="fl">55</span>,</span></span>
-<span class="r-in"><span>    m <span class="op">=</span> <span class="fl">75</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">render_graph</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    layout <span class="op">=</span> <span class="st">"circle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create a circle graph</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      n <span class="op">=</span> <span class="fl">55</span>,</span></span>
+<span class="r-in"><span>      m <span class="op">=</span> <span class="fl">75</span>,</span></span>
+<span class="r-in"><span>      set_seed <span class="op">=</span> <span class="fl">23</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">render_graph</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      layout <span class="op">=</span> <span class="st">"circle"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Render the graph using the</span></span></span>
-<span class="r-in"><span><span class="co"># `visNetwork` output option</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">render_graph</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    output <span class="op">=</span> <span class="st">"visNetwork"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Render the graph using the</span></span></span>
+<span class="r-in"><span>  <span class="co"># `visNetwork` output option</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">render_graph</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      output <span class="op">=</span> <span class="st">"visNetwork"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
