@@ -41,7 +41,7 @@ Imports:
     visNetwork (>= 2.1.0)
 Suggests:
     curl,
-    economiccomplexity (>= 1.0)
+    economiccomplexity (>= 1.0),
     DiagrammeRsvg,
     knitr,
     rmarkdown,
