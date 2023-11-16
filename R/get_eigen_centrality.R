@@ -31,41 +31,28 @@ get_eigen_centrality <- function(
     weights_attr = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  if (!is.null(weights_attr)) {
+  if (inherits(weights_attr, "character")) {
+    # Stop function if the edge attribute does not exist
+    if (!(weights_attr %in% colnames(graph$edges_df))) {
 
-    if (inherits(weights_attr, "character")) {
-      # Stop function if the edge attribute does not exist
-      if (!(weights_attr %in% colnames(graph$edges_df))) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights does not exist in the graph")
-      }
-
-      # Stop function if the edge attribute is not numeric
-      if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights is not numeric")
-      }
-
-      weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
+      cli::cli_abort(
+        "The edge attribute to be used as weights does not exist in the graph.")
     }
+
+    # Stop function if the edge attribute is not numeric
+    if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
+
+      cli::cli_abort(
+        "The edge attribute to be used as weights is not numeric.")
+    }
+
+    weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
   }
 
   # Get the eigen centrality values for each of the
@@ -77,9 +64,7 @@ get_eigen_centrality <- function(
 
   # Create df with eigen centrality values
   data.frame(
-    id = eigen_centrality_values$vector %>%
-      names() %>%
-      as.integer(),
+    id = names(eigen_centrality_values$vector) %>% as.integer(),
     eigen_centrality = unname(eigen_centrality_values$vector) %>% round(4),
     stringsAsFactors = FALSE)
 }

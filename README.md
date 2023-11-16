@@ -4,19 +4,23 @@
 <div align="center">
 
 <hr style="color:transparent" />
-<a href='http://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
 <hr style="color:transparent"/>
+
 <!-- badges: start -->
-
-<a href="https://cran.r-project.org/package=DiagrammeR"><img src="https://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status" /></a>
-<a href="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R build status" /></a>
-<a href="https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main"><img src="https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg" alt="Coverage status" /></a>
-
-<a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/DiagrammeR" alt="Monthly Downloads"></a>
-<a href="https://CRAN.R-project.org/package=DiagrammeR"><img src="https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR" alt="Total Downloads"></a>
-
-<a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
+[![CRAN
+status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main)
+[![Monthly
+Downloads](https://cranlogs.r-pkg.org/badges/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Contributor
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
 <!-- badges: end -->
+
 <hr style="color:transparent" />
 
 <br />
@@ -547,7 +551,7 @@ the relationships between the people and the project.
 
 The example graph file `repository.dgr` is available in the
 `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package
-(currently, only for the **Github** version). We can load it into memory
+(currently, only for the **GitHub** version). We can load it into memory
 by using the `open_graph()` function, where `system.file()` helps to
 provide the location of the file within the package.
 

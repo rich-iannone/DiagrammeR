@@ -25,22 +25,18 @@
 #' # data attributes have been
 #' # inserted
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#' @family node creation and removal
 #' @export
 node_data <- function(...) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Collect vectors of node data
   # attribute values into a list object
   node_data_values <- list(...)
 
-  if (any(names(node_data_values) %in% c(gv_node_attributes(), "x", "y"))){
+  if (any(names(node_data_values) %in% c(gv_node_attributes(), "x", "y"))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Names for node data attributes shouldn't be any of those reserved for node aesthetic attributes")
+    cli::cli_abort(
+      "Names for node data attributes shouldn't be any of those reserved for node aesthetic attributes.")
   }
 
   node_data_values

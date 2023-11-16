@@ -27,25 +27,14 @@
 #' @export
 count_loop_edges <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
-    return(0)
+    return(0L)
   }
 
-  return(
-    graph$edges_df %>%
-      dplyr::filter(
-        from == to) %>%
-      nrow())
+  n_match <- length(which(graph$edges_df$from == graph$edges$to))
+  n_match
 }

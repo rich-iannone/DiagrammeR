@@ -45,13 +45,13 @@ get_graph_series_info <- function(graph_series) {
 
   series_info_df <-
     dplyr::tibble(
-      graph = integer(0),
-      name = character(0),
+      graph = integer(),
+      name = character(),
       date_time = Sys.time(),
-      tz = character(0),
-      nodes = integer(0),
-      edges = integer(0),
-      directed = logical(0)
+      tz = character(),
+      nodes = integer(),
+      edges = integer(),
+      directed = logical()
     ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 

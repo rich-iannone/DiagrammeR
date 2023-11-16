@@ -59,9 +59,8 @@
 #' # Display the graph's ndf
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
-#' @import rlang
 #' @export
 set_node_attrs <- function(
     graph,
@@ -72,9 +71,6 @@ set_node_attrs <- function(
 
   # Get the time of function start
   time_function_start <- Sys.time()
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Get the requested `node_attr`
   node_attr <-
@@ -90,12 +86,11 @@ set_node_attrs <- function(
   # Extract the graph's ndf
   ndf <- graph$nodes_df
 
-  if (length(values) != 1 &
+  if (length(values) != 1 &&
       length(values) != nrow(ndf)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The length of values provided must either be 1 or that of the number of rows in the ndf")
+    cli::cli_abort(
+      "The length of `values` provided must either be 1 or that of the number of rows in the ndf ({nrow(ndf)}).")
   }
 
   if (length(values) == 1) {
@@ -148,7 +143,7 @@ set_node_attrs <- function(
     if (!(node_attr %in% colnames(ndf))) {
       ndf <-
         cbind(ndf,
-              rep(as.character(NA), nrow(ndf)))
+              rep(NA_character_, nrow(ndf)))
 
       ndf[, ncol(ndf)] <-
         ndf[, ncol(ndf)]
@@ -164,11 +159,14 @@ set_node_attrs <- function(
     # revised version
     graph$nodes_df <- ndf
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph$graph_log <-
       add_action_to_log(
         graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
+        version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),

@@ -47,16 +47,8 @@
 #' @export
 get_s_connected_cmpts <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Create a graph where only mandatory
   # node and edge attributes are retained;
@@ -65,10 +57,10 @@ get_s_connected_cmpts <- function(graph) {
     create_graph(
       nodes_df = graph %>%
         get_node_df() %>%
-        dplyr::select(id, type, label),
+        dplyr::select("id", "type", "label"),
       edges_df = graph %>%
         get_edge_df() %>%
-        dplyr::select(id, from, to, rel),
+        dplyr::select("id", "from", "to", "rel"),
       directed = is_graph_directed(graph)) %>%
     to_igraph()
 

@@ -1,4 +1,4 @@
-context("Perform graph object transformations")
+# Perform graph object transformations
 
 test_that("Converting to igraph is possible", {
 
@@ -16,7 +16,7 @@ test_that("Converting to igraph is possible", {
     to_igraph(graph)
 
   # Expect that the new object is an igraph object
-  expect_is(
+  expect_s3_class(
     igraph_graph, "igraph")
 })
 
@@ -30,9 +30,8 @@ test_that("Changing to undirected mode is possible", {
   undirected_graph <-
     set_graph_undirected(graph)
 
-  # Expect the the graph is undirected
-  expect_true(
-    graph$directed)
+  # Expect the the graph is directed
+  expect_true(graph$directed)
 })
 
 test_that("Changing to directed mode is possible", {
@@ -136,7 +135,7 @@ test_that("Reversing edges in a selection is possible", {
 
   # Expect an error if the graph
   # is undirected
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph(
       directed = FALSE) %>%
       add_balanced_tree(
@@ -306,7 +305,7 @@ test_that("Fully disconnecting selected nodes is possible", {
 
   # Expect an error if there is no valid
   # selection of node
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph() %>%
       add_path(n = 2) %>%
       fully_disconnect_nodes_ws())
@@ -344,7 +343,6 @@ test_that("Removing loop edges via a selection is possible", {
   # Expect an error if there is
   # isn't a valid node selection
   expect_error(
-    graph %>%
-      delete_loop_edges_ws()
+    delete_loop_edges_ws(graph)
   )
 })

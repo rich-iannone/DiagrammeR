@@ -28,37 +28,27 @@
 #' @export
 get_last_edges_created <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_edges = dplyr::if_else(
-      function_used %in% edge_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_edges = dplyr::if_else(
-      function_used %in% edge_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_edges = dplyr::if_else(
-      function_used %in% graph_init_functions() &
-        edges > 0, 1, 0)) %>%
+    dplyr::mutate(
+      step_created_edges = as.integer(function_used %in% edge_creation_functions()),
+      step_deleted_edges = as.integer(function_used %in% edge_deletion_functions()),
+      step_init_with_edges = as.integer(function_used %in% graph_init_functions() &
+                                          edges > 0)
+    ) %>%
     dplyr::filter(
-      step_created_edges == 1 | step_deleted_edges == 1 | step_init_with_edges) %>%
-    dplyr::select(-version_id, -time_modified, -duration)
+      dplyr::if_any(
+        .cols = c(step_created_edges, step_deleted_edges, step_init_with_edges),
+        .fns = function(x) x == 1
+        )
+    ) %>%
+    dplyr::select(-"version_id", -"time_modified", -"duration")
 
   if (nrow(graph_transform_steps) > 0) {
 
@@ -66,33 +56,31 @@ get_last_edges_created <- function(graph) {
         utils::tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The previous graph transformation function resulted in a removal of edges")
+      abort("The previous graph transformation function resulted in a removal of edges.")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {
         number_of_edges_created <-
           (graph_transform_steps %>%
-             dplyr::select(edges) %>%
+             dplyr::select("edges") %>%
              utils::tail(2) %>%
-             dplyr::pull(edges))[2] -
+             dplyr::pull("edges"))[2] -
           (graph_transform_steps %>%
-             dplyr::select(edges) %>%
+             dplyr::select("edges") %>%
              utils::tail(2) %>%
-             dplyr::pull(edges))[1]
+             dplyr::pull("edges"))[1]
       } else {
         number_of_edges_created <-
           graph_transform_steps %>%
-          dplyr::pull(edges)
+          dplyr::pull("edges")
       }
     }
 
     edge_id_values <-
       graph$edges_df %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       utils::tail(number_of_edges_created) %>%
-      dplyr::pull(id)
+      dplyr::pull("id")
   } else {
     edge_id_values <- NA
   }

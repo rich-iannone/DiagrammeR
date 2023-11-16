@@ -86,9 +86,8 @@
 #' # edge attribute
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
-#' @import rlang
 #' @export
 rescale_edge_attrs <- function(
     graph,
@@ -103,24 +102,11 @@ rescale_edge_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -144,22 +130,26 @@ rescale_edge_attrs <- function(
   # of the graph's edge attributes
   if (!any(column_names_graph %in% edge_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The edge attribute to rescale is not in the edf")
+    cli::cli_abort(
+      "The edge attribute to rescale is not in the edf.")
   }
 
   # Extract the vector to rescale from the `edges` df
   vector_to_rescale <-
     edges %>%
-    dplyr::mutate_at(.vars = edge_attr_from, .funs = ~as.numeric(.)) %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(edge_attr_from),
+        as.numeric)) %>%
     dplyr::pull(var = !!edge_attr_from)
 
-  if ((!is.null(from_lower_bound) &
-       is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
-       !is.null(from_upper_bound)) |
-      (is.null(from_lower_bound) &
+  # TODO condition could be simplified to
+  # is.null(from_lower) || (!is.null(from_lower) && is.null(from_upper))?
+  if ((!is.null(from_lower_bound) &&
+       is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
+       !is.null(from_upper_bound)) ||
+      (is.null(from_lower_bound) &&
        is.null(from_upper_bound))) {
 
     from <- range(vector_to_rescale, na.rm = TRUE, finite = TRUE)
@@ -170,7 +160,7 @@ rescale_edge_attrs <- function(
 
   # Get vector of rescaled, numeric edge
   # attribute values
-  if (is.numeric(to_lower_bound) &
+  if (is.numeric(to_lower_bound) &&
       is.numeric(to_upper_bound)) {
 
     edges_attr_vector_rescaled <-
@@ -183,9 +173,8 @@ rescale_edge_attrs <- function(
         3)
   }
 
-  # Get vector of rescaled, edge attribute color values
-  if ((to_lower_bound %in% grDevices::colors()) &
-      (to_upper_bound %in% grDevices::colors())) {
+  # Get vector of rescaled, edge attribute color values if both to_lower and
+  if (all(c(to_lower_bound, to_upper_bound) %in% grDevices::colors())) {
 
     edges_attr_vector_rescaled <-
       scales::cscale(
@@ -213,13 +202,16 @@ rescale_edge_attrs <- function(
       values = edges_attr_vector_rescaled)
 
   # Remove last action from the `graph_log`
-  graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
+  graph$graph_log <- graph$graph_log[seq_len(nrow(graph$graph_log) - 1), ]
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

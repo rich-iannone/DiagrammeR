@@ -81,7 +81,6 @@
 #'     tol_abs = c(10, 10)) %>%
 #'     length()
 #'
-#' @import rlang
 #' @export
 get_similar_nbrs <- function(
     graph,
@@ -91,16 +90,8 @@ get_similar_nbrs <- function(
     tol_pct = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
     # Get the requested `node_attr`
   node_attr <-
@@ -126,12 +117,10 @@ get_similar_nbrs <- function(
 
   # Determine whether `node_attr` values are numeric
   node_attr_numeric <-
-    ifelse(
-      suppressWarnings(
-        any(is.na(as.numeric(attr_values)))),
-      FALSE, TRUE)
+    suppressWarnings(
+      !anyNA(as.numeric(attr_values)))
 
-  if (node_attr_numeric == FALSE) {
+  if (node_attr_numeric) {
 
     # Get the set of all nodes in graph that
     # satisfy one or more conditions
@@ -143,7 +132,7 @@ get_similar_nbrs <- function(
               node_attr)] %in% match), 1]
   }
 
-  if (node_attr_numeric == TRUE) {
+  if (node_attr_numeric) {
 
     match <- as.numeric(match)
 
@@ -158,7 +147,7 @@ get_similar_nbrs <- function(
           match + match * tol_pct[2]/100)
     }
 
-    if (is.null(tol_abs) & is.null(tol_pct)) {
+    if (is.null(tol_abs) && is.null(tol_pct)) {
       match_range <- c(match, match)
     }
 
@@ -227,7 +216,8 @@ get_similar_nbrs <- function(
   # If there are no matching nodes return `NA`
   if (length(matching_nodes) == 0) {
     return(NA)
-  } else {
-    return(sort(matching_nodes))
   }
+
+  sort(matching_nodes)
+
 }

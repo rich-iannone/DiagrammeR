@@ -12,3 +12,4 @@
 ^man/figures/.*$
 vignettes
 ^codecov\.yml$
+^\.github$

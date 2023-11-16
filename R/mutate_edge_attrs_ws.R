@@ -115,9 +115,8 @@
 #' # those of the other edges
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
-#' @import rlang
 #' @export
 mutate_edge_attrs_ws <- function(
     graph,
@@ -127,32 +126,14 @@ mutate_edge_attrs_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Collect expressions
   exprs <- rlang::exprs(...)
@@ -163,13 +144,12 @@ mutate_edge_attrs_ws <- function(
   # Stop function if any supplied
   # expressions mutate columns that
   # should not be changed
-  if ("id" %in% names(exprs) |
-      "from" %in% names(exprs) |
+  if ("id" %in% names(exprs) ||
+      "from" %in% names(exprs) ||
       "to" %in% names(exprs)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The variables `id`, `from`, or `to` cannot undergo mutation")
+    cli::cli_abort(
+      "The variables `id`, `from`, or `to` cannot undergo mutation.")
   }
 
   # Determine which edges are not
@@ -184,18 +164,21 @@ mutate_edge_attrs_ws <- function(
 
   edf <-
     dplyr::bind_rows(
-      edf %>% dplyr::filter(!(!! enquo(s))) %>% dplyr::mutate(!!! enquos(...)),
-      edf %>% dplyr::filter( (!! enquo(s)))
-    ) %>% dplyr::arrange(!! enquo(order))
+      edf %>% dplyr::filter(!(!!enquo(s))) %>% dplyr::mutate(!!!enquos(...)),
+      edf %>% dplyr::filter(!!enquo(s))
+    ) %>%
+    dplyr::arrange(!!enquo(order))
 
   graph$edges_df <- edf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

@@ -41,5 +41,5 @@ Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using \code{viz.js} with infrastructure provided by
-pkg{htmlwidgets}.
+\pkg{htmlwidgets}.
 }

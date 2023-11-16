@@ -29,23 +29,19 @@
 #' graph %>% get_edge_df()
 #' }
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 edge_data <- function(...) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
 
   # Collect vectors of edge data
   # attribute values into a list object
   edge_data_values <- list(...)
 
-  if (any(names(edge_data_values) %in% gv_edge_attributes())){
+  if (any(names(edge_data_values) %in% gv_edge_attributes())) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes")
+    cli::cli_abort(
+      "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.")
   }
 
   edge_data_values

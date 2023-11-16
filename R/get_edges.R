@@ -99,7 +99,6 @@
 #'     return_type = "vector",
 #'     return_values = "label")
 #'
-#' @import rlang
 #' @export
 get_edges <- function(
     graph,
@@ -108,33 +107,23 @@ get_edges <- function(
     return_values = "id"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
-
   # Extract edge data frame from the graph
   edges_df <- graph$edges_df
 
   if (return_values == "label") {
     edges_df <-
       edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("from" = "id")) %>%
-      dplyr::rename(from_label_ = label) %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", "label"), by = c("to" = "id")) %>%
-      dplyr::rename(to_label_ = label)
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", from_label_ = "label"), by = c("from" = "id")) %>%
+      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", to_label_ = "label"), by = c("to" = "id"))
   }
 
 
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If no edges remain then return NA

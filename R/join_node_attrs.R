@@ -63,7 +63,7 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#' @family node creation and removal
 #' @export
 join_node_attrs <- function(
     graph,
@@ -75,29 +75,19 @@ join_node_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+  if (is.null(by_graph) && !is.null(by_df)) {
+
+    cli::cli_abort(
+      "Both column specifications must be provided.")
   }
 
-  if (is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && is.null(by_df)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
-  }
-
-  if (!is.null(by_graph) & is.null(by_df)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
+    cli::cli_abort(
+      "Both column specifications must be provided.")
   }
 
   # Get the number of nodes ever created for
@@ -113,7 +103,7 @@ join_node_attrs <- function(
   # Get column names from the df
   column_names_df <- colnames(df)
 
-  if (is.null(by_graph) & is.null(by_df)) {
+  if (is.null(by_graph) && is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
     if ("id" %in% colnames(df)) {
@@ -129,7 +119,7 @@ join_node_attrs <- function(
     }
   }
 
-  if (!is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && !is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
     nodes <-
@@ -149,18 +139,20 @@ join_node_attrs <- function(
 
   # Ensure that the column ordering is correct
   nodes <-
-    nodes %>%
-    dplyr::select(id, type, label, dplyr::everything())
+    nodes %>% dplyr::relocate("id", "type", "label")
 
   # Modify the graph object
   graph$nodes_df <- nodes
   graph$last_node <- nodes_created
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

@@ -35,28 +35,17 @@
 #' @export
 open_graph <- function(file) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  if (!inherits(file, "character")) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Provide a character string for the file")
-  }
+  check_string(file)
 
   # Read the graph or graph series
   x <- readRDS(file = file)
 
-  if (inherits(x, "dgr_graph") |
-      inherits(x, "dgr_graph_1D")) {
+  if (!rlang::inherits_any(x, c("dgr_graph", "dgr_graph_1D"))) {
 
-    return(x)
-
-  } else {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The object opened is not a graph or graph series")
+    cli::cli_abort(c(
+      "The object must be a graph or graph series.",
+      i = "Make sure that {.file {file}} contains a graph or graph series."))
   }
+
+  x
 }

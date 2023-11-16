@@ -84,24 +84,11 @@ add_path <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Stop if n is too small
-  if (n <= 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 2")
-  }
+  check_number_whole(n, min = 2)
 
   # Get the number of nodes ever created for
   # this graph
@@ -125,7 +112,7 @@ add_path <- function(graph,
   graph_directed <- graph$directed
 
   # Get the sequence of nodes required
-  nodes <- seq(1, n)
+  nodes <- seq_len(n)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -134,17 +121,15 @@ add_path <- function(graph,
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -155,17 +140,15 @@ add_path <- function(graph,
 
     if (nrow(edge_aes_tbl) < (n - 1)) {
 
-      edge_aes$index__ <- 1:(n - 1)
+      edge_aes$index__ <- seq_len(n - 1)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -176,17 +159,15 @@ add_path <- function(graph,
 
     if (nrow(node_data_tbl) < n) {
 
-      node_data$index__ <- 1:n
+      node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -197,17 +178,15 @@ add_path <- function(graph,
 
     if (nrow(edge_data_tbl) < (n - 1)) {
 
-      edge_data$index__ <- 1:(n - 1)
+      edge_data$index__ <- seq_len(n - 1)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -237,7 +216,7 @@ add_path <- function(graph,
   # Create an edge data frame for the path graph
   path_edges <-
     create_edge_df(
-      from = nodes[1:length(nodes) - 1],
+      from = nodes[seq_along(nodes) - 1L],
       to = nodes[2:length(nodes)],
       rel = rel)
 
@@ -266,10 +245,10 @@ add_path <- function(graph,
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, path_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- path_graph
+  } else {
+    graph <- combine_graphs(graph, path_graph)
   }
 
   # Update the `last_node` counter
@@ -278,11 +257,14 @@ add_path <- function(graph,
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(path_edges)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -298,8 +280,7 @@ add_path <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

@@ -52,16 +52,8 @@ get_successors <- function(
     node
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If the graph contains no edges, return NA
   if (is.null(graph$edges_df)) {
@@ -75,16 +67,16 @@ get_successors <- function(
   node_is_in_graph <- node %in% graph$nodes_df$id
 
   # Obtain the node's successors
-  if (graph_is_not_empty &
-      node_is_in_graph &
+  if (graph_is_not_empty &&
+      node_is_in_graph &&
       nrow(get_edge_info(graph)) > 0) {
 
     if (length(graph$edges_df[graph$edges_df$from ==
-                              node,]$to) == 0) {
+                              node, ]$to) == 0) {
       successors <- NA
     } else {
       successors <-
-        graph$edges_df[graph$edges_df$from == node,]$to
+        graph$edges_df[graph$edges_df$from == node, ]$to
     }
     return(successors)
   }

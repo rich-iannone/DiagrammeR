@@ -98,32 +98,12 @@ add_balanced_tree <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  # Stop if k is too small
-  if (k <= 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `k` must be at least 2")
-  }
-
-  # Stop if h is too small
-  if (h <= 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `h` must be at least 2")
-  }
+  # Stop if k or n is too small
+  check_number_whole(k, min = 2)
+  check_number_whole(h, min = 2)
 
   # Determine the number of nodes in the balanced tree
   n_nodes_tree <-
@@ -170,7 +150,8 @@ add_balanced_tree <- function(
         rep(seq(nodes[1],
                 nodes[length(
                   seq(nodes[2],
-                      nodes[length(nodes)]))/k]), k)),
+                      nodes[length(nodes)])) / k]),
+            k)),
       to = seq(nodes[2], nodes[length(nodes)]),
       rel = rel)
 
@@ -181,17 +162,15 @@ add_balanced_tree <- function(
 
     if (nrow(node_aes_tbl) < n_nodes_tree) {
 
-      node_aes$index__ <- 1:n_nodes_tree
+      node_aes$index__ <- seq_len(n_nodes_tree)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -202,17 +181,15 @@ add_balanced_tree <- function(
 
     if (nrow(node_data_tbl) < n_nodes_tree) {
 
-      node_data$index__ <- 1:n_nodes_tree
+      node_data$index__ <- seq_len(n_nodes_tree)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -223,17 +200,15 @@ add_balanced_tree <- function(
 
     if (nrow(edge_aes_tbl) < n_edges_tree) {
 
-      edge_aes$index__ <- 1:n_edges_tree
+      edge_aes$index__ <- seq_len(n_edges_tree)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -244,17 +219,15 @@ add_balanced_tree <- function(
 
     if (nrow(edge_data_tbl) < n_edges_tree) {
 
-      edge_data$index__ <- 1:n_edges_tree
+      edge_data$index__ <- seq_len(n_edges_tree)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -299,10 +272,10 @@ add_balanced_tree <- function(
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, tree_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- tree_graph
+  } else {
+    graph <- combine_graphs(graph, tree_graph)
   }
 
   # Update the `last_node` counter
@@ -311,11 +284,14 @@ add_balanced_tree <- function(
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(tree_edges)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

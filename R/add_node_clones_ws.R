@@ -85,7 +85,7 @@
 #' # nodes and their clones
 #' graph %>% get_edge_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 add_node_clones_ws <- function(
@@ -98,32 +98,14 @@ add_node_clones_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, clones of nodes cannot be added")
-  }
+  check_graph_contains_nodes(graph, extra_msg = "So, clones of nodes cannot be added.")
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # # Stop function if vector provided for label but it
   # # is not of length `n`
@@ -138,8 +120,7 @@ add_node_clones_ws <- function(
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Get the number of columns in the graph's
   # internal node data frame
@@ -155,22 +136,17 @@ add_node_clones_ws <- function(
   # Clear the graph's selection
   graph <-
     suppressMessages(
-      graph %>%
-        clear_selection())
+      clear_selection(graph))
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <-
-    graph %>%
-    count_nodes()
+  nodes_graph_1 <- graph %>% count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <-
-    graph %>%
-    count_edges()
+  edges_graph_1 <- graph %>% count_edges()
 
   node_id_value <- graph$last_node
 
-  for (i in 1:length(selected_nodes)) {
+  for (i in seq_along(selected_nodes)) {
 
     # Extract all of the node attributes
     # (`type` and additional node attrs)
@@ -178,7 +154,7 @@ add_node_clones_ws <- function(
       graph %>%
       get_node_df() %>%
       dplyr::filter(id %in% selected_nodes[i]) %>%
-      dplyr::select(-id, -label)
+      dplyr::select(-"id", -"label")
 
     # Create a clone of the selected
     # node in the graph
@@ -201,8 +177,8 @@ add_node_clones_ws <- function(
 
     # Iteratively set node attribute values for
     # the new nodes in the graph
-    for (j in 1:ncol(node_attr_vals)) {
-      for (k in 1:length(new_node_id)) {
+    for (j in seq_len(ncol(node_attr_vals))) {
+      for (k in seq_along(new_node_id)) {
 
         graph$nodes_df[
           which(graph$nodes_df[, 1] == new_node_id[k]),
@@ -235,8 +211,7 @@ add_node_clones_ws <- function(
     # Clear the graph's active selection
     graph <-
       suppressMessages(
-        graph %>%
-          clear_selection())
+        clear_selection(graph))
   }
 
   # Remove extra items from the `graph_log`
@@ -264,11 +239,14 @@ add_node_clones_ws <- function(
   # Update the `last_edge` value
   graph$last_edge <- max(graph$edges_df$id)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -280,8 +258,7 @@ add_node_clones_ws <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

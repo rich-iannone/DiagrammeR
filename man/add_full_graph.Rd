@@ -143,7 +143,8 @@ graph <-
     label = TRUE,
     rel = "related_to",
     edge_wt_matrix = edge_wt_matrix,
-    keep_loops = FALSE)
+    keep_loops = FALSE
+  )
 
 # Show the graph's node
 # data frame (ndf)

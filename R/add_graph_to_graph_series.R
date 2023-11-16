@@ -47,28 +47,16 @@ add_graph_to_graph_series <- function(
     graph
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  rlang::check_required(graph)
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
 
   # Get the series type
   series_type <- graph_series$series_type
 
   # Stop function if graph series type is not valid
-  if (!(series_type %in%
-        c("sequential", "temporal"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph series type is neither of the `sequential` nor `temporal` types")
-  }
+  rlang::arg_match0(series_type, c("sequential", "temporal"), arg_nm = "graph series")
 
   # Add graph to series
   graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph

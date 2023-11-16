@@ -59,7 +59,7 @@
 #' # Get the graph's edge data frame
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_reverse_edges_ws <- function(
@@ -72,50 +72,30 @@ add_reverse_edges_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid edge selection
-  if (graph_contains_edge_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no selection of edges")
-  }
+  check_graph_contains_edge_selection(graph)
 
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
 
   # If no value(s) provided for `rel`, set to NA
-  if (is.null(rel)) {
-    rel <- as.character(NA)
-  }
+  rel <- rel %||% NA_character_
 
   # Get a vector of edges available in the
   # graph's selection
   edges_in_selection <-
     graph$edge_selection %>%
-    dplyr::select(to, from)
+    dplyr::select("to", "from")
 
   # Add new edges to the graph for every edge
   # in the graph's active selection
-  for (i in 1:nrow(edges_in_selection)) {
+  for (i in seq_len(nrow(edges_in_selection))) {
 
     # Create a graph edge
     graph <-
@@ -144,17 +124,15 @@ add_reverse_edges_ws <- function(
 
     if (nrow(edge_aes_tbl) < edges_added) {
 
-      edge_aes$index__ <- 1:edges_added
+      edge_aes$index__ <- seq_len(edges_added)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -165,17 +143,15 @@ add_reverse_edges_ws <- function(
 
     if (nrow(edge_data_tbl) < edges_added) {
 
-      edge_data$index__ <- 1:edges_added
+      edge_data$index__ <- seq_len(edges_added)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -184,7 +160,7 @@ add_reverse_edges_ws <- function(
 
     graph$edges_df <-
       dplyr::bind_rows(
-        graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
+        graph$edges_df[seq_len(nrow(graph$edges_df) - edges_added), ],
         dplyr::bind_cols(
           graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
           edge_aes_tbl))
@@ -201,11 +177,14 @@ add_reverse_edges_ws <- function(
           edge_data_tbl))
   }
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -216,8 +195,7 @@ add_reverse_edges_ws <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

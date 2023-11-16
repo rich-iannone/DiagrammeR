@@ -46,8 +46,7 @@
 #' # attribute had been copied
 #' graph %>% get_edge_df()
 #'
-#' @import rlang
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
 copy_edge_attrs <- function(
     graph,
@@ -58,16 +57,8 @@ copy_edge_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -81,17 +72,15 @@ copy_edge_attrs <- function(
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot make a copy with the same name")
+    cli::cli_abort(
+      "You cannot make a copy with the same name.")
   }
 
   # Stop function if `edge_attr_to` is `from` or `to`
   if (any(c("from", "to") %in% edge_attr_to)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use `from` or `to` as names.")
+    cli::cli_abort(
+      "You cannot use `from` or `to` as names.")
   }
 
   # Extract the graph's edf
@@ -104,9 +93,8 @@ copy_edge_attrs <- function(
   # of the graph's column
   if (!any(column_names_graph %in% edge_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The edge attribute to copy is not in the ndf")
+    cli::cli_abort(
+      "The edge attribute to copy is not in the ndf.")
   }
 
   # Get the column number for the edge attr to copy
@@ -127,11 +115,14 @@ copy_edge_attrs <- function(
   # Modify the new graph object
   graph$edges_df <- edges
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

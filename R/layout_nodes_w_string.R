@@ -78,7 +78,7 @@
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#' @family node creation and removal
 #' @export
 layout_nodes_w_string <- function(
     graph,
@@ -93,16 +93,8 @@ layout_nodes_w_string <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get the graph's internal node data frame
   # (ndf) into a separate object
@@ -120,12 +112,12 @@ layout_nodes_w_string <- function(
     unlist()
 
   layout <-
-    layout[which(layout != "")]
+    layout[which(nzchar(layout))]
 
   # Determine the row length from the layout text
   layout_row_length <- vector(mode = "numeric")
 
-  for (i in 1:length(layout)) {
+  for (i in seq_along(layout)) {
     layout_row_length <-
       c(layout_row_length, nchar(layout[i]))
   }
@@ -133,9 +125,8 @@ layout_nodes_w_string <- function(
   # Stop function if not all rows are of equal length
   if (mean(layout_row_length) != layout_row_length[1]) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Each row must have the same length")
+    cli::cli_abort(
+      "Each row must have the same length ({layout_row_length[1]}).")
   }
 
   layout_column_number <- layout_row_length <- layout_row_length[1]
@@ -143,16 +134,16 @@ layout_nodes_w_string <- function(
 
   # Define the exact `x` and `y` positions in which
   # the nodes could be placed
-  x_pts <- seq(0, width, width/(layout_column_number - 1)) + ll[1]
-  y_pts <- rev(seq(0, height, height/(layout_row_number - 1))) + ll[2]
+  x_pts <- seq(0, width, width / (layout_column_number - 1)) + ll[1]
+  y_pts <- rev(seq(0, height, height / (layout_row_number - 1))) + ll[2]
 
   # Create a tibble called `ndf_parts`
   ndf_parts <- dplyr::tibble()
 
-  for (k in 1:node_group_count) {
+  for (k in seq_len(node_group_count)) {
 
     # Create empty table with position and node ID
-    position_table <- dplyr::tibble(x = numeric(0), y = numeric(0))
+    position_table <- dplyr::tibble(x = numeric(), y = numeric())
 
     node_group <- names(nodes)[k]
     node_select <- nodes[[k]]
@@ -163,8 +154,8 @@ layout_nodes_w_string <- function(
     sort_attr <- unlist(stringr::str_split(sort[k], ":"))[1]
     sort_dir <- unlist(stringr::str_split(sort[k], ":"))[2]
 
-    for (i in 1:layout_row_number) {
-      for (j in 1:layout_column_number) {
+    for (i in seq_len(layout_row_number)) {
+      for (j in seq_len(layout_column_number)) {
 
         if (unlist(stringr::str_split(layout[i], ""))[j] == k) {
 
@@ -183,26 +174,26 @@ layout_nodes_w_string <- function(
     # Filter the graph `ndf`
     ndf_part <-
       ndf %>%
-      dplyr::filter(!! rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
+      dplyr::filter(!!rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
 
     # Optionally apply sorting
     if (!is.null(sort)) {
       if (sort_dir == "desc") {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange(dplyr::desc(!! sym(sort_attr)))
+          dplyr::arrange(dplyr::desc(!!sym(sort_attr)))
 
       } else {
         ndf_part <-
           ndf_part %>%
-          dplyr::arrange(!! sym(sort_attr))
+          dplyr::arrange(!!sym(sort_attr))
       }
     }
 
     # Trim rows from the position table if its
     # row count is greater than that of `ndf_part`
     if (nrow(position_table) > nrow(ndf_part)) {
-      position_table <- position_table[1:nrow(ndf_part), ]
+      position_table <- position_table[seq_len(nrow(ndf_part)), ]
     }
 
     # Bind `position_table` to the split `ndf_part`
@@ -224,11 +215,14 @@ layout_nodes_w_string <- function(
   # Replace the graph's ndf with the revised version
   graph$nodes_df <- ndf
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

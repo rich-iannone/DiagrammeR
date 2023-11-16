@@ -76,24 +76,15 @@ reorder_graph_actions <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no graph actions to reorder")
+    cli::cli_abort(
+      "There are no graph actions to reorder.")
   }
 
   # Get the `action_index` values
@@ -101,16 +92,15 @@ reorder_graph_actions <- function(
   available_indices <-
     graph %>%
     get_graph_actions() %>%
-    dplyr::pull(action_index)
+    dplyr::pull("action_index")
 
   # Verify that the provided values
   # do not refer to an `action_index`
   # that does not exist
   if (!any(indices %in% available_indices)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One or more provided indices do not exist in the graph")
+    cli::cli_abort(
+      "One or more provided indices do not exist in the graph.")
   }
 
   remaining_indices <-
@@ -122,8 +112,7 @@ reorder_graph_actions <- function(
   # Extract the graph actions table from
   # the graph
   graph_actions_tbl <-
-    graph %>%
-    get_graph_actions()
+    get_graph_actions(graph)
 
   # Get a revised data frame with graph actions
   # in the requested order
@@ -135,11 +124,14 @@ reorder_graph_actions <- function(
   # revised version
   graph$graph_actions <- revised_graph_actions
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

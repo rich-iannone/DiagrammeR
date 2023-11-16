@@ -1,5 +1,3 @@
-context("Setting graph/global attributes")
-
 test_that("Setting a graph name can be done", {
 
   # Create an empty graph
@@ -11,8 +9,8 @@ test_that("Setting a graph name can be done", {
     set_graph_name(name = "test_that_name")
 
   # Expect that the name was set
-  expect_true(
-    graph_name$graph_info$graph_name == "test_that_name")
+  expect_equal(
+    graph_name$graph_info$graph_name, "test_that_name")
 
   # Add 2 nodes and an edge and then
   # select a node
@@ -32,8 +30,8 @@ test_that("Setting a graph name can be done", {
       name = "test_that_name_again")
 
   # Expect that the name was set
-  expect_true(
-    graph_name_1$graph_info$graph_name == "test_that_name_again")
+  expect_equal(
+    graph_name_1$graph_info$graph_name, "test_that_name_again")
 })
 
 test_that("Setting a time for the graph can be done", {
@@ -49,12 +47,15 @@ test_that("Setting a time for the graph can be done", {
       time = "2015-10-25 15:23:00")
 
   # Expect that the time value was passed in properly
-  expect_true(
-    graph_1$graph_info$graph_time == "2015-10-25 15:23:00")
+  expect_equal(
+    graph_1$graph_info$graph_time,
+    as.POSIXct("2015-10-25 15:23:00"),
+    ignore_attr = TRUE
+    )
 
   # Expect that the time zone is set to `GMT`
-  expect_true(
-    graph_1$graph_info$graph_tz == "GMT")
+  expect_equal(
+    graph_1$graph_info$graph_tz, "GMT")
 
   # Update tz when a timestamp is already present
   graph_2 <-
@@ -63,8 +64,8 @@ test_that("Setting a time for the graph can be done", {
       tz = "America/Los_Angeles")
 
   # Expect that the time zone has been changed
-  expect_true(
-    graph_2$graph_info$graph_tz == "America/Los_Angeles")
+  expect_equal(
+    graph_2$graph_info$graph_tz, "America/Los_Angeles")
 
   # Expect an error when setting a time zone that is
   # not in `OlsonNames()`
@@ -90,12 +91,12 @@ test_that("Getting the graph name is possible", {
 
   # Verify that the graph name returned is a
   # character vector
-  expect_is(
+  expect_type(
     get_graph_name(graph), "character")
 
   # Expect that the returned vector has a length of 1
-  expect_equal(
-    length(get_graph_name(graph)), 1)
+  expect_length(
+    get_graph_name(graph), 1)
 
   # Expect that the graph name that was set is returned
   expect_equal(
@@ -111,18 +112,17 @@ test_that("Getting the graph time is possible", {
       time = "2015-10-25 15:23:00")
 
   # Expect a graph time as POSIXct
-  expect_is(
+  expect_s3_class(
     get_graph_time(graph), "POSIXct")
 
   # Expect that the returned vector has a length of 1
-  expect_equal(
-    length(get_graph_time(graph)), 1)
+  expect_length(get_graph_time(graph), 1)
 
   # Create a graph without a time set
   graph <- create_graph()
 
   # Verify that a POSIXct time is returned
-  expect_is(
+  expect_s3_class(
     get_graph_time(graph), "POSIXct")
 })
 
@@ -148,7 +148,7 @@ test_that("Getting global graph attrs is possible", {
       attr_type = c("graph", "node", "edge"))
 
   # Get a table with the attributes
-  # using `get_global_graph_attrs()`
+  # using `get_global_graph_attr_info()`
   global_graph_attrs <-
     graph %>%
     get_global_graph_attr_info()

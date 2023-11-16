@@ -35,27 +35,14 @@ get_degree_histogram <- function(
     mode = "total"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Convert the graph to an igraph object
-  ig_graph <- to_igraph(graph)
+  # ig_graph <- to_igraph(graph) # not used?
 
   # Get the total degree histogram for the graph
   if (mode %in% c("all", "total", "both")) {
@@ -63,7 +50,7 @@ get_degree_histogram <- function(
     deg_hist_df <-
       get_degree_distribution(graph) %>%
       dplyr::mutate(total_degree_hist = total_degree_dist * count_nodes(graph)) %>%
-      dplyr::select(degree, total_degree_hist)
+      dplyr::select("degree", "total_degree_hist")
   }
 
   # Get the total in-degree distribution for the graph
@@ -72,7 +59,7 @@ get_degree_histogram <- function(
     deg_hist_df <-
       get_degree_distribution(graph, mode = "in") %>%
       dplyr::mutate(indegree_hist = indegree_dist * count_nodes(graph)) %>%
-      dplyr::select(degree, indegree_hist)
+      dplyr::select("degree", "indegree_hist")
   }
 
   # Get the total out-degree distribution for the graph
@@ -81,7 +68,7 @@ get_degree_histogram <- function(
      deg_hist_df <-
       get_degree_distribution(graph, mode = "out") %>%
       dplyr::mutate(outdegree_hist = outdegree_dist * count_nodes(graph)) %>%
-      dplyr::select(degree, outdegree_hist)
+      dplyr::select("degree", "outdegree_hist")
   }
 
   deg_hist_df

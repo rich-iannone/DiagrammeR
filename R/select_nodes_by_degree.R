@@ -100,24 +100,11 @@ select_nodes_by_degree <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -127,8 +114,8 @@ select_nodes_by_degree <- function(
   # Get a data frame with node ID and degree types
   node_degree <-
     get_node_info(graph) %>%
-    dplyr::select(id, deg, indeg, outdeg) %>%
-    dplyr::filter(!!! parse_exprs(expressions))
+    dplyr::select("id", "deg", "indeg", "outdeg") %>%
+    dplyr::filter(!!!parse_exprs(expressions))
 
   # Get the node ID values from the filtered table
   nodes_selected <- node_degree$id
@@ -171,11 +158,14 @@ select_nodes_by_degree <- function(
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -193,7 +183,7 @@ select_nodes_by_degree <- function(
       graph$graph_info$display_msgs) {
 
     # Construct message body
-    if (!n_e_select_properties_in[["node_selection_available"]] &
+    if (!n_e_select_properties_in[["node_selection_available"]] &&
         !n_e_select_properties_in[["edge_selection_available"]]) {
 
       msg_body <-
@@ -201,7 +191,7 @@ select_nodes_by_degree <- function(
           "created a new selection of \\
         {n_e_select_properties_out[['selection_count_str']]}")
 
-    } else if (n_e_select_properties_in[["node_selection_available"]] |
+    } else if (n_e_select_properties_in[["node_selection_available"]] ||
                n_e_select_properties_in[["edge_selection_available"]]) {
 
       if (n_e_select_properties_in[["edge_selection_available"]]) {

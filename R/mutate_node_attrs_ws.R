@@ -117,9 +117,8 @@
 #' # those of the other nodes
 #' graph %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
-#' @import rlang
 #' @export
 mutate_node_attrs_ws <- function(
     graph,
@@ -129,32 +128,14 @@ mutate_node_attrs_ws <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Collect expressions
   exprs <- rlang::exprs(...)
@@ -167,9 +148,7 @@ mutate_node_attrs_ws <- function(
   # should not be changed
   if ("id" %in% names(exprs)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The variable `id` cannot undergo mutation")
+    cli::cli_abort("The variable `id` cannot undergo mutation.")
   }
 
   # Determine which nodes are not
@@ -184,17 +163,21 @@ mutate_node_attrs_ws <- function(
 
   ndf <-
     dplyr::bind_rows(
-      ndf %>% dplyr::filter(!(!! enquo(s))) %>% dplyr::mutate(!!! enquos(...)),
-      ndf %>% dplyr::filter( (!! enquo(s)))
-    ) %>% dplyr::arrange(!! enquo(order))
+      ndf %>% dplyr::filter(!(!!enquo(s))) %>% dplyr::mutate(!!!enquos(...)),
+      ndf %>% dplyr::filter(!!enquo(s))
+    ) %>%
+    dplyr::arrange(!!enquo(order))
 
   graph$nodes_df <- ndf
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

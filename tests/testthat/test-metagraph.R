@@ -1,4 +1,4 @@
-context("Displaying the graph's metagraph")
+# Displaying the graph's metagraph")
 
 test_that("the display of the metagraph works", {
 
@@ -51,6 +51,6 @@ test_that("the display of the metagraph works", {
   metagraph_object <- display_metagraph(property_graph)
 
   # Expect that the object has the classes of `grViz` and `htmlwidget`
-  expect_is(
+  expect_s3_class(
     metagraph_object, c("grViz", "htmlwidget"))
 })

@@ -183,7 +183,6 @@
 #' # after this change
 #' graph %>% get_node_df()
 #'
-#' @import rlang
 #' @export
 trav_both <- function(
     graph,
@@ -201,42 +200,19 @@ trav_both <- function(
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = c(
-        "There is no selection of nodes available.",
-        "any traversal requires an active selection",
-        "this type of traversal requires a selection of nodes"))
-  }
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
+  check_graph_contains_node_selection(
+    graph,
+    c("Any traversal requires an active selection.",
+      "This type of traversal requires a selection of nodes."))
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
@@ -254,10 +230,10 @@ trav_both <- function(
     copy_attrs_as <- NULL
   }
 
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
-    if (copy_attrs_as == copy_attrs_from) {
-      copy_attrs_as <- NULL
-    }
+  if (!is.null(copy_attrs_as) && !is.null(copy_attrs_from) &&
+      copy_attrs_as == copy_attrs_from) {
+
+    copy_attrs_as <- NULL
   }
 
   # Get the selection of nodes as the starting
@@ -278,8 +254,7 @@ trav_both <- function(
     as.integer()
 
   valid_nodes <-
-    dplyr::tibble(value = valid_nodes) %>%
-    dplyr::rename(id = value) %>%
+    dplyr::tibble(id = valid_nodes) %>%
     dplyr::inner_join(ndf, by = "id") %>%
     dplyr::distinct()
 
@@ -293,11 +268,10 @@ trav_both <- function(
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  # Maybe quo_is_null ?
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_nodes <- dplyr::filter(.data = valid_nodes, !!conditions)
+    valid_nodes <- valid_nodes %>% dplyr::filter({{ conditions }})
   }
 
   # If the option is taken to copy node attribute
@@ -307,41 +281,41 @@ trav_both <- function(
 
     from_join <-
       valid_nodes %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("to" = "id")) %>%
-      dplyr::select("id",!! enquo(copy_attrs_from))
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("to" = "id")) %>%
+      dplyr::select("id", !!enquo(copy_attrs_from))
 
     to_join <-
       valid_nodes %>%
-      dplyr::select(id) %>%
+      dplyr::select("id") %>%
       dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id",!! enquo(copy_attrs_from)), by = c("from" = "id")) %>%
-      dplyr::select("id",!! enquo(copy_attrs_from))
+      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      dplyr::select("id", !!enquo(copy_attrs_from))
 
     nodes <-
       from_join %>%
       dplyr::union_all(to_join) %>%
       dplyr::group_by(id) %>%
-      dplyr::summarize(!! copy_attrs_from :=
-                         match.fun(!! agg)(!! as.name(copy_attrs_from),
+      dplyr::summarize(!!copy_attrs_from :=
+                         match.fun(!!agg)(!!as.name(copy_attrs_from),
                                            na.rm = TRUE)) %>%
       dplyr::right_join(ndf, by = "id") %>%
-      dplyr::select(id, type, label, dplyr::everything()) %>%
+      dplyr::relocate(id, type, label) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Get column numbers that end with ".x" or ".y"
     split_var_x_col <-
-      which(grepl("\\.x$", colnames(nodes)))
+      grep("\\.x$", colnames(nodes))
 
     split_var_y_col <-
-      which(grepl("\\.y$", colnames(nodes)))
+      grep("\\.y$", colnames(nodes))
 
     if (is.null(copy_attrs_as)) {
 
       # Selectively merge in values to the existing
       # edge attribute column
-      for (i in 1:nrow(nodes)) {
+      for (i in seq_len(nrow(nodes))) {
         if (!is.na(nodes[i, split_var_x_col])) {
           nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
         }
@@ -414,7 +388,7 @@ trav_both <- function(
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

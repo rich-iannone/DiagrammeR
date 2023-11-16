@@ -68,18 +68,10 @@ set_cache <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  if (inherits(to_cache, c("numeric", "integer", "character"))) {
+  if (rlang::inherits_any(to_cache, c("numeric", "integer", "character"))) {
 
     # Cache vector in the graph's `cache` list object
     if (!is.null(name)) {
@@ -99,18 +91,16 @@ set_cache <- function(
 
     if (is.null(col)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "You must provide a column name from the data frame")
+      cli::cli_abort(
+        "`col` must be a column name that exists in the data frame.")
     }
 
     if (!is.null(col)) {
 
       if (!(col %in% colnames(to_cache))) {
 
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The column name provided doesn't exist in the data frame")
+        cli::cli_abort(
+          "`col` must be a column name that exists in the data frame.")
       }
 
       # Extract the vector from the data frame and cache
@@ -129,11 +119,14 @@ set_cache <- function(
     }
   }
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

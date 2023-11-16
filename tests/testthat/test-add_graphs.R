@@ -1,4 +1,4 @@
-context("Add graphs to graphs")
+# Add graphs to graphs
 
 test_that("Adding a balanced tree is possible", {
 
@@ -32,30 +32,29 @@ test_that("Adding a balanced tree is possible", {
     as.character(1:40))
 
   # Expect type values to all be `a`
-  expect_equal(
-    unique(graph$nodes_df$type), "a")
+  expect_in(graph$nodes_df$type, "a")
 
   # Expect rel values to all be `z`
-  expect_equal(
-    unique(graph$edges_df$rel), "z")
+  expect_in(graph$edges_df$rel, "z")
 
-  # Expect an error if k is <2
-  expect_error(
+  # Expect an error if h <2 or k <2
+  expect_snapshot(error = TRUE, {
+    # k < 2
     add_balanced_tree(
       graph = graph,
       k = 1,
       h = 3,
       type = "a",
-      rel = "z"))
-
-  # Expect an error if h is <2
-  expect_error(
+      rel = "z")
+    # h < 2
     add_balanced_tree(
       graph = graph,
       k = 3,
       h = 1,
       type = "a",
-      rel = "z"))
+      rel = "z")
+  }
+  )
 
   # Add another balanced tree to the graph
   graph <-
@@ -67,12 +66,10 @@ test_that("Adding a balanced tree is possible", {
       rel = "y")
 
   # Expect that 47 nodes are now in the graph
-  expect_equal(
-    count_nodes(graph = graph), 47)
+  expect_equal(count_nodes(graph = graph), 47)
 
   # Expect 45 edges are now in the graph
-  expect_equal(
-    count_edges(graph = graph), 45)
+  expect_equal(count_edges(graph = graph), 45)
 
   # Expect node ID values from 1 to 47
   expect_identical(
@@ -84,14 +81,10 @@ test_that("Adding a balanced tree is possible", {
     as.character(1:47))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
-    c("a", "b"))
+  expect_in(graph$nodes_df$type, c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_in(graph$edges_df$rel, c("y", "z"))
 })
 
 test_that("Adding a cycle is possible", {
@@ -166,14 +159,10 @@ test_that("Adding a cycle is possible", {
     as.character(1:6))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
-    c("a", "b"))
+  expect_in(graph$nodes_df$type, c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_in(graph$edges_df$rel, c("y", "z"))
 
   # Create a graph with a cycle that
   # has different types of node and edge
@@ -270,7 +259,7 @@ test_that("Adding a path is possible", {
     unique(graph$edges_df$rel), "z")
 
   # Expect an error if n is <2
-  expect_error(
+  expect_snapshot(error = TRUE,
     add_path(
       graph = graph,
       n = 1,
@@ -303,14 +292,14 @@ test_that("Adding a path is possible", {
     as.character(1:6))
 
   # Expect type values to be either `a` or `b`
-  expect_identical(
-    unique(graph$nodes_df$type),
+  expect_setequal(
+    graph$nodes_df$type,
     c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
-  expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+  # Expect rel values to be either `y` or `z`
+  expect_setequal(
+    graph$edges_df$rel,
+    c("y", "z"))
 
   # Create a graph with a path that
   # has different types of node and edge
@@ -967,11 +956,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 9)
 
   # Expect that there are 3 loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 3)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    3)
 
   # Expect node ID values from 1 to 3
   expect_identical(
@@ -980,7 +967,7 @@ test_that("Adding a full graph is possible", {
   # Expect type values to be character NA values
   expect_equal(
     unique(graph$nodes_df$type),
-    as.character(NA))
+    NA_character_)
 
   # Create a graph and add a full graph
   # with 3 nodes to it; discard loops
@@ -999,11 +986,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 0)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    0)
 
   # Create a graph, add a full graph
   # (with no loops), set values for the
@@ -1025,11 +1010,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 0)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1092,11 +1075,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 0)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1150,11 +1131,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 3)
 
   # Expect that there are no loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 0)
+  expect_length(
+    which(graph$edges_df$from ==  graph$edges_df$to),
+    0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1206,11 +1185,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 9)
 
   # Expect that there are 3 loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 3)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1263,11 +1240,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 6)
 
   # Expect that there are 3 loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 3)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1320,11 +1295,9 @@ test_that("Adding a full graph is possible", {
     count_edges(graph = graph), 6)
 
   # Expect that there are 3 loops in the graph
-  expect_equal(
-    length(
-      which(
-        graph$edges_df$from ==
-          graph$edges_df$to)), 3)
+  expect_length(
+    which(graph$edges_df$from == graph$edges_df$to),
+    3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -1337,7 +1310,7 @@ test_that("Adding a full graph is possible", {
   # character NA values
   expect_equal(
     graph$nodes_df$label,
-    rep(as.character(NA), 3))
+    rep(NA_character_, 3))
 
   # Expect that the `rel` edge attr
   # has the value `connected_to` for
@@ -1810,17 +1783,19 @@ test_that("Adding a preferential attachment graph is possible", {
     pa_graph_added$nodes_df$id,
     1:200)
 
-  # Expect an error if the value for
-  # `n` is too small (< 1)
-  expect_error(
-    create_graph() %>%
-      add_pa_graph(n = 0, m = 1))
 
-  # Expect an error if the value for
-  # `algo` is not a valid value
-  expect_error(
+  expect_snapshot(error = TRUE, {
+    # Expect an error if the value for
+    # `n` is too small (< 1)
     create_graph() %>%
-      add_pa_graph(n = 0, m = 1, algo = "plumtree"))
+      add_pa_graph(n = 0, m = 1)
+
+    # Expect an error if the value for
+    # `algo` is not a valid value
+    create_graph() %>%
+      add_pa_graph(n = 0, m = 1, algo = "plumtree")
+    })
+
 })
 
 test_that("Adding a small world graph is possible", {

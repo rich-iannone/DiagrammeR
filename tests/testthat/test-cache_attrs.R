@@ -1,4 +1,4 @@
-context("Caching attributes")
+# Caching attributes
 
 test_that("Setting a cache is possible", {
 
@@ -28,26 +28,25 @@ test_that("Setting a cache is possible", {
 
   # Expect that the column `closeness` in the df
   # is equivalent to the values in the cache
-  expect_equivalent(
+  expect_equal(
     closeness_df$closeness,
     graph_cache$cache$closeness_vector)
 
   # Expect an error if providing a data frame
   # and not specifying a column to extract as a vector
-  expect_error(
+  # or specifying a column that doesn't exist
+  expect_snapshot(error = TRUE, {
     set_cache(
       graph = graph,
       name = "closeness_df_2",
-      to_cache = closeness_df))
+      to_cache = closeness_df)
 
-  # Expect an error if providing a data frame
-  # and specifying a column that doesn't exist
-  expect_error(
     set_cache(
       graph = graph,
       name = "closeness_df_3",
       to_cache = closeness_df,
-      col = "nonexistent"))
+      col = "nonexistent")
+  })
 
   # Get the closeness values (as a vector)
   closeness_vec <- closeness_df$closeness
@@ -62,7 +61,7 @@ test_that("Setting a cache is possible", {
 
   # Expect that the cache (originating from a vector)
   # is equivalent to the `closeness_vec` vector
-  expect_equivalent(
+  expect_equal(
     closeness_vec,
     graph_cache_from_vec$cache$closeness_vector)
 
@@ -79,7 +78,7 @@ test_that("Setting a cache is possible", {
   # Expect that an unnamed cache
   # object with no other caches
   # available will have the name `1`
-  expect_equivalent(
+  expect_equal(
     closeness_df$closeness,
     graph_cache_no_name$cache$`1`)
 
@@ -94,8 +93,8 @@ test_that("Setting a cache is possible", {
       col = "closeness")
 
   # Expect two vectors in [graph]$cache
-  expect_equal(
-    length(graph_cache_no_name_2$cache), 2)
+  expect_length(
+    graph_cache_no_name_2$cache, 2)
 })
 
 test_that("Getting a cache is possible", {
@@ -130,17 +129,14 @@ test_that("Getting a cache is possible", {
       graph = graph_cache,
       name = "closeness_vector")
 
-  # Expect a vector of length 10
-  expect_equal(
-    length(cached), 10)
+  # Expect a numeric vector of length 10
+  expect_length(cached, 10)
+  expect_type(cached, "double")
 
-  # Expect the vector to be `numeric`
-  expect_is(
-    cached, "numeric")
 
   # Expect that the cached values in `cached` are
   # equivalent to those in `graph$cache`
-  expect_equivalent(
+  expect_equal(
     cached, graph_cache$cache$closeness_vector)
 
   # Get the last cached vector
@@ -148,13 +144,9 @@ test_that("Getting a cache is possible", {
     get_cache(
       graph = graph_cache)
 
-  # Expect a vector of length 10
-  expect_equal(
-    length(cached_last), 10)
-
-  # Expect the vector to be `numeric`
-  expect_is(
-    cached_last, "numeric")
+  # Expect a numeric vector of length 10
+  expect_length(cached_last, 10)
+  expect_type(cached_last, "double")
 
   # Create a new graph
   graph <-
@@ -168,6 +160,5 @@ test_that("Getting a cache is possible", {
 
   # Expect NA when trying to obtain a cache that is
   # not present
-  expect_true(
-    is.na(get_cache(graph)))
+  expect_true(is.na(get_cache(graph)))
 })

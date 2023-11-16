@@ -2,7 +2,7 @@
 #'
 #' @description
 #'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
+#' Make diagrams in R using \href{https://github.com/mdaines/viz-js}{viz.js} or
 #' \href{https://github.com/mermaid-js/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
@@ -53,7 +53,7 @@
 #' )
 #'
 #' # Load in the 'mtcars' dataset
-#' data(mtcars)
+#' mtcars
 #' connections <- sapply(
 #'  1:ncol(mtcars)
 #'   ,function(i) {
@@ -102,8 +102,6 @@
 #' #   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 #' # draw some sequence diagrams with DiagrammeR
 #'
-#' library(DiagrammeR)
-#'
 #' DiagrammeR("
 #' sequenceDiagram;
 #'    customer->>ticket seller: ask for ticket;
@@ -121,7 +119,6 @@
 #' ")
 #' }
 #'
-#' @import htmlwidgets
 #' @export
 DiagrammeR <- function(
     diagram = "",
@@ -129,22 +126,16 @@ DiagrammeR <- function(
     ...
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if (grepl(x = type, pattern = "[m,M](erm).*")) {
 
-    mermaid(diagram, ... )
+    mermaid(diagram, ...)
 
-  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )) {
-    grViz(diagram, ... )
+  } else if (grepl(x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*")) {
+    grViz(diagram, ...)
 
   } else {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The type should be `mermaid` or `grViz`")
+    abort("The type should be `mermaid` or `grViz`.")
   }
 }
 
@@ -159,16 +150,16 @@ DiagrammeR <- function(
 #' @export
 DiagrammeROutput <- function(
     outputId,
-    width = '100%',
-    height = 'auto'
+    width = "100%",
+    height = "auto"
 ) {
 
   htmlwidgets::shinyWidgetOutput(
     outputId,
-    'DiagrammeR',
+    "DiagrammeR",
     width,
     height,
-    package = 'DiagrammeR'
+    package = "DiagrammeR"
   )
 }
 

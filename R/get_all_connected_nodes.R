@@ -64,23 +64,14 @@ get_all_connected_nodes <- function(
     node
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node ID provided is not in the graph")
+    cli::cli_abort(
+      "The node ID must be in the graph.")
   }
 
   # Get a data frame of the weakly-connected

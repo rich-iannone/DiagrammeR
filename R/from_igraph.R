@@ -38,9 +38,6 @@ from_igraph <- function(igraph,
                         write_backups = FALSE,
                         display_msgs = FALSE) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Get vectors of all node and edge attributes
   node_attrs <- igraph::vertex_attr_names(igraph)
   edge_attrs <- igraph::edge_attr_names(igraph)
@@ -64,7 +61,7 @@ from_igraph <- function(igraph,
       cbind(
         nodes_df,
         data.frame(
-          type = rep(as.character(NA), nrow(nodes_df)),
+          type = rep(NA_character_, nrow(nodes_df)),
           stringsAsFactors = FALSE))
   }
 
@@ -81,7 +78,7 @@ from_igraph <- function(igraph,
       cbind(
         nodes_df,
         data.frame(
-          label = rep(as.character(NA), nrow(nodes_df)),
+          label = rep(NA_character_, nrow(nodes_df)),
           stringsAsFactors = FALSE))
   }
 
@@ -127,7 +124,7 @@ from_igraph <- function(igraph,
       cbind(
         edges_df,
         data.frame(
-          rel = rep(as.character(NA), nrow(edges_df)),
+          rel = rep(NA_character_, nrow(edges_df)),
           stringsAsFactors = FALSE))
   }
 

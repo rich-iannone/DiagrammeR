@@ -27,7 +27,7 @@
 #' # Get the graph's node IDs
 #' graph %>% get_node_ids()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 add_n_nodes <- function(
@@ -42,24 +42,12 @@ add_n_nodes <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
-  if (is.null(type)) {
-    type <- as.character(NA)
-  }
-
-  if (is.null(label)) {
-    label <- as.character(NA)
-  }
+  # If `type` or `label` is NULL. Then NA
+  type <- type %||% NA_character_
+  label <- label %||% NA_character_
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -68,17 +56,15 @@ add_n_nodes <- function(
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -89,17 +75,15 @@ add_n_nodes <- function(
 
     if (nrow(node_data_tbl) < n) {
 
-      node_data$index__ <- 1:n
+      node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -134,11 +118,14 @@ add_n_nodes <- function(
   # Update the `last_node` counter
   graph$last_node <- graph$last_node + n
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -149,8 +136,7 @@ add_n_nodes <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

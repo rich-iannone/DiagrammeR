@@ -59,7 +59,7 @@
 #' # same as before)
 #' graph_node_label %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
 #' @export
 add_edges_w_string <- function(
@@ -72,30 +72,16 @@ add_edges_w_string <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, edges cannot be added")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Remove linebreak characters from `edges`
   edges_cleaned <-
@@ -123,7 +109,7 @@ add_edges_w_string <- function(
 
   # Split the edge expressions in an undirected
   # graph into `from` and `to` vectors
-  if (graph$directed == FALSE) {
+  if (!graph$directed) {
     from <-
       sapply(strsplit(edges_split, "--"), "[[", 1)
 
@@ -187,10 +173,13 @@ add_edges_w_string <- function(
     graph$graph_log %>%
     dplyr::filter(version_id <= current_graph_log_version_id)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -201,8 +190,7 @@ add_edges_w_string <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

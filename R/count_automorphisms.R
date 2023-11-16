@@ -30,20 +30,12 @@
 #' @export
 count_automorphisms <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If the graph is empty, then return NA
   if (nrow(graph$nodes_df) == 0) {
-    return(as.numeric(NA))
+    return(NA_real_)
   }
 
   # Convert the graph to an undirected graph
@@ -54,9 +46,9 @@ count_automorphisms <- function(graph) {
 
   # Get the number of automorphisms in
   # the graph
-  igraph::automorphisms(
+  res <- unlist(igraph::automorphisms(
     graph = ig_graph,
-    sh = "fm")["group_size"] %>%
-    unlist() %>%
-    as.numeric()
+    sh = "fm")["group_size"])
+
+  as.numeric(res)
 }

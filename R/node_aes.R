@@ -116,7 +116,7 @@
 #'     ),
 #'     edge_aes = edge_aes(color = "blue")
 #'   )
-#' @family Aesthetics
+#' @family aesthetics
 #' @export
 node_aes <- function(shape = NULL,
                      style = NULL,
@@ -179,10 +179,10 @@ node_aes <- function(shape = NULL,
       margin = margin)
 
   non_null_attrs <-
-    1:length(attr_values) %>%
+    seq_along(attr_values) %>%
     purrr::map_chr(.f = function(x) {
       if (!is.null(attr_values[[x]])) {
-        attr_values[x] %>% names()
+        names(attr_values[x])
       } else {
         NA
       }

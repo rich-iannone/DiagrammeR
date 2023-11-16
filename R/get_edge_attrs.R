@@ -68,7 +68,6 @@
 #'     from = c(1, 2),
 #'       to = c(2, 3))
 #'
-#' @import rlang
 #' @export
 get_edge_attrs <- function(
     graph,
@@ -77,42 +76,28 @@ get_edge_attrs <- function(
     to = NULL
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   edge_attr <- rlang::enquo(edge_attr)
 
-  if (rlang::enquo(edge_attr) %>%
-      rlang::get_expr() %>%
+  if (rlang::get_expr(edge_attr) %>%
       as.character() %in% c("id", "from", "to")) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "This is not an edge attribute")
+    cli::cli_abort(
+      "This is not an edge attribute.")
   }
 
-  if (!is.null(from) & !is.null(to)) {
-    if (length(from) != length(to)) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The number of nodes in `from` and `to` must be the same")
-    }
+  if (length(from) != length(to)) {
+      cli::cli_abort(
+        "The number of nodes in `from` and `to` must be the same.")
   }
 
   # Extract the edge data frame (ndf)
   # from the graph
   edf <- graph$edges_df
 
-  if (is.null(from) | is.null(to)) {
+  if (is.null(from) || is.null(to)) {
 
     # Extract the edge attribute values
     edge_attr_vals <-
@@ -127,7 +112,7 @@ get_edge_attrs <- function(
     names(edge_attr_vals) <- edge_names
   }
 
-  if (!is.null(from) & !is.null(to)) {
+  if (!is.null(from) && !is.null(to)) {
 
     # Get edges as strings for filtering
     # the `edf` object

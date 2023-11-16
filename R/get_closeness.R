@@ -42,26 +42,13 @@ get_closeness <- function(
     direction = "all"
 ) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Ensure that values provided for the
   # `direction` argument are from the
   # valid options
-  if (!(direction %in% c("all", "in", "out"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Valid options for `direction` are `all`, `in`, or `out`.")
-  }
+  rlang::arg_match0(direction, c("all", "in", "out"))
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

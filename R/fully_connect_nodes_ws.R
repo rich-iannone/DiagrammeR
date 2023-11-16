@@ -81,28 +81,13 @@ fully_connect_nodes_ws <- function(graph) {
   fcn_name <- get_calling_fcn()
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, there are no nodes to connect")
-  }
+  check_graph_contains_nodes(graph, "So, there are no nodes to connect.")
 
   # Validation: Graph object has valid node selection
-  if (graph_contains_node_selection(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There is no selection of nodes available.")
-  }
+  check_graph_contains_node_selection(graph)
 
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
@@ -115,7 +100,7 @@ fully_connect_nodes_ws <- function(graph) {
     utils::combn(suppressMessages(get_selection(graph = graph)), 2) %>%
     t() %>%
     as.data.frame() %>%
-    dplyr::rename(from = V1, to = V2)
+    dplyr::rename(from = "V1", to = "V2")
 
   # Determine the complete set of edges
   # to add to the graph
@@ -128,9 +113,9 @@ fully_connect_nodes_ws <- function(graph) {
           edge_candidates,
           edge_candidates %>%
             dplyr::select(to, from) %>%
-            dplyr::rename(from = to, to = from)),
+            dplyr::rename(from = "to", to = "from")),
         edf %>%
-          dplyr::select(from, to))
+          dplyr::select("from", "to"))
 
   } else {
 
@@ -138,13 +123,13 @@ fully_connect_nodes_ws <- function(graph) {
       dplyr::setdiff(
         edge_candidates,
         edf %>%
-          dplyr::select(from, to))
+          dplyr::select("from", "to"))
   }
 
   # Add new edges to the graph for every edge
   # in the `edges_to_add` df
   if (nrow(edges_to_add) > 0) {
-    for (i in 1:nrow(edges_to_add)) {
+    for (i in seq_len(nrow(edges_to_add))) {
 
       # Create a graph edge
       graph <-
@@ -170,7 +155,7 @@ fully_connect_nodes_ws <- function(graph) {
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -181,8 +166,7 @@ fully_connect_nodes_ws <- function(graph) {
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

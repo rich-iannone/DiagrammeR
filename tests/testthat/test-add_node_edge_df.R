@@ -1,4 +1,4 @@
-context("Adding node and/or edge data frames to an existing graph object")
+# Adding node and/or edge data frames to an existing graph object
 
 test_that("adding a node df to a graph is possible", {
 
@@ -37,55 +37,57 @@ test_that("adding a node df to a graph is possible", {
 
   # Expect that names in these graph objects match a
   # prescribed set of names
-  expect_true(
-    all(
-      names(graph_2) ==
-        c(
-          "graph_info",
-          "nodes_df",
-          "edges_df",
-          "global_attrs",
-          "directed",
-          "last_node",
-          "last_edge",
-          "node_selection",
-          "edge_selection",
-          "cache",
-          "graph_actions",
-          "graph_log")))
+  expect_named(
+    graph_2,
+    c(
+      "graph_info",
+      "nodes_df",
+      "edges_df",
+      "global_attrs",
+      "directed",
+      "last_node",
+      "last_edge",
+      "node_selection",
+      "edge_selection",
+      "cache",
+      "graph_actions",
+      "graph_log"
+    )
+  )
 
-  expect_true(
-    all(
-      names(graph_3) ==
-        c(
-          "graph_info",
-          "nodes_df",
-          "edges_df",
-          "global_attrs",
-          "directed",
-          "last_node",
-          "last_edge",
-          "node_selection",
-          "edge_selection",
-          "cache",
-          "graph_actions",
-          "graph_log")))
+  expect_named(
+    graph_3,
+    c(
+      "graph_info",
+      "nodes_df",
+      "edges_df",
+      "global_attrs",
+      "directed",
+      "last_node",
+      "last_edge",
+      "node_selection",
+      "edge_selection",
+      "cache",
+      "graph_actions",
+      "graph_log"
+    )
+  )
 
   # Expect graph objects of class `dgr_graph`
-  expect_is(graph_2, "dgr_graph")
-  expect_is(graph_3, "dgr_graph")
+  expect_s3_class(graph_2, "dgr_graph")
+  expect_s3_class(graph_3, "dgr_graph")
 
   # Expect that the `nodes_df` component is a data frame
-  expect_is(graph_2$nodes_df, "data.frame")
-  expect_is(graph_3$nodes_df, "data.frame")
+  expect_s3_class(graph_2$nodes_df, "data.frame")
+  expect_s3_class(graph_3$nodes_df, "data.frame")
 
   # Expect that the `nodes_df` data frame has 4 and 8 rows
-  expect_true(nrow(graph_2$nodes_df) == 4)
-  expect_true(nrow(graph_3$nodes_df) == 8)
+  expect_equal(nrow(graph_2$nodes_df), 4)
+  expect_equal(nrow(graph_3$nodes_df), 8)
 
   # Expect that the `nodes_df` data frame has 5 columns
-  expect_true(ncol(graph_2$nodes_df) == 5)
-  expect_true(ncol(graph_3$nodes_df) == 5)
+  expect_equal(ncol(graph_2$nodes_df), 5)
+  expect_equal(ncol(graph_3$nodes_df), 5)
 })
 
 test_that("adding an edge df to a graph is possible", {
@@ -143,20 +145,20 @@ test_that("adding an edge df to a graph is possible", {
       edge_df = edges)
 
   # Expect a graph object of class `dgr_graph`
-  expect_is(
+  expect_s3_class(
     graph_3, "dgr_graph")
 
   # Expect that the `edges_df` component is a data frame
-  expect_is(
+  expect_s3_class(
     graph_3$edges_df, "data.frame")
 
   # Expect that the `edges_df` data frame has 3 rows
-  expect_true(
-    nrow(graph_3$edges_df) == 3)
+  expect_equal(
+    nrow(graph_3$edges_df), 3)
 
   # Expect that the `edges_df` data frame has 4 columns
-  expect_true(
-    ncol(graph_3$edges_df) == 4)
+  expect_equal(
+    ncol(graph_3$edges_df), 4)
 
   # Add another edge to a graph that already has some
   # edges defined
@@ -166,6 +168,6 @@ test_that("adding an edge df to a graph is possible", {
       edge_df = create_edge_df(from = 2, to = 4))
 
   # Expect that the `edges_df` data frame has 4 rows
-  expect_true(
-    nrow(graph_3$edges_df) == 4)
+  expect_equal(
+    nrow(graph_3$edges_df), 4)
 })

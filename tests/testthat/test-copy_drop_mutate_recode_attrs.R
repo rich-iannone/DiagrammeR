@@ -1,4 +1,4 @@
-context("Copying, dropping, mutating, renaming, and recoding attrs")
+# Copying, dropping, mutating, renaming, and recoding attrs
 
 test_that("Copying node attributes is possible", {
 
@@ -20,8 +20,7 @@ test_that("Copying node attributes is possible", {
       node_attr_to = value_2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "value_2")
 
   # Expect that the values in `value` and `value_2`
   # are identical
@@ -81,8 +80,7 @@ test_that("Copying edge attributes is possible", {
       edge_attr_to = value_2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$edges_df))
+  expect_contains(colnames(graph$edges_df), "value_2")
 
   # Expect that the values in `value` and `value_2`
   # are identical
@@ -144,8 +142,8 @@ test_that("Dropping node attributes is possible", {
     drop_node_attrs(node_attr = value)
 
   # Verify that the `value` column is not present
-  expect_true(
-    !("value" %in% colnames(graph$nodes_df)))
+  expect_false(
+    "value" %in% colnames(graph$nodes_df))
 
   # Expect an error if `node_attr` is any of
   # `nodes`, `node`, `type`, or `label`
@@ -185,8 +183,8 @@ test_that("Dropping edge attributes is possible", {
     drop_edge_attrs(edge_attr = value)
 
   # Verify that the `value` column is not present
-  expect_true(
-    !("value" %in% colnames(graph$edges_df)))
+  expect_false(
+    "value" %in% colnames(graph$edges_df))
 
   # Expect an error if `edge_attr` is any of
   # `from`, `to`, or `rel`
@@ -222,8 +220,7 @@ test_that("Renaming node attributes is possible", {
 
   # Expect that the `color` node attr is in the
   # graph's node data frame
-  expect_true(
-    "color" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "color")
 
   # Expect that the `shape` node attr is not in the
   # graph's node data frame
@@ -307,8 +304,7 @@ test_that("Renaming edge attributes is possible", {
 
   # Expect that the `width` node attr is in the
   # graph's edge data frame
-  expect_true(
-    "width" %in% colnames(graph$edges_df))
+  expect_contains(colnames(graph$edges_df), "width")
 
   # Expect that the `penwidth` node attr is not in the
   # graph's node data frame
@@ -405,8 +401,7 @@ test_that("Mutating node attributes is possible", {
       value_2 = value * 2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "value_2")
 
   # Expect each value in `value_2` to be 4
   expect_equal(
@@ -463,8 +458,7 @@ test_that("Mutating edge attributes is possible", {
       value_2 = value * 2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$edges_df))
+  expect_contains(colnames(graph$edges_df), "value_2")
 
   # Expect each value in `value_2` to be 4
   expect_equal(
@@ -594,8 +588,7 @@ test_that("Recoding node attributes is possible", {
       node_attr_to = value_2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "value_2")
 
   # Expect each value in `value_2` to be 4
   expect_equal(
@@ -797,8 +790,7 @@ test_that("Recoding edge attributes is possible", {
       edge_attr_to = value_2)
 
   # Verify that the new column has been made
-  expect_true(
-    "value_2" %in% colnames(graph$edges_df))
+  expect_contains(colnames(graph$edges_df), "value_2")
 
   # Expect certain values in `value_2`
   expect_equal(

@@ -43,9 +43,8 @@
 #' # attribute had been renamed
 #' graph %>% get_edge_df()
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #'
-#' @import rlang
 #' @export
 rename_edge_attrs <- function(
     graph,
@@ -56,24 +55,11 @@ rename_edge_attrs <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
@@ -87,9 +73,8 @@ rename_edge_attrs <- function(
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot rename using the same name")
+    cli::cli_abort(
+      "`edge_attr_from` must be different than `edge_attr_to`.")
   }
 
   # Stop function if `edge_attr_to` is `from`, `to`,
@@ -98,19 +83,17 @@ rename_edge_attrs <- function(
   if (any(colnames(get_edge_df(graph)) %in%
           edge_attr_to)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use that name for `edge_attr_to`")
+    cli::cli_abort(
+      "You cannot use that name for `edge_attr_to`.")
   }
 
   # Stop function if `edge_attr_from` is `from`, `to`
   # or `rel`
-  if (any(c("from", "to", "rel") %in%
-          edge_attr_from)) {
+  forbidden_vals <- c("from", "to", "rel")
+  if (any(forbidden_vals %in% edge_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "You cannot use that name for `edge_attr_from`")
+    cli::cli_abort(
+      "`edge_attr_from` cannot be {.or {.val {forbidden_vals}}}.")
   }
 
   # Get the number of nodes ever created for
@@ -127,9 +110,8 @@ rename_edge_attrs <- function(
   # of the graph's columns
   if (!any(column_names_graph %in% edge_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The edge attribute to rename is not in the edf")
+    cli::cli_abort(
+      "The edge attribute to rename is not in the edf.")
   }
 
   # Set the column name for the renamed attr
@@ -143,11 +125,14 @@ rename_edge_attrs <- function(
   # Update the `last_node` counter
   graph$last_node <- nodes_created
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

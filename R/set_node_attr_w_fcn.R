@@ -94,7 +94,7 @@
 #' # node data frame
 #' graph_3 %>% get_node_df()
 #'
-#' @family Node creation and removal
+#' @family node creation and removal
 #'
 #' @export
 set_node_attr_w_fcn <- function(
@@ -107,25 +107,16 @@ set_node_attr_w_fcn <- function(
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   value_per_node_fcn_names <-
-    value_per_node_functions() %>% names()
+    names(value_per_node_functions())
 
   if (!any(value_per_node_fcn_names %in% node_attr_fcn)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The function name must be one that produces values for every graph node")
+    cli::cli_abort(
+      "`node_attr_fcn` must be a function that produces values for every graph node.")
   }
 
   # Collect extra vectors of arguments and values as `extras`
@@ -181,10 +172,10 @@ set_node_attr_w_fcn <- function(
   # if there is, replace its contents with that of the
   # new column
   if (colnames(nodes_df)[length(colnames(nodes_df))] %in%
-      colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)]) {
+      colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)]) {
 
     col_no_matching <-
-      which(colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)] ==
+      which(colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)] ==
               colnames(nodes_df)[length(colnames(nodes_df))])
 
     # Move contents of new column to matching column
@@ -199,7 +190,7 @@ set_node_attr_w_fcn <- function(
       colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)]) {
 
     col_no_matching <-
-      which(colnames(nodes_df)[1:(length(colnames(nodes_df)) - 1)] ==
+      which(colnames(nodes_df)[seq_len(length(colnames(nodes_df)) - 1)] ==
               paste0(colnames(nodes_df)[length(colnames(nodes_df))], ".x"))
 
     # Get the column name of the new column
@@ -220,11 +211,14 @@ set_node_attr_w_fcn <- function(
   # revised version
   graph$nodes_df <- nodes_df
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
