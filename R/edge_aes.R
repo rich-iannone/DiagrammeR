@@ -99,6 +99,7 @@
 #'   `se`, `s`, `sw`, `w`, and `nw`.
 #' @param decorate If `TRUE` then attach any edge label to the edge line via a
 #'   2-segment polyline, underlining the label text and partially overlapping
+#'   the edge lines.
 #' @param colorscheme This attribute specifies a color scheme namespace. If
 #' defined, it specifies the context for interpreting color names.
 #' @param comment Comments are inserted into output. Device-dependent
