@@ -1,5 +1,7 @@
 #' Is the graph a property graph?
 #'
+#' @description
+#'
 #' Provides a logical value on whether the graph is property graph (i.e., all
 #' nodes have an assigned `type` value and all edges have an assigned `rel`
 #' value).
@@ -47,25 +49,22 @@
 #' @export
 is_property_graph <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   if (is_graph_empty(graph)) {
     return(FALSE)
-  } else if
-  (all(
-    !any(is.na(graph$nodes_df$type)), !any(graph$nodes_df$type == ""),
-    !any(is.na(graph$edges_df$rel)), !any(graph$edges_df$rel == ""))) {
-    return(TRUE)
-  } else {
-    return(FALSE)
   }
+
+  if (
+    all(
+      !anyNA(graph$nodes_df$type),
+      all(nzchar(graph$nodes_df$type)),
+      !anyNA(graph$edges_df$rel),
+      all(nzchar(graph$edges_df$rel)))
+    ) {
+    return(TRUE)
+  }
+
+  FALSE
 }

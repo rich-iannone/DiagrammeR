@@ -63,6 +63,7 @@ render_graph_from_graph_series(
   graph_series = series,
   graph_no = 2)
 }
+
 }
 \seealso{
 Other Display and Save: 

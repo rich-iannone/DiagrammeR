@@ -1,8 +1,8 @@
 #' R + mermaid.js
 #'
 #' Make diagrams in R using
-#' \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-#' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' \href{https://github.com/mermaid-js/mermaid/wiki}{mermaid.js} with
+#' infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
 #' @param diagram Diagram in mermaid markdown-like language or file (as a
 #'   connection or file name) containing a diagram specification. If no diagram
@@ -117,33 +117,38 @@
 #' #    end
 #' # ")
 #'
-#' @import htmlwidgets
 #' @export
-mermaid <- function(diagram = "",
-                    ...,
-                    width = NULL,
-                    height = NULL) {
+mermaid <- function(
+    diagram = "",
+    ...,
+    width = NULL,
+    height = NULL
+) {
 
   # Check for a connection or file
-  if (inherits(diagram, "connection") ||
-      file.exists(diagram)) {
-    diagram <-
-      readLines(
-        diagram, encoding = "UTF-8", warn = FALSE)
+  is_connection_or_file <-
+    inherits(diagram[1], "connection") || file.exists(diagram[1])
+
+  # Obtain the diagram text via `readLines()`
+  if (is_connection_or_file) {
+
+    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
+
   } else {
+
     # Check for vector with length > 1 and concatenate
     if (length(diagram) > 1) {
 
-      nosep <- grep(x = diagram, pattern = "[;\n]")
+      nosep <- grep("[;\n]", diagram)
 
       if (length(nosep) < length(diagram)) {
+
         diagram[-nosep] <-
-          sapply(diagram[-nosep],
-                 function(c) { paste0(c, ";") })
+          sapply(diagram[-nosep], function(c) paste0(c, ";"))
       }
 
-      diagram = paste0(diagram, collapse = "")
+      diagram <- paste0(diagram, collapse = "")
     }
   }
 

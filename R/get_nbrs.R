@@ -1,5 +1,7 @@
 #' Get all neighbors of one or more nodes
 #'
+#' @description
+#'
 #' With one or more nodes, get the set of all neighboring nodes.
 #'
 #' @inheritParams render_graph
@@ -39,25 +41,19 @@
 #'     value = "green")
 #'
 #' @export
-get_nbrs <- function(graph,
-                     nodes) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_nbrs <- function(
+    graph,
+    nodes
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get predecessors and successors for all nodes
   # in `nodes`
-  for (i in 1:length(nodes)) {
+  for (i in seq_along(nodes)) {
     if (i == 1) {
-      node_nbrs <- vector(mode = 'numeric')
+      node_nbrs <- vector(mode = "numeric")
     }
     node_nbrs <-
       c(node_nbrs,

@@ -26,8 +26,9 @@ use here as it helps bind data specifically to the created edges.}
 Options for node and edge aesthetics and data
 }
 \seealso{
-Other Aesthetics: 
+Other aesthetics: 
 \code{\link{edge_aes}()},
 \code{\link{node_aes}()}
 }
-\concept{Aesthetics}
+\concept{aesthetics}
+\keyword{internal}

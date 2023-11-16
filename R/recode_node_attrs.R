@@ -1,5 +1,7 @@
 #' Recode a set of node attribute values
 #'
+#' @description
+#'
 #' Within a graph's internal node data frame (ndf), recode character or numeric
 #' node attribute values. Optionally, one can specify a replacement value for
 #' any unmatched mappings.
@@ -73,36 +75,25 @@
 #' # to see the change
 #' graph %>% get_node_df()
 #'
-#' @import rlang
-#' @family Node creation and removal
+#' @family node creation and removal
+#'
 #' @export
-recode_node_attrs <- function(graph,
-                              node_attr_from,
-                              ...,
-                              otherwise = NULL,
-                              node_attr_to = NULL) {
+recode_node_attrs <- function(
+    graph,
+    node_attr_from,
+    ...,
+    otherwise = NULL,
+    node_attr_to = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get the requested `node_attr_from`
   node_attr_from <-
@@ -129,9 +120,8 @@ recode_node_attrs <- function(graph,
   # of the graph's node attributes
   if (!any(column_names_graph %in% node_attr_from)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node attribute to recode is not in the ndf")
+    cli::cli_abort(
+      "The node attribute to recode is not in the ndf.")
   }
 
   # Get the column number for the node attr to recode
@@ -148,7 +138,7 @@ recode_node_attrs <- function(graph,
   indices_stack <- vector("numeric")
 
   # Parse the recoding pairs
-  for (i in 1:length(replacements)) {
+  for (i in seq_along(replacements)) {
 
     pairing <-
       trimws(unlist(stringr::str_split(replacements[[i]], "->")))
@@ -169,7 +159,7 @@ recode_node_attrs <- function(graph,
   if (!is.null(otherwise)) {
 
     otherwise_indices <-
-      which(!(1:nrow(nodes) %in% indices_stack))
+      which(!(seq_len(nrow(nodes)) %in% indices_stack))
 
     if (length(otherwise_indices) > 0) {
       vector_to_recode[otherwise_indices] <-
@@ -186,9 +176,8 @@ recode_node_attrs <- function(graph,
     # `id` or `nodes`
     if (any(c("id", "nodes") %in% node_attr_to)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "You cannot use the names `id` or `nodes`")
+      cli::cli_abort(
+        "You cannot use the names `id` or `nodes`.")
     }
 
     if (any(column_names_graph %in% node_attr_to)) {
@@ -224,11 +213,14 @@ recode_node_attrs <- function(graph,
   # with the `nodes` object
   graph$nodes_df <- nodes
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

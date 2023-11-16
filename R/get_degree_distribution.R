@@ -1,7 +1,10 @@
 #' Get total degree distribution data for a graph
 #'
+#' @description
+#'
 #' Get degree distribution data for a graph. Graph degree is represented as a
-#'   frequency of total degree values over all nodes in the graph.
+#' frequency of total degree values over all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param mode using `total` (the default), degree considered for each node
 #'   will be the total degree. With `in` and `out` the degree used
@@ -27,27 +30,16 @@
 #'     mode = "total")
 #'
 #' @export
-get_degree_distribution <- function(graph,
-                                    mode = "total") {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_degree_distribution <- function(
+    graph,
+    mode = "total"
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -59,7 +51,7 @@ get_degree_distribution <- function(graph,
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         total_degree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -71,7 +63,7 @@ get_degree_distribution <- function(graph,
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         indegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }
@@ -83,7 +75,7 @@ get_degree_distribution <- function(graph,
     # Transform to a data frame
     deg_dist_df <-
       data.frame(
-        degree = seq(0, length(deg_dist) - 1),
+        degree = seq_along(deg_dist) - 1L,
         outdegree_dist = deg_dist,
         stringsAsFactors = FALSE)
   }

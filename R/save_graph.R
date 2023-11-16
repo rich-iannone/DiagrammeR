@@ -1,11 +1,14 @@
 #' Save a graph or graph series to disk
 #'
+#' @description
+#'
 #' Save a graph or a graph series object to disk.
 #'
 #' @param x A graph object of class `dgr_graph` or a graph series object of type
 #'   `dgr_graph_1D`.
 #' @param file A file name for the graph or graph series. Provide a character
 #'   string and the `.dgr` extension will be applied to it.
+#'
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using
@@ -30,34 +33,26 @@
 #' #   open_graph(
 #' #     file = "gnp_graph.dgr"
 #' # )
+#'
 #' @family Display and Save
 #' @export
-save_graph <- function(x,
-                       file) {
+save_graph <- function(
+    x,
+    file
+) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+  check_string(file)
 
-  if (!inherits(file, "character")) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Provide a character string for the file")
+  # Check if the object is a graph or graph series.
+  if (!rlang::inherits_any(x, c("dgr_graph", "dgr_graph_1D"))) {
+    cli::cli_abort(
+      "The object provided is not a graph or graph series."
+    )
   }
 
-  if (inherits(x, "dgr_graph") |
-      inherits(x, "dgr_graph_1D")) {
+  # Append the file extension to the file path
+  file_name <- file %>% paste0(".dgr")
 
-    # Append the file extension to the file path
-    file_name <- file %>% paste0(".dgr")
-
-    # Save the graph or graph series
-    saveRDS(x, file = file_name, compress = "xz")
-
-  } else {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The object provided is not a graph or graph series")
-  }
+  # Save the graph or graph series
+  saveRDS(x, file = file_name, compress = "xz")
 }

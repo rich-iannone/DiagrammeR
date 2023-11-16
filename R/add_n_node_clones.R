@@ -1,5 +1,7 @@
 #' Add one or several clones of an existing node to the graph
 #'
+#' @description
+#'
 #' Add `n` new nodes to a graph object of class `dgr_graph` which are clones of
 #' a node already in the graph. All node attributes are preserved except for the
 #' node `label` attribute (to maintain the uniqueness of non-`NA` node label
@@ -44,68 +46,52 @@
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of `1`
 #' graph %>% get_node_df()
-#' @family Node creation and removal
+#'
+#' @family node creation and removal
+#'
 #' @export
-add_n_node_clones <- function(graph,
-                              n,
-                              node,
-                              label = NULL) {
+add_n_node_clones <- function(
+    graph,
+    n,
+    node,
+    label = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, clones of nodes cannot be added")
-  }
+  check_graph_contains_nodes(graph, extra_msg = "So, clones of nodes cannot be added.")
 
   # Stop function if node is not a single numerical value
-  if (length(node) > 1 | !inherits(node, "numeric")) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `node` must be a single, numeric value")
-  }
+  check_number_decimal(node)
 
   # Stop function the node ID does not correspond
   # to a node in the graph
   if (!(node %in% graph$nodes_df$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value provided in `node` does not correspond to a node in the graph")
+    cli::cli_abort(c(
+      "The value of `node` ({node}) must correspond to a node in the graph.",
+      "Any of {.or {unique(graph$nodes_df$id)}} is acceptable.")
+      )
   }
 
   # Stop function if vector provided for label but it
   # is not of length `n`
   if (!is.null(label)) {
-    if (length(label) != n) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The vector provided for `label` is not the same length as the value of `n`")
-    }
+    # a check_length should exist soon in rlang
+    # https://github.com/r-lib/rlang/issues/1618
+    check_number_whole(length(label), min = n, max = n)
   }
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
   # Get the number of columns in the graph's
   # internal node data frame
@@ -122,16 +108,19 @@ add_n_node_clones <- function(graph,
       graph %>%
       get_node_df() %>%
       dplyr::filter(id == node) %>%
-      dplyr::select(type, 4:n_col_ndf)
+      dplyr::select("type", 4:dplyr::all_of(n_col_ndf))
   }
 
   # Create one or more clones of
   # the selected node in the graph
+  group_id <- as.character(
+    get_node_attrs(graph = graph, node_attr = type, nodes = node))
+
   graph <-
     graph %>%
     add_n_nodes(
       n = n,
-      type = get_node_attrs(graph = graph, node_attr = type, nodes = node) %>% as.character(),
+      type = group_id,
       label = label)
 
   # Obtain the node ID values for
@@ -154,8 +143,8 @@ add_n_node_clones <- function(graph,
 
   if (exists("node_attr_vals")) {
 
-    for (i in 1:ncol(node_attr_vals)) {
-      for (j in 1:length(new_node_ids)) {
+    for (i in seq_len(ncol(node_attr_vals))) {
+      for (j in seq_along(new_node_ids)) {
 
         graph$nodes_df[
           which(graph$nodes_df[, 1] == new_node_ids[j]),
@@ -168,19 +157,21 @@ add_n_node_clones <- function(graph,
   # Clear the graph's active selection
   graph <-
     suppressMessages(
-      graph %>%
-        clear_selection())
+      clear_selection(graph))
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
     graph$graph_log %>%
     dplyr::filter(version_id <= current_graph_log_version_id)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -191,8 +182,7 @@ add_n_node_clones <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

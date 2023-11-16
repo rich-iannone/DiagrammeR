@@ -1,5 +1,7 @@
 #' Get the PageRank values for all nodes
 #'
+#' @description
+#'
 #' Get the PageRank values for all nodes in the graph.
 #'
 #' @inheritParams render_graph
@@ -36,20 +38,14 @@
 #'     palette = "RdYlGn")
 #'
 #' @export
-get_pagerank <- function(graph,
-                         directed = TRUE,
-                         damping = 0.85) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_pagerank <- function(
+    graph,
+    directed = TRUE,
+    damping = 0.85
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -64,9 +60,7 @@ get_pagerank <- function(graph,
 
   # Create df with the PageRank values
   data.frame(
-    id = pagerank_values %>%
-      names() %>%
-      as.integer(),
-    pagerank = pagerank_values %>% round(4),
+    id = names(pagerank_values) %>% as.integer(),
+    pagerank = round(pagerank_values, 4),
     stringsAsFactors = FALSE)
 }

@@ -1,6 +1,9 @@
 #' Get betweenness centrality scores
 #'
+#' @description
+#'
 #' Get the betweenness centrality scores for all nodes in a graph.
+#'
 #' @inheritParams render_graph
 #'
 #' @return a data frame with betweenness scores for each of the nodes.
@@ -34,16 +37,8 @@
 #' @export
 get_betweenness <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

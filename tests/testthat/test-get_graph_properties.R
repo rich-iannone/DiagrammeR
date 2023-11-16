@@ -1,4 +1,4 @@
-context("Get graph properties")
+# Get graph properties
 
 test_that("Getting the graph object log is possible", {
 
@@ -19,7 +19,7 @@ test_that("Getting the graph object log is possible", {
 
   # Expect that the graph log is provided
   # as a tibble object
-  expect_is(
+  expect_s3_class(
     graph_log, "tbl_df")
 
   # Expect certain column names for the
@@ -29,7 +29,7 @@ test_that("Getting the graph object log is possible", {
     c("version_id", "function_used", "time_modified",
       "duration", "nodes", "edges", "d_n", "d_e"))
 
-  # Expect 2 rows in this graph log
+  # Expect 3 rows in this graph log
   expect_equal(
     nrow(graph_log), 3)
 })

@@ -1,5 +1,7 @@
 #' Set the edge attribute values to be rendered
 #'
+#' @description
+#'
 #' Set a edge attribute type to display as edge text when calling the
 #' [render_graph()] function. This allows for display of different types of edge
 #' attribute values on a per-edge basis. Without setting the `display`
@@ -67,35 +69,24 @@
 #'     attr = id) %>%
 #'   get_edge_df()
 #'
-#' @import rlang
-#' @family Edge creation and removal
+#' @family edge creation and removal
+#'
 #' @export
-set_edge_attr_to_display <- function(graph,
-                                     attr = NULL,
-                                     edges = NULL,
-                                     default = "label") {
+set_edge_attr_to_display <- function(
+    graph,
+    attr = NULL,
+    edges = NULL,
+    default = "label"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
+  check_graph_contains_edges(graph)
 
   # Get the requested `attr`
   attr <-
@@ -110,54 +101,46 @@ set_edge_attr_to_display <- function(graph,
 
   # If `edges` is NULL, assume that all edges to
   # be assigned a `display` value
-  if (is.null(edges)) {
-    edges <- get_edge_ids(graph)
-  }
+  edges <- edges %||% get_edge_ids(graph)
 
   # Stop function if any of the edge ID values
   # provided in `edges` do not exist in the graph
   if (!any(edges %in% edf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One or more edge ID values in `edges` are not present in the graph")
+    cli::cli_abort(
+      "One or more edge ID values in `edges` are not present in the graph.")
   }
 
   # Stop function if the edge attribute supplied as
   # `attr` does not exist in the edf
-  if (!is.null(attr)) {
-    if (!(attr %in% colnames(edf))) {
+  if (!is.null(attr) && !rlang::has_name(edf, attr)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The edge attribute given in `attr` is not in the graph's edf")
-    }
+    cli::cli_abort(
+      "The edge attribute given in `attr` is not in the graph's edf.")
   }
 
   # If the `display` edge attribute doesn't exist,
   # create that column and fill with the default value
-  if (!("display" %in% colnames(edf))) {
+  if (!rlang::has_name(edf, "display")) {
 
-    edf <-
-      edf %>%
-      dplyr::mutate(display = as.character(default))
+    edf$display <- as.character(default)
   }
 
   # Create a tibble with the edge ID values and the
   # requested edge attribute to display
-  if (!is.null(attr)) {
+  if (is.null(attr)) {
+
+    attr_to_display <-
+      dplyr::tibble(
+        id = as.integer(edges),
+        display = "is_na")
+
+  } else {
 
     attr_to_display <-
       dplyr::tibble(
         id = as.integer(edges),
         display = as.character(attr))
-
-  } else if (is.null(attr)) {
-
-    attr_to_display <-
-      dplyr::tibble(
-        id = as.integer(edges),
-        display = as.character("is_na"))
   }
 
   # Join the `attr_to_display` table with the `edf`
@@ -167,8 +150,8 @@ set_edge_attr_to_display <- function(graph,
 
   # Get the column numbers for the `.x`
   # and `.y` columns
-  x_col <- which(grepl("\\.x$", colnames(edf)))
-  y_col <- which(grepl("\\.y$", colnames(edf)))
+  x_col <- grep("\\.x$", colnames(edf))
+  y_col <- grep("\\.y$", colnames(edf))
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
@@ -185,8 +168,8 @@ set_edge_attr_to_display <- function(graph,
 
     display_col <-
       dplyr::case_when(
-        display_col == "is_na" ~ as.character(NA),
-        TRUE ~ display_col) %>%
+        display_col == "is_na" ~ NA_character_,
+        .default = display_col) %>%
       as.data.frame(stringsAsFactors = FALSE)
   }
 
@@ -194,24 +177,26 @@ set_edge_attr_to_display <- function(graph,
   colnames(display_col)[1] <- "display"
 
   # Remove column numbers that end with ".x" or ".y"
-  edf <- edf[-which(grepl("\\.x$", colnames(edf)))]
-  edf <- edf[-which(grepl("\\.y$", colnames(edf)))]
+  edf <- edf[-grep("\\.x$", colnames(edf))]
+  edf <- edf[-grep("\\.y$", colnames(edf))]
 
   # Bind the `display_col` df to the `edf` df and
   # modify the ordering of the columns
   edf <-
     dplyr::bind_cols(edf, display_col) %>%
-    dplyr::select(
-      id, from, to, rel, display, dplyr::everything())
+    dplyr::relocate("id", "from", "to", "rel", "display")
 
   # Replace the graph's edge data frame with `edf`
   graph$edges_df <- edf
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

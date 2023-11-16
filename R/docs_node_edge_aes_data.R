@@ -15,5 +15,7 @@
 #'   attributes. The helper function [edge_data()] is strongly recommended for
 #'   use here as it helps bind data specifically to the created edges.
 #' @name node_edge_aes_data
-#' @family Aesthetics
+#'
+#' @keywords internal
+#' @family aesthetics
 NULL

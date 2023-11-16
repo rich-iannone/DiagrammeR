@@ -1,5 +1,7 @@
 #' Add an edge between nodes in a graph object
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add an edge to nodes within the
 #' graph.
 #'
@@ -99,54 +101,40 @@
 #' # values were bound to the
 #' # newly created edge
 #' graph_2 %>% get_edge_df()
-#' @import rlang
-#' @family Edge creation and removal
+#'
+#'
+#' @family edge creation and removal
+#'
 #' @export
-add_edge <- function(graph,
-                     from,
-                     to,
-                     rel = NULL,
-                     edge_aes = NULL,
-                     edge_data = NULL) {
+add_edge <- function(
+    graph,
+    from,
+    to,
+    rel = NULL,
+    edge_aes = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
+  check_graph_contains_nodes(graph, extra_msg = "An edge cannot be added.")
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes, so, an edge cannot be added")
-  }
+  if (length(from) > 1 || length(to) > 1) {
 
-  if (length(from) > 1 | length(to) > 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Only one edge can be specified in `from` or `to`")
+    rlang::abort("Only one edge can be specified in `from` or `to`")
   }
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
-    graph$graph_log$version_id %>%
-    max()
+    max(graph$graph_log$version_id)
 
-  if (is.null(rel)) {
-    rel <- as.character(NA)
-  }
+  rel <- rel %||% NA_character_
 
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
@@ -159,13 +147,11 @@ add_edge <- function(graph,
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -180,61 +166,55 @@ add_edge <- function(graph,
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
   # If `from` and `to` values provided as character
   # values, assume that these values refer to node
   # `label` attr values
-  if (is.character(from) & is.character(to)) {
+  if (is.character(from) && is.character(to)) {
 
     # Stop function if the label for
     # `from` does not exist in the graph
     if (!(from %in% graph$nodes_df$label)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The value provided in `from` does not exist as a node `label` value")
+      rlang::abort(
+        "The value provided in `from` does not exist as a node `label` value.")
     }
 
     # Stop function if the label for
     # `from` is not distinct in the graph
     if (graph$nodes_df %>%
-        dplyr::select(label) %>%
+        dplyr::select("label") %>%
         dplyr::filter(label == from) %>%
         nrow() > 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node `label` provided in `from` is not distinct in the graph")
+      rlang::abort(
+         "The node `label` provided in `from` is not distinct in the graph.")
     }
 
     # Stop function if the label for
     # `to` does not exist in the graph
     if (!(to %in% graph$nodes_df$label)) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The value provided in `to` does not exist as a node `label` value")
+      rlang::abort(
+        "The value provided in `to` does not exist as a node `label` value.")
     }
 
     # Stop function if the label for
     # `to` is not distinct in the graph
     if (graph$nodes_df %>%
-        dplyr::select(label) %>%
+        dplyr::select("label") %>%
         dplyr::filter(label == to) %>%
         nrow() > 1) {
 
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The node `label` provided in `to` is not distinct in the graph")
+      rlang::abort(
+        "The node `label` provided in `to` is not distinct in the graph.")
     }
 
     # Use the `translate_to_node_id()` helper function to map
@@ -280,7 +260,7 @@ add_edge <- function(graph,
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(edge_aes_tbl)) {
+      for (i in seq_len(ncol(edge_aes_tbl))) {
         graph <-
           graph %>%
           set_edge_attrs_ws(
@@ -292,8 +272,7 @@ add_edge <- function(graph,
       # Clear the graph's active selection
       graph <-
         suppressMessages(
-          graph %>%
-            clear_selection())
+          clear_selection(graph))
     }
 
     if (exists("edge_data_tbl")) {
@@ -304,12 +283,12 @@ add_edge <- function(graph,
         suppressMessages(
           graph %>%
             select_edges_by_edge_id(
-              edges = graph$edges_df$id %>% max())
+              edges = max(graph$edges_df$id))
         )
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(edge_data_tbl)) {
+      for (i in seq_len(ncol(edge_data_tbl))) {
         graph <-
           graph %>%
           set_edge_attrs_ws(
@@ -321,23 +300,25 @@ add_edge <- function(graph,
       # Clear the graph's active selection
       graph <-
         suppressMessages(
-          graph %>%
-            clear_selection())
+          clear_selection(graph))
     }
 
     # Modify the `last_edge` vector
-    graph$last_edge <- as.integer(graph$last_edge + 1)
+    graph$last_edge <- as.integer(graph$last_edge + 1L)
 
     # Remove extra items from the `graph_log`
     graph$graph_log <-
       graph$graph_log %>%
       dplyr::filter(version_id <= current_graph_log_version_id)
 
+    # Get the name of the function
+    fcn_name <- get_calling_fcn()
+
     # Update the `graph_log` df with an action
     graph$graph_log <-
       add_action_to_log(
         graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
+        version_id = nrow(graph$graph_log) + 1L,
         function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
@@ -348,8 +329,7 @@ add_edge <- function(graph,
     # Perform graph actions, if any are available
     if (nrow(graph$graph_actions) > 0) {
       graph <-
-        graph %>%
-        trigger_graph_actions()
+        trigger_graph_actions(graph)
     }
 
     # Write graph backup if the option is set

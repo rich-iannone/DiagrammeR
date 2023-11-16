@@ -1,5 +1,7 @@
 #' Add a star of nodes to the graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a node star to the graph.
 #'
 #' @inheritParams node_edge_aes_data
@@ -72,37 +74,26 @@
 #' graph_w_attrs %>% get_edge_df()
 #'
 #' @export
-add_star <- function(graph,
-                     n,
-                     type = NULL,
-                     label = TRUE,
-                     rel = NULL,
-                     node_aes = NULL,
-                     edge_aes = NULL,
-                     node_data = NULL,
-                     edge_data = NULL) {
+add_star <- function(
+    graph,
+    n,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Stop if n is too small
-  if (n <= 3) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 4")
-  }
+  check_number_whole(n, min = 4)
 
   # Get the number of nodes ever created for
   # this graph
@@ -126,7 +117,7 @@ add_star <- function(graph,
   graph_directed <- graph$directed
 
   # Get the sequence of nodes required
-  nodes <- seq(1, n)
+  nodes <- seq_len(n)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -135,17 +126,15 @@ add_star <- function(graph,
 
     if (nrow(node_aes_tbl) < n) {
 
-      node_aes$index__ <- 1:n
+      node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -156,17 +145,15 @@ add_star <- function(graph,
 
     if (nrow(node_data_tbl) < n) {
 
-      node_data$index__ <- 1:n
+      node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -177,17 +164,15 @@ add_star <- function(graph,
 
     if (nrow(edge_aes_tbl) < (n - 1)) {
 
-      edge_aes$index__ <- 1:(n - 1)
+      edge_aes$index__ <- seq_len(n - 1)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -198,17 +183,15 @@ add_star <- function(graph,
 
     if (nrow(edge_data_tbl) < (n - 1)) {
 
-      edge_data$index__ <- 1:(n - 1)
+      edge_data$index__ <- seq_len(n - 1)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -267,10 +250,10 @@ add_star <- function(graph,
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, star_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- star_graph
+  } else {
+    graph <- combine_graphs(graph, star_graph)
   }
 
   # Update the `last_node` counter
@@ -279,11 +262,14 @@ add_star <- function(graph,
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + n - 1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -299,8 +285,7 @@ add_star <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

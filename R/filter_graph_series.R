@@ -1,5 +1,7 @@
 #' Subset a graph series object
 #'
+#' @description
+#'
 #' Subsetting a graph series by the graphs' index positions in the graph series
 #' or through selection via graphs' date-time attributes.
 #'
@@ -78,10 +80,12 @@
 #'   count_graphs_in_graph_series()
 #'
 #' @export
-filter_graph_series <- function(graph_series,
-                                by = "number",
-                                values,
-                                tz = NULL) {
+filter_graph_series <- function(
+    graph_series,
+    by = "number",
+    values,
+    tz = NULL
+) {
 
   if (count_graphs_in_graph_series(
     graph_series = graph_series) == 0) {
@@ -92,7 +96,7 @@ filter_graph_series <- function(graph_series,
   if (by == "number") {
 
     # validate the value provided for 'values'
-    if (class(values) != "numeric") {
+    if (!inherits(values, "numeric")) {
 
       return(graph_series)
     }
@@ -123,30 +127,27 @@ filter_graph_series <- function(graph_series,
   if (by == "time") {
 
     # validate the value provided for 'values'
-    if (class(values) == "numeric") {
+    if (inherits(values, "numeric")) {
 
       return(graph_series)
     }
 
     is_tz_in_correct_format <-
-      ifelse(tz %in% OlsonNames(), TRUE, FALSE)
+      tz %in% OlsonNames()
 
-    if (is_tz_in_correct_format == FALSE) {
+    if (!is_tz_in_correct_format) {
 
       return(graph_series)
     }
 
-    for (i in 1:length(values)) {
+    for (i in seq_along(values)) {
 
       is_time_in_correct_format <-
-        ifelse(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-                     values[i]) |
-                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
-                       values[i]) |
-                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
-                       values[i]), TRUE, FALSE)
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", values[i]) ||
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$", values[i]) ||
+        grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$", values[i])
 
-      if (is_time_in_correct_format == FALSE) {
+      if (!is_time_in_correct_format) {
 
         return(graph_series)
       }

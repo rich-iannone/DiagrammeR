@@ -1,5 +1,7 @@
 #' Add a graph action for execution at every transform
 #'
+#' @description
+#'
 #' Add a graph function along with its arguments to be run at every graph
 #' transformation step.
 #'
@@ -44,24 +46,18 @@
 #' graph %>% get_graph_actions()
 #'
 #' @export
-add_graph_action <- function(graph,
-                             fcn,
-                             ...,
-                             action_name = NULL) {
+add_graph_action <- function(
+    graph,
+    fcn,
+    ...,
+    action_name = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Collect any function arguments into the
   # `fcn_args` list object
@@ -70,7 +66,7 @@ add_graph_action <- function(graph,
   # Create a character expression for the
   # function to evaluate at every graph
   # transformation step
-  if (length(fcn_args) == 0) {
+  if (length(fcn_args) == 0L) {
     char_expr <-
       paste0(
         fcn,
@@ -81,18 +77,15 @@ add_graph_action <- function(graph,
     arg_names <- vector(mode = "character")
     arg_values <- vector(mode = "character")
 
-    for (i in 1:length(fcn_args)) {
+    for (i in seq_along(fcn_args)) {
 
-      arg_names <-
-        c(arg_names,
-          (fcn_args %>% names())[i])
+      arg_names <- c(arg_names, names(fcn_args)[i])
 
-      arg_value_class <-
-        (fcn_args %>% unname())[[i]] %>% class()
+      arg_value_class <- class(unname(fcn_args)[[i]])
 
       if (arg_value_class == "character") {
 
-        fcn_arg <- (fcn_args %>% unname())[[i]]
+        fcn_arg <- unname(fcn_args)[[i]]
 
         fcn_arg <- paste0("'", fcn_arg, "'")
 
@@ -102,7 +95,7 @@ add_graph_action <- function(graph,
       } else {
         arg_values <-
           c(arg_values,
-            (fcn_args %>% unname())[[i]])
+            unname(fcn_args)[[i]])
       }
     }
 
@@ -118,10 +111,9 @@ add_graph_action <- function(graph,
   # Create a data frame row with the new graph action
   new_graph_action <-
     data.frame(
-      action_index = ifelse(nrow(graph$graph_actions) == 0, 1,
-                            max(graph$graph_actions$action_index) + 1),
-      action_name = ifelse(!is.null(action_name), action_name,
-                           as.character(NA)),
+      action_index = ifelse(nrow(graph$graph_actions) == 0L, 1L,
+                            max(graph$graph_actions$action_index) + 1L),
+      action_name = action_name %||% NA_character_,
       expression = char_expr,
       stringsAsFactors = FALSE)
 
@@ -129,11 +121,14 @@ add_graph_action <- function(graph,
   graph$graph_actions <-
     dplyr::bind_rows(graph$graph_actions, new_graph_action)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

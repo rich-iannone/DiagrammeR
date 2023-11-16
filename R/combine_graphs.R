@@ -1,5 +1,7 @@
 #' Combine two graphs into a single graph
 #'
+#' @description
+#'
 #' Combine two graphs in order to make a new graph.
 #'
 #' @param x A `DiagrammeR` graph object to which another graph will be unioned.
@@ -46,29 +48,22 @@
 #' combined_graph %>% get_node_ids()
 #'
 #' @export
-combine_graphs <- function(x,
-                           y) {
+combine_graphs <- function(
+    x,
+    y
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object `x` is valid
-  if (graph_object_valid(x) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object supplied to `x` is not valid")
+  if (!graph_object_valid(x)) {
+    cli::cli_abort("The graph object supplied to `x` is not valid.")
   }
 
   # Validation: Graph object `y` is valid
-  if (graph_object_valid(y) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object supplied to `y` is not valid")
+  if (!graph_object_valid(y)) {
+    cli::cli_abort("The graph object supplied to `y` is not valid.")
   }
 
   # Get the number of nodes ever created for
@@ -92,16 +87,13 @@ combine_graphs <- function(x,
   y_nodes_df <- get_node_df(y)
 
   # Is label a copy of node IDs in graph `y`?
-  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &
-      !any(is.na(y_nodes_df[, 3]))) {
-    y_label_node <- TRUE
-  } else {
-    y_label_node <- FALSE
-  }
+  y_label_node <-
+    all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &&
+    !anyNA(y_nodes_df[, 3])
 
   # Add a new node attribute `new_node_id`
   y_nodes_df$new_node_id <-
-    seq(nodes_created + 1,
+    seq(nodes_created + 1L,
         nodes_created + nrow(y_nodes_df))
 
   # Get the edge data frame for graph `x`
@@ -115,15 +107,15 @@ combine_graphs <- function(x,
       y_edges_df,
       y_nodes_df,
       by = c("from" = "id")) %>%
-    dplyr::rename(from_new = new_node_id) %>%
-    dplyr::select(-type, -label)
+    dplyr::rename(from_new = "new_node_id") %>%
+    dplyr::select(-"type", -"label")
 
   # Rename `id` if it has a `.x` suffix
   if ("id.x" %in% colnames(y_edges_df)) {
 
     y_edges_df <-
       y_edges_df %>%
-      dplyr::rename(id = id.x)
+      dplyr::rename(id = "id.x")
   }
 
   y_edges_df <-
@@ -131,32 +123,26 @@ combine_graphs <- function(x,
       y_edges_df,
       y_nodes_df,
       by = c("to" = "id")) %>%
-    dplyr::rename(to_new = new_node_id) %>%
-    dplyr::select(-type, -label)
+    dplyr::rename(to_new = "new_node_id") %>%
+    dplyr::select(-"type", -"label")
 
   # Rename `id` if it has a `.x` suffix
   if ("id.x" %in% colnames(y_edges_df)) {
 
     y_edges_df <-
       y_edges_df %>%
-      dplyr::rename(id = id.x)
+      dplyr::rename(id = "id.x")
   }
 
   # Copy new node IDs to `from` and `to` edge attrs
   y_edges_df$from <- y_edges_df$from_new
   y_edges_df$to <- y_edges_df$to_new
 
-  # Remove columns ending with `.x`
+  # Remove columns ending with `.x` or `_new`
   y_edges_df <-
+    y_edges_df %>%
     dplyr::select(
-      y_edges_df,
-      -dplyr::ends_with(".x"))
-
-  # Remove columns ending with `_new`
-  y_edges_df <-
-    dplyr::select(
-      y_edges_df,
-      -dplyr::ends_with("_new"))
+      !dplyr::ends_with(c(".x", "_new")))
 
   # Rename column names with `.y` suffixes
   colnames(y_edges_df) <-
@@ -189,11 +175,7 @@ combine_graphs <- function(x,
   # from the first graph provided (`x`)
   x$nodes_df <- combined_nodes
   x$edges_df <- combined_edges
-  x$directed <-
-    ifelse(
-      is_graph_directed(x) == FALSE ||
-        is_graph_directed(y) == FALSE,
-      FALSE, TRUE)
+  x$directed <- is_graph_directed(x) && is_graph_directed(y)
   x$last_node <- nrow(combined_nodes)
   x$last_edge <- nrow(combined_edges)
 
@@ -211,11 +193,14 @@ combine_graphs <- function(x,
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   x$graph_log <-
     add_action_to_log(
       graph_log = x$graph_log,
-      version_id = nrow(x$graph_log) + 1,
+      version_id = nrow(x$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

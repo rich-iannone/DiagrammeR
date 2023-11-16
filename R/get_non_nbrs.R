@@ -1,5 +1,7 @@
 #' Get non-neighbors of a node in a graph
 #'
+#' @description
+#'
 #' Get the set of all nodes not neighboring a single graph node.
 #'
 #' @inheritParams render_graph
@@ -18,19 +20,13 @@
 #' graph %>% get_non_nbrs(node = 2)
 #'
 #' @export
-get_non_nbrs <- function(graph,
-                         node) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_non_nbrs <- function(
+    graph,
+    node
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Get predecessors and successors for the `node`
   node_nbrs <-
@@ -49,7 +45,7 @@ get_non_nbrs <- function(graph,
   # If there are no non-neighbors, then return `NA`
   if (length(node_non_nbrs) == 0) {
     return(NA)
-  } else {
-    return(node_non_nbrs)
   }
+
+  node_non_nbrs
 }

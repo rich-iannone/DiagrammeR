@@ -1,4 +1,4 @@
-context("Creating and manipulating graph series objects")
+# Creating and manipulating graph series objects")
 
 test_that("creating an empty series is possible", {
 
@@ -7,7 +7,7 @@ test_that("creating an empty series is possible", {
     create_graph_series(series_type = "sequential")
 
   # Expect an object of class `dgr_graph_1D`
-  expect_is(
+  expect_s3_class(
     series, "dgr_graph_1D")
 
   # Expect that the series type is `sequential`
@@ -15,14 +15,9 @@ test_that("creating an empty series is possible", {
     series$series_type, "sequential")
 
   # Expect that several series components are `NULL`
-  expect_null(
-    series$graphs)
-
-  expect_null(
-    series$series_name)
-
-  expect_null(
-    series$series_scripts)
+  expect_null(series$graphs)
+  expect_null(series$series_name)
+  expect_null(series$series_scripts)
 
   # Expect that the series is empty
   expect_equal(
@@ -37,17 +32,12 @@ test_that("creating an empty series is possible", {
     count_graphs_in_graph_series(series_temporal), 0)
 
   # Expect that several series components are `NULL`
-  expect_null(
-    series_temporal$graphs)
-
-  expect_null(
-    series_temporal$series_name)
-
-  expect_null(
-    series_temporal$series_scripts)
+  expect_null(series_temporal$graphs)
+  expect_null(series_temporal$series_name)
+  expect_null(series_temporal$series_scripts)
 
   # Expect an object of class `dgr_graph_1D`
-  expect_is(
+  expect_s3_class(
     series_temporal, "dgr_graph_1D")
 
   # Expect that the series type is `sequential`
@@ -85,7 +75,7 @@ test_that("adding graphs to a series is also possible", {
       graph = graph_3)
 
   # Expect an object of class `dgr_graph_1D`
-  expect_is(
+  expect_s3_class(
     series, "dgr_graph_1D")
 
   # Expect that the series type is `sequential`
@@ -93,43 +83,38 @@ test_that("adding graphs to a series is also possible", {
     series$series_type, "sequential")
 
   # Expect that the `graphs` component is not `NULL`
-  expect_true(
-    !is.null(series$graphs))
+  expect_false(is.null(series$graphs))
 
   # Expect that several series components are `NULL`
-  expect_null(
-    series$series_name)
-
-  expect_null(
-    series$series_scripts)
+  expect_null(series$series_name)
+  expect_null(series$series_scripts)
 
   # Expect that the series has a graph count of 3
   expect_equal(
     count_graphs_in_graph_series(series), 3L)
 
-  expect_equal(
-    length(series$graphs), 3L)
+  expect_length(series$graphs, 3)
 
   # Expect that the graphs within the graph series object
   # are indeed graph objects
-  expect_is(
+  expect_s3_class(
     series$graphs[[1]], "dgr_graph")
 
-  expect_is(
+  expect_s3_class(
     series$graphs[[2]], "dgr_graph")
 
-  expect_is(
+  expect_s3_class(
     series$graphs[[3]], "dgr_graph")
 
   # Expect that the graphs within the graph series object
   # are the same as those outside the series
-  expect_equivalent(
+  expect_equal(
     graph_1, series$graphs[[1]])
 
-  expect_equivalent(
+  expect_equal(
     graph_2, series$graphs[[2]])
 
-  expect_equivalent(
+  expect_equal(
     graph_3, series$graphs[[3]])
 
   # Create a series with a graph
@@ -139,7 +124,7 @@ test_that("adding graphs to a series is also possible", {
       series_type = "sequential")
 
   # Expect an object of class `dgr_graph_1D`
-  expect_is(
+  expect_s3_class(
     series_w_graph, "dgr_graph_1D")
 
   # Expect that the series type is `sequential`
@@ -147,23 +132,19 @@ test_that("adding graphs to a series is also possible", {
     series_w_graph$series_type, "sequential")
 
   # Expect that the 'graphs' component is not `NULL`
-  expect_true(
-    !is.null(series_w_graph$graphs))
+  expect_false(is.null(series_w_graph$graphs))
 
   # Expect that the series has a graph count of 1
   expect_equal(
     count_graphs_in_graph_series(series_w_graph), 1)
 
   # Expect that several series components are `NULL`
-  expect_null(
-    series_w_graph$series_name)
-
-  expect_null(
-    series_w_graph$series_scripts)
+  expect_null(series_w_graph$series_name)
+  expect_null(series_w_graph$series_scripts)
 
   # Expect that the graphs within the graph series object
   # are indeed graph objects
-  expect_is(
+  expect_s3_class(
     series_w_graph$graphs[[1]], "dgr_graph")
 
   # Expect an error when adding something other
@@ -217,8 +198,7 @@ test_that("removing graphs from a series is possible", {
   expect_equal(
     count_graphs_in_graph_series(series), 3)
 
-  expect_equal(
-    length(series$graphs), 3)
+  expect_length(series$graphs, 3)
 
   # Remove the last graph from the series
   series_2 <-
@@ -241,8 +221,9 @@ test_that("removing graphs from a series is possible", {
 
   # Expect that `graph_1` in the series is
   # equivalent to the `graph_2` object
-  expect_true(
-    count_nodes(graph = series_removed_1$graphs[[1]]) == count_nodes(graph = graph_2))
+  expect_equal(
+    count_nodes(graph = series_removed_1$graphs[[1]]),
+    count_nodes(graph = graph_2))
 
   # Remove the first graph from the series using
   # the `first` character vector
@@ -321,9 +302,9 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Expect that this subset graph is the same
   # as `graph_time_2`
-  expect_true(
-    count_nodes(graph = series_sequence_subset$graphs[[1]]) ==
-      count_nodes(graph = graph_time_2))
+  expect_equal(
+    count_nodes(graph = series_sequence_subset$graphs[[1]]),
+    count_nodes(graph = graph_time_2))
 
   # Subset graph series by date-time
   series_time_subset <-
@@ -373,12 +354,11 @@ test_that("Getting a graph from a series is possible", {
 
   # Expect the equivalent object among
   # `extracted_graph` and `graph_2`
-  expect_equivalent(
-    extracted_graph, graph_2)
+  expect_equal(extracted_graph, graph_2)
 
   # Expect an error if extracting a graph from
   # an empty graph series
-  expect_error(
+  expect_snapshot(error = TRUE,
     create_graph_series() %>%
       get_graph_from_graph_series(
         graph_no = 1))

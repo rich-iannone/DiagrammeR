@@ -46,9 +46,10 @@ graph <-
 graph \%>\%
   get_edges(
     return_type = "vector")
+
 }
 \seealso{
-Other Edge creation and removal: 
+Other edge creation and removal: 
 \code{\link{add_edge_clone}()},
 \code{\link{add_edges_from_table}()},
 \code{\link{add_edges_w_string}()},
@@ -74,4 +75,4 @@ Other Edge creation and removal:
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}
 }
-\concept{Edge creation and removal}
+\concept{edge creation and removal}

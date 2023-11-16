@@ -1,5 +1,7 @@
 #' Convert a DiagrammeR graph to an igraph one
 #'
+#' @description
+#'
 #' Convert a DiagrammeR graph to an igraph graph object.
 #'
 #' @inheritParams render_graph
@@ -36,16 +38,8 @@
 #' @export
 to_igraph <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Extract the graph's node data frame
   ndf <- graph$nodes_df
@@ -54,7 +48,7 @@ to_igraph <- function(graph) {
   # exclude the `id` column
   edf <-
     graph$edges_df %>%
-    dplyr::select(-id)
+    dplyr::select(-"id")
 
   igraph::graph_from_data_frame(
     d = edf,

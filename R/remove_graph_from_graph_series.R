@@ -1,5 +1,7 @@
 #' Remove a graph from a graph series
 #'
+#' @description
+#'
 #' Remove a single graph object from an set of graph objects contained within a
 #' graph series object.
 #'
@@ -49,8 +51,10 @@
 #'   get_graph_series_info()
 #'
 #' @export
-remove_graph_from_graph_series <- function(graph_series,
-                                           index = "last") {
+remove_graph_from_graph_series <- function(
+    graph_series,
+    index = "last"
+) {
 
   if (index == "last") {
     graph_series$graphs[[length(graph_series$graphs)]] <- NULL
@@ -62,7 +66,7 @@ remove_graph_from_graph_series <- function(graph_series,
     return(graph_series)
   }
 
-  if (inherits(index, "numeric") | inherits(index, "integer")) {
+  if (rlang::inherits_any(index, c("numeric", "integer"))) {
     graph_series$graphs[[index]] <- NULL
     return(graph_series)
   }

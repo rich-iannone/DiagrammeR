@@ -1,6 +1,9 @@
 #' Get coreness values for graph nodes
 #'
+#' @description
+#'
 #' Get the coreness values for all nodes in a graph.
+#'
 #' @inheritParams render_graph
 #' @param direction using `all` (the default), the search will ignore edge
 #'   direction while traversing through the graph. With `out`, measurements
@@ -36,29 +39,18 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_coreness <- function(graph,
-                         direction = "all") {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_coreness <- function(
+    graph,
+    direction = "all"
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Ensure that values provided for the
   # `direction` argument are from the
   # valid options
-  if (!(direction %in% c("all", "in", "out"))) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Valid options for `direction` are `all`, `in`, or `out`")
-  }
+  arg_match0(direction, c("all", "in", "out"))
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

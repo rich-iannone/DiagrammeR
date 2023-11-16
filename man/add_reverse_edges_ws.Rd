@@ -32,8 +32,7 @@ with the edge \code{1->2} in its active selection will gain a new \code{2->1} ed
 There is also the option to assign a common \code{rel} grouping to the newly
 created edges. Upon addition of the edges, the edge selection will be
 retained for further selection or traversal operations.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 
@@ -78,7 +77,7 @@ graph \%>\% get_edge_df()
 
 }
 \seealso{
-Other Edge creation and removal: 
+Other edge creation and removal: 
 \code{\link{add_edge_clone}()},
 \code{\link{add_edge_df}()},
 \code{\link{add_edges_from_table}()},
@@ -104,4 +103,4 @@ Other Edge creation and removal:
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}
 }
-\concept{Edge creation and removal}
+\concept{edge creation and removal}

@@ -1,5 +1,7 @@
 #' Join new edge attribute values using a data frame
 #'
+#' @description
+#'
 #' Join new edge attribute values in a left join using a data frame. The use of
 #' a left join in this function allows for no possibility that edges in the
 #' graph might be removed after the join.
@@ -50,39 +52,31 @@
 #' # Get the graph's internal edf to show that the
 #' # join has been made
 #' graph %>% get_edge_df()
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
-join_edge_attrs <- function(graph,
-                            df,
-                            by_graph = NULL,
-                            by_df = NULL) {
+join_edge_attrs <- function(
+    graph,
+    df,
+    by_graph = NULL,
+    by_df = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
+  check_graph_valid(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
+  if (is.null(by_graph) && !is.null(by_df)) {
+
+    cli::cli_abort(
+      "Both column specifications must be provided.")
   }
 
-  if (is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && is.null(by_df)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
-  }
-
-  if (!is.null(by_graph) & is.null(by_df)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Both column specifications must be provided")
+    cli::cli_abort(
+      "Both column specifications must be provided.")
   }
 
   # Extract the graph's edf
@@ -91,13 +85,13 @@ join_edge_attrs <- function(graph,
   # Get column names from the graph's edf
   column_names <- colnames(edges)
 
-  if (is.null(by_graph) & is.null(by_df)) {
+  if (is.null(by_graph) && is.null(by_df)) {
 
     # Perform a left join on the `edges` data frame
     edges <- merge(edges, df, all.x = TRUE)
   }
 
-  if (!is.null(by_graph) & !is.null(by_df)) {
+  if (!is.null(by_graph) && !is.null(by_df)) {
 
     # Perform a left join on the `edges` data frame
     edges <-
@@ -114,17 +108,19 @@ join_edge_attrs <- function(graph,
 
   # Sort the columns in `edges`
   edges <-
-    edges %>%
-    dplyr::select(id, from, to, rel, dplyr::everything())
+    edges %>% dplyr::relocate("id", "from", "to", "rel")
 
   # Modify the graph object
   graph$edges_df <- edges
+
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

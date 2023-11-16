@@ -1,4 +1,4 @@
-context("Getting info about nodes and edges")
+# Getting info about nodes and edges
 
 test_that("getting info about a graph's nodes is possible", {
 
@@ -34,41 +34,41 @@ test_that("getting info about a graph's nodes is possible", {
   info_nodes <- get_node_info(graph)
 
   # Expect a data frame object
-  expect_is(
+  expect_s3_class(
     info_nodes, "data.frame")
 
   # Expect that the data frame has 7 columns
-  expect_true(
-    ncol(info_nodes) == 7)
+  expect_equal(
+    ncol(info_nodes), 7)
 
   # Expect that the data frame has 26 rows
-  expect_true(
-    nrow(info_nodes) == 26)
+  expect_equal(
+    nrow(info_nodes), 26)
 
   # Expect that certain columns will be classed
   # as `integer` or `character`
-  expect_is(
+  expect_type(
     info_nodes$id, "integer")
 
-  expect_is(
+  expect_type(
     info_nodes$label, "character")
 
-  expect_is(
+  expect_type(
     info_nodes$type, "character")
 
   # Expect that certain columns will be classed
-  # as `numeric`
-  expect_is(
-    info_nodes$deg, "numeric")
+  # as `numeric` double
+  expect_type(
+    info_nodes$deg, "double")
 
-  expect_is(
-    info_nodes$indeg, "numeric")
+  expect_type(
+    info_nodes$indeg, "double")
 
-  expect_is(
-    info_nodes$outdeg, "numeric")
+  expect_type(
+    info_nodes$outdeg, "double")
 
-  expect_is(
-    info_nodes$loops, "numeric")
+  expect_type(
+    info_nodes$loops, "double")
 
   # Create a graph with 4 nodes (with type
   # information) but no edges
@@ -83,34 +83,34 @@ test_that("getting info about a graph's nodes is possible", {
   info_nodes_no_edges <- get_node_info(graph)
 
   # Expect a data frame object
-  expect_is(
+  expect_s3_class(
     info_nodes_no_edges, "data.frame")
 
   # Expect that the data frame has 7 columns
-  expect_true(
-    ncol(info_nodes_no_edges) == 7)
+  expect_equal(
+    ncol(info_nodes_no_edges), 7)
 
   # Expect that the data frame has 4 rows
-  expect_true(
-    nrow(info_nodes_no_edges) == 4)
+  expect_equal(
+    nrow(info_nodes_no_edges), 4)
 
   # Expect that the `deg`, `indeg`, `outdeg`,
   # and `loops` columns have show 0
   expect_equal(
     info_nodes_no_edges$deg %>%
-      unique, 0)
+      unique(), 0)
 
   expect_equal(
     info_nodes_no_edges$indeg %>%
-      unique, 0)
+      unique(), 0)
 
   expect_equal(
     info_nodes_no_edges$outdeg %>%
-      unique, 0)
+      unique(), 0)
 
   expect_equal(
     info_nodes_no_edges$loops %>%
-      unique, 0)
+      unique(), 0)
 
   # Create an empty graph
   graph <- create_graph()
@@ -136,7 +136,7 @@ test_that("getting info about a graph's edges is possible", {
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
@@ -157,27 +157,22 @@ test_that("getting info about a graph's edges is possible", {
   info_edges <- get_edge_info(graph)
 
   # Expect a data frame object
-  expect_is(
+  expect_s3_class(
     info_edges, "data.frame")
 
   # Expect that the data frame has 4 columns
-  expect_true(
-    ncol(info_edges) == 4)
+  expect_equal(
+    ncol(info_edges), 4)
 
   # Expect that the data frame has 26 rows
-  expect_true(
-    nrow(info_edges) == 26)
+  expect_equal(
+    nrow(info_edges), 26)
 
   # Expect that columns will be classed
   # as either as `integer` or `character`
-  expect_is(
-    info_edges$from, "integer")
-
-  expect_is(
-    info_edges$to, "integer")
-
-  expect_is(
-    info_edges$rel, "character")
+  expect_type(info_edges$from, "integer")
+  expect_type(info_edges$to, "integer")
+  expect_type(info_edges$rel, "character")
 
   # Create a graph with 4 nodes but no edges
   graph <-
@@ -191,6 +186,5 @@ test_that("getting info about a graph's edges is possible", {
   info_graph_no_edges <- get_edge_info(graph)
 
   # Expect an NA value
-  expect_true(
-    is.na(info_graph_no_edges))
+  expect_true(is.na(info_graph_no_edges))
 })

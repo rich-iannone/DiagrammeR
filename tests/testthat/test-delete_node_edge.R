@@ -1,4 +1,4 @@
-context("Deletion of nodes and edges from an existing graph")
+# Deletion of nodes and edges from an existing graph
 
 test_that("nodes and edges can be deleted from a graph", {
 
@@ -63,14 +63,11 @@ test_that("nodes and edges can be deleted from a graph", {
 
   # Expect that node ID `4` will not be present in
   # the revised graph
-  expect_true(
-    !(4 %in% graph_nodes_delete_node))
+  expect_false(4 %in% graph_nodes_delete_node)
 
-  expect_true(
-    !(4 %in% graph_edges_delete_node[[1]]))
+  expect_false(4 %in% graph_edges_delete_node[[1]])
 
-  expect_true(
-    !(4 %in% graph_edges_delete_node[[2]]))
+  expect_false(4 %in% graph_edges_delete_node[[2]])
 
   # Remove an edge (removing an edge retains nodes)
   graph <-
@@ -286,20 +283,20 @@ test_that("edges can be deleted from a graph using node label values", {
 
   # Expect an error when specifying a node
   # label that does not exist
-  expect_error(
+  expect_snapshot(error = TRUE, {
     graph_labeled_nodes %>%
       delete_edge(
         from = "zero",
-        to = "two"))
+        to = "two")
 
-  expect_error(
     graph_labeled_nodes %>%
       delete_edge(
         from = "one",
-        to = "three"))
+        to = "three")
+  })
 
   # Create a directed graph with 3
-  # labeled nodes (with indistinct labels)
+  # labelled nodes (with indistinct labels)
   # and 1 edge
   graph_labeled_nodes_not_distinct_labels_1 <-
     create_graph() %>%

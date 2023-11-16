@@ -10,7 +10,8 @@ grViz(
   allow_subst = TRUE,
   options = NULL,
   width = NULL,
-  height = NULL
+  height = NULL,
+  envir = parent.frame()
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ graphic in pixels.}
 
 \item{height}{An optional parameter for specifying the height of the
 resulting graphic in pixels.}
+
+\item{envir}{The environment in which substitution functionality takes place.}
 }
 \value{
 An object of class \code{htmlwidget} that will intelligently print itself
@@ -38,5 +41,5 @@ Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using \code{viz.js} with infrastructure provided by
-pkg{htmlwidgets}.
+\pkg{htmlwidgets}.
 }

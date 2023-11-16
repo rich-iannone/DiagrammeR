@@ -30,9 +30,9 @@ A graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing edge by
-specifying either: (1) a pair of node IDs corresponding to the edge
-(keeping into consideration the direction of the edge in a directed graph),
-or (2) an edge ID.
+specifying either: (1) a pair of node IDs corresponding to the edge (keeping
+into consideration the direction of the edge in a directed graph), or (2) an
+edge ID.
 }
 \examples{
 # Create a graph with 2 nodes
@@ -105,7 +105,7 @@ graph_labeled_nodes \%>\%
 
 }
 \seealso{
-Other Edge creation and removal: 
+Other edge creation and removal: 
 \code{\link{add_edge_clone}()},
 \code{\link{add_edge_df}()},
 \code{\link{add_edges_from_table}()},
@@ -131,4 +131,4 @@ Other Edge creation and removal:
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}
 }
-\concept{Edge creation and removal}
+\concept{edge creation and removal}

@@ -1,5 +1,7 @@
 #' Select nodes in a graph by their ID values
 #'
+#' @description
+#'
 #' Select nodes in a graph object of class `dgr_graph` by their node ID values.
 #' If nodes have IDs that are monotonically increasing integer values, then
 #' numeric ranges can be used for the selection.
@@ -30,42 +32,30 @@
 #'   get_selection()
 #'
 #' @export
-select_nodes_by_id <- function(graph,
-                               nodes,
-                               set_op = "union") {
+select_nodes_by_id <- function(
+    graph,
+    nodes,
+    set_op = "union"
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no nodes")
-  }
+  check_graph_contains_nodes(graph)
 
   # Get a vector of node ID values from the graph
   nodes_in_graph <- get_node_ids(graph)
 
   # Stop function if any nodes specified are not
   # in the graph
-  if (any(!(nodes %in% nodes_in_graph))) {
+  if (!all(nodes %in% nodes_in_graph)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "One of more of the nodes specified are not available in the graph")
+    cli::cli_abort(
+      "One of more of the nodes specified are not available in the graph.")
   }
 
   # Obtain vector with node ID selection of nodes
@@ -105,11 +95,14 @@ select_nodes_by_id <- function(graph,
   n_e_select_properties_out <-
     node_edge_selection_properties(graph = graph)
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -127,7 +120,7 @@ select_nodes_by_id <- function(graph,
       graph$graph_info$display_msgs) {
 
     # Construct message body
-    if (!n_e_select_properties_in[["node_selection_available"]] &
+    if (!n_e_select_properties_in[["node_selection_available"]] &&
         !n_e_select_properties_in[["edge_selection_available"]]) {
 
       msg_body <-
@@ -135,7 +128,7 @@ select_nodes_by_id <- function(graph,
           "created a new selection of \\
         {n_e_select_properties_out[['selection_count_str']]}")
 
-    } else if (n_e_select_properties_in[["node_selection_available"]] |
+    } else if (n_e_select_properties_in[["node_selection_available"]] ||
                n_e_select_properties_in[["edge_selection_available"]]) {
 
       if (n_e_select_properties_in[["node_selection_available"]]) {

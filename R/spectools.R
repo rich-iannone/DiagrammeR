@@ -1,8 +1,11 @@
 #' Razor-like template for diagram specification
 #'
+#' @description
+#'
 #' Use Razor-like syntax to define a template for use in a `grViz` diagram.
 #'
 #' @param spec String spec to be parsed and evaluated.
+#' @inheritParams grViz
 #' @examples
 #' \dontrun{
 #' # a simple example to use a LETTER as a node label
@@ -37,7 +40,7 @@
 #' }
 #'
 #' @export
-replace_in_spec <- function(spec) {
+replace_in_spec <- function(spec, envir = parent.frame()) {
 
   # Directive for marking subscripted text in a label or tooltip '@_'
   if (grepl("@_", spec)) {
@@ -86,7 +89,7 @@ replace_in_spec <- function(spec) {
       gsub("\\[[0-9]+\\]:[ ]?", "", unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
 
       if (i == 1) {
         eval_expressions <- list()
@@ -95,12 +98,12 @@ replace_in_spec <- function(spec) {
       eval_expressions <-
         c(
           eval_expressions,
-          list(eval(parse(text = split_references[i])))
+          list(eval(parse(text = split_references[i]), envir = envir))
         )
     }
 
     # Make replacements to the spec body for each replacement that has no hyphen
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
       while (grepl(paste0("@@", i, "([^-0-9])"), spec_body)) {
         spec_body <-
           gsub(paste0("@@", i, "(?=[^-0-9])"), eval_expressions[[i]][1], spec_body, perl = TRUE)
@@ -109,7 +112,7 @@ replace_in_spec <- function(spec) {
 
     # If the replacement has a hyphen, then obtain the digit(s) immediately
     # following and return the value from that index
-    for (i in 1:length(split_references)) {
+    for (i in seq_along(split_references)) {
       while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)) {
 
         the_index <-
@@ -144,7 +147,7 @@ replace_in_spec <- function(spec) {
     return(spec_body)
   }
 
-  if (grepl("@@", spec) == FALSE) {
+  if (!grepl("@@", spec)) {
     return(spec)
   }
 }

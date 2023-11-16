@@ -1,8 +1,8 @@
-context("Generate dot syntax from graph objects")
+# Generate dot syntax from graph objects
 
 # helper functions
 node <- function(id, label = NA) {
-  if(all(is.na(label))) {
+  if (all(is.na(label))) {
     paste0("'", id, "'")
   } else {
     paste0("'", id, "' \\[label = '", label, "'\\]")
@@ -14,7 +14,7 @@ attrib_block <- "\\[[[:alnum:]'=.,[:space:]]*\\]"
 expect_dot <- function(graph, pattern) {
   expect_match(
     object = generate_dot(graph),
-    regexp = paste0(pattern, collapse="[[:space:]]*"))
+    regexp = paste0(pattern, collapse = "[[:space:]]*"))
 }
 
 test_that("Simple graph translates into specific form", {

@@ -1,7 +1,9 @@
 #' Get a vector of edge ID values
 #'
+#' @description
+#'
 #' Obtain a vector of edge ID values from a graph object. An optional filter by
-#'   edge attribute can limit the set of edge ID values returned.
+#' edge attribute can limit the set of edge ID values returned.
 #'
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
@@ -58,16 +60,12 @@
 #'     color == "blue" &
 #'     value > 5)
 #'
-#' @import rlang
 #' @export
-get_edge_ids <- function(graph,
-                         conditions = NULL) {
+get_edge_ids <- function(
+    graph,
+    conditions = NULL
+) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  # Capture provided conditions
-  conditions <- rlang::enquo(conditions)
 
   # If the graph contains no edges, return NA
   if (nrow(graph$edges_df) == 0) {
@@ -80,11 +78,9 @@ get_edge_ids <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(
-    rlang::enquo(conditions) %>%
-    rlang::get_expr())) {
+  if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    edges_df <- dplyr::filter(.data = edges_df, !!conditions)
+    edges_df <- dplyr::filter(.data = edges_df, {{ conditions }})
   }
 
   # If no edges remain then return NA
@@ -92,5 +88,5 @@ get_edge_ids <- function(graph,
     return(NA)
   }
 
-  edges_df %>% dplyr::pull(id)
+  edges_df %>% dplyr::pull("id")
 }

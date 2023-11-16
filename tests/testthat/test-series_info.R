@@ -1,5 +1,3 @@
-context("Getting information on a graph series")
-
 test_that("graph series information can be obtained", {
 
   # Create an empty graph series
@@ -11,7 +9,7 @@ test_that("graph series information can be obtained", {
 
   # Expect that `empty_series_info` is a
   # data frame object
-  expect_is(
+  expect_s3_class(
     empty_series_info, "data.frame")
 
   # Expect that the data frame has no rows
@@ -23,25 +21,25 @@ test_that("graph series information can be obtained", {
     ncol(empty_series_info), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(
+  expect_type(
     empty_series_info[, 1], "integer")
 
-  expect_is(
+  expect_type(
     empty_series_info[, 2], "character")
 
-  expect_is(
+  expect_s3_class(
     empty_series_info[, 3], "POSIXct")
 
-  expect_is(
+  expect_type(
     empty_series_info[, 4], "character")
 
-  expect_is(
+  expect_type(
     empty_series_info[, 5], "integer")
 
-  expect_is(
+  expect_type(
     empty_series_info[, 6], "integer")
 
-  expect_is(
+  expect_type(
     empty_series_info[, 7], "logical")
 
   # Create 3 graph objects
@@ -93,7 +91,7 @@ test_that("graph series information can be obtained", {
     get_graph_series_info()
 
   # Expect that `info_on_series` is a data frame object
-  expect_is(
+  expect_s3_class(
     info_on_series, "data.frame")
 
   # Expect that the data frame has 3 rows
@@ -105,25 +103,25 @@ test_that("graph series information can be obtained", {
     ncol(info_on_series), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(
+  expect_type(
     info_on_series[, 1], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series[, 2], "character")
 
-  expect_is(
+  expect_s3_class(
     info_on_series[, 3], "POSIXct")
 
-  expect_is(
+  expect_type(
     info_on_series[, 4], "character")
 
-  expect_is(
+  expect_type(
     info_on_series[, 5], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series[, 6], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series[, 7], "logical")
 
   # Expect that the values in the `graph`
@@ -160,7 +158,7 @@ test_that("graph series information can be obtained", {
 
   # Expect that `info_on_series_temporal` is
   # a data frame object
-  expect_is(
+  expect_s3_class(
     info_on_series_temporal, "data.frame")
 
   # Expect that the data frame has 1 row
@@ -172,25 +170,25 @@ test_that("graph series information can be obtained", {
     ncol(info_on_series_temporal), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 1], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 2], "character")
 
-  expect_is(
+  expect_s3_class(
     info_on_series_temporal[, 3], "POSIXct")
 
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 4], "character")
 
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 5], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 6], "integer")
 
-  expect_is(
+  expect_type(
     info_on_series_temporal[, 7], "logical")
 
   # Expect that the `name`, `date_time`,
@@ -198,8 +196,8 @@ test_that("graph series information can be obtained", {
   expect_equal(
     info_on_series_temporal[, 2], "graph_no_tz_provided")
 
-  expect_true(
-    !is.na(info_on_series_temporal[, 3]))
+  expect_false(
+    is.na(info_on_series_temporal[, 3]))
 
   expect_equal(
     info_on_series_temporal[, 4], "GMT")

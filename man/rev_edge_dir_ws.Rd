@@ -15,8 +15,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 Using a directed graph with a selection of edges as input, reverse the
 direction of those selected edges in input graph.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 
@@ -56,9 +55,10 @@ graph <-
 # Inspect the graph's edges
 # after their reversal
 graph \%>\% get_edges()
+
 }
 \seealso{
-Other Edge creation and removal: 
+Other edge creation and removal: 
 \code{\link{add_edge_clone}()},
 \code{\link{add_edge_df}()},
 \code{\link{add_edges_from_table}()},
@@ -84,4 +84,4 @@ Other Edge creation and removal:
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}
 }
-\concept{Edge creation and removal}
+\concept{edge creation and removal}

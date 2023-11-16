@@ -16,16 +16,27 @@ knitr::opts_chunk$set(
 library(DiagrammeR)
 ```
 
-# DiagrammeR <img src="man/figures/logo.svg" align="right" height="250px" />
+<div align="center">
 
-[![Build Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
-[![Coverage Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
-[![CRAN status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
-![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
+<hr style="color:transparent" />
+<a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<hr style="color:transparent"/>
+
+<!-- badges: start -->
+
+[![CRAN status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main)
+[![Monthly Downloads](https://cranlogs.r-pkg.org/badges/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
+<!-- badges: end -->
+
+<hr style="color:transparent" />
+<br />
+</div>
 
 With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **R Markdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
-
-This package is made possible by the [**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides an easy-to-use framework for bringing together R and JavaScript.
 
 <img src="man/figures/simple_graph.png">
 
@@ -363,7 +374,7 @@ render_graph(k_graph)
 
 Let's create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` are specific to the `person` nodes while the `project`, `start_date`, `stars`, and `language` attributes apply to the `project` nodes. The edges represent the relationships between the people and the project.
 
-The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (currently, only for the **Github** version). We can load it into memory by using the `open_graph()` function, where `system.file()` helps to provide the location of the file within the package.
+The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (currently, only for the **GitHub** version). We can load it into memory by using the `open_graph()` function, where `system.file()` helps to provide the location of the file within the package.
 
 ```{r}
 # Load in a the small repository graph
@@ -518,8 +529,17 @@ If you encounter a bug, have usage questions, or want to share ideas to make thi
 
 ## Code of Conduct
 
-Please note that the **DiagrammeR** project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). By participating in this project you agree to abide by its terms.
+Please note that the **DiagrammeR** project is released with a [contributor code of
+conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).<br>By
+participating in this project you agree to abide by its terms.
 
-## License
+## 📄 License
 
-MIT &copy; Richard Iannone
+**DiagrammeR** is licensed under the MIT license. See the
+[`LICENSE.md`](LICENSE.md) file for more details.
+
+## 🏛️ Governance
+
+This project is primarily maintained by [Rich Iannone](https://twitter.com/riannone). Other authors may occasionally assist with some of these duties.
+
+<hr>

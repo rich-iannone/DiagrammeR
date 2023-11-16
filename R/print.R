@@ -33,7 +33,6 @@ print.dgr_graph <- function(x, ...) {
       "get_edge_df" = " info: `get_edge_df()`",
       "get_selection" = " info: `get_selection()`",
       "get_cache" = " info: `get_cache()",
-      "get_attr_dfs" = " info: `get_attr_dfs()`",
       "get_global_graph_attr_info" = " info: `get_global_graph_attr_info()`")
 
   # Get a count of all nodes in the graph
@@ -47,27 +46,27 @@ print.dgr_graph <- function(x, ...) {
 
     node_type_status <- "<unused>"
 
-  } else if (!all(is.na(x$nodes_df$type)) & any(is.na(x$nodes_df$type))) {
+  } else if (!all(is.na(x$nodes_df$type)) && anyNA(x$nodes_df$type)) {
 
     node_type_status <-
       paste0(
         x$nodes_df$type %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$nodes_df$type %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
-  } else if (!any(is.na(x$nodes_df$type))) {
+  } else if (!anyNA(x$nodes_df$type)) {
 
     node_type_status <-
       paste0(
         x$nodes_df$type %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
   }
 
@@ -76,29 +75,29 @@ print.dgr_graph <- function(x, ...) {
 
     node_label_status <- "<unused>"
 
-  } else if (!all(is.na(x$nodes_df$label)) & any(is.na(x$nodes_df$label))) {
+  } else if (!all(is.na(x$nodes_df$label)) && anyNA(x$nodes_df$label)) {
     node_label_status <-
       paste0(
         x$nodes_df$label %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$nodes_df$label %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
-  } else if (!any(is.na(x$nodes_df$label))) {
+  } else if (!anyNA(x$nodes_df$label)) {
 
     node_label_status <-
       paste0(
         x$nodes_df$label %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
 
-    if (any(duplicated(x$nodes_df$label)) == FALSE) {
+    if (!anyDuplicated(x$nodes_df$label)) {
 
       node_label_status <-
         paste0(
@@ -123,7 +122,7 @@ print.dgr_graph <- function(x, ...) {
           "1 additional node attribute (",
           node_extra_attrs[1], ")")
 
-    } else if (count_extra_attrs > 1 & count_extra_attrs <= 3) {
+    } else if (count_extra_attrs > 1 && count_extra_attrs <= 3) {
 
       node_extra_attrs_str <-
         paste0(
@@ -151,26 +150,26 @@ print.dgr_graph <- function(x, ...) {
 
     edge_rel_status <- "<unused>"
 
-  } else if (!all(is.na(x$edges_df$rel)) & any(is.na(x$edges_df$rel))) {
+  } else if (!all(is.na(x$edges_df$rel)) && anyNA(x$edges_df$rel)) {
 
     edge_rel_status <-
       paste0(
         x$edges_df$rel %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " val",
         ifelse(
           x$edges_df$rel %>%
             unique() %>%
-            base::setdiff(as.character(NA)) %>%
+            base::setdiff(NA_character_) %>%
             length() > 1, "s", ""))
 
-  } else if (!any(is.na(x$edges_df$rel))) {
+  } else if (!anyNA(x$edges_df$rel)) {
     edge_rel_status <-
       paste0(
         x$edges_df$rel %>%
           unique() %>%
-          base::setdiff(as.character(NA)) %>%
+          base::setdiff(NA_character_) %>%
           length(), " vals - complete")
   }
 
@@ -191,7 +190,7 @@ print.dgr_graph <- function(x, ...) {
           "1 additional edge attribute (",
           edge_extra_attrs[1], ")")
 
-    } else if (count_extra_attrs > 1 & count_extra_attrs <= 3) {
+    } else if (count_extra_attrs > 1 && count_extra_attrs <= 3) {
 
       edge_extra_attrs_str <-
         paste0(
@@ -215,47 +214,27 @@ print.dgr_graph <- function(x, ...) {
   }
 
   # Determine if the graph is directed
-  if (is_graph_directed(x)) {
-    directed_undirected <- "directed"
-  } else if (is_graph_directed(x) == FALSE) {
-    directed_undirected <- "undirected"
-  }
+  directed_undirected <- ifelse(
+    is_graph_directed(x),
+    "directed",
+    "undirected"
+  )
 
   # Determine if the graph is weighted
-  if (is_graph_weighted(x)) {
-    weighted_graph_status <- TRUE
-  } else if (is_graph_weighted(x) == FALSE) {
-    weighted_graph_status <- FALSE
-  }
+  weighted_graph_status <- is_graph_weighted(x)
 
   # Determine if the graph is a DAG
-  if (is_graph_dag(x)) {
-    dag_graph_status <- TRUE
-  } else if (is_graph_dag(x) == FALSE) {
-    dag_graph_status <- FALSE
-  }
+  dag_graph_status <- is_graph_dag(x)
 
   # Determine if the graph is a property graph
-  if (is_property_graph(x)) {
-    property_graph_status <- TRUE
-  } else if (is_property_graph(x) == FALSE) {
-    property_graph_status <- FALSE
-  }
+  property_graph_status <- is_property_graph(x)
 
   # Determine if the graph is a simple graph
-  if (is_graph_simple(x)) {
-    simple_graph_status <- TRUE
-  } else if (is_graph_simple(x) == FALSE) {
-    simple_graph_status <- FALSE
-  }
+  simple_graph_status <- is_graph_simple(x)
 
   # Determine if the graph is connected
   # or disconnected
-  if (is_graph_connected(x)) {
-    connected_graph_status <- TRUE
-  } else if (is_graph_connected(x) == FALSE) {
-    connected_graph_status <- FALSE
-  }
+  connected_graph_status <- is_graph_connected(x)
 
   # Generate a string describing the number of
   # nodes in the graph
@@ -358,7 +337,7 @@ print.dgr_graph <- function(x, ...) {
   # Create string for active selections
   #
 
-  if (all(is.na(suppressMessages(get_selection(x)))) &
+  if (all(is.na(suppressMessages(get_selection(x)))) &&
       length(suppressMessages(get_selection(x))) == 1) {
 
     selection_str <- "<none>"
@@ -372,10 +351,9 @@ print.dgr_graph <- function(x, ...) {
       selection_count <-
         nrow(x$node_selection)
 
+      # selection_all is TRUE if selection_count = number of nodes
       selection_all <-
-        ifelse(
-          selection_count == nrow(x$nodes_df),
-          TRUE, FALSE)
+        selection_count == nrow(x$nodes_df)
     }
 
     if (nrow(x$edge_selection) > 0) {
@@ -385,10 +363,9 @@ print.dgr_graph <- function(x, ...) {
       selection_count <-
         nrow(x$edge_selection)
 
+      # selection_all is TRUE if selection_count = number of edges
       selection_all <-
-        ifelse(
-          selection_count == nrow(x$edges_df),
-          TRUE, FALSE)
+        selection_count == nrow(x$edges_df)
     }
 
     selection_str <-
@@ -574,7 +551,7 @@ print.dgr_graph <- function(x, ...) {
 
   if (console_width -
       cache_detail_str_length -
-      info_labels_cache_length >= 5 &
+      info_labels_cache_length >= 5 &&
       !is.na(get_cache(x))[1]) {
 
     cache_detail_str <-

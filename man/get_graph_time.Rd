@@ -28,4 +28,5 @@ graph <-
 # Get the graph's time as a POSIXct
 # object using `get_graph_time()`
 graph \%>\% get_graph_time()
+
 }

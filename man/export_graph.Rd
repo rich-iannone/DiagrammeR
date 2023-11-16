@@ -66,6 +66,7 @@ graph <-
 #     file_name = "mypng.png",
 #     file_type = "PNG"
 #   )
+
 }
 \seealso{
 Other Display and Save: 

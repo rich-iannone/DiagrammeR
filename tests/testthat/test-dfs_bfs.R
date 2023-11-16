@@ -1,4 +1,4 @@
-context("Performing the dfs and bfs algorithms")
+# Performing the dfs and bfs algorithms
 
 test_that("the dfs algorithm is functional", {
 
@@ -19,13 +19,13 @@ test_that("the dfs algorithm is functional", {
     do_dfs(node = 1)
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_all, "integer")
+  expect_type(dfs_all, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_all), count_nodes(graph = graph))
+  expect_length(
+    dfs_all,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -39,13 +39,13 @@ test_that("the dfs algorithm is functional", {
     do_dfs()
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_all_no_start, "integer")
+  expect_type(dfs_all_no_start, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_all_no_start), count_nodes(graph = graph))
+  expect_length(
+    dfs_all_no_start,
+    count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the dfs
   # routine to visit nodes along inward edges
@@ -56,13 +56,13 @@ test_that("the dfs algorithm is functional", {
       direction = "in")
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_in, "integer")
+  expect_type(dfs_in, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_in), count_nodes(graph = graph))
+  expect_length(
+    dfs_in,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -78,13 +78,13 @@ test_that("the dfs algorithm is functional", {
       direction = "out")
 
   # Expect that an integer vector is returned
-  expect_is(
-    dfs_out, "integer")
+  expect_type(dfs_out, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(dfs_out), count_nodes(graph = graph))
+  expect_length(
+    dfs_out,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -123,13 +123,13 @@ test_that("the bfs algorithm is functional", {
     do_bfs(node = 1)
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_all, "integer")
+  expect_type(bfs_all, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_all), count_nodes(graph = graph))
+  expect_length(
+    bfs_all,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -143,13 +143,12 @@ test_that("the bfs algorithm is functional", {
     do_bfs()
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_all_no_start, "integer")
+  expect_type(bfs_all_no_start, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_all_no_start),
+  expect_length(
+    bfs_all_no_start,
     count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the bfs
@@ -161,13 +160,13 @@ test_that("the bfs algorithm is functional", {
       direction = "in")
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_in, "integer")
+  expect_type(bfs_in, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_in), count_nodes(graph = graph))
+  expect_length(
+    bfs_in,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -183,13 +182,13 @@ test_that("the bfs algorithm is functional", {
       direction = "out")
 
   # Expect that an integer vector is returned
-  expect_is(
-    bfs_out, "integer")
+  expect_type(bfs_out, "integer")
 
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
-  expect_equal(
-    length(bfs_out), count_nodes(graph = graph))
+  expect_length(
+    bfs_out,
+    count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(

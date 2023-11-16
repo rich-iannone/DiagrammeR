@@ -1,5 +1,7 @@
 #' Combine multiple node data frames
 #'
+#' @description
+#'
 #' Combine several node data frames into a single node data frame.
 #'
 #' @param ... Two or more node data frames, which contain node IDs and
@@ -38,13 +40,13 @@ combine_ndfs <- function(...) {
 
   ndfs <- list(...)
 
-  for (l in 1:length(ndfs)) {
+  for (l in seq_along(ndfs)) {
     if (l == 1) {
       df1 <- ndfs[l][[1]]
       df2 <- ndfs[l + 1][[1]]
     }
 
-    if (l > 1 & l < length(ndfs)) {
+    if (l > 1 && l < length(ndfs)) {
       df1 <- ndf_new
       df2 <- ndfs[l + 1][[1]]
     }
@@ -59,7 +61,7 @@ combine_ndfs <- function(...) {
 
   # Create montonically-increasing integer id
   # values for new table based on input order
-  ndf_new[, 1] <- as.integer(1:nrow(ndf_new))
+  ndf_new[, 1] <- seq_len(nrow(ndf_new))
 
   ndf_new
 }

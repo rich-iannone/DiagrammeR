@@ -1,7 +1,10 @@
 #' Get all nodes connected to a specified node
 #'
+#' @description
+#'
 #' With a single node serving as the starting point get all nodes connected
-#'   (i.e., reachable with a traversable path) to that node.
+#' (i.e., reachable with a traversable path) to that node.
+#'
 #' @inheritParams render_graph
 #' @param node a single-length vector containing a node ID value.
 #'
@@ -56,26 +59,19 @@
 #'     node = 8)
 #'
 #' @export
-get_all_connected_nodes <- function(graph,
-                                    node) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_all_connected_nodes <- function(
+    graph,
+    node
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The node ID provided is not in the graph")
+    cli::cli_abort(
+      "The node ID must be in the graph.")
   }
 
   # Get a data frame of the weakly-connected

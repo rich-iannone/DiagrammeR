@@ -64,8 +64,7 @@ the nodes in the selection toward the newly created nodes (with the option
 \code{direction = "from"}), or to the selected nodes already in the graph (using
 \code{direction = "to"}). Optionally, set node \code{type} and edge \code{rel} values for
 all the new nodes and edges created, respectively.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 
@@ -115,9 +114,10 @@ graph \%>\% get_node_ids()
 
 # Get the graph's edges
 graph \%>\% get_edges()
+
 }
 \seealso{
-Other Node creation and removal: 
+Other node creation and removal: 
 \code{\link{add_n_node_clones}()},
 \code{\link{add_n_nodes}()},
 \code{\link{add_node_clones_ws}()},
@@ -145,4 +145,4 @@ Other Node creation and removal:
 \code{\link{set_node_attrs}()},
 \code{\link{set_node_position}()}
 }
-\concept{Node creation and removal}
+\concept{node creation and removal}

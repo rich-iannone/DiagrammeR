@@ -1,5 +1,7 @@
 #' Insert node aesthetic attributes during node creation
 #'
+#' @description
+#'
 #' This helper function should be invoked to provide values for the namesake
 #' `node_aes` argument, which is present in any function where nodes are
 #' created.
@@ -140,7 +142,7 @@
 #'     ),
 #'     edge_aes = edge_aes(color = "blue")
 #'   )
-#' @family Aesthetics
+#' @family aesthetics
 #' @export
 node_aes <- function(color         = NULL,
                      colorscheme   = NULL,
@@ -223,10 +225,10 @@ node_aes <- function(color         = NULL,
       y             = y)
 
   non_null_attrs <-
-    1:length(attr_values) %>%
+    seq_along(attr_values) %>%
     purrr::map_chr(.f = function(x) {
       if (!is.null(attr_values[[x]])) {
-        attr_values[x] %>% names()
+        names(attr_values[x])
       } else {
         NA
       }

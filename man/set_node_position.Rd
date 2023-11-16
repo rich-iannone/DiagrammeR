@@ -100,9 +100,10 @@ graph <-
 
 # View the graph's node data frame
 graph \%>\% get_node_df()
+
 }
 \seealso{
-Other Node creation and removal: 
+Other node creation and removal: 
 \code{\link{add_n_node_clones}()},
 \code{\link{add_n_nodes_ws}()},
 \code{\link{add_n_nodes}()},
@@ -130,4 +131,4 @@ Other Node creation and removal:
 \code{\link{set_node_attrs_ws}()},
 \code{\link{set_node_attrs}()}
 }
-\concept{Node creation and removal}
+\concept{node creation and removal}

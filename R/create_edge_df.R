@@ -1,5 +1,7 @@
 #' Create an edge data frame
 #'
+#' @description
+#'
 #' Combine several vectors for edges and their attributes into a data frame,
 #' which can be combined with other similarly-generated data frames, or, added
 #' to a graph object. An edge data frame, or edf, has at least the following
@@ -53,12 +55,14 @@
 #' # Display the edge data frame
 #' edf
 #'
-#' @family Edge creation and removal
+#' @family edge creation and removal
 #' @export
-create_edge_df <- function(from,
-                           to,
-                           rel = NULL,
-                           ...) {
+create_edge_df <- function(
+    from,
+    to,
+    rel = NULL,
+    ...
+) {
 
   # Stop function if vector lengths for `from` and
   # `to` are not equal
@@ -74,7 +78,7 @@ create_edge_df <- function(from,
   # if `rel` is NULL, create character vector with
   # NA values; class as character otherwise
   if (is.null(rel)) {
-    rel <- rep(as.character(NA), length(from))
+    rel <- rep(NA_character_, length(from))
   } else {
     rel <- as.character(rel)
   }
@@ -88,18 +92,18 @@ create_edge_df <- function(from,
 
     # Expand vectors with `length` > `1` and
     # `length` < `length(from)`
-    if (length(rel) > 1 &
+    if (length(rel) > 1 &&
         length(rel) < length(from)) {
       rel <-
         c(rel,
-          rep(as.character(NA),
+          rep(NA_character_,
               (length(from) - length(rel))))
     }
 
     # Trim vectors with number of values exceeding
     # the number of edges
     if (length(rel) > length(from)) {
-      rel <- rel[1:length(from)]
+      rel <- rel[seq_along(from)]
     }
   }
 
@@ -107,7 +111,7 @@ create_edge_df <- function(from,
   extras <- list(...)
 
   if (length(extras) > 0) {
-    for (i in 1:length(extras)) {
+    for (i in seq_along(extras)) {
 
       # Expand vectors with single values to fill to
       # the number of edges
@@ -117,11 +121,11 @@ create_edge_df <- function(from,
 
       # Expand vectors with `length` > `1` and
       # `length` < `length(from)`
-      if (length(extras[[i]]) > 1 &
+      if (length(extras[[i]]) > 1 &&
           length(extras[[i]]) < length(from)) {
         extras[[i]] <-
           c(extras[[i]],
-            rep(as.character(NA),
+            rep(NA_character_,
                 (length(from) -
                    length(extras[[i]]))))
       }
@@ -129,7 +133,7 @@ create_edge_df <- function(from,
       # Trim vectors with number of values exceeding
       # the number of edges
       if (length(extras[[i]]) > length(from)) {
-        extras[[i]] <- extras[[i]][1:length(from)]
+        extras[[i]] <- extras[[i]][seq_along(from)]
       }
     }
 
@@ -143,7 +147,7 @@ create_edge_df <- function(from,
     edges_df <-
       dplyr::bind_cols(
         data.frame(
-          id = 1:n,
+          id = seq_len(n),
           from = from,
           to = to,
           rel = rel,
@@ -152,7 +156,7 @@ create_edge_df <- function(from,
   } else {
     edges_df <-
       data.frame(
-        id = 1:n,
+        id = seq_len(n),
         from = from,
         to = to,
         rel = rel,

@@ -25,8 +25,7 @@ With an active selection of nodes, move the position in either the \code{x} or \
 directions, or both. Nodes in the selection that do not have position
 information (i.e., \code{NA} values for the \code{x} or \code{y} node attributes) will be
 ignored.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 

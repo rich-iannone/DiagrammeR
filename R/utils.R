@@ -19,24 +19,22 @@ graph_object_valid <- function(graph) {
   }
 
   # Check for specific graph classes
-  if (any(
-    inherits(graph$graph_info, "data.frame") == FALSE,
-    inherits(graph$nodes_df, "data.frame") == FALSE,
-    inherits(graph$edges_df, "data.frame") == FALSE,
-    inherits(graph$global_attrs, "data.frame") == FALSE,
-    inherits(graph$global_attrs$attr, "character") == FALSE,
-    inherits(graph$global_attrs$value, "character") == FALSE,
-    inherits(graph$global_attrs$attr_type, "character") == FALSE,
-    inherits(graph$directed, "logical") == FALSE,
-    inherits(graph$node_selection, "data.frame") == FALSE,
-    inherits(graph$edge_selection, "data.frame") == FALSE,
-    inherits(graph$cache, "list") == FALSE,
-    inherits(graph$graph_log, "data.frame") == FALSE)) {
+  graph_valid <- all(
+    inherits(graph$graph_info, "data.frame"),
+    inherits(graph$nodes_df, "data.frame"),
+    inherits(graph$edges_df, "data.frame"),
+    inherits(graph$global_attrs, "data.frame"),
+    inherits(graph$global_attrs$attr, "character"),
+    inherits(graph$global_attrs$value, "character"),
+    inherits(graph$global_attrs$attr_type, "character"),
+    inherits(graph$directed, "logical"),
+    inherits(graph$node_selection, "data.frame"),
+    inherits(graph$edge_selection, "data.frame"),
+    inherits(graph$cache, "list"),
+    inherits(graph$graph_log, "data.frame")
+  )
 
-    return(FALSE)
-  }
-
-  return(TRUE)
+  graph_valid
 }
 
 #' Check whether a graph contains any nodes
@@ -44,11 +42,7 @@ graph_object_valid <- function(graph) {
 #' @noRd
 graph_contains_nodes <- function(graph) {
 
-  if (nrow(graph$nodes_df) == 0) {
-    return(FALSE)
-  } else {
-    return(TRUE)
-  }
+  nrow(graph$nodes_df > 0)
 }
 
 #' Check whether a graph contains any edges
@@ -56,11 +50,7 @@ graph_contains_nodes <- function(graph) {
 #' @noRd
 graph_contains_edges <- function(graph) {
 
-  if (nrow(graph$edges_df) == 0) {
-    return(FALSE)
-  } else {
-    return(TRUE)
-  }
+  nrow(graph$edges_df) > 0
 }
 
 #' Check whether a graph contains a valid node selection
@@ -68,12 +58,7 @@ graph_contains_edges <- function(graph) {
 #' @noRd
 graph_contains_node_selection <- function(graph) {
 
-  # Check if graph contains a node selection
-  if (nrow(graph$node_selection) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  nrow(graph$node_selection) > 0
 }
 
 #' Check whether a graph contains a valid edge selection
@@ -81,12 +66,7 @@ graph_contains_node_selection <- function(graph) {
 #' @noRd
 graph_contains_edge_selection <- function(graph) {
 
-  # Check if graph contains an edge selection
-  if (nrow(graph$edge_selection) > 0) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  nrow(graph$edge_selection) > 0
 }
 
 #' Get a list of node/edge selection properties
@@ -97,17 +77,15 @@ node_edge_selection_properties <- function(graph) {
   # Determine if there is an existing
   # selection of nodes
   node_selection_available <-
-    ifelse(
-      graph_contains_node_selection(graph = graph), TRUE, FALSE)
+    graph_contains_node_selection(graph = graph)
 
   # Determine if there is an existing
   # selection of edges
   edge_selection_available <-
-    ifelse(
-      graph_contains_edge_selection(graph = graph), TRUE, FALSE)
+    graph_contains_edge_selection(graph)
 
   # Get the existing node/edge count
-  if (node_selection_available | edge_selection_available) {
+  if (node_selection_available || edge_selection_available) {
 
     selection_type <-
       ifelse(node_selection_available, "node", "edge")
@@ -126,7 +104,7 @@ node_edge_selection_properties <- function(graph) {
 
   } else {
 
-    selection_type <- as.character(NA)
+    selection_type <- NA_character_
     selection_count <- 0
     selection_count_str <- "no nodes or edges"
   }
@@ -174,19 +152,18 @@ replace_graph_edge_selection <- function(graph,
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  dplyr::tibble(node = integer(0)) %>%
+  dplyr::tibble(node = integer()) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
 
 create_empty_esdf <- function() {
 
   # Create empty `esdf`
-  dplyr::tibble(
-    edge = integer(0),
-    from = integer(0),
-    to = integer(0)
-  ) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+  data.frame(
+    edge = integer(),
+    from = integer(),
+    to = integer()
+  )
 }
 
 #' Is an attribute unique and fully free of `NA`s?
@@ -194,7 +171,6 @@ create_empty_esdf <- function() {
 #' This function determines whether a node or edge attribute has values that
 #' are all non-`NA` and are unique
 #'
-#' @importFrom magrittr not
 #' @noRd
 is_attr_unique_and_non_na <- function(graph,
                                       which_graph_df,
@@ -218,19 +194,14 @@ is_attr_unique_and_non_na <- function(graph,
 
   # Are all values not NA?
   all_is_not_na <-
-    df %>% dplyr::select(!! enquo(attr)) %>%
-    is.na %>% magrittr::not() %>% all()
+    !all(is.na(dplyr::pull(df, !!enquo(attr))))
 
   # Are all values distinct?
   all_values_distinct <-
-    df %>% dplyr::select(!! enquo(attr)) %>% dplyr::distinct() %>% nrow() ==
+    dplyr::pull(df, !!enquo(attr)) %>% dplyr::n_distinct() ==
     nrow(df)
 
-  if (all_is_not_na & all_values_distinct) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  all_is_not_na && all_values_distinct
 }
 
 ###
@@ -268,7 +239,7 @@ translate_to_node_id <- function(graph, from, to) {
 
   # Get an ordered vector of node ID values
   # as `from` nodes
-  for (i in 1:length(from)) {
+  for (i in seq_along(from)) {
     from_id <-
       c(from_id,
         graph$nodes_df[
@@ -277,7 +248,7 @@ translate_to_node_id <- function(graph, from, to) {
 
   # Get an ordered vector of node ID values
   # as `to` nodes
-  for (i in 1:length(to)) {
+  for (i in seq_along(to)) {
     to_id <-
       c(to_id,
         graph$nodes_df[
@@ -300,7 +271,7 @@ translate_to_node_id <- function(graph, from, to) {
 #'
 #' @noRd
 graph_function_sys_time <- function() {
-  return(Sys.time())
+  Sys.time()
 }
 
 #' Get the time taken for a graph function to execute
@@ -313,7 +284,8 @@ graph_function_sys_time <- function() {
 graph_function_duration <- function(start_time) {
   end_time <- Sys.time()
   time_diff_s <- (end_time - start_time)[[1]]
-  return(time_diff_s)
+
+  time_diff_s
 }
 
 #' Add a log line for a graph `action`
@@ -326,13 +298,13 @@ add_action_to_log <- function(graph_log,
                               duration,
                               nodes,
                               edges,
-                              d_n = 0,
-                              d_e = 0) {
+                              d_n = 0L,
+                              d_e = 0L) {
 
   # Ensure that `time_modified` inherits from POSIXct
-  if (inherits(time_modified, "POSIXct") == FALSE) {
+  if (!inherits(time_modified, "POSIXct")) {
 
-    stop(
+    cli::cli_abort(
       "The `time_modified` value must inherit from POSIXct.",
       call. = FALSE)
   }
@@ -340,12 +312,12 @@ add_action_to_log <- function(graph_log,
   # Create a log line
   graph_log_line <-
     data.frame(
-      version_id = as.integer(version_id),
+      version_id = version_id,
       function_used = as.character(function_used),
       time_modified = time_modified,
       duration = as.numeric(duration),
-      nodes = as.integer(nodes),
-      edges = as.integer(edges),
+      nodes = nodes,
+      edges = edges,
       d_n = as.integer(d_n),
       d_e = as.integer(d_e),
       stringsAsFactors = FALSE)
@@ -383,7 +355,7 @@ save_graph_as_rds <- function(graph) {
   }
 
   # Save the graph as an RDS file in the subdirectory
-  saveRDS(graph, file = paste0(rds_dir_name, "/", rds_filename))
+  saveRDS(graph, file = file.path(rds_dir_name, rds_filename, fsep = "/"))
 }
 
 ###
@@ -395,18 +367,22 @@ save_graph_as_rds <- function(graph) {
 #' @noRd
 get_col_selection <- function(col_selection_stmt) {
 
-  if (all(stringr::str_detect(
-    string = col_selection_stmt,
-    pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$")) & length(col_selection_stmt) == 1) {
+  if (length(col_selection_stmt) == 1 &&
+      all(stringr::str_detect(
+        string = col_selection_stmt,
+        pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$")
+        )) {
 
     selection_type <- "single_column_name"
 
     # Get the column names
     column_selection <- col_selection_stmt
 
-  } else if (all(stringr::str_detect(
-    string = col_selection_stmt,
-    pattern = "(.* & ).*")) & length(col_selection_stmt) == 1) {
+  } else if (length(col_selection_stmt) == 1 &&
+             all(stringr::str_detect(
+               string = col_selection_stmt,
+               pattern = "(.* & ).*")
+               )) {
 
     selection_type <- "column_names"
 
@@ -504,7 +480,6 @@ contrasting_text_color <- function(background_color) {
 
 #' Construct a consistent message string, passing it to `message()`
 #'
-#' @import glue
 #' @noRd
 emit_message <- function(fcn_name,
                          message_body) {
@@ -512,54 +487,6 @@ emit_message <- function(fcn_name,
   glue::glue("`{fcn_name}()` INFO: {message_body}") %>%
     as.character() %>%
     message()
-}
-
-#' Construct a consistent message string, passing it to `warning()`
-#'
-#' @import glue
-#' @noRd
-emit_warning <- function(fcn_name,
-                         message_body) {
-
-  glue::glue("`{fcn_name}()` WARNING: {message_body}") %>%
-    as.character() %>%
-    warning()
-}
-
-#' Construct a consistent message string, passing it to `stop()`
-#'
-#' @import glue
-#' @noRd
-emit_error <- function(fcn_name,
-                       reasons) {
-
-  header_text <-
-      ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
-
-  if (length(reasons <= 5)) {
-
-    message_body <-
-      paste(paste0("* ", reasons), collapse = "\n")
-
-  } else {
-
-    excess_errors <- length(reasons) - 5
-
-    message_body <-
-      paste(paste0("* ", reasons[1:5]), collapse = "\n")
-
-    error_pl_str <-
-      ifelse(excess_errors == 1, "error", "errors")
-
-    excess_errors_str <-
-      glue::glue(
-        "* ... and {excess_errors} more {error_pl_str}") %>%
-      as.character()
-  }
-
-  glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
-    as.character() %>%
-    stop(call. = FALSE)
 }
 
 #' Get the calling function as a formatted character string
@@ -708,11 +635,6 @@ value_per_node_functions <- function() {
         arg = NULL,
         value_type = NULL
       ),
-    "get_bridging" =
-      data.frame(
-        arg = NULL,
-        value_type = NULL
-      ),
     "get_closeness" =
       data.frame(
         arg = "direction",
@@ -742,12 +664,6 @@ value_per_node_functions <- function() {
     "get_cmty_walktrap" =
       data.frame(
         arg = "steps",
-        value_type = "numeric",
-        stringsAsFactors = FALSE
-      ),
-    "get_constraint" =
-      data.frame(
-        arg = "nodes",
         value_type = "numeric",
         stringsAsFactors = FALSE
       ),
@@ -822,15 +738,15 @@ get_df_ids <- function(graph_df) {
     if ("df_id" %in% colnames(graph_df)) {
 
       graph_df %>%
-        dplyr::select(df_id) %>%
+        dplyr::select("df_id") %>%
         dplyr::filter(!is.na(df_id)) %>%
-        dplyr::pull(df_id)
+        dplyr::pull("df_id")
     } else {
-      return(as.character(NA))
+      return(NA_character_)
     }
 
   } else if (nrow(graph_df) == 0) {
-    return(as.character(NA))
+    return(NA_character_)
   }
 }
 
@@ -866,7 +782,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "node") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(ndf_df_ids)
@@ -875,7 +791,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(ndf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(ndf_df_id_to_remove)) {
+      for (i in seq_along(ndf_df_id_to_remove)) {
 
         graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
       }
@@ -890,7 +806,7 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>%
       dplyr::bind_rows() %>%
       dplyr::filter(node_edge__ == "edge") %>%
-      dplyr::select(df_id__) %>%
+      dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
       base::setdiff(edf_df_ids)
@@ -900,7 +816,7 @@ remove_linked_dfs <- function(graph) {
     # with edges that no longer exist, remove them
     if (length(edf_df_id_to_remove) > 0) {
 
-      for (i in 1:length(edf_df_id_to_remove)) {
+      for (i in seq_along(edf_df_id_to_remove)) {
 
         graph$df_storage[edf_df_id_to_remove[i]] <- NULL
       }
@@ -910,33 +826,25 @@ remove_linked_dfs <- function(graph) {
   # Check the type of list that remains
   if (length(graph$df_storage) == 0) {
     graph$df_storage <-
-      graph$df_storage %>% unname()
+      unname(graph$df_storage)
   }
 
   # Remove the `df_id` column from the
   # graph's ndf if there are no referenced
   # data frames within (i.e., all NA)
-  if ("df_id" %in% colnames(graph$nodes_df)) {
+  if (rlang::has_name(graph$nodes_df, "df_id") &&
+      all(is.na(graph$nodes_df$df_id))) {
 
-    if (all(is.na(graph$nodes_df$df_id))) {
-
-      graph$nodes_df <-
-        graph$nodes_df %>%
-        dplyr::select(-df_id)
-    }
+    graph$nodes_df$df_id <- NULL
   }
 
   # Remove the `df_id` column from the
   # graph's edf if there are no referenced
   # data frames within (i.e., all NA)
-  if ("df_id" %in% colnames(graph$edges_df)) {
+  if (rlang::has_name(graph$edges_df, "df_id") &&
+      all(is.na(graph$edges_df$df_id))) {
 
-    if (all(is.na(graph$edges_df$df_id))) {
-
-      graph$edges_df <-
-        graph$edges_df %>%
-        dplyr::select(-df_id)
-    }
+    graph$edges_df$df_id <- NULL
   }
 
   graph
@@ -953,8 +861,11 @@ get_svg_tbl <- function(svg_vec) {
 
   svg_tbl <-
     dplyr::tibble(
-      index = integer(0), type = character(0), node_id = integer(0),
-      from = integer(0), to = integer(0))
+      index = integer(),
+      type = character(),
+      node_id = integer(),
+      from = integer(),
+      to = integer())
 
   for (i in seq(svg_vec)) {
 
@@ -1021,7 +932,8 @@ get_attr_tbl <- function(line) {
   el_attrs <-
     strsplit(line, "' ") %>%
     unlist() %>%
-    gsub("'", "", .) %>% strsplit("=")
+    gsub("'", "", .) %>%
+    strsplit("=")
 
   stats::setNames(
     sapply(el_attrs, `[[`, 2),

@@ -1,5 +1,7 @@
 #' Delete vectors cached in a graph object
 #'
+#' @description
+#'
 #' Delete vectors cached in a graph object of class `dgr_graph`.
 #'
 #' @inheritParams render_graph
@@ -36,33 +38,27 @@
 #' graph <-
 #'   graph %>%
 #'   delete_cache()
-#' @import glue
+#'
 #' @export
-delete_cache <- function(graph,
-                         name = NULL) {
+delete_cache <- function(
+    graph,
+    name = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If there are no cached vectors available,
   # return the graph unchanged with a warning
   if (length(graph$cache) == 0) {
 
-    warning(
-      glue::glue(
-        "`delete_cache()`: There are no cached vectors, so, the graph is unchanged."),
-      call. = FALSE)
+    cli::cli_warn(
+        "There are no cached vectors, so, the graph is unchanged.",
+        call = current_env()
+      )
 
     return(graph)
   }
@@ -75,27 +71,29 @@ delete_cache <- function(graph,
 
     } else {
 
-      if (name %in% (graph$cache %>% names())) {
+      if (name %in% names(graph$cache)) {
 
         graph$cache[name] <- NULL
 
       } else {
 
-        warning(
-          glue::glue(
-            "`delete_cache()`: The supplied `name` (`{name}`) does not match a \\
-            name of any of the cached vectors, so, the graph is unchanged."),
-          call. = FALSE)
+        cli::cli_warn(c(
+          "The supplied `name` (`{name}`) does not match the name of a cached vector.",
+          "So, the graph is unchanged."
+        ), call = current_env())
         return(graph)
       }
     }
   }
 
+  # Get current function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

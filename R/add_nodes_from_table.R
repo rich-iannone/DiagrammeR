@@ -1,5 +1,7 @@
 #' Add nodes and attributes to graph from a table
 #'
+#' @description
+#'
 #' Add nodes and their attributes to an existing graph object from data in a CSV
 #' file or a data frame.
 #'
@@ -83,30 +85,24 @@
 #'   get_node_df() %>%
 #'   colnames()
 #'
-#' @import rlang
-#' @family Node creation and removal
+#' @family node creation and removal
+#'
 #' @export
-add_nodes_from_table <- function(graph,
-                                 table,
-                                 label_col = NULL,
-                                 type_col = NULL,
-                                 set_type = NULL,
-                                 drop_cols = NULL) {
+add_nodes_from_table <- function(
+    graph,
+    table,
+    label_col = NULL,
+    type_col = NULL,
+    set_type = NULL,
+    drop_cols = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
+  check_graph_valid(graph)
+  # TODO use new technique to convert to string.
   # Get the requested `label_col`
   label_col <-
     rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
@@ -190,17 +186,13 @@ add_nodes_from_table <- function(graph,
 
     colnames(csv)[which(colnames(csv) == "id")] <- "id_external"
 
-    ndf <-
-      ndf %>%
-      dplyr::mutate(id_external = csv$id_external)
+    ndf$id_external <- csv$id_external
   }
 
   # Optionally set the `type` attribute with a single
   # value repeated down
-  if (is.null(type_col) & !is.null(set_type)) {
-    ndf <-
-      ndf %>%
-      dplyr::mutate(type = as.character(set_type))
+  if (is.null(type_col) && !is.null(set_type)) {
+    ndf$type <- as.character(set_type)
   }
 
   # Get the remaining columns from `csv`
@@ -242,10 +234,10 @@ add_nodes_from_table <- function(graph,
   # Move any additional columns from the
   # external table to `ndf`
   ndf <-
-    ndf %>%
     dplyr::bind_cols(
-      csv %>%
-        dplyr::select(columns_to_add))
+      ndf,
+      dplyr::select(csv, dplyr::all_of(columns_to_add))
+      )
 
   # Get the number of nodes in the graph
   nodes_graph_1 <- graph %>% count_nodes()
@@ -267,11 +259,14 @@ add_nodes_from_table <- function(graph,
   # Update the `last_node` counter
   graph$last_node <- nodes_created + nodes_added
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),

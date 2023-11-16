@@ -1,9 +1,12 @@
 #' Get a graph available in a series
 #'
+#' @description
+#'
 #' Using a graph series object of type `dgr_graph_1D`, get a graph object.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`.
 #' @param graph_no The index of the graph in the graph series.
+#'
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
@@ -36,26 +39,22 @@
 #'     graph_no = 2)
 #'
 #' @export
-get_graph_from_graph_series <- function(graph_series,
-                                        graph_no) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_graph_from_graph_series <- function(
+    graph_series,
+    graph_no
+) {
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "There are no graphs in this graph series")
+    rlang::abort("There are no graphs in this graph series.")
   }
 
   # Stop function if `graph_no` out of range
-  if (!(graph_no %in% 1:count_graphs_in_graph_series(graph_series))) {
+  if (!(graph_no %in% seq_len(count_graphs_in_graph_series(graph_series)))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The index chosen doesn't correspond to that of a graph in the series")
+    rlang::abort(
+      "The index chosen doesn't correspond to that of a graph in the series.")
   }
 
   # Extract the specified graph from the series

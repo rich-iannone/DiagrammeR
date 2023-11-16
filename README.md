@@ -1,24 +1,36 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DiagrammeR <img src="man/figures/logo.svg" align="right" height="250px" />
+<div align="center">
 
-[![Build
-Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
-[![Coverage
-Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
+<hr style="color:transparent" />
+<a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
+<hr style="color:transparent"/>
+
+<!-- badges: start -->
 [![CRAN
-status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
-![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
+status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/rich-iannone/DiagrammeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rich-iannone/DiagrammeR?branch=main)
+[![Monthly
+Downloads](https://cranlogs.r-pkg.org/badges/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
+[![Contributor
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
+<!-- badges: end -->
+
+<hr style="color:transparent" />
+
+<br />
+
+</div>
 
 With the **DiagrammeR** package you can create, modify, analyze, and
 visualize network graph diagrams. The output can be incorporated into
 **R Markdown** documents, integrated with **Shiny** web apps, converted
 to other graph formats, or exported as image files.
-
-This package is made possible by the
-[**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides
-an easy-to-use framework for bringing together R and JavaScript.
 
 <img src="man/figures/simple_graph.png">
 
@@ -283,28 +295,26 @@ we’re working with.
 
     node_list_1     edge_list_1
 
-``` 
-   id label        from to 
-1   1     A     1     1  2 
-2   2     B     2     1  3 
-3   3     C     3     1  4 
-4   4     D     4     1  9 
-5   5     E     5     2  8 
-6   6     F     6     2  7 
-7   7     G     7     2  1 
-8   8     H     8     2 10 
-9   9     I     9     3  1 
-10 10     J     10    3  6 
-                11    3  8
-                12    4  1
-                13    5  7
-                14    6  2
-                15    6  9
-                16    8  1
-                17    9  3
-                18    9 10
-                19   10  1
-```
+       id label        from to 
+    1   1     A     1     1  2 
+    2   2     B     2     1  3 
+    3   3     C     3     1  4 
+    4   4     D     4     1  9 
+    5   5     E     5     2  8 
+    6   6     F     6     2  7 
+    7   7     G     7     2  1 
+    8   8     H     8     2 10 
+    9   9     I     9     3  1 
+    10 10     J     10    3  6 
+                    11    3  8
+                    12    4  1
+                    13    5  7
+                    14    6  2
+                    15    6  9
+                    16    8  1
+                    17    9  3
+                    18    9 10
+                    19   10  1
 
 To fashion this into a graph, we need to ensure that both the nodes and
 their attributes (in this case, just a `label`) are added, and, that the
@@ -504,7 +514,7 @@ the sums of `value_1` and `value_2` as `value_3` (for both the nodes and
 the edges). Then, let’s color the nodes and edges `forestgreen` if
 `value_3` is greater than `10` (`red` otherwise). Finally, let’s display
 the values of `value_3` for the nodes when rendering the graph diagram.
-Here we go\!
+Here we go!
 
 ``` r
 k_graph <-
@@ -541,7 +551,7 @@ the relationships between the people and the project.
 
 The example graph file `repository.dgr` is available in the
 `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package
-(currently, only for the **Github** version). We can load it into memory
+(currently, only for the **GitHub** version). We can load it into memory
 by using the `open_graph()` function, where `system.file()` helps to
 provide the location of the file within the package.
 
@@ -678,8 +688,8 @@ Kim is now a contributor to the **stringbuildeR** project and has made
 First, add an edge with `add_edge()`. Note that `add_edge()` usually
 relies on node IDs in `from` and `to` when creating the new edge. This
 is almost always inconvenient so we can instead use node labels (we know
-they are unique in this graph) to compose the edge, setting `use_labels
-= TRUE`.
+they are unique in this graph) to compose the edge, setting
+`use_labels = TRUE`.
 
 The `rel` value in `add_edge()` was set to `contributor` – in a property
 graph we always have values set for all node `type` and edge `rel`
@@ -777,10 +787,19 @@ make this package better, feel free to file an
 ## Code of Conduct
 
 Please note that the **DiagrammeR** project is released with a
-[Contributor Code of
-Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/).
-By participating in this project you agree to abide by its terms.
+[contributor code of
+conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).<br>By
+participating in this project you agree to abide by its terms.
 
-## License
+## 📄 License
 
-MIT © Richard Iannone
+**DiagrammeR** is licensed under the MIT license. See the
+[`LICENSE.md`](LICENSE.md) file for more details.
+
+## 🏛️ Governance
+
+This project is primarily maintained by [Rich
+Iannone](https://twitter.com/riannone). Other authors may occasionally
+assist with some of these duties.
+
+<hr>

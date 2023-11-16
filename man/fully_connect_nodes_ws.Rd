@@ -15,8 +15,7 @@ A graph object of class \code{dgr_graph}.
 \description{
 With a selection of nodes in a graph, add any remaining edges required to
 fully connect this group of edges to each other.
-}
-\details{
+
 This function makes use of an active selection of nodes (and the function
 ending with \verb{_ws} hints at this).
 

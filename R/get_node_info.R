@@ -1,5 +1,7 @@
 #' Get detailed information on nodes
 #'
+#' @description
+#'
 #' Obtain a data frame with detailed information on nodes and their
 #' interrelationships within the graph.
 #'
@@ -22,16 +24,8 @@
 #' @export
 get_node_info <- function(graph) {
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If graph is empty, return NULL
   if (is_graph_empty(graph)) {
@@ -122,13 +116,13 @@ get_node_info <- function(graph) {
               ordered_nodes[i])
 
       # Get indegree for each node
-      if (ordered_nodes[i] %in%
-          top_nodes | degree == 0) {
+      if (ordered_nodes[i] %in% top_nodes ||
+          degree == 0) {
         indegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in%
-            top_nodes) & degree != 0) {
+      if (!(ordered_nodes[i] %in% top_nodes) &&
+          degree != 0) {
         for (j in 1:sum(edge_to %in%
                         ordered_nodes[i])) {
           if (j == 1) {
@@ -143,12 +137,12 @@ get_node_info <- function(graph) {
       }
 
       # Get outdegree for each node
-      if (ordered_nodes[i] %in%
-          bottom_nodes | degree == 0) {
+      if (ordered_nodes[i] %in% bottom_nodes ||
+          degree == 0) {
         outdegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in% bottom_nodes) &
+      if (!(ordered_nodes[i] %in% bottom_nodes) &&
           degree != 0) {
         for (j in 1:sum(edge_from %in%
                         ordered_nodes[i])) {

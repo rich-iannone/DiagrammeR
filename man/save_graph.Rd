@@ -40,6 +40,7 @@ gnp_graph <-
 #   open_graph(
 #     file = "gnp_graph.dgr"
 # )
+
 }
 \seealso{
 Other Display and Save: 

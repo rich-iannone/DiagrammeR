@@ -1,5 +1,7 @@
 #' Add a prism of nodes to the graph
 #'
+#' @description
+#'
 #' With a graph object of class `dgr_graph`, add a node prism to the graph.
 #'
 #' @inheritParams node_edge_aes_data
@@ -80,37 +82,26 @@
 #' graph_w_attrs %>% get_edge_df()
 #'
 #' @export
-add_prism <- function(graph,
-                      n,
-                      type = NULL,
-                      label = TRUE,
-                      rel = NULL,
-                      node_aes = NULL,
-                      edge_aes = NULL,
-                      node_data = NULL,
-                      edge_data = NULL) {
+add_prism <- function(
+    graph,
+    n,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Stop if n is too small
-  if (n <= 2) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value for `n` must be at least 3")
-  }
+  check_number_whole(n, min = 3)
 
   # Get the number of nodes ever created for
   # this graph
@@ -134,26 +125,24 @@ add_prism <- function(graph,
   graph_directed <- graph$directed
 
   # Get the sequence of nodes required
-  nodes <- seq(1, 2 * n)
+  nodes <- seq_len(2 * n)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
     node_aes_tbl <- dplyr::as_tibble(node_aes)
 
-    if (nrow(node_aes_tbl) < (2 * n) ) {
+    if (nrow(node_aes_tbl) < (2 * n)) {
 
-      node_aes$index__ <- 1:(2 * n)
+      node_aes$index__ <- seq_len(2 * n)
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -164,17 +153,15 @@ add_prism <- function(graph,
 
     if (nrow(edge_aes_tbl) < (3 * n)) {
 
-      edge_aes$index__ <- 1:(3 * n)
+      edge_aes$index__ <- seq_len(3 * n)
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -185,17 +172,15 @@ add_prism <- function(graph,
 
     if (nrow(node_data_tbl) < (2 * n)) {
 
-      node_data$index__ <- 1:(2 * n)
+      node_data$index__ <- seq_len(2 * n)
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -206,17 +191,15 @@ add_prism <- function(graph,
 
     if (nrow(edge_data_tbl) < (3 * n)) {
 
-      edge_data$index__ <- 1:(3 * n)
+      edge_data$index__ <- seq_len(3 * n)
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -246,19 +229,19 @@ add_prism <- function(graph,
   # Create an edge data frame for the prism graph
   prism_edges <-
     create_edge_df(
-      from = c(nodes[1:(length(nodes)/2)],
-               nodes[((length(nodes)/2) + 1):length(nodes)],
-               nodes[1:(length(nodes)/2)]),
-      to = c(nodes[2:(length(nodes)/2)],
+      from = c(nodes[1:(length(nodes) / 2)],
+               nodes[((length(nodes) / 2) + 1):length(nodes)],
+               nodes[1:(length(nodes) / 2)]),
+      to = c(nodes[2:(length(nodes) / 2)],
              nodes[1],
-             nodes[((length(nodes)/2) + 2):length(nodes)],
-             nodes[((length(nodes)/2) + 1)],
-             nodes[1:(length(nodes)/2)] + n),
+             nodes[((length(nodes) / 2) + 2):length(nodes)],
+             nodes[((length(nodes) / 2) + 1)],
+             nodes[1:(length(nodes) / 2)] + n),
       rel = rel)
 
-  n_nodes = nrow(prism_nodes)
+  n_nodes <- nrow(prism_nodes)
 
-  n_edges = nrow(prism_edges)
+  n_edges <- nrow(prism_edges)
 
   # Add edge aesthetics if available
   if (exists("edge_aes_tbl")) {
@@ -285,10 +268,10 @@ add_prism <- function(graph,
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, prism_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- prism_graph
+  } else {
+    graph <- combine_graphs(graph, prism_graph)
   }
 
   # Update the `last_node` counter
@@ -297,11 +280,14 @@ add_prism <- function(graph,
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + n_edges
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -317,8 +303,7 @@ add_prism <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

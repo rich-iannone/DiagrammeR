@@ -1,6 +1,9 @@
 #' Get the authority scores for all nodes
 #'
+#' @description
+#'
 #' Get the Kleinberg authority centrality scores for all nodes in the graph.
+#'
 #' @inheritParams render_graph
 #' @param weights_attr an optional name of the edge attribute to use in the
 #' adjacency matrix. If `NULL` then, if it exists, the `weight` edge
@@ -35,45 +38,35 @@
 #' graph %>% get_node_df()
 #'
 #' @export
-get_authority_centrality <- function(graph,
-                                     weights_attr = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_authority_centrality <- function(
+    graph,
+    weights_attr = NULL
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  if (!is.null(weights_attr)) {
+  # if weights_attr is not NULL and character
+  if (inherits(weights_attr, "character")) {
 
-    if (inherits(weights_attr, "character")) {
+    # Stop function if the edge attribute does not exist
+    if (!(weights_attr %in% colnames(graph$edges_df))) {
 
-      # Stop function if the edge attribute does not exist
-      if (!(weights_attr %in% colnames(graph$edges_df))) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights does not exist in the graph")
-      }
-
-      # Stop function if the edge attribute is not numeric
-      if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
-
-        emit_error(
-          fcn_name = fcn_name,
-          reasons = "The edge attribute to be used as weights is not numeric")
-      }
-
-      weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
+      cli::cli_abort(
+        "The edge attribute to be used as weights must exist in the graph.")
     }
+
+    # Stop function if the edge attribute is not numeric
+    if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
+
+      cli::cli_abort(
+        "The edge attribute to be used as weights must be numeric.")
+    }
+
+    weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]
   }
 
   # Get the authority centrality values for

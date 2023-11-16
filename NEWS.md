@@ -1,4 +1,34 @@
-# DiagrammeR 1.0.6.9000 (Unreleased)
+# DiagrammeR (development version)
+
+* DiagrammeR nows uses testthat 3rd edition (@olivroy, #498)
+
+* No longer use deprecated features from tibble, igraph and tidyselect (>= 1.2.0) (@olivroy, #497, #507)
+
+* Error messages have been reviewed and now use cli (@olivroy, #499, #502)
+
+* It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
+
+* `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
+
+# DiagrammeR 1.0.10
+
+* Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions.
+
+# DiagrammeR 1.0.9
+
+* More safely check inputs to `grViz()` and `mermaid()`
+
+# DiagrammeR 1.0.8
+
+* Reduce minimum R version requirement.
+
+# DiagrammeR 1.0.7
+
+* Fix malformed CSS selector in `htmlwidgets/grViz.js`
+
+* Only call `replace_na(replace = "")` on character columns
+
+* Added the `envir` argument to the `grViz` and `replace_in_spec` functions.
 
 # DiagrammeR 1.0.6.1
 
@@ -118,7 +148,7 @@
 
 * Degree data for plots can now be easily obtained using the `get_degree_distribution()` and `get_degree_histogram()` functions
 
-* Global graph attributes are now more easily modifiable using a set of functions for this purpose: `add_global_graph_attrs()`, `clear_global_graph_attrs()`, `delete_global_graph_attrs()`, `get_global_graph_attrs()`, `set_global_graph_attrs()`
+* Global graph attributes are now more easily modifiable using a set of functions for this purpose: `add_global_graph_attrs()`, `delete_global_graph_attrs()`, `get_global_graph_attr_info()`.
 
 * Added option to display different text labels on nodes via the `display` node attribute; this is easily set with the `set_node_attr_to_display()` function
 

@@ -1,5 +1,7 @@
 #' Is the edge a loop edge?
 #'
+#' @description
+#'
 #' Determines whether an edge definition is a loop edge.
 #'
 #' @inheritParams render_graph
@@ -33,45 +35,19 @@
 #' graph %>% is_edge_loop(edge = 2)
 #'
 #' @export
-is_edge_loop <- function(graph,
-                         edge) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+is_edge_loop <- function(
+    graph,
+    edge
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Validation: Graph contains edges
-  if (graph_contains_edges(graph) == FALSE) {
+  check_graph_contains_edges(graph)
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph contains no edges")
-  }
-
-  # Stop function if more than one value
-  # provided for `edge`
-  if (length(edge) > 1) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Only a single edge ID should be provided in `edge`")
-  }
-
-  # Stop function if the value provided
-  # in `edge` is not numeric
-  if (!is.numeric(edge)) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The value provided in `edge` should be numeric")
-  }
+  # Validation: Stop function if `edge` is not a single numeric value.
+  check_number_decimal(edge)
 
   # Obtain the graph's edf
   edf <- graph$edges_df
@@ -80,21 +56,20 @@ is_edge_loop <- function(graph,
   # is not a valid edge ID
   if (!(edge %in% edf$id)) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The provided edge ID is not present in the graph")
+    cli::cli_abort(
+      "The provided edge ID is not present in the graph.")
   }
 
   # Obtain the edge definition
   from <-
     edf %>%
     dplyr::filter(id == !!edge) %>%
-    dplyr::pull(from)
+    dplyr::pull("from")
 
   to <-
     edf %>%
     dplyr::filter(id == !!edge) %>%
-    dplyr::pull(to)
+    dplyr::pull("to")
 
   # If the `from` and `to` node IDs
   # are the same then this is a loop edge

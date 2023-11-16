@@ -1,5 +1,3 @@
-context("Rendering a graph object")
-
 test_that("rendering a graph is indeed possible", {
 
   # Create a node data frame
@@ -36,7 +34,7 @@ test_that("rendering a graph is indeed possible", {
 
   # Expect that the `rendered_graph` object inherits
   # from `grViz` & `htmlwidget`
-  expect_is(
+  expect_s3_class(
     rendered_graph, c("grViz", "htmlwidget"))
 })
 

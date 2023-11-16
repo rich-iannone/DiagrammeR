@@ -1,5 +1,7 @@
 #' Create a graph series object
 #'
+#' @description
+#'
 #' Create a graph series object for the storage of multiple graphs across a
 #' sequential or temporal one-dimensional array.
 #'
@@ -41,21 +43,15 @@
 #'   count_graphs_in_graph_series()
 #'
 #' @export
-create_graph_series <- function(graph = NULL,
-                                series_name = NULL,
-                                series_type = "sequential") {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+create_graph_series <- function(
+    graph = NULL,
+    series_name = NULL,
+    series_type = "sequential"
+) {
 
   # Validation: Graph object is valid
   if (!is.null(graph))  {
-    if (graph_object_valid(graph) == FALSE) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The graph object is not valid")
-    }
+    check_graph_valid(graph)
   }
 
   # Initialize an empty graph series object

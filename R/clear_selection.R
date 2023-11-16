@@ -1,5 +1,7 @@
 #' Clear an active selection of nodes or edges
 #'
+#' @description
+#'
 #' Clear the selection of nodes or edges within a graph object.
 #'
 #' @inheritParams render_graph
@@ -40,16 +42,8 @@ clear_selection <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Obtain the input graph's node and edge
   # selection properties
@@ -60,11 +54,14 @@ clear_selection <- function(graph) {
   graph$node_selection <- create_empty_nsdf()
   graph$edge_selection <- create_empty_esdf()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
-      version_id = nrow(graph$graph_log) + 1,
+      version_id = nrow(graph$graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -78,8 +75,7 @@ clear_selection <- function(graph) {
 
   # Emit a message about the modification of a selection
   # if that option is set
-  if (!is.null(graph$graph_info$display_msgs) &&
-      graph$graph_info$display_msgs) {
+  if (isTRUE(graph$graph_info$display_msgs)) {
 
     # Issue a message to the user
     if (n_e_select_properties_in[["selection_count"]] > 0) {

@@ -1,4 +1,4 @@
-context("Creating and combining node data frames")
+# Creating and combining node data frames
 
 test_that("a correct node data frame is generated", {
   # Create 'nodes_1' node data frame
@@ -35,16 +35,16 @@ test_that("a correct node data frame is generated", {
   expect_equal(ncol(nodes_2), 7)
 
   # Expect that 'label = NULL' produces blank label columns
-  expect_equal(nodes_1$label, rep(as.character(NA), 4))
-  expect_equal(nodes_2$label, rep(as.character(NA), 4))
+  expect_equal(nodes_1$label, rep(NA_character_, 4))
+  expect_equal(nodes_2$label, rep(NA_character_, 4))
 
   # Expect that a single value repeats across rows
-  expect_true(all(nodes_1$type == rep("lower", 4)))
-  expect_true(all(nodes_2$color == rep("red", 4)))
+  expect_equal(nodes_1$type, rep("lower", 4))
+  expect_equal(nodes_2$color, rep("red", 4))
 
   # Expect that the numeric `data` values are numeric
-  expect_is(nodes_1$data, "numeric")
-  expect_is(nodes_2$data, "numeric")
+  expect_type(nodes_1$data, "double")
+  expect_type(nodes_2$data, "double")
 
   # Create a node data frame using a vector with length > 1 and
   # length < length(from | to)
@@ -53,7 +53,7 @@ test_that("a correct node data frame is generated", {
                    color = c("green", "green"))
 
   # Expect that a data frame is generated
-  expect_is(nodes_var_1, "data.frame")
+  expect_s3_class(nodes_var_1, "data.frame")
 
   # Expect that the data frame has 4 rows
   expect_equal(nrow(nodes_var_1), 4)
@@ -73,7 +73,7 @@ test_that("a correct node data frame is generated", {
     )
 
   # Expect that a data frame is generated
-  expect_is(nodes_var_2, "data.frame")
+  expect_s3_class(nodes_var_2, "data.frame")
 
   # Expect that the data frame has 4 rows
   expect_equal(nrow(nodes_var_2), 4)
@@ -83,11 +83,12 @@ test_that("a correct node data frame is generated", {
   expect_equal(nodes_var_2$color,
                c("green", "green", "green", "green"))
 
-  # Expect an error if not supplying an integer
-  expect_error(create_node_df(n = "a"))
-
-  # Expect an error if supplying 2 values for `n`
-  expect_error(create_node_df(n = c(1, 2)))
+  # Expect an error if not supplying an integer or
+  # supplying 2 values for `n`
+  expect_snapshot(error = TRUE, {
+    create_node_df(n = "a")
+    create_node_df(n = c(1, 2))
+  })
 
   # Create a node data frame using a vector with
   # `type` having length > n
@@ -128,28 +129,25 @@ test_that("node data frames can be successfully combined", {
   # Combine the 2 node data frames
   all_nodes <- combine_ndfs(ndf_1, ndf_2)
 
-  # Expect that the combined node data frame has 8 rows
-  expect_equal(nrow(all_nodes), 8)
-
-  # Expect that the combined node data frame has 7 columns
-  expect_equal(ncol(all_nodes), 7)
+  # Expect that the combined node data frame has 8 rows and 7 columns
+  expect_equal(dim(all_nodes), c(8, 7))
 
   # Expect that the 'label' columns has spaces for labels
-  expect_equal(all_nodes$label, rep(as.character(NA), 8))
+  expect_equal(all_nodes$label, rep(NA_character_, 8))
 
   # Expect that the rows combined correctly
-  expect_true(all(all_nodes[, 1] ==
-                    c(1, 2, 3, 4, 5, 6, 7, 8)))
-  expect_true(all(c(ndf_1[, 2], ndf_2[, 2]) ==
-                    all_nodes[, 2]))
+  expect_equal(all_nodes[, 1],
+               c(1, 2, 3, 4, 5, 6, 7, 8))
+  expect_equal(c(ndf_1[, 2], ndf_2[, 2]),
+              all_nodes[, 2])
   expect_equal(c(ndf_1[, 3], ndf_2[, 3]),
                all_nodes[, 3])
-  expect_true(all(c(ndf_1[, 4], ndf_2[, 4]) ==
-                    all_nodes[, 4]))
-  expect_true(all(c(ndf_1[, 5], ndf_2[, 5]) ==
-                    all_nodes[, 5]))
-  expect_true(all(c(ndf_1[, 6], ndf_2[, 6]) ==
-                    all_nodes[, 6]))
-  expect_true(all(c(ndf_1[, 7], ndf_2[, 7]) ==
-                    all_nodes[, 7]))
+  expect_equal(c(ndf_1[, 4], ndf_2[, 4]),
+               all_nodes[, 4])
+  expect_equal(c(ndf_1[, 5], ndf_2[, 5]),
+               all_nodes[, 5])
+  expect_equal(c(ndf_1[, 6], ndf_2[, 6]),
+               all_nodes[, 6])
+  expect_equal(c(ndf_1[, 7], ndf_2[, 7]),
+              all_nodes[, 7])
 })

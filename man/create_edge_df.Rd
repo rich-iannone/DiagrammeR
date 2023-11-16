@@ -25,8 +25,6 @@ Combine several vectors for edges and their attributes into a data frame,
 which can be combined with other similarly-generated data frames, or, added
 to a graph object. An edge data frame, or edf, has at least the following
 columns:
-}
-\details{
 \itemize{
 \item \code{id} (of type \code{integer})
 \item \code{from} (of type \code{integer})
@@ -67,7 +65,7 @@ edf
 
 }
 \seealso{
-Other Edge creation and removal: 
+Other edge creation and removal: 
 \code{\link{add_edge_clone}()},
 \code{\link{add_edge_df}()},
 \code{\link{add_edges_from_table}()},
@@ -93,4 +91,4 @@ Other Edge creation and removal:
 \code{\link{set_edge_attrs_ws}()},
 \code{\link{set_edge_attrs}()}
 }
-\concept{Edge creation and removal}
+\concept{edge creation and removal}

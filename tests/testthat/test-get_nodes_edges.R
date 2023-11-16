@@ -1,4 +1,4 @@
-context("Getting node IDs from the entire graph or within edges")
+# Getting node IDs from the entire graph or within edges")
 
 test_that("getting node IDs from various objects is possible", {
 
@@ -14,7 +14,7 @@ test_that("getting node IDs from various objects is possible", {
         rep("a_to_g", 7),
         rep("h_to_p", 9),
         rep("q_to_x", 8),
-        rep("y_and_z",2)))
+        rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
@@ -35,24 +35,26 @@ test_that("getting node IDs from various objects is possible", {
   gotten_nodes <- get_node_ids(graph)
 
   # Expect an `integer` vector object
-  expect_is(
+  expect_type(
     gotten_nodes, "integer")
 
   # Expect that the integer vector object
   # has no names
-  expect_null(
-    names(gotten_nodes))
+  expect_named(gotten_nodes, NULL)
 
   # Expect a vector that is sequence
   # from `1` to `26`
-  expect_true(
-    all(1:26 == gotten_nodes))
+  expect_equal(
+    gotten_nodes,
+    1:26
+  )
 
   # Expect that `get_node_ids()` when
   # used on an empty graph returns NA
   expect_true(
     create_graph() %>%
-      get_node_ids() %>% is.na())
+      get_node_ids() %>%
+      is.na())
 
   # Expect that `get_node_ids()` when
   # used on graph where the conditions
@@ -91,17 +93,18 @@ test_that("getting node IDs from various objects is possible", {
         type == "h_to_p")
 
   # Expect an `integer` vector object
-  expect_is(
+  expect_type(
     gotten_nodes_w_condition, "integer")
 
   # Expect that the integer vector object
   # has no names
-  expect_null(
-    names(gotten_nodes_w_condition))
+  expect_named(gotten_nodes_w_condition, NULL)
 
-  # Expect a vector that is sequence from `1` to `26`
-  expect_true(
-    all(8:16 == gotten_nodes_w_condition))
+  # Expect a vector that is sequence from `8` to `16`
+  expect_equal(
+    gotten_nodes_w_condition,
+    8:16
+  )
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
@@ -118,7 +121,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
@@ -141,25 +144,23 @@ test_that("getting node IDs associated within a graph's edges is possible", {
     get_edges(graph, return_type = "list")
 
   # Expect a list object
-  expect_is(
+  expect_type(
     gotten_edges_list, "list")
 
   # Expect that the list is of length 2
-  expect_true(
-    length(gotten_edges_list) == 2)
+  expect_length(gotten_edges_list, 2)
 
   # Expect integer vectors of length 26
   # in `gotten_edges_list`
-  expect_true(
-    length(gotten_edges_list[[1]]) == 26)
+  expect_length(gotten_edges_list[[1]], 26)
 
-  expect_is(
+  expect_type(
     gotten_edges_list[[1]], "integer")
 
-  expect_true(
-    length(gotten_edges_list[[2]]) == 26)
+  expect_length(
+    gotten_edges_list[[2]], 26)
 
-  expect_is(
+  expect_type(
     gotten_edges_list[[2]], "integer")
 
   # Get the `outgoing` and `incoming` node ID values
@@ -170,23 +171,23 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       return_type = "df")
 
   # Expect a data frame object
-  expect_is(
+  expect_s3_class(
     gotten_edges_df, "data.frame")
 
   # Expect that the data frame has 2 columns
-  expect_true(
-    ncol(gotten_edges_df) == 2)
+  expect_equal(
+    ncol(gotten_edges_df), 2)
 
   # Expect columns of class `integer` and that there
   # are 26 rows in `gotten_edges_df`
-  expect_is(
+  expect_type(
     gotten_edges_df[, 1], "integer")
 
-  expect_is(
+  expect_type(
     gotten_edges_df[, 2], "integer")
 
-  expect_true(
-    nrow(gotten_edges_df) == 26)
+  expect_equal(
+    nrow(gotten_edges_df), 26)
 
   # Get the `outgoing` and `incoming` node ID values
   # in a vector object
@@ -195,28 +196,25 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       graph = graph,
       return_type = "vector")
 
-  # Expect a vector object of class `character`
-  expect_is(
-    gotten_edges_vector, "character")
-
-  # Expect that the vector object is of length 26
-  expect_true(
-    length(gotten_edges_vector) == 26)
+  # Expect a vector object of class `character` of length 26
+  expect_type(gotten_edges_vector, "character")
+  expect_length(gotten_edges_vector, 26)
 
   # Expect that the '->' substring is in
   # each vector component
-  expect_true(
-    all(grepl("->", gotten_edges_vector)))
+  expect_match(
+    gotten_edges_vector,
+    "->"
+  )
 
   # Get the edge df from the graph using `get_edge_df()`
   edge_df_from_graph <- get_edge_df(graph)
 
   # Expect that using `get_edge_df()` on a graph
   # with no edges will return an empty data frame
-  expect_equal(
-    nrow(
-      get_edge_df(
-        create_graph(nodes_df = create_node_df(1)))), 0)
+
+  edge_df <- get_edge_df(create_graph(nodes_df = create_node_df(1)))
+  expect_equal(nrow(edge_df), 0)
 })
 
 test_that("getting edge information from a graph with no edges is possible ", {
@@ -235,7 +233,7 @@ test_that("getting edge information from a graph with no edges is possible ", {
       return_type = "vector")
 
   # Expect a vector object of class `logical`
-  expect_is(
+  expect_type(
     edges_vector_from_graph_no_edges, "logical")
 
   # Expect that an NA is returned
@@ -285,7 +283,7 @@ test_that("getting an ndf based on a selection of nodes is possible", {
   # to output generated by `get_node_df()`
   expect_identical(
     ndf_subset %>% colnames(),
-    graph %>% get_node_df %>% colnames())
+    graph %>% get_node_df() %>% colnames())
 
   # Expect that there are 2 nodes
   # in `ndf_subset`
@@ -326,7 +324,7 @@ test_that("getting an edf based on a selection of edges is possible", {
   # to output generated by `get_edge_df()`
   expect_identical(
     edf_subset %>% colnames(),
-    graph %>% get_edge_df %>% colnames())
+    graph %>% get_edge_df() %>% colnames())
 
   # Expect that there are 2 edges
   # in `edf_subset`

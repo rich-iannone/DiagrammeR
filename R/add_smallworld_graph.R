@@ -1,5 +1,7 @@
 #' Add a Watts-Strogatz small-world graph
 #'
+#' @description
+#'
 #' To an existing graph object, add a graph built according to the
 #' Watts-Strogatz small-world model, which uses a lattice along with a rewiring
 #' probability to randomly modify edge definitions.
@@ -47,35 +49,29 @@
 #' smallworld_graph %>% count_edges()
 #'
 #' @export
-add_smallworld_graph <- function(graph,
-                                 dimension,
-                                 size,
-                                 neighborhood,
-                                 p,
-                                 loops = FALSE,
-                                 multiple = FALSE,
-                                 type = NULL,
-                                 label = TRUE,
-                                 rel = NULL,
-                                 node_aes = NULL,
-                                 edge_aes = NULL,
-                                 node_data = NULL,
-                                 edge_data = NULL,
-                                 set_seed = NULL) {
+add_smallworld_graph <- function(
+    graph,
+    dimension,
+    size,
+    neighborhood,
+    p,
+    loops = FALSE,
+    multiple = FALSE,
+    type = NULL,
+    label = TRUE,
+    rel = NULL,
+    node_aes = NULL,
+    edge_aes = NULL,
+    node_data = NULL,
+    edge_data = NULL,
+    set_seed = NULL
+) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # If a seed value is supplied, set a seed
   if (!is.null(set_seed)) {
@@ -123,7 +119,7 @@ add_smallworld_graph <- function(graph,
 
   # If `label` is requested, use the node ID to
   # create a unique label for all new nodes
-  if (label == TRUE) {
+  if (label) {
     sample_smallworld_graph$nodes_df$label <-
       sample_smallworld_graph$nodes_df$id %>% as.character()
   }
@@ -139,17 +135,15 @@ add_smallworld_graph <- function(graph,
 
     if (nrow(node_aes_tbl) < nrow(sample_smallworld_graph$nodes_df)) {
 
-      node_aes$index__ <- 1:nrow(sample_smallworld_graph$nodes_df)
+      node_aes$index__ <- seq_len(nrow(sample_smallworld_graph$nodes_df))
 
       node_aes_tbl <-
         dplyr::as_tibble(node_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_aes_tbl)) {
-      node_aes_tbl <-
-        node_aes_tbl %>%
-        dplyr::select(-id)
+      node_aes_tbl$id <- NULL
     }
   }
 
@@ -160,17 +154,15 @@ add_smallworld_graph <- function(graph,
 
     if (nrow(node_data_tbl) < nrow(sample_smallworld_graph$nodes_df)) {
 
-      node_data$index__ <- 1:nrow(sample_smallworld_graph$nodes_df)
+      node_data$index__ <- seq_len(nrow(sample_smallworld_graph$nodes_df))
 
       node_data_tbl <-
         dplyr::as_tibble(node_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(node_data_tbl)) {
-      node_data_tbl <-
-        node_data_tbl %>%
-        dplyr::select(-id)
+      node_data_tbl$id <- NULL
     }
   }
 
@@ -181,17 +173,15 @@ add_smallworld_graph <- function(graph,
 
     if (nrow(edge_aes_tbl) < nrow(sample_smallworld_graph$edges_df)) {
 
-      edge_aes$index__ <- 1:nrow(sample_smallworld_graph$edges_df)
+      edge_aes$index__ <- seq_len(nrow(sample_smallworld_graph$edges_df))
 
       edge_aes_tbl <-
         dplyr::as_tibble(edge_aes) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_aes_tbl)) {
-      edge_aes_tbl <-
-        edge_aes_tbl %>%
-        dplyr::select(-id)
+      edge_aes_tbl$id <- NULL
     }
   }
 
@@ -202,17 +192,15 @@ add_smallworld_graph <- function(graph,
 
     if (nrow(edge_data_tbl) < nrow(sample_smallworld_graph$edges_df)) {
 
-      edge_data$index__ <- 1:nrow(sample_smallworld_graph$edges_df)
+      edge_data$index__ <- seq_len(nrow(sample_smallworld_graph$edges_df))
 
       edge_data_tbl <-
         dplyr::as_tibble(edge_data) %>%
-        dplyr::select(-index__)
+        dplyr::select(-"index__")
     }
 
     if ("id" %in% colnames(edge_data_tbl)) {
-      edge_data_tbl <-
-        edge_data_tbl %>%
-        dplyr::select(-id)
+      edge_data_tbl$id <- NULL
     }
   }
 
@@ -250,10 +238,10 @@ add_smallworld_graph <- function(graph,
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
-    graph <- combine_graphs(graph, sample_smallworld_graph)
-  } else {
+  if (is_graph_empty(graph)) {
     graph <- sample_smallworld_graph
+  } else {
+    graph <- combine_graphs(graph, sample_smallworld_graph)
   }
 
   # Update the `last_node` counter
@@ -262,11 +250,14 @@ add_smallworld_graph <- function(graph,
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + n_edges
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Update the `graph_log` df with an action
   graph_log <-
     add_action_to_log(
       graph_log = graph_log,
-      version_id = nrow(graph_log) + 1,
+      version_id = nrow(graph_log) + 1L,
       function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
@@ -282,8 +273,7 @@ add_smallworld_graph <- function(graph,
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
-      trigger_graph_actions()
+      trigger_graph_actions(graph)
   }
 
   # Write graph backup if the option is set

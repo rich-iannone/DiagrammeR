@@ -1,5 +1,7 @@
 #' Count graphs in a graph series object
 #'
+#' @description
+#'
 #' Counts the total number of graphs in a graph series object.
 #'
 #' @param graph_series A graph series object of type `dgr_graph_1D`
@@ -40,9 +42,9 @@
 #' @export
 count_graphs_in_graph_series <- function(graph_series) {
 
-  if (class(graph_series) == "dgr_graph_1D") {
+  if (inherits(graph_series, "dgr_graph_1D")) {
     if (is.null(graph_series$graphs)) {
-      return(0)
+      return(0L)
     }
     return(length(graph_series$graphs))
   }

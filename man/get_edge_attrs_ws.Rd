@@ -18,8 +18,7 @@ A named vector of edge attribute values for the attribute given by
 \description{
 From a graph object of class \code{dgr_graph}, get edge attribute values for one
 or more edges.
-}
-\details{
+
 This function makes use of an active selection of edges (and the function
 ending with \verb{_ws} hints at this).
 

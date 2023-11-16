@@ -1,5 +1,7 @@
 #' Export a graph to CSV files
 #'
+#' @description
+#'
 #' Export a graph to separate CSV files for nodes and edges.
 #'
 #' @inheritParams render_graph
@@ -45,22 +47,16 @@
 #' # graph %>% export_csv()
 #'
 #' @export
-export_csv <- function(graph,
-                       ndf_name = "nodes.csv",
-                       edf_name = "edges.csv",
-                       output_path = getwd(),
-                       colnames_type = NULL) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+export_csv <- function(
+    graph,
+    ndf_name = "nodes.csv",
+    edf_name = "edges.csv",
+    output_path = getwd(),
+    colnames_type = NULL
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   nodes_df <- get_node_df(graph)
   edges_df <- get_edge_df(graph)
@@ -97,13 +93,11 @@ export_csv <- function(graph,
   # Write the CSV files to the output directory
   utils::write.csv(
     nodes_df,
-    file = paste0(output_path,
-                  "/", ndf_name),
+    file = file.path(output_path, ndf_name, fsep = "/"),
     row.names = FALSE, quote = FALSE)
 
   utils::write.csv(
     edges_df,
-    file = paste0(output_path,
-                  "/", edf_name),
+    file = file.path(output_path, edf_name, fsep = "/"),
     row.names = FALSE, quote = FALSE)
 }

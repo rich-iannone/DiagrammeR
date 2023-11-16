@@ -1,5 +1,7 @@
 #' Get a node data frame from a graph
 #'
+#' @description
+#'
 #' From a graph, obtain a node data frame with all current node attributes.
 #'
 #' @inheritParams render_graph
@@ -42,17 +44,6 @@
 #'
 #' @export
 get_node_df <- function(graph) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
-
+  check_graph_valid(graph)
   graph$nodes_df
 }

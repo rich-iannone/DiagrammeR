@@ -1,5 +1,7 @@
 #' Get Jaccard similarity coefficient scores
 #'
+#' @description
+#'
 #' Get the Jaccard similarity coefficient scores for one or more nodes in a
 #' graph.
 #'
@@ -35,84 +37,46 @@
 #'     nodes = 5:7)
 #'
 #' @export
-get_jaccard_similarity <- function(graph,
-                                   nodes = NULL,
-                                   direction = "all",
-                                   round_to = 3) {
-
-  # Get the name of the function
-  fcn_name <- get_calling_fcn()
+get_jaccard_similarity <- function(
+    graph,
+    nodes = NULL,
+    direction = "all",
+    round_to = 3
+) {
 
   # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "The graph object is not valid")
-  }
+  check_graph_valid(graph)
 
   # Ensure that values provided for the
   # `direction` argument are from the
   # valid options
-  if (!(direction %in% c("all", "in", "out"))) {
+  arg_match0(direction, c("all", "in", "out"))
+  # Stop function if nodes provided not in
+  # the graph
+  if (!is.null(nodes) && !all(nodes %in% get_node_ids(graph))) {
 
-    emit_error(
-      fcn_name = fcn_name,
-      reasons = "Valid options for `direction` are `all`, `in`, or `out`")
-  }
+      cli::cli_abort("One or more nodes provided not in graph.")
+    }
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  if (is.null(nodes)) {
-    ig_nodes <- igraph::V(ig_graph)
-  }
+  ig_nodes <- igraph::V(ig_graph)
 
+  # Get an igraph representation of node ID values
   if (!is.null(nodes)) {
-
-    # Stop function if nodes provided not in
-    # the graph
-    if (!all(nodes %in% get_node_ids(graph))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "One or more nodes provided not in graph")
-    }
-
-    # Get an igraph representation of node ID values
-    ig_nodes <- igraph::V(ig_graph)[nodes]
+    ig_nodes <- ig_nodes[nodes]
   }
 
   # Get the Jaccard similarity scores
-  if (direction == "all") {
-    j_sim_values <-
-      as.matrix(
-        igraph::similarity(
-          ig_graph,
-          vids = ig_nodes,
-          mode = "all",
-          method = "jaccard"))
-  }
-
-  if (direction == "out") {
-    j_sim_values <-
-      as.matrix(
-        igraph::similarity(
-          ig_graph,
-          vids = ig_nodes,
-          mode = "out",
-          method = "jaccard"))
-  }
-
-  if (direction == "in") {
-    j_sim_values <-
-      as.matrix(
-        igraph::similarity(
-          ig_graph,
-          vids = ig_nodes,
-          mode = "in",
-          method = "jaccard"))
-  }
+  # with mode = either "in", "out", or "all". (direction)
+  j_sim_values <-
+    as.matrix(
+      igraph::similarity(
+        graph = ig_graph,
+        vids  = ig_nodes,
+        mode  = direction,
+        method = "jaccard"))
 
   if (is.null(nodes)) {
     row.names(j_sim_values) <- graph$nodes_df$id

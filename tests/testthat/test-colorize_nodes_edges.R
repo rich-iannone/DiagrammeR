@@ -1,4 +1,4 @@
-context("Colorizing based on node and edge attrs")
+# Colorizing based on node and edge attrs
 
 test_that("Adding color based on node attributes is possible", {
 
@@ -33,8 +33,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `fillcolor` column has
   # been created in the node data frame
-  expect_true(
-    "fillcolor" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "fillcolor")
 
   # Expect that there are as many different
   # colors in the `fillcolor` column as there
@@ -65,8 +64,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `color` column has
   # been created in the node data frame
-  expect_true(
-    "color" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "color")
 
   # Expect that there are as many different
   # colors in the `color` column as there
@@ -106,15 +104,11 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that the `fillcolor` column has
   # been created in the node data frame
-  expect_true(
-    "fillcolor" %in% colnames(graph$nodes_df))
+  expect_contains(colnames(graph$nodes_df), "fillcolor")
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `fillcolor`
   # column is a properly-formed hexadecimal color
@@ -141,10 +135,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `color` column
   # is a properly-formed hexadecimal color code
@@ -171,10 +162,7 @@ test_that("Adding color based on node attributes is possible", {
 
   # Expect that there are 5 colors in the
   # `fillcolor` column
-  expect_equal(
-    length(
-      unique(
-        graph$nodes_df$fillcolor)), 5)
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
 
   # Expect that each value in the `fillcolor`
   # column is a properly-formed hexadecimal color
@@ -182,6 +170,50 @@ test_that("Adding color based on node attributes is possible", {
   expect_match(
     graph$nodes_df$fillcolor,
     "#[0-9A-F]{6}")
+
+  # Bucketize as before but color according to hexadecimal vector input
+  # Includes one valid hex color not in x11_hex()
+  graph <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
+      set_seed = 23) %>%
+    colorize_node_attrs(
+      node_attr_from = value,
+      node_attr_to = fillcolor,
+      cut_points = c(1, 3, 5, 7, 9),
+      palette = c("#64ccc9", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
+                  "#698b69", "#cd2626", "#4a4a4a"))
+
+  # Expect that there are 5 colors in the
+  # `fillcolor` column
+  expect_length(unique(graph$nodes_df$fillcolor), 5)
+
+  # Expect that each value in the `fillcolor`
+  # column is a properly-formed hexadecimal color
+  # code
+  expect_match(
+    graph$nodes_df$fillcolor,
+    "#[0-9A-F]{6}")
+
+  # Expect error when given mix of valid and invalid hexadecimal colors
+  expect_error(
+    create_graph() %>%
+      add_gnm_graph(
+        n = 10,
+        m = 22,
+        node_data = node_data(
+          value = 1:10),
+        set_seed = 23) %>%
+      colorize_node_attrs(
+        node_attr_from = value,
+        node_attr_to = fillcolor,
+        cut_points = c(1, 3, 5, 7, 9),
+        palette = c("458b00l15", "foo", "#00eeee", "bar", "orange")))
+
 })
 
 test_that("Adding color based on edge attributes is possible", {
@@ -217,11 +249,10 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that the `color` and `fontcolor`
   # columns have been created in the edf
-  expect_true(
-    "color" %in% colnames(graph$edges_df))
-
-  expect_true(
-    "fontcolor" %in% colnames(graph$edges_df))
+  expect_contains(
+    colnames(graph$edges_df),
+    c("color", "fontcolor")
+  )
 
   # Expect that there are as many different
   # colors in the `color` and `fontcolor`
@@ -261,13 +292,14 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that the `labelfontcolor` column has
   # been created in the edge data frame
-  expect_true(
-    "labelfontcolor" %in% colnames(graph$edges_df))
+  expect_contains(
+    colnames(graph$edges_df),
+    "labelfontcolor"
+    )
 
   # Expect that there are 4 colors in the
   # `labelfontcolor` column
-  expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+  expect_length(unique(graph$edges_df$labelfontcolor), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -305,8 +337,7 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that there are 4 colors in the
   # `labelfontcolor` column
-  expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+  expect_length(unique(graph$edges_df$labelfontcolor), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -342,8 +373,9 @@ test_that("Adding color based on edge attributes is possible", {
 
   # Expect that there are 6 colors in the
   # `labelfontcolor` column
-  expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 6)
+  expect_length(
+    unique(graph$edges_df$labelfontcolor),
+    6)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -351,4 +383,49 @@ test_that("Adding color based on edge attributes is possible", {
   expect_match(
     graph$edges_df$labelfontcolor,
     "#[0-9A-F]{6}")
+
+  # Color edges according to hexadecimal vector input
+  # Includes one valid hex color not in x11_hex()
+  graph <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      edge_data = edge_data(
+        weight = rnorm(10, 5, 2)),
+      set_seed = 23) %>%
+    set_edge_attrs(
+      edge_attr = "rel",
+      values = c("A", "A", "B", "B", "D",
+                 "A", "B", "C", "D", "A")) %>%
+    colorize_edge_attrs(
+      edge_attr_from = rel,
+      edge_attr_to = color,
+      palette = c("#64ccc9", "#8b3e2f", "#00eeee", "#556b2f", "#9932cc",
+                  "#698b69", "#cd2626", "#4a4a4a"))
+
+  # Expect that each value in the `color`
+  # column is a properly-formed hexadecimal color
+  # code
+  expect_match(
+    graph$edges_df$color,
+    "#[0-9A-F]{6}")
+
+  # Expect error message if given invalid hexadecimal color
+  expect_snapshot(error = TRUE,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      edge_data = edge_data(
+        weight = rnorm(10, 5, 2)),
+      set_seed = 23) %>%
+    set_edge_attrs(
+      edge_attr = "rel",
+      values = c("A", "A", "B", "B", "D",
+                 "A", "B", "C", "D", "A")) %>%
+    colorize_edge_attrs(
+      edge_attr_from = rel,
+      edge_attr_to = color,
+      palette = c("#458b00l15", "foo", "#00eeee", "bar", "orange")))
 })
