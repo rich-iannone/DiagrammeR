@@ -223,8 +223,8 @@ render_graph <- function(
     }
 
     if ("image" %in% colnames(graph %>% get_node_df()) ||
-        "fa_icon" %in% colnames(graph %>% get_node_df()) ||
-        as_svg) {
+         "fa_icon" %in% colnames(graph %>% get_node_df()) ||
+         as_svg) {
       if (as_svg && !rlang::is_installed("DiagrammeRsvg")) {
         rlang::inform("Use `as_svg = FALSE` if you don't want to install DiagrammeRsvg.")
       }
