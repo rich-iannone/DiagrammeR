@@ -436,7 +436,7 @@ numeric values.</p>
 <span></span>
 <span><span class="co"># Create a new graph from</span></span>
 <span><span class="co"># the NDF and EDF</span></span>
-<span><span class="va">graph</span> <span class="op">&lt;-</span> </span>
+<span><span class="va">graph</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="../reference/create_graph.html">create_graph</a></span><span class="op">(</span></span>
 <span>    nodes_df <span class="op">=</span> <span class="va">ndf</span>,</span>
 <span>    edges_df <span class="op">=</span> <span class="va">edf</span></span>
@@ -588,8 +588,8 @@ facilitated with the <code><a href="../reference/select_last_nodes_created.html"
 <span></span>
 <span><span class="co"># View the new graph</span></span>
 <span><span class="va">graph_2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/render_graph.html">render_graph</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5b4a6ccbf69fb98c3c97" style="width:700px;height:432.632880098888px;"></div>
-<script type="application/json" data-for="htmlwidget-5b4a6ccbf69fb98c3c97">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>The graph shows two nodes connected together. Nothing more, nothing
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-22f9ef6c8b948b8ce7c9" style="width:700px;height:432.632880098888px;"></div>
+<script type="application/json" data-for="htmlwidget-22f9ef6c8b948b8ce7c9">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>The graph shows two nodes connected together. Nothing more, nothing
 less. The more interesting views of the data are of the node and edge
 data frames, which now have several attributes set. Let’s have a look at
 the graph’s internal node data frame…</p>
@@ -597,14 +597,14 @@ the graph’s internal node data frame…</p>
 <code class="sourceCode R"><span><span class="co"># Inspect the new graph's NDF</span></span>
 <span><span class="va">graph_2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   id type label                  timestamp</span></span>
-<span><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2023-11-16 14:09:47.942924</span></span>
-<span><span class="co">#&gt; 2  2    B  &lt;NA&gt;  2023-11-16 14:09:47.97122</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  1    A  &lt;NA&gt;  2023-11-16 14:14:27.56249</span></span>
+<span><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2023-11-16 14:14:27.591211</span></span></code></pre></div>
 <p>…and let’s inspect the graph’s internal edge data frame.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Inspect the new graph's EDF</span></span>
 <span><span class="va">graph_2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   id from to rel                  timestamp</span></span>
-<span><span class="co">#&gt; 1  1    1  2  AB 2023-11-16 14:09:47.992238</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  1    1  2  AB 2023-11-16 14:14:27.612743</span></span></code></pre></div>
 <p>As can be seen, immediately invoking
 <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> or
 <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> after addition of new nodes or
