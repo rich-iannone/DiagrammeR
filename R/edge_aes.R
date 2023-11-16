@@ -99,7 +99,7 @@
 #'   `se`, `s`, `sw`, `w`, and `nw`.
 #' @param decorate If `TRUE` then attach any edge label to the edge line via a
 #'   2-segment polyline, underlining the label text and partially overlapping
-#'   the edge lines.
+#'   the edge line.
 #' @param colorscheme This attribute specifies a color scheme namespace. If
 #' defined, it specifies the context for interpreting color names.
 #' @param comment Comments are inserted into output. Device-dependent
@@ -132,6 +132,7 @@
 #' constructing a spanning tree from the root. For other layouts, a larger
 #' weight encourages the layout to make the edge length closer to that specified
 #' by the `len` attribute.
+#'
 #' @examples
 #' # Create a new graph and add
 #' # a path with several edge
