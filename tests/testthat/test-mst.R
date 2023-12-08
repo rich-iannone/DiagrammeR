@@ -1,4 +1,4 @@
-# Obtaining the minimum spanning tree of a graph")
+# Obtaining the minimum spanning tree of a graph
 
 test_that("the MST algorithm is functional", {
 

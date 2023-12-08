@@ -267,7 +267,7 @@ print.dgr_graph <- function(x, ...) {
     # the graph
     # density_str <-
     #   paste0(
-    #     "density: ", graph_info(x)$dens)
+    #     "density: ", get_graph_info(x)$dens)
 
     header_str <-
       paste0(
@@ -498,7 +498,6 @@ print.dgr_graph <- function(x, ...) {
   info_labels_edge_df_length <- nchar(info_labels["get_edge_df"])[[1]]
   info_labels_selection_length <- nchar(info_labels["get_selection"])[[1]]
   info_labels_cache_length <- nchar(info_labels["get_cache"])[[1]]
-  info_labels_attr_dfs_length <- nchar(info_labels["get_attr_dfs"])[[1]]
   info_labels_global_graph_attrs <- nchar(info_labels["get_global_graph_attr_info"])[[1]]
 
   if (console_width - node_detail_str_1_length - info_labels_node_df_length >= 5) {

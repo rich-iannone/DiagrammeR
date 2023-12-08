@@ -12,7 +12,7 @@
 
 # DiagrammeR 1.0.10
 
-* Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions.
+* Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions. (#486)
 
 # DiagrammeR 1.0.9
 
@@ -26,9 +26,9 @@
 
 * Fix malformed CSS selector in `htmlwidgets/grViz.js`
 
-* Only call `replace_na(replace = "")` on character columns
+* Fixes for dev tidyr. Only call `replace_na(replace = "")` on character columns. (@DavisVaughan, #448)
 
-* Added the `envir` argument to the `grViz` and `replace_in_spec` functions.
+* Added the `envir` argument to the `grViz()` and `replace_in_spec()` functions. (@atusy, #408)
 
 # DiagrammeR 1.0.6.1
 
@@ -36,31 +36,66 @@
 
 # DiagrammeR 1.0.5
 
-* Removes the ability to save a DiagrammeR graph object as a Gephi file (.gexf) since the **rgexf** package is no longer maintained
+* Removes the ability to save a DiagrammeR graph object as a Gephi file (.gexf) since the **rgexf** package is no longer maintained.
 
 # DiagrammeR 1.0.0
 
 * Added the helper functions `node_aes()`, `node_data()`, `edge_aes()`, and `edge_data()` to facilitate the binding of node and edge aesthetic and data attribute values; several functions now have namesake arguments that accept these functions' output.
 
+* Added traversal functions `trav_in_until()` and `trav_out_until()`.
+
 * Information about the graph is now displayed in the console when the graph object is called
 
-* Error messages are now more helpful and try to provide pointers for the more common errors
+* Error messages are now more helpful and try to provide pointers for the more common errors.
+
+## Deprecated
+
+* `create_complement_graph()` is deprecated in favor of `create_graph()`  + `transform_to_complement_graph()`.
+
+* `create_subgraph_ws()` is deprecated in favor of `create_graph()` + `transform_to_subgraph_ws()`.
+
+* `edge_rel()` is deprecated in favor of `graph$edges_df$rel` for edge relationships.
+
+* `create_random_graph()` is deprecated in favor of `create_graph()` + `add_gnm_graph()`, `add_growing_graph()`, `add_islands_graph()`, `add_smallworld_graph()` for the creation of randomized graphs.
+
+## Functions renamed: (old functions were removed)
+
+* `add_to_series()` -> `add_graph_to_graph_series()`
+* `remove_from_series()` -> `remove_graph_from_graph_series()`
+* `get_graph_from_series()` -> `get_graph_from_graph_series()`
+* `create_series()` -> `create_graph_series()`
+* `subset_series()` -> `filter_graph_series()`
+* `render_graph_from_series()` ->  `render_graph_from_graph_series()`
+* `series_info()` -> `get_graph_series_info()`
+* `graph_count()` -> `count_graphs_in_graph_series()`
+* `graph_info()` -> `get_graph_info()`
+* `node_present()` -> `is_node_present()`
+* `edge_present()` -> `is_edge_present()`
+* `edge_count()` -> `count_edges()`
+* `node_count()` -> `count_nodes()`
+* `edge_info()` -> `get_edge_info()`
+* `node_info()` -> `get_node_info()`
+* `node_type()` -> `get_node_attrs()`
+* `get_global_graph_attrs()` ->  `get_global_graph_attr_info()`
+* `get_min_spanning_tree()` -> `transform_to_min_spanning_tree()`
+
+## Functions removed:
+
+`cache_edge_attrs()`, `cache_edge_attrs_ws()`, `cache_edge_count_ws()`, `cache_node_attrs()`, `cache_node_attrs_ws()`, `cache_node_count_ws()`, `clear_global_graph_attrs()`, `image_icon()`, `set_global_graph_attrs()`.
+
+## Functions added
+
+`add_node_clones_ws()`, `count_loop_edges()`,
+`count_s_connected_cmpts()`, `count_unconnected_nodes()`, `count_w_connected_cmpts()`, 
+`delete_cache()`, `delete_loop_edges_ws()`, `deselect_edges()`, `deselect_nodes()`,
+`fully_connect_nodes_ws()`, `fully_disconnect_nodes_ws()`, `get_edge_df_ws()`,  `get_node_df_ws()`, 
+`is_graph_undirected()`,  `set_graph_directed()`,  `set_edge_attr_to_display()`
 
 # DiagrammeR 0.9.2
 
 * Added functions to generate 2D and 3D grid graphs (`add_grid_2d()` and `add_grid_3d()`)
 
-* Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
-
-* Incorporated an `edges` argument into the `select_edges()` function in order to filter the selection of edges to a set of edge ID values
-
-* Reduced the dependency on R to version >= 3.2.0
-
-# DiagrammeR 0.9.2
-
-* Added functions to generate 2D and 3D grid graphs (`add_grid_2d()` and `add_grid_3d()`)
-
-* Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
+* Added `_ws()` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
 
 * Incorporated an `edges` argument into the `select_edges()` function in order to filter the selection of edges to a set of edge ID values
 
@@ -110,7 +145,7 @@
 
 * Several graph generators are available for quickly adding graph primitives to a graph object (`add_balanced_tree()`, `add_cycle()`, `add_full_graph()`, `add_path()`, `add_prism()`, and `add_star()`)
 
-* All traversal functions can now migrate numeric node or edge attribute values to the traversed edges (e.g., `trav_out_edge()`, `trav_in_node()`) by providing an attribute name to `copy_attrs_from`; for those traversal functions where nodes or edges may receive multiple values, one can specify an aggregation type in their `agg` argument (e.g,. `trav_in_node()`, `trav_both_edge()`)
+* All traversal functions can now migrate numeric node or edge attribute values to the traversed edges (e.g., `trav_out_edge()`, `trav_in_node()`) by providing an attribute name to `copy_attrs_from()`; for those traversal functions where nodes or edges may receive multiple values, one can specify an aggregation type in their `agg` argument (e.g,. `trav_in_node()`, `trav_both_edge()`)
 
 * Multiple conditions can be specified for all traversal types and for the `select_nodes()` and `select_edges()` functions, plus, they are much easier to write
 
@@ -178,7 +213,7 @@
 
 # DiagrammeR 0.6
 
-* Added several functions to work with graphs: `create_nodes()`, `create_edges()`, `combine_nodes()`, `combine_edges()`, `scale_nodes()`, `scale_edges()`, `get_nodes()`, `node_info()`, `graphviz_graph()`, `graphviz_render()`, and `graphviz_export()`
+* Added several functions to work with graphs: `create_node_df()`, `create_edges()`, `combine_nodes()`, `combine_edges()`, `scale_nodes()`, `scale_edges()`, `get_nodes()`, `node_info()`, `graphviz_graph()`, `graphviz_render()`, and `graphviz_export()`
 
 * Removed the `graphviz_nodes_edges_df()` and `graphviz_single_df()` functions
 
