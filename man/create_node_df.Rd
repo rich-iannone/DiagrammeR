@@ -13,7 +13,7 @@ create_node_df(n, type = NULL, label = NULL, ...)
 
 \item{label}{An optional \code{label} for each node.}
 
-\item{...}{One or more vectors for associated node attributes.}
+\item{...}{Additional attributes. Some are present in \code{\link[=node_aes]{node_aes()}}}
 }
 \value{
 A node data frame (ndf).
@@ -30,7 +30,7 @@ columns:
 }
 
 An arbitrary number of additional columns containing aesthetic or data
-attributes can be part of the ndf, so long as they follow the aforementioned
+attributes can be part of the ndf, see \code{\link[=node_aes]{node_aes()}} for additional attributes that can be used with ..., so long as they follow the aforementioned
 columns.
 }
 \examples{

@@ -14,14 +14,13 @@
 #' - `label` (of type `character`)
 #'
 #' An arbitrary number of additional columns containing aesthetic or data
-#' attributes can be part of the ndf, so long as they follow the aforementioned
+#' attributes can be part of the ndf, see [node_aes()] for additional attributes that can be used with ..., so long as they follow the aforementioned
 #' columns.
 #'
 #' @param n The total number of nodes to include in the node data frame.
 #' @param type An optional `type` for each node.
 #' @param label An optional `label` for each node.
-#' @param ... One or more vectors for associated node attributes.
-#'
+#' @param ... Additional attributes. Some are present in [node_aes()]
 #' @return A node data frame (ndf).
 #'
 #' @examples
@@ -67,7 +66,7 @@ create_node_df <- function(
 ) {
 
   check_number_whole(n)
-
+  # FIXME, nothing stopping ae
   type <- type %||% rep(NA_character_, n)
 
   # Expand vectors with single values to fill to

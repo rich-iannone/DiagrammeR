@@ -15,7 +15,7 @@ length must equal that of the \code{from} vector.}
 
 \item{rel}{An optional \code{rel} label for each edge.}
 
-\item{...}{One or more vectors for associated edge attributes.}
+\item{...}{One or more vectors for associated edge attributes. Can be some of \code{\link[=edge_aes]{edge_aes()}}}
 }
 \value{
 An edge data frame (edf).
@@ -34,7 +34,7 @@ columns:
 
 An arbitrary number of additional columns containing aesthetic or data
 attributes can be part of the edf, so long as they follow the aforementioned
-columns.
+columns. Some examples are included in \code{\link[=edge_aes]{edge_aes()}}
 }
 \examples{
 # Create a simple edge data frame (edf) and
