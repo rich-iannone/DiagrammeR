@@ -572,8 +572,8 @@ node_creation_functions <- function() {
 #'
 #' @noRd
 node_deletion_functions <- function() {
-
-  c("create_subgraph_ws", "create_complement_graph",
+  # previously, create_subgraph_ws, and create_complement_graph?
+  c("transform_to_subgraph_ws", "transform_to_complement_graph",
     "delete_node", "delete_nodes_ws")
 }
 
@@ -609,8 +609,7 @@ edge_deletion_functions <- function() {
 #'
 #' @noRd
 graph_init_functions <- function() {
-
-  c("create_graph", "create_random_graph",
+  c("create_graph",
     "from_igraph", "from_adj_matrix",
     "import_graph")
 }
@@ -787,7 +786,7 @@ remove_linked_dfs <- function(graph) {
       dplyr::filter(node_edge__ == "node") %>%
       dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
-      dplyr::pull(df_id__) %>%
+      dplyr::pull("df_id__") %>%
       base::setdiff(ndf_df_ids)
 
     # If any stored data frames are associated
@@ -811,7 +810,7 @@ remove_linked_dfs <- function(graph) {
       dplyr::filter(node_edge__ == "edge") %>%
       dplyr::select("df_id__") %>%
       dplyr::distinct() %>%
-      dplyr::pull(df_id__) %>%
+      dplyr::pull("df_id__") %>%
       base::setdiff(edf_df_ids)
 
 

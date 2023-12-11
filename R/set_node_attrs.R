@@ -6,7 +6,7 @@
 #' or more nodes.
 #'
 #' @inheritParams render_graph
-#' @param node_attr The name of the attribute to set.
+#' @param node_attr The name of the attribute to set. Examples of attributes can be found in [node_aes()].
 #' @param values The values to be set for the chosen attribute for the chosen
 #'   nodes.
 #' @param nodes An optional vector of node IDs for filtering the list of nodes

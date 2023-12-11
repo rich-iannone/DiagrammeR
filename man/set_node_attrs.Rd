@@ -9,7 +9,7 @@ set_node_attrs(graph, node_attr, values, nodes = NULL)
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{The name of the attribute to set.}
+\item{node_attr}{The name of the attribute to set. Examples of attributes can be found in \code{\link[=node_aes]{node_aes()}}.}
 
 \item{values}{The values to be set for the chosen attribute for the chosen
 nodes.}

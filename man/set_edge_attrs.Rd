@@ -9,7 +9,7 @@ set_edge_attrs(graph, edge_attr, values, from = NULL, to = NULL)
 \arguments{
 \item{graph}{A graph object of class \code{dgr_graph}.}
 
-\item{edge_attr}{The name of the attribute to set.}
+\item{edge_attr}{The name of the attribute to set. Some examples are located in \code{\link[=edge_aes]{edge_aes()}}}
 
 \item{values}{The values to be set for the chosen attribute for the chosen
 edges.}

@@ -17,14 +17,14 @@
 #'
 #' An arbitrary number of additional columns containing aesthetic or data
 #' attributes can be part of the edf, so long as they follow the aforementioned
-#' columns.
+#' columns. Some examples are included in [edge_aes()]
 #'
 #' @param from A vector of node ID values from which edges are outbound. The
 #'   vector length must equal that of the `to` vector.
 #' @param to A vector of node ID values to which edges are incoming. The vector
 #'   length must equal that of the `from` vector.
 #' @param rel An optional `rel` label for each edge.
-#' @param ... One or more vectors for associated edge attributes.
+#' @param ... One or more vectors for associated edge attributes. Can be some of [edge_aes()]
 #'
 #' @return An edge data frame (edf).
 #'

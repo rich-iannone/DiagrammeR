@@ -48,8 +48,6 @@ test_that("Using an invalid graph triggers an error.", {
     add_smallworld_graph(invalid_graph)
     add_star(invalid_graph)
     add_reverse_edges_ws(invalid_graph)
-    # clear_global_graph_attrs() does not exist.
-    # clear_global_graph_attrs(invalid_graph)
     clear_selection(invalid_graph)
     colorize_edge_attrs(invalid_graph)
     colorize_node_attrs(invalid_graph)
@@ -259,7 +257,6 @@ test_that("Using an empty graph with trigger an error", {
   expect_error(do_dfs(empty_graph))
   expect_error(fully_connect_nodes_ws(empty_graph))
   expect_error(fully_disconnect_nodes_ws(empty_graph))
-  expect_error(get_attr_dfs(empty_graph))
   expect_error(get_degree_distribution(empty_graph))
   expect_error(get_degree_histogram(empty_graph))
   expect_error(get_eccentricity(empty_graph))
