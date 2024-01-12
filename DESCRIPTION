@@ -37,7 +37,7 @@ Imports:
     stringr (>= 1.4),
     tibble (>= 3.1),
     tidyr (>= 1.1),
-    viridis (>= 0.6.2),
+    viridisLite (>= 0.4.2),
     visNetwork (>= 2.1.0)
 Suggests:
     curl,
@@ -53,4 +53,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
