@@ -185,7 +185,7 @@ colorize_node_attrs <- function(
     if (palette %in% row.names(RColorBrewer::brewer.pal.info)) {
       color_palette <- RColorBrewer::brewer.pal(num_recodings, palette)
     } else if (palette == "viridis") {
-      color_palette <- viridis::viridis(num_recodings)
+      color_palette <- viridisLite::viridis(num_recodings)
       color_palette <- gsub("..$", "", color_palette)
     }
   }

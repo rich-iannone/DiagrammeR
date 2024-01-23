@@ -1,5 +1,7 @@
 # DiagrammeR (development version)
 
+* DiagrammeR now has a dependency on viridisLite instead of viridis (@olivroy, #511)
+
 * DiagrammeR nows uses testthat 3rd edition (@olivroy, #498)
 
 * No longer use deprecated features from tibble, igraph and tidyselect (>= 1.2.0) (@olivroy, #497, #507)

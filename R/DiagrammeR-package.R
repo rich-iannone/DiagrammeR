@@ -1,5 +1,4 @@
 #' @keywords internal
-#' @aliases DiagrammeR-package
 "_PACKAGE"
 
 ## usethis namespace: start
