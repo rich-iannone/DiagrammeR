@@ -25,7 +25,7 @@ Imports:
     glue (>= 1.5.0),
     htmltools (>= 0.5.2),
     htmlwidgets (>= 1.5),
-    igraph (>= 1.2.11),
+    igraph (>= 1.4.0),
     magrittr (>= 1.5),
     purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),
@@ -53,4 +53,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
