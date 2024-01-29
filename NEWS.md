@@ -12,6 +12,8 @@
 
 * `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
 
+* DiagrammeR is compatible with igraph (>= 2.0.0) (@maelle, #500)
+
 # DiagrammeR 1.0.10
 
 * Remove dependency on the **influenceR** package, which also means removing the `get_constraint()` and `get_bridging()` graph inspection functions. (#486)

@@ -1634,11 +1634,11 @@ test_that("Adding an islands graph is possible", {
       count_nodes(),
     40)
 
-  # Expect 98 edges in the graph
-  expect_equal(
-    islands_graph %>%
-      count_edges(),
-    98)
+  # Expect more than 90 edges in the graph
+  # with igraph < 2.0.0 there are 98, igraph 2.0.0 107
+  expect_gt(
+    count_edges(islands_graph),
+    90)
 
   # Create 2 graphs made with the same
   # parameters and `set_seed` values

@@ -46,7 +46,7 @@ count_automorphisms <- function(graph) {
 
   # Get the number of automorphisms in
   # the graph
-  res <- unlist(igraph::automorphisms(
+  res <- unlist(igraph::count_automorphisms(
     graph = ig_graph,
     sh = "fm")["group_size"])
 
