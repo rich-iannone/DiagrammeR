@@ -1,4 +1,4 @@
-# DiagrammeR (development version)
+# DiagrammeR 1.0.11
 
 * DiagrammeR now has a dependency on viridisLite instead of viridis (@olivroy, #511)
 
