@@ -6,7 +6,7 @@
 
 * No longer use deprecated features from tibble, igraph and tidyselect (>= 1.2.0) (@olivroy, #497, #507)
 
-* Error messages have been reviewed and now use cli (@olivroy, #499, #502)
+* Error messages have been reviewed and now use **cli** (@olivroy, #499, #502)
 
 * It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
 
