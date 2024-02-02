@@ -92,7 +92,11 @@ render_graph <- function(
   check_string(layout, allow_null = TRUE)
 
   if (!is.null(layout)) {
-    rlang::arg_match0(layout, c("circle", "tree", "kk", "fr", "nicely"))
+    # TODO enable stricter check?
+    # rlang::arg_match0(layout, c("circle", "tree", "kk", "fr", "nicely", "neato"))
+
+    # unrecognized options ignored instead of erroring
+    if (!layout %in% c("circle", "tree", "kk", "fr", "nicely")) layout <- NULL
   }
 
   # Return early if output is visNetwork.
