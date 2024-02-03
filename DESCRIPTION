@@ -1,7 +1,7 @@
 Type: Package
 Package: DiagrammeR
 Title: Graph/Network Visualization
-Version: 1.0.10.9000
+Version: 1.0.11
 Authors@R: c(
     person("Richard", "Iannone", , "riannone@me.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3925-190X")),
@@ -47,8 +47,6 @@ Suggests:
     rsvg,
     testthat (>= 3.1.0),
     withr
-VignetteBuilder:
-    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true

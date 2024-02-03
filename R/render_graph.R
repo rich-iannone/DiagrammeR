@@ -92,7 +92,7 @@ render_graph <- function(
   check_string(layout, allow_null = TRUE)
 
   if (!is.null(layout)) {
-    rlang::arg_match0(layout, c("circle", "tree", "kk", "fr", "nicely"))
+    rlang::arg_match0(layout, c("circle", "tree", "kk", "fr", "nicely", "neato"))
   }
 
   # Return early if output is visNetwork.
@@ -213,7 +213,8 @@ render_graph <- function(
                           "kk" = igraph::layout_with_kk,
                           "fr" = igraph::layout_with_fr,
                           "nicely" = igraph::layout_nicely,
-                          "circle" = igraph::layout_in_circle
+                          "circle" = igraph::layout_in_circle,
+                          "neato" = igraph::layout_with_fr
       )
 
       m_coords <- graph %>%
