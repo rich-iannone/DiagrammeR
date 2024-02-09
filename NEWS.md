@@ -12,6 +12,8 @@
 
 * It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
 
+* Some conditions were corrected in `trav_in_until()` and `trav_out_until()` (@olivroy, #504)
+
 * `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
 
 * DiagrammeR is compatible with igraph (>= 2.0.0) (@maelle, #500)

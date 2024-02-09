@@ -538,7 +538,7 @@ generate_dot <- function(graph) {
           exists("to_column")) {
 
         if (length(from_column) == 1 &&
-            length(from_column) == 1) {
+            length(to_column) == 1) {
 
           for (i in 1:nrow(edges_df)) {
 
