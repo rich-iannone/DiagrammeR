@@ -25,7 +25,7 @@ generate_dot <- function(graph) {
     graph_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "graph") %>%
-      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
+      dplyr::mutate(string = paste0(attr, " = \"", value, "\""))
 
     graph_attrs <-
       graph_attrs %>%
@@ -39,7 +39,7 @@ generate_dot <- function(graph) {
     node_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "node") %>%
-      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
+      dplyr::mutate(string = paste0(attr, " = \"", value, "\""))
 
     node_attrs <-
       node_attrs %>%
@@ -67,7 +67,7 @@ generate_dot <- function(graph) {
     edge_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "edge") %>%
-      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
+      dplyr::mutate(string = paste0(attr, " = \"", value, "\""))
 
     edge_attrs <-
       edge_attrs %>%
@@ -403,7 +403,7 @@ generate_dot <- function(graph) {
                            !is.na(nodes_df[i, j]))) {
               attribute <-
                 paste0(colnames(nodes_df)[j],
-                       " = ", "'", nodes_df[i, j], "'")
+                       " = ", "\"", nodes_df[i, j], "\"")
             } else if (all(!(colnames(nodes_df)[j] %in%
                              c("label", "tooltip")),
                            is.na(nodes_df[i, j]))) {
@@ -413,7 +413,7 @@ generate_dot <- function(graph) {
                            !is.na(nodes_df[i, j]))) {
               attribute <-
                 paste0(colnames(nodes_df)[j],
-                       " = ", "'", nodes_df[i, j], "'")
+                       " = ", "\"", nodes_df[i, j], "\"")
             }
             attr_string <- c(attr_string, attribute)
           }
@@ -427,7 +427,7 @@ generate_dot <- function(graph) {
         # Generate a line of node objects when an
         # attribute string exists
         if (exists("attr_string")) {
-          line <- paste0("  '", nodes_df[i, 1], "'",
+          line <- paste0("  \"", nodes_df[i, 1], "\"",
                          " [", attr_string, "] ")
         }
 
@@ -435,9 +435,9 @@ generate_dot <- function(graph) {
         # attribute string doesn't exist
         if (!exists("attr_string")) {
           line <-
-            paste0("  '",
+            paste0("  \"",
                    nodes_df[i, 1],
-                   "'")
+                   "\"")
         }
         node_block <- c(node_block, line)
       }
@@ -470,8 +470,8 @@ generate_dot <- function(graph) {
           } else {
             cluster_block <-
               paste0(
-                "subgraph cluster", i, "{\nlabel='",
-                names(clusters)[[i]], "'\n",
+                "subgraph cluster", i, "{\nlabel=\"",
+                names(clusters)[[i]], "\"\n",
                 paste0(clusters[[i]], collapse = "\n"), "}\n"
               )
           }
@@ -572,8 +572,8 @@ generate_dot <- function(graph) {
                                edges_df[i, j] != '')) {
                   attribute <-
                     paste0(colnames(edges_df)[j],
-                           " = ", "'", edges_df[i, j],
-                           "'")
+                           " = ", "\"", edges_df[i, j],
+                           "\"")
                 } else if (all(!(colnames(edges_df)[j] %in%
                                  c("edgetooltip", "headtooltip",
                                    "label", "labeltooltip",
@@ -590,7 +590,7 @@ generate_dot <- function(graph) {
                                edges_df[i, j] != '')) {
                   attribute <-
                     paste0(colnames(edges_df)[j],
-                           " = ", "'", edges_df[i, j], "'")
+                           " = ", "\"", edges_df[i, j], "\"")
                 }
                 attr_string <- c(attr_string, attribute)
               }
@@ -605,9 +605,9 @@ generate_dot <- function(graph) {
             # attribute string exists
             if (exists("attr_string")) {
               line <-
-                paste0("'", edges_df[i, from_column], "'",
+                paste0("\"", edges_df[i, from_column], "\"",
                        ifelse(directed, "->", "--"),
-                       "'", edges_df[i, to_column], "'",
+                       "\"", edges_df[i, to_column], "\"",
                        paste0(" [", attr_string, "] "))
             }
 
@@ -616,9 +616,9 @@ generate_dot <- function(graph) {
             if (!exists("attr_string")) {
               line <-
                 paste0("  ",
-                       "'", edges_df[i, from_column], "'",
+                       "\"", edges_df[i, from_column], "\"",
                        ifelse(directed, "->", "--"),
-                       "'", edges_df[i, to_column], "'",
+                       "\"", edges_df[i, to_column], "\"",
                        " ")
             }
             edge_block <- c(edge_block, line)
