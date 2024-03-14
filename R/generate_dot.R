@@ -591,7 +591,7 @@ generate_dot <- function(graph) {
                   attribute <-
                     paste0(colnames(edges_df)[j],
                            " = ", "'", edges_df[i, j], "'")
-                }else if(edges_df[i, j] ==  ''){
+                }else if(edges_df[i, j] == ''){
                   attribute <- NULL
                 }
 
