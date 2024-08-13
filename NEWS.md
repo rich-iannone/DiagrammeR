@@ -1,5 +1,7 @@
 # DiagrammeR (development version)
 
+* Some conditions were corrected in `trav_in_until()` and `trav_out_until()` (@olivroy, #504).
+
 # DiagrammeR 1.0.11
 
 * DiagrammeR now has a dependency on viridisLite instead of viridis (@olivroy, #511)
@@ -11,8 +13,6 @@
 * Error messages have been reviewed and now use **cli** (@olivroy, #499, #502)
 
 * It is now easier to install suggested packages on the fly. DiagrammeR now uses `rlang::check_installed()` internally. (@olivroy, #499)
-
-* Some conditions were corrected in `trav_in_until()` and `trav_out_until()` (@olivroy, #504)
 
 * `DiagrammeR()` checks the `type` argument more strictly. (@olivroy, #506)
 
