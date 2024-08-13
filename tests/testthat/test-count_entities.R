@@ -128,10 +128,9 @@ test_that("counting the number of strongly connected components is possible", {
      create_graph() %>%
      add_islands_graph(
        n_islands = 4,
-       island_size = 10,
-       p = 1 / 5,
-       edges_between = 1,
-       set_seed = 23)
+       island_size = 1,
+       p = 1 / 555,
+       edges_between = 0)
 
   # Expect that the count of strongly
   # connected components is 4

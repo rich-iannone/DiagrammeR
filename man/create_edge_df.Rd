@@ -15,7 +15,7 @@ length must equal that of the \code{from} vector.}
 
 \item{rel}{An optional \code{rel} label for each edge.}
 
-\item{...}{One or more vectors for associated edge attributes.}
+\item{...}{One or more vectors for associated edge attributes. Can be some of \code{\link[=edge_aes]{edge_aes()}}}
 }
 \value{
 An edge data frame (edf).
@@ -34,7 +34,7 @@ columns:
 
 An arbitrary number of additional columns containing aesthetic or data
 attributes can be part of the edf, so long as they follow the aforementioned
-columns.
+columns. Some examples are included in \code{\link[=edge_aes]{edge_aes()}}
 }
 \examples{
 # Create a simple edge data frame (edf) and
@@ -66,29 +66,29 @@ edf
 }
 \seealso{
 Other edge creation and removal: 
+\code{\link{add_edge}()},
 \code{\link{add_edge_clone}()},
 \code{\link{add_edge_df}()},
 \code{\link{add_edges_from_table}()},
 \code{\link{add_edges_w_string}()},
-\code{\link{add_edge}()},
 \code{\link{add_forward_edges_ws}()},
 \code{\link{add_reverse_edges_ws}()},
 \code{\link{copy_edge_attrs}()},
-\code{\link{delete_edges_ws}()},
 \code{\link{delete_edge}()},
+\code{\link{delete_edges_ws}()},
 \code{\link{delete_loop_edges_ws}()},
 \code{\link{drop_edge_attrs}()},
 \code{\link{edge_data}()},
 \code{\link{join_edge_attrs}()},
-\code{\link{mutate_edge_attrs_ws}()},
 \code{\link{mutate_edge_attrs}()},
+\code{\link{mutate_edge_attrs_ws}()},
 \code{\link{recode_edge_attrs}()},
 \code{\link{rename_edge_attrs}()},
 \code{\link{rescale_edge_attrs}()},
-\code{\link{rev_edge_dir_ws}()},
 \code{\link{rev_edge_dir}()},
+\code{\link{rev_edge_dir_ws}()},
 \code{\link{set_edge_attr_to_display}()},
-\code{\link{set_edge_attrs_ws}()},
-\code{\link{set_edge_attrs}()}
+\code{\link{set_edge_attrs}()},
+\code{\link{set_edge_attrs_ws}()}
 }
 \concept{edge creation and removal}

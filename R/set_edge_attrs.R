@@ -6,7 +6,7 @@
 #' or more edges.
 #'
 #' @inheritParams render_graph
-#' @param edge_attr The name of the attribute to set.
+#' @param edge_attr The name of the attribute to set. Some examples are located in [edge_aes()]
 #' @param values The values to be set for the chosen attribute for the chosen
 #'   edges.
 #' @param from An optional vector of node IDs from which the edge is outgoing

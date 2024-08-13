@@ -13,7 +13,7 @@ create_node_df(n, type = NULL, label = NULL, ...)
 
 \item{label}{An optional \code{label} for each node.}
 
-\item{...}{One or more vectors for associated node attributes.}
+\item{...}{Additional attributes. Some are present in \code{\link[=node_aes]{node_aes()}}}
 }
 \value{
 A node data frame (ndf).
@@ -30,7 +30,7 @@ columns:
 }
 
 An arbitrary number of additional columns containing aesthetic or data
-attributes can be part of the ndf, so long as they follow the aforementioned
+attributes can be part of the ndf, see \code{\link[=node_aes]{node_aes()}} for additional attributes that can be used with ..., so long as they follow the aforementioned
 columns.
 }
 \examples{
@@ -69,30 +69,30 @@ node_df
 \seealso{
 Other node creation and removal: 
 \code{\link{add_n_node_clones}()},
-\code{\link{add_n_nodes_ws}()},
 \code{\link{add_n_nodes}()},
+\code{\link{add_n_nodes_ws}()},
+\code{\link{add_node}()},
 \code{\link{add_node_clones_ws}()},
 \code{\link{add_node_df}()},
 \code{\link{add_nodes_from_df_cols}()},
 \code{\link{add_nodes_from_table}()},
-\code{\link{add_node}()},
 \code{\link{colorize_node_attrs}()},
 \code{\link{copy_node_attrs}()},
-\code{\link{delete_nodes_ws}()},
 \code{\link{delete_node}()},
+\code{\link{delete_nodes_ws}()},
 \code{\link{drop_node_attrs}()},
 \code{\link{join_node_attrs}()},
 \code{\link{layout_nodes_w_string}()},
-\code{\link{mutate_node_attrs_ws}()},
 \code{\link{mutate_node_attrs}()},
+\code{\link{mutate_node_attrs_ws}()},
 \code{\link{node_data}()},
 \code{\link{recode_node_attrs}()},
 \code{\link{rename_node_attrs}()},
 \code{\link{rescale_node_attrs}()},
 \code{\link{set_node_attr_to_display}()},
 \code{\link{set_node_attr_w_fcn}()},
-\code{\link{set_node_attrs_ws}()},
 \code{\link{set_node_attrs}()},
+\code{\link{set_node_attrs_ws}()},
 \code{\link{set_node_position}()}
 }
 \concept{node creation and removal}

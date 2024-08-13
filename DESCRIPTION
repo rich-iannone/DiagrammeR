@@ -1,7 +1,7 @@
 Type: Package
 Package: DiagrammeR
 Title: Graph/Network Visualization
-Version: 1.0.10.9000
+Version: 1.0.11.9000
 Authors@R: c(
     person("Richard", "Iannone", , "riannone@me.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3925-190X")),
@@ -25,7 +25,7 @@ Imports:
     glue (>= 1.5.0),
     htmltools (>= 0.5.2),
     htmlwidgets (>= 1.5),
-    igraph (>= 1.2.11),
+    igraph (>= 1.4.0),
     magrittr (>= 1.5),
     purrr (>= 0.3.4),
     RColorBrewer (>= 1.1-2),
@@ -37,7 +37,7 @@ Imports:
     stringr (>= 1.4),
     tibble (>= 3.1),
     tidyr (>= 1.1),
-    viridis (>= 0.6.2),
+    viridisLite (>= 0.4.2),
     visNetwork (>= 2.1.0)
 Suggests:
     curl,
@@ -47,10 +47,8 @@ Suggests:
     rsvg,
     testthat (>= 3.1.0),
     withr
-VignetteBuilder:
-    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

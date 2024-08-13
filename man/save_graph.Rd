@@ -45,7 +45,7 @@ gnp_graph <-
 \seealso{
 Other Display and Save: 
 \code{\link{export_graph}()},
-\code{\link{render_graph_from_graph_series}()},
-\code{\link{render_graph}()}
+\code{\link{render_graph}()},
+\code{\link{render_graph_from_graph_series}()}
 }
 \concept{Display and Save}
