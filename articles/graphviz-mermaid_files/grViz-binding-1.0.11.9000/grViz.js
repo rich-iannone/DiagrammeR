@@ -11,7 +11,7 @@ HTMLWidgets.widget({
     };
   },
 
-  renderValue: function(el, x, instance) {
+    renderValue: async function(el, x, instance) {
     //  Use this to sort of make our diagram responsive
     //  or at a minimum fit within the bounds set by htmlwidgets
     //  for the parent container
@@ -34,8 +34,8 @@ HTMLWidgets.widget({
       }
 
       try {
-
-        el.innerHTML = Viz(x.diagram, format="svg", engine=x.config.engine, options=x.config.options);
+        const viz = await Viz.instance();
+        el.innerHTML = await viz.renderString(x.diagram, {format: "svg", engine: x.config.engine, ...x.config.options});
 
         makeResponsive(el);
 

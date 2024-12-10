@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   graphviz-mermaid: graphviz-mermaid.html
@@ -7,8 +7,7 @@ articles:
   selections: selections.html
   simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
   traversals: traversals.html
-last_built: 2024-02-03T18:47Z
+last_built: 2024-12-10T16:11Z
 urls:
   reference: https://rich-iannone.github.io/DiagrammeR/reference
   article: https://rich-iannone.github.io/DiagrammeR/articles
-
