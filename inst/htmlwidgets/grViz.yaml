@@ -1,6 +1,6 @@
 dependencies:
 - name: viz
-  version: 3.11.0
+  version: 1.8.2
   src: htmlwidgets/lib/viz
   script: viz.js
 - name: DiagrammeR-styles
