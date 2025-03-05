@@ -13,25 +13,24 @@ pkgs.rPackages.buildRPackage {
     the graphs and take advantage of any aesthetic properties assigned to
     nodes and edges.'';
   propagatedBuildInputs = with pkgs.rPackages; [ 
-    visNetwork
-    rlang
-    tidyr
-    magrittr
-    downloader
-    htmlwidgets
-    rstudioapi
-    glue
-    htmltools
-    dplyr
-    stringr
-    tibble
-    readr
-    RColorBrewer
-    scales
-    influenceR
-    igraph
-    viridis
     purrr
- ];
-
+    influenceR
+    rstudioapi
+    tidyr
+    stringr
+    igraph
+    visNetwork
+    readr
+    glue
+    viridis
+    scales
+    downloader
+    htmltools
+    htmlwidgets
+    rlang
+    tibble
+    dplyr
+    magrittr
+    RColorBrewer
+  ];
 }
