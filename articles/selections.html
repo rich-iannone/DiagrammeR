@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Selections • DiagrammeR</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -581,14 +580,14 @@ the graph’s internal node data frame…</p>
 <code class="sourceCode R"><span><span class="co"># Inspect the new graph's NDF</span></span>
 <span><span class="va">graph_2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   id type label                  timestamp</span></span>
-<span><span class="co">#&gt; 1  1    A  &lt;NA&gt;  2025-04-11 19:52:12.15551</span></span>
-<span><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2025-04-11 19:52:12.179506</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2025-04-29 15:01:56.214443</span></span>
+<span><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2025-04-29 15:01:56.237742</span></span></code></pre></div>
 <p>…and let’s inspect the graph’s internal edge data frame.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Inspect the new graph's EDF</span></span>
 <span><span class="va">graph_2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   id from to rel                  timestamp</span></span>
-<span><span class="co">#&gt; 1  1    1  2  AB 2025-04-11 19:52:12.198881</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  1    1  2  AB 2025-04-29 15:01:56.255902</span></span></code></pre></div>
 <p>As can be seen, immediately invoking
 <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> or
 <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> after addition of new nodes or
@@ -607,7 +606,7 @@ selections of nodes or edges.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
