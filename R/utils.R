@@ -523,13 +523,12 @@ gv_graph_attributes <- function() {
 #' @noRd
 gv_node_attributes <- function() {
 
-  c("shape", "style", "penwidth", "color", "fillcolor",
-    "fontname", "fontsize", "fontcolor", "image", "fa_icon",
-    "height", "width", "group",
-    "tooltip", "xlabel", "URL",
-    "distortion", "sides", "skew", "peripheries",
-    "gradientangle", "label", "fixedsize",
-    "labelloc", "margin", "orientation", "pos")
+  c("color", "colorscheme", "comment", "distortion", "fillcolor", "fixedsize",
+    "fontcolor", "fontname", "fontsize", "group", "height", "id", "image",
+    "imagescale", "label", "labelloc", "layer", "margin", "nojustify", "orientation",
+    "penwidth", "peripheries", "pin", "pos", "rects", "regular", "root",
+    "samplepoints", "shape", "shapefile", "showboxes", "sides", "skew", "sortv",
+    "style", "target", "tooltip", "URL", "vertices", "width", "z")
 }
 
 #' Produce a vector of Graphviz edge attribute names
@@ -537,18 +536,16 @@ gv_node_attributes <- function() {
 #' @noRd
 gv_edge_attributes <- function() {
 
-  c("style", "penwidth", "color", "arrowsize",
-    "arrowhead", "arrowtail",
-    "fontname", "fontsize", "fontcolor",
-    "len", "tooltip", "URL",
-    "label", "labelfontname", "labelfontsize",
-    "labelfontcolor", "labeltooltip", "labelURL",
-    "edgetooltip", "edgeURL",
-    "headtooltip", "headURL",
-    "headclip", "headlabel", "headport",
-    "tailtooltip", "tailURL",
-    "tailclip",  "taillabel", "tailport",
-    "dir", "decorate")
+  c("arrowhead", "arrowsize", "arrowtail", "color", "colorscheme", "comment",
+    "constraint", "decorate", "dir", "edgehref", "edgetarget", "edgetooltip",
+    "edgeURL", "fontcolor", "fontname", "fontsize", "headclip", "headhref",
+    "headlabel", "headport", "headtarget", "headtooltip", "headURL", "href",
+    "id", "label", "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
+    "labelfontname", "labelfontsize", "labelhref", "labeltarget", "labeltooltip",
+    "labelURL", "layer", "len", "lhead", "lp", "ltail",  "minlen",
+    "nojustify", "penwidth", "pos", "samehead", "sametail", "showboxes", "style",
+    "tailclip", "tailhref", "taillabel", "tailport", "tailtarget", "tailtooltip",
+    "tailURL", "target", "tooltip", "URL", "weight", "rel")
 }
 
 #' Produce a vector of node creation function names
