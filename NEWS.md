@@ -1,5 +1,7 @@
 # DiagrammeR (development version)
 
+* Some conditions were corrected in `trav_in_until()` and `trav_out_until()` (@olivroy, #504).
+
 # DiagrammeR 1.0.11
 
 * DiagrammeR now has a dependency on viridisLite instead of viridis (@olivroy, #511)
