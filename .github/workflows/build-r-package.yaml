@@ -1,0 +1,18 @@
+name: Build DiagrammeR
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    name: Build DiagrammeR
+    permissions:
+      checks: write
+      contents: read
+    uses: Displayr/nixr-public/.github/workflows/build-flake-installable.yaml@master
+    with:
+      installable-path: pkgs.x86_64-linux.rPackages.DiagrammeR
+      build-args: --override-input displayr-DiagrammeR .
+      installable-name: DiagrammeR
+    secrets: inherit
