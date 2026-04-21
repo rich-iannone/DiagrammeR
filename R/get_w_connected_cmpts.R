@@ -14,17 +14,17 @@
 #' @examples
 #' # Create a graph with 2 cycles
 #' graph <-
-#'   create_graph() %>%
-#'   add_cycle(n = 4) %>%
+#'   create_graph() |>
+#'   add_cycle(n = 4) |>
 #'   add_cycle(n = 3)
 #'
 #' # Check if the graph is connected
-#' graph %>%
+#' graph |>
 #'   is_graph_connected()
 #'
 #' # Get the graph's weakly-connected
 #' # components
-#' graph %>% get_w_connected_cmpts()
+#' graph |> get_w_connected_cmpts()
 #'
 #' @export
 get_w_connected_cmpts <- function(graph) {
@@ -37,18 +37,18 @@ get_w_connected_cmpts <- function(graph) {
   # transform to an igraph object
   ig_graph <-
     create_graph(
-      nodes_df = graph %>%
-        get_node_df() %>%
+      nodes_df = graph |>
+        get_node_df() |>
         dplyr::select(id, type, label),
-      edges_df = graph %>%
-        get_edge_df() %>%
+      edges_df = graph |>
+        get_edge_df() |>
         dplyr::select(id, from, to, rel),
-      directed = is_graph_directed(graph)) %>%
+      directed = is_graph_directed(graph)) |>
     to_igraph()
 
   # Get the component list from the graph
   components <-
-    ig_graph %>%
+    ig_graph |>
     igraph::components(mode = "weak")
 
   # Create the output data frame

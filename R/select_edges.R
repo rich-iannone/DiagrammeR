@@ -45,41 +45,41 @@
 #'
 #' # Explicitly select the edge `1`->`4`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges(
 #'     from = 1,
 #'     to = 4)
 #'
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Select edges based on the relationship label
 #' # being `z`
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_edges(
 #'     conditions = rel == "z")
 #'
 #' # Verify that an edge selection has been made, and
 #' # recall that the `2`->`3` edge uniquely has the
 #' # `z` relationship label
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Select edges based on the edge value attribute
 #' # being greater than 3.0 (first clearing the current
 #' # selection of edges)
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_edges(
 #'     conditions = value > 3.0)
 #'
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `1`->`4` and
 #' # `3`->`1` have values for `value` > 3.0
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 select_edges <- function(
@@ -140,7 +140,7 @@ select_edges <- function(
     from_val <- from
 
     edges_df <-
-      edges_df %>%
+      edges_df |>
       dplyr::filter(from %in% from_val)
   }
 
@@ -157,13 +157,13 @@ select_edges <- function(
     to_val <- to
 
     edges_df <-
-      edges_df %>%
+      edges_df |>
       dplyr::filter(to %in% to_val)
   }
 
   # Select only the `id`, `to`, and `from` columns
   edges_selected <-
-    edges_df %>%
+    edges_df |>
     dplyr::select(edge = "id", "from", "to")
 
   # Create an integer vector representing edges
@@ -194,8 +194,8 @@ select_edges <- function(
 
   # Filter `edges_df` to provide the correct esdf
   edges_combined <-
-    graph$edges_df %>%
-    dplyr::filter(id %in% edges_combined) %>%
+    graph$edges_df |>
+    dplyr::filter(id %in% edges_combined) |>
     dplyr::select(edge = "id", "from", "to")
 
   # Add the edge ID values to the active selection

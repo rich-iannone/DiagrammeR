@@ -13,11 +13,11 @@
 #' # Create a simple, directed graph with 5
 #' # nodes and 4 edges
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 5)
 #'
 #' # Find all non-neighbors of node `2`
-#' graph %>% get_non_nbrs(node = 2)
+#' graph |> get_non_nbrs(node = 2)
 #'
 #' @export
 get_non_nbrs <- function(

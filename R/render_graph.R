@@ -22,47 +22,47 @@
 #'
 #'   # Render a graph that's a
 #'   # balanced tree
-#'   create_graph() %>%
+#'   create_graph() |>
 #'     add_balanced_tree(
 #'       k = 2, h = 3
-#'     ) %>%
+#'     ) |>
 #'     render_graph()
 #'
 #'   # Use the `tree` layout for
 #'   # better node placement in this
 #'   # hierarchical graph
-#'   create_graph() %>%
+#'   create_graph() |>
 #'     add_balanced_tree(
 #'       k = 2, h = 3
-#'     ) %>%
+#'     ) |>
 #'     render_graph(layout = "tree")
 #'
 #'   # Plot the same tree graph but
 #'   # don't show the node ID values
-#'   create_graph() %>%
+#'   create_graph() |>
 #'     add_balanced_tree(
 #'       k = 2, h = 3
-#'     ) %>%
-#'     set_node_attr_to_display() %>%
+#'     ) |>
+#'     set_node_attr_to_display() |>
 #'     render_graph(layout = "tree")
 #'
 #'   # Create a circle graph
-#'   create_graph() %>%
+#'   create_graph() |>
 #'     add_gnm_graph(
 #'       n = 55,
 #'       m = 75,
 #'       set_seed = 23
-#'     ) %>%
+#'     ) |>
 #'     render_graph(
 #'       layout = "circle"
 #'     )
 #'
 #'   # Render the graph using the
 #'   # `visNetwork` output option
-#'   create_graph() %>%
+#'   create_graph() |>
 #'     add_balanced_tree(
 #'       k = 2, h = 3
-#'     ) %>%
+#'     ) |>
 #'     render_graph(
 #'       output = "visNetwork"
 #'     )
@@ -119,9 +119,9 @@ render_graph <- function(
     if ("fillcolor" %in% graph$global_attrs$attr) {
 
       graph$nodes_df$fillcolor <-
-        graph$global_attrs %>%
-        dplyr::filter(attr == "fillcolor", attr_type == "node") %>%
-        dplyr::pull("value") %>%
+        graph$global_attrs |>
+        dplyr::filter(attr == "fillcolor", attr_type == "node") |>
+        dplyr::pull("value") |>
         as.character()
     } else {
       graph$nodes_df$fillcolor <- "white"
@@ -142,13 +142,13 @@ render_graph <- function(
   if ("fillcolor" %in% colnames(graph$nodes_df)) {
 
     graph$nodes_df <-
-      graph$nodes_df %>%
+      graph$nodes_df |>
       dplyr::left_join(
-        x11_hex() %>%
-          dplyr::as_tibble() %>%
+        x11_hex() |>
+          dplyr::as_tibble() |>
           dplyr::mutate(hex = toupper(hex)),
         by = c("fillcolor" = "x11_name")
-      ) %>%
+      ) |>
       dplyr::mutate(
         fillcolor = dplyr::coalesce(hex, fillcolor),
         .keep = "unused"
@@ -161,8 +161,8 @@ render_graph <- function(
   ) {
 
     graph$nodes_df$fontcolor <-
-      tibble::tibble(value = graph$nodes_df$fillcolor) %>%
-      dplyr::mutate(value_x = contrasting_text_color(background_color = value)) %>%
+      tibble::tibble(value = graph$nodes_df$fillcolor) |>
+      dplyr::mutate(value_x = contrasting_text_color(background_color = value)) |>
       dplyr::pull("value_x")
   }
 
@@ -192,7 +192,7 @@ render_graph <- function(
     # different layouts
     if (layout == "tree") {
       m_coords <-
-        to_igraph(graph) %>%
+        to_igraph(graph) |>
         igraph::layout_with_sugiyama()
       m_coords <- m_coords[["layout"]]
 
@@ -217,8 +217,8 @@ render_graph <- function(
                           "neato" = igraph::layout_with_fr
       )
 
-      m_coords <- graph %>%
-        to_igraph() %>%
+      m_coords <- graph |>
+        to_igraph() |>
         fn_igraph()
 
       if (!is.matrix(m_coords)) {
@@ -274,7 +274,7 @@ render_graph <- function(
     svg_vec <-
       strsplit(DiagrammeRsvg::export_svg(
         grViz(diagram = dot_code)
-      ), "\n") %>%
+      ), "\n") |>
       unlist()
 
     # Get a tibble of SVG data
@@ -283,36 +283,36 @@ render_graph <- function(
     svg_lines <-
       "<svg display=\"block\" margin=\"0 auto\" position=\"absolute\" width=\"100%\" height=\"100%\""
 
-    svg_line_no <- svg_tbl %>%
-      dplyr::filter(type == "svg") %>%
+    svg_line_no <- svg_tbl |>
+      dplyr::filter(type == "svg") |>
       dplyr::pull("index")
 
     # Modify <svg> attrs
     svg_vec[svg_line_no] <- svg_lines
 
-    if ("image" %in% colnames(graph %>% get_node_df())) {
+    if ("image" %in% colnames(graph |> get_node_df())) {
       node_id_images <-
-        graph %>%
-        get_node_df() %>%
-        dplyr::select("id", "image") %>%
-        dplyr::filter(nzchar(image)) %>%
+        graph |>
+        get_node_df() |>
+        dplyr::select("id", "image") |>
+        dplyr::filter(nzchar(image)) |>
         dplyr::pull("id")
 
       filter_lines <-
-        graph %>%
-        get_node_df() %>%
-        dplyr::select("id", "image") %>%
-        dplyr::filter(nzchar(image)) %>%
-        dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
-        dplyr::pull("filter_lines") %>%
+        graph |>
+        get_node_df() |>
+        dplyr::select("id", "image") |>
+        dplyr::filter(nzchar(image)) |>
+        dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) |>
+        dplyr::pull("filter_lines") |>
         paste(collapse = "\n")
 
       filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
 
       svg_shape_nos <-
-        svg_tbl %>%
-        dplyr::filter(node_id %in% node_id_images) %>%
-        dplyr::filter(type == "node_block") %>%
+        svg_tbl |>
+        dplyr::filter(node_id %in% node_id_images) |>
+        dplyr::filter(type == "node_block") |>
         dplyr::pull("index")
 
       svg_shape_nos <- svg_shape_nos + 3
@@ -332,22 +332,22 @@ render_graph <- function(
     }
 
     # # Get the name of the function
-    # if ("fa_icon" %in% colnames(graph %>% get_node_df())) {
+    # if ("fa_icon" %in% colnames(graph |> get_node_df())) {
     #
     #   # Using a fontawesome icon requires the fontawesome package;
     #   # if it's not present, stop with a message
     #   if (requireNamespace("fontawesome", quietly = TRUE)) {
     #
     #     node_id_fa <-
-    #       graph %>%
-    #       get_node_df() %>%
-    #       dplyr::select(id, fa_icon) %>%
-    #       dplyr::filter(fa_icon != "") %>%
-    #       dplyr::filter(!is.na(fa_icon)) %>%
+    #       graph |>
+    #       get_node_df() |>
+    #       dplyr::select(id, fa_icon) |>
+    #       dplyr::filter(fa_icon != "") |>
+    #       dplyr::filter(!is.na(fa_icon)) |>
     #       dplyr::mutate(fa_uri = NA_character_)
     #
     #     node_id_svg <-
-    #       node_id_fa %>%
+    #       node_id_fa |>
     #       dplyr::pull(id)
     #
     #     for (i in seq(nrow(node_id_fa))) {
@@ -369,16 +369,16 @@ render_graph <- function(
     #     }
     #
     #     filter_lines <-
-    #       node_id_fa %>%
-    #       dplyr::pull(fa_uri) %>%
+    #       node_id_fa |>
+    #       dplyr::pull(fa_uri) |>
     #       paste(collapse = "\n")
     #
     #     filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_svg})\" "))
     #
     #     svg_shape_nos <-
-    #       svg_tbl %>%
-    #       dplyr::filter(node_id %in% node_id_svg) %>%
-    #       dplyr::filter(type == "node_block") %>%
+    #       svg_tbl |>
+    #       dplyr::filter(node_id %in% node_id_svg) |>
+    #       dplyr::filter(type == "node_block") |>
     #       dplyr::pull(index)
     #
     #     svg_shape_nos <- svg_shape_nos + 3

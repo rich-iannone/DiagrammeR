@@ -18,55 +18,61 @@
 #' # Create a randomized property
 #' # graph with 1000 nodes and 1350 edges
 #' property_graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 1000,
 #'     m = 1350,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg >= 3") %>%
+#'     expressions = "deg >= 3") |>
 #'   set_node_attrs_ws(
 #'     node_attr = type,
-#'     value = "a") %>%
-#'   clear_selection() %>%
+#'     value = "a") |>
+#'   clear_selection() |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg < 3") %>%
+#'     expressions = "deg < 3") |>
 #'   set_node_attrs_ws(
 #'     node_attr = type,
-#'     value = "b") %>%
-#'   clear_selection() %>%
+#'     value = "b") |>
+#'   clear_selection() |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg == 0") %>%
+#'     expressions = "deg == 0") |>
 #'   set_node_attrs_ws(
 #'     node_attr = type,
-#'     value = "c") %>%
+#'     value = "c") |>
 #'   set_node_attr_to_display(
-#'     attr = type) %>%
+#'     attr = type)
+#'
+#' # Select a random subset of edges
+#' # for setting edge attributes
+#' node_ids <- get_node_ids(property_graph)
+#' sampled_nodes <- sample(
+#'   node_ids,
+#'   size = floor(0.15 * length(node_ids)))
+#'
+#' property_graph <-
+#'   property_graph |>
 #'   select_edges_by_node_id(
-#'     nodes =
-#'       get_node_ids(.) %>%
-#'       sample(
-#'         size = 0.15 * length(.) %>%
-#'           floor())) %>%
+#'     nodes = sampled_nodes) |>
 #'   set_edge_attrs_ws(
 #'     edge_attr = rel,
-#'     value = "r_1") %>%
-#'   invert_selection() %>%
+#'     value = "r_1") |>
+#'   invert_selection() |>
 #'   set_edge_attrs_ws(
 #'     edge_attr = rel,
-#'     value = "r_2") %>%
-#'   clear_selection() %>%
+#'     value = "r_2") |>
+#'   clear_selection() |>
 #'   copy_edge_attrs(
 #'     edge_attr_from = rel,
-#'     edge_attr_to = label) %>%
+#'     edge_attr_to = label) |>
 #'   add_global_graph_attrs(
 #'     attr = "fontname",
 #'     value = "Helvetica",
-#'     attr_type = "edge") %>%
+#'     attr_type = "edge") |>
 #'   add_global_graph_attrs(
 #'     attr = "fontcolor",
 #'     value = "gray50",
-#'     attr_type = "edge") %>%
+#'     attr_type = "edge") |>
 #'   add_global_graph_attrs(
 #'     attr = "fontsize",
 #'     value = 10,
@@ -88,28 +94,28 @@ display_metagraph <- function(graph) {
 
   # Get a distinct list of node `type` values
   unique_node_list <-
-    graph$nodes_df %>%
+    graph$nodes_df |>
     dplyr::distinct(type)
 
   # Get a distinct list of edges between types
   unique_edge_list <-
-    graph$edges_df %>%
+    graph$edges_df |>
     dplyr::inner_join(
-      graph$nodes_df %>%
+      graph$nodes_df |>
         dplyr::select(from = "id", from_type = "type"),
-      by = "from") %>%
+      by = "from") |>
     dplyr::inner_join(
-      graph$nodes_df %>%
+      graph$nodes_df |>
         dplyr::select(to = "id", to_type = "type"),
-      by = "to") %>%
+      by = "to") |>
     dplyr::distinct(rel, from_type, to_type)
 
   # Create the initial metagraph
   metagraph <-
-    create_graph() %>%
+    create_graph() |>
     add_nodes_from_df_cols(
       unique_node_list,
-      columns = "type") %>%
+      columns = "type") |>
     add_edges_from_table(
       unique_edge_list,
       from_to_map = label,
@@ -122,36 +128,36 @@ display_metagraph <- function(graph) {
 
   # Apply coloring and other aesthetics to nodes and edges
   metagraph <-
-    metagraph %>%
+    metagraph |>
     colorize_node_attrs(
       node_attr_from = "type",
-      node_attr_to = "fillcolor") %>%
+      node_attr_to = "fillcolor") |>
     copy_edge_attrs(
       edge_attr_from = "rel",
-      edge_attr_to = "label") %>%
+      edge_attr_to = "label") |>
     add_global_graph_attrs(
       attr = "fontname",
       value = "Helvetica",
-      attr_type = "edge") %>%
+      attr_type = "edge") |>
     add_global_graph_attrs(
       attr = "fontcolor",
       value = "gray50",
-      attr_type = "edge") %>%
+      attr_type = "edge") |>
     add_global_graph_attrs(
       attr = "fontsize",
       value = 10,
-      attr_type = "edge") %>%
+      attr_type = "edge") |>
     colorize_edge_attrs(
       edge_attr_from = "rel",
-      edge_attr_to = "color") %>%
+      edge_attr_to = "color") |>
     add_global_graph_attrs(
       attr = "fontsize",
       value = 6,
-      attr_type = "edge") %>%
+      attr_type = "edge") |>
     add_global_graph_attrs(
       attr = "len",
       value = 3.5,
-      attr_type = "edge") %>%
+      attr_type = "edge") |>
     add_global_graph_attrs(
       attr = "layout",
       value = "dot",

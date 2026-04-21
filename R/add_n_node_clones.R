@@ -21,7 +21,7 @@
 #' # nodes; supply `label`, `type`,
 #' # and `value` node attributes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     label = c("d", "g", "r"),
@@ -29,14 +29,14 @@
 #'
 #' # Display the graph's internal
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Create 3 clones of node `1`
 #' # but assign new node label
 #' # values (leaving `label` as
 #' # NULL yields NA values)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_n_node_clones(
 #'     n = 3,
 #'     node = 1,
@@ -45,7 +45,7 @@
 #' # Display the graph's internal
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of `1`
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -96,8 +96,8 @@ add_n_node_clones <- function(
   # Get the number of columns in the graph's
   # internal node data frame
   n_col_ndf <-
-    graph %>%
-    get_node_df() %>%
+    graph |>
+    get_node_df() |>
     ncol()
 
   # Extract all of the node attributes
@@ -105,9 +105,9 @@ add_n_node_clones <- function(
   if (n_col_ndf >= 4) {
 
     node_attr_vals <-
-      graph %>%
-      get_node_df() %>%
-      dplyr::filter(id == node) %>%
+      graph |>
+      get_node_df() |>
+      dplyr::filter(id == node) |>
       dplyr::select("type", 4:dplyr::all_of(n_col_ndf))
   }
 
@@ -117,7 +117,7 @@ add_n_node_clones <- function(
     get_node_attrs(graph = graph, node_attr = type, nodes = node))
 
   graph <-
-    graph %>%
+    graph |>
     add_n_nodes(
       n = n,
       type = group_id,
@@ -127,14 +127,14 @@ add_n_node_clones <- function(
   # the new nodes
   new_node_ids <-
     suppressMessages(
-      graph %>%
-        select_last_nodes_created() %>%
+      graph |>
+        select_last_nodes_created() |>
         get_selection())
 
   # Create a node selection for the
   # new nodes in the graph
   graph <-
-    graph %>%
+    graph |>
     select_nodes_by_id(
       nodes = new_node_ids)
 
@@ -161,7 +161,7 @@ add_n_node_clones <- function(
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
-    graph$graph_log %>%
+    graph$graph_log |>
     dplyr::filter(version_id <= current_graph_log_version_id)
 
   # Get the name of the function

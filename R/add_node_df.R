@@ -22,12 +22,12 @@
 #' # the graph object to create
 #' # a graph with nodes
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_node_df(
 #'     node_df = ndf)
 #'
 #' # Inspect the graph's ndf
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Create another ndf
 #' ndf_2 <-
@@ -38,14 +38,14 @@
 #' # to add more nodes with
 #' # attributes to the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_node_df(
 #'     node_df = ndf_2)
 #'
 #' # View the graph's internal
 #' # node data frame using the
 #' # `get_node_df()` function
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -66,7 +66,7 @@ add_node_df <- function(
   nodes_created <- graph$last_node
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Combine the incoming node data frame with the
   # existing node definitions in the graph object
@@ -85,7 +85,7 @@ add_node_df <- function(
     nodes_created + nrow(node_df)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph

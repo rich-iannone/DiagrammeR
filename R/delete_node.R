@@ -14,7 +14,7 @@
 #' # Create a graph with 5 nodes and
 #' # edges between each in a path
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 5)
 #'
 #' # Delete node with ID `3`
@@ -22,12 +22,12 @@
 #'
 #' # Verify that the node with ID `3`
 #' # is no longer in the graph
-#' graph %>% get_node_ids()
+#' graph |> get_node_ids()
 #'
 #' # Also note that edges are removed
 #' # since there were edges between the
 #' # removed node to and from other nodes
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #' @family node creation and removal
 #' @export
 delete_node <- function(
@@ -62,10 +62,10 @@ delete_node <- function(
   }
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Get the graph's node data frame
   ndf <- graph$nodes_df
@@ -75,13 +75,13 @@ delete_node <- function(
 
   # Remove node from `ndf`
   ndf <-
-    ndf %>%
+    ndf |>
     dplyr::filter(id != node)
 
   # Remove any edges connected to `node`
   # in the `edf`
   edf <-
-    edf %>%
+    edf |>
     dplyr::filter(!(from == node | to == node))
 
   # Reset the row names in the ndf and the edf
@@ -94,18 +94,18 @@ delete_node <- function(
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
+    graph |>
     remove_linked_dfs()
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_deleted <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

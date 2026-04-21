@@ -16,14 +16,14 @@
 #' # Create a graph with a cycle
 #' # containing 6 nodes
 #' graph_cycle <-
-#'  create_graph() %>%
+#'  create_graph() |>
 #'    add_cycle(n = 6)
 #'
 #' # Create a random graph with
 #' # 8 nodes and 15 edges using the
 #' # `add_gnm_graph()` function
 #' graph_random <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 8,
 #'     m = 15,
@@ -38,14 +38,14 @@
 #'
 #' # Get the number of nodes in
 #' # the combined graph
-#' combined_graph %>% count_nodes()
+#' combined_graph |> count_nodes()
 #'
 #' # The `combine_graphs()`
 #' # function will renumber
 #' # node ID values in graph `y`
 #' # during the union; this ensures
 #' # that node ID values are unique
-#' combined_graph %>% get_node_ids()
+#' combined_graph |> get_node_ids()
 #'
 #' @export
 combine_graphs <- function(
@@ -71,14 +71,14 @@ combine_graphs <- function(
   nodes_created <- x$last_node
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- x %>% count_nodes()
+  nodes_graph_1 <- x |> count_nodes()
 
   # Get the number of edges ever created for
   # graph `x`
   edges_created <- x$last_edge
 
   # Get the number of edges in the graph
-  edges_graph_1 <- x %>% count_edges()
+  edges_graph_1 <- x |> count_edges()
 
   # Get the node data frame for graph `x`
   x_nodes_df <- get_node_df(x)
@@ -106,15 +106,15 @@ combine_graphs <- function(
     dplyr::inner_join(
       y_edges_df,
       y_nodes_df,
-      by = c("from" = "id")) %>%
-    dplyr::rename(from_new = "new_node_id") %>%
+      by = c("from" = "id")) |>
+    dplyr::rename(from_new = "new_node_id") |>
     dplyr::select(-"type", -"label")
 
   # Rename `id` if it has a `.x` suffix
   if ("id.x" %in% colnames(y_edges_df)) {
 
     y_edges_df <-
-      y_edges_df %>%
+      y_edges_df |>
       dplyr::rename(id = "id.x")
   }
 
@@ -122,15 +122,15 @@ combine_graphs <- function(
     dplyr::inner_join(
       y_edges_df,
       y_nodes_df,
-      by = c("to" = "id")) %>%
-    dplyr::rename(to_new = "new_node_id") %>%
+      by = c("to" = "id")) |>
+    dplyr::rename(to_new = "new_node_id") |>
     dplyr::select(-"type", -"label")
 
   # Rename `id` if it has a `.x` suffix
   if ("id.x" %in% colnames(y_edges_df)) {
 
     y_edges_df <-
-      y_edges_df %>%
+      y_edges_df |>
       dplyr::rename(id = "id.x")
   }
 
@@ -140,7 +140,7 @@ combine_graphs <- function(
 
   # Remove columns ending with `.x` or `_new`
   y_edges_df <-
-    y_edges_df %>%
+    y_edges_df |>
     dplyr::select(
       !dplyr::ends_with(c(".x", "_new")))
 
@@ -180,14 +180,14 @@ combine_graphs <- function(
   x$last_edge <- nrow(combined_edges)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- x %>% count_nodes()
+  nodes_graph_2 <- x |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- x %>% count_edges()
+  edges_graph_2 <- x |> count_edges()
 
   # Get the number of edges added to
   # the graph

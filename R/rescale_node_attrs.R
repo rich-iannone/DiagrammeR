@@ -27,28 +27,28 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 10,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = value,
 #'     values = rnorm(
-#'       n = count_nodes(.),
+#'       n = 5,
 #'       mean = 5,
-#'       sd = 1) %>% round(1))
+#'       sd = 1) |> round(1))
 #'
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Rescale the `value` node
 #' # attribute, so that its values
 #' # are rescaled between 0 and 1
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rescale_node_attrs(
 #'     node_attr_from = value,
 #'     to_lower_bound = 0,
@@ -57,19 +57,19 @@
 #' # Get the graph's internal ndf
 #' # to show that the node attribute
 #' # values had been rescaled
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Scale the values in the `value`
 #' # node attribute to different
 #' # shades of gray for the `fillcolor`
 #' # and `fontcolor` node attributes
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rescale_node_attrs(
 #'     node_attr_from = value,
 #'     to_lower_bound = "gray80",
 #'     to_upper_bound = "gray20",
-#'     node_attr_to = fillcolor) %>%
+#'     node_attr_to = fillcolor) |>
 #'   rescale_node_attrs(
 #'     node_attr_from = value,
 #'     to_lower_bound = "gray5",
@@ -81,7 +81,7 @@
 #' # grayscale colors are now available
 #' # in the `fillcolor` and `fontcolor`
 #' # node attributes
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -107,11 +107,11 @@ rescale_node_attrs <- function(
 
   # Get the requested `node_attr_from`
   node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `node_attr_to`
   node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_to) |> rlang::get_expr() |> as.character()
 
   if (length(node_attr_to) == 0) {
     node_attr_to <- NULL
@@ -133,12 +133,12 @@ rescale_node_attrs <- function(
 
   # Extract the vector to rescale from the `nodes` df
   vector_to_rescale <-
-    nodes %>%
+    nodes |>
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(node_attr_from),
         .fns = as.numeric)
-      ) %>%
+      ) |>
     dplyr::pull(var = !!node_attr_from)
 
   # TODO condition could be simplified to

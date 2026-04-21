@@ -31,25 +31,25 @@
 #'     nodes_df = ndf)
 #'
 #' # Get a vector of all nodes in a graph
-#' graph %>% get_node_ids()
+#' graph |> get_node_ids()
 #'
 #' # Get a vector of node ID values using a
 #' # numeric comparison (i.e., all nodes with
 #' # `value` attribute greater than 3)
-#' graph %>%
+#' graph |>
 #'   get_node_ids(
 #'     conditions = value > 3)
 #'
 #' # Get a vector of node ID values using
 #' # a match pattern (i.e., all nodes with
 #' # `color` attribute of `green`)
-#' graph %>%
+#' graph |>
 #'   get_node_ids(
 #'     conditions = color == "green")
 #'
 #' # Use multiple conditions to return nodes
 #' # with the desired attribute values
-#' graph %>%
+#' graph |>
 #'   get_node_ids(
 #'     conditions =
 #'       color == "blue" &
@@ -81,5 +81,5 @@ get_node_ids <- function(
     return(NA)
   }
 
-  nodes_df %>% dplyr::pull("id")
+  nodes_df |> dplyr::pull("id")
 }

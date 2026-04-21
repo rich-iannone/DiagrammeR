@@ -5,7 +5,7 @@
 #' @param tbl A tibble.
 #' @noRd
 asdf <- function(tbl) {
-  tbl %>% as.data.frame(stringsAsFactors = FALSE)
+  tbl |> as.data.frame(stringsAsFactors = FALSE)
 }
 
 #' The default attribute theme
@@ -32,7 +32,7 @@ attr_theme_default <- function() {
     "len",                  "1.5",                   "edge",
     "color",                "gray80",                "edge",
     "arrowsize",            "0.5",                   "edge"
-  ) %>%
+  ) |>
     asdf()
 }
 
@@ -46,7 +46,7 @@ attr_theme_lr <- function() {
       ~attr,                  ~value,                  ~attr_type,
       "layout",               "dot",                   "graph",
       "rankdir",              "LR",                    "graph"
-    ) %>%
+    ) |>
       asdf(),
     attr_theme_default()[-1, ])
 }
@@ -61,7 +61,7 @@ attr_theme_tb <- function() {
       ~attr,                  ~value,                  ~attr_type,
       "layout",               "dot",                   "graph",
       "rankdir",              "TB",                    "graph"
-    ) %>%
+    ) |>
       asdf(),
     attr_theme_default()[-1, ])
 }
@@ -76,7 +76,7 @@ attr_theme_rl <- function() {
       ~attr,                  ~value,                  ~attr_type,
       "layout",               "dot",                   "graph",
       "rankdir",              "RL",                    "graph"
-    ) %>%
+    ) |>
       asdf(),
     attr_theme_default()[-1, ])
 }
@@ -91,7 +91,7 @@ attr_theme_bt <- function() {
       ~attr,                  ~value,                  ~attr_type,
       "layout",               "dot",                   "graph",
       "rankdir",              "BT",                    "graph"
-    ) %>%
+    ) |>
       asdf(),
     attr_theme_default()[-1, ])
 }
@@ -120,7 +120,7 @@ attr_theme_fdp <- function() {
     "len",                  "1.5",                   "edge",
     "color",                "gray80",                "edge",
     "arrowsize",            "0.5",                   "edge"
-  ) %>%
+  ) |>
     asdf()
 }
 
@@ -134,7 +134,7 @@ attr_theme_kk <- function() {
       ~attr,                  ~value,                  ~attr_type,
       "layout",               "neato",                 "graph",
       "mode",                 "KK",                    "graph"
-    ) %>%
+    ) |>
       asdf(),
     attr_theme_default()[-1, ])
 }

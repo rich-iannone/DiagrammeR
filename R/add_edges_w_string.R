@@ -22,23 +22,23 @@
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_node(label = "one") %>%
-#'   add_node(label = "two") %>%
-#'   add_node(label = "three") %>%
+#'   create_graph() |>
+#'   add_node(label = "one") |>
+#'   add_node(label = "two") |>
+#'   add_node(label = "three") |>
 #'   add_node(label = "four")
 #'
 #' # Add edges between nodes using
 #' # a character string with node
 #' # ID values
 #' graph_node_id <-
-#'   graph %>%
+#'   graph |>
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->3")
 #'
 #' # Show the graph's internal
 #' # edge data frame
-#' graph_node_id %>% get_edge_df()
+#' graph_node_id |> get_edge_df()
 #'
 #' # Add edges between nodes using
 #' # a character string with node
@@ -47,7 +47,7 @@
 #' # all nodes must have unique
 #' # `label` values to use this
 #' graph_node_label <-
-#'   graph %>%
+#'   graph |>
 #'   add_edges_w_string(
 #'     edges =
 #'       "one->two one->three
@@ -57,7 +57,7 @@
 #' # Show the graph's internal
 #' # edge data frame (it's the
 #' # same as before)
-#' graph_node_label %>% get_edge_df()
+#' graph_node_label |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -150,13 +150,13 @@ add_edges_w_string <- function(
   }
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Add the new edges to the graph
   graph <- add_edge_df(graph, new_edges)
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph
@@ -165,12 +165,12 @@ add_edges_w_string <- function(
   # Clear the graph's active selection
   graph <-
     suppressMessages(
-      graph %>%
+      graph |>
         clear_selection())
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
-    graph$graph_log %>%
+    graph$graph_log |>
     dplyr::filter(version_id <= current_graph_log_version_id)
 
   # Get the name of the function

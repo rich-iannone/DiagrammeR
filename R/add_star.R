@@ -22,16 +22,16 @@
 #' # Create a new graph and add 2
 #' # stars of varying numbers of nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_star(
 #'     n = 4,
-#'     type = "four_star") %>%
+#'     type = "four_star") |>
 #'   add_star(
 #'     n = 5,
 #'     type = "five_star")
 #'
 #' # Get node information from this graph
-#' graph %>% get_node_info()
+#' graph |> get_node_info()
 #'
 #' # Node and edge aesthetic and data
 #' # attributes can be specified in
@@ -43,7 +43,7 @@
 #' set.seed(23)
 #'
 #' graph_w_attrs <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_star(
 #'     n = 4,
 #'     label = c(
@@ -68,10 +68,10 @@
 #'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>% get_node_df()
+#' graph_w_attrs |> get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>% get_edge_df()
+#' graph_w_attrs |> get_edge_df()
 #'
 #' @export
 add_star <- function(
@@ -129,7 +129,7 @@ add_star <- function(
       node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -148,7 +148,7 @@ add_star <- function(
       node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -167,7 +167,7 @@ add_star <- function(
       edge_aes$index__ <- seq_len(n - 1)
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -186,7 +186,7 @@ add_star <- function(
       edge_data$index__ <- seq_len(n - 1)
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -206,7 +206,7 @@ add_star <- function(
   if (exists("node_aes_tbl")) {
 
     star_nodes <-
-      star_nodes %>%
+      star_nodes |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -214,7 +214,7 @@ add_star <- function(
   if (exists("node_data_tbl")) {
 
     star_nodes <-
-      star_nodes %>%
+      star_nodes |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -229,7 +229,7 @@ add_star <- function(
   if (exists("edge_aes_tbl")) {
 
     star_edges <-
-      star_edges %>%
+      star_edges |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -237,7 +237,7 @@ add_star <- function(
   if (exists("edge_data_tbl")) {
 
     star_edges <-
-      star_edges %>%
+      star_edges |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

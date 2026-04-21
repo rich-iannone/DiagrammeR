@@ -16,30 +16,30 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 8,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = shape,
-#'     values = "circle") %>%
+#'     values = "circle") |>
 #'   set_node_attrs(
 #'     node_attr = value,
 #'     values = rnorm(
-#'       n = count_nodes(.),
+#'       n = 5,
 #'       mean = 5,
-#'       sd = 1) %>% round(1))
+#'       sd = 1) |> round(1))
 #'
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Rename the `value` node
 #' # attribute as `weight`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rename_node_attrs(
 #'     node_attr_from = value,
 #'     node_attr_to = weight)
@@ -47,7 +47,7 @@
 #' # Get the graph's internal
 #' # ndf to show that the node
 #' # attribute had been renamed
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -69,11 +69,11 @@ rename_node_attrs <- function(
 
   # Get the requested `node_attr_from`
   node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `node_attr_to`
   node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_to) |> rlang::get_expr() |> as.character()
 
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical

@@ -12,7 +12,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 36,
 #'     m = 50,
@@ -47,7 +47,7 @@ to_igraph <- function(graph) {
   # Extract the graph's edge data frame and
   # exclude the `id` column
   edf <-
-    graph$edges_df %>%
+    graph$edges_df |>
     dplyr::select(-"id")
 
   igraph::graph_from_data_frame(

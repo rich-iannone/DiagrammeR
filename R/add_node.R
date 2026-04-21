@@ -24,28 +24,28 @@
 #' # Create an empty graph and add 2 nodes by using
 #' # the `add_node()` function twice
 #' graph <-
-#'   create_graph() %>%
-#'   add_node() %>%
+#'   create_graph() |>
+#'   add_node() |>
 #'   add_node()
 #'
 #' # Get a count of all nodes
 #' # in the graph
-#' graph %>% count_nodes()
+#' graph |> count_nodes()
 #'
 #' # The nodes added were given
 #' # ID values `1` and `2`; obtain
 #' # the graph's node IDs
-#' graph %>% get_node_ids()
+#' graph |> get_node_ids()
 #'
 #' # Add a node with a `type`
 #' # value defined
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_node(type = "person")
 #'
 #' # View the graph's internal
 #' # node data frame (ndf)
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -92,7 +92,7 @@ add_node <- function(
       node_aes$index__ <- 1
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -111,7 +111,7 @@ add_node <- function(
       node_data$index__ <- 1
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -136,7 +136,7 @@ add_node <- function(
     if (exists("node_aes_tbl")) {
 
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_aes_tbl)
     }
 
@@ -144,7 +144,7 @@ add_node <- function(
     if (exists("node_data_tbl")) {
 
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_data_tbl)
     }
 
@@ -206,14 +206,14 @@ add_node <- function(
     # Add node aesthetics if available
     if (exists("node_aes_tbl")) {
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_aes_tbl)
     }
 
     # Add node data if available
     if (exists("node_data_tbl")) {
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_data_tbl)
     }
 
@@ -230,7 +230,7 @@ add_node <- function(
         edge_aes$index__ <- seq_along(from)
 
         edge_aes_tbl <-
-          dplyr::as_tibble(edge_aes) %>%
+          dplyr::as_tibble(edge_aes) |>
           dplyr::select(-"index__")
       }
 
@@ -247,7 +247,7 @@ add_node <- function(
         edge_data$index__ <- seq_along(from)
 
         edge_data_tbl <-
-          dplyr::as_tibble(edge_data) %>%
+          dplyr::as_tibble(edge_data) |>
           dplyr::select(-"index__")
       }
 
@@ -268,14 +268,14 @@ add_node <- function(
     # Add edge aesthetics if available
     if (exists("edge_aes_tbl")) {
       new_edges <-
-        new_edges %>%
+        new_edges |>
         dplyr::bind_cols(edge_aes_tbl)
     }
 
     # Add edge data if available
     if (exists("edge_data_tbl")) {
       new_edges <-
-        new_edges %>%
+        new_edges |>
         dplyr::bind_cols(edge_data_tbl)
     }
 
@@ -344,7 +344,7 @@ add_node <- function(
     if (exists("node_aes_tbl")) {
 
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_aes_tbl)
     }
 
@@ -352,7 +352,7 @@ add_node <- function(
     if (exists("node_data_tbl")) {
 
       new_node <-
-        new_node %>%
+        new_node |>
         dplyr::bind_cols(node_data_tbl)
     }
 
@@ -368,7 +368,7 @@ add_node <- function(
         edge_aes$index__ <- seq_along(from)
 
         edge_aes_tbl <-
-          dplyr::as_tibble(edge_aes) %>%
+          dplyr::as_tibble(edge_aes) |>
           dplyr::select(-"index__")
       }
 
@@ -386,7 +386,7 @@ add_node <- function(
         edge_data$index__ <- seq_along(from)
 
         edge_data_tbl <-
-          dplyr::as_tibble(edge_data) %>%
+          dplyr::as_tibble(edge_data) |>
           dplyr::select(-"index__")
       }
 
@@ -407,14 +407,14 @@ add_node <- function(
     if (exists("edge_aes_tbl")) {
 
       new_edges <-
-        new_edges %>%
+        new_edges |>
         dplyr::bind_cols(edge_aes_tbl)
     }
 
     # Add edge data if available
     if (exists("edge_data_tbl")) {
       new_edges <-
-        new_edges %>%
+        new_edges |>
         dplyr::bind_cols(edge_data_tbl)
     }
 
@@ -492,7 +492,7 @@ add_node <- function(
       # Add node aesthetics if available
       if (exists("node_aes_tbl")) {
         new_node <-
-          new_node %>%
+          new_node |>
           dplyr::bind_cols(node_aes_tbl)
       }
 
@@ -500,7 +500,7 @@ add_node <- function(
       if (exists("node_data_tbl")) {
 
         new_node <-
-          new_node %>%
+          new_node |>
           dplyr::bind_cols(node_data_tbl)
       }
 
@@ -529,7 +529,7 @@ add_node <- function(
           edge_aes$index__ <- seq_len(length(from) + length(to))
 
           edge_aes_tbl <-
-            dplyr::as_tibble(edge_aes) %>%
+            dplyr::as_tibble(edge_aes) |>
             dplyr::select(-"index__")
         }
 
@@ -548,7 +548,7 @@ add_node <- function(
           edge_data$index__ <- seq_len(length(from) + length(to))
 
           edge_data_tbl <-
-            dplyr::as_tibble(edge_data) %>%
+            dplyr::as_tibble(edge_data) |>
             dplyr::select(-"index__")
         }
 
@@ -561,7 +561,7 @@ add_node <- function(
       if (exists("edge_aes_tbl")) {
 
         new_edges <-
-          new_edges %>%
+          new_edges |>
           dplyr::bind_cols(edge_aes_tbl)
       }
 
@@ -569,7 +569,7 @@ add_node <- function(
       if (exists("edge_data_tbl")) {
 
         new_edges <-
-          new_edges %>%
+          new_edges |>
           dplyr::bind_cols(edge_data_tbl)
       }
 

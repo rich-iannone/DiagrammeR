@@ -13,7 +13,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -23,7 +23,7 @@
 #' # values for each pair of
 #' # nodes as a square matrix
 #' j_sim_matrix <-
-#'   graph %>%
+#'   graph |>
 #'     get_jaccard_similarity()
 #'
 #' # Create a weighted, undirected
@@ -31,7 +31,7 @@
 #' # (effectively treating that
 #' # matrix as an adjacency matrix)
 #' graph <-
-#'   j_sim_matrix %>%
+#'   j_sim_matrix |>
 #'   from_adj_matrix(weighted = TRUE)
 #'
 #' # The graph in this case is a fully connected graph
@@ -41,17 +41,17 @@
 #' # connected subgraph where the edges retained have
 #' # the lowest similarity values possible
 #' min_spanning_tree_graph <-
-#'   graph %>%
-#'   transform_to_min_spanning_tree() %>%
+#'   graph |>
+#'   transform_to_min_spanning_tree() |>
 #'   copy_edge_attrs(
 #'     edge_attr_from = weight,
-#'     edge_attr_to = label) %>%
+#'     edge_attr_to = label) |>
 #'   set_edge_attrs(
 #'     edge_attr = fontname,
-#'     values = "Helvetica") %>%
+#'     values = "Helvetica") |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
-#'     values = "gray85") %>%
+#'     values = "gray85") |>
 #'   rescale_edge_attrs(
 #'     edge_attr_from = weight,
 #'     to_lower_bound = 0.5,

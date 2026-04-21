@@ -26,8 +26,8 @@
 #'
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 5) %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 5) |>
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->5 3->5")
 #'
@@ -43,26 +43,26 @@
 #' # identically-named columns in the graph and the df
 #' # (in this case the `id` column is common to both)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
 #'     df = df)
 #'
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
 #' # common column name `id` in the different
 #' # tables results in a natural join)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_betweenness(.))
+#'     df = get_betweenness(graph))
 #'
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #' @family node creation and removal
 #' @export
 join_node_attrs <- function(
@@ -139,7 +139,7 @@ join_node_attrs <- function(
 
   # Ensure that the column ordering is correct
   nodes <-
-    nodes %>% dplyr::relocate("id", "type", "label")
+    nodes |> dplyr::relocate("id", "type", "label")
 
   # Modify the graph object
   graph$nodes_df <- nodes

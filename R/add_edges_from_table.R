@@ -31,7 +31,7 @@
 #' # `currencies` dataset available
 #' # in the package
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_nodes_from_table(
 #'     table = currencies)
 #'
@@ -47,7 +47,7 @@
 #' # `iso_4217_code` column of the
 #' # graph's internal node data frame
 #' graph_1 <-
-#'   graph %>%
+#'   graph |>
 #'     add_edges_from_table(
 #'       table = usd_exchange_rates,
 #'       from_col = from_currency,
@@ -56,8 +56,8 @@
 #'
 #' # View part of the graph's
 #' # internal edge data frame
-#' graph_1 %>%
-#'   get_edge_df() %>%
+#' graph_1 |>
+#'   get_edge_df() |>
 #'   head()
 #'
 #' # If you would like to assign
@@ -67,7 +67,7 @@
 #' # set a static `rel` attribute for
 #' # all edges created, use `set_rel`
 #' graph_2 <-
-#'   graph %>%
+#'   graph |>
 #'     add_edges_from_table(
 #'       table = usd_exchange_rates,
 #'       from_col = from_currency,
@@ -77,8 +77,8 @@
 #'
 #' # View part of the graph's internal
 #' # edge data frame (edf)
-#' graph_2 %>%
-#'   get_edge_df() %>%
+#' graph_2 |>
+#'   get_edge_df() |>
 #'   head()
 #'
 #' @family edge creation and removal
@@ -106,26 +106,26 @@ add_edges_from_table <- function(
 
   # Get the requested `from_col`
   from_col <-
-    rlang::ensym(from_col) %>% rlang::as_string()
+    rlang::ensym(from_col) |> rlang::as_string()
 
   # Get the requested `to_col`
   to_col <-
-    rlang::ensym(to_col) %>% rlang::as_string()
+    rlang::ensym(to_col) |> rlang::as_string()
 
   # Get the requested `from_to_map`
   from_to_map <-
-    rlang::ensym(from_to_map) %>% rlang::as_string()
+    rlang::ensym(from_to_map) |> rlang::as_string()
 
   # Get the requested `rel_col`
   if (!rlang::quo_is_null(rlang::enquo(rel_col))) {
     rel_col <-
-      rlang::ensym(rel_col) %>% rlang::as_string()
+      rlang::ensym(rel_col) |> rlang::as_string()
   }
 
   # Get the requested `drop_cols`
   if (!rlang::quo_is_null(rlang::enquo(drop_cols))) {
     drop_cols <-
-      rlang::ensym(drop_cols) %>% rlang::as_string()
+      rlang::ensym(drop_cols) |> rlang::as_string()
   }
 
   # Determine whether the table is a file connection
@@ -177,35 +177,35 @@ add_edges_from_table <- function(
   # Exclude the `from` and `to` columns
   # from the `csv` table
   csv_data_excluding_from_to <-
-    csv %>%
+    csv |>
     dplyr::select(setdiff(colnames(csv), c(from_col, to_col)))
 
   # Get the `from` col
   col_from <-
-    dplyr::as_tibble(csv) %>%
-    dplyr::select(!!from_col) %>%
+    dplyr::as_tibble(csv) |>
+    dplyr::select(!!from_col) |>
     dplyr::left_join(
-      ndf %>% dplyr::select("id", !!from_to_map),
-      by = stats::setNames(from_to_map, from_col)) %>%
-    dplyr::select(from = "id") %>%
+      ndf |> dplyr::select("id", !!from_to_map),
+      by = stats::setNames(from_to_map, from_col)) |>
+    dplyr::select(from = "id") |>
     dplyr::mutate(from = as.integer(from))
 
   # Get the `to` col
   col_to <-
-    dplyr::as_tibble(csv) %>%
-    dplyr::select(!!to_col) %>%
+    dplyr::as_tibble(csv) |>
+    dplyr::select(!!to_col) |>
     dplyr::left_join(
-      ndf %>% dplyr::select("id", !!from_to_map),
-      by = stats::setNames(from_to_map, to_col)) %>%
-    dplyr::select(to = "id") %>%
+      ndf |> dplyr::select("id", !!from_to_map),
+      by = stats::setNames(from_to_map, to_col)) |>
+    dplyr::select(to = "id") |>
     dplyr::mutate(to = as.integer(to))
 
   # Combine the `from` and `to` columns together along
   # with a new `rel` column (filled with NAs) and additional
   # columns from the CSV
   edf <-
-    col_from %>%
-    dplyr::bind_cols(col_to) %>%
+    col_from |>
+    dplyr::bind_cols(col_to) |>
     dplyr::bind_cols(csv_data_excluding_from_to)
 
   # Add in a `rel` column (filled with NAs) if it's not
@@ -217,8 +217,8 @@ add_edges_from_table <- function(
   # Use the `select()` function to arrange the
   # column rows and then convert to a data frame
   edf <-
-    edf %>%
-    dplyr::relocate("from", "to", "rel") %>%
+    edf |>
+    dplyr::relocate("from", "to", "rel") |>
     as.data.frame(stringsAsFactors = FALSE)
 
   # Remove any rows where there is an NA in either
@@ -248,13 +248,13 @@ add_edges_from_table <- function(
       col_index_1 <- which(colnames(edf) == col_selection[["column_selection"]][1])
       col_index_2 <- which(colnames(edf) == col_selection[["column_selection"]][2])
 
-      col_indices <- col_index_1:col_index_2 %>% sort()
+      col_indices <- col_index_1:col_index_2 |> sort()
 
       columns_retained <- base::setdiff(colnames(edf), colnames(edf)[col_indices])
 
     } else if (col_selection[["selection_type"]] == "column_index_range") {
 
-      col_indices <- col_selection[["column_selection"]] %>% sort()
+      col_indices <- col_selection[["column_selection"]] |> sort()
 
       columns_retained <- base::setdiff(colnames(edf), colnames(edf)[col_indices])
 
@@ -271,7 +271,7 @@ add_edges_from_table <- function(
   }
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Add the edf to the graph object
   if (is.null(graph$edges_df)) {
@@ -281,7 +281,7 @@ add_edges_from_table <- function(
   }
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

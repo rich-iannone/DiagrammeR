@@ -17,7 +17,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -25,20 +25,20 @@
 #'
 #' # Get the total degree values
 #' # for all nodes in the graph
-#' graph %>%
+#' graph |>
 #'   get_degree_total()
 #'
 #' # Add the total degree values
 #' # to the graph as a node
 #' # attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_degree_total(.))
+#'     df = get_degree_total(graph))
 #'
 #' # Display the graph's
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_degree_total <- function(
@@ -72,8 +72,8 @@ get_degree_total <- function(
 
   # Create df with total degree scores
   data.frame(
-    id = total_degree_values %>%
-      names() %>%
+    id = total_degree_values |>
+      names() |>
       as.integer(),
     total_degree = total_degree_values,
     stringsAsFactors = FALSE)

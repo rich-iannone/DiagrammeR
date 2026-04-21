@@ -27,28 +27,28 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 7,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_edge_attrs(
 #'     edge_attr = weight,
 #'     values = rnorm(
-#'       n = count_edges(.),
+#'       n = 7,
 #'       mean = 5,
 #'       sd = 1))
 #'
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Rescale the `weight` edge
 #' # attribute, so that its values
 #' # are rescaled between 0 and 1
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rescale_edge_attrs(
 #'     edge_attr_from = weight,
 #'     to_lower_bound = 0,
@@ -57,7 +57,7 @@
 #' # Get the graph's internal edf
 #' # to show that the edge attribute
 #' # values had been rescaled
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Scale the values in the `weight`
 #' # edge attribute to different
@@ -66,12 +66,12 @@
 #' # numerical values for the
 #' # `penwidth` attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rescale_edge_attrs(
 #'     edge_attr_from = weight,
 #'     to_lower_bound = "gray80",
 #'     to_upper_bound = "gray20",
-#'     edge_attr_to = color) %>%
+#'     edge_attr_to = color) |>
 #'   rescale_edge_attrs(
 #'     edge_attr_from = weight,
 #'     to_lower_bound = 0.5,
@@ -84,7 +84,7 @@
 #' # in `color` and scaled numerical
 #' # values are in the `penwidth`
 #' # edge attribute
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -110,11 +110,11 @@ rescale_edge_attrs <- function(
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
-    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `edge_attr_to`
   edge_attr_to <-
-    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_to) |> rlang::get_expr() |> as.character()
 
   if (length(edge_attr_to) == 0) {
     edge_attr_to <- NULL
@@ -136,11 +136,11 @@ rescale_edge_attrs <- function(
 
   # Extract the vector to rescale from the `edges` df
   vector_to_rescale <-
-    edges %>%
+    edges |>
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(edge_attr_from),
-        as.numeric)) %>%
+        as.numeric)) |>
     dplyr::pull(var = !!edge_attr_from)
 
   # TODO condition could be simplified to

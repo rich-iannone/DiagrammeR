@@ -16,11 +16,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 8,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
 #'     values = "green")
@@ -28,12 +28,12 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Rename the `color` node
 #' # attribute as `weight`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rename_edge_attrs(
 #'     edge_attr_from = color,
 #'     edge_attr_to = labelfontcolor)
@@ -41,7 +41,7 @@
 #' # Get the graph's internal
 #' # edf to show that the edge
 #' # attribute had been renamed
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -63,11 +63,11 @@ rename_edge_attrs <- function(
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
-    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `edge_attr_to`
   edge_attr_to <-
-    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_to) |> rlang::get_expr() |> as.character()
 
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical

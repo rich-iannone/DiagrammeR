@@ -86,7 +86,7 @@
 #' # a path with several node
 #' # aesthetic attributes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     type = "path",
@@ -101,12 +101,12 @@
 #' # node data frame; the node
 #' # aesthetic attributes have
 #' # been inserted
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Create a new graph which is
 #' # fully connected
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_full_graph(
 #'     n = 4,
 #'     node_data = node_data(value = 1:4),
@@ -179,7 +179,7 @@ node_aes <- function(shape = NULL,
       margin = margin)
 
   non_null_attrs <-
-    seq_along(attr_values) %>%
+    seq_along(attr_values) |>
     purrr::map_chr(.f = function(x) {
       if (!is.null(attr_values[[x]])) {
         names(attr_values[x])

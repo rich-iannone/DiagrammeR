@@ -40,7 +40,7 @@
 #' # and `col_2` from the data frame
 #' # to the graph object
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_nodes_from_df_cols(
 #'     df = df,
 #'     columns = c("col_1", "col_2"))
@@ -49,13 +49,13 @@
 #' # frame; duplicate labels are
 #' # prevented with `keep_duplicates =
 #' # FALSE`)
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Add new nodes from columns 3 and 4;
 #' # We can specify the columns by their
 #' # numbers as well
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_nodes_from_df_cols(
 #'     df = df,
 #'     columns = 3:4)
@@ -64,7 +64,7 @@
 #' # frame; note that nodes didn't
 #' # get made with columns that
 #' # are not character class columns
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -105,12 +105,12 @@ add_nodes_from_df_cols <- function(
   }
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Isolate the relevant columns in the data frame;
   # Exclude any columns that are not character class
   df <-
-    dplyr::as_tibble(df) %>%
+    dplyr::as_tibble(df) |>
     dplyr::select(dplyr::all_of(columns) & dplyr::where(is.character))
 
   # Create an empty `nodes` vector
@@ -121,14 +121,14 @@ add_nodes_from_df_cols <- function(
   for (i in seq_len(ncol(df))) {
     nodes <-
       c(nodes,
-        df[, i] %>%
-          purrr::flatten_chr() %>%
-          trimws() %>%
-          stringr::str_split(" ") %>%
-          purrr::flatten_chr() %>%
-          tibble::enframe(name = NULL) %>%
-          tidyr::drop_na() %>%
-          dplyr::distinct() %>%
+        df[, i] |>
+          purrr::flatten_chr() |>
+          trimws() |>
+          stringr::str_split(" ") |>
+          purrr::flatten_chr() |>
+          tibble::enframe(name = NULL) |>
+          tidyr::drop_na() |>
+          dplyr::distinct() |>
           purrr::flatten_chr())
   }
 
@@ -175,7 +175,7 @@ add_nodes_from_df_cols <- function(
   }
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph

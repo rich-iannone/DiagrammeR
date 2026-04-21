@@ -47,15 +47,15 @@
 #'
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(
 #'     n = 2,
 #'     type = "a",
-#'     label = c("asd", "iekd")) %>%
+#'     label = c("asd", "iekd")) |>
 #'   add_n_nodes(
 #'     n = 3,
 #'     type = "b",
-#'     label = c("idj", "edl", "ohd")) %>%
+#'     label = c("idj", "edl", "ohd")) |>
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->5 3->5",
 #'     rel = c(NA, "A", "B", "C", "D"))
@@ -72,106 +72,106 @@
 #' # Join the data frame to the graph's internal
 #' # edge data frame (edf)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_edge_attrs(df = df)
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Perform a simple traversal from nodes to
 #' # adjacent edges with no conditions on the
 #' # nodes traversed to
-#' graph %>%
-#'   select_nodes_by_id(nodes = 3) %>%
-#'   trav_both_edge() %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 3) |>
+#'   trav_both_edge() |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that have
 #' # NA values for the `rel` edge attribute
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
-#'     conditions = is.na(rel)) %>%
+#'     conditions = is.na(rel)) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that have
 #' # numeric values greater than `6.5` for
 #' # the `rel` edge attribute
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
-#'     conditions = values > 6.5) %>%
+#'     conditions = values > 6.5) |>
 #'   get_selection()
 #'
 #' # Traverse from node `5` to any adjacent
 #' # edges, filtering to those edges that
 #' # have values equal to `C` for the `rel`
 #' # edge attribute
-#' graph %>%
-#'   select_nodes_by_id(nodes = 5) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 5) |>
 #'   trav_both_edge(
-#'     conditions = rel == "C") %>%
+#'     conditions = rel == "C") |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that
 #' # have values in the set `B` and `C` for
 #' # the `rel` edge attribute
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
-#'     conditions = rel %in% c("B", "C")) %>%
+#'     conditions = rel %in% c("B", "C")) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions for the
 #' # traversal
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
 #'     conditions =
 #'       rel %in% c("B", "C") &
-#'       values > 4.0) %>%
+#'       values > 4.0) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions with
 #' # a single-length vector
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
 #'     conditions =
 #'       rel %in% c("B", "C") |
-#'       values > 4.0) %>%
+#'       values > 4.0) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use a regular expression as
 #' # a filtering condition
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both_edge(
-#'     conditions = grepl("B|C", rel)) %>%
+#'     conditions = grepl("B|C", rel)) |>
 #'   get_selection()
 #'
 #' # Create another simple graph to demonstrate
 #' # copying of node attribute values to traversed
 #' # edges
 #' graph <-
-#'   create_graph() %>%
-#'   add_path(n = 4) %>%
-#'   select_nodes_by_id(nodes = 2:3) %>%
+#'   create_graph() |>
+#'   add_path(n = 4) |>
+#'   select_nodes_by_id(nodes = 2:3) |>
 #'   set_node_attrs_ws(
 #'     node_attr = value,
 #'     value = 5)
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>%get_edge_df()
+#' graph |>get_edge_df()
 #'
 #' # Show the graph's internal node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Perform a traversal from the nodes to
 #' # the adjacent edges while also applying
@@ -180,14 +180,14 @@
 #' # all contributing nodes adding as an edge
 #' # attribute)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_both_edge(
 #'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal edge data frame
 #' # after this change
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @export
 trav_both_edge <- function(
@@ -218,11 +218,11 @@ trav_both_edge <- function(
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
-    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(copy_attrs_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `copy_attrs_as`
   copy_attrs_as <-
-    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(copy_attrs_as) |> rlang::get_expr() |> as.character()
 
   if (length(copy_attrs_from) == 0) {
     copy_attrs_from <- NULL
@@ -252,9 +252,9 @@ trav_both_edge <- function(
   # starting nodes and remove edges that
   # are loops
   valid_edges <-
-    edf %>%
+    edf |>
     dplyr::filter(from %in% starting_nodes |
-                    to %in% starting_nodes) %>%
+                    to %in% starting_nodes) |>
     dplyr::filter(to != from)
 
   # If traversal conditions are provided then
@@ -280,25 +280,25 @@ trav_both_edge <- function(
     if (!(copy_attrs_from %in% colnames(edf))) {
 
       from_join <-
-        ndf %>%
-        dplyr::select("id", !!enquo(copy_attrs_from)) %>%
-        dplyr::filter(id %in% starting_nodes) %>%
+        ndf |>
+        dplyr::select("id", !!enquo(copy_attrs_from)) |>
+        dplyr::filter(id %in% starting_nodes) |>
         dplyr::right_join(
-          valid_edges %>%
-            dplyr::select(-"rel") %>%
+          valid_edges |>
+            dplyr::select(-"rel") |>
             dplyr::rename(e_id = "id"),
-          by = c("id" = "from")) %>%
+          by = c("id" = "from")) |>
         dplyr::select("e_id", !!enquo(copy_attrs_from))
 
       to_join <-
-        ndf %>%
-        dplyr::select("id", !!enquo(copy_attrs_from)) %>%
-        dplyr::filter(id %in% starting_nodes) %>%
+        ndf |>
+        dplyr::select("id", !!enquo(copy_attrs_from)) |>
+        dplyr::filter(id %in% starting_nodes) |>
         dplyr::right_join(
-          valid_edges %>%
-            dplyr::select(-"rel") %>%
+          valid_edges |>
+            dplyr::select(-"rel") |>
             dplyr::rename(e_id = "id"),
-          by = c("id" = "to")) %>%
+          by = c("id" = "to")) |>
         dplyr::select("e_id", !!enquo(copy_attrs_from))
 
       if (!is.null(copy_attrs_as)) {
@@ -316,23 +316,23 @@ trav_both_edge <- function(
 
       edges <-
         dplyr::bind_rows(
-          from_join, to_join) %>%
-        dplyr::left_join(edf, by = c("e_id" = "id")) %>%
-        dplyr::rename(id = "e_id") %>%
-        dplyr::group_by(id) %>%
+          from_join, to_join) |>
+        dplyr::left_join(edf, by = c("e_id" = "id")) |>
+        dplyr::rename(id = "e_id") |>
+        dplyr::group_by(id) |>
         dplyr::summarize(!!copy_attrs_from :=
                            match.fun(!!agg)(!!as.name(copy_attrs_from),
-                                             na.rm = TRUE)) %>%
-        dplyr::right_join(edf, by = "id") %>%
-        dplyr::relocate("id", "from", "to", "rel") %>%
+                                             na.rm = TRUE)) |>
+        dplyr::right_join(edf, by = "id") |>
+        dplyr::relocate("id", "from", "to", "rel") |>
         as.data.frame(stringsAsFractions = FALSE)
     }
 
     if (copy_attrs_from %in% colnames(edf)) {
 
       from_join <-
-        ndf %>%
-        dplyr::select("id", !!enquo(copy_attrs_from)) %>%
+        ndf |>
+        dplyr::select("id", !!enquo(copy_attrs_from)) |>
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -347,10 +347,10 @@ trav_both_edge <- function(
       }
 
       from_join <-
-        from_join %>%
+        from_join |>
         dplyr::right_join(
-          valid_edges %>%
-            dplyr::select(-"rel") %>%
+          valid_edges |>
+            dplyr::select(-"rel") |>
             dplyr::rename(e_id = "id"),
           by = c("id" = "from"))
 
@@ -374,12 +374,12 @@ trav_both_edge <- function(
 
       # Drop the ".x" column
       from_join <-
-        from_join %>%
+        from_join |>
         dplyr::select("e_id", !!enquo(copy_attrs_from))
 
       to_join <-
-        ndf %>%
-        dplyr::select("id", !!enquo(copy_attrs_from)) %>%
+        ndf |>
+        dplyr::select("id", !!enquo(copy_attrs_from)) |>
         dplyr::filter(id %in% starting_nodes)
 
       if (!is.null(copy_attrs_as)) {
@@ -388,10 +388,10 @@ trav_both_edge <- function(
       }
 
       to_join <-
-        to_join %>%
+        to_join |>
         dplyr::right_join(
-          valid_edges %>%
-            dplyr::select(-"rel") %>%
+          valid_edges |>
+            dplyr::select(-"rel") |>
             dplyr::rename(e_id = "id"),
           by = c("id" = "to"))
 
@@ -420,12 +420,12 @@ trav_both_edge <- function(
 
       # Drop the ".x" column
       to_join <-
-        to_join %>%
+        to_join |>
         dplyr::select("e_id", !!enquo(copy_attrs_from))
 
       edges <-
         dplyr::bind_rows(
-          from_join, to_join) %>%
+          from_join, to_join) |>
         dplyr::left_join(edf, by = c("e_id" = "id"))
 
       # Get column numbers that end with ".x" or ".y"
@@ -450,13 +450,13 @@ trav_both_edge <- function(
       edges <- edges[-split_var_x_col]
 
       joined_edges <-
-        edges %>%
-        dplyr::arrange(e_id) %>%
-        dplyr::rename(id = "e_id") %>%
-        dplyr::group_by(id) %>%
+        edges |>
+        dplyr::arrange(e_id) |>
+        dplyr::rename(id = "e_id") |>
+        dplyr::group_by(id) |>
         dplyr::summarize(!!copy_attrs_from :=
                             match.fun(!!agg)(!!as.name(copy_attrs_from),
-                                              na.rm = TRUE), .groups = "drop") %>%
+                                              na.rm = TRUE), .groups = "drop") |>
         dplyr::right_join(edf, by = "id")
 
       # Get column numbers that end with ".x" or ".y"
@@ -481,9 +481,9 @@ trav_both_edge <- function(
       joined_edges <- joined_edges[-split_var_x_col]
 
       edges <-
-        joined_edges %>%
-        dplyr::relocate("id", "from", "to", "rel") %>%
-        dplyr::arrange(id) %>%
+        joined_edges |>
+        dplyr::relocate("id", "from", "to", "rel") |>
+        dplyr::arrange(id) |>
         as.data.frame(stringsAsFractions = FALSE)
     }
 

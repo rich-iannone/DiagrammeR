@@ -24,7 +24,7 @@
 #'     0:1, 100,
 #'     replace = TRUE,
 #'     prob = c(0.9,0.1)
-#'   ) %>%
+#'   ) |>
 #'   matrix(ncol = 10)
 #'
 #' # Create a graph from the adjacency matrix

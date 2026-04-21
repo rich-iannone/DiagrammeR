@@ -15,7 +15,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -23,19 +23,19 @@
 #'
 #' # Get the authority centrality scores
 #' # for all nodes in the graph
-#' graph %>%
+#' graph |>
 #'   get_authority_centrality()
 #'
 #' # Add the authority centrality
 #' # scores to the graph as a node
 #' # attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_authority_centrality(.))
+#'     df = get_authority_centrality(graph))
 #'
 #' # Display the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_authority_centrality <- function(
@@ -78,8 +78,8 @@ get_authority_centrality <- function(
 
   # Create df with authority centrality values
   data.frame(
-    id = authority_centrality_values$vector %>%
-      names() %>%
+    id = authority_centrality_values$vector |>
+      names() |>
       as.integer(),
     authority_centrality = unname(authority_centrality_values$vector),
     stringsAsFactors = FALSE)

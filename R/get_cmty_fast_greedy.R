@@ -14,7 +14,7 @@
 #' # Create a graph with a
 #' # balanced tree
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_balanced_tree(
 #'     k = 2,
 #'     h = 2)
@@ -24,20 +24,20 @@
 #' # the graph through the greedy
 #' # optimization of modularity
 #' # algorithm
-#' graph %>%
+#' graph |>
 #'   get_cmty_fast_greedy()
 #'
 #' # Add the group membership
 #' # values to the graph as a
 #' # node attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_cmty_fast_greedy(.))
+#'     df = get_cmty_fast_greedy(graph))
 #'
 #' # Display the graph's
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_cmty_fast_greedy <- function(graph) {
@@ -58,7 +58,7 @@ get_cmty_fast_greedy <- function(graph) {
 
   # Create df with node memberships
   data.frame(
-    id = igraph::membership(cmty_fast_greedy_obj) %>% names() %>% as.integer(),
+    id = igraph::membership(cmty_fast_greedy_obj) |> names() |> as.integer(),
     f_g_group = as.vector(igraph::membership(cmty_fast_greedy_obj)),
     stringsAsFactors = FALSE)
 }

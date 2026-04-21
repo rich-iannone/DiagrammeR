@@ -52,26 +52,26 @@
 #' # Explicitly select the edges
 #' # `1`->`4` and `2`->`3`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges(
 #'     from = 1,
-#'       to = 4) %>%
+#'       to = 4) |>
 #'   select_edges(
 #'     from = 2,
 #'       to = 3)
 #'
 #' # Get the inital edge selection
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Traverse to the reverse edges
 #' # (edges `2`: `4`->`1` and
 #' # `4`:`3`->`2`)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_reverse_edge()
 #'
 #' # Get the current selection of edges
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 trav_reverse_edge <- function(
@@ -100,15 +100,15 @@ trav_reverse_edge <- function(
 
   # Get the available reverse edges
   reverse_edges_df <- data.frame(to = edges_from, from = edges_to)
-  reverse_edges <- edf %>% dplyr::inner_join(reverse_edges_df, by = c("from", "to"))
+  reverse_edges <- edf |> dplyr::inner_join(reverse_edges_df, by = c("from", "to"))
 
   # Add the reverse edges to the existing,
   # selected edges
   if (add_to_selection) {
     edges_df <- data.frame(to = edges_to, from = edges_from)
     edges <-
-      edf %>%
-      dplyr::inner_join(edges_df, by = c("from", "to")) %>%
+      edf |>
+      dplyr::inner_join(edges_df, by = c("from", "to")) |>
       dplyr::bind_rows(reverse_edges)
   } else {
     edges <- reverse_edges
@@ -116,8 +116,8 @@ trav_reverse_edge <- function(
 
   # Modify `edges` to create a correct esdf
   edges <-
-    edges %>%
-    dplyr::select(edge = "id", "from", "to") %>%
+    edges |>
+    dplyr::select(edge = "id", "from", "to") |>
     dplyr::arrange(edge)
 
   # Add the edge ID values to the active selection

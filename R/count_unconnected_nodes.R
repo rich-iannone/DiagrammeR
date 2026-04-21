@@ -12,18 +12,18 @@
 #' # path of nodes and 3
 #' # unconnected nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_path(n = 3) %>%
+#'   create_graph() |>
+#'   add_path(n = 3) |>
 #'   add_n_nodes(n = 3)
 #'
 #' # Get a count of all nodes
 #' # in the graph
-#' graph %>% count_nodes()
+#' graph |> count_nodes()
 #'
 #' # Get a count of all
 #' # unconnected nodes in the
 #' # graph
-#' graph %>%
+#' graph |>
 #'   count_unconnected_nodes()
 #'
 #' @export
@@ -41,22 +41,22 @@ count_unconnected_nodes <- function(graph) {
   # of edges
   nodes_in_edf <-
     dplyr::bind_rows(
-      graph$edges_df %>% dplyr::select(node_id = "from"),
-      graph$edges_df %>% dplyr::select(node_id = "to")
-      ) %>%
+      graph$edges_df |> dplyr::select(node_id = "from"),
+      graph$edges_df |> dplyr::select(node_id = "to")
+      ) |>
     dplyr::distinct()
 
   # Get tbl with all nodes that are
   # in the node data frame
   nodes_in_ndf <-
-    graph$nodes_df %>%
+    graph$nodes_df |>
     dplyr::select(node_id = "id")
 
   # Get nodes not in edge definitions
   nodes_not_in_edf <-
     dplyr::setdiff(
       nodes_in_ndf,
-      nodes_in_edf) %>%
+      nodes_in_edf) |>
     dplyr::pull("node_id")
 
   if (length(nodes_in_edf > 0)) {

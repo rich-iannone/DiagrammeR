@@ -33,13 +33,13 @@
 #' # Create a graph with unique labels and
 #' # several node `type` groupings
 #' graph <-
-#'   create_graph() %>%
-#'   add_node(type = "a", label = "a") %>%
-#'   add_node(type = "a", label = "b") %>%
-#'   add_node(type = "b", label = "c") %>%
-#'   add_node(type = "b", label = "d") %>%
-#'   add_node(type = "b", label = "e") %>%
-#'   add_node(type = "c", label = "f") %>%
+#'   create_graph() |>
+#'   add_node(type = "a", label = "a") |>
+#'   add_node(type = "a", label = "b") |>
+#'   add_node(type = "b", label = "c") |>
+#'   add_node(type = "b", label = "d") |>
+#'   add_node(type = "b", label = "e") |>
+#'   add_node(type = "c", label = "f") |>
 #'   add_node(type = "c", label = "g")
 #'
 #' # Define a 'layout' for groups of nodes
@@ -64,7 +64,7 @@
 #' # we should sort the collection of node
 #' # before adding position information
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   layout_nodes_w_string(
 #'     layout = layout,
 #'     nodes = c("1" = "type:a",
@@ -77,7 +77,7 @@
 #' # Show the graph's node data frame
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #' @family node creation and removal
 #' @export
 layout_nodes_w_string <- function(
@@ -107,8 +107,8 @@ layout_nodes_w_string <- function(
   # Parse the `layout` object to get a vector
   # of rows
   layout <-
-    gsub(" ", "", layout) %>%
-    stringr::str_split("\n") %>%
+    gsub(" ", "", layout) |>
+    stringr::str_split("\n") |>
     unlist()
 
   layout <-
@@ -165,7 +165,7 @@ layout_nodes_w_string <- function(
               y = y_pts[i])
 
           position_table <-
-            position_table %>%
+            position_table |>
             dplyr::bind_rows(item_table)
         }
       }
@@ -173,19 +173,19 @@ layout_nodes_w_string <- function(
 
     # Filter the graph `ndf`
     ndf_part <-
-      ndf %>%
+      ndf |>
       dplyr::filter(!!rlang::parse_expr(paste0(node_attr, " == '", node_attr_val, "'")))
 
     # Optionally apply sorting
     if (!is.null(sort)) {
       if (sort_dir == "desc") {
         ndf_part <-
-          ndf_part %>%
+          ndf_part |>
           dplyr::arrange(dplyr::desc(!!sym(sort_attr)))
 
       } else {
         ndf_part <-
-          ndf_part %>%
+          ndf_part |>
           dplyr::arrange(!!sym(sort_attr))
       }
     }
@@ -207,7 +207,7 @@ layout_nodes_w_string <- function(
 
   # Join the `ndf_parts` to the main `ndf`
   ndf <-
-    ndf %>%
+    ndf |>
     dplyr::left_join(
       ndf_parts,
       by = c("id", "type", "label"))

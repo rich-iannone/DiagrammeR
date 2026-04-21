@@ -22,21 +22,21 @@
 #' # Create three graphs
 #' graph_time_1 <-
 #'   create_graph(
-#'     graph_name = "graph_with_time_1") %>%
+#'     graph_name = "graph_with_time_1") |>
 #'   set_graph_time(
 #'     time = "2015-03-25 03:00",
 #'     tz = "GMT")
 #'
 #' graph_time_2 <-
 #'   create_graph(
-#'     graph_name = "graph_with_time_2") %>%
+#'     graph_name = "graph_with_time_2") |>
 #'   set_graph_time(
 #'     time = "2015-03-26 03:00",
 #'     tz = "GMT")
 #'
 #' graph_time_3 <-
 #'   create_graph(
-#'     graph_name = "graph_with_time_3") %>%
+#'     graph_name = "graph_with_time_3") |>
 #'   set_graph_time(
 #'     time = "2015-03-27 15:00",
 #'     tz = "GMT")
@@ -45,11 +45,11 @@
 #' # the graphs
 #' series_temporal <-
 #'   create_graph_series(
-#'     series_type = "temporal") %>%
+#'     series_type = "temporal") |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_time_1) %>%
+#'     graph = graph_time_1) |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_time_2) %>%
+#'     graph = graph_time_2) |>
 #'   add_graph_to_graph_series(
 #'     graph = graph_time_3)
 #'
@@ -62,7 +62,7 @@
 #'
 #' # Get a count of graphs in
 #' # the series
-#' series_sequence_subset %>%
+#' series_sequence_subset |>
 #'   count_graphs_in_graph_series()
 #'
 #' # Subset graph series by date-time
@@ -76,7 +76,7 @@
 #'
 #' # Get a count of graphs in
 #' # the series
-#' series_time_subset %>%
+#' series_time_subset |>
 #'   count_graphs_in_graph_series()
 #'
 #' @export

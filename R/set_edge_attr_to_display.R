@@ -29,11 +29,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 4,
 #'     m = 4,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = c(2.5, 8.2, 4.2, 2.4))
@@ -43,7 +43,7 @@
 #' # the edge `value` attribute (for
 #' # the other edges, display nothing)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_edge_attr_to_display(
 #'     edges = 1:3,
 #'     attr = value,
@@ -53,20 +53,20 @@
 #' # `display` edge attribute will show, for
 #' # each row, which edge attribute value to
 #' # display when the graph is rendered
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # This function can be called multiple
 #' # times on a graph; after the first time
 #' # (i.e., creation of the `display`
 #' # attribute), the `default` value won't
 #' # be used
-#' graph %>%
+#' graph |>
 #'   set_edge_attr_to_display(
 #'     edges = 4,
-#'     attr = to) %>%
+#'     attr = to) |>
 #'   set_edge_attr_to_display(
 #'     edges = c(1, 3),
-#'     attr = id) %>%
+#'     attr = id) |>
 #'   get_edge_df()
 #'
 #' @family edge creation and removal
@@ -90,7 +90,7 @@ set_edge_attr_to_display <- function(
 
   # Get the requested `attr`
   attr <-
-    rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(attr) |> rlang::get_expr() |> as.character()
 
   if (attr == "NULL") {
     attr <- NULL
@@ -145,7 +145,7 @@ set_edge_attr_to_display <- function(
 
   # Join the `attr_to_display` table with the `edf`
   edf <-
-    edf %>%
+    edf |>
     dplyr::left_join(attr_to_display, by = "id")
 
   # Get the column numbers for the `.x`
@@ -158,7 +158,7 @@ set_edge_attr_to_display <- function(
   if (!is.null(attr)) {
 
     display_col <-
-      dplyr::coalesce(edf[, y_col], edf[, x_col]) %>%
+      dplyr::coalesce(edf[, y_col], edf[, x_col]) |>
       as.data.frame(stringsAsFactors = FALSE)
 
   } else if (is.null(attr)) {
@@ -169,7 +169,7 @@ set_edge_attr_to_display <- function(
     display_col <-
       dplyr::case_when(
         display_col == "is_na" ~ NA_character_,
-        .default = display_col) %>%
+        .default = display_col) |>
       as.data.frame(stringsAsFactors = FALSE)
   }
 
@@ -183,7 +183,7 @@ set_edge_attr_to_display <- function(
   # Bind the `display_col` df to the `edf` df and
   # modify the ordering of the columns
   edf <-
-    dplyr::bind_cols(edf, display_col) %>%
+    dplyr::bind_cols(edf, display_col) |>
     dplyr::relocate("id", "from", "to", "rel", "display")
 
   # Replace the graph's edge data frame with `edf`

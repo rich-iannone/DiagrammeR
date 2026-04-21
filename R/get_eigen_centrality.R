@@ -16,14 +16,14 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10, m = 15,
 #'     set_seed = 23)
 #'
 #' # Get the eigen centrality scores
 #' # for nodes in the graph
-#' graph %>% get_eigen_centrality()
+#' graph |> get_eigen_centrality()
 #'
 #' @export
 get_eigen_centrality <- function(
@@ -64,7 +64,7 @@ get_eigen_centrality <- function(
 
   # Create df with eigen centrality values
   data.frame(
-    id = names(eigen_centrality_values$vector) %>% as.integer(),
-    eigen_centrality = unname(eigen_centrality_values$vector) %>% round(4),
+    id = names(eigen_centrality_values$vector) |> as.integer(),
+    eigen_centrality = unname(eigen_centrality_values$vector) |> round(4),
     stringsAsFactors = FALSE)
 }

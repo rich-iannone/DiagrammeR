@@ -30,30 +30,30 @@
 #' # Create an empty graph, add 2 nodes
 #' # to it, and create the edge `1->2`
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(
 #'     n = 2,
 #'     type = "type_a",
-#'     label = c("a_1", "a_2")) %>%
+#'     label = c("a_1", "a_2")) |>
 #'   add_edge(
 #'     from = 1, to = 2, rel = "a")
 #'
 #' # Get the graph's edges
-#' graph %>% get_edge_ids()
+#' graph |> get_edge_ids()
 #'
 #' # Select the edge and create 2
 #' # additional edges with the same
 #' # definition (`1->2`) but with
 #' # different `rel` values (`b` and `c`)
 #' graph <-
-#'   graph %>%
-#'   select_edges() %>%
-#'   add_forward_edges_ws(rel = "b") %>%
-#'   add_forward_edges_ws(rel = "c") %>%
+#'   graph |>
+#'   select_edges() |>
+#'   add_forward_edges_ws(rel = "b") |>
+#'   add_forward_edges_ws(rel = "c") |>
 #'   clear_selection()
 #'
 #' # Get the graph's edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -81,7 +81,7 @@ add_forward_edges_ws <- function(
   # Get a vector of edges available in the
   # graph's selection
   edges_in_selection <-
-    graph$edge_selection %>%
+    graph$edge_selection |>
     dplyr::select("from", "to")
 
   # Get the number of edges in the graph
@@ -105,7 +105,7 @@ add_forward_edges_ws <- function(
   }
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

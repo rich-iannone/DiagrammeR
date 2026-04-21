@@ -10,31 +10,31 @@
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 4)
 #'
 #' graph_2 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(n = 5)
 #'
 #' graph_3 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_star(n = 6)
 #'
 #' # Create an empty graph series
 #' # and add the graphs
 #' series <-
-#'   create_graph_series() %>%
+#'   create_graph_series() |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_1) %>%
+#'     graph = graph_1) |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_2) %>%
+#'     graph = graph_2) |>
 #'   add_graph_to_graph_series(
 #'     graph = graph_3)
 #'
 #' # Get the second graph in the series
 #' extracted_graph <-
-#'   series %>%
+#'   series |>
 #'   get_graph_from_graph_series(
 #'     graph_no = 2)
 #'

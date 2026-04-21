@@ -14,7 +14,7 @@
 #'
 #' # View the graph's set of
 #' # global attributes
-#' graph %>%
+#' graph |>
 #'   get_global_graph_attr_info()
 #'
 #' @export

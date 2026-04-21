@@ -10,7 +10,7 @@
 #' @examples
 #' # Create a DiagrammeR graph object
 #' dgr_graph_orig <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 36,
 #'     m = 50,
@@ -19,18 +19,20 @@
 #' # Convert the DiagrammeR
 #' # graph to an igraph object
 #' ig_graph <-
-#'   dgr_graph_orig %>%
+#'   dgr_graph_orig |>
 #'   to_igraph()
 #'
 #' # Convert the igraph graph
 #' # back to a DiagrammeR graph
 #' dgr_graph_new <-
-#'   ig_graph %>%
+#'   ig_graph |>
 #'   from_igraph()
 #'
 #' # Get some graph information
-#' (dgr_graph_new %>%
-#'   get_graph_info())[, 1:6]
+#' graph_info <- dgr_graph_new |>
+#'   get_graph_info()
+#'
+#' graph_info[, 1:6]
 #'
 #' @export
 from_igraph <- function(igraph,

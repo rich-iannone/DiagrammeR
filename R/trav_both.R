@@ -49,15 +49,15 @@
 #'
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(
 #'     n = 2,
 #'     type = "a",
-#'     label = c("asd", "iekd")) %>%
+#'     label = c("asd", "iekd")) |>
 #'   add_n_nodes(
 #'     n = 3,
 #'     type = "b",
-#'     label = c("idj", "edl", "ohd")) %>%
+#'     label = c("idj", "edl", "ohd")) |>
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->5 3->5",
 #'     rel = c(NA, "A", "B", "C", "D"))
@@ -82,89 +82,89 @@
 #' # Join the data frame to the graph's internal
 #' # edge data frame (edf)
 #' graph <-
-#'   graph %>%
-#'   join_edge_attrs(df = df_edges) %>%
+#'   graph |>
+#'   join_edge_attrs(df = df_edges) |>
 #'   join_node_attrs(df = df_nodes)
 #'
 #' # Show the graph's internal node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Perform a simple traversal from node `3`
 #' # to adjacent nodes with no conditions on
 #' # the nodes traversed to
-#' graph %>%
-#'   select_nodes_by_id(nodes = 3) %>%
-#'   trav_both() %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 3) |>
+#'   trav_both() |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, filtering to those nodes that have
 #' # numeric values less than `8.0` for
 #' # the `values` node attribute
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both(
-#'     conditions = values < 8.0) %>%
+#'     conditions = values < 8.0) |>
 #'   get_selection()
 #'
 #' # Traverse from node `5` to any adjacent
 #' # nodes, filtering to those nodes that
 #' # have a `type` attribute of `b`
-#' graph %>%
-#'   select_nodes_by_id(nodes = 5) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 5) |>
 #'   trav_both(
-#'     conditions = type == "b") %>%
+#'     conditions = type == "b") |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions for the
 #' # traversal
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both(
 #'     conditions =
 #'       type == "a" &
-#'       values > 8.0) %>%
+#'       values > 8.0) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions with
 #' # a single-length vector
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both(
 #'     conditions =
-#'       type == "a" | values > 8.0) %>%
+#'       type == "a" | values > 8.0) |>
 #'   get_selection()
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use a regular expression as
 #' # a filtering condition
-#' graph %>%
-#'   select_nodes_by_id(nodes = 2) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 2) |>
 #'   trav_both(
-#'     conditions = grepl("..d", label)) %>%
+#'     conditions = grepl("..d", label)) |>
 #'   get_selection()
 #'
 #' # Create another simple graph to demonstrate
 #' # copying of node attribute values to traversed
 #' # nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_path(n = 5) %>%
-#'   select_nodes_by_id(nodes = c(2, 4)) %>%
+#'   create_graph() |>
+#'   add_path(n = 5) |>
+#'   select_nodes_by_id(nodes = c(2, 4)) |>
 #'   set_node_attrs_ws(
 #'     node_attr = value,
 #'     value = 5)
 #'
 #' # Show the graph's internal node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Perform a traversal from the inner nodes
 #' # (`2` and `4`) to their adjacent nodes (`1`,
@@ -174,14 +174,14 @@
 #' # to `3` will occur from `2` and `4` (and
 #' # multiple values passed will be summed)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_both(
 #'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal node data frame
 #' # after this change
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 trav_both <- function(
@@ -216,11 +216,11 @@ trav_both <- function(
 
   # Get the requested `copy_attrs_from`
   copy_attrs_from <-
-    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(copy_attrs_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `copy_attrs_as`
   copy_attrs_as <-
-    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(copy_attrs_as) |> rlang::get_expr() |> as.character()
 
   if (length(copy_attrs_from) == 0) {
     copy_attrs_from <- NULL
@@ -249,13 +249,13 @@ trav_both <- function(
   # Find all nodes that are connected to the
   # starting nodes via outgoing edges
   valid_nodes <-
-    graph %>%
-    get_nbrs(starting_nodes) %>%
+    graph |>
+    get_nbrs(starting_nodes) |>
     as.integer()
 
   valid_nodes <-
-    dplyr::tibble(id = valid_nodes) %>%
-    dplyr::inner_join(ndf, by = "id") %>%
+    dplyr::tibble(id = valid_nodes) |>
+    dplyr::inner_join(ndf, by = "id") |>
     dplyr::distinct()
 
   # If no rows returned, then there are no
@@ -271,7 +271,7 @@ trav_both <- function(
   # Maybe quo_is_null ?
   if (!rlang::quo_is_null(rlang::enquo(conditions))) {
 
-    valid_nodes <- valid_nodes %>% dplyr::filter({{ conditions }})
+    valid_nodes <- valid_nodes |> dplyr::filter({{ conditions }})
   }
 
   # If the option is taken to copy node attribute
@@ -280,28 +280,28 @@ trav_both <- function(
   if (!is.null(copy_attrs_from)) {
 
     from_join <-
-      valid_nodes %>%
-      dplyr::select("id") %>%
-      dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("to" = "id")) %>%
+      valid_nodes |>
+      dplyr::select("id") |>
+      dplyr::inner_join(edf |> dplyr::select(from, to), by = c("id" = "from")) |>
+      dplyr::inner_join(ndf |> dplyr::select("id", !!enquo(copy_attrs_from)), by = c("to" = "id")) |>
       dplyr::select("id", !!enquo(copy_attrs_from))
 
     to_join <-
-      valid_nodes %>%
-      dplyr::select("id") %>%
-      dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) %>%
+      valid_nodes |>
+      dplyr::select("id") |>
+      dplyr::inner_join(edf |> dplyr::select(from, to), by = c("id" = "to")) |>
+      dplyr::inner_join(ndf |> dplyr::select("id", !!enquo(copy_attrs_from)), by = c("from" = "id")) |>
       dplyr::select("id", !!enquo(copy_attrs_from))
 
     nodes <-
-      from_join %>%
-      dplyr::union_all(to_join) %>%
-      dplyr::group_by(id) %>%
+      from_join |>
+      dplyr::union_all(to_join) |>
+      dplyr::group_by(id) |>
       dplyr::summarize(!!copy_attrs_from :=
                          match.fun(!!agg)(!!as.name(copy_attrs_from),
-                                           na.rm = TRUE)) %>%
-      dplyr::right_join(ndf, by = "id") %>%
-      dplyr::relocate(id, type, label) %>%
+                                           na.rm = TRUE)) |>
+      dplyr::right_join(ndf, by = "id") |>
+      dplyr::relocate(id, type, label) |>
       as.data.frame(stringsAsFactors = FALSE)
 
     # Get column numbers that end with ".x" or ".y"

@@ -51,39 +51,39 @@
 #' # Create a selection of nodes, this selects
 #' # nodes `1`, `3`, and `5`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes(
 #'     conditions = value > 3)
 #'
 #' # Create a subgraph based on the selection
 #' subgraph <-
-#'   graph %>%
+#'   graph |>
 #'   transform_to_subgraph_ws()
 #'
 #' # Display the graph's node data frame
-#' subgraph %>% get_node_df()
+#' subgraph |> get_node_df()
 #'
 #' # Display the graph's edge data frame
-#' subgraph %>% get_edge_df()
+#' subgraph |> get_edge_df()
 #'
 #' # Create a selection of edges, this selects
 #' # edges `1`, `2`
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_edges(
 #'   edges = c(1,2))
 #'
 #' # Create a subgraph based on the selection
 #' subgraph <-
-#'   graph %>%
+#'   graph |>
 #'   transform_to_subgraph_ws()
 #'
 #' # Display the graph's node data frame
-#' subgraph %>% get_node_df()
+#' subgraph |> get_node_df()
 #'
 #' # Display the graph's edge data frame
-#' subgraph %>% get_edge_df()
+#' subgraph |> get_edge_df()
 #'
 #' @export
 transform_to_subgraph_ws <- function(graph) {
@@ -104,10 +104,10 @@ transform_to_subgraph_ws <- function(graph) {
   }
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Filter the nodes in the graph
   if (graph_contains_node_selection(graph)) {
@@ -115,11 +115,11 @@ transform_to_subgraph_ws <- function(graph) {
     selection <- graph$node_selection$node
 
     ndf <-
-      graph$nodes_df %>%
+      graph$nodes_df |>
       dplyr::filter(id %in% selection)
 
     edf <-
-      graph$edges_df %>%
+      graph$edges_df |>
       dplyr::filter(from %in% selection, to %in% selection)
 
     # Create a subgraph
@@ -136,11 +136,11 @@ transform_to_subgraph_ws <- function(graph) {
       data.frame(id = selection)
 
     edf <-
-      graph$edges_df %>%
+      graph$edges_df |>
       dplyr::semi_join(selection_df, by = "id")
 
     ndf <-
-      graph$nodes_df %>%
+      graph$nodes_df |>
       dplyr::filter(id %in% unique(c(edf$from, edf$to)))
 
     # Create a subgraph
@@ -153,14 +153,14 @@ transform_to_subgraph_ws <- function(graph) {
     remove_linked_dfs(graph)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph
@@ -185,7 +185,7 @@ transform_to_subgraph_ws <- function(graph) {
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
+      graph |>
       trigger_graph_actions()
   }
 

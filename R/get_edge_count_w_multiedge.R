@@ -36,7 +36,7 @@
 #' # there are multiple edges (i.e.,
 #' # distinct edges with separate edge
 #' # ID values)
-#' graph %>% get_edge_count_w_multiedge()
+#' graph |> get_edge_count_w_multiedge()
 #'
 #' @export
 get_edge_count_w_multiedge <- function(graph) {
@@ -51,12 +51,12 @@ get_edge_count_w_multiedge <- function(graph) {
   # regardless of which definitions these
   # edges have
   multiedge_distinct_edge_def_count <-
-    graph$edges_df %>%
-    dplyr::select(from, to) %>%
-    dplyr::mutate(edge_from_to = paste0(from, "_", to), .keep = "none") %>%
-    dplyr::group_by(edge_from_to) %>%
-    dplyr::summarize(n = dplyr::n(), .groups = "drop") %>%
-    dplyr::filter(n > 1) %>%
+    graph$edges_df |>
+    dplyr::select(from, to) |>
+    dplyr::mutate(edge_from_to = paste0(from, "_", to), .keep = "none") |>
+    dplyr::group_by(edge_from_to) |>
+    dplyr::summarize(n = dplyr::n(), .groups = "drop") |>
+    dplyr::filter(n > 1) |>
     nrow()
 
   multiedge_distinct_edge_def_count

@@ -19,7 +19,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -27,7 +27,7 @@
 #'
 #' # Get the eccentricity values for
 #' # all nodes in the graph
-#' graph %>% get_eccentricity()
+#' graph |> get_eccentricity()
 #'
 #' @export
 get_eccentricity <- function(
@@ -53,8 +53,8 @@ get_eccentricity <- function(
   # Create a data frame with node ID values
   # and eccentrity values
   data.frame(
-    id = eccentricity %>%
-      names() %>%
+    id = eccentricity |>
+      names() |>
       as.integer(),
     eccentricity = eccentricity,
     stringsAsFactors = FALSE)

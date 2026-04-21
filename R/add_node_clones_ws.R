@@ -38,16 +38,16 @@
 #' # and `value` node attributes,
 #' # and select the created nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     label = c("d", "g", "r"),
-#'     type = c("a", "b", "c")) %>%
+#'     type = c("a", "b", "c")) |>
 #'   select_last_nodes_created()
 #'
 #' # Display the graph's internal
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Create clones of all nodes
 #' # in the selection but assign
@@ -55,7 +55,7 @@
 #' # (leaving `label` as NULL
 #' # yields NA values)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_node_clones_ws(
 #'     label = c("a", "b", "v"))
 #'
@@ -63,7 +63,7 @@
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of
 #' # `1`, `2`, and `3`
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Select the last nodes
 #' # created (`4`, `5`, and `6`)
@@ -72,8 +72,8 @@
 #' # creating new edges between
 #' # the new and existing nodes
 #' graph <-
-#'   graph %>%
-#'   select_last_nodes_created() %>%
+#'   graph |>
+#'   select_last_nodes_created() |>
 #'   add_node_clones_ws(
 #'     add_edges = TRUE,
 #'     direction = "to",
@@ -83,7 +83,7 @@
 #' # edge data frame; there are
 #' # edges between the selected
 #' # nodes and their clones
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family node creation and removal
 #'
@@ -125,8 +125,8 @@ add_node_clones_ws <- function(
   # Get the number of columns in the graph's
   # internal node data frame
   n_col_ndf <-
-    graph %>%
-    get_node_df() %>%
+    graph |>
+    get_node_df() |>
     ncol()
 
   # Get the node ID values for
@@ -139,10 +139,10 @@ add_node_clones_ws <- function(
       clear_selection(graph))
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   node_id_value <- graph$last_node
 
@@ -151,15 +151,15 @@ add_node_clones_ws <- function(
     # Extract all of the node attributes
     # (`type` and additional node attrs)
     node_attr_vals <-
-      graph %>%
-      get_node_df() %>%
-      dplyr::filter(id %in% selected_nodes[i]) %>%
+      graph |>
+      get_node_df() |>
+      dplyr::filter(id %in% selected_nodes[i]) |>
       dplyr::select(-"id", -"label")
 
     # Create a clone of the selected
     # node in the graph
     graph <-
-      graph %>%
+      graph |>
       add_node(
         label = label[i])
 
@@ -171,7 +171,7 @@ add_node_clones_ws <- function(
     # Create a node selection for the
     # new nodes in the graph
     graph <-
-      graph %>%
+      graph |>
       select_nodes_by_id(
         nodes = new_node_id)
 
@@ -192,13 +192,13 @@ add_node_clones_ws <- function(
 
       if (direction == "from") {
         graph <-
-          graph %>%
+          graph |>
           add_edge(
             from = new_node_id,
             to = selected_nodes[i])
       } else {
         graph <-
-          graph %>%
+          graph |>
           add_edge(
             from = selected_nodes[i],
             to = new_node_id)
@@ -216,18 +216,18 @@ add_node_clones_ws <- function(
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
-    graph$graph_log %>%
+    graph$graph_log |>
     dplyr::filter(version_id <= current_graph_log_version_id)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

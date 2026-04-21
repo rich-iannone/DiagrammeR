@@ -15,13 +15,13 @@
 #' # (with `type` values) and a
 #' # single edge (with a `rel`)
 #' simple_property_graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_node(
 #'     type = "a",
-#'     label = "first") %>%
+#'     label = "first") |>
 #'   add_node(
 #'     type = "b",
-#'     label = "second") %>%
+#'     label = "second") |>
 #'   add_edge(
 #'     from = "first",
 #'     to = "second",
@@ -35,15 +35,15 @@
 #' # If a `type` attribute is
 #' # removed, then this graph will
 #' # no longer be a property graph
-#' simple_property_graph %>%
+#' simple_property_graph |>
 #'   set_node_attrs(
 #'     node_attr = type,
 #'     values = NA,
-#'     nodes = 1) %>%
+#'     nodes = 1) |>
 #'   is_property_graph()
 #'
 #' # An empty graph will return FALSE
-#' create_graph() %>%
+#' create_graph() |>
 #'   is_property_graph()
 #'
 #' @export

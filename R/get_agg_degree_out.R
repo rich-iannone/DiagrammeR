@@ -18,28 +18,28 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 20,
 #'     m = 35,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = value,
 #'     values = rnorm(
-#'       n = count_nodes(.),
+#'       n = 20,
 #'       mean = 5,
-#'       sd = 1) %>% round(1))
+#'       sd = 1) |> round(1))
 #'
 #' # Get the mean outdegree value from all
 #' # nodes in the graph
-#' graph %>%
+#' graph |>
 #'   get_agg_degree_out(
 #'     agg = "mean")
 #'
 #' # Other aggregation functions can be used
 #' # (`min`, `max`, `median`, `sum`); let's
 #' # get the median in this example
-#' graph %>%
+#' graph |>
 #'   get_agg_degree_out(
 #'     agg = "median")
 #'
@@ -47,7 +47,7 @@
 #' # for a subset of the graph nodes and this
 #' # is made possible by specifying `conditions`
 #' # for the nodes
-#' graph %>%
+#' graph |>
 #'   get_agg_degree_out(
 #'     agg = "mean",
 #'     conditions = value < 5.0)
@@ -74,7 +74,7 @@ get_agg_degree_out <- function(
 
     # Get a vector of node ID values
     node_ids <-
-      ndf %>%
+      ndf |>
       dplyr::pull("id")
   }
 
@@ -84,7 +84,7 @@ get_agg_degree_out <- function(
 
   if (exists("node_ids")) {
     outdegree_df <-
-      outdegree_df %>%
+      outdegree_df |>
       dplyr::filter(id %in% node_ids)
   }
 
@@ -97,9 +97,9 @@ get_agg_degree_out <- function(
   fun <- match.fun(agg)
 
   outdegree_agg <-
-    outdegree_df %>%
-    dplyr::group_by() %>%
-    dplyr::summarize(fun(outdegree, na.rm = TRUE), .groups = "drop") %>%
+    outdegree_df |>
+    dplyr::group_by() |>
+    dplyr::summarize(fun(outdegree, na.rm = TRUE), .groups = "drop") |>
     purrr::flatten_dbl()
 
   outdegree_agg

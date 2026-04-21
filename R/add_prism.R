@@ -24,18 +24,18 @@
 #' # Create a new graph and
 #' # add 2 prisms
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_prism(
 #'     n = 3,
 #'     type = "prism",
-#'     label = "a") %>%
+#'     label = "a") |>
 #'   add_prism(
 #'     n = 3,
 #'     type = "prism",
 #'     label = "b")
 #'
 #' # Get node information from this graph
-#' graph %>% get_node_info()
+#' graph |> get_node_info()
 #'
 #' # Node and edge aesthetic and data
 #' # attributes can be specified in
@@ -47,7 +47,7 @@
 #' set.seed(23)
 #'
 #' graph_w_attrs <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_prism(
 #'     n = 3,
 #'     label = c(
@@ -76,10 +76,10 @@
 #'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>% get_node_df()
+#' graph_w_attrs |> get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>% get_edge_df()
+#' graph_w_attrs |> get_edge_df()
 #'
 #' @export
 add_prism <- function(
@@ -137,7 +137,7 @@ add_prism <- function(
       node_aes$index__ <- seq_len(2 * n)
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -156,7 +156,7 @@ add_prism <- function(
       edge_aes$index__ <- seq_len(3 * n)
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -175,7 +175,7 @@ add_prism <- function(
       node_data$index__ <- seq_len(2 * n)
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -194,7 +194,7 @@ add_prism <- function(
       edge_data$index__ <- seq_len(3 * n)
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -214,7 +214,7 @@ add_prism <- function(
   if (exists("node_aes_tbl")) {
 
     prism_nodes <-
-      prism_nodes %>%
+      prism_nodes |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -222,7 +222,7 @@ add_prism <- function(
   if (exists("node_data_tbl")) {
 
     prism_nodes <-
-      prism_nodes %>%
+      prism_nodes |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -247,7 +247,7 @@ add_prism <- function(
   if (exists("edge_aes_tbl")) {
 
     prism_edges <-
-      prism_edges %>%
+      prism_edges |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -255,7 +255,7 @@ add_prism <- function(
   if (exists("edge_data_tbl")) {
 
     prism_edges <-
-      prism_edges %>%
+      prism_edges |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

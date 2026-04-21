@@ -26,7 +26,7 @@
 #' @examples
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 6)
 #'
 #' # Select specific edges from
@@ -34,9 +34,9 @@
 #' # attribute `color = blue` to
 #' # those selected edges
 #' graph <-
-#'   graph %>%
-#'   select_nodes_by_id(nodes = 2:4) %>%
-#'   trav_out_edge() %>%
+#'   graph |>
+#'   select_nodes_by_id(nodes = 2:4) |>
+#'   trav_out_edge() |>
 #'   set_edge_attrs_ws(
 #'     edge_attr = color,
 #'     value = "blue")
@@ -45,7 +45,7 @@
 #' # frame to verify that the
 #' # edge attribute has been set
 #' # for specific edges
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -70,7 +70,7 @@ set_edge_attrs_ws <- function(
 
   # Get the requested `edge_attr`
   edge_attr <-
-    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr) |> rlang::get_expr() |> as.character()
 
   # Get vectors of edge ID values for the
   # edge selection
@@ -85,7 +85,7 @@ set_edge_attrs_ws <- function(
 
   } else {
     graph$edges_df <-
-      graph$edges_df %>%
+      graph$edges_df |>
       dplyr::mutate(edge_attr__ = dplyr::case_when(
         id %in% edge_ids ~ value))
 

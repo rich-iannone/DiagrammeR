@@ -14,7 +14,7 @@
 #' # a path with several edge
 #' # data attributes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     type = "path",
@@ -26,7 +26,7 @@
 #' # edge data frame; the edge
 #' # data attributes have
 #' # been inserted
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #' }
 #'
 #' @family edge creation and removal

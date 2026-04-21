@@ -15,7 +15,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -28,7 +28,7 @@
 #' # to provide betweenness values in the
 #' # `btwns` column
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "set_node_attr_w_fcn",
 #'     node_attr_fcn = "get_betweenness",
@@ -38,7 +38,7 @@
 #' # To ensure that the action is
 #' # available in the graph, use the
 #' # `get_graph_actions()` function
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' @export
 get_graph_actions <- function(graph) {

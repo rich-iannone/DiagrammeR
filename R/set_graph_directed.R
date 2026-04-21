@@ -13,19 +13,19 @@
 #' # undirected tree
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_balanced_tree(
 #'     k = 2, h = 2)
 #'
 #' # Convert this graph from
 #' # undirected to directed
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_graph_directed()
 #'
 #' # Perform a check on whether
 #' # graph is directed
-#' graph %>% is_graph_directed()
+#' graph |> is_graph_directed()
 #'
 #' @export
 set_graph_directed <- function(graph) {

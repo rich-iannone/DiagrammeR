@@ -23,12 +23,12 @@ generate_dot <- function(graph) {
 
   if ("graph" %in% global_attrs$attr_type) {
     graph_attrs <-
-      global_attrs %>%
-      dplyr::filter(attr_type == "graph") %>%
+      global_attrs |>
+      dplyr::filter(attr_type == "graph") |>
       dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     graph_attrs <-
-      graph_attrs %>%
+      graph_attrs |>
       dplyr::pull("string")
 
   } else {
@@ -37,25 +37,26 @@ generate_dot <- function(graph) {
 
   if ("node" %in% global_attrs$attr_type) {
     node_attrs <-
-      global_attrs %>%
-      dplyr::filter(attr_type == "node") %>%
+      global_attrs |>
+      dplyr::filter(attr_type == "node") |>
       dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     node_attrs <-
-      node_attrs %>%
+      node_attrs |>
       dplyr::pull("string")
 
     # Fill in NA attribute values with global preset values
-    for (i in seq_len(nrow(global_attrs %>% dplyr::filter(attr_type == "node")))) {
+    node_global_attrs <- global_attrs |> dplyr::filter(attr_type == "node")
+    for (i in seq_len(nrow(node_global_attrs))) {
 
-      node_attr_to_set <- (global_attrs %>% dplyr::filter(attr_type == "node"))[i, 1]
+      node_attr_to_set <- node_global_attrs[i, 1]
 
       if (node_attr_to_set %in% colnames(nodes_df)) {
 
         col_num <- which(colnames(nodes_df) == node_attr_to_set)
 
         nodes_df[which(is.na(nodes_df[, col_num])), col_num] <-
-          (global_attrs %>% dplyr::filter(attr_type == "node"))[i, 2]
+          node_global_attrs[i, 2]
       }
     }
 
@@ -65,25 +66,26 @@ generate_dot <- function(graph) {
 
   if ("edge" %in% global_attrs$attr_type) {
     edge_attrs <-
-      global_attrs %>%
-      dplyr::filter(attr_type == "edge") %>%
+      global_attrs |>
+      dplyr::filter(attr_type == "edge") |>
       dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     edge_attrs <-
-      edge_attrs %>%
+      edge_attrs |>
       dplyr::pull("string")
 
     # Fill in NA attribute values with global preset values
-    for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "edge"))) {
+    edge_global_attrs <- global_attrs |> dplyr::filter(attr_type == "edge")
+    for (i in seq_len(nrow(edge_global_attrs))) {
 
-      edge_attr_to_set <- (global_attrs %>% dplyr::filter(attr_type == "edge"))[i, 1]
+      edge_attr_to_set <- edge_global_attrs[i, 1]
 
       if (edge_attr_to_set %in% colnames(edges_df)) {
 
         col_num <- which(colnames(edges_df) == edge_attr_to_set)
 
         edges_df[which(is.na(edges_df[, col_num])), col_num] <-
-          (global_attrs %>% dplyr::filter(attr_type == "edge"))[i, 2]
+          edge_global_attrs[i, 2]
       }
     }
 
@@ -100,7 +102,7 @@ generate_dot <- function(graph) {
       vars <- vars[purrr::map_lgl(nodes_df[vars], is.character)]
 
       nodes_df <-
-        nodes_df %>%
+        nodes_df |>
         dplyr::mutate(
           dplyr::across(
             .cols = dplyr::all_of(vars),
@@ -118,7 +120,7 @@ generate_dot <- function(graph) {
       vars <- vars[purrr::map_lgl(edges_df[vars], is.character)]
 
       edges_df <-
-        edges_df %>%
+        edges_df |>
         dplyr::mutate(
           dplyr::across(
             .cols = dplyr::all_of(vars),
@@ -279,12 +281,12 @@ generate_dot <- function(graph) {
       if (!is.na(column_with_x) && !is.na(column_with_y)) {
         pos <-
           paste0(
-            nodes_df %>% dplyr::pull(column_with_x), ",",
-            nodes_df %>% dplyr::pull(column_with_y), "!"
+            nodes_df |> dplyr::pull(column_with_x), ",",
+            nodes_df |> dplyr::pull(column_with_y), "!"
           )
 
         nodes_df <-
-          nodes_df %>%
+          nodes_df |>
           dplyr::mutate(pos = !!pos)
       }
 

@@ -16,7 +16,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 12,
@@ -24,17 +24,17 @@
 #'
 #' # Get closeness values for all nodes
 #' # in the graph
-#' graph %>% get_closeness()
+#' graph |> get_closeness()
 #'
 #' # Add the closeness values to
 #' # the graph as a node attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_closeness(.))
+#'     df = get_closeness(graph))
 #'
 #' # Display the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_closeness <- function(
@@ -72,8 +72,8 @@ get_closeness <- function(
 
   # Create df with betweenness scores
   data.frame(
-    id = closeness_values %>%
-      names() %>%
+    id = closeness_values |>
+      names() |>
       as.integer(),
     closeness = closeness_values,
     stringsAsFactors = FALSE)

@@ -17,22 +17,22 @@
 #' # Create a simple graph
 #' # with a single cycle
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(n = 4)
 #'
 #' # Get the graph's edge
 #' # data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Create the complement
 #' # of the graph
 #' graph_c <-
-#'   graph %>%
+#'   graph |>
 #'     transform_to_complement_graph()
 #'
 #' # Get the edge data frame
 #' # for the complement graph
-#' graph_c %>% get_edge_df()
+#' graph_c |> get_edge_df()
 #'
 #' @export
 transform_to_complement_graph <- function(
@@ -54,14 +54,14 @@ transform_to_complement_graph <- function(
   nodes_created <- graph$last_node
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges ever created for
   # this graph
   edges_created <- graph$last_edge
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -70,7 +70,7 @@ transform_to_complement_graph <- function(
   ig_graph <- igraph::complementer(ig_graph, loops = loops)
 
   # Get the edge data frame for the complement graph
-  edf_new <- from_igraph(ig_graph) %>% get_edge_df()
+  edf_new <- from_igraph(ig_graph) |> get_edge_df()
 
   # Add edge ID values to the complement graph edf
   edf_new$id <- seq_len(nrow(edf_new))
@@ -86,14 +86,14 @@ transform_to_complement_graph <- function(
     remove_linked_dfs(graph)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

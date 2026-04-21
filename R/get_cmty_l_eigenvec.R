@@ -15,7 +15,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -27,19 +27,19 @@
 #' # the leading non-negative
 #' # eigenvector of the modularity
 #' # matrix of the graph
-#' graph %>%
+#' graph |>
 #'   get_cmty_l_eigenvec()
 #'
 #' # Add the group membership
 #' # values to the graph as a node
 #' # attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_cmty_l_eigenvec(.))
+#'     df = get_cmty_l_eigenvec(graph))
 #'
 #' # Display the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_cmty_l_eigenvec <- function(graph) {
@@ -60,7 +60,7 @@ get_cmty_l_eigenvec <- function(graph) {
 
   # Create df with node memberships
   data.frame(
-    id = igraph::membership(cmty_l_eigenvec_obj) %>% names() %>% as.integer(),
+    id = igraph::membership(cmty_l_eigenvec_obj) |> names() |> as.integer(),
     l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
     stringsAsFactors = FALSE)
 }

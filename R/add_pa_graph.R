@@ -44,16 +44,16 @@
 #' # 2 edges at every time step
 #' pa_graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_pa_graph(
 #'     n = 100,
 #'     m = 1)
 #'
 #' # Get a count of nodes
-#' pa_graph %>% count_nodes()
+#' pa_graph |> count_nodes()
 #'
 #' # Get a count of edges
-#' pa_graph %>% count_edges()
+#' pa_graph |> count_edges()
 #'
 #' @export
 add_pa_graph <- function(
@@ -149,7 +149,7 @@ add_pa_graph <- function(
   # create a unique label for all new nodes
   if (label) {
     sample_pa_graph$nodes_df$label <-
-      sample_pa_graph$nodes_df$id %>% as.character()
+      sample_pa_graph$nodes_df$id |> as.character()
   }
 
   n_nodes <- nrow(sample_pa_graph$nodes_df)
@@ -166,7 +166,7 @@ add_pa_graph <- function(
       node_aes$index__ <- seq_len(nrow(sample_pa_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -185,7 +185,7 @@ add_pa_graph <- function(
       node_data$index__ <- seq_len(nrow(sample_pa_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -204,7 +204,7 @@ add_pa_graph <- function(
       edge_aes$index__ <- seq_len(nrow(sample_pa_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -223,7 +223,7 @@ add_pa_graph <- function(
       edge_data$index__ <- seq_len(nrow(sample_pa_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -236,7 +236,7 @@ add_pa_graph <- function(
   if (exists("node_aes_tbl")) {
 
     sample_pa_graph$nodes_df <-
-      sample_pa_graph$nodes_df %>%
+      sample_pa_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -244,7 +244,7 @@ add_pa_graph <- function(
   if (exists("node_data_tbl")) {
 
     sample_pa_graph$nodes_df <-
-      sample_pa_graph$nodes_df %>%
+      sample_pa_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -252,7 +252,7 @@ add_pa_graph <- function(
   if (exists("edge_aes_tbl")) {
 
     sample_pa_graph$edges_df <-
-      sample_pa_graph$edges_df %>%
+      sample_pa_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -260,7 +260,7 @@ add_pa_graph <- function(
   if (exists("edge_data_tbl")) {
 
     sample_pa_graph$edges_df <-
-      sample_pa_graph$edges_df %>%
+      sample_pa_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

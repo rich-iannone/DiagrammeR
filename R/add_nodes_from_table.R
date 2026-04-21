@@ -31,16 +31,15 @@
 #' # node ID values will be created as
 #' # monotonically-increasing values
 #' graph_1 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_nodes_from_table(
 #'     table = currencies)
 #'
 #' # View part of the graph's internal
 #' # node data frame (ndf)
-#' graph_1 %>%
-#'   get_node_df() %>%
-#'   .[, 1:5] %>%
-#'   head()
+#' ndf_1 <- graph_1 |> get_node_df()
+#'
+#' ndf_1[, 1:5] |> head()
 #'
 #' # If you would like to assign
 #' # any of the table's columns as
@@ -50,17 +49,16 @@
 #' # a static `type` attribute for all
 #' # of the table records, use `set_type`
 #' graph_2 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_nodes_from_table(
 #'     table = currencies,
 #'     label_col = iso_4217_code,
 #'     set_type = currency)
 #'
 #' # View part of the graph's internal ndf
-#' graph_2 %>%
-#'   get_node_df() %>%
-#'   .[, 1:5] %>%
-#'   head()
+#' ndf_2 <- graph_2 |> get_node_df()
+#'
+#' ndf_2[, 1:5] |> head()
 #'
 #' # Suppose we would like to not
 #' # include certain columns from the
@@ -69,7 +67,7 @@
 #' # argument to choose which columns
 #' # to not include as attributes
 #' graph_3 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_nodes_from_table(
 #'     table = currencies,
 #'     label_col = iso_4217_code,
@@ -81,8 +79,8 @@
 #' # `exponent` and `currency_name`
 #' # columns are not attributes in the
 #' # graph's internal node data frame
-#' graph_3 %>%
-#'   get_node_df() %>%
+#' graph_3 |>
+#'   get_node_df() |>
 #'   colnames()
 #'
 #' @family node creation and removal
@@ -105,19 +103,19 @@ add_nodes_from_table <- function(
   # TODO use new technique to convert to string.
   # Get the requested `label_col`
   label_col <-
-    rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(label_col) |> rlang::get_expr() |> as.character()
 
   # Get the requested `type_col`
   type_col <-
-    rlang::enquo(type_col) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(type_col) |> rlang::get_expr() |> as.character()
 
   # Get the requested `set_type`
   set_type <-
-    rlang::enquo(set_type) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(set_type) |> rlang::get_expr() |> as.character()
 
   # Get the requested `drop_cols`
   drop_cols <-
-    rlang::enquo(drop_cols) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(drop_cols) |> rlang::get_expr() |> as.character()
 
   if (length(label_col) == 0) {
     label_col <- NULL
@@ -211,13 +209,13 @@ add_nodes_from_table <- function(
       col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
       col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
 
-      col_indices <- col_index_1:col_index_2 %>% sort()
+      col_indices <- col_index_1:col_index_2 |> sort()
 
       columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
 
     } else if (col_selection[["selection_type"]] == "column_index_range") {
 
-      col_indices <- col_selection[["column_selection"]] %>% sort()
+      col_indices <- col_selection[["column_selection"]] |> sort()
 
       columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
 
@@ -240,7 +238,7 @@ add_nodes_from_table <- function(
       )
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Add node data frame `ndf` to the graph
   graph <- add_node_df(graph, ndf)
@@ -250,7 +248,7 @@ add_nodes_from_table <- function(
     graph$graph_log[-nrow(graph$graph_log), ]
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
@@ -277,7 +275,7 @@ add_nodes_from_table <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
+      graph |>
       trigger_graph_actions()
   }
 

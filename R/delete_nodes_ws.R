@@ -25,24 +25,24 @@
 #' @examples
 #' # Create a graph with 3 nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 3) %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 3) |>
 #'   add_edges_w_string(
 #'     edges = "1->3 1->2 2->3")
 #'
 #' # Select node with ID `1`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_id(nodes = 1)
 #'
 #' # Delete node in selection (this
 #' # also deletes any attached edges)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   delete_nodes_ws()
 #'
 #' # Get a count of nodes in the graph
-#' graph %>% count_nodes()
+#' graph |> count_nodes()
 #'
 #' @family node creation and removal
 #'
@@ -62,10 +62,10 @@ delete_nodes_ws <- function(graph) {
   check_graph_contains_node_selection(graph)
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Get a vector of the nodes to be deleted
   nodes_to_delete <- graph$node_selection$node
@@ -91,18 +91,18 @@ delete_nodes_ws <- function(graph) {
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
+    graph |>
     remove_linked_dfs()
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_deleted <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph
