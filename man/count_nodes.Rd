@@ -20,13 +20,13 @@ From a graph object of class \code{dgr_graph}, get a count of nodes in the graph
 # path of nodes and 3
 # unconnected nodes
 graph <-
-  create_graph() \%>\%
-  add_path(n = 3) \%>\%
+  create_graph() |>
+  add_path(n = 3) |>
   add_n_nodes(n = 3)
 
 # Get a count of all nodes
 # in the graph
-graph \%>\%
+graph |>
   count_nodes()
 
 }

@@ -84,36 +84,36 @@ Selections of nodes can also be performed using the following traversal
 # with edges from the original node to all of the
 # new nodes
 graph <-
-  create_graph() \%>\%
-  add_n_nodes(n = 1) \%>\%
-  select_last_nodes_created() \%>\%
+  create_graph() |>
+  add_n_nodes(n = 1) |>
+  select_last_nodes_created() |>
   add_n_nodes_ws(
     n = 5,
     direction = "from")
 
 # Get the graph's nodes
-graph \%>\% get_node_ids()
+graph |> get_node_ids()
 
 # Get the graph's edges
-graph \%>\% get_edges()
+graph |> get_edges()
 
 # Create an empty graph, add a node to it, select
 # that node, and then add 5 more nodes to the graph
 # with edges toward the original node from all of
 # the new nodes
 graph <-
-  create_graph() \%>\%
-  add_n_nodes(n = 1) \%>\%
-  select_last_nodes_created() \%>\%
+  create_graph() |>
+  add_n_nodes(n = 1) |>
+  select_last_nodes_created() |>
   add_n_nodes_ws(
     n = 5,
     direction = "to")
 
 # Get the graph's nodes
-graph \%>\% get_node_ids()
+graph |> get_node_ids()
 
 # Get the graph's edges
-graph \%>\% get_edges()
+graph |> get_edges()
 
 }
 \seealso{

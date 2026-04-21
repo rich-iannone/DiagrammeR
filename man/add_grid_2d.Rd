@@ -63,14 +63,14 @@ graph.
 # Create a new graph and add
 # a 3 x 3 grid
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_grid_2d(
     x = 3, y = 3,
     type = "grid")
 
 # Get node information
 # from this graph
-graph \%>\%
+graph |>
   get_node_info()
 
 # Attributes can be specified
@@ -82,7 +82,7 @@ graph \%>\%
 # attribute will apply to the
 # edges
 graph_w_attrs <-
-  create_graph() \%>\%
+  create_graph() |>
   add_grid_2d(
     x = 3, y = 2,
     label = c("one", "two",
@@ -98,9 +98,9 @@ graph_w_attrs <-
         5.2, 6.1, 2.6)))
 
 # Get the graph's node data frame
-graph_w_attrs \%>\% get_node_df()
+graph_w_attrs |> get_node_df()
 
 # Get the graph's edge data frame
-graph_w_attrs \%>\% get_edge_df()
+graph_w_attrs |> get_edge_df()
 
 }

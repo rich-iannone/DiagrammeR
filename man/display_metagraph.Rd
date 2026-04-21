@@ -24,55 +24,61 @@ verified by using the \code{\link[=is_property_graph]{is_property_graph()}} func
 # Create a randomized property
 # graph with 1000 nodes and 1350 edges
 property_graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 1000,
     m = 1350,
-    set_seed = 23) \%>\%
+    set_seed = 23) |>
   select_nodes_by_degree(
-    expressions = "deg >= 3") \%>\%
+    expressions = "deg >= 3") |>
   set_node_attrs_ws(
     node_attr = type,
-    value = "a") \%>\%
-  clear_selection() \%>\%
+    value = "a") |>
+  clear_selection() |>
   select_nodes_by_degree(
-    expressions = "deg < 3") \%>\%
+    expressions = "deg < 3") |>
   set_node_attrs_ws(
     node_attr = type,
-    value = "b") \%>\%
-  clear_selection() \%>\%
+    value = "b") |>
+  clear_selection() |>
   select_nodes_by_degree(
-    expressions = "deg == 0") \%>\%
+    expressions = "deg == 0") |>
   set_node_attrs_ws(
     node_attr = type,
-    value = "c") \%>\%
+    value = "c") |>
   set_node_attr_to_display(
-    attr = type) \%>\%
+    attr = type)
+
+# Select a random subset of edges
+# for setting edge attributes
+node_ids <- get_node_ids(property_graph)
+sampled_nodes <- sample(
+  node_ids,
+  size = floor(0.15 * length(node_ids)))
+
+property_graph <-
+  property_graph |>
   select_edges_by_node_id(
-    nodes =
-      get_node_ids(.) \%>\%
-      sample(
-        size = 0.15 * length(.) \%>\%
-          floor())) \%>\%
+    nodes = sampled_nodes) |>
   set_edge_attrs_ws(
     edge_attr = rel,
-    value = "r_1") \%>\%
-  invert_selection() \%>\%
+    value = "r_1") |>
+  invert_selection() |>
   set_edge_attrs_ws(
     edge_attr = rel,
-    value = "r_2") \%>\%
-  clear_selection() \%>\%
+    value = "r_2") |>
+  clear_selection() |>
   copy_edge_attrs(
     edge_attr_from = rel,
-    edge_attr_to = label) \%>\%
+    edge_attr_to = label) |>
   add_global_graph_attrs(
     attr = "fontname",
     value = "Helvetica",
-    attr_type = "edge") \%>\%
+    attr_type = "edge") |>
   add_global_graph_attrs(
     attr = "fontcolor",
     value = "gray50",
-    attr_type = "edge") \%>\%
+    attr_type = "edge") |>
   add_global_graph_attrs(
     attr = "fontsize",
     value = 10,

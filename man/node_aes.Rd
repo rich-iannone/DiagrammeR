@@ -145,7 +145,7 @@ created.
 # a path with several node
 # aesthetic attributes
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_path(
     n = 3,
     type = "path",
@@ -160,12 +160,12 @@ graph <-
 # node data frame; the node
 # aesthetic attributes have
 # been inserted
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Create a new graph which is
 # fully connected
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_full_graph(
     n = 4,
     node_data = node_data(value = 1:4),

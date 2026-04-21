@@ -25,26 +25,26 @@ the ease to which nodes can reach other nodes.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 10,
     m = 15,
     set_seed = 23)
 
 # Get the radiality scores for nodes in the graph
-graph \%>\%
+graph |>
   get_radiality()
 
 # Add the radiality values
 # to the graph as a node
 # attribute
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_radiality(.))
+    df = get_radiality(graph))
 
 # Display the graph's node data frame
-graph \%>\%
+graph |>
   get_node_df()
 
 }

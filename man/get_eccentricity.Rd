@@ -27,7 +27,7 @@ Get a data frame with node eccentricity values.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -35,6 +35,6 @@ graph <-
 
 # Get the eccentricity values for
 # all nodes in the graph
-graph \%>\% get_eccentricity()
+graph |> get_eccentricity()
 
 }

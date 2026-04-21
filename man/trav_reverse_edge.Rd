@@ -60,25 +60,25 @@ graph <-
 # Explicitly select the edges
 # `1`->`4` and `2`->`3`
 graph <-
-  graph \%>\%
+  graph |>
   select_edges(
     from = 1,
-      to = 4) \%>\%
+      to = 4) |>
   select_edges(
     from = 2,
       to = 3)
 
 # Get the inital edge selection
-graph \%>\% get_selection()
+graph |> get_selection()
 
 # Traverse to the reverse edges
 # (edges `2`: `4`->`1` and
 # `4`:`3`->`2`)
 graph <-
-  graph \%>\%
+  graph |>
   trav_reverse_edge()
 
 # Get the current selection of edges
-graph \%>\% get_selection()
+graph |> get_selection()
 
 }

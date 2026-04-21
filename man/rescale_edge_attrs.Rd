@@ -48,28 +48,28 @@ same edge attribute or to a new edge attribute column.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 10,
     m = 7,
-    set_seed = 23) \%>\%
+    set_seed = 23) |>
   set_edge_attrs(
     edge_attr = weight,
     values = rnorm(
-      n = count_edges(.),
+      n = 7,
       mean = 5,
       sd = 1))
 
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 # Rescale the `weight` edge
 # attribute, so that its values
 # are rescaled between 0 and 1
 graph <-
-  graph \%>\%
+  graph |>
   rescale_edge_attrs(
     edge_attr_from = weight,
     to_lower_bound = 0,
@@ -78,7 +78,7 @@ graph <-
 # Get the graph's internal edf
 # to show that the edge attribute
 # values had been rescaled
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 # Scale the values in the `weight`
 # edge attribute to different
@@ -87,12 +87,12 @@ graph \%>\% get_edge_df()
 # numerical values for the
 # `penwidth` attribute
 graph <-
-  graph \%>\%
+  graph |>
   rescale_edge_attrs(
     edge_attr_from = weight,
     to_lower_bound = "gray80",
     to_upper_bound = "gray20",
-    edge_attr_to = color) \%>\%
+    edge_attr_to = color) |>
   rescale_edge_attrs(
     edge_attr_from = weight,
     to_lower_bound = 0.5,
@@ -105,7 +105,7 @@ graph <-
 # in `color` and scaled numerical
 # values are in the `penwidth`
 # edge attribute
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 }
 \seealso{

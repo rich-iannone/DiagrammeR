@@ -25,7 +25,7 @@ and zero-value degrees are omitted from the output.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -33,7 +33,7 @@ graph <-
 
 # Get degree histogram data for
 # the graph (reporting total degree)
-graph \%>\%
+graph |>
   get_degree_histogram(
     mode = "total")
 

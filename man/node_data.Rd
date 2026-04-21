@@ -19,7 +19,7 @@ created.
 # a path with several node
 # data attributes
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_path(
     n = 3,
     type = "path",
@@ -31,7 +31,7 @@ graph <-
 # node data frame; the node
 # data attributes have been
 # inserted
-graph \%>\% get_node_df()
+graph |> get_node_df()
 }
 \seealso{
 Other node creation and removal: 

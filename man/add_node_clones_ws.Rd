@@ -48,16 +48,16 @@ Selections of nodes can also be performed using the following traversal
 # and `value` node attributes,
 # and select the created nodes
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_path(
     n = 3,
     label = c("d", "g", "r"),
-    type = c("a", "b", "c")) \%>\%
+    type = c("a", "b", "c")) |>
   select_last_nodes_created()
 
 # Display the graph's internal
 # node data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Create clones of all nodes
 # in the selection but assign
@@ -65,7 +65,7 @@ graph \%>\% get_node_df()
 # (leaving `label` as NULL
 # yields NA values)
 graph <-
-  graph \%>\%
+  graph |>
   add_node_clones_ws(
     label = c("a", "b", "v"))
 
@@ -73,7 +73,7 @@ graph <-
 # node data frame: nodes `4`,
 # `5`, and `6` are clones of
 # `1`, `2`, and `3`
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Select the last nodes
 # created (`4`, `5`, and `6`)
@@ -82,8 +82,8 @@ graph \%>\% get_node_df()
 # creating new edges between
 # the new and existing nodes
 graph <-
-  graph \%>\%
-  select_last_nodes_created() \%>\%
+  graph |>
+  select_last_nodes_created() |>
   add_node_clones_ws(
     add_edges = TRUE,
     direction = "to",
@@ -93,7 +93,7 @@ graph <-
 # edge data frame; there are
 # edges between the selected
 # nodes and their clones
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 }
 \seealso{

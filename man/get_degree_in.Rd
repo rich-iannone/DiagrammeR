@@ -25,7 +25,7 @@ Get the indegree values for all nodes in a graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -33,19 +33,19 @@ graph <-
 
 # Get the indegree values for
 # all nodes in the graph
-graph \%>\%
+graph |>
   get_degree_in()
 
 # Add the indegree values
 # to the graph as a node
 # attribute
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_degree_in(.))
+    df = get_degree_in(graph))
 
 # Display the graph's
 # node data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

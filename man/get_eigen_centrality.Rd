@@ -24,13 +24,13 @@ Get the eigen centrality values for all nodes in the graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10, m = 15,
     set_seed = 23)
 
 # Get the eigen centrality scores
 # for nodes in the graph
-graph \%>\% get_eigen_centrality()
+graph |> get_eigen_centrality()
 
 }

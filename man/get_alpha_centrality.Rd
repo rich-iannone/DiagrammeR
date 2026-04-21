@@ -40,7 +40,7 @@ Get the alpha centrality values for all nodes in the graph.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 10,
     m = 12,
@@ -48,19 +48,19 @@ graph <-
 
 # Get the alpha centrality scores
 # for all nodes
-graph \%>\%
+graph |>
   get_alpha_centrality()
 
 # Add the alpha centrality
 # scores to the graph as a node
 # attribute
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_alpha_centrality(.))
+    df = get_alpha_centrality(graph))
 
 # Display the graph's node
 # data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

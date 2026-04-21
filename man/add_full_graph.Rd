@@ -78,27 +78,27 @@ single edge will link each pair of nodes.
 # will also have edges from
 # and to themselves
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_full_graph(
     n = 3, keep_loops = TRUE
   )
 
 # Get node information
 # from this graph
-graph \%>\% get_node_info()
+graph |> get_node_info()
 
 # Using `keep_loops = FALSE`
 # (the default) will remove
 # the loops
-create_graph() \%>\%
-  add_full_graph(n = 3) \%>\%
+create_graph() |>
+  add_full_graph(n = 3) |>
   get_node_info()
 
 # Values can be set for
 # the node `label`, node
 # `type`, and edge `rel`
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_full_graph(
     n = 3,
     type = "connected",
@@ -108,11 +108,11 @@ graph <-
 
 # Show the graph's node
 # data frame (ndf)
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Show the graph's edge
 # data frame (edf)
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 # Create a fully-connected and
 # directed graph with 3 nodes,
@@ -124,9 +124,9 @@ suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 edge_wt_matrix <-
-  rnorm(100, 5, 2) \%>\%
-  sample(9, FALSE) \%>\%
-  round(2) \%>\%
+  rnorm(100, 5, 2) |>
+  sample(9, FALSE) |>
+  round(2) |>
   matrix(
     ncol = 3,
     nrow = 3,
@@ -136,7 +136,7 @@ edge_wt_matrix <-
 # Create the fully-connected
 # graph (without loops however)
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_full_graph(
     n = 3,
     type = "weighted",
@@ -148,18 +148,18 @@ graph <-
 
 # Show the graph's node
 # data frame (ndf)
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Show the graph's edge
 # data frame (edf)
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 # An undirected graph can
 # also use a matrix with
 # edge weights, but only
 # the lower triangle of
 # that matrix will be used
-create_graph(directed = FALSE) \%>\%
+create_graph(directed = FALSE) |>
   add_full_graph(
     n = 3,
     type = "weighted",
@@ -167,7 +167,7 @@ create_graph(directed = FALSE) \%>\%
     rel = "related_to",
     edge_wt_matrix = edge_wt_matrix,
     keep_loops = FALSE
-  ) \%>\%
+  ) |>
   get_edge_df()
 
 }

@@ -33,7 +33,7 @@ Get the Dice similarity coefficient scores for one or more nodes in a graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -42,7 +42,7 @@ graph <-
 # Get the Dice similarity
 # values for nodes `5`, `6`,
 # and `7`
-graph \%>\%
+graph |>
   get_dice_similarity(
     nodes = 5:7)
 

@@ -31,17 +31,17 @@ Selections of edges can also be performed using the following traversal
 # Create a graph with a
 # directed tree
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_balanced_tree(
     k = 2, h = 2)
 
 # Inspect the graph's edges
-graph \%>\% get_edges()
+graph |> get_edges()
 
 # Select all edges associated
 # with nodes `1` and `2`
 graph <-
-  graph \%>\%
+  graph |>
   select_edges_by_node_id(
     nodes = 1:2)
 
@@ -49,12 +49,12 @@ graph <-
 # of the edges associated with
 # nodes `1` and `2`
 graph <-
-  graph \%>\%
+  graph |>
   rev_edge_dir_ws()
 
 # Inspect the graph's edges
 # after their reversal
-graph \%>\% get_edges()
+graph |> get_edges()
 
 }
 \seealso{

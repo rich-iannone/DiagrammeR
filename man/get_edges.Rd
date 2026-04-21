@@ -62,18 +62,18 @@ graph <-
     edges_df = edf)
 
 # Get all edges within a graph, returned as a list
-graph \%>\%
+graph |>
   get_edges(
     return_type = "vector")
 
 # Get all edges within a graph, returned as a
 # data frame
-graph \%>\%
+graph |>
   get_edges(
     return_type = "df")
 
 # Get all edges returned as a list
-graph \%>\%
+graph |>
   get_edges(
     return_type = "list")
 
@@ -81,14 +81,14 @@ graph \%>\%
 # a numeric comparison (i.e.,
 # all edges with a `value`
 # attribute greater than 3)
-graph \%>\%
+graph |>
   get_edges(
     conditions = value > 3,
     return_type = "vector")
 
 # Get a vector of edges using
 # a matching condition
-graph \%>\%
+graph |>
   get_edges(
     conditions = color == "pink",
     return_type = "vector")
@@ -96,7 +96,7 @@ graph \%>\%
 # Use multiple conditions to
 # return edges with the
 # desired attribute values
-graph \%>\%
+graph |>
   get_edges(
     conditions =
       color == "blue" &
@@ -106,7 +106,7 @@ graph \%>\%
 # Use `return_values = "label"`
 # to return the labels of the
 # connected nodes
-graph \%>\%
+graph |>
   get_edges(
     conditions =
       color == "blue" &

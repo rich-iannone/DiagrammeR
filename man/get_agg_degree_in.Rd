@@ -27,21 +27,24 @@ graph, or, a subset of graph nodes.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 20,
     m = 35,
-    set_seed = 23) \%>\%
+    set_seed = 23)
+
+graph <-
+  graph |>
   set_node_attrs(
     node_attr = value,
     values = rnorm(
-      n = count_nodes(.),
+      n = 20,
       mean = 5,
-      sd = 1) \%>\% round(1))
+      sd = 1) |> round(1))
 
 # Get the mean indegree value
 # from all nodes in the graph
-graph \%>\%
+graph |>
   get_agg_degree_in(
     agg = "mean")
 
@@ -49,7 +52,7 @@ graph \%>\%
 # can be used (`min`, `max`,
 # `median`, `sum`); let's get
 # the median in this example
-graph \%>\%
+graph |>
   get_agg_degree_in(
     agg = "median")
 
@@ -58,7 +61,7 @@ graph \%>\%
 # graph nodes and this is made
 # possible by specifying
 # `conditions` for the nodes
-graph \%>\%
+graph |>
   get_agg_degree_in(
     agg = "mean",
     conditions = value > 5.0)

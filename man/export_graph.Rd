@@ -36,7 +36,7 @@ PostScript.
 \examples{
 # Create a simple graph
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
     add_path(
       n = 5,
       edge_aes = edge_aes(
@@ -53,7 +53,7 @@ graph <-
 
 # Create a PDF file for
 # the graph (`graph.pdf`)
-# graph \%>\%
+# graph |>
 #   export_graph(
 #     file_name = "graph.pdf",
 #     title = "Simple Graph"
@@ -61,7 +61,7 @@ graph <-
 
 # Create a PNG file for
 # the graph (`mypng.png`)
-# graph \%>\%
+# graph |>
 #   export_graph(
 #     file_name = "mypng.png",
 #     file_type = "PNG"

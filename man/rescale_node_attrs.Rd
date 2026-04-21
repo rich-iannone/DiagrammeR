@@ -48,28 +48,28 @@ same node attribute or to a new node attribute column.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 5,
     m = 10,
-    set_seed = 23) \%>\%
+    set_seed = 23) |>
   set_node_attrs(
     node_attr = value,
     values = rnorm(
-      n = count_nodes(.),
+      n = 5,
       mean = 5,
-      sd = 1) \%>\% round(1))
+      sd = 1) |> round(1))
 
 # Get the graph's internal ndf
 # to show which node attributes
 # are available
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Rescale the `value` node
 # attribute, so that its values
 # are rescaled between 0 and 1
 graph <-
-  graph \%>\%
+  graph |>
   rescale_node_attrs(
     node_attr_from = value,
     to_lower_bound = 0,
@@ -78,19 +78,19 @@ graph <-
 # Get the graph's internal ndf
 # to show that the node attribute
 # values had been rescaled
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Scale the values in the `value`
 # node attribute to different
 # shades of gray for the `fillcolor`
 # and `fontcolor` node attributes
 graph <-
-  graph \%>\%
+  graph |>
   rescale_node_attrs(
     node_attr_from = value,
     to_lower_bound = "gray80",
     to_upper_bound = "gray20",
-    node_attr_to = fillcolor) \%>\%
+    node_attr_to = fillcolor) |>
   rescale_node_attrs(
     node_attr_from = value,
     to_lower_bound = "gray5",
@@ -102,7 +102,7 @@ graph <-
 # grayscale colors are now available
 # in the `fillcolor` and `fontcolor`
 # node attributes
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }
 \seealso{

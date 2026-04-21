@@ -75,15 +75,15 @@ fixed number of edges. Thus for \code{n} nodes there will be \code{m} edges and,
 # 120 edges
 gnm_graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 100,
     m = 120)
 
 # Get a count of nodes
-gnm_graph \%>\% count_nodes()
+gnm_graph |> count_nodes()
 
 # Get a count of edges
-gnm_graph \%>\% count_edges()
+gnm_graph |> count_edges()
 
 }

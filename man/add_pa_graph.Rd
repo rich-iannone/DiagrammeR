@@ -95,15 +95,15 @@ algorithm.
 # 2 edges at every time step
 pa_graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_pa_graph(
     n = 100,
     m = 1)
 
 # Get a count of nodes
-pa_graph \%>\% count_nodes()
+pa_graph |> count_nodes()
 
 # Get a count of edges
-pa_graph \%>\% count_edges()
+pa_graph |> count_edges()
 
 }

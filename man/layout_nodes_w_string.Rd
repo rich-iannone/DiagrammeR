@@ -53,13 +53,13 @@ option is available to apply sorting to each of the groups.
 # Create a graph with unique labels and
 # several node `type` groupings
 graph <-
-  create_graph() \%>\%
-  add_node(type = "a", label = "a") \%>\%
-  add_node(type = "a", label = "b") \%>\%
-  add_node(type = "b", label = "c") \%>\%
-  add_node(type = "b", label = "d") \%>\%
-  add_node(type = "b", label = "e") \%>\%
-  add_node(type = "c", label = "f") \%>\%
+  create_graph() |>
+  add_node(type = "a", label = "a") |>
+  add_node(type = "a", label = "b") |>
+  add_node(type = "b", label = "c") |>
+  add_node(type = "b", label = "d") |>
+  add_node(type = "b", label = "e") |>
+  add_node(type = "c", label = "f") |>
   add_node(type = "c", label = "g")
 
 # Define a 'layout' for groups of nodes
@@ -84,7 +84,7 @@ layout <-
 # we should sort the collection of node
 # before adding position information
 graph <-
-  graph \%>\%
+  graph |>
   layout_nodes_w_string(
     layout = layout,
     nodes = c("1" = "type:a",
@@ -97,7 +97,7 @@ graph <-
 # Show the graph's node data frame
 # to confirm that `x` and `y` values
 # were added to each of the nodes
-graph \%>\% get_node_df()
+graph |> get_node_df()
 }
 \seealso{
 Other node creation and removal: 

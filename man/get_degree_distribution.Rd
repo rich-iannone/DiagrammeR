@@ -25,7 +25,7 @@ frequency of total degree values over all nodes in the graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -33,7 +33,7 @@ graph <-
 
 # Get the total degree
 # distribution for the graph
-graph \%>\%
+graph |>
   get_degree_distribution(
     mode = "total")
 

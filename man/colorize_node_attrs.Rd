@@ -54,8 +54,8 @@ attribute to generate a new node attribute with color values.
 # Create a graph with 8
 # nodes and 7 edges
 graph <-
-  create_graph() \%>\%
-  add_path(n = 8) \%>\%
+  create_graph() |>
+  add_path(n = 8) |>
   set_node_attrs(
     node_attr = weight,
     values = c(
@@ -68,15 +68,15 @@ graph <-
 # to the graph's internal node data frame (ndf)
 # with the `join_node_attrs()` function
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_cmty_walktrap(.))
+    df = get_cmty_walktrap(graph))
 
 # Inspect the number of distinct communities
-graph \%>\%
+graph |>
   get_node_attrs(
-    node_attr = walktrap_group) \%>\%
-  unique() \%>\%
+    node_attr = walktrap_group) |>
+  unique() |>
   sort()
 
 # Visually distinguish the nodes in the different
@@ -86,12 +86,12 @@ graph \%>\%
 # value of 90 and apply opaque colors to the node
 # border (with the `color` node attribute)
 graph <-
-  graph \%>\%
+  graph |>
   colorize_node_attrs(
     node_attr_from = walktrap_group,
     node_attr_to = fillcolor,
     palette = "Greens",
-    alpha = 90) \%>\%
+    alpha = 90) |>
   colorize_node_attrs(
     node_attr_from = walktrap_group,
     node_attr_to = color,
@@ -99,12 +99,12 @@ graph <-
     alpha = 80)
 
 # Show the graph's internal node data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Create a graph with 8 nodes and 7 edges
 graph <-
-  create_graph() \%>\%
-  add_path(n = 8) \%>\%
+  create_graph() |>
+  add_path(n = 8) |>
   set_node_attrs(
     node_attr = weight,
     values = c(
@@ -116,7 +116,7 @@ graph <-
 # bucketed ranges (for values not part of any
 # bucket, a gray color is assigned by default)
 graph <-
-  graph \%>\%
+  graph |>
   colorize_node_attrs(
     node_attr_from = weight,
     node_attr_to = fillcolor,
@@ -125,7 +125,7 @@ graph <-
 # Now there will be a `fillcolor` node attribute
 # with distinct colors (the `#D9D9D9` color is
 # the default `gray85` color)
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }
 \seealso{

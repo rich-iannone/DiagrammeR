@@ -17,7 +17,7 @@ This function will provide a summary of the graph.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 10,
     m = 15,

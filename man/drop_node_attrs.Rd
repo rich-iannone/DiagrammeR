@@ -20,27 +20,30 @@ attribute.
 }
 \examples{
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 5,
     m = 10,
-    set_seed = 23) \%>\%
+    set_seed = 23)
+
+graph <-
+  graph |>
  set_node_attrs(
     node_attr = value,
     values = rnorm(
-      n = count_nodes(.),
+      n = 5,
       mean = 5,
-      sd = 1) \%>\% round(1))
+      sd = 1) |> round(1))
 
 # Get the graph's internal
 # ndf to show which node
 # attributes are available
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Drop the `value` node
 # attribute
 graph <-
-  graph \%>\%
+  graph |>
   drop_node_attrs(
     node_attr = value)
 
@@ -48,7 +51,7 @@ graph <-
 # ndf to show that the node
 # attribute `value` had been
 # removed
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }
 \seealso{

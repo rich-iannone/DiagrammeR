@@ -69,7 +69,7 @@ number of edges.
 \examples{
 # Create a graph of islands
 islands_graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_islands_graph(
     n_islands = 4,
     island_size = 10,
@@ -78,9 +78,9 @@ islands_graph <-
     set_seed = 23)
 
 # Get a count of nodes
-islands_graph \%>\% count_nodes()
+islands_graph |> count_nodes()
 
 # Get a count of edges
-islands_graph \%>\% count_edges()
+islands_graph |> count_edges()
 
 }

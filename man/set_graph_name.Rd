@@ -23,7 +23,7 @@ graph <- create_graph()
 
 # Provide the new graph with a name
 graph <-
-  graph \%>\%
+  graph |>
   set_graph_name(
     name = "example_name")
 

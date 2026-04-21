@@ -26,7 +26,7 @@ order via the \code{\link[=trigger_graph_actions]{trigger_graph_actions()}} func
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 4,
     m = 4,
@@ -35,17 +35,17 @@ graph <-
 # Add three graph actions to the
 # graph
 graph <-
-  graph \%>\%
+  graph |>
   add_graph_action(
     fcn = "rescale_node_attrs",
     node_attr_from = "pagerank",
     node_attr_to = "width",
-    action_name = "pgrnk_to_width") \%>\%
+    action_name = "pgrnk_to_width") |>
   add_graph_action(
     fcn = "set_node_attr_w_fcn",
     node_attr_fcn = "get_pagerank",
     column_name = "pagerank",
-    action_name = "get_pagerank") \%>\%
+    action_name = "get_pagerank") |>
   add_graph_action(
     fcn = "colorize_node_attrs",
     node_attr_from = "width",
@@ -55,7 +55,7 @@ graph <-
 # View the graph actions for the graph
 # object by using the function called
 # `get_graph_actions()`
-graph \%>\% get_graph_actions()
+graph |> get_graph_actions()
 
 # We note that the order isn't
 # correct and that the `get_pagerank`
@@ -66,13 +66,13 @@ graph \%>\% get_graph_actions()
 # and specify the reordering with a
 # numeric vector
 graph <-
-  graph \%>\%
+  graph |>
   reorder_graph_actions(
     indices = c(2, 1, 3))
 
 # View the graph actions for the graph
 # object once again to verify that
 # we have the desired order of actions
-graph \%>\% get_graph_actions()
+graph |> get_graph_actions()
 
 }
