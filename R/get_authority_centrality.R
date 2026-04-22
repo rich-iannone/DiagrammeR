@@ -71,16 +71,27 @@ get_authority_centrality <- function(
 
   # Get the authority centrality values for
   # each of the graph's nodes
-  authority_centrality_values <-
-    igraph::authority_score(
-      graph = ig_graph,
-      weights = weights_attr)
+  if (igraph::igraph_version() >= "2.1.0") {
+    authority_centrality_values <-
+      igraph::hits_scores(
+        graph = ig_graph,
+        weights = weights_attr)
+
+    authority_vector <- authority_centrality_values$authority
+  } else {
+    authority_centrality_values <-
+      igraph::authority_score(
+        graph = ig_graph,
+        weights = weights_attr)
+
+    authority_vector <- authority_centrality_values$vector
+  }
 
   # Create df with authority centrality values
   data.frame(
-    id = authority_centrality_values$vector |>
+    id = authority_vector |>
       names() |>
       as.integer(),
-    authority_centrality = unname(authority_centrality_values$vector),
+    authority_centrality = unname(authority_vector),
     stringsAsFactors = FALSE)
 }
