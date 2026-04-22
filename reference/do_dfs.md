@@ -1,0 +1,89 @@
+# Use the depth-first search (dfs) algorithm
+
+With a chosen or random node serving as the starting point, perform a
+depth-first search of the whole graph and return the node ID values
+visited. The dfs algorithm differs from breadth-first search (bfs) in
+that dfs will follow tree branches as far as possible until terminating
+at leaf node (bfs traverses branches one level at a time).
+
+## Usage
+
+``` r
+do_dfs(graph, node = NULL, direction = "all")
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+- node:
+
+  An optional node ID value to specify a single starting point for the
+  dfs. If not provided, a random node from the graph will be chosen.
+
+- direction:
+
+  Using `all` (the default), the bfs will ignore edge direction while
+  traversing through the graph. With `out` and `in`, traversals between
+  adjacent nodes will respect the edge direction.
+
+## Value
+
+A vector containing node ID values for nodes visited during the
+depth-first search. The order of the node IDs corresponds to the order
+visited.
+
+## Examples
+
+``` r
+# Create a graph containing
+# two balanced trees
+graph <-
+  create_graph() |>
+  add_balanced_tree(
+    k = 2, h = 2) |>
+  add_balanced_tree(
+  k = 3, h = 2)
+
+# Perform a depth-first
+# search of the graph,
+# beginning at the root
+# node `1` (the default
+# `direction = "all"`
+# doesn't take edge
+# direction into account)
+graph |>
+  do_dfs(node = 1)
+#>  [1]  1  2  4  5  3  6  7  8  9 12 13 14 10 15 16 17 11 18 19 20
+
+# If not specifying a
+# starting node, the function
+# will begin the search
+# from a random node
+graph |>
+  do_dfs()
+#>  [1]  2  1  3  6  7  4  5  8  9 12 13 14 10 15 16 17 11 18 19 20
+
+# It's also possible to
+# perform dfs while taking
+# into account edge direction;
+# using `direction = "in"`
+# causes the dfs routine to
+# visit nodes along inward edges
+graph |>
+  do_dfs(
+    node = 1,
+    direction = "in")
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+
+# Using `direction = "out"`
+# results in the dfs moving
+# along solely outward edges
+graph |>
+  do_dfs(
+    node = 1,
+    direction = "out")
+#>  [1]  1  2  4  5  3  6  7  8  9 12 13 14 10 15 16 17 11 18 19 20
+```

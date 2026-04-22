@@ -91,13 +91,13 @@ nodes.</p></dd>
 <span class="r-in"><span>    nodes_df <span class="op">=</span> <span class="va">ndf</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get a vector of all nodes in a graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">get_node_ids</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu">get_node_ids</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get a vector of node ID values using a</span></span></span>
 <span class="r-in"><span><span class="co"># numeric comparison (i.e., all nodes with</span></span></span>
 <span class="r-in"><span><span class="co"># `value` attribute greater than 3)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_node_ids</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 3</span>
@@ -105,14 +105,14 @@ nodes.</p></dd>
 <span class="r-in"><span><span class="co"># Get a vector of node ID values using</span></span></span>
 <span class="r-in"><span><span class="co"># a match pattern (i.e., all nodes with</span></span></span>
 <span class="r-in"><span><span class="co"># `color` attribute of `green`)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_node_ids</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">color</span> <span class="op">==</span> <span class="st">"green"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use multiple conditions to return nodes</span></span></span>
 <span class="r-in"><span><span class="co"># with the desired attribute values</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_node_ids</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">color</span> <span class="op">==</span> <span class="st">"blue"</span> <span class="op">&amp;</span></span></span>
@@ -130,7 +130,7 @@ nodes.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

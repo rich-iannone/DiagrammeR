@@ -101,8 +101,8 @@ ending with <code>_ws</code> hints at this).</p>
 <span class="r-in"><span><span class="co"># then add a path of 3 nodes</span></span></span>
 <span class="r-in"><span><span class="co"># and two isolated nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Select a node in the path</span></span></span>
@@ -111,13 +111,13 @@ ending with <code>_ws</code> hints at this).</p>
 <span class="r-in"><span><span class="co"># and `5`); then, and fully</span></span></span>
 <span class="r-in"><span><span class="co"># connect these nodes together</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">fully_connect_nodes_ws</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    2  3 &lt;NA&gt;</span>
@@ -133,8 +133,8 @@ ending with <code>_ws</code> hints at this).</p>
 <span class="r-in"><span><span class="co"># and two isolated nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Select a node in the path</span></span></span>
@@ -143,16 +143,16 @@ ending with <code>_ws</code> hints at this).</p>
 <span class="r-in"><span><span class="co"># and `5`); then, and fully</span></span></span>
 <span class="r-in"><span><span class="co"># connect these nodes together</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">fully_connect_nodes_ws</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's edge data</span></span></span>
 <span class="r-in"><span><span class="co"># frame; in the undirected</span></span></span>
 <span class="r-in"><span><span class="co"># case, reverse edges aren't</span></span></span>
 <span class="r-in"><span><span class="co"># added</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    2  3 &lt;NA&gt;</span>
@@ -171,7 +171,7 @@ ending with <code>_ws</code> hints at this).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

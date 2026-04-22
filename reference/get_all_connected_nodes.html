@@ -75,7 +75,7 @@
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function; it</span></span></span>
 <span class="r-in"><span><span class="co"># has an unconnected node (`6`)</span></span></span>
 <span class="r-in"><span><span class="va">graph_1</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">20</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">32</span>,</span></span>
@@ -85,7 +85,7 @@
 <span class="r-in"><span><span class="co"># nodes to `6` so when specifying</span></span></span>
 <span class="r-in"><span><span class="co"># this node with `get_all_connected_nodes()`</span></span></span>
 <span class="r-in"><span><span class="co"># we get NA back</span></span></span>
-<span class="r-in"><span><span class="va">graph_1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_1</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_all_connected_nodes</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA</span>
@@ -93,7 +93,7 @@
 <span class="r-in"><span><span class="co"># Any other node in `graph_1` will</span></span></span>
 <span class="r-in"><span><span class="co"># provide a vector of all the nodes</span></span></span>
 <span class="r-in"><span><span class="co"># other than `6`</span></span></span>
-<span class="r-in"><span><span class="va">graph_1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_1</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_all_connected_nodes</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2  3  4  5  7  8  9 10 11 12 13 14 15 16 17 18 19 20</span>
@@ -102,14 +102,14 @@
 <span class="r-in"><span><span class="co"># clusters of nodes (i.e., the</span></span></span>
 <span class="r-in"><span><span class="co"># graph has two connected components)</span></span></span>
 <span class="r-in"><span><span class="va">graph_2</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># In `graph_2`, node `1` is in</span></span></span>
 <span class="r-in"><span><span class="co"># the larger of the two</span></span></span>
 <span class="r-in"><span><span class="co"># connected components</span></span></span>
-<span class="r-in"><span><span class="va">graph_2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_2</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_all_connected_nodes</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 3 4 5 6</span>
@@ -117,7 +117,7 @@
 <span class="r-in"><span><span class="co"># Also in `graph_2`, node `8`</span></span></span>
 <span class="r-in"><span><span class="co"># is in the smaller of the two</span></span></span>
 <span class="r-in"><span><span class="co"># connected components</span></span></span>
-<span class="r-in"><span><span class="va">graph_2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_2</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_all_connected_nodes</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  7  9 10</span>
@@ -133,7 +133,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,72 @@
+# Get a minimum spanning tree subgraph
+
+Get a minimum spanning tree subgraph for a connected graph of class
+`dgr_graph`.
+
+## Usage
+
+``` r
+transform_to_min_spanning_tree(graph)
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+## Value
+
+A graph object of class `dgr_graph`.
+
+## Examples
+
+``` r
+# Create a random graph using the
+# `add_gnm_graph()` function
+graph <-
+  create_graph() |>
+  add_gnm_graph(
+    n = 10,
+    m = 15,
+    set_seed = 23)
+
+# Obtain Jaccard similarity
+# values for each pair of
+# nodes as a square matrix
+j_sim_matrix <-
+  graph |>
+    get_jaccard_similarity()
+
+# Create a weighted, undirected
+# graph from the resultant matrix
+# (effectively treating that
+# matrix as an adjacency matrix)
+graph <-
+  j_sim_matrix |>
+  from_adj_matrix(weighted = TRUE)
+
+# The graph in this case is a fully connected graph
+# with loops, where jaccard similarity values are
+# assigned as edge weights (edge attribute `weight`);
+# The minimum spanning tree for this graph is the
+# connected subgraph where the edges retained have
+# the lowest similarity values possible
+min_spanning_tree_graph <-
+  graph |>
+  transform_to_min_spanning_tree() |>
+  copy_edge_attrs(
+    edge_attr_from = weight,
+    edge_attr_to = label) |>
+  set_edge_attrs(
+    edge_attr = fontname,
+    values = "Helvetica") |>
+  set_edge_attrs(
+    edge_attr = color,
+    values = "gray85") |>
+  rescale_edge_attrs(
+    edge_attr_from = weight,
+    to_lower_bound = 0.5,
+    to_upper_bound = 4.0,
+      edge_attr_to = penwidth)
+```

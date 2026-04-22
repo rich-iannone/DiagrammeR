@@ -66,35 +66,35 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes_ws.html">add_n_nodes_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"from"</span>,</span></span>
-<span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">25.3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">25.3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">color</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="invert_selection.html">invert_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="invert_selection.html">invert_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">color</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's internal node</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (ndf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_node_df</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value  color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a  &lt;NA&gt;  25.3 grey80</span>
@@ -115,7 +115,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

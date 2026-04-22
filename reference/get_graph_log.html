@@ -72,24 +72,27 @@ called on the graph that resulted in some transformation of the graph.</p>
 <span class="r-in"><span><span class="co"># delete 2 nodes from the graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">15</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="delete_node.html">delete_node</a></span><span class="op">(</span>node <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="delete_node.html">delete_node</a></span><span class="op">(</span>node <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="delete_node.html">delete_node</a></span><span class="op">(</span>node <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph log, which is a</span></span></span>
 <span class="r-in"><span><span class="co"># record of all graph transformations</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">get_graph_log</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   version_id function_used time_modified       duration nodes edges   d_n   d_e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>          1 create_graph  2025-04-29 <span style="color: #949494;">15:01:23</span>  0.002<span style="text-decoration: underline;">77</span>     0     0     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>          2 add_gnm_graph 2025-04-29 <span style="color: #949494;">15:01:23</span>  0.010<span style="text-decoration: underline;">7</span>     10    15    10    15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>          3 delete_node   2025-04-29 <span style="color: #949494;">15:01:23</span>  0.013<span style="text-decoration: underline;">9</span>      9    11    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>          4 delete_node   2025-04-29 <span style="color: #949494;">15:01:23</span>  0.016<span style="text-decoration: underline;">8</span>      8     8    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">3</span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu">get_graph_log</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   version_id function_used  time_modified       duration nodes edges   d_n   d_e</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>          1 <span style="color: #949494;">"</span>create_graph<span style="color: #949494;">"</span> 2026-04-22 <span style="color: #949494;">00:06:09</span>  0.002<span style="text-decoration: underline;">74</span>     0     0     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>          2 <span style="color: #949494;">"</span>add_gnm_grap… 2026-04-22 <span style="color: #949494;">00:06:09</span>  0.010<span style="text-decoration: underline;">6</span>     10    15    10    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>          2 <span style="color: #949494;">""</span>             2026-04-22 <span style="color: #949494;">00:06:09</span>  0.010<span style="text-decoration: underline;">6</span>     10    15    10    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>          4 <span style="color: #949494;">"</span>delete_node<span style="color: #949494;">"</span>  2026-04-22 <span style="color: #949494;">00:06:09</span>  0.013<span style="text-decoration: underline;">9</span>      9    11    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>          4 <span style="color: #949494;">""</span>             2026-04-22 <span style="color: #949494;">00:06:09</span>  0.013<span style="text-decoration: underline;">9</span>      9    11    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>          6 <span style="color: #949494;">"</span>delete_node<span style="color: #949494;">"</span>  2026-04-22 <span style="color: #949494;">00:06:09</span>  0.016<span style="text-decoration: underline;">8</span>      8     8    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>          6 <span style="color: #949494;">""</span>             2026-04-22 <span style="color: #949494;">00:06:09</span>  0.016<span style="text-decoration: underline;">8</span>      8     8    -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">3</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -102,7 +105,7 @@ called on the graph that resulted in some transformation of the graph.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

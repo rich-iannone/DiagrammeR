@@ -70,11 +70,11 @@ eccentricity in the graph).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function and</span></span></span>
 <span class="r-in"><span><span class="co"># get the nodes in the graph periphery</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">28</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">35</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_periphery</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  6  9 25 28</span>
 <span class="r-in"><span></span></span>
@@ -89,7 +89,7 @@ eccentricity in the graph).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

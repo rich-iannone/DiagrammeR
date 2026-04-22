@@ -1,0 +1,96 @@
+# Get edge attribute values
+
+From a graph object of class `dgr_graph`, get edge attribute values for
+one or more edges.
+
+## Usage
+
+``` r
+get_edge_attrs(graph, edge_attr, from = NULL, to = NULL)
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+- edge_attr:
+
+  the name of the attribute for which to get values.
+
+- from:
+
+  an optional vector of node IDs from which the edge is outgoing for
+  filtering the list of edges.
+
+- to:
+
+  an optional vector of node IDs from which the edge is incoming for
+  filtering the list of edges.
+
+## Value
+
+A named vector of edge attribute values for the attribute given by
+`edge_attr` by edge.
+
+## Examples
+
+``` r
+# Create a simple graph where
+# edges have an edge attribute
+# named `value`
+graph <-
+  create_graph() |>
+  add_n_nodes(n = 4)
+
+edges <-
+  create_edge_df(
+    from = c(1, 2, 1, 4),
+      to = c(2, 3, 4, 3),
+     rel = "rel")
+
+graph <-
+  add_edge_df(
+    graph = graph,
+    edge_df = edges) |>
+  set_edge_attrs(
+    edge_attr = value,
+    values = 1.6,
+    from = 1,
+      to = 2) |>
+  set_edge_attrs(
+    edge_attr = value,
+    values = 4.3,
+    from = 1,
+      to = 4) |>
+  set_edge_attrs(
+    edge_attr = value,
+    values = 2.9,
+    from = 2,
+      to = 3) |>
+  set_edge_attrs(
+    edge_attr = value,
+    values = 8.4,
+    from = 4,
+      to = 3)
+
+# Get the values for the
+# `value` edge attribute
+graph |>
+  get_edge_attrs(
+    edge_attr = value)
+#> 1->2 2->3 1->4 4->3 
+#>  1.6  2.9  4.3  8.4 
+
+# To only return edge attribute
+# values for specified edges, use
+# the `from` and `to` arguments
+graph |>
+  get_edge_attrs(
+    edge_attr = value,
+    from = c(1, 2),
+      to = c(2, 3))
+#> 1->2 2->3 
+#>  1.6  2.9 
+```

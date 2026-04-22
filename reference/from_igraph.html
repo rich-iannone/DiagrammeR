@@ -87,7 +87,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a DiagrammeR graph object</span></span></span>
 <span class="r-in"><span><span class="va">dgr_graph_orig</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">36</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">50</span>,</span></span>
@@ -96,18 +96,20 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 <span class="r-in"><span><span class="co"># Convert the DiagrammeR</span></span></span>
 <span class="r-in"><span><span class="co"># graph to an igraph object</span></span></span>
 <span class="r-in"><span><span class="va">ig_graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">dgr_graph_orig</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">dgr_graph_orig</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="to_igraph.html">to_igraph</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Convert the igraph graph</span></span></span>
 <span class="r-in"><span><span class="co"># back to a DiagrammeR graph</span></span></span>
 <span class="r-in"><span><span class="va">dgr_graph_new</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">ig_graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ig_graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">from_igraph</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get some graph information</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">dgr_graph_new</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="get_graph_info.html">get_graph_info</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">graph_info</span> <span class="op">&lt;-</span> <span class="va">dgr_graph_new</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="get_graph_info.html">get_graph_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">graph_info</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             name  n  e   dens mn_deg mx_deg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 graph_hWHYG7a9 36 50 0.0571      1      7</span>
 <span class="r-in"><span></span></span>
@@ -122,7 +124,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

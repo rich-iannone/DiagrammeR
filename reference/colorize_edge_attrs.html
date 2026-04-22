@@ -118,8 +118,8 @@ vector.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph with 5</span></span></span>
 <span class="r-in"><span><span class="co"># nodes and 4 edges</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_edge_attrs.html">set_edge_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr <span class="op">=</span> <span class="va">weight</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.7</span>, <span class="fl">6.3</span>, <span class="fl">9.2</span>, <span class="fl">1.6</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -132,7 +132,7 @@ vector.</p></dd>
 <span class="r-in"><span><span class="co"># part of any bucket, a gray color</span></span></span>
 <span class="r-in"><span><span class="co"># is assigned by default)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">colorize_edge_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr_from <span class="op">=</span> <span class="va">weight</span>,</span></span>
 <span class="r-in"><span>    edge_attr_to <span class="op">=</span> <span class="va">color</span>,</span></span>
@@ -143,7 +143,7 @@ vector.</p></dd>
 <span class="r-in"><span><span class="co"># edge attribute with distinct</span></span></span>
 <span class="r-in"><span><span class="co"># colors (from the RColorBrewer</span></span></span>
 <span class="r-in"><span><span class="co"># Red-Yellow-Green palette)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel weight   color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;    3.7 #FDAE61</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    2  3 &lt;NA&gt;    6.3 #A6D96A</span>
@@ -161,7 +161,7 @@ vector.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

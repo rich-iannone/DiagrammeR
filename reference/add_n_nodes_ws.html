@@ -172,32 +172,32 @@ use here as it helps bind data specifically to the created edges.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other node creation and removal:
-<code><a href="add_n_node_clones.html">add_n_node_clones</a>()</code>,
-<code><a href="add_n_nodes.html">add_n_nodes</a>()</code>,
-<code><a href="add_node.html">add_node</a>()</code>,
-<code><a href="add_node_clones_ws.html">add_node_clones_ws</a>()</code>,
-<code><a href="add_node_df.html">add_node_df</a>()</code>,
-<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a>()</code>,
-<code><a href="add_nodes_from_table.html">add_nodes_from_table</a>()</code>,
-<code><a href="colorize_node_attrs.html">colorize_node_attrs</a>()</code>,
-<code><a href="copy_node_attrs.html">copy_node_attrs</a>()</code>,
-<code><a href="create_node_df.html">create_node_df</a>()</code>,
-<code><a href="delete_node.html">delete_node</a>()</code>,
-<code><a href="delete_nodes_ws.html">delete_nodes_ws</a>()</code>,
-<code><a href="drop_node_attrs.html">drop_node_attrs</a>()</code>,
-<code><a href="join_node_attrs.html">join_node_attrs</a>()</code>,
-<code><a href="layout_nodes_w_string.html">layout_nodes_w_string</a>()</code>,
-<code><a href="mutate_node_attrs.html">mutate_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a>()</code>,
-<code><a href="node_data.html">node_data</a>()</code>,
-<code><a href="recode_node_attrs.html">recode_node_attrs</a>()</code>,
-<code><a href="rename_node_attrs.html">rename_node_attrs</a>()</code>,
-<code><a href="rescale_node_attrs.html">rescale_node_attrs</a>()</code>,
-<code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a>()</code>,
-<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn</a>()</code>,
-<code><a href="set_node_attrs.html">set_node_attrs</a>()</code>,
-<code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a>()</code>,
-<code><a href="set_node_position.html">set_node_position</a>()</code></p></div>
+<code><a href="add_n_node_clones.html">add_n_node_clones()</a></code>,
+<code><a href="add_n_nodes.html">add_n_nodes()</a></code>,
+<code><a href="add_node.html">add_node()</a></code>,
+<code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code>,
+<code><a href="add_node_df.html">add_node_df()</a></code>,
+<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code>,
+<code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code>,
+<code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code>,
+<code><a href="copy_node_attrs.html">copy_node_attrs()</a></code>,
+<code><a href="create_node_df.html">create_node_df()</a></code>,
+<code><a href="delete_node.html">delete_node()</a></code>,
+<code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code>,
+<code><a href="drop_node_attrs.html">drop_node_attrs()</a></code>,
+<code><a href="join_node_attrs.html">join_node_attrs()</a></code>,
+<code><a href="layout_nodes_w_string.html">layout_nodes_w_string()</a></code>,
+<code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>,
+<code><a href="node_data.html">node_data()</a></code>,
+<code><a href="recode_node_attrs.html">recode_node_attrs()</a></code>,
+<code><a href="rename_node_attrs.html">rename_node_attrs()</a></code>,
+<code><a href="rescale_node_attrs.html">rescale_node_attrs()</a></code>,
+<code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code>,
+<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn()</a></code>,
+<code><a href="set_node_attrs.html">set_node_attrs()</a></code>,
+<code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code>,
+<code><a href="set_node_position.html">set_node_position()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -207,19 +207,19 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># with edges from the original node to all of the</span></span></span>
 <span class="r-in"><span><span class="co"># new nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_n_nodes_ws</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"from"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4 5 6</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's edges</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edges.html">get_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edges.html">get_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1-&gt;2" "1-&gt;3" "1-&gt;4" "1-&gt;5" "1-&gt;6"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create an empty graph, add a node to it, select</span></span></span>
@@ -227,19 +227,19 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># with edges toward the original node from all of</span></span></span>
 <span class="r-in"><span><span class="co"># the new nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_last_nodes_created.html">select_last_nodes_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_n_nodes_ws</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"to"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4 5 6</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's edges</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edges.html">get_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edges.html">get_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2-&gt;1" "3-&gt;1" "4-&gt;1" "5-&gt;1" "6-&gt;1"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -253,7 +253,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -85,12 +85,12 @@ removed to disconnect the source and sink nodes.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a cycle graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_cycle.html">add_cycle</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine the minimum cut</span></span></span>
 <span class="r-in"><span><span class="co"># between nodes `1` and `4`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_min_cut_between</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
@@ -100,23 +100,23 @@ removed to disconnect the source and sink nodes.</p>
 <span class="r-in"><span><span class="co"># randomized values given to all</span></span></span>
 <span class="r-in"><span><span class="co"># edges as the `capacity` attribute</span></span></span>
 <span class="r-in"><span><span class="va">graph_capacity</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_cycle.html">add_cycle</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_edges.html">select_edges</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_cycle.html">add_cycle</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_edges.html">select_edges</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr <span class="op">=</span> <span class="va">capacity</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        n <span class="op">=</span> <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>        mean <span class="op">=</span> <span class="fl">5</span>,</span></span>
-<span class="r-in"><span>        sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>        sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine the minimum cut</span></span></span>
 <span class="r-in"><span><span class="co"># between nodes `1` and `4` for</span></span></span>
 <span class="r-in"><span><span class="co"># this graph, where `capacity`is</span></span></span>
 <span class="r-in"><span><span class="co"># set as an edge attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph_capacity</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_capacity</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_min_cut_between</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
@@ -125,8 +125,8 @@ removed to disconnect the source and sink nodes.</p>
 <span class="r-in"><span><span class="co"># Create a full graph and then</span></span></span>
 <span class="r-in"><span><span class="co"># get the minimum cut requirement</span></span></span>
 <span class="r-in"><span><span class="co"># between nodes `2` and `8`</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_full_graph.html">add_full_graph</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_full_graph.html">add_full_graph</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_min_cut_between</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></span>
@@ -143,7 +143,7 @@ removed to disconnect the source and sink nodes.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

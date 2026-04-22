@@ -76,7 +76,7 @@ corresponding to <code>action_name</code> values.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">8</span>,</span></span>
@@ -85,17 +85,17 @@ corresponding to <code>action_name</code> values.</p></dd>
 <span class="r-in"><span><span class="co"># Add three graph actions to the</span></span></span>
 <span class="r-in"><span><span class="co"># graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"set_node_attr_w_fcn"</span>,</span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_pagerank"</span>,</span></span>
 <span class="r-in"><span>    column_name <span class="op">=</span> <span class="st">"pagerank"</span>,</span></span>
-<span class="r-in"><span>    action_name <span class="op">=</span> <span class="st">"get_pagerank"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    action_name <span class="op">=</span> <span class="st">"get_pagerank"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"rescale_node_attrs"</span>,</span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="st">"pagerank"</span>,</span></span>
 <span class="r-in"><span>    node_attr_to <span class="op">=</span> <span class="st">"width"</span>,</span></span>
-<span class="r-in"><span>    action_name <span class="op">=</span> <span class="st">"pagerank_to_width"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    action_name <span class="op">=</span> <span class="st">"pagerank_to_width"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"colorize_node_attrs"</span>,</span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="st">"width"</span>,</span></span>
@@ -105,7 +105,7 @@ corresponding to <code>action_name</code> values.</p></dd>
 <span class="r-in"><span><span class="co"># View the graph actions for the graph</span></span></span>
 <span class="r-in"><span><span class="co"># object by using the `get_graph_actions()`</span></span></span>
 <span class="r-in"><span><span class="co"># function</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   action_index action_name        expression                                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                         </span>
@@ -116,14 +116,14 @@ corresponding to <code>action_name</code> values.</p></dd>
 <span class="r-in"><span><span class="co"># Delete the second and third graph</span></span></span>
 <span class="r-in"><span><span class="co"># actions using `delete_graph_actions()`</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">delete_graph_actions</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    actions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Verify that these last two graph</span></span></span>
 <span class="r-in"><span><span class="co"># actions were deleted by again using</span></span></span>
 <span class="r-in"><span><span class="co"># the `get_graph_actions()` function</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   action_index action_name  expression                                          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               </span>
@@ -140,7 +140,7 @@ corresponding to <code>action_name</code> values.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

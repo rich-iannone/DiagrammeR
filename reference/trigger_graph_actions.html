@@ -82,7 +82,7 @@ graph actions after setting them, for example.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">10</span>,</span></span>
@@ -94,7 +94,7 @@ graph actions after setting them, for example.</p>
 <span class="r-in"><span><span class="co"># to provide PageRank values in the</span></span></span>
 <span class="r-in"><span><span class="co"># `pagerank` column</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"set_node_attr_w_fcn"</span>,</span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_pagerank"</span>,</span></span>
@@ -107,7 +107,7 @@ graph actions after setting them, for example.</p>
 <span class="r-in"><span><span class="co"># column between 0 and 1, and, puts</span></span></span>
 <span class="r-in"><span><span class="co"># these values in the `width` column</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"rescale_node_attrs"</span>,</span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="st">"pagerank"</span>,</span></span>
@@ -120,7 +120,7 @@ graph actions after setting them, for example.</p>
 <span class="r-in"><span><span class="co"># based on the numeric values from the</span></span></span>
 <span class="r-in"><span><span class="co"># `width` column</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_graph_action.html">add_graph_action</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fcn <span class="op">=</span> <span class="st">"colorize_node_attrs"</span>,</span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="st">"width"</span>,</span></span>
@@ -130,7 +130,7 @@ graph actions after setting them, for example.</p>
 <span class="r-in"><span><span class="co"># View the graph actions for the graph</span></span></span>
 <span class="r-in"><span><span class="co"># object by using the `get_graph_actions()`</span></span></span>
 <span class="r-in"><span><span class="co"># function</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_graph_actions.html">get_graph_actions</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   action_index action_name     expression                                       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            </span>
@@ -142,14 +142,14 @@ graph actions after setting them, for example.</p>
 <span class="r-in"><span><span class="co"># the graph actions using the</span></span></span>
 <span class="r-in"><span><span class="co"># `trigger_graph_actions()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trigger_graph_actions</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Examine the graph's internal node</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (ndf) to verify that</span></span></span>
 <span class="r-in"><span><span class="co"># the `pagerank`, `width`, and</span></span></span>
 <span class="r-in"><span><span class="co"># `fillcolor` columns are present</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label pagerank width fillcolor</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1   0.2877 0.935   #ABDDA4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;     2   0.0940 0.000   #D7191C</span>
@@ -168,7 +168,7 @@ graph actions after setting them, for example.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

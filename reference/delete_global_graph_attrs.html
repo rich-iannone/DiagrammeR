@@ -80,15 +80,15 @@ type is specified with <code>graph</code>, <code>node</code>, or <code>edge</cod
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a new graph and add</span></span></span>
 <span class="r-in"><span><span class="co"># some extra global graph attrs</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"overlap"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="st">"true"</span>,</span></span>
-<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"graph"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"graph"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"penwidth"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"node"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"node"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"penwidth"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="fl">3</span>,</span></span>
@@ -96,7 +96,7 @@ type is specified with <code>graph</code>, <code>node</code>, or <code>edge</cod
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the graph's global</span></span></span>
 <span class="r-in"><span><span class="co"># attributes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_global_graph_attr_info.html">get_global_graph_attr_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    attr        value      attr_type</span>
@@ -126,14 +126,14 @@ type is specified with <code>graph</code>, <code>node</code>, or <code>edge</cod
 <span class="r-in"><span><span class="co"># for the graph's nodes using the</span></span></span>
 <span class="r-in"><span><span class="co"># `delete_global_graph_attrs()` fcn</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">delete_global_graph_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"penwidth"</span>,</span></span>
 <span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"node"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># View the remaining set of global</span></span></span>
 <span class="r-in"><span><span class="co"># attributes for the graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_global_graph_attr_info.html">get_global_graph_attr_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 19 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    attr        value      attr_type</span>
@@ -169,7 +169,7 @@ type is specified with <code>graph</code>, <code>node</code>, or <code>edge</cod
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

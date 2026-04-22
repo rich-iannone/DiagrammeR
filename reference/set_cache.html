@@ -82,7 +82,7 @@ that data frame must provided here.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">22</span>,</span></span>
@@ -93,15 +93,15 @@ that data frame must provided here.</p></dd>
 <span class="r-in"><span><span class="co"># all nodes from `1` to `10` and</span></span></span>
 <span class="r-in"><span><span class="co"># store in the graph's cache</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_cache</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    name <span class="op">=</span> <span class="st">"closeness_vector"</span>,</span></span>
-<span class="r-in"><span>    to_cache <span class="op">=</span> <span class="fu"><a href="get_closeness.html">get_closeness</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    to_cache <span class="op">=</span> <span class="fu"><a href="get_closeness.html">get_closeness</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="st">"closeness"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's cache</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_cache.html">get_cache</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"closeness_vector"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.07692308 0.08333333 0.07692308 0.06666667 0.05555556 0.06250000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.06666667 0.05000000 0.06666667 0.04761905</span>
@@ -111,16 +111,16 @@ that data frame must provided here.</p></dd>
 <span class="r-in"><span><span class="co"># the graph and store the vector in</span></span></span>
 <span class="r-in"><span><span class="co"># the graph's cache</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_cache</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    name <span class="op">=</span> <span class="st">"difference"</span>,</span></span>
 <span class="r-in"><span>    to_cache <span class="op">=</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="get_betweenness.html">get_betweenness</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">$</span><span class="va">betweenness</span> <span class="op">-</span></span></span>
-<span class="r-in"><span>        <span class="fu"><a href="get_closeness.html">get_closeness</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">$</span><span class="va">closeness</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="get_betweenness.html">get_betweenness</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">betweenness</span> <span class="op">-</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="get_closeness.html">get_closeness</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">closeness</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's cache</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_cache.html">get_cache</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"difference"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  9.25641026 28.91666667 19.08974359  2.60000000  0.44444444 17.93750000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 11.93333333 -0.05000000 10.26666667 -0.04761905</span>
@@ -136,7 +136,7 @@ that data frame must provided here.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,110 @@
+# Join new edge attribute values using a data frame
+
+Join new edge attribute values in a left join using a data frame. The
+use of a left join in this function allows for no possibility that edges
+in the graph might be removed after the join.
+
+## Usage
+
+``` r
+join_edge_attrs(graph, df, by_graph = NULL, by_df = NULL)
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+- df:
+
+  The data frame to use for joining.
+
+- by_graph:
+
+  Optional specification of the column in the graph's internal edge data
+  frame for the left join. If both `by_graph` and `by_df` are not
+  provided, then a natural join will occur if there are columns in the
+  graph's edf and in `df` with identical names.
+
+- by_df:
+
+  Optional specification of the column in `df` for the left join. If
+  both `by_graph` and `by_df` are not provided, then a natural join will
+  occur if there are columns in the graph's edf and in `df` with
+  identical names.
+
+## Value
+
+A graph object of class `dgr_graph`.
+
+## See also
+
+Other edge creation and removal:
+[`add_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/add_edge.md),
+[`add_edge_clone()`](https://rich-iannone.github.io/DiagrammeR/reference/add_edge_clone.md),
+[`add_edge_df()`](https://rich-iannone.github.io/DiagrammeR/reference/add_edge_df.md),
+[`add_edges_from_table()`](https://rich-iannone.github.io/DiagrammeR/reference/add_edges_from_table.md),
+[`add_edges_w_string()`](https://rich-iannone.github.io/DiagrammeR/reference/add_edges_w_string.md),
+[`add_forward_edges_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/add_forward_edges_ws.md),
+[`add_reverse_edges_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/add_reverse_edges_ws.md),
+[`copy_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/copy_edge_attrs.md),
+[`create_edge_df()`](https://rich-iannone.github.io/DiagrammeR/reference/create_edge_df.md),
+[`delete_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/delete_edge.md),
+[`delete_edges_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/delete_edges_ws.md),
+[`delete_loop_edges_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/delete_loop_edges_ws.md),
+[`drop_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/drop_edge_attrs.md),
+[`edge_data()`](https://rich-iannone.github.io/DiagrammeR/reference/edge_data.md),
+[`mutate_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/mutate_edge_attrs.md),
+[`mutate_edge_attrs_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/mutate_edge_attrs_ws.md),
+[`recode_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/recode_edge_attrs.md),
+[`rename_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/rename_edge_attrs.md),
+[`rescale_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/rescale_edge_attrs.md),
+[`rev_edge_dir()`](https://rich-iannone.github.io/DiagrammeR/reference/rev_edge_dir.md),
+[`rev_edge_dir_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/rev_edge_dir_ws.md),
+[`set_edge_attr_to_display()`](https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attr_to_display.md),
+[`set_edge_attrs()`](https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attrs.md),
+[`set_edge_attrs_ws()`](https://rich-iannone.github.io/DiagrammeR/reference/set_edge_attrs_ws.md)
+
+## Examples
+
+``` r
+# Set a seed
+suppressWarnings(RNGversion("3.5.0"))
+set.seed(23)
+
+# Create a simple graph
+graph <-
+  create_graph() |>
+  add_n_nodes(n = 5) |>
+  add_edges_w_string(
+    edges = "1->2 1->3 2->4 2->5 3->5")
+
+# Create a data frame with node ID values
+# representing the graph edges (with `from` and `to`
+# columns), and, a set of numeric values
+df <-
+  data.frame(
+    from = c(1, 1, 2, 2, 3),
+    to = c(2, 3, 4, 5, 5),
+    values = rnorm(5, 5))
+
+# Join the values in the data frame to the
+# graph's edges; this works as a left join using
+# identically-named columns in the graph and the df
+# (in this case `from` and `to` are common to both)
+graph <-
+  graph |>
+  join_edge_attrs(
+    df = df)
+
+# Get the graph's internal edf to show that the
+# join has been made
+graph |> get_edge_df()
+#>   id from to  rel   values
+#> 1  1    1  2 <NA> 5.996605
+#> 2  2    1  3 <NA> 6.107490
+#> 3  3    2  4 <NA> 4.721914
+#> 4  4    2  5 <NA> 6.019205
+#> 5  5    3  5 <NA> 5.045437
+```

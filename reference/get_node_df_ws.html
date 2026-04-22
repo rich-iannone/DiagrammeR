@@ -100,11 +100,11 @@ ending with <code>_ws</code> hints at this).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">4</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">8.2</span>, <span class="fl">4.2</span>, <span class="fl">2.4</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -112,14 +112,14 @@ ending with <code>_ws</code> hints at this).</p>
 <span class="r-in"><span><span class="co"># Select nodes with ID values</span></span></span>
 <span class="r-in"><span><span class="co"># `1` and `3`</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    nodes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the node data frame that's</span></span></span>
 <span class="r-in"><span><span class="co"># limited to the rows that correspond</span></span></span>
 <span class="r-in"><span><span class="co"># to the node selection</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">get_node_df_ws</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu">get_node_df_ws</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1   2.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  3 &lt;NA&gt;     3   4.2</span>
@@ -135,7 +135,7 @@ ending with <code>_ws</code> hints at this).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

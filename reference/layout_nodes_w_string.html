@@ -112,32 +112,32 @@ right of the colon for ascending or descending sorts.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other node creation and removal:
-<code><a href="add_n_node_clones.html">add_n_node_clones</a>()</code>,
-<code><a href="add_n_nodes.html">add_n_nodes</a>()</code>,
-<code><a href="add_n_nodes_ws.html">add_n_nodes_ws</a>()</code>,
-<code><a href="add_node.html">add_node</a>()</code>,
-<code><a href="add_node_clones_ws.html">add_node_clones_ws</a>()</code>,
-<code><a href="add_node_df.html">add_node_df</a>()</code>,
-<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a>()</code>,
-<code><a href="add_nodes_from_table.html">add_nodes_from_table</a>()</code>,
-<code><a href="colorize_node_attrs.html">colorize_node_attrs</a>()</code>,
-<code><a href="copy_node_attrs.html">copy_node_attrs</a>()</code>,
-<code><a href="create_node_df.html">create_node_df</a>()</code>,
-<code><a href="delete_node.html">delete_node</a>()</code>,
-<code><a href="delete_nodes_ws.html">delete_nodes_ws</a>()</code>,
-<code><a href="drop_node_attrs.html">drop_node_attrs</a>()</code>,
-<code><a href="join_node_attrs.html">join_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs.html">mutate_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a>()</code>,
-<code><a href="node_data.html">node_data</a>()</code>,
-<code><a href="recode_node_attrs.html">recode_node_attrs</a>()</code>,
-<code><a href="rename_node_attrs.html">rename_node_attrs</a>()</code>,
-<code><a href="rescale_node_attrs.html">rescale_node_attrs</a>()</code>,
-<code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a>()</code>,
-<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn</a>()</code>,
-<code><a href="set_node_attrs.html">set_node_attrs</a>()</code>,
-<code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a>()</code>,
-<code><a href="set_node_position.html">set_node_position</a>()</code></p></div>
+<code><a href="add_n_node_clones.html">add_n_node_clones()</a></code>,
+<code><a href="add_n_nodes.html">add_n_nodes()</a></code>,
+<code><a href="add_n_nodes_ws.html">add_n_nodes_ws()</a></code>,
+<code><a href="add_node.html">add_node()</a></code>,
+<code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code>,
+<code><a href="add_node_df.html">add_node_df()</a></code>,
+<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code>,
+<code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code>,
+<code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code>,
+<code><a href="copy_node_attrs.html">copy_node_attrs()</a></code>,
+<code><a href="create_node_df.html">create_node_df()</a></code>,
+<code><a href="delete_node.html">delete_node()</a></code>,
+<code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code>,
+<code><a href="drop_node_attrs.html">drop_node_attrs()</a></code>,
+<code><a href="join_node_attrs.html">join_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>,
+<code><a href="node_data.html">node_data()</a></code>,
+<code><a href="recode_node_attrs.html">recode_node_attrs()</a></code>,
+<code><a href="rename_node_attrs.html">rename_node_attrs()</a></code>,
+<code><a href="rescale_node_attrs.html">rescale_node_attrs()</a></code>,
+<code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code>,
+<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn()</a></code>,
+<code><a href="set_node_attrs.html">set_node_attrs()</a></code>,
+<code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code>,
+<code><a href="set_node_position.html">set_node_position()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -145,13 +145,13 @@ right of the colon for ascending or descending sorts.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph with unique labels and</span></span></span>
 <span class="r-in"><span><span class="co"># several node `type` groupings</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"a"</span>, label <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"a"</span>, label <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"e"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"c"</span>, label <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"a"</span>, label <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"a"</span>, label <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span>, label <span class="op">=</span> <span class="st">"e"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"c"</span>, label <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"c"</span>, label <span class="op">=</span> <span class="st">"g"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define a 'layout' for groups of nodes</span></span></span>
@@ -176,7 +176,7 @@ right of the colon for ascending or descending sorts.</p></dd>
 <span class="r-in"><span><span class="co"># we should sort the collection of node</span></span></span>
 <span class="r-in"><span><span class="co"># before adding position information</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">layout_nodes_w_string</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    layout <span class="op">=</span> <span class="va">layout</span>,</span></span>
 <span class="r-in"><span>    nodes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"type:a"</span>,</span></span>
@@ -189,7 +189,7 @@ right of the colon for ascending or descending sorts.</p></dd>
 <span class="r-in"><span><span class="co"># Show the graph's node data frame</span></span></span>
 <span class="r-in"><span><span class="co"># to confirm that `x` and `y` values</span></span></span>
 <span class="r-in"><span><span class="co"># were added to each of the nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label x y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a     a 0 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    a     b 0 6</span>
@@ -209,7 +209,7 @@ right of the colon for ascending or descending sorts.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

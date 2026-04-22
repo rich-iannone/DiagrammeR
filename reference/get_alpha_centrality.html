@@ -96,7 +96,7 @@ default value is set to <code>1e-7</code>.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">12</span>,</span></span>
@@ -104,7 +104,7 @@ default value is set to <code>1e-7</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the alpha centrality scores</span></span></span>
 <span class="r-in"><span><span class="co"># for all nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_alpha_centrality</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id alpha_centrality</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1                9</span>
@@ -122,13 +122,13 @@ default value is set to <code>1e-7</code>.</p></dd>
 <span class="r-in"><span><span class="co"># scores to the graph as a node</span></span></span>
 <span class="r-in"><span><span class="co"># attribute</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="join_node_attrs.html">join_node_attrs</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    df <span class="op">=</span> <span class="fu">get_alpha_centrality</span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    df <span class="op">=</span> <span class="fu">get_alpha_centrality</span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Display the graph's node</span></span></span>
 <span class="r-in"><span><span class="co"># data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id type label alpha_centrality</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 &lt;NA&gt;     1                9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 &lt;NA&gt;     2                6</span>
@@ -152,7 +152,7 @@ default value is set to <code>1e-7</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

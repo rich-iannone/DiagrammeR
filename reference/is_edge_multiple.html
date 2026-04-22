@@ -74,18 +74,18 @@ the same node pair.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph that has multiple</span></span></span>
 <span class="r-in"><span><span class="co"># edges across some node pairs</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    2  3 &lt;NA&gt;</span>
@@ -95,13 +95,13 @@ the same node pair.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine if edge `1` is</span></span></span>
 <span class="r-in"><span><span class="co"># a multiple edge</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_multiple</span><span class="op">(</span>edge <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine if edge `2` is</span></span></span>
 <span class="r-in"><span><span class="co"># a multiple edge</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_multiple</span><span class="op">(</span>edge <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
@@ -116,7 +116,7 @@ the same node pair.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

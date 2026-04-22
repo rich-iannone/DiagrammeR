@@ -120,14 +120,14 @@ to <code>return_type</code>.</p>
 <span class="r-in"><span>    edges_df <span class="op">=</span> <span class="va">edf</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all edges within a graph, returned as a list</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    return_type <span class="op">=</span> <span class="st">"vector"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1-&gt;4" "2-&gt;3" "3-&gt;1"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all edges within a graph, returned as a</span></span></span>
 <span class="r-in"><span><span class="co"># data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    return_type <span class="op">=</span> <span class="st">"df"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   from to</span>
@@ -136,7 +136,7 @@ to <code>return_type</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    3  1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all edges returned as a list</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    return_type <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
@@ -150,7 +150,7 @@ to <code>return_type</code>.</p>
 <span class="r-in"><span><span class="co"># a numeric comparison (i.e.,</span></span></span>
 <span class="r-in"><span><span class="co"># all edges with a `value`</span></span></span>
 <span class="r-in"><span><span class="co"># attribute greater than 3)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    return_type <span class="op">=</span> <span class="st">"vector"</span><span class="op">)</span></span></span>
@@ -158,7 +158,7 @@ to <code>return_type</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get a vector of edges using</span></span></span>
 <span class="r-in"><span><span class="co"># a matching condition</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">color</span> <span class="op">==</span> <span class="st">"pink"</span>,</span></span>
 <span class="r-in"><span>    return_type <span class="op">=</span> <span class="st">"vector"</span><span class="op">)</span></span></span>
@@ -167,7 +167,7 @@ to <code>return_type</code>.</p>
 <span class="r-in"><span><span class="co"># Use multiple conditions to</span></span></span>
 <span class="r-in"><span><span class="co"># return edges with the</span></span></span>
 <span class="r-in"><span><span class="co"># desired attribute values</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">color</span> <span class="op">==</span> <span class="st">"blue"</span> <span class="op">&amp;</span></span></span>
@@ -178,7 +178,7 @@ to <code>return_type</code>.</p>
 <span class="r-in"><span><span class="co"># Use `return_values = "label"`</span></span></span>
 <span class="r-in"><span><span class="co"># to return the labels of the</span></span></span>
 <span class="r-in"><span><span class="co"># connected nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_edges</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">color</span> <span class="op">==</span> <span class="st">"blue"</span> <span class="op">&amp;</span></span></span>
@@ -198,7 +198,7 @@ to <code>return_type</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

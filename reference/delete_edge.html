@@ -95,62 +95,62 @@ set and none exist as an empty string.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other edge creation and removal:
-<code><a href="add_edge.html">add_edge</a>()</code>,
-<code><a href="add_edge_clone.html">add_edge_clone</a>()</code>,
-<code><a href="add_edge_df.html">add_edge_df</a>()</code>,
-<code><a href="add_edges_from_table.html">add_edges_from_table</a>()</code>,
-<code><a href="add_edges_w_string.html">add_edges_w_string</a>()</code>,
-<code><a href="add_forward_edges_ws.html">add_forward_edges_ws</a>()</code>,
-<code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws</a>()</code>,
-<code><a href="copy_edge_attrs.html">copy_edge_attrs</a>()</code>,
-<code><a href="create_edge_df.html">create_edge_df</a>()</code>,
-<code><a href="delete_edges_ws.html">delete_edges_ws</a>()</code>,
-<code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws</a>()</code>,
-<code><a href="drop_edge_attrs.html">drop_edge_attrs</a>()</code>,
-<code><a href="edge_data.html">edge_data</a>()</code>,
-<code><a href="join_edge_attrs.html">join_edge_attrs</a>()</code>,
-<code><a href="mutate_edge_attrs.html">mutate_edge_attrs</a>()</code>,
-<code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws</a>()</code>,
-<code><a href="recode_edge_attrs.html">recode_edge_attrs</a>()</code>,
-<code><a href="rename_edge_attrs.html">rename_edge_attrs</a>()</code>,
-<code><a href="rescale_edge_attrs.html">rescale_edge_attrs</a>()</code>,
-<code><a href="rev_edge_dir.html">rev_edge_dir</a>()</code>,
-<code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws</a>()</code>,
-<code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display</a>()</code>,
-<code><a href="set_edge_attrs.html">set_edge_attrs</a>()</code>,
-<code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a>()</code></p></div>
+<code><a href="add_edge.html">add_edge()</a></code>,
+<code><a href="add_edge_clone.html">add_edge_clone()</a></code>,
+<code><a href="add_edge_df.html">add_edge_df()</a></code>,
+<code><a href="add_edges_from_table.html">add_edges_from_table()</a></code>,
+<code><a href="add_edges_w_string.html">add_edges_w_string()</a></code>,
+<code><a href="add_forward_edges_ws.html">add_forward_edges_ws()</a></code>,
+<code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws()</a></code>,
+<code><a href="copy_edge_attrs.html">copy_edge_attrs()</a></code>,
+<code><a href="create_edge_df.html">create_edge_df()</a></code>,
+<code><a href="delete_edges_ws.html">delete_edges_ws()</a></code>,
+<code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws()</a></code>,
+<code><a href="drop_edge_attrs.html">drop_edge_attrs()</a></code>,
+<code><a href="edge_data.html">edge_data()</a></code>,
+<code><a href="join_edge_attrs.html">join_edge_attrs()</a></code>,
+<code><a href="mutate_edge_attrs.html">mutate_edge_attrs()</a></code>,
+<code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws()</a></code>,
+<code><a href="recode_edge_attrs.html">recode_edge_attrs()</a></code>,
+<code><a href="rename_edge_attrs.html">rename_edge_attrs()</a></code>,
+<code><a href="rescale_edge_attrs.html">rescale_edge_attrs()</a></code>,
+<code><a href="rev_edge_dir.html">rev_edge_dir()</a></code>,
+<code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws()</a></code>,
+<code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display()</a></code>,
+<code><a href="set_edge_attrs.html">set_edge_attrs()</a></code>,
+<code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph with 2 nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add an edge</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Delete the edge</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">delete_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the count of edges in the graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create an undirected graph with</span></span></span>
 <span class="r-in"><span><span class="co"># 2 nodes and an edge</span></span></span>
 <span class="r-in"><span><span class="va">graph_undirected</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span>directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span>directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
@@ -158,28 +158,28 @@ set and none exist as an empty string.</p></dd>
 <span class="r-in"><span><span class="co"># Delete the edge; the order of node ID</span></span></span>
 <span class="r-in"><span><span class="co"># values provided in `from` and `to`</span></span></span>
 <span class="r-in"><span><span class="co"># don't matter for the undirected case</span></span></span>
-<span class="r-in"><span><span class="va">graph_undirected</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_undirected</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">delete_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The undirected graph has a single</span></span></span>
 <span class="r-in"><span><span class="co"># edge with ID `1`; it can be</span></span></span>
 <span class="r-in"><span><span class="co"># deleted by specifying `id`</span></span></span>
-<span class="r-in"><span><span class="va">graph_undirected</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">delete_edge</span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_undirected</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">delete_edge</span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a directed graph with 2</span></span></span>
 <span class="r-in"><span><span class="co"># labeled nodes and an edge</span></span></span>
 <span class="r-in"><span><span class="va">graph_labeled_nodes</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="st">"one"</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span></span>
@@ -188,10 +188,10 @@ set and none exist as an empty string.</p></dd>
 <span class="r-in"><span><span class="co"># labels in `from` and `to`; this</span></span></span>
 <span class="r-in"><span><span class="co"># is analogous to creating the</span></span></span>
 <span class="r-in"><span><span class="co"># edge using node labels</span></span></span>
-<span class="r-in"><span><span class="va">graph_labeled_nodes</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph_labeled_nodes</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">delete_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="st">"one"</span>,</span></span>
-<span class="r-in"><span>    to <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="count_edges.html">count_edges</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
@@ -206,7 +206,7 @@ set and none exist as an empty string.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

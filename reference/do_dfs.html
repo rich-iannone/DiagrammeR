@@ -92,9 +92,9 @@ visited.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a graph containing</span></span></span>
 <span class="r-in"><span><span class="co"># two balanced trees</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    k <span class="op">=</span> <span class="fl">2</span>, h <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_balanced_tree.html">add_balanced_tree</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  k <span class="op">=</span> <span class="fl">3</span>, h <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -105,7 +105,7 @@ visited.</p>
 <span class="r-in"><span><span class="co"># `direction = "all"`</span></span></span>
 <span class="r-in"><span><span class="co"># doesn't take edge</span></span></span>
 <span class="r-in"><span><span class="co"># direction into account)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">do_dfs</span><span class="op">(</span>node <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1  2  4  5  3  6  7  8  9 12 13 14 10 15 16 17 11 18 19 20</span>
 <span class="r-in"><span></span></span>
@@ -113,7 +113,7 @@ visited.</p>
 <span class="r-in"><span><span class="co"># starting node, the function</span></span></span>
 <span class="r-in"><span><span class="co"># will begin the search</span></span></span>
 <span class="r-in"><span><span class="co"># from a random node</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">do_dfs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2  1  3  6  7  4  5  8  9 12 13 14 10 15 16 17 11 18 19 20</span>
 <span class="r-in"><span></span></span>
@@ -123,7 +123,7 @@ visited.</p>
 <span class="r-in"><span><span class="co"># using `direction = "in"`</span></span></span>
 <span class="r-in"><span><span class="co"># causes the dfs routine to</span></span></span>
 <span class="r-in"><span><span class="co"># visit nodes along inward edges</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">do_dfs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></span></span>
@@ -132,7 +132,7 @@ visited.</p>
 <span class="r-in"><span><span class="co"># Using `direction = "out"`</span></span></span>
 <span class="r-in"><span><span class="co"># results in the dfs moving</span></span></span>
 <span class="r-in"><span><span class="co"># along solely outward edges</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">do_dfs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"out"</span><span class="op">)</span></span></span>
@@ -149,7 +149,7 @@ visited.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

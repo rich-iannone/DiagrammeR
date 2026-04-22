@@ -79,30 +79,30 @@ edge already in the graph. All edge attributes are preserved.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other edge creation and removal:
-<code><a href="add_edge.html">add_edge</a>()</code>,
-<code><a href="add_edge_df.html">add_edge_df</a>()</code>,
-<code><a href="add_edges_from_table.html">add_edges_from_table</a>()</code>,
-<code><a href="add_edges_w_string.html">add_edges_w_string</a>()</code>,
-<code><a href="add_forward_edges_ws.html">add_forward_edges_ws</a>()</code>,
-<code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws</a>()</code>,
-<code><a href="copy_edge_attrs.html">copy_edge_attrs</a>()</code>,
-<code><a href="create_edge_df.html">create_edge_df</a>()</code>,
-<code><a href="delete_edge.html">delete_edge</a>()</code>,
-<code><a href="delete_edges_ws.html">delete_edges_ws</a>()</code>,
-<code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws</a>()</code>,
-<code><a href="drop_edge_attrs.html">drop_edge_attrs</a>()</code>,
-<code><a href="edge_data.html">edge_data</a>()</code>,
-<code><a href="join_edge_attrs.html">join_edge_attrs</a>()</code>,
-<code><a href="mutate_edge_attrs.html">mutate_edge_attrs</a>()</code>,
-<code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws</a>()</code>,
-<code><a href="recode_edge_attrs.html">recode_edge_attrs</a>()</code>,
-<code><a href="rename_edge_attrs.html">rename_edge_attrs</a>()</code>,
-<code><a href="rescale_edge_attrs.html">rescale_edge_attrs</a>()</code>,
-<code><a href="rev_edge_dir.html">rev_edge_dir</a>()</code>,
-<code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws</a>()</code>,
-<code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display</a>()</code>,
-<code><a href="set_edge_attrs.html">set_edge_attrs</a>()</code>,
-<code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a>()</code></p></div>
+<code><a href="add_edge.html">add_edge()</a></code>,
+<code><a href="add_edge_df.html">add_edge_df()</a></code>,
+<code><a href="add_edges_from_table.html">add_edges_from_table()</a></code>,
+<code><a href="add_edges_w_string.html">add_edges_w_string()</a></code>,
+<code><a href="add_forward_edges_ws.html">add_forward_edges_ws()</a></code>,
+<code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws()</a></code>,
+<code><a href="copy_edge_attrs.html">copy_edge_attrs()</a></code>,
+<code><a href="create_edge_df.html">create_edge_df()</a></code>,
+<code><a href="delete_edge.html">delete_edge()</a></code>,
+<code><a href="delete_edges_ws.html">delete_edges_ws()</a></code>,
+<code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws()</a></code>,
+<code><a href="drop_edge_attrs.html">drop_edge_attrs()</a></code>,
+<code><a href="edge_data.html">edge_data()</a></code>,
+<code><a href="join_edge_attrs.html">join_edge_attrs()</a></code>,
+<code><a href="mutate_edge_attrs.html">mutate_edge_attrs()</a></code>,
+<code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws()</a></code>,
+<code><a href="recode_edge_attrs.html">recode_edge_attrs()</a></code>,
+<code><a href="rename_edge_attrs.html">rename_edge_attrs()</a></code>,
+<code><a href="rescale_edge_attrs.html">rescale_edge_attrs()</a></code>,
+<code><a href="rev_edge_dir.html">rev_edge_dir()</a></code>,
+<code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws()</a></code>,
+<code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display()</a></code>,
+<code><a href="set_edge_attrs.html">set_edge_attrs()</a></code>,
+<code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -113,19 +113,19 @@ edge already in the graph. All edge attributes are preserved.</p>
 <span class="r-in"><span><span class="co"># in this path and then add a</span></span></span>
 <span class="r-in"><span><span class="co"># `color` edge attribute</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    rel <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_last_edges_created.html">select_last_edges_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    rel <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_last_edges_created.html">select_last_edges_created</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_edge_attrs.html">set_edge_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr <span class="op">=</span> <span class="va">color</span>,</span></span>
-<span class="r-in"><span>    values <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    values <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Display the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to rel     color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2   a steelblue</span>
 <span class="r-in"><span></span></span>
@@ -136,8 +136,8 @@ edge already in the graph. All edge attributes are preserved.</p>
 <span class="r-in"><span><span class="co"># attributes of edge `1` -&gt; `2`</span></span></span>
 <span class="r-in"><span><span class="co"># (edge ID `1`)</span></span></span>
 <span class="r-in"><span><span class="va">graph_2</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_edge_clone</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">3</span>,</span></span>
@@ -145,7 +145,7 @@ edge already in the graph. All edge attributes are preserved.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Display the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_2</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to rel     color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2   a steelblue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    3  1   a steelblue</span>
@@ -154,16 +154,19 @@ edge already in the graph. All edge attributes are preserved.</p>
 <span class="r-in"><span><span class="co"># with some helper functions in the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_edge_clone()` function call</span></span></span>
 <span class="r-in"><span><span class="va">graph_3</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">graph_3</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">graph_3</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu">add_edge_clone</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      edge <span class="op">=</span> <span class="fu"><a href="get_last_edges_created.html">get_last_edges_created</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      from <span class="op">=</span> <span class="fu"><a href="get_last_nodes_created.html">get_last_nodes_created</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      edge <span class="op">=</span> <span class="fu"><a href="get_last_edges_created.html">get_last_edges_created</a></span><span class="op">(</span><span class="va">graph_3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      from <span class="op">=</span> <span class="fu"><a href="get_last_nodes_created.html">get_last_nodes_created</a></span><span class="op">(</span><span class="va">graph_3</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      to <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Display the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_3</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_3</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to rel     color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2   a steelblue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    3  1   a steelblue</span>
@@ -179,7 +182,7 @@ edge already in the graph. All edge attributes are preserved.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

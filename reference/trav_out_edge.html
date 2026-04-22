@@ -136,18 +136,18 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a simple graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asd"</span>, <span class="st">"iekd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asd"</span>, <span class="st">"iekd"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"idj"</span>, <span class="st">"edl"</span>, <span class="st">"ohd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"idj"</span>, <span class="st">"edl"</span>, <span class="st">"ohd"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edges_w_string.html">add_edges_w_string</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edges <span class="op">=</span> <span class="st">"1-&gt;2 1-&gt;3 2-&gt;4 2-&gt;5 3-&gt;5"</span>,</span></span>
-<span class="r-in"><span>    rel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    rel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">values</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.3</span>, <span class="fl">4.7</span>, <span class="fl">9.4</span>,</span></span>
@@ -165,12 +165,12 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># Join the data frame to the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame (edf)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="join_edge_attrs.html">join_edge_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a   asd    2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    a  iekd    4.7</span>
@@ -179,7 +179,7 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  5    b   ohd    6.3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;   6.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    1  3    A   6.11</span>
@@ -190,19 +190,19 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># Perform a simple traversal from nodes to</span></span></span>
 <span class="r-in"><span><span class="co"># outbound edges with no conditions on the</span></span></span>
 <span class="r-in"><span><span class="co"># nodes traversed to</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `1` to any outbound</span></span></span>
 <span class="r-in"><span><span class="co"># edges, filtering to those edges that have</span></span></span>
 <span class="r-in"><span><span class="co"># NA values for the `rel` edge attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">rel</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">rel</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"><span></span></span>
@@ -210,10 +210,10 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># edges, filtering to those edges that have</span></span></span>
 <span class="r-in"><span><span class="co"># numeric values greater than `5.0` for</span></span></span>
 <span class="r-in"><span><span class="co"># the `rel` edge attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
 <span class="r-in"><span></span></span>
@@ -221,10 +221,10 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># edges, filtering to those edges that</span></span></span>
 <span class="r-in"><span><span class="co"># have values equal to `A` for the `rel`</span></span></span>
 <span class="r-in"><span><span class="co"># edge attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">rel</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">rel</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
@@ -232,44 +232,44 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># edges, filtering to those edges that</span></span></span>
 <span class="r-in"><span><span class="co"># have values in the set `B` and `C` for</span></span></span>
 <span class="r-in"><span><span class="co"># the `rel` edge attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">rel</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">rel</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `2` to any</span></span></span>
 <span class="r-in"><span><span class="co"># outbound edges, and use multiple</span></span></span>
 <span class="r-in"><span><span class="co"># conditions for the traversal</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">rel</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">&amp;</span></span></span>
-<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;=</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;=</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `2` to any</span></span></span>
 <span class="r-in"><span><span class="co"># outbound edges, and use multiple</span></span></span>
 <span class="r-in"><span><span class="co"># conditions</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">rel</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">|</span></span></span>
-<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `2` to any outbound</span></span></span>
 <span class="r-in"><span><span class="co"># edges, and use a regular expression as</span></span></span>
 <span class="r-in"><span><span class="co"># a filtering condition</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"B|C"</span>, <span class="va">rel</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"B|C"</span>, <span class="va">rel</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 4</span>
 <span class="r-in"><span></span></span>
@@ -278,14 +278,14 @@ attribute will be created with the chosen name.</p></dd>
 <span class="r-in"><span><span class="co"># so, copy the `label` node attribute</span></span></span>
 <span class="r-in"><span><span class="co"># to any of the nodes' incoming edges</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes.html">select_nodes</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes.html">select_nodes</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_out_edge</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    copy_attrs_from <span class="op">=</span> <span class="va">label</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal edge</span></span></span>
 <span class="r-in"><span><span class="co"># data frame after this change</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel label values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;   asd   6.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  1    2  3    A   asd   6.11</span>
@@ -304,7 +304,7 @@ attribute will be created with the chosen name.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

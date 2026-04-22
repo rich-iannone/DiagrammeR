@@ -92,32 +92,32 @@ will used along with a <code>__A</code> suffix.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other node creation and removal:
-<code><a href="add_n_node_clones.html">add_n_node_clones</a>()</code>,
-<code><a href="add_n_nodes.html">add_n_nodes</a>()</code>,
-<code><a href="add_n_nodes_ws.html">add_n_nodes_ws</a>()</code>,
-<code><a href="add_node.html">add_node</a>()</code>,
-<code><a href="add_node_clones_ws.html">add_node_clones_ws</a>()</code>,
-<code><a href="add_node_df.html">add_node_df</a>()</code>,
-<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a>()</code>,
-<code><a href="add_nodes_from_table.html">add_nodes_from_table</a>()</code>,
-<code><a href="colorize_node_attrs.html">colorize_node_attrs</a>()</code>,
-<code><a href="copy_node_attrs.html">copy_node_attrs</a>()</code>,
-<code><a href="create_node_df.html">create_node_df</a>()</code>,
-<code><a href="delete_node.html">delete_node</a>()</code>,
-<code><a href="delete_nodes_ws.html">delete_nodes_ws</a>()</code>,
-<code><a href="drop_node_attrs.html">drop_node_attrs</a>()</code>,
-<code><a href="join_node_attrs.html">join_node_attrs</a>()</code>,
-<code><a href="layout_nodes_w_string.html">layout_nodes_w_string</a>()</code>,
-<code><a href="mutate_node_attrs.html">mutate_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a>()</code>,
-<code><a href="node_data.html">node_data</a>()</code>,
-<code><a href="recode_node_attrs.html">recode_node_attrs</a>()</code>,
-<code><a href="rename_node_attrs.html">rename_node_attrs</a>()</code>,
-<code><a href="rescale_node_attrs.html">rescale_node_attrs</a>()</code>,
-<code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a>()</code>,
-<code><a href="set_node_attrs.html">set_node_attrs</a>()</code>,
-<code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a>()</code>,
-<code><a href="set_node_position.html">set_node_position</a>()</code></p></div>
+<code><a href="add_n_node_clones.html">add_n_node_clones()</a></code>,
+<code><a href="add_n_nodes.html">add_n_nodes()</a></code>,
+<code><a href="add_n_nodes_ws.html">add_n_nodes_ws()</a></code>,
+<code><a href="add_node.html">add_node()</a></code>,
+<code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code>,
+<code><a href="add_node_df.html">add_node_df()</a></code>,
+<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code>,
+<code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code>,
+<code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code>,
+<code><a href="copy_node_attrs.html">copy_node_attrs()</a></code>,
+<code><a href="create_node_df.html">create_node_df()</a></code>,
+<code><a href="delete_node.html">delete_node()</a></code>,
+<code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code>,
+<code><a href="drop_node_attrs.html">drop_node_attrs()</a></code>,
+<code><a href="join_node_attrs.html">join_node_attrs()</a></code>,
+<code><a href="layout_nodes_w_string.html">layout_nodes_w_string()</a></code>,
+<code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>,
+<code><a href="node_data.html">node_data()</a></code>,
+<code><a href="recode_node_attrs.html">recode_node_attrs()</a></code>,
+<code><a href="rename_node_attrs.html">rename_node_attrs()</a></code>,
+<code><a href="rescale_node_attrs.html">rescale_node_attrs()</a></code>,
+<code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code>,
+<code><a href="set_node_attrs.html">set_node_attrs()</a></code>,
+<code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code>,
+<code><a href="set_node_position.html">set_node_position()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -125,29 +125,29 @@ will used along with a <code>__A</code> suffix.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">22</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      n <span class="op">=</span> <span class="fu"><a href="count_nodes.html">count_nodes</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      n <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>      mean <span class="op">=</span> <span class="fl">5</span>,</span></span>
-<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the betweenness values for</span></span></span>
 <span class="r-in"><span><span class="co"># each of the graph's nodes as a</span></span></span>
 <span class="r-in"><span><span class="co"># node attribute</span></span></span>
 <span class="r-in"><span><span class="va">graph_1</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_node_attr_w_fcn</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_betweenness"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id type label value betweenness__A</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 &lt;NA&gt;     1   4.4       9.333333</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 &lt;NA&gt;     2   4.6      29.000000</span>
@@ -163,7 +163,7 @@ will used along with a <code>__A</code> suffix.</p></dd>
 <span class="r-in"><span><span class="co"># If a specified function takes argument</span></span></span>
 <span class="r-in"><span><span class="co"># values, these can be supplied as well</span></span></span>
 <span class="r-in"><span><span class="va">graph_2</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_node_attr_w_fcn</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_alpha_centrality"</span>,</span></span>
 <span class="r-in"><span>    alpha <span class="op">=</span> <span class="fl">2</span>,</span></span>
@@ -171,7 +171,7 @@ will used along with a <code>__A</code> suffix.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_2</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id type label value alpha_centrality__A</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 &lt;NA&gt;     1   4.4           0.0621118</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 &lt;NA&gt;     2   4.6          -0.5341615</span>
@@ -186,14 +186,14 @@ will used along with a <code>__A</code> suffix.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The new column name can be provided</span></span></span>
 <span class="r-in"><span><span class="va">graph_3</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_node_attr_w_fcn</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_pagerank"</span>,</span></span>
 <span class="r-in"><span>    column_name <span class="op">=</span> <span class="st">"pagerank"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_3</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_3</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id type label value pagerank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 &lt;NA&gt;     1   4.4   0.1416</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 &lt;NA&gt;     2   4.6   0.1401</span>
@@ -213,17 +213,17 @@ will used along with a <code>__A</code> suffix.</p></dd>
 <span class="r-in"><span><span class="co"># the existing column name to provide</span></span></span>
 <span class="r-in"><span><span class="co"># updated values</span></span></span>
 <span class="r-in"><span><span class="va">graph_3</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph_3</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph_3</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_node_attr_w_fcn</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_fcn <span class="op">=</span> <span class="st">"get_pagerank"</span>,</span></span>
 <span class="r-in"><span>    column_name <span class="op">=</span> <span class="st">"pagerank"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inspect the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph_3</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph_3</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id type label value pagerank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 &lt;NA&gt;     1   4.4   0.1349</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2 &lt;NA&gt;     2   4.6   0.1352</span>
@@ -248,7 +248,7 @@ will used along with a <code>__A</code> suffix.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

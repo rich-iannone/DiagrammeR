@@ -83,55 +83,61 @@ error.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a randomized property</span></span></span>
 <span class="r-in"><span><span class="co"># graph with 1000 nodes and 1350 edges</span></span></span>
 <span class="r-in"><span><span class="va">property_graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">1000</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">1350</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_degree.html">select_nodes_by_degree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg &gt;= 3"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg &gt;= 3"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">type</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_degree.html">select_nodes_by_degree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg &lt; 3"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg &lt; 3"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">type</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_degree.html">select_nodes_by_degree</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg == 0"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    expressions <span class="op">=</span> <span class="st">"deg == 0"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">type</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attr_to_display.html">set_node_attr_to_display</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    attr <span class="op">=</span> <span class="va">type</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    attr <span class="op">=</span> <span class="va">type</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Select a random subset of edges</span></span></span>
+<span class="r-in"><span><span class="co"># for setting edge attributes</span></span></span>
+<span class="r-in"><span><span class="va">node_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="va">property_graph</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sampled_nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">node_ids</span>,</span></span>
+<span class="r-in"><span>  size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">floor</a></span><span class="op">(</span><span class="fl">0.15</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">node_ids</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">property_graph</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">property_graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_edges_by_node_id.html">select_edges_by_node_id</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="get_node_ids.html">get_node_ids</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        size <span class="op">=</span> <span class="fl">0.15</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">floor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="va">sampled_nodes</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr <span class="op">=</span> <span class="va">rel</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"r_1"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="invert_selection.html">invert_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"r_1"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="invert_selection.html">invert_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr <span class="op">=</span> <span class="va">rel</span>,</span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"r_2"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"r_2"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="copy_edge_attrs.html">copy_edge_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edge_attr_from <span class="op">=</span> <span class="va">rel</span>,</span></span>
-<span class="r-in"><span>    edge_attr_to <span class="op">=</span> <span class="va">label</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    edge_attr_to <span class="op">=</span> <span class="va">label</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"fontname"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="st">"Helvetica"</span>,</span></span>
-<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"edge"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"edge"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"fontcolor"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="st">"gray50"</span>,</span></span>
-<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"edge"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    attr_type <span class="op">=</span> <span class="st">"edge"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    attr <span class="op">=</span> <span class="st">"fontsize"</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="fl">10</span>,</span></span>
@@ -153,7 +159,7 @@ error.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -151,15 +151,15 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a simple graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asd"</span>, <span class="st">"iekd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asd"</span>, <span class="st">"iekd"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"idj"</span>, <span class="st">"edl"</span>, <span class="st">"ohd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"idj"</span>, <span class="st">"edl"</span>, <span class="st">"ohd"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edges_w_string.html">add_edges_w_string</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edges <span class="op">=</span> <span class="st">"1-&gt;2 1-&gt;3 2-&gt;4 2-&gt;5 3-&gt;5"</span>,</span></span>
 <span class="r-in"><span>    rel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -184,12 +184,12 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span><span class="co"># Join the data frame to the graph's internal</span></span></span>
 <span class="r-in"><span><span class="co"># edge data frame (edf)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="join_edge_attrs.html">join_edge_attrs</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df_edges</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="join_edge_attrs.html">join_edge_attrs</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df_edges</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="join_node_attrs.html">join_node_attrs</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df_nodes</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a   asd   8.58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    a  iekd   7.22</span>
@@ -198,7 +198,7 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  5    b   ohd   7.48</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;   6.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    1  3    A   6.11</span>
@@ -209,9 +209,9 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span><span class="co"># Perform a simple traversal from node `4` to</span></span></span>
 <span class="r-in"><span><span class="co"># inward adjacent edges with no conditions</span></span></span>
 <span class="r-in"><span><span class="co"># on the nodes traversed to</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
@@ -219,69 +219,70 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span><span class="co"># nodes, filtering to those nodes that have</span></span></span>
 <span class="r-in"><span><span class="co"># numeric values greater than `5.0` for</span></span></span>
 <span class="r-in"><span><span class="co"># the `values` node attribute</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">5.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `5` to any inbound</span></span></span>
 <span class="r-in"><span><span class="co"># nodes, filtering to those nodes that</span></span></span>
 <span class="r-in"><span><span class="co"># have a `type` attribute of `b`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `5` to any inbound</span></span></span>
 <span class="r-in"><span><span class="co"># nodes, filtering to those nodes that</span></span></span>
 <span class="r-in"><span><span class="co"># have a degree of `2`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">node_degrees</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">deg</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="join_node_attrs.html">join_node_attrs</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">node_degrees</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">node_degrees</span> <span class="op">&lt;-</span> <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">deg</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="join_node_attrs.html">join_node_attrs</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">node_degrees</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">deg</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">deg</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `5` to any inbound</span></span></span>
 <span class="r-in"><span><span class="co"># nodes, and use multiple conditions for the</span></span></span>
 <span class="r-in"><span><span class="co"># traversal</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
 <span class="r-in"><span>      <span class="va">type</span> <span class="op">==</span> <span class="st">"a"</span> <span class="op">&amp;</span></span></span>
-<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `5` to any inbound</span></span></span>
 <span class="r-in"><span><span class="co"># nodes, and use multiple conditions with</span></span></span>
 <span class="r-in"><span><span class="co"># a single-length vector</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    conditions <span class="op">=</span></span></span>
-<span class="r-in"><span>      <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span> <span class="op">|</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span> <span class="op">|</span> <span class="va">values</span> <span class="op">&gt;</span> <span class="fl">6.0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Traverse from node `5` to any inbound</span></span></span>
 <span class="r-in"><span><span class="co"># nodes, and use a regular expression as</span></span></span>
 <span class="r-in"><span><span class="co"># a filtering condition</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^i.*"</span>, <span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^i.*"</span>, <span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_selection.html">get_selection</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-in"><span></span></span>
@@ -289,27 +290,27 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span><span class="co"># copying of node attribute values to traversed</span></span></span>
 <span class="r-in"><span><span class="co"># nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes.html">select_nodes</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes.html">select_nodes</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_n_nodes_ws.html">add_n_nodes_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"from"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    direction <span class="op">=</span> <span class="st">"from"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_nodes_by_id.html">select_nodes_by_id</a></span><span class="op">(</span>nodes <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    value <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;  &lt;NA&gt;    NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;  &lt;NA&gt;     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  3 &lt;NA&gt;  &lt;NA&gt;     5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal edge data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to  rel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    1  3 &lt;NA&gt;</span>
@@ -321,14 +322,14 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 <span class="r-in"><span><span class="co"># both nodes before applying the value to the</span></span></span>
 <span class="r-in"><span><span class="co"># target node)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">trav_in</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    copy_attrs_from <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    agg <span class="op">=</span> <span class="st">"sum"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's internal node data frame</span></span></span>
 <span class="r-in"><span><span class="co"># after this change</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;  &lt;NA&gt;    10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;  &lt;NA&gt;     5</span>
@@ -345,7 +346,7 @@ to those traversed to nodes (<code>FALSE</code>, the default case).</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -1,0 +1,50 @@
+# Render graph with visNetwork
+
+Render a graph object with the visNetwork R package.
+
+## Usage
+
+``` r
+visnetwork(graph)
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+## Examples
+
+``` r
+# Create a node data frame (ndf)
+ndf <-
+  create_node_df(
+    n = 6,
+    label = TRUE,
+    fillcolor = c("lightgrey", "red", "orange",
+                  "pink", "aqua", "yellow"),
+    shape = "dot",
+    size = c(20, 80, 40, 10, 30, 50),
+    type = c("1", "1", "1", "2", "2", "2")
+  )
+
+# Create an edge data frame (edf)
+edf <-
+  create_edge_df(
+    from = c(1, 2, 3, 4, 6, 5),
+    to = c(4, 3, 1, 3, 1, 4),
+    color = c("green", "green", "grey",
+              "grey", "blue", "blue"),
+    rel = "leading_to"
+  )
+
+# Create a graph object
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf
+  )
+
+# visnetwork(graph)
+```

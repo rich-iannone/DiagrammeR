@@ -117,16 +117,16 @@ y direction. A positive value will move nodes up, negative down.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a simple graph with 4 nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"three"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"three"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span>,</span></span>
 <span class="r-in"><span>    label <span class="op">=</span> <span class="st">"four"</span><span class="op">)</span></span></span>
@@ -134,13 +134,13 @@ y direction. A positive value will move nodes up, negative down.</p></dd>
 <span class="r-in"><span><span class="co"># Add position information to each of</span></span></span>
 <span class="r-in"><span><span class="co"># the graph's nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_position.html">set_node_position</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span>, x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">1</span>, x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_position.html">set_node_position</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">2</span>, x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">2</span>, x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_position.html">set_node_position</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">3</span>, x <span class="op">=</span> <span class="fl">3</span>, y <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    node <span class="op">=</span> <span class="fl">3</span>, x <span class="op">=</span> <span class="fl">3</span>, y <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_position.html">set_node_position</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">4</span>, x <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -152,12 +152,12 @@ y direction. A positive value will move nodes up, negative down.</p></dd>
 <span class="r-in"><span><span class="co"># Move the selected nodes (all the nodes,</span></span></span>
 <span class="r-in"><span><span class="co"># in this case) 5 units to the right</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">nudge_node_positions_ws</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    dx <span class="op">=</span> <span class="fl">5</span>, dy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># View the graph's node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label x y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a   one 6 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    a   two 7 2</span>
@@ -169,15 +169,15 @@ y direction. A positive value will move nodes up, negative down.</p></dd>
 <span class="r-in"><span><span class="co"># (the graph still has an active selection</span></span></span>
 <span class="r-in"><span><span class="co"># and so it must be cleared first)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="clear_selection.html">clear_selection</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_nodes.html">select_nodes</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    conditions <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">nudge_node_positions_ws</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    dx <span class="op">=</span> <span class="fl">0</span>, dy <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># View the graph's node data frame</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label x y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    a   one 6 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    a   two 7 2</span>
@@ -195,7 +195,7 @@ y direction. A positive value will move nodes up, negative down.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

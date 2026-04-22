@@ -1,0 +1,239 @@
+# Add a fully connected graph
+
+With a graph object of class `dgr_graph`, add a fully connected graph
+either with or without loops. If the graph object set as directed, the
+added graph will have edges to and from each pair of nodes. In the
+undirected case, a single edge will link each pair of nodes.
+
+## Usage
+
+``` r
+add_full_graph(
+  graph,
+  n,
+  type = NULL,
+  label = TRUE,
+  rel = NULL,
+  edge_wt_matrix = NULL,
+  keep_loops = FALSE,
+  node_aes = NULL,
+  edge_aes = NULL,
+  node_data = NULL,
+  edge_data = NULL
+)
+```
+
+## Arguments
+
+- graph:
+
+  A graph object of class `dgr_graph`.
+
+- n:
+
+  The number of nodes comprising the fully connected graph.
+
+- type:
+
+  An optional string that describes the entity type for the nodes to be
+  added.
+
+- label:
+
+  Either a vector object of length `n` that provides optional labels for
+  the new nodes, or, a boolean value where setting to `TRUE` ascribes
+  node IDs to the label and `FALSE` or `NULL` yields a blank label.
+
+- rel:
+
+  An optional string for providing a relationship label to all new edges
+  created in the connected graph.
+
+- edge_wt_matrix:
+
+  An optional matrix of `n` by `n` dimensions containing values to apply
+  as edge weights. If the matrix has row names or column names and
+  `label = TRUE`, those row or column names will be used as node label
+  values.
+
+- keep_loops:
+
+  An option to simplify the fully connected graph by removing loops
+  (edges from and to the same node). The default value is `FALSE`.
+
+- node_aes:
+
+  An optional list of named vectors comprising node aesthetic
+  attributes. The helper function
+  [`node_aes()`](https://rich-iannone.github.io/DiagrammeR/reference/node_aes.md)
+  is strongly recommended for use here as it contains arguments for each
+  of the accepted node aesthetic attributes (e.g., `shape`, `style`,
+  `color`, `fillcolor`).
+
+- edge_aes:
+
+  An optional list of named vectors comprising edge aesthetic
+  attributes. The helper function
+  [`edge_aes()`](https://rich-iannone.github.io/DiagrammeR/reference/edge_aes.md)
+  is strongly recommended for use here as it contains arguments for each
+  of the accepted edge aesthetic attributes (e.g., `shape`, `style`,
+  `penwidth`, `color`).
+
+- node_data:
+
+  An optional list of named vectors comprising node data attributes. The
+  helper function
+  [`node_data()`](https://rich-iannone.github.io/DiagrammeR/reference/node_data.md)
+  is strongly recommended for use here as it helps bind data
+  specifically to the created nodes.
+
+- edge_data:
+
+  An optional list of named vectors comprising edge data attributes. The
+  helper function
+  [`edge_data()`](https://rich-iannone.github.io/DiagrammeR/reference/edge_data.md)
+  is strongly recommended for use here as it helps bind data
+  specifically to the created edges.
+
+## Value
+
+A graph object of class `dgr_graph`.
+
+## Examples
+
+``` r
+# Create a new graph object
+# and add a directed and fully
+# connected graph with 3 nodes
+# and edges to and from all
+# pairs of nodes; with the option
+# `keep_loops = TRUE` nodes
+# will also have edges from
+# and to themselves
+graph <-
+  create_graph() |>
+  add_full_graph(
+    n = 3, keep_loops = TRUE
+  )
+
+# Get node information
+# from this graph
+graph |> get_node_info()
+#>   id type label deg indeg outdeg loops
+#> 1  1 <NA>     1   6     3      3     1
+#> 2  2 <NA>     2   6     3      3     1
+#> 3  3 <NA>     3   6     3      3     1
+
+# Using `keep_loops = FALSE`
+# (the default) will remove
+# the loops
+create_graph() |>
+  add_full_graph(n = 3) |>
+  get_node_info()
+#>   id type label deg indeg outdeg loops
+#> 1  1 <NA>     1   4     2      2     0
+#> 2  2 <NA>     2   4     2      2     0
+#> 3  3 <NA>     3   4     2      2     0
+
+# Values can be set for
+# the node `label`, node
+# `type`, and edge `rel`
+graph <-
+  create_graph() |>
+  add_full_graph(
+    n = 3,
+    type = "connected",
+    label = c("1st", "2nd", "3rd"),
+    rel = "connected_to"
+  )
+
+# Show the graph's node
+# data frame (ndf)
+graph |> get_node_df()
+#>   id      type label
+#> 1  1 connected   1st
+#> 2  2 connected   2nd
+#> 3  3 connected   3rd
+
+# Show the graph's edge
+# data frame (edf)
+graph |> get_edge_df()
+#>   id from to          rel
+#> 1  1    1  2 connected_to
+#> 2  2    1  3 connected_to
+#> 3  3    2  1 connected_to
+#> 4  4    2  3 connected_to
+#> 5  5    3  1 connected_to
+#> 6  6    3  2 connected_to
+
+# Create a fully-connected and
+# directed graph with 3 nodes,
+# and, where a matrix provides
+# edge weights; first, create the
+# matrix (with row names to be
+# used as node labels)
+suppressWarnings(RNGversion("3.5.0"))
+set.seed(23)
+
+edge_wt_matrix <-
+  rnorm(100, 5, 2) |>
+  sample(9, FALSE) |>
+  round(2) |>
+  matrix(
+    ncol = 3,
+    nrow = 3,
+    dimnames = list(c("a", "b", "c"))
+  )
+
+# Create the fully-connected
+# graph (without loops however)
+graph <-
+  create_graph() |>
+  add_full_graph(
+    n = 3,
+    type = "weighted",
+    label = TRUE,
+    rel = "related_to",
+    edge_wt_matrix = edge_wt_matrix,
+    keep_loops = FALSE
+  )
+
+# Show the graph's node
+# data frame (ndf)
+graph |> get_node_df()
+#>   id     type label
+#> 1  1 weighted     a
+#> 2  2 weighted     b
+#> 3  3 weighted     c
+
+# Show the graph's edge
+# data frame (edf)
+graph |> get_edge_df()
+#>   id from to        rel weight
+#> 1  1    1  2 related_to   3.30
+#> 2  2    1  3 related_to   5.02
+#> 3  3    2  1 related_to   4.13
+#> 4  4    2  3 related_to   6.49
+#> 5  5    3  1 related_to   6.03
+#> 6  6    3  2 related_to   5.55
+
+# An undirected graph can
+# also use a matrix with
+# edge weights, but only
+# the lower triangle of
+# that matrix will be used
+create_graph(directed = FALSE) |>
+  add_full_graph(
+    n = 3,
+    type = "weighted",
+    label = TRUE,
+    rel = "related_to",
+    edge_wt_matrix = edge_wt_matrix,
+    keep_loops = FALSE
+  ) |>
+  get_edge_df()
+#>   id from to        rel weight
+#> 1  1    1  2 related_to   3.30
+#> 2  2    1  3 related_to   5.02
+#> 3  3    2  3 related_to   6.49
+```

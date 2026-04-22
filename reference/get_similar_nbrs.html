@@ -103,23 +103,23 @@ for neighboring node similarity to the starting node.</p></dd>
 <span class="r-in"><span><span class="co"># graph with 18 nodes and 22 edges</span></span></span>
 <span class="r-in"><span><span class="co"># using the `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">18</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">25</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      n <span class="op">=</span> <span class="fu"><a href="count_nodes.html">count_nodes</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      n <span class="op">=</span> <span class="fl">18</span>,</span></span>
 <span class="r-in"><span>      mean <span class="op">=</span> <span class="fl">5</span>,</span></span>
-<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Starting with node `10`, we</span></span></span>
 <span class="r-in"><span><span class="co"># can test whether any nodes</span></span></span>
 <span class="r-in"><span><span class="co"># adjacent and beyond are</span></span></span>
 <span class="r-in"><span><span class="co"># numerically equivalent in `value`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_similar_nbrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span></span>
@@ -136,7 +136,7 @@ for neighboring node similarity to the starting node.</p></dd>
 <span class="r-in"><span><span class="co"># with a fairly large range to</span></span></span>
 <span class="r-in"><span><span class="co"># determine if several nodes can be</span></span></span>
 <span class="r-in"><span><span class="co"># selected</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_similar_nbrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
@@ -149,11 +149,11 @@ for neighboring node similarity to the starting node.</p></dd>
 <span class="r-in"><span><span class="co"># to be very large will effectively</span></span></span>
 <span class="r-in"><span><span class="co"># return all nodes in the graph</span></span></span>
 <span class="r-in"><span><span class="co"># except for the starting node</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_similar_nbrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
-<span class="r-in"><span>    tol_abs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    tol_abs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 17</span>
 <span class="r-in"><span></span></span>
@@ -168,7 +168,7 @@ for neighboring node similarity to the starting node.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

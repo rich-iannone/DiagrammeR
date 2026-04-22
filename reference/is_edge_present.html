@@ -88,7 +88,7 @@ interchangeable with that in <code>from</code>.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a simple graph with</span></span></span>
 <span class="r-in"><span><span class="co"># a path of four nodes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"path"</span>,</span></span>
@@ -97,13 +97,13 @@ interchangeable with that in <code>from</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Find out if edge ID `3`</span></span></span>
 <span class="r-in"><span><span class="co"># is present in the graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_present</span><span class="op">(</span>edge <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine if there are any edges</span></span></span>
 <span class="r-in"><span><span class="co"># with the definition `1` -&gt; `2`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_present</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
@@ -111,7 +111,7 @@ interchangeable with that in <code>from</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Determine if there are any edges</span></span></span>
 <span class="r-in"><span><span class="co"># with the definition `4` -&gt; `5`</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_present</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
@@ -121,7 +121,7 @@ interchangeable with that in <code>from</code>.</p></dd>
 <span class="r-in"><span><span class="co"># defined by its labels as</span></span></span>
 <span class="r-in"><span><span class="co"># `two` -&gt; `three`, exists in</span></span></span>
 <span class="r-in"><span><span class="co"># the graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_present</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="st">"two"</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="st">"three"</span><span class="op">)</span></span></span>
@@ -131,8 +131,8 @@ interchangeable with that in <code>from</code>.</p></dd>
 <span class="r-in"><span><span class="co"># and determine whether an</span></span></span>
 <span class="r-in"><span><span class="co"># edge between nodes with labels</span></span></span>
 <span class="r-in"><span><span class="co"># `three` and `two` exists</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="set_graph_undirected.html">set_graph_undirected</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="set_graph_undirected.html">set_graph_undirected</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_edge_present</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="st">"three"</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span></span>
@@ -149,7 +149,7 @@ interchangeable with that in <code>from</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

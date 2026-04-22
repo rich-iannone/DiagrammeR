@@ -74,14 +74,14 @@ of the graph will be used. If <code>NA</code> then no edge weights will be used.
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">10</span>, m <span class="op">=</span> <span class="fl">15</span>,</span></span>
 <span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the eigen centrality scores</span></span></span>
 <span class="r-in"><span><span class="co"># for nodes in the graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">get_eigen_centrality</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu">get_eigen_centrality</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id eigen_centrality</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1           0.6640</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2           0.6767</span>
@@ -105,7 +105,7 @@ of the graph will be used. If <code>NA</code> then no edge weights will be used.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

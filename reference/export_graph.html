@@ -93,16 +93,16 @@ export to image file formats <code>png</code>, <code>pdf</code>, <code>svg</code
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other Display and Save:
-<code><a href="render_graph.html">render_graph</a>()</code>,
-<code><a href="render_graph_from_graph_series.html">render_graph_from_graph_series</a>()</code>,
-<code><a href="save_graph.html">save_graph</a>()</code></p></div>
+<code><a href="render_graph.html">render_graph()</a></code>,
+<code><a href="render_graph_from_graph_series.html">render_graph_from_graph_series()</a></code>,
+<code><a href="save_graph.html">save_graph()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a simple graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>      edge_aes <span class="op">=</span> <span class="fu"><a href="edge_aes.html">edge_aes</a></span><span class="op">(</span></span></span>
@@ -119,7 +119,7 @@ export to image file formats <code>png</code>, <code>pdf</code>, <code>svg</code
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a PDF file for</span></span></span>
 <span class="r-in"><span><span class="co"># the graph (`graph.pdf`)</span></span></span>
-<span class="r-in"><span><span class="co"># graph %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># graph |&gt;</span></span></span>
 <span class="r-in"><span><span class="co">#   export_graph(</span></span></span>
 <span class="r-in"><span><span class="co">#     file_name = "graph.pdf",</span></span></span>
 <span class="r-in"><span><span class="co">#     title = "Simple Graph"</span></span></span>
@@ -127,7 +127,7 @@ export to image file formats <code>png</code>, <code>pdf</code>, <code>svg</code
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a PNG file for</span></span></span>
 <span class="r-in"><span><span class="co"># the graph (`mypng.png`)</span></span></span>
-<span class="r-in"><span><span class="co"># graph %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># graph |&gt;</span></span></span>
 <span class="r-in"><span><span class="co">#   export_graph(</span></span></span>
 <span class="r-in"><span><span class="co">#     file_name = "mypng.png",</span></span></span>
 <span class="r-in"><span><span class="co">#     file_type = "PNG"</span></span></span>
@@ -144,7 +144,7 @@ export to image file formats <code>png</code>, <code>pdf</code>, <code>svg</code
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

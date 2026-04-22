@@ -88,32 +88,32 @@ names.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other node creation and removal:
-<code><a href="add_n_node_clones.html">add_n_node_clones</a>()</code>,
-<code><a href="add_n_nodes.html">add_n_nodes</a>()</code>,
-<code><a href="add_n_nodes_ws.html">add_n_nodes_ws</a>()</code>,
-<code><a href="add_node.html">add_node</a>()</code>,
-<code><a href="add_node_clones_ws.html">add_node_clones_ws</a>()</code>,
-<code><a href="add_node_df.html">add_node_df</a>()</code>,
-<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a>()</code>,
-<code><a href="add_nodes_from_table.html">add_nodes_from_table</a>()</code>,
-<code><a href="colorize_node_attrs.html">colorize_node_attrs</a>()</code>,
-<code><a href="copy_node_attrs.html">copy_node_attrs</a>()</code>,
-<code><a href="create_node_df.html">create_node_df</a>()</code>,
-<code><a href="delete_node.html">delete_node</a>()</code>,
-<code><a href="delete_nodes_ws.html">delete_nodes_ws</a>()</code>,
-<code><a href="drop_node_attrs.html">drop_node_attrs</a>()</code>,
-<code><a href="layout_nodes_w_string.html">layout_nodes_w_string</a>()</code>,
-<code><a href="mutate_node_attrs.html">mutate_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a>()</code>,
-<code><a href="node_data.html">node_data</a>()</code>,
-<code><a href="recode_node_attrs.html">recode_node_attrs</a>()</code>,
-<code><a href="rename_node_attrs.html">rename_node_attrs</a>()</code>,
-<code><a href="rescale_node_attrs.html">rescale_node_attrs</a>()</code>,
-<code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a>()</code>,
-<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn</a>()</code>,
-<code><a href="set_node_attrs.html">set_node_attrs</a>()</code>,
-<code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a>()</code>,
-<code><a href="set_node_position.html">set_node_position</a>()</code></p></div>
+<code><a href="add_n_node_clones.html">add_n_node_clones()</a></code>,
+<code><a href="add_n_nodes.html">add_n_nodes()</a></code>,
+<code><a href="add_n_nodes_ws.html">add_n_nodes_ws()</a></code>,
+<code><a href="add_node.html">add_node()</a></code>,
+<code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code>,
+<code><a href="add_node_df.html">add_node_df()</a></code>,
+<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code>,
+<code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code>,
+<code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code>,
+<code><a href="copy_node_attrs.html">copy_node_attrs()</a></code>,
+<code><a href="create_node_df.html">create_node_df()</a></code>,
+<code><a href="delete_node.html">delete_node()</a></code>,
+<code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code>,
+<code><a href="drop_node_attrs.html">drop_node_attrs()</a></code>,
+<code><a href="layout_nodes_w_string.html">layout_nodes_w_string()</a></code>,
+<code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>,
+<code><a href="node_data.html">node_data()</a></code>,
+<code><a href="recode_node_attrs.html">recode_node_attrs()</a></code>,
+<code><a href="rename_node_attrs.html">rename_node_attrs()</a></code>,
+<code><a href="rescale_node_attrs.html">rescale_node_attrs()</a></code>,
+<code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code>,
+<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn()</a></code>,
+<code><a href="set_node_attrs.html">set_node_attrs()</a></code>,
+<code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code>,
+<code><a href="set_node_position.html">set_node_position()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -124,8 +124,8 @@ names.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a simple graph</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_n_nodes.html">add_n_nodes</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edges_w_string.html">add_edges_w_string</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    edges <span class="op">=</span> <span class="st">"1-&gt;2 1-&gt;3 2-&gt;4 2-&gt;5 3-&gt;5"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -141,13 +141,13 @@ names.</p></dd>
 <span class="r-in"><span><span class="co"># identically-named columns in the graph and the df</span></span></span>
 <span class="r-in"><span><span class="co"># (in this case the `id` column is common to both)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">join_node_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's internal ndf to show that the</span></span></span>
 <span class="r-in"><span><span class="co"># join has been made</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11</span>
@@ -160,13 +160,13 @@ names.</p></dd>
 <span class="r-in"><span><span class="co"># common column name `id` in the different</span></span></span>
 <span class="r-in"><span><span class="co"># tables results in a natural join)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">join_node_attrs</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    df <span class="op">=</span> <span class="fu"><a href="get_betweenness.html">get_betweenness</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    df <span class="op">=</span> <span class="fu"><a href="get_betweenness.html">get_betweenness</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's internal ndf to show that</span></span></span>
 <span class="r-in"><span><span class="co"># this join has been made</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label values betweenness</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00         0.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11         1.5</span>
@@ -184,7 +184,7 @@ names.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

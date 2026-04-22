@@ -152,14 +152,14 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># will also have edges from</span></span></span>
 <span class="r-in"><span><span class="co"># and to themselves</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>, keep_loops <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get node information</span></span></span>
 <span class="r-in"><span><span class="co"># from this graph</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label deg indeg outdeg loops</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1   6     3      3     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;     2   6     3      3     1</span>
@@ -168,8 +168,8 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># Using `keep_loops = FALSE`</span></span></span>
 <span class="r-in"><span><span class="co"># (the default) will remove</span></span></span>
 <span class="r-in"><span><span class="co"># the loops</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label deg indeg outdeg loops</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1   4     2      2     0</span>
@@ -180,7 +180,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># the node `label`, node</span></span></span>
 <span class="r-in"><span><span class="co"># `type`, and edge `rel`</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"connected"</span>,</span></span>
@@ -190,7 +190,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's node</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (ndf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id      type label</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 connected   1st</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 connected   2nd</span>
@@ -198,7 +198,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's edge</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (edf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to          rel</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 connected_to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    1  3 connected_to</span>
@@ -217,9 +217,9 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">edge_wt_matrix</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">9</span>, <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">9</span>, <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    ncol <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    nrow <span class="op">=</span> <span class="fl">3</span>,</span></span>
@@ -229,7 +229,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># Create the fully-connected</span></span></span>
 <span class="r-in"><span><span class="co"># graph (without loops however)</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"weighted"</span>,</span></span>
@@ -241,7 +241,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's node</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (ndf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id     type label</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 weighted     a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 weighted     b</span>
@@ -249,7 +249,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Show the graph's edge</span></span></span>
 <span class="r-in"><span><span class="co"># data frame (edf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to        rel weight</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 related_to   3.30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    1  3 related_to   5.02</span>
@@ -263,7 +263,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span><span class="co"># edge weights, but only</span></span></span>
 <span class="r-in"><span><span class="co"># the lower triangle of</span></span></span>
 <span class="r-in"><span><span class="co"># that matrix will be used</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span>directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span>directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_full_graph</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"weighted"</span>,</span></span>
@@ -271,7 +271,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 <span class="r-in"><span>    rel <span class="op">=</span> <span class="st">"related_to"</span>,</span></span>
 <span class="r-in"><span>    edge_wt_matrix <span class="op">=</span> <span class="va">edge_wt_matrix</span>,</span></span>
 <span class="r-in"><span>    keep_loops <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to        rel weight</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  2 related_to   3.30</span>
@@ -289,7 +289,7 @@ use here as it helps bind data specifically to the created edges.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

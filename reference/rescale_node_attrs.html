@@ -109,32 +109,32 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other node creation and removal:
-<code><a href="add_n_node_clones.html">add_n_node_clones</a>()</code>,
-<code><a href="add_n_nodes.html">add_n_nodes</a>()</code>,
-<code><a href="add_n_nodes_ws.html">add_n_nodes_ws</a>()</code>,
-<code><a href="add_node.html">add_node</a>()</code>,
-<code><a href="add_node_clones_ws.html">add_node_clones_ws</a>()</code>,
-<code><a href="add_node_df.html">add_node_df</a>()</code>,
-<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a>()</code>,
-<code><a href="add_nodes_from_table.html">add_nodes_from_table</a>()</code>,
-<code><a href="colorize_node_attrs.html">colorize_node_attrs</a>()</code>,
-<code><a href="copy_node_attrs.html">copy_node_attrs</a>()</code>,
-<code><a href="create_node_df.html">create_node_df</a>()</code>,
-<code><a href="delete_node.html">delete_node</a>()</code>,
-<code><a href="delete_nodes_ws.html">delete_nodes_ws</a>()</code>,
-<code><a href="drop_node_attrs.html">drop_node_attrs</a>()</code>,
-<code><a href="join_node_attrs.html">join_node_attrs</a>()</code>,
-<code><a href="layout_nodes_w_string.html">layout_nodes_w_string</a>()</code>,
-<code><a href="mutate_node_attrs.html">mutate_node_attrs</a>()</code>,
-<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a>()</code>,
-<code><a href="node_data.html">node_data</a>()</code>,
-<code><a href="recode_node_attrs.html">recode_node_attrs</a>()</code>,
-<code><a href="rename_node_attrs.html">rename_node_attrs</a>()</code>,
-<code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a>()</code>,
-<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn</a>()</code>,
-<code><a href="set_node_attrs.html">set_node_attrs</a>()</code>,
-<code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a>()</code>,
-<code><a href="set_node_position.html">set_node_position</a>()</code></p></div>
+<code><a href="add_n_node_clones.html">add_n_node_clones()</a></code>,
+<code><a href="add_n_nodes.html">add_n_nodes()</a></code>,
+<code><a href="add_n_nodes_ws.html">add_n_nodes_ws()</a></code>,
+<code><a href="add_node.html">add_node()</a></code>,
+<code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code>,
+<code><a href="add_node_df.html">add_node_df()</a></code>,
+<code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code>,
+<code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code>,
+<code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code>,
+<code><a href="copy_node_attrs.html">copy_node_attrs()</a></code>,
+<code><a href="create_node_df.html">create_node_df()</a></code>,
+<code><a href="delete_node.html">delete_node()</a></code>,
+<code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code>,
+<code><a href="drop_node_attrs.html">drop_node_attrs()</a></code>,
+<code><a href="join_node_attrs.html">join_node_attrs()</a></code>,
+<code><a href="layout_nodes_w_string.html">layout_nodes_w_string()</a></code>,
+<code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code>,
+<code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>,
+<code><a href="node_data.html">node_data()</a></code>,
+<code><a href="recode_node_attrs.html">recode_node_attrs()</a></code>,
+<code><a href="rename_node_attrs.html">rename_node_attrs()</a></code>,
+<code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code>,
+<code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn()</a></code>,
+<code><a href="set_node_attrs.html">set_node_attrs()</a></code>,
+<code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code>,
+<code><a href="set_node_position.html">set_node_position()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -142,22 +142,22 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a random graph using the</span></span></span>
 <span class="r-in"><span><span class="co"># `add_gnm_graph()` function</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_gnm_graph.html">add_gnm_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>    m <span class="op">=</span> <span class="fl">10</span>,</span></span>
-<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    set_seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      n <span class="op">=</span> <span class="fu"><a href="count_nodes.html">count_nodes</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      n <span class="op">=</span> <span class="fl">5</span>,</span></span>
 <span class="r-in"><span>      mean <span class="op">=</span> <span class="fl">5</span>,</span></span>
-<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the graph's internal ndf</span></span></span>
 <span class="r-in"><span><span class="co"># to show which node attributes</span></span></span>
 <span class="r-in"><span><span class="co"># are available</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1   5.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;     2   4.4</span>
@@ -169,7 +169,7 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
 <span class="r-in"><span><span class="co"># attribute, so that its values</span></span></span>
 <span class="r-in"><span><span class="co"># are rescaled between 0 and 1</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">rescale_node_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    to_lower_bound <span class="op">=</span> <span class="fl">0</span>,</span></span>
@@ -178,7 +178,7 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
 <span class="r-in"><span><span class="co"># Get the graph's internal ndf</span></span></span>
 <span class="r-in"><span><span class="co"># to show that the node attribute</span></span></span>
 <span class="r-in"><span><span class="co"># values had been rescaled</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1 0.500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;     2 0.000</span>
@@ -191,12 +191,12 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
 <span class="r-in"><span><span class="co"># shades of gray for the `fillcolor`</span></span></span>
 <span class="r-in"><span><span class="co"># and `fontcolor` node attributes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">rescale_node_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    to_lower_bound <span class="op">=</span> <span class="st">"gray80"</span>,</span></span>
 <span class="r-in"><span>    to_upper_bound <span class="op">=</span> <span class="st">"gray20"</span>,</span></span>
-<span class="r-in"><span>    node_attr_to <span class="op">=</span> <span class="va">fillcolor</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    node_attr_to <span class="op">=</span> <span class="va">fillcolor</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">rescale_node_attrs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr_from <span class="op">=</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    to_lower_bound <span class="op">=</span> <span class="st">"gray5"</span>,</span></span>
@@ -208,7 +208,7 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
 <span class="r-in"><span><span class="co"># grayscale colors are now available</span></span></span>
 <span class="r-in"><span><span class="co"># in the `fillcolor` and `fontcolor`</span></span></span>
 <span class="r-in"><span><span class="co"># node attributes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label value fillcolor fontcolor</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;     1 0.500   #7B7B7B   #767676</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 &lt;NA&gt;     2 0.000   #CCCCCC   #0D0D0D</span>
@@ -227,7 +227,7 @@ rescaled values. If not set, the minimum value from the set will be used.</p></d
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

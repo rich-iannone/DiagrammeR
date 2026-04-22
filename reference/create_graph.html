@@ -136,7 +136,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 <span class="r-in"><span>    nodes_df <span class="op">=</span> <span class="va">ndf</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get information on the graph's nodes</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_node_info.html">get_node_info</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label deg indeg outdeg loops</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</span>
@@ -164,7 +164,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get information on the graph's</span></span></span>
 <span class="r-in"><span><span class="co"># internal node data frame (ndf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id   type label     shape values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 type_1     1    circle    3.5</span>
@@ -194,7 +194,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get information on the graph's</span></span></span>
 <span class="r-in"><span><span class="co"># internal edge data frame (edf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_edge_df.html">get_edge_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id from to        rel values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    1  4 leading_to    7.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2    2  3 leading_to    2.6</span>
@@ -202,7 +202,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get information on the graph's</span></span></span>
 <span class="r-in"><span><span class="co"># internal node data frame (ndf)</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id   type label     shape values</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 type_1     1    circle    3.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 type_1     2    circle    2.6</span>
@@ -220,7 +220,7 @@ changes in graph selections. By default, this is <code>FALSE</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

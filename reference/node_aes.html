@@ -242,7 +242,7 @@ the value is <code>0.11,0.055</code>.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other aesthetics:
-<code><a href="edge_aes.html">edge_aes</a>()</code>,
+<code><a href="edge_aes.html">edge_aes()</a></code>,
 <code><a href="node_edge_aes_data.html">node_edge_aes_data</a></code></p></div>
     </div>
 
@@ -252,7 +252,7 @@ the value is <code>0.11,0.055</code>.</p></dd>
 <span class="r-in"><span><span class="co"># a path with several node</span></span></span>
 <span class="r-in"><span><span class="co"># aesthetic attributes</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_path.html">add_path</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"path"</span>,</span></span>
@@ -267,7 +267,7 @@ the value is <code>0.11,0.055</code>.</p></dd>
 <span class="r-in"><span><span class="co"># node data frame; the node</span></span></span>
 <span class="r-in"><span><span class="co"># aesthetic attributes have</span></span></span>
 <span class="r-in"><span><span class="co"># been inserted</span></span></span>
-<span class="r-in"><span><span class="va">graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">graph</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_node_df.html">get_node_df</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id type label  shape x  y</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 path     1 circle 1  4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 path     2 circle 3 -1</span>
@@ -276,7 +276,7 @@ the value is <code>0.11,0.055</code>.</p></dd>
 <span class="r-in"><span><span class="co"># Create a new graph which is</span></span></span>
 <span class="r-in"><span><span class="co"># fully connected</span></span></span>
 <span class="r-in"><span><span class="va">graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_full_graph.html">add_full_graph</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    n <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>    node_data <span class="op">=</span> <span class="fu"><a href="node_data.html">node_data</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,</span></span>
@@ -297,7 +297,7 @@ the value is <code>0.11,0.055</code>.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

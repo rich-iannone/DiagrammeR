@@ -1,0 +1,596 @@
+# Traversals
+
+Imagine diving into a graph and moving across the graph’s nodes, jumping
+onto an edge, perhaps bypassing those edges and simply alighting to
+different nodes with specific attributes. Traversals are quite important
+as part of a graph query. You can develop sophisticated pipelines that
+allow for selective movement across the graph (based on conditions you
+specify per traversal) and the gleaning of information from nodes and
+edges. Importantly, traversals begin with selections of nodes or edges
+and the act of traversing modifies the selection of nodes or edges. One
+may select a single node, for instance, perform one or more traversals
+away from that initial node, and perhaps create a selection of several
+different nodes (or even edges). There are many important use cases, so,
+an in-depth primer of **DiagrammeR**’s traversal functions is provided
+alongside numerous practical examples.
+
+## Traversals Across Nodes
+
+To traverse across connected nodes without regard to the properties of
+the edges between the nodes, three functions are available:
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md),
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md),
+and
+[`trav_both()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_both.md).
+These types of traversals always require an initial selection of one or
+more nodes, and, after traversing, a selection of one or more nodes is
+returned.
+
+Directionality of the traversal is the key differentiator between these
+three functions. The
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+function allows for traversals to connected nodes that are outbound
+nodes in relation to the origin nodes (in a directed graph). With the
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md)
+function, the movement is reversed: traversals towards connected nodes
+are to inbound nodes. For example, take the edge described by `1->2` and
+the origin node is the node with ID `1`; the
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+function would change the node selection from node `1` to node `2`
+because these nodes are adjacent to each other and the edge leads from
+the origin node to an outbound node. If node `1` has outbound edges to
+other nodes (e.g., `1->{2,3,4}`) then all of those nodes connected to
+outbound edges of the origin node will be part of the new selection.
+Take another example with a central node as the selected node, and that
+node has both outbound and inbound edges to adjacent nodes:
+`{2,3,4}->1->{5,6,7}`. Should the function
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md)
+be used, then nodes `2`, `3`, and `4` will become the selected nodes;
+using
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+will result in nodes `5`, `6`, and `7` becoming the selected nodes. Here
+are several examples of traversals across nodes.
+
+Let’s perform two types of traversals from a single node using
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+and
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md).
+First, we’ll create a simple graph with two nodes and an edge between
+them (`1` -\> `2`). Starting from node `1` (as the initial selection),
+we traverse to node `2`.
+
+``` r
+pre <-
+  create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 1, to = 2) %>%
+  select_nodes_by_id(nodes = 1)
+```
+
+``` r
+# Create a simple graph, create a single-
+# node selection and traverse to the other
+# node; obtain the final selection
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 1, to = 2) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 2
+```
+
+If no traversal can occur, the selection is not altered. To demonstrate,
+let’s use a similar set of steps but with a graph having the opposite
+edge direction.
+
+``` r
+# Create a simple graph, create a single-
+# node selection and then attempt to traverse
+# to the other node; obtain the final selection
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 1
+```
+
+That type of traversal can’t alter the selection because there are no
+outbound edges from node `1`, just an inbound edge (`2` -\> `1`). To
+make a traversal possible, we need to use to the
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md)
+function instead.
+
+``` r
+# A traversal can occur if `trav_in()` is used
+# instead of `trav_out()`
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_in() %>%
+  get_selection()
+#> [1] 2
+```
+
+Multiple traversals can be made in a single set of statements. Let’s
+create a path graph containing five nodes with the
+[`add_path()`](https://rich-iannone.github.io/DiagrammeR/reference/add_path.md)
+function. We obtain a graph of the form: `1->2->3->4->5` and we can
+easily create an initial selection at node `1` with the
+[`select_nodes_by_id()`](https://rich-iannone.github.io/DiagrammeR/reference/select_nodes_by_id.md)
+function. With several calls of
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+in succession, we can move the selection from node `1` to node `5`.
+
+``` r
+# Traverse across a path graph one
+# step at a time with `trav_out()`
+create_graph() %>%
+  add_path(n = 5) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  trav_out() %>%
+  trav_out() %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 5
+```
+
+Traversals are commonly performed where an initial selection contains
+multiple nodes (usually, these are nodes that have something in common
+with each other). Let’s have a look at a slightly more complex graph and
+how multiple nodes in an initial selection can be migrated to a final
+selection after a traversal.
+
+``` r
+graph_1 <-
+  create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 5,
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 5,
+    direction = "to"
+  )
+
+graph_1 %>% render_graph()
+```
+
+We can now take the selection (still the central node `1`) and traverse
+via outbound edges to adjacent nodes: `2`, `3`, `4`, `5`, and `6`.
+
+``` r
+graph_1 %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 2 3 4 5 6
+```
+
+Alternatively, with the same initial selection of `1` we can traverse
+via inbound edges to adjacent nodes (with
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md))
+and expect a different final selection of nodes (`7`, `8`, `9`, `10`,
+`11`).
+
+``` r
+graph_1 %>%
+  trav_in() %>%
+  get_selection()
+#> [1]  7  8  9 10 11
+```
+
+The
+[`trav_both()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_both.md)
+function results in traversals to adjacent nodes regardless of the edge
+directions between those nodes. So, in a sense, the direction of
+movement to adjacent nodes is both in and out, or, both. For the example
+of `{2,3,4}->1->{5,6,7}`, where node `1` is the only node in the
+selection, all of nodes `2` through to node `6` will be part of the new
+selection after calling
+[`trav_both()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_both.md).
+
+``` r
+# Create the graph described in the paragraph
+# above ({`2...4`} -> `1` -> {`5...7`}),
+# start from node `1` (as a selection),
+# traverse to all other adjacent nodes and
+# then obtain the current selection
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 3,
+    direction = "to"
+  ) %>%
+  add_n_nodes_ws(
+    n = 3,
+    direction = "from"
+  ) %>%
+  trav_both() %>%
+  get_selection()
+#> [1] 2 3 4 5 6 7
+```
+
+So far, these functions are described as modifying selections of nodes
+based solely on node adjacency and the direction of the edges between
+the adjacent nodes. Indeed without supplying values to the function,
+traversals occur without regard to the attributes of the nodes traversed
+to. However, the arguments `node_attr` and `match` are available for
+filtering the traversals to those that satisfy logical statements on
+numeric attributes or matches on character attributes. For a property
+graph, where values are available for all nodes’ `type` attribute and
+all edges’ `rel` attribute, a traversal with
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md)
+could, for example, be performed for all outbound, adjacent nodes that
+have a specific `type` label. This is done by setting `node_attr = type`
+and providing the value of that type for the `match` argument.
+
+``` r
+# Create a common graph with nodes having
+# various `type` values; set to render
+# always using `visNetwork` when calling
+# `render_graph()`
+graph <-
+  create_graph() %>%
+  add_node(type = "type_a") %>%
+  add_n_nodes(
+    n = 4,
+    type = "type_b"
+  ) %>%
+  add_edge(from = 1, to = 2) %>%
+  add_edge(from = 1, to = 3) %>%
+  add_edge(from = 4, to = 1) %>%
+  add_edge(from = 5, to = 1) %>%
+  add_n_nodes(
+    n = 4,
+    type = "type_c"
+  ) %>%
+  add_edge(from = 1, to = 6) %>%
+  add_edge(from = 1, to = 7) %>%
+  add_edge(from = 8, to = 1) %>%
+  add_edge(from = 9, to = 1)
+
+# View the created graph
+graph %>% render_graph()
+```
+
+``` r
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 2 3 6 7
+
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_b") %>%
+  get_selection()
+#> [1] 2 3
+
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_c") %>%
+  get_selection()
+#> [1] 6 7
+
+# Once the nodes have been selected via
+# a traversal, a useful thing to do would
+# be to attach new nodes to that selection
+updated_graph <-
+  graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_c") %>%
+  add_n_nodes_ws(
+    n = 1,
+    direction = "from",
+    type = "type_d"
+  )
+
+# View the updated graph
+updated_graph %>% render_graph()
+```
+
+We are not limited to starting a traversal from a single node ID value.
+We can, for example, begin from a selection of nodes based on a regular
+expression and traverse to a matching `type` string value (or to other
+node attributes that have `character` values). The following example
+uses a random graph of food entities with arbitrary edges between them.
+
+``` r
+# Create a graph with fruit, vegetables,
+# and nuts
+ndf <-
+  create_node_df(
+    n = 9,
+    type = c(
+      "fruit", "fruit", "fruit",
+      "veg", "veg", "veg",
+      "nut", "nut", "nut"
+    ),
+    label = c(
+      "pineapple", "apple",
+      "apricot", "cucumber",
+      "celery", "endive",
+      "hazelnut", "almond",
+      "chestnut"
+    )
+  )
+
+edf <-
+  create_edge_df(
+    from = c(
+      9, 3, 6, 2, 6,
+      2, 8, 2, 5, 5
+    ),
+    to = c(
+      1, 1, 4, 3, 7,
+      8, 1, 5, 3, 6
+    )
+  )
+
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf
+  )
+
+# View the graph
+graph %>% render_graph()
+```
+
+``` r
+# View the internal NDF for sake of
+# reference
+graph %>% get_node_df()
+#>   id  type     label
+#> 1  1 fruit pineapple
+#> 2  2 fruit     apple
+#> 3  3 fruit   apricot
+#> 4  4   veg  cucumber
+#> 5  5   veg    celery
+#> 6  6   veg    endive
+#> 7  7   nut  hazelnut
+#> 8  8   nut    almond
+#> 9  9   nut  chestnut
+```
+
+``` r
+# Select all nodes with a label beginning
+# with `a` and traverse outward to all nodes
+graph %>%
+  select_nodes(
+    conditions = grepl("^a", label)
+  ) %>%
+  trav_out() %>%
+  get_selection()
+#> [1] 1 3 5 8
+
+# This traversal results in a rather large
+# selection of nodes: `3` (`apricot`), `8`
+# (`almond`), `5` (`celery`), and `1`
+# (`pineapple`)
+
+# Now, select all nodes with a label beginning
+# with `c` (in this case, the `cucumber` and
+# `chestnut` and then traverse outward to any
+# node of the `fruit` type
+graph %>%
+  select_nodes(
+    conditions = grepl("^c", label)
+  ) %>%
+  trav_out(
+    conditions = type == "fruit"
+  ) %>%
+  get_selection()
+#> [1] 1 3
+
+# The traversal has resulted in a selection of
+# nodes `3` (`apricot`) and `1` (`pineapple`)
+```
+
+Traversing from node to node with
+[`trav_out()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out.md),
+[`trav_in()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in.md),
+or
+[`trav_both()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_both.md)
+can result in a very specific targeting of nodes. As seen, once the
+traversal has occurred, the new selection can be used to obtain data
+from those nodes, or, modify the graph (by adding new nodes to the
+selection). Especially when used within a pipeline, the selection of
+nodes, the traversals, and the resulting actions are quite readable.
+
+## Traversals from Nodes to Edges
+
+Moving across nodes using traversal functions is quite a powerful thing
+to do. However, especially with information-rich graphs, some useful
+data can exist in the graph’s edges. For this reason, we can traverse
+from nodes onto adjacent edges. As with the node-to-node traversal
+functions, the direction of the edge is important and a key distinction
+between the functions
+[`trav_out_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out_edge.md)
+and
+[`trav_in_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.md).
+These types of traversals always begin at nodes (and thus require an
+initial selection of one or more nodes) and typically end with a
+selection of one or more edges. If no traversal can be made, then the
+initial selection of nodes is retained.
+
+Starting with the
+[`trav_out_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out_edge.md)
+function, suppose there is a selection of a single node `1` in the very
+simple graph of `1->2`. Calling the
+[`trav_out_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out_edge.md)
+function in its simplest form (without values supplied except for the
+graph itself) will result in an edge selection and that edge will be the
+`1->2` edge. Thus, the traversal is from one or more nodes onto
+adjacent, outward edges. On the same graph, with the same selection,
+calling the
+[`trav_in_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.md)
+function will not result in a traversal (the initial node selection of
+node `1` will be retained, as though nothing happened). This is because
+the
+[`trav_in_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.md)
+function performs the converse traversal, where the traversal is from
+one or more nodes onto adjacent, inward edges. Put another way,
+[`trav_in_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.md)
+will change the selection to edges that point toward the
+initially-selected node(s), if any.
+
+As with the node-to-node traversal functions, these traversals are much
+more powerful when used with matching conditions as they increase
+selectivity. That only certain edges may be traversed to (and selected)
+is important, especially in those cases where the traversal continues
+onto nodes (but more on that in the next section). Examples will aid in
+the understanding of these functions.
+
+``` r
+# Create a simple graph with two nodes, an
+# edge between them (`1` -> `2`); starting
+# from node `1` (as a selection), traverse
+# to the edge and then obtain the current
+# selection
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 1, to = 2) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out_edge() %>%
+  get_selection()
+#> [1] 1
+
+# If no traversal can occur the selection is
+# not altered. To demonstrate, use a similar
+# pipeline but reverse the edge direction
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out_edge() %>%
+  get_selection()
+#> [1] 1
+
+# A traversal can occur if `trav_in_edge()`
+# is used instead of `trav_out_edge()`
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_in_edge() %>%
+  get_selection()
+#> [1] 1
+
+# A selection of multiple edges can occur
+# as a result of a traversal
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "to"
+  ) %>%
+  trav_out_edge() %>%
+  get_selection()
+#>  [1]  1  2  3  4  5  6  7  8  9 10
+
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "to"
+  ) %>%
+  trav_in_edge() %>%
+  get_selection()
+#>  [1] 11 12 13 14 15 16 17 18 19 20
+```
+
+To introduce conditions on the traversal, we can again use the
+`conditions` argument. As with the node-to-node traversal functions,
+these optional values induce filtering of the node-to-edge traversals.
+If a graph is fashioned as a property graph that has values set for node
+`type` and edge `rel` attributes, traversals with
+[`trav_out_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_out_edge.md)
+and
+[`trav_in_edge()`](https://rich-iannone.github.io/DiagrammeR/reference/trav_in_edge.md)
+be restricted to selection of edges that have a specific `rel` label.
+
+``` r
+# First, set a seed so the example
+# is reproducible
+suppressWarnings(RNGversion("3.5.0"))
+set.seed(20)
+
+# Create a graph with fruit,
+# vegetables, nuts, and... people!
+ndf <-
+  create_node_df(
+    n = 14,
+    type = c(
+      "person", "person",
+      "person", "person",
+      "person", "fruit",
+      "fruit", "fruit",
+      "veg", "veg", "veg",
+      "nut", "nut", "nut"
+    ),
+    label = c(
+      "Annie", "Donna",
+      "Justine", "Ed",
+      "Graham", "pineapple",
+      "apple", "apricot",
+      "cucumber", "celery",
+      "endive", "hazelnut",
+      "almond", "chestnut"
+    )
+  )
+
+edf <-
+  create_edge_df(
+    from = sort(
+      as.vector(replicate(5, 1:5))
+    ),
+    to = as.vector(
+      replicate(5, sample(6:14, 5))
+    ),
+    rel = as.vector(
+      replicate(
+        5, sample(
+          c(
+            "likes", "dislikes",
+            "allergic_to"
+          ), 5,
+          TRUE,
+          c(0.5, 0.25, 0.25)
+        )
+      )
+    )
+  )
+
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf
+  )
+
+graph %>% render_graph()
+```

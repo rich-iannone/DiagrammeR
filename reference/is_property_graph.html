@@ -74,13 +74,13 @@ value).</p>
 <span class="r-in"><span><span class="co"># (with `type` values) and a</span></span></span>
 <span class="r-in"><span><span class="co"># single edge (with a `rel`)</span></span></span>
 <span class="r-in"><span><span class="va">simple_property_graph</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"first"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"first"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_node.html">add_node</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    type <span class="op">=</span> <span class="st">"b"</span>,</span></span>
-<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"second"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"second"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_edge.html">add_edge</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    from <span class="op">=</span> <span class="st">"first"</span>,</span></span>
 <span class="r-in"><span>    to <span class="op">=</span> <span class="st">"second"</span>,</span></span>
@@ -95,16 +95,16 @@ value).</p>
 <span class="r-in"><span><span class="co"># If a `type` attribute is</span></span></span>
 <span class="r-in"><span><span class="co"># removed, then this graph will</span></span></span>
 <span class="r-in"><span><span class="co"># no longer be a property graph</span></span></span>
-<span class="r-in"><span><span class="va">simple_property_graph</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">simple_property_graph</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="set_node_attrs.html">set_node_attrs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    node_attr <span class="op">=</span> <span class="va">type</span>,</span></span>
 <span class="r-in"><span>    values <span class="op">=</span> <span class="cn">NA</span>,</span></span>
-<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    nodes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_property_graph</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># An empty graph will return FALSE</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="fu"><a href="create_graph.html">create_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">is_property_graph</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
@@ -119,7 +119,7 @@ value).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
