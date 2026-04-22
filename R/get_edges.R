@@ -47,18 +47,18 @@
 #'     edges_df = edf)
 #'
 #' # Get all edges within a graph, returned as a list
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     return_type = "vector")
 #'
 #' # Get all edges within a graph, returned as a
 #' # data frame
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     return_type = "df")
 #'
 #' # Get all edges returned as a list
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     return_type = "list")
 #'
@@ -66,14 +66,14 @@
 #' # a numeric comparison (i.e.,
 #' # all edges with a `value`
 #' # attribute greater than 3)
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     conditions = value > 3,
 #'     return_type = "vector")
 #'
 #' # Get a vector of edges using
 #' # a matching condition
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     conditions = color == "pink",
 #'     return_type = "vector")
@@ -81,7 +81,7 @@
 #' # Use multiple conditions to
 #' # return edges with the
 #' # desired attribute values
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     conditions =
 #'       color == "blue" &
@@ -91,7 +91,7 @@
 #' # Use `return_values = "label"`
 #' # to return the labels of the
 #' # connected nodes
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     conditions =
 #'       color == "blue" &
@@ -112,9 +112,9 @@ get_edges <- function(
 
   if (return_values == "label") {
     edges_df <-
-      edges_df %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", from_label_ = "label"), by = c("from" = "id")) %>%
-      dplyr::left_join(graph$nodes_df %>% dplyr::select("id", to_label_ = "label"), by = c("to" = "id"))
+      edges_df |>
+      dplyr::left_join(graph$nodes_df |> dplyr::select("id", from_label_ = "label"), by = c("from" = "id")) |>
+      dplyr::left_join(graph$nodes_df |> dplyr::select("id", to_label_ = "label"), by = c("to" = "id"))
   }
 
 
@@ -151,11 +151,11 @@ get_edges <- function(
 
     if (return_values == "id") {
       edges_df <-
-        edges_df %>%
+        edges_df |>
         dplyr::select("from", "to")
     } else if (return_values == "label") {
       edges_df <-
-        edges_df %>%
+        edges_df |>
         dplyr::select("from_label_", "to_label_")
     }
 

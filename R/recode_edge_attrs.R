@@ -24,11 +24,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 4,
 #'     m = 6,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_edge_attrs(
 #'     edge_attr = rel,
 #'     values = c("a", "b", "a",
@@ -37,7 +37,7 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Recode the `rel` node
 #' # attribute, creating a new edge
@@ -46,7 +46,7 @@
 #' # `b` maps to `1.5`, and all
 #' # other values become `0.5`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   recode_edge_attrs(
 #'     edge_attr_from = rel,
 #'     "a -> 1.0",
@@ -59,7 +59,7 @@
 #' # attribute values had been
 #' # recoded and copied into a
 #' # new node attribute
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @family edge creation and removal
 #'
@@ -83,11 +83,11 @@ recode_edge_attrs <- function(
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
-    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `edge_attr_to`
   edge_attr_to <-
-    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_to) |> rlang::get_expr() |> as.character()
 
 
   if (length(edge_attr_to) == 0) {

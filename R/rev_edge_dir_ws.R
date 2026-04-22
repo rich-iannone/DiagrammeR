@@ -24,17 +24,17 @@
 #' # Create a graph with a
 #' # directed tree
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_balanced_tree(
 #'     k = 2, h = 2)
 #'
 #' # Inspect the graph's edges
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #'
 #' # Select all edges associated
 #' # with nodes `1` and `2`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges_by_node_id(
 #'     nodes = 1:2)
 #'
@@ -42,12 +42,12 @@
 #' # of the edges associated with
 #' # nodes `1` and `2`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   rev_edge_dir_ws()
 #'
 #' # Inspect the graph's edges
 #' # after their reversal
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #'
 #' @family edge creation and removal
 #'
@@ -85,12 +85,12 @@ rev_edge_dir_ws <- function(graph) {
   # Selectively modify the edge direction and create
   # a new edf
   edges_new <-
-    edges %>%
-    dplyr::filter(id %in% edge_ids) %>%
-    dplyr::filter(from != to) %>%
-    dplyr::rename(from = "to", to = "from") %>%
-    dplyr::relocate("id", "from", "to") %>%
-    dplyr::bind_rows(edges %>% dplyr::filter(!(id %in% edge_ids)))
+    edges |>
+    dplyr::filter(id %in% edge_ids) |>
+    dplyr::filter(from != to) |>
+    dplyr::rename(from = "to", to = "from") |>
+    dplyr::relocate("id", "from", "to") |>
+    dplyr::bind_rows(edges |> dplyr::filter(!(id %in% edge_ids)))
 
   # Modify the graph object
   graph$edges_df <- edges_new

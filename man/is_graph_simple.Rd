@@ -19,11 +19,11 @@ does not contain any loops nor any multiple edges.
 \examples{
 # Create a graph with 2 cycles
 graph <-
-  create_graph() \%>\%
-  add_cycle(n = 4) \%>\%
+  create_graph() |>
+  add_cycle(n = 4) |>
   add_cycle(n = 3)
 
 # Check if the graph is simple
-graph \%>\% is_graph_simple()
+graph |> is_graph_simple()
 
 }

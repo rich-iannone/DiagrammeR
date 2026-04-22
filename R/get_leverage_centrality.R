@@ -19,7 +19,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -27,19 +27,19 @@
 #'
 #' # Get leverage centrality values
 #' # for all nodes in the graph
-#' graph %>%
+#' graph |>
 #'   get_leverage_centrality()
 #'
 #' # Add the leverage centrality
 #' # values to the graph as a
 #' # node attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_leverage_centrality(.))
+#'     df = get_leverage_centrality(graph))
 #'
 #' # Display the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_leverage_centrality <- function(graph) {
@@ -62,14 +62,14 @@ get_leverage_centrality <- function(graph) {
         mean(
           (degree_vals[x] - degree_vals[igraph::neighbors(ig_graph, degree_vals)]) /
             (degree_vals[x] + degree_vals[igraph::neighbors(ig_graph, degree_vals)]))
-      }) %>%
+      }) |>
     unlist()
 
   # Create df with leverage centrality values
   data.frame(
-    id = degree_vals %>%
-      names() %>%
+    id = degree_vals |>
+      names() |>
       as.integer(),
-    leverage_centrality = leverage_centrality_values %>% round(4),
+    leverage_centrality = leverage_centrality_values |> round(4),
     stringsAsFactors = FALSE)
 }

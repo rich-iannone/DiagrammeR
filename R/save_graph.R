@@ -15,7 +15,7 @@
 #' # a probability value of 0.05
 #' gnp_graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnp_graph(
 #'     n = 100,
 #'     p = 0.05)
@@ -51,7 +51,7 @@ save_graph <- function(
   }
 
   # Append the file extension to the file path
-  file_name <- file %>% paste0(".dgr")
+  file_name <- file |> paste0(".dgr")
 
   # Save the graph or graph series
   saveRDS(x, file = file_name, compress = "xz")

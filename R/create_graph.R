@@ -53,7 +53,7 @@
 #'     nodes_df = ndf)
 #'
 #' # Get information on the graph's nodes
-#' graph %>%
+#' graph |>
 #'   get_node_info()
 #'
 #' # You can create a similar graph with
@@ -76,7 +76,7 @@
 #'
 #' # Get information on the graph's
 #' # internal node data frame (ndf)
-#' graph %>%
+#' graph |>
 #'   get_node_df()
 #'
 #' # A graph can also be created by
@@ -101,11 +101,11 @@
 #'
 #' # Get information on the graph's
 #' # internal edge data frame (edf)
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Get information on the graph's
 #' # internal node data frame (ndf)
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 create_graph <- function(
@@ -129,7 +129,7 @@ create_graph <- function(
   # Generate a random 8-character, alphanumeric
   # string to use as a graph ID
   graph_id <-
-    replicate(8, sample(c(LETTERS, letters, 0:9), 1)) %>%
+    replicate(8, sample(c(LETTERS, letters, 0:9), 1)) |>
     paste(collapse = "")
 
   # Create the `graph_info` data frame

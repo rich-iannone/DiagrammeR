@@ -44,36 +44,36 @@
 #' # with edges from the original node to all of the
 #' # new nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 1) %>%
-#'   select_last_nodes_created() %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 1) |>
+#'   select_last_nodes_created() |>
 #'   add_n_nodes_ws(
 #'     n = 5,
 #'     direction = "from")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids()
+#' graph |> get_node_ids()
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #'
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph
 #' # with edges toward the original node from all of
 #' # the new nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 1) %>%
-#'   select_last_nodes_created() %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 1) |>
+#'   select_last_nodes_created() |>
 #'   add_n_nodes_ws(
 #'     n = 5,
 #'     direction = "to")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids()
+#' graph |> get_node_ids()
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #'
 #' @family node creation and removal
 #'
@@ -122,10 +122,10 @@ add_n_nodes_ws <- function(
   rel   <-   rel %||% NA_character_
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Get a vector of nodes available in the
   # graph's selection
@@ -197,14 +197,14 @@ add_n_nodes_ws <- function(
   graph$directed <- is_graph_directed(graph)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- graph %>% count_nodes()
+  nodes_graph_2 <- graph |> count_nodes()
 
   # Get the number of nodes added to
   # the graph
   nodes_added <- nodes_graph_2 - nodes_graph_1
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph
@@ -213,17 +213,17 @@ add_n_nodes_ws <- function(
   # Get the edge ID values for the
   # last edges created
   new_edge_id <-
-    graph %>%
-    get_edge_df() %>%
-    utils::tail(edges_added) %>%
+    graph |>
+    get_edge_df() |>
+    utils::tail(edges_added) |>
     dplyr::pull("id")
 
   # Get the node ID values for the
   # last nodes created
   new_node_id <-
-    graph %>%
-    get_node_df() %>%
-    utils::tail(nodes_added) %>%
+    graph |>
+    get_node_df() |>
+    utils::tail(nodes_added) |>
     dplyr::pull("id")
 
   # Collect node aesthetic attributes
@@ -236,7 +236,7 @@ add_n_nodes_ws <- function(
       node_aes$index__ <- seq_len(nodes_added)
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -255,7 +255,7 @@ add_n_nodes_ws <- function(
       node_data$index__ <- seq_len(nodes_added)
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -274,7 +274,7 @@ add_n_nodes_ws <- function(
       edge_aes$index__ <- seq_len(edges_added)
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -293,7 +293,7 @@ add_n_nodes_ws <- function(
       edge_data$index__ <- seq_len(edges_added)
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -306,7 +306,7 @@ add_n_nodes_ws <- function(
   if (exists("node_aes_tbl")) {
 
     node_aes_tbl <-
-      node_aes_tbl %>%
+      node_aes_tbl |>
       dplyr::mutate(id = new_node_id, .before = 0)
 
     columns_to_select <-
@@ -314,11 +314,11 @@ add_n_nodes_ws <- function(
 
     graph$nodes_df <-
       dplyr::bind_rows(
-        graph$nodes_df %>%
+        graph$nodes_df |>
           dplyr::filter(!(id %in% new_node_id)),
-        graph$nodes_df %>%
-          dplyr::filter(id %in% new_node_id) %>%
-          dplyr::select(dplyr::all_of(columns_to_select)) %>%
+        graph$nodes_df |>
+          dplyr::filter(id %in% new_node_id) |>
+          dplyr::select(dplyr::all_of(columns_to_select)) |>
           dplyr::left_join(node_aes_tbl, by = "id"))
   }
 
@@ -326,7 +326,7 @@ add_n_nodes_ws <- function(
   if (exists("node_data_tbl")) {
 
     node_data_tbl <-
-      node_data_tbl %>%
+      node_data_tbl |>
       dplyr::mutate(id = new_node_id, .before = 0)
 
     columns_to_select <-
@@ -334,11 +334,11 @@ add_n_nodes_ws <- function(
 
     graph$nodes_df <-
       dplyr::bind_rows(
-        graph$nodes_df %>%
+        graph$nodes_df |>
           dplyr::filter(!(id %in% new_node_id)),
-        graph$nodes_df %>%
-          dplyr::filter(id %in% new_node_id) %>%
-          dplyr::select(dplyr::all_of(columns_to_select)) %>%
+        graph$nodes_df |>
+          dplyr::filter(id %in% new_node_id) |>
+          dplyr::select(dplyr::all_of(columns_to_select)) |>
           dplyr::left_join(node_data_tbl, by = "id"))
   }
 
@@ -346,7 +346,7 @@ add_n_nodes_ws <- function(
   if (exists("edge_aes_tbl")) {
 
     edge_aes_tbl <-
-      edge_aes_tbl %>%
+      edge_aes_tbl |>
       dplyr::mutate(id = new_edge_id, .before = 0)
 
     columns_to_select <-
@@ -354,11 +354,11 @@ add_n_nodes_ws <- function(
 
     graph$edges_df <-
       dplyr::bind_rows(
-        graph$edges_df %>%
+        graph$edges_df |>
           dplyr::filter(!(id %in% new_edge_id)),
-        graph$edges_df %>%
-          dplyr::filter(id %in% new_edge_id) %>%
-          dplyr::select(dplyr::all_of(columns_to_select)) %>%
+        graph$edges_df |>
+          dplyr::filter(id %in% new_edge_id) |>
+          dplyr::select(dplyr::all_of(columns_to_select)) |>
           dplyr::left_join(edge_aes_tbl, by = "id"))
   }
 
@@ -366,7 +366,7 @@ add_n_nodes_ws <- function(
   if (exists("edge_data_tbl")) {
 
     edge_data_tbl <-
-      edge_data_tbl %>%
+      edge_data_tbl |>
       dplyr::mutate(id = new_edge_id, .before = 0)
 
     columns_to_select <-
@@ -374,11 +374,11 @@ add_n_nodes_ws <- function(
 
     graph$edges_df <-
       dplyr::bind_rows(
-        graph$edges_df %>%
+        graph$edges_df |>
           dplyr::filter(!(id %in% new_edge_id)),
-        graph$edges_df %>%
-          dplyr::filter(id %in% new_edge_id) %>%
-          dplyr::select(dplyr::all_of(columns_to_select)) %>%
+        graph$edges_df |>
+          dplyr::filter(id %in% new_edge_id) |>
+          dplyr::select(dplyr::all_of(columns_to_select)) |>
           dplyr::left_join(edge_data_tbl, by = "id"))
   }
 

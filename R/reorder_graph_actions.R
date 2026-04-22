@@ -18,7 +18,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 4,
 #'     m = 4,
@@ -27,17 +27,17 @@
 #' # Add three graph actions to the
 #' # graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "rescale_node_attrs",
 #'     node_attr_from = "pagerank",
 #'     node_attr_to = "width",
-#'     action_name = "pgrnk_to_width") %>%
+#'     action_name = "pgrnk_to_width") |>
 #'   add_graph_action(
 #'     fcn = "set_node_attr_w_fcn",
 #'     node_attr_fcn = "get_pagerank",
 #'     column_name = "pagerank",
-#'     action_name = "get_pagerank") %>%
+#'     action_name = "get_pagerank") |>
 #'   add_graph_action(
 #'     fcn = "colorize_node_attrs",
 #'     node_attr_from = "width",
@@ -47,7 +47,7 @@
 #' # View the graph actions for the graph
 #' # object by using the function called
 #' # `get_graph_actions()`
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' # We note that the order isn't
 #' # correct and that the `get_pagerank`
@@ -58,14 +58,14 @@
 #' # and specify the reordering with a
 #' # numeric vector
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   reorder_graph_actions(
 #'     indices = c(2, 1, 3))
 #'
 #' # View the graph actions for the graph
 #' # object once again to verify that
 #' # we have the desired order of actions
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' @export
 reorder_graph_actions <- function(
@@ -90,8 +90,8 @@ reorder_graph_actions <- function(
   # Get the `action_index` values
   # available in `graph$graph_actions`
   available_indices <-
-    graph %>%
-    get_graph_actions() %>%
+    graph |>
+    get_graph_actions() |>
     dplyr::pull("action_index")
 
   # Verify that the provided values
@@ -117,7 +117,7 @@ reorder_graph_actions <- function(
   # Get a revised data frame with graph actions
   # in the requested order
   revised_graph_actions <-
-    graph_actions_tbl[revised_indices, ] %>%
+    graph_actions_tbl[revised_indices, ] |>
     dplyr::mutate(action_index = dplyr::row_number())
 
   # Replace `graph$graph_actions` with the

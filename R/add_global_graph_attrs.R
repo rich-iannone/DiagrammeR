@@ -21,7 +21,7 @@
 #' # add a global graph attribute
 #' graph <-
 #'   create_graph(
-#'     attr_theme = NULL) %>%
+#'     attr_theme = NULL) |>
 #'   add_global_graph_attrs(
 #'     attr = "overlap",
 #'     value = "true",
@@ -29,13 +29,13 @@
 #'
 #' # Verify that the attribute
 #' # addition has been made
-#' graph %>%
+#' graph |>
 #'   get_global_graph_attr_info()
 #'
 #' # Add another attribute with
 #' # `add_global_graph_attrs()`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_global_graph_attrs(
 #'     attr = "penwidth",
 #'     value = 12,
@@ -43,18 +43,18 @@
 #'
 #' # Verify that the attribute
 #' # addition has been made
-#' graph %>%
+#' graph |>
 #'   get_global_graph_attr_info()
 #'
 #' # When adding an attribute where
 #' # `attr` and `attr_type` already
 #' # exists, the value provided will
 #' # serve as an update
-#' graph %>%
+#' graph |>
 #'   add_global_graph_attrs(
 #'     attr = "penwidth",
 #'     value = 15,
-#'     attr_type = "node") %>%
+#'     attr_type = "node") |>
 #'   get_global_graph_attr_info()
 #'
 #' @export
@@ -93,14 +93,14 @@ add_global_graph_attrs <- function(
   # Join the new attributes to those available
   # on the `attr` and `attr_type` columns
   global_attrs_joined <-
-    global_attrs_available %>%
+    global_attrs_available |>
     dplyr::full_join(
       global_attrs_to_add,
-      by = c("attr", "attr_type")) %>%
+      by = c("attr", "attr_type")) |>
     dplyr::mutate(
       attr, attr_type,
       value = dplyr::coalesce(value.y, value.x),
-      .keep = "none") %>%
+      .keep = "none") |>
     dplyr::select("attr", "value", "attr_type")
 
   # Replace the graph's global attributes with

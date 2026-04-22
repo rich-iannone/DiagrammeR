@@ -14,7 +14,7 @@
 #' # Create a graph with 4 nodes
 #' # and no edges
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(n = 4)
 #'
 #' # Create an edge data frame (edf)
@@ -28,14 +28,14 @@
 #' # a graph with both nodes
 #' # and edges
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_edge_df(
 #'     edge_df = edf)
 #'
 #' # Get the graph's edges to
 #' # verify that the edf had
 #' # been added
-#' graph %>%
+#' graph |>
 #'   get_edges(
 #'     return_type = "vector")
 #'
@@ -61,7 +61,7 @@ add_edge_df <- function(
   edges_created <- graph$last_edge
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Combine the incoming edge data frame
   # with those in the graph
@@ -76,7 +76,7 @@ add_edge_df <- function(
   graph$edges_df <- combined_edges
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

@@ -19,14 +19,14 @@
 #' # Create a new graph and add
 #' # a 2 x 2 x 2 grid
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_grid_3d(
 #'     x = 2, y = 2, z = 2,
 #'     type = "grid")
 #'
 #' # Get node information
 #' # from this graph
-#' graph %>%
+#' graph |>
 #'   get_node_info()
 #'
 #' # Attributes can be specified
@@ -38,7 +38,7 @@
 #' # attribute will apply to the
 #' # edges
 #' graph_w_attrs <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_grid_3d(
 #'     x = 2, y = 2, z = 2,
 #'     label = c(
@@ -57,10 +57,10 @@
 #'         6.3, 9.3)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>% get_node_df()
+#' graph_w_attrs |> get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>% get_edge_df()
+#' graph_w_attrs |> get_edge_df()
 #'
 #' @export
 add_grid_3d <- function(
@@ -112,12 +112,12 @@ add_grid_3d <- function(
   grid <-
     igraph::make_lattice(
       dimvector = c(x, y, z),
-      directed = graph_directed) %>%
+      directed = graph_directed) |>
     from_igraph()
 
-  n_nodes <- grid %>% count_nodes()
+  n_nodes <- grid |> count_nodes()
 
-  n_edges <- grid %>% count_edges()
+  n_edges <- grid |> count_edges()
 
   # Create a node data frame for the grid graph
   grid_nodes <-
@@ -150,7 +150,7 @@ add_grid_3d <- function(
       node_aes$index__ <- seq_len(nrow(grid_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -169,7 +169,7 @@ add_grid_3d <- function(
       node_data$index__ <- seq_len(nrow(grid_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -188,7 +188,7 @@ add_grid_3d <- function(
       edge_aes$index__ <- seq_len(nrow(grid_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -207,7 +207,7 @@ add_grid_3d <- function(
       edge_data$index__ <- seq_len(nrow(grid_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -220,7 +220,7 @@ add_grid_3d <- function(
   if (exists("node_aes_tbl")) {
 
     grid_graph$nodes_df <-
-      grid_graph$nodes_df %>%
+      grid_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -228,7 +228,7 @@ add_grid_3d <- function(
   if (exists("node_data_tbl")) {
 
     grid_graph$nodes_df <-
-      grid_graph$nodes_df %>%
+      grid_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -236,7 +236,7 @@ add_grid_3d <- function(
   if (exists("edge_aes_tbl")) {
 
     grid_graph$edges_df <-
-      grid_graph$edges_df %>%
+      grid_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -244,7 +244,7 @@ add_grid_3d <- function(
   if (exists("edge_data_tbl")) {
 
     grid_graph$edges_df <-
-      grid_graph$edges_df %>%
+      grid_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

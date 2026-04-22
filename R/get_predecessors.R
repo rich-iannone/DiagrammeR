@@ -36,13 +36,13 @@
 #'
 #' # Get predecessors for node
 #' # `23` in the graph
-#' graph %>%
+#' graph |>
 #'   get_predecessors(
 #'     node = 23)
 #'
 #' # If there are no predecessors,
 #' # `NA` is returned
-#' graph %>%
+#' graph |>
 #'   get_predecessors(
 #'     node = 26)
 #'

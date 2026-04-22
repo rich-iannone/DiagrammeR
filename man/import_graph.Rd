@@ -72,11 +72,11 @@ gml_graph <-
       package = "DiagrammeR"))
 
 # Get a count of the graph's nodes
-gml_graph \%>\%
+gml_graph |>
   count_nodes()
 
 # Get a count of the graph's edges
-gml_graph \%>\%
+gml_graph |>
   count_edges()
 }
 

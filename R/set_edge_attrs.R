@@ -40,7 +40,7 @@
 #' # for edges `1`->`4` and `3`->`1`
 #' # in the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
 #'     values = "green",
@@ -50,7 +50,7 @@
 #' # Set attribute `color = "blue"`
 #' # for all edges in the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
 #'     values = "blue")
@@ -59,7 +59,7 @@
 #' # for all edges in graph outbound
 #' # from node with ID value `1`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
 #'     values = "pink",
@@ -69,7 +69,7 @@
 #' # for all edges in graph inbound
 #' # to node with ID `1`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
 #'     values = "black",
@@ -91,7 +91,7 @@ set_edge_attrs <- function(
 
   # Get the requested `edge_attr`
   edge_attr <-
-    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr) |> rlang::get_expr() |> as.character()
 
   if (edge_attr %in% c("id", "from", "to")) {
 

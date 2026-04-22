@@ -34,7 +34,7 @@
 #' # a probability value of 0.05
 #' smallworld_graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_smallworld_graph(
 #'     dimension = 1,
 #'     size = 50,
@@ -43,10 +43,10 @@
 #'     set_seed = 23)
 #'
 #' # Get a count of nodes
-#' smallworld_graph %>% count_nodes()
+#' smallworld_graph |> count_nodes()
 #'
 #' # Get a count of edges
-#' smallworld_graph %>% count_edges()
+#' smallworld_graph |> count_edges()
 #'
 #' @export
 add_smallworld_graph <- function(
@@ -121,12 +121,12 @@ add_smallworld_graph <- function(
   # create a unique label for all new nodes
   if (label) {
     sample_smallworld_graph$nodes_df$label <-
-      sample_smallworld_graph$nodes_df$id %>% as.character()
+      sample_smallworld_graph$nodes_df$id |> as.character()
   }
 
-  n_nodes <- sample_smallworld_graph %>% count_nodes()
+  n_nodes <- sample_smallworld_graph |> count_nodes()
 
-  n_edges <- sample_smallworld_graph %>% count_edges()
+  n_edges <- sample_smallworld_graph |> count_edges()
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -138,7 +138,7 @@ add_smallworld_graph <- function(
       node_aes$index__ <- seq_len(nrow(sample_smallworld_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -157,7 +157,7 @@ add_smallworld_graph <- function(
       node_data$index__ <- seq_len(nrow(sample_smallworld_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -176,7 +176,7 @@ add_smallworld_graph <- function(
       edge_aes$index__ <- seq_len(nrow(sample_smallworld_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -195,7 +195,7 @@ add_smallworld_graph <- function(
       edge_data$index__ <- seq_len(nrow(sample_smallworld_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -208,7 +208,7 @@ add_smallworld_graph <- function(
   if (exists("node_aes_tbl")) {
 
     sample_smallworld_graph$nodes_df <-
-      sample_smallworld_graph$nodes_df %>%
+      sample_smallworld_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -216,7 +216,7 @@ add_smallworld_graph <- function(
   if (exists("node_data_tbl")) {
 
     sample_smallworld_graph$nodes_df <-
-      sample_smallworld_graph$nodes_df %>%
+      sample_smallworld_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -224,7 +224,7 @@ add_smallworld_graph <- function(
   if (exists("edge_aes_tbl")) {
 
     sample_smallworld_graph$edges_df <-
-      sample_smallworld_graph$edges_df %>%
+      sample_smallworld_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -232,7 +232,7 @@ add_smallworld_graph <- function(
   if (exists("edge_data_tbl")) {
 
     sample_smallworld_graph$edges_df <-
-      sample_smallworld_graph$edges_df %>%
+      sample_smallworld_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

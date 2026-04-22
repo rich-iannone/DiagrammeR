@@ -22,7 +22,7 @@
 #' # Create a random graph using
 #' # the `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 35, m = 125,
 #'     set_seed = 23)
@@ -30,17 +30,17 @@
 #' # Report which nodes have a
 #' # total degree (in-degree +
 #' # out-degree) of exactly 9
-#' graph %>%
+#' graph |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg == 9") %>%
+#'     expressions = "deg == 9") |>
 #'   get_selection()
 #'
 #' # Report which nodes have a
 #' # total degree greater than or
 #' # equal to 9
-#' graph %>%
+#' graph |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg >= 9") %>%
+#'     expressions = "deg >= 9") |>
 #'   get_selection()
 #'
 #' # Combine two calls of
@@ -51,11 +51,11 @@
 #' # default, those `select...()`
 #' # functions will `union` the
 #' # sets of nodes selected)
-#' graph %>%
+#' graph |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg < 3") %>%
+#'     expressions = "deg < 3") |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg > 10") %>%
+#'     expressions = "deg > 10") |>
 #'   get_selection()
 #'
 #' # Combine two calls of
@@ -66,12 +66,12 @@
 #' # to 10 (the key here is to
 #' # `intersect` the sets of nodes
 #' # selected in the second call)
-#' graph %>%
+#' graph |>
 #'   select_nodes_by_degree(
-#'     expressions = "deg >= 3") %>%
+#'     expressions = "deg >= 3") |>
 #'   select_nodes_by_degree(
 #'     expressions = "deg <= 10",
-#'     set_op = "intersect") %>%
+#'     set_op = "intersect") |>
 #'   get_selection()
 #'
 #' # Select all nodes with an
@@ -80,15 +80,15 @@
 #' # selected nodes (coloring the
 #' # selected nodes red)
 #' graph_2 <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_degree(
-#'     expressions = "indeg > 5") %>%
+#'     expressions = "indeg > 5") |>
 #'   set_node_attrs_ws(
 #'     node_attr = color,
 #'     value = "red")
 #'
 #' # Get the selection of nodes
-#' graph_2 %>% get_selection()
+#' graph_2 |> get_selection()
 #'
 #' @export
 select_nodes_by_degree <- function(
@@ -113,8 +113,8 @@ select_nodes_by_degree <- function(
 
   # Get a data frame with node ID and degree types
   node_degree <-
-    get_node_info(graph) %>%
-    dplyr::select("id", "deg", "indeg", "outdeg") %>%
+    get_node_info(graph) |>
+    dplyr::select("id", "deg", "indeg", "outdeg") |>
     dplyr::filter(!!!parse_exprs(expressions))
 
   # Get the node ID values from the filtered table

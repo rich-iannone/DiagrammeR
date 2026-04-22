@@ -25,30 +25,33 @@ set.seed(23)
 # connection between 2 different
 # node cycles
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_cycle(
     n = 3,
-    type = "cycle_1") \%>\%
+    type = "cycle_1") |>
   add_cycle(
     n = 4,
-    type = "cycle_2") \%>\%
+    type = "cycle_2")
+
+graph <-
+  graph |>
   add_edge(
     from =
       get_node_ids(
-        graph = .,
+        graph = graph,
         conditions =
-          type == "cycle_1") \%>\%
+          type == "cycle_1") |>
         sample(size = 1),
     to =
       get_node_ids(
-        graph = .,
+        graph = graph,
         conditions =
-          type == "cycle_2") \%>\%
+          type == "cycle_2") |>
         sample(size = 1))
 
 # Get the strongly connected
 # components as a data frame of
 # nodes and their groupings
-graph \%>\% get_s_connected_cmpts()
+graph |> get_s_connected_cmpts()
 
 }

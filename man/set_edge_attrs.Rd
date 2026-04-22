@@ -51,7 +51,7 @@ graph <-
 # for edges `1`->`4` and `3`->`1`
 # in the graph
 graph <-
-  graph \%>\%
+  graph |>
   set_edge_attrs(
     edge_attr = color,
     values = "green",
@@ -61,7 +61,7 @@ graph <-
 # Set attribute `color = "blue"`
 # for all edges in the graph
 graph <-
-  graph \%>\%
+  graph |>
   set_edge_attrs(
     edge_attr = color,
     values = "blue")
@@ -70,7 +70,7 @@ graph <-
 # for all edges in graph outbound
 # from node with ID value `1`
 graph <-
-  graph \%>\%
+  graph |>
   set_edge_attrs(
     edge_attr = color,
     values = "pink",
@@ -80,7 +80,7 @@ graph <-
 # for all edges in graph inbound
 # to node with ID `1`
 graph <-
-  graph \%>\%
+  graph |>
   set_edge_attrs(
     edge_attr = color,
     values = "black",

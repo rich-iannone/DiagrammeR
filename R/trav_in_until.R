@@ -44,11 +44,11 @@
 #' # nodes from beginning to end;
 #' # select the last path node
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 10,
 #'     node_data = node_data(
-#'       value = 1:10)) %>%
+#'       value = 1:10)) |>
 #'   select_nodes_by_id(
 #'     nodes = 10)
 #'
@@ -56,13 +56,13 @@
 #' # until stopping at a node where
 #' # the `value` attribute is 1
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_in_until(
 #'     conditions =
 #'       value == 1)
 #'
 #' # Get the graph's node selection
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Create two cycles in a graph and
 #' # add values of 1 to 6 to the
@@ -70,15 +70,15 @@
 #' # 12 in the second; select nodes
 #' # `6` and `12`
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(
 #'     n = 6,
 #'     node_data = node_data(
-#'       value = 1:6)) %>%
+#'       value = 1:6)) |>
 #'   add_cycle(
 #'     n = 6,
 #'     node_data = node_data(
-#'       value = 7:12)) %>%
+#'       value = 7:12)) |>
 #'   select_nodes_by_id(
 #'     nodes = c(6, 12))
 #'
@@ -90,14 +90,14 @@
 #' # keep the finally traversed to
 #' # nodes that satisfy the conditions
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_in_until(
 #'     conditions =
 #'       value %in% c(1, 2, 10),
 #'     exclude_unmatched = TRUE)
 #'
 #' # Get the graph's node selection
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 trav_in_until <- function(
@@ -133,13 +133,13 @@ trav_in_until <- function(
 
   starting_nodes <-
     suppressMessages(
-      graph %>%
+      graph |>
         get_selection())
 
   # Determine which nodes satisfy the
   # conditions provided
   all_nodes_conditions_met <-
-    graph %>%
+    graph |>
     get_node_ids(conditions = {{ conditions }})
 
   # Get the name of the function
@@ -150,7 +150,7 @@ trav_in_until <- function(
     # Clear the active selection
     graph <-
       suppressMessages(
-        graph %>%
+        graph |>
           clear_selection())
 
     # Remove action from graph log
@@ -185,7 +185,7 @@ trav_in_until <- function(
   repeat {
 
     # Perform traversal
-    graph <- graph %>% trav_in()
+    graph <- graph |> trav_in()
 
     # Remove action from graph log
     graph$graph_log <-
@@ -193,18 +193,18 @@ trav_in_until <- function(
 
     # If any nodes are `all_nodes_conditions_met` nodes
     # deselect that node and save the node in a stack
-    if (any(suppressMessages(graph %>% get_selection()) %in%
+    if (any(suppressMessages(graph |> get_selection()) %in%
             all_nodes_conditions_met)) {
 
       node_stack <-
         c(node_stack,
           intersect(
-            suppressMessages(graph %>% get_selection()),
+            suppressMessages(graph |> get_selection()),
             all_nodes_conditions_met))
 
       # Remove the node from the active selection
       graph <-
-        graph %>% deselect_nodes(nodes = node_stack)
+        graph |> deselect_nodes(nodes = node_stack)
 
       # Remove action from graph log
       graph$graph_log <-
@@ -228,28 +228,28 @@ trav_in_until <- function(
       }
 
       path_nodes <-
-        node_stack %>%
+        node_stack |>
         purrr::map(
           .f = function(x) {
-            graph %>%
-              to_igraph() %>%
+            graph |>
+              to_igraph() |>
               igraph::all_simple_paths(
                 from = x,
                 to = starting_nodes,
-                mode = "out") %>%
-              unlist() %>%
-              as.integer()}) %>%
-        unlist() %>%
+                mode = "out") |>
+              unlist() |>
+              as.integer()}) |>
+        unlist() |>
         unique()
 
       graph <-
-        graph %>%
+        graph |>
         select_nodes_by_id(unique(path_nodes))
 
     } else {
 
       graph <-
-        graph %>%
+        graph |>
         select_nodes_by_id(unique(node_stack))
     }
 
@@ -266,8 +266,8 @@ trav_in_until <- function(
 
       graph <-
         suppressMessages(
-          graph %>%
-            clear_selection() %>%
+          graph |>
+            clear_selection() |>
             select_nodes_by_id(
               intersect(new_selection, all_nodes_conditions_met)))
 
@@ -295,7 +295,7 @@ trav_in_until <- function(
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
     graph <-
-      graph %>%
+      graph |>
       trigger_graph_actions()
   }
 

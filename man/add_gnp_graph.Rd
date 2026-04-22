@@ -72,15 +72,15 @@ G(n, p) model, which uses a constant probability when creating edges.
 # a probability value of 0.05
 gnp_graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnp_graph(
     n = 100,
     p = 0.05)
 
 # Get a count of nodes
-gnp_graph \%>\% count_nodes()
+gnp_graph |> count_nodes()
 
 # Get a count of edges
-gnp_graph \%>\% count_edges()
+gnp_graph |> count_edges()
 
 }

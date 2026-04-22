@@ -175,7 +175,7 @@ created.
 # a path with several edge
 # aesthetic attributes
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_path(
     n = 3,
     type = "path",
@@ -187,7 +187,7 @@ graph <-
 # node data frame; the node
 # aesthetic attributes have
 # been inserted
-graph \%>\%
+graph |>
   get_edge_df()
 
 }

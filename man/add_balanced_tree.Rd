@@ -65,11 +65,11 @@ With a graph object of class \code{dgr_graph}, add a balanced tree to the graph.
 # 2 (branching twice) and
 # different branching ratios
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_balanced_tree(
     k = 2,
     h = 2,
-    type = "binary") \%>\%
+    type = "binary") |>
   add_balanced_tree(
     k = 3,
     h = 2,
@@ -77,8 +77,8 @@ graph <-
 
 # Get some node information
 # from this graph
-graph \%>\%
-  get_node_info() \%>\%
+graph |>
+  get_node_info() |>
   head(5)
 
 # Node and edge aesthetic and data
@@ -87,7 +87,7 @@ graph \%>\%
 # `node_data`, and `edge_data`
 # arguments
 graph_w_attrs <-
-  create_graph() \%>\%
+  create_graph() |>
   add_balanced_tree(
     k = 2,
     h = 2,
@@ -111,14 +111,14 @@ graph_w_attrs <-
 
 # Get the first three rows of
 # the graph's node data frame
-graph_w_attrs \%>\%
-  get_node_df() \%>\%
+graph_w_attrs |>
+  get_node_df() |>
   head(3)
 
 # Get the first three rows of
 # the graph's edge data frame
-graph_w_attrs \%>\%
-  get_edge_df() \%>\%
+graph_w_attrs |>
+  get_edge_df() |>
   head(3)
 
 }

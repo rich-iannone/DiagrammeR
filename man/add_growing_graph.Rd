@@ -70,7 +70,7 @@ each time step (where a node is added).
 # nodes, adding an edge after
 # each node addition
 growing_graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_growing_graph(
     n = 100,
     m = 1,
@@ -78,9 +78,9 @@ growing_graph <-
     set_seed = 23)
 
 # Get a count of nodes
-growing_graph \%>\% count_nodes()
+growing_graph |> count_nodes()
 
 # Get a count of edges
-growing_graph \%>\% count_edges()
+growing_graph |> count_edges()
 
 }

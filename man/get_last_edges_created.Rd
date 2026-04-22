@@ -20,16 +20,16 @@ This function should ideally be used just after creating the edges.
 # Create a graph and add a cycle and then
 # a tree in 2 separate function calls
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_cycle(
     n = 3,
-    rel = "a") \%>\%
+    rel = "a") |>
   add_balanced_tree(
     k = 2, h = 2,
     rel = "b")
 
 # Get the last edges created (all edges
 # from the tree)
-graph \%>\% get_last_edges_created()
+graph |> get_last_edges_created()
 
 }

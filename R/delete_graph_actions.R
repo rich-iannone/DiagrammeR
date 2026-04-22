@@ -16,7 +16,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 8,
@@ -25,17 +25,17 @@
 #' # Add three graph actions to the
 #' # graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "set_node_attr_w_fcn",
 #'     node_attr_fcn = "get_pagerank",
 #'     column_name = "pagerank",
-#'     action_name = "get_pagerank") %>%
+#'     action_name = "get_pagerank") |>
 #'   add_graph_action(
 #'     fcn = "rescale_node_attrs",
 #'     node_attr_from = "pagerank",
 #'     node_attr_to = "width",
-#'     action_name = "pagerank_to_width") %>%
+#'     action_name = "pagerank_to_width") |>
 #'   add_graph_action(
 #'     fcn = "colorize_node_attrs",
 #'     node_attr_from = "width",
@@ -45,19 +45,19 @@
 #' # View the graph actions for the graph
 #' # object by using the `get_graph_actions()`
 #' # function
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' # Delete the second and third graph
 #' # actions using `delete_graph_actions()`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   delete_graph_actions(
 #'     actions = c(2, 3))
 #'
 #' # Verify that these last two graph
 #' # actions were deleted by again using
 #' # the `get_graph_actions()` function
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' @export
 delete_graph_actions <- function(
@@ -81,8 +81,8 @@ delete_graph_actions <- function(
   if (inherits(actions, "character")) {
 
     graph_action_names <-
-      graph %>%
-      get_graph_actions() %>%
+      graph |>
+      get_graph_actions() |>
       dplyr::pull("action_name")
 
     if (!any(actions %in% graph_action_names)) {
@@ -93,17 +93,17 @@ delete_graph_actions <- function(
 
     # Get a revised data frame with graph actions
     revised_graph_actions <-
-      graph %>%
-      get_graph_actions() %>%
-      dplyr::filter(!(action_name %in% actions)) %>%
+      graph |>
+      get_graph_actions() |>
+      dplyr::filter(!(action_name %in% actions)) |>
       dplyr::mutate(action_index = dplyr::row_number())
   }
 
   if (inherits(actions, "numeric")) {
 
     graph_action_indices <-
-      graph %>%
-      get_graph_actions() %>%
+      graph |>
+      get_graph_actions() |>
       dplyr::pull(action_index)
 
     if (!any(actions %in% graph_action_indices)) {
@@ -112,9 +112,9 @@ delete_graph_actions <- function(
 
     # Get a revised data frame with graph actions
     revised_graph_actions <-
-      graph %>%
-      get_graph_actions() %>%
-      dplyr::filter(!(action_index %in% actions)) %>%
+      graph |>
+      get_graph_actions() |>
+      dplyr::filter(!(action_index %in% actions)) |>
       dplyr::mutate(action_index = dplyr::row_number())
   }
 

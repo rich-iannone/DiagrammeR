@@ -34,7 +34,7 @@
 #' # Get the total number of multiple
 #' # edges (those edges that share an
 #' # edge definition) in the graph
-#' graph %>% get_multiedge_count()
+#' graph |> get_multiedge_count()
 #'
 #' @export
 get_multiedge_count <- function(graph) {
@@ -49,10 +49,10 @@ get_multiedge_count <- function(graph) {
   # regardless of which definitions these
   # edges have
   multiedge_count <-
-    (graph$edges_df %>%
+    (graph$edges_df |>
        nrow()) -
-    (graph$edges_df %>%
-       dplyr::distinct(from, to) %>%
+    (graph$edges_df |>
+       dplyr::distinct(from, to) |>
        nrow())
 
   multiedge_count

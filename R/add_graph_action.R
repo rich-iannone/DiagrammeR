@@ -17,7 +17,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 22,
@@ -33,7 +33,7 @@
 #' # called on the graph that modifies it
 #' # (e.g., `add_n_nodes()`)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "set_node_attr_w_fcn",
 #'     node_attr_fcn = "get_betweenness",
@@ -43,7 +43,7 @@
 #' # To ensure that the action is
 #' # available in the graph, use the
 #' # `get_graph_actions()` function
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' @export
 add_graph_action <- function(

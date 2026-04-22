@@ -24,7 +24,7 @@
 #' @examples
 #' # Create a graph of islands
 #' islands_graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_islands_graph(
 #'     n_islands = 4,
 #'     island_size = 10,
@@ -33,10 +33,10 @@
 #'     set_seed = 23)
 #'
 #' # Get a count of nodes
-#' islands_graph %>% count_nodes()
+#' islands_graph |> count_nodes()
 #'
 #' # Get a count of edges
-#' islands_graph %>% count_edges()
+#' islands_graph |> count_edges()
 #'
 #' @export
 add_islands_graph <- function(
@@ -107,7 +107,7 @@ add_islands_graph <- function(
   # create a unique label for all new nodes
   if (label) {
     sample_islands_graph$nodes_df$label <-
-      sample_islands_graph$nodes_df$id %>% as.character()
+      sample_islands_graph$nodes_df$id |> as.character()
   }
 
   n_nodes <- nrow(sample_islands_graph$nodes_df)
@@ -124,7 +124,7 @@ add_islands_graph <- function(
       node_aes$index__ <- seq_len(nrow(sample_islands_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -143,7 +143,7 @@ add_islands_graph <- function(
       node_data$index__ <- seq_len(nrow(sample_islands_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -162,7 +162,7 @@ add_islands_graph <- function(
       edge_aes$index__ <- seq_len(nrow(sample_islands_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -181,7 +181,7 @@ add_islands_graph <- function(
       edge_data$index__ <- seq_len(nrow(sample_islands_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -194,7 +194,7 @@ add_islands_graph <- function(
   if (exists("node_aes_tbl")) {
 
     sample_islands_graph$nodes_df <-
-      sample_islands_graph$nodes_df %>%
+      sample_islands_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -202,7 +202,7 @@ add_islands_graph <- function(
   if (exists("node_data_tbl")) {
 
     sample_islands_graph$nodes_df <-
-      sample_islands_graph$nodes_df %>%
+      sample_islands_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -210,7 +210,7 @@ add_islands_graph <- function(
   if (exists("edge_aes_tbl")) {
 
     sample_islands_graph$edges_df <-
-      sample_islands_graph$edges_df %>%
+      sample_islands_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -218,7 +218,7 @@ add_islands_graph <- function(
   if (exists("edge_data_tbl")) {
 
     sample_islands_graph$edges_df <-
-      sample_islands_graph$edges_df %>%
+      sample_islands_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

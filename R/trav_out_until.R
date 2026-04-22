@@ -44,11 +44,11 @@
 #' # nodes from beginning to end;
 #' # select the first path node
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 10,
 #'     node_data = node_data(
-#'       value = 1:10)) %>%
+#'       value = 1:10)) |>
 #'   select_nodes_by_id(
 #'     nodes = 1)
 #'
@@ -56,13 +56,13 @@
 #' # until stopping at a node where
 #' # the `value` attribute is 8
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_out_until(
 #'     conditions =
 #'       value == 8)
 #'
 #' # Get the graph's node selection
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Create two cycles in graph and
 #' # add values of 1 to 6 to the
@@ -70,15 +70,15 @@
 #' # 12 in the second; select nodes
 #' # `1` and `7`
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(
 #'     n = 6,
 #'     node_data = node_data(
-#'       value = 1:6)) %>%
+#'       value = 1:6)) |>
 #'   add_cycle(
 #'     n = 6,
 #'     node_data = node_data(
-#'       value = 7:12)) %>%
+#'       value = 7:12)) |>
 #'   select_nodes_by_id(
 #'     nodes = c(1, 7))
 #'
@@ -90,14 +90,14 @@
 #' # keep the finally traversed to
 #' # nodes that satisfy the conditions
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trav_out_until(
 #'     conditions =
 #'       value %in% c(5, 6, 9),
 #'     exclude_unmatched = TRUE)
 #'
 #' # Get the graph's node selection
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 trav_out_until <- function(
@@ -130,13 +130,13 @@ trav_out_until <- function(
 
   starting_nodes <-
     suppressMessages(
-      graph %>%
+      graph |>
         get_selection())
 
   # Determine which nodes satisfy the
   # conditions provided
   all_nodes_conditions_met <-
-    graph %>%
+    graph |>
     get_node_ids(conditions = {{ conditions }})
 
   if (exclude_unmatched && all(is.na(all_nodes_conditions_met))) {
@@ -144,7 +144,7 @@ trav_out_until <- function(
     # Clear the active selection
     graph <-
       suppressMessages(
-        graph %>%
+        graph |>
           clear_selection())
 
     # Remove action from graph log
@@ -179,7 +179,7 @@ trav_out_until <- function(
   repeat {
 
     # Perform traversal
-    graph <- graph %>% trav_out()
+    graph <- graph |> trav_out()
 
     # Remove action from graph log
     graph$graph_log <-
@@ -187,18 +187,18 @@ trav_out_until <- function(
 
     # If any nodes are `all_nodes_conditions_met` nodes
     # deselect that node and save the node in a stack
-    if (any(suppressMessages(graph %>% get_selection()) %in%
+    if (any(suppressMessages(graph |> get_selection()) %in%
             all_nodes_conditions_met)) {
 
       node_stack <-
         c(node_stack,
           intersect(
-            suppressMessages(graph %>% get_selection()),
+            suppressMessages(graph |> get_selection()),
             all_nodes_conditions_met))
 
       # Remove the node from the active selection
       graph <-
-        graph %>% deselect_nodes(nodes = node_stack)
+        graph |> deselect_nodes(nodes = node_stack)
 
       # Remove action from graph log
       graph$graph_log <-
@@ -222,28 +222,28 @@ trav_out_until <- function(
       }
 
       path_nodes <-
-        node_stack %>%
+        node_stack |>
         purrr::map(
           .f = function(x) {
-            graph %>%
-              to_igraph() %>%
+            graph |>
+              to_igraph() |>
               igraph::all_simple_paths(
                 from = x,
                 to = starting_nodes,
-                mode = "in") %>%
-              unlist() %>%
-              as.integer()}) %>%
-        unlist() %>%
+                mode = "in") |>
+              unlist() |>
+              as.integer()}) |>
+        unlist() |>
         unique()
 
       graph <-
-        graph %>%
+        graph |>
         select_nodes_by_id(unique(path_nodes))
 
     } else {
 
       graph <-
-        graph %>%
+        graph |>
         select_nodes_by_id(unique(node_stack))
     }
 
@@ -260,8 +260,8 @@ trav_out_until <- function(
 
       graph <-
         suppressMessages(
-          graph %>%
-            clear_selection() %>%
+          graph |>
+            clear_selection() |>
             select_nodes_by_id(
               intersect(new_selection, all_nodes_conditions_met)))
 

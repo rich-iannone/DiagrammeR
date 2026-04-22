@@ -47,8 +47,8 @@ encode_base64 <- function(raw) {
 get_mime_type <- function(file) {
 
   extension <-
-    file %>%
-    get_file_ext() %>%
+    file |>
+    get_file_ext() |>
     tolower()
 
   switch(

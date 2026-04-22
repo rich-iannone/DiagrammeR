@@ -36,11 +36,11 @@
 #'       package = "DiagrammeR"))
 #'
 #' # Get a count of the graph's nodes
-#' gml_graph %>%
+#' gml_graph |>
 #'   count_nodes()
 #'
 #' # Get a count of the graph's edges
-#' gml_graph %>%
+#' gml_graph |>
 #'   count_edges()
 #' }
 #'
@@ -96,7 +96,8 @@ import_graph <- function(
       utils::unzip(zipfile = dest_file)
 
       # Get the file name
-      base_name <- (strsplit(dest_file, split = "\\.") %>% unlist())[[1]]
+      base_name_parts <- strsplit(dest_file, split = "\\.") |> unlist()
+      base_name <- base_name_parts[[1]]
 
       graph_file <-
         list.files(pattern = paste0(base_name, ".*"))[
@@ -153,12 +154,12 @@ import_graph <- function(
     n_rows <- nrow(edges)
 
     edges <-
-      edges %>%
+      edges |>
       dplyr::mutate(
         id = seq_len(n_rows),
         rel = NA_character_
-        ) %>%
-      dplyr::relocate("id", "from", "to", "rel") %>%
+        ) |>
+      dplyr::relocate("id", "from", "to", "rel") |>
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
@@ -224,7 +225,7 @@ import_graph <- function(
           unlist(
             strsplit(
               mtx_document[first_line:length(mtx_document)],
-              " "))))) %>%
+              " "))))) |>
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create the graph
@@ -412,11 +413,11 @@ import_graph <- function(
       dplyr::tibble(
         from_label = from,
         to_label = to,
-        rel = rel) %>%
-      dplyr::right_join(ndf, c("from_label" = "label")) %>%
-      dplyr::select(from = "id", "to_label", "rel") %>%
-      dplyr::right_join(ndf, c("to_label" = "label")) %>%
-      dplyr::select("from", to = "id", "rel") %>%
+        rel = rel) |>
+      dplyr::right_join(ndf, c("from_label" = "label")) |>
+      dplyr::select(from = "id", "to_label", "rel") |>
+      dplyr::right_join(ndf, c("to_label" = "label")) |>
+      dplyr::select("from", to = "id", "rel") |>
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create a graph object

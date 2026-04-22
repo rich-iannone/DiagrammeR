@@ -8,7 +8,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -36,10 +36,10 @@ print.dgr_graph <- function(x, ...) {
       "get_global_graph_attr_info" = " info: `get_global_graph_attr_info()`")
 
   # Get a count of all nodes in the graph
-  node_count <- x %>% count_nodes()
+  node_count <- x |> count_nodes()
 
   # Get a count of all edges in the graph
-  edge_count <- x %>% count_edges()
+  edge_count <- x |> count_edges()
 
   # Get the node `type` status
   if (all(is.na(x$nodes_df$type))) {
@@ -50,23 +50,23 @@ print.dgr_graph <- function(x, ...) {
 
     node_type_status <-
       paste0(
-        x$nodes_df$type %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$nodes_df$type |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " val",
         ifelse(
-          x$nodes_df$type %>%
-            unique() %>%
-            base::setdiff(NA_character_) %>%
+          x$nodes_df$type |>
+            unique() |>
+            base::setdiff(NA_character_) |>
             length() > 1, "s", ""))
 
   } else if (!anyNA(x$nodes_df$type)) {
 
     node_type_status <-
       paste0(
-        x$nodes_df$type %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$nodes_df$type |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " vals - complete")
   }
 
@@ -78,23 +78,23 @@ print.dgr_graph <- function(x, ...) {
   } else if (!all(is.na(x$nodes_df$label)) && anyNA(x$nodes_df$label)) {
     node_label_status <-
       paste0(
-        x$nodes_df$label %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$nodes_df$label |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " val",
         ifelse(
-          x$nodes_df$label %>%
-            unique() %>%
-            base::setdiff(NA_character_) %>%
+          x$nodes_df$label |>
+            unique() |>
+            base::setdiff(NA_character_) |>
             length() > 1, "s", ""))
 
   } else if (!anyNA(x$nodes_df$label)) {
 
     node_label_status <-
       paste0(
-        x$nodes_df$label %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$nodes_df$label |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " vals - complete")
 
     if (!anyDuplicated(x$nodes_df$label)) {
@@ -107,8 +107,8 @@ print.dgr_graph <- function(x, ...) {
 
   # Get a list of extra node attributes
   node_extra_attrs <-
-    x$nodes_df %>%
-    colnames() %>%
+    x$nodes_df |>
+    colnames() |>
     base::setdiff(c("id", "type", "label"))
 
   if (length(node_extra_attrs) > 0) {
@@ -154,29 +154,29 @@ print.dgr_graph <- function(x, ...) {
 
     edge_rel_status <-
       paste0(
-        x$edges_df$rel %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$edges_df$rel |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " val",
         ifelse(
-          x$edges_df$rel %>%
-            unique() %>%
-            base::setdiff(NA_character_) %>%
+          x$edges_df$rel |>
+            unique() |>
+            base::setdiff(NA_character_) |>
             length() > 1, "s", ""))
 
   } else if (!anyNA(x$edges_df$rel)) {
     edge_rel_status <-
       paste0(
-        x$edges_df$rel %>%
-          unique() %>%
-          base::setdiff(NA_character_) %>%
+        x$edges_df$rel |>
+          unique() |>
+          base::setdiff(NA_character_) |>
           length(), " vals - complete")
   }
 
   # Get a list of extra edge attributes
   edge_extra_attrs <-
-    x$edges_df %>%
-    colnames() %>%
+    x$edges_df |>
+    colnames() |>
     base::setdiff(c("id", "from", "to", "rel"))
 
   if (length(edge_extra_attrs) > 0) {
@@ -462,7 +462,7 @@ print.dgr_graph <- function(x, ...) {
   number_of_actions_logged <- nrow(x$graph_log)
 
   tail_actions_logged <-
-    x$graph_log %>%
+    x$graph_log |>
     utils::tail(3)
 
   number_of_actions_in_tail <-

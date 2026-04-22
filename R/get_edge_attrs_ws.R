@@ -27,33 +27,34 @@
 #' # edges have an edge attribute
 #' # named `value`
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 4) %>%
-#'   {
-#'     edges <-
-#'       create_edge_df(
-#'         from = c(1, 2, 1, 4),
-#'           to = c(2, 3, 4, 3),
-#'          rel = "rel")
-#'     add_edge_df(
-#'       graph = .,
-#'       edge_df = edges)
-#'   } %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 4)
+#'
+#' edges <-
+#'   create_edge_df(
+#'     from = c(1, 2, 1, 4),
+#'       to = c(2, 3, 4, 3),
+#'      rel = "rel")
+#'
+#' graph <-
+#'   add_edge_df(
+#'     graph = graph,
+#'     edge_df = edges) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 1.6,
 #'     from = 1,
-#'       to = 2) %>%
+#'       to = 2) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 4.3,
 #'     from = 1,
-#'       to = 4) %>%
+#'       to = 4) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 2.9,
 #'     from = 2,
-#'       to = 3) %>%
+#'       to = 3) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 8.4,
@@ -63,7 +64,7 @@
 #' # Select the edges defined as
 #' # `1`->`3` and `2`->`3`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges(
 #'     from = c(1, 2),
 #'     to = c(2, 3))
@@ -71,7 +72,7 @@
 #' # Get the edge attribute values
 #' # for the `value` attribute, limited
 #' # to the current edge selection
-#' graph %>%
+#' graph |>
 #'   get_edge_attrs_ws(
 #'     edge_attr = value)
 #'
@@ -89,8 +90,8 @@ get_edge_attrs_ws <- function(
 
   edge_attr <- rlang::enquo(edge_attr)
 
-  if (rlang::enquo(edge_attr) %>%
-      rlang::get_expr() %>%
+  if (rlang::enquo(edge_attr) |>
+      rlang::get_expr() |>
       as.character() %in% c("id", "from", "to")) {
 
     cli::cli_abort(
@@ -107,11 +108,11 @@ get_edge_attrs_ws <- function(
   # Filter the edf by the supplied
   # edge ID values
   edf <-
-    edf %>%
+    edf |>
     dplyr::filter(id %in% edges)
 
   # Extract the edge attribute values
-  edge_attr_vals <- edf %>% dplyr::pull(!!edge_attr)
+  edge_attr_vals <- edf |> dplyr::pull(!!edge_attr)
 
   # Extract the edge names
   edge_names <- paste(edf$from, edf$to, sep = "->")

@@ -59,12 +59,12 @@ With a graph object of class \code{dgr_graph}, add a node cycle to the graph.
 # Create a new graph and
 # add a cycle of nodes to it
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_cycle(n = 6)
 
 # Get node information
 # from this graph
-graph \%>\%
+graph |>
   get_node_info()
 
 # Node and edge aesthetic and data
@@ -77,7 +77,7 @@ suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 graph_w_attrs <-
-  create_graph() \%>\%
+  create_graph() |>
   add_cycle(
     n = 3,
     label = c(
@@ -101,9 +101,9 @@ graph_w_attrs <-
           sd = 1.0)))
 
 # Get the graph's node data frame
-graph_w_attrs \%>\% get_node_df()
+graph_w_attrs |> get_node_df()
 
 # Get the graph's edge data frame
-graph_w_attrs \%>\% get_edge_df()
+graph_w_attrs |> get_edge_df()
 
 }

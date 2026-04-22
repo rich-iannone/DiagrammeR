@@ -29,11 +29,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 4,
 #'     m = 4,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = value,
 #'     values = c(2.5, 8.2, 4.2, 2.4))
@@ -43,7 +43,7 @@
 #' # the node `value` attribute (for
 #' # the other nodes, display nothing)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_node_attr_to_display(
 #'     nodes = 1:3,
 #'     attr = value,
@@ -53,20 +53,20 @@
 #' # `display` node attribute will show for
 #' # each row, which node attribute value to
 #' # display when the graph is rendered
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # This function can be called multiple
 #' # times on a graph; after the first time
 #' # (i.e., creation of the `display`
 #' # attribute), the `default` value won't
 #' # be used
-#' graph %>%
+#' graph |>
 #'   set_node_attr_to_display(
 #'     nodes = 4,
-#'     attr = label) %>%
+#'     attr = label) |>
 #'   set_node_attr_to_display(
 #'     nodes = c(1, 3),
-#'     attr = id) %>%
+#'     attr = id) |>
 #'   get_node_df()
 #'
 #' @family node creation and removal
@@ -90,7 +90,7 @@ set_node_attr_to_display <- function(
 
   # Get the requested `attr`
   attr <-
-    rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(attr) |> rlang::get_expr() |> as.character()
 
   # If nothing provided for `attr`, set
   # it as NULL
@@ -147,7 +147,7 @@ set_node_attr_to_display <- function(
 
   # Join the `attr_to_display` table with the `ndf`
   ndf <-
-    ndf %>%
+    ndf |>
     dplyr::left_join(attr_to_display, by = "id")
 
   # Get the column numbers for the `.x`
@@ -161,12 +161,12 @@ set_node_attr_to_display <- function(
     display_col <-
       dplyr::coalesce(ndf[, y_col], ndf[, x_col])
 
-    display_col <- dplyr::na_if(display_col, "is_na") %>%
+    display_col <- dplyr::na_if(display_col, "is_na") |>
       as.data.frame(stringsAsFactors = FALSE)
 
   } else {
     display_col <-
-      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
+      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) |>
       as.data.frame(stringsAsFactors = FALSE)
   }
 
@@ -180,7 +180,7 @@ set_node_attr_to_display <- function(
   # Bind the `display_col` df to the `ndf` df and
   # modify the ordering of the columns
   ndf <-
-    dplyr::bind_cols(ndf, display_col) %>%
+    dplyr::bind_cols(ndf, display_col) |>
     dplyr::relocate("id", "type", "label", "display")
 
   # Replace the graph's node data frame with `ndf`

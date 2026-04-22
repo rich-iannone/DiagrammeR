@@ -22,13 +22,13 @@ Get a data frame with metrics for a graph.
 karate_club <-
   system.file(
     "extdata", "karate.gml",
-    package = "DiagrammeR") \%>\%
-  import_graph() \%>\%
+    package = "DiagrammeR") |>
+  import_graph() |>
   set_graph_name("karate")
 
 # Display a data frame with
 # graph information
-karate_club \%>\%
+karate_club |>
   get_graph_info()
 }
 

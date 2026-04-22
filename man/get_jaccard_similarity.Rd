@@ -33,7 +33,7 @@ graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -42,7 +42,7 @@ graph <-
 # Get the Jaccard similarity
 # values for nodes `5`, `6`,
 # and `7`
-graph \%>\%
+graph |>
   get_jaccard_similarity(
     nodes = 5:7)
 

@@ -58,38 +58,38 @@ graph <-
 # Create a selection of nodes, this selects
 # nodes `1`, `3`, and `5`
 graph <-
-  graph \%>\%
+  graph |>
   select_nodes(
     conditions = value > 3)
 
 # Create a subgraph based on the selection
 subgraph <-
-  graph \%>\%
+  graph |>
   transform_to_subgraph_ws()
 
 # Display the graph's node data frame
-subgraph \%>\% get_node_df()
+subgraph |> get_node_df()
 
 # Display the graph's edge data frame
-subgraph \%>\% get_edge_df()
+subgraph |> get_edge_df()
 
 # Create a selection of edges, this selects
 # edges `1`, `2`
 graph <-
-  graph \%>\%
-  clear_selection() \%>\%
+  graph |>
+  clear_selection() |>
   select_edges(
   edges = c(1,2))
 
 # Create a subgraph based on the selection
 subgraph <-
-  graph \%>\%
+  graph |>
   transform_to_subgraph_ws()
 
 # Display the graph's node data frame
-subgraph \%>\% get_node_df()
+subgraph |> get_node_df()
 
 # Display the graph's edge data frame
-subgraph \%>\% get_edge_df()
+subgraph |> get_edge_df()
 
 }

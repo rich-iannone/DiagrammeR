@@ -20,7 +20,7 @@
 #' # Create a graph containing
 #' # a balanced tree
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_balanced_tree(
 #'     k = 2, h = 2)
 #'
@@ -31,27 +31,27 @@
 #' # nodes that are 1 connection
 #' # away from node `1`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_in_neighborhood(
 #'     node = 1,
 #'     distance = 1)
 #'
 #' # Get the selection of nodes
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Perform another selection
 #' # of nodes, this time with a
 #' # neighborhood spanning 2 nodes
 #' # from node `1`
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_nodes_in_neighborhood(
 #'     node = 1,
 #'     distance = 2)
 #'
 #' # Get the selection of nodes
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 select_nodes_in_neighborhood <- function(

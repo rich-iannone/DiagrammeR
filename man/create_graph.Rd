@@ -74,7 +74,7 @@ graph <-
     nodes_df = ndf)
 
 # Get information on the graph's nodes
-graph \%>\%
+graph |>
   get_node_info()
 
 # You can create a similar graph with
@@ -97,7 +97,7 @@ graph <-
 
 # Get information on the graph's
 # internal node data frame (ndf)
-graph \%>\%
+graph |>
   get_node_df()
 
 # A graph can also be created by
@@ -122,10 +122,10 @@ graph <-
 
 # Get information on the graph's
 # internal edge data frame (edf)
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 # Get information on the graph's
 # internal node data frame (ndf)
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

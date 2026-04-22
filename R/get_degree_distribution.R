@@ -17,7 +17,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -25,7 +25,7 @@
 #'
 #' # Get the total degree
 #' # distribution for the graph
-#' graph %>%
+#' graph |>
 #'   get_degree_distribution(
 #'     mode = "total")
 #'

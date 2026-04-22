@@ -22,7 +22,7 @@ to that graph.
 # Create a graph with 4 nodes
 # and no edges
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_n_nodes(n = 4)
 
 # Create an edge data frame (edf)
@@ -36,14 +36,14 @@ edf <-
 # a graph with both nodes
 # and edges
 graph <-
-  graph \%>\%
+  graph |>
   add_edge_df(
     edge_df = edf)
 
 # Get the graph's edges to
 # verify that the edf had
 # been added
-graph \%>\%
+graph |>
   get_edges(
     return_type = "vector")
 

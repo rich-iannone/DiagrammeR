@@ -32,9 +32,9 @@ leaf node (dfs traverses branches as far as possible).
 # Create a graph containing
 # two balanced trees
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_balanced_tree(
-    k = 2, h = 2) \%>\%
+    k = 2, h = 2) |>
   add_balanced_tree(
     k = 3, h = 2)
 
@@ -45,14 +45,14 @@ graph <-
 # `direction = "all"` doesn't
 # take edge direction into
 # account)
-graph \%>\%
+graph |>
   do_bfs(node = 1)
 
 # If not specifying a
 # starting node, the function
 # will begin the search from
 # a random node
-graph \%>\%
+graph |>
   do_bfs()
 
 # It's also possible to
@@ -61,7 +61,7 @@ graph \%>\%
 # using `direction = "in"`
 # causes the bfs routine to
 # visit nodes along inward edges
-graph \%>\%
+graph |>
   do_bfs(
     node = 1,
     direction = "in")
@@ -69,7 +69,7 @@ graph \%>\%
 # Using `direction = "out"`
 # results in the bfs moving
 # along solely outward edges
-graph \%>\%
+graph |>
   do_bfs(
     node = 1,
     direction = "out")

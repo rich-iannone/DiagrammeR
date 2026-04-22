@@ -26,7 +26,7 @@ far fewer connections.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -34,18 +34,18 @@ graph <-
 
 # Get leverage centrality values
 # for all nodes in the graph
-graph \%>\%
+graph |>
   get_leverage_centrality()
 
 # Add the leverage centrality
 # values to the graph as a
 # node attribute
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_leverage_centrality(.))
+    df = get_leverage_centrality(graph))
 
 # Display the graph's node data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

@@ -36,13 +36,13 @@
 #'
 #' # Get sucessors for node
 #' # `4` in the graph
-#' graph %>%
+#' graph |>
 #'   get_successors(
 #'     node = 4)
 #'
 #' # If there are no successors,
 #' # NA is returned
-#' graph %>%
+#' graph |>
 #'   get_successors(
 #'     node = 1)
 #'

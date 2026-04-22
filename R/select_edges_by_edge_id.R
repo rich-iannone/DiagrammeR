@@ -17,39 +17,39 @@
 #' @examples
 #' # Create a graph with 5 nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 5)
 #'
 #' # Create a graph selection by selecting
 #' # edges with edge IDs `1` and `2`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges_by_edge_id(
 #'     edges = 1:2)
 #'
 #' # Get the selection of edges
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Perform another selection of edges,
 #' # with edge IDs `1`, `2`, and `4`
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_edges_by_edge_id(
 #'     edges = c(1, 2, 4))
 #'
 #' # Get the selection of edges
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Get the fraction of edges selected
 #' # over all the edges in the graph
-#' graph %>%
-#'   {
-#'     l <- get_selection(.) %>%
-#'       length(.)
-#'     e <- count_edges(.)
-#'     l/e
-#'   }
+#' l <- graph |>
+#'   get_selection() |>
+#'   length()
+#'
+#' e <- graph |> count_edges()
+#'
+#' l/e
 #'
 #' @export
 select_edges_by_edge_id <- function(
@@ -72,7 +72,7 @@ select_edges_by_edge_id <- function(
 
   # Filter the edf by the requested edge IDs
   edges_selected <-
-    edges_df %>%
+    edges_df |>
     dplyr::filter(id %in% edges)
 
   # Obtain the input graph's node and edge
@@ -102,8 +102,8 @@ select_edges_by_edge_id <- function(
 
   # Filter `edges_df` to provide the correct esdf
   edges_combined <-
-    graph$edges_df %>%
-    dplyr::filter(id %in% edges_combined) %>%
+    graph$edges_df |>
+    dplyr::filter(id %in% edges_combined) |>
     dplyr::select(edge = "id", from, to)
 
   # Add the edge ID values to the active selection

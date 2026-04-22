@@ -26,7 +26,7 @@
 #' # of 5 nodes with loops retained
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_full_graph(
 #'     n = 5,
 #'     keep_loops = TRUE)
@@ -35,14 +35,14 @@
 #' # and remove the loop edges
 #' # associated with those nodes
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_id(
-#'     nodes = 3:4) %>%
+#'     nodes = 3:4) |>
 #'   delete_loop_edges_ws()
 #'
 #' # Count the number of loop
 #' # edges remaining in the graph
-#' graph %>% count_loop_edges()
+#' graph |> count_loop_edges()
 #'
 #' @family edge creation and removal
 #'
@@ -65,7 +65,7 @@ delete_loop_edges_ws <- function(graph) {
   edf <- graph$edges_df
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Filter edf such that any loop edges
   # associated with the selected nodes
@@ -73,10 +73,10 @@ delete_loop_edges_ws <- function(graph) {
   selected_nodes <- suppressMessages(get_selection(graph))
 
   edges_to_remove <-
-    selected_nodes %>%
+    selected_nodes |>
     purrr::map_df(
       .f = function(x) {
-        edf %>%
+        edf |>
           dplyr::filter(
             (from == x &
                to == x))
@@ -90,11 +90,11 @@ delete_loop_edges_ws <- function(graph) {
 
   # Scavenge any invalid, linked data frames
   graph <-
-    graph %>%
+    graph |>
     remove_linked_dfs()
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

@@ -24,13 +24,13 @@ graph <- create_graph()
 
 # Determine whether the graph
 # is directed
-graph \%>\% is_graph_directed()
+graph |> is_graph_directed()
 
 # Use the `set_graph_undirected()`
 # function and check again whether
 # the graph is directed
-graph \%>\%
-  set_graph_undirected() \%>\%
+graph |>
+  set_graph_undirected() |>
   is_graph_directed()
 
 }

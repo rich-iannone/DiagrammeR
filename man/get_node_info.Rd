@@ -20,12 +20,12 @@ interrelationships within the graph.
 \examples{
 # Create a simple graph
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 5, m = 10,
     set_seed = 23)
 
 # Get information on the graph's nodes
-graph \%>\% get_node_info()
+graph |> get_node_info()
 
 }

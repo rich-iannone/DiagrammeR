@@ -15,7 +15,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -23,15 +23,15 @@
 #'
 #' # Get the PageRank scores
 #' # for all nodes in the graph
-#' graph %>%
+#' graph |>
 #'   get_pagerank()
 #'
 #' # Colorize nodes according to their
 #' # PageRank scores
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_pagerank(graph = .)) %>%
+#'     df = get_pagerank(graph)) |>
 #'   colorize_node_attrs(
 #'     node_attr_from = pagerank,
 #'     node_attr_to = fillcolor,
@@ -60,7 +60,7 @@ get_pagerank <- function(
 
   # Create df with the PageRank values
   data.frame(
-    id = names(pagerank_values) %>% as.integer(),
+    id = names(pagerank_values) |> as.integer(),
     pagerank = round(pagerank_values, 4),
     stringsAsFactors = FALSE)
 }

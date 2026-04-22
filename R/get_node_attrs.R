@@ -17,11 +17,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 4,
 #'     m = 4,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = value,
 #'     values = c(2.5, 8.2, 4.2, 2.4))
@@ -29,14 +29,14 @@
 #' # Get all of the values from
 #' # the `value` node attribute
 #' # as a named vector
-#' graph %>%
+#' graph |>
 #'   get_node_attrs(
 #'     node_attr = value)
 #'
 #' # To only return node attribute
 #' # values for specified nodes,
 #' # use the `nodes` argument
-#' graph %>%
+#' graph |>
 #'   get_node_attrs(
 #'     node_attr = value,
 #'     nodes = c(1, 3))
@@ -53,8 +53,8 @@ get_node_attrs <- function(
 
   node_attr <- rlang::enquo(node_attr)
 
-  if (rlang::enquo(node_attr) %>%
-      rlang::get_expr() %>%
+  if (rlang::enquo(node_attr) |>
+      rlang::get_expr() |>
       as.character() %in% c("id", "nodes")) {
 
     cli::cli_abort(
@@ -68,7 +68,7 @@ get_node_attrs <- function(
   if (is.null(nodes)) {
 
     # Extract the node attribute values
-    node_attr_vals <- ndf %>% dplyr::pull(!!node_attr)
+    node_attr_vals <- ndf |> dplyr::pull(!!node_attr)
 
     # Extract the node names
     node_names <- ndf$id
@@ -84,11 +84,11 @@ get_node_attrs <- function(
     # Filter the ndf by the supplied
     # nodes
     ndf <-
-      ndf %>%
+      ndf |>
       dplyr::filter(id %in% nodes)
 
     # Extract the node attribute values
-    node_attr_vals <- ndf %>% dplyr::pull(!!node_attr)
+    node_attr_vals <- ndf |> dplyr::pull(!!node_attr)
 
     # Extract the node names
     node_names <- ndf$id

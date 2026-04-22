@@ -40,39 +40,39 @@
 #'
 #' # Explicitly select nodes `1` and `3`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes(nodes = c(1, 3))
 #'
 #' # Verify that the node selection has been made
 #' # using the `get_selection()` function
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Select nodes based on the node `type`
 #' # being `z`
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_nodes(
 #'     conditions = type == "z")
 #'
 #' # Verify that an node selection has been made, and
 #' # recall that the `3` and `4` nodes are of the
 #' # `z` type
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' # Select edges based on the node value attribute
 #' # being greater than 3.0 (first clearing the current
 #' # selection of nodes)
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_nodes(
 #'     conditions = value > 3.0)
 #'
 #' # Verify that the correct node selection has been
 #' # made; in this case, nodes `1` and `3` have values
 #' # for `value` greater than 3.0
-#' graph %>% get_selection()
+#' graph |> get_selection()
 #'
 #' @export
 select_nodes <- function(
@@ -119,7 +119,7 @@ select_nodes <- function(
 
   # Get the nodes as a vector
   nodes_selected <-
-    nodes_df %>%
+    nodes_df |>
     dplyr::pull("id")
 
   # If a `nodes` vector provided, get the intersection

@@ -22,7 +22,7 @@ of the nodes in the graph.
 # `add_gnm_graph()` function
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_gnm_graph(
     n = 10,
     m = 15,
@@ -34,18 +34,18 @@ graph <-
 # the leading non-negative
 # eigenvector of the modularity
 # matrix of the graph
-graph \%>\%
+graph |>
   get_cmty_l_eigenvec()
 
 # Add the group membership
 # values to the graph as a node
 # attribute
 graph <-
-  graph \%>\%
+  graph |>
   join_node_attrs(
-    df = get_cmty_l_eigenvec(.))
+    df = get_cmty_l_eigenvec(graph))
 
 # Display the graph's node data frame
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

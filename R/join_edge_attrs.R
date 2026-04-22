@@ -26,8 +26,8 @@
 #'
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 5) %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 5) |>
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->5 3->5")
 #'
@@ -45,13 +45,13 @@
 #' # identically-named columns in the graph and the df
 #' # (in this case `from` and `to` are common to both)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_edge_attrs(
 #'     df = df)
 #'
 #' # Get the graph's internal edf to show that the
 #' # join has been made
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #' @family edge creation and removal
 #' @export
 join_edge_attrs <- function(
@@ -108,7 +108,7 @@ join_edge_attrs <- function(
 
   # Sort the columns in `edges`
   edges <-
-    edges %>% dplyr::relocate("id", "from", "to", "rel")
+    edges |> dplyr::relocate("id", "from", "to", "rel")
 
   # Modify the graph object
   graph$edges_df <- edges

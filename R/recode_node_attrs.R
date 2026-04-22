@@ -24,11 +24,11 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 10,
-#'     set_seed = 23) %>%
+#'     set_seed = 23) |>
 #'   set_node_attrs(
 #'     node_attr = shape,
 #'     values =
@@ -39,14 +39,14 @@
 #' # Get the graph's internal ndf
 #' # to show which node
 #' # attributes are available
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Recode the `shape` node
 #' # attribute, so that `circle`
 #' # is recoded to `square` and that
 #' # `rectangle` becomes `triangle`
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   recode_node_attrs(
 #'     node_attr_from = shape,
 #'     "circle -> square",
@@ -55,7 +55,7 @@
 #' # Get the graph's internal
 #' # ndf to show that the node
 #' # attribute values had been recoded
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Create a new node attribute,
 #' # called `color`, that is based
@@ -64,7 +64,7 @@
 #' # color and map all other shapes
 #' # to a `green` color
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   recode_node_attrs(
 #'     node_attr_from = shape,
 #'     "square -> red",
@@ -73,7 +73,7 @@
 #'
 #' # Get the graph's internal ndf
 #' # to see the change
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -97,11 +97,11 @@ recode_node_attrs <- function(
 
   # Get the requested `node_attr_from`
   node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `node_attr_to`
   node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr_to) |> rlang::get_expr() |> as.character()
 
   if (length(node_attr_to) == 0) {
     node_attr_to <- NULL

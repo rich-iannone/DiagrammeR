@@ -18,7 +18,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 22,
@@ -29,15 +29,15 @@
 #' # all nodes from `1` to `10` and
 #' # store in the graph's cache
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_cache(
 #'     name = "closeness_vector",
-#'     to_cache = get_closeness(.),
+#'     to_cache = get_closeness(graph),
 #'     col = "closeness"
 #'   )
 #'
 #' # Get the graph's cache
-#' graph %>%
+#' graph |>
 #'   get_cache(name = "closeness_vector")
 #'
 #' # Get the difference of betweenness
@@ -45,16 +45,16 @@
 #' # the graph and store the vector in
 #' # the graph's cache
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_cache(
 #'     name = "difference",
 #'     to_cache =
-#'       get_betweenness(.)$betweenness -
-#'         get_closeness(.)$closeness
+#'       get_betweenness(graph)$betweenness -
+#'         get_closeness(graph)$closeness
 #'   )
 #'
 #' # Get the graph's cache
-#' graph %>%
+#' graph |>
 #'   get_cache(name = "difference")
 #'
 #' @export

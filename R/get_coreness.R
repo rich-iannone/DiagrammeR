@@ -17,7 +17,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -25,18 +25,18 @@
 #'
 #' # Get coreness values for
 #' # all nodes in the graph
-#' graph %>% get_coreness()
+#' graph |> get_coreness()
 #'
 #' # Add the coreness values
 #' # to the graph as a node
 #' # attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_coreness(.))
+#'     df = get_coreness(graph))
 #'
 #' # Display the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_coreness <- function(
@@ -74,8 +74,8 @@ get_coreness <- function(
 
   # Create df with coreness values
   data.frame(
-    id = coreness_values %>%
-      names() %>%
+    id = coreness_values |>
+      names() |>
       as.integer(),
     coreness = coreness_values,
     stringsAsFactors = FALSE)

@@ -31,16 +31,16 @@
 #' # 120 edges
 #' gnm_graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 100,
 #'     m = 120)
 #'
 #' # Get a count of nodes
-#' gnm_graph %>% count_nodes()
+#' gnm_graph |> count_nodes()
 #'
 #' # Get a count of edges
-#' gnm_graph %>% count_edges()
+#' gnm_graph |> count_edges()
 #'
 #' @export
 add_gnm_graph <- function(
@@ -117,7 +117,7 @@ add_gnm_graph <- function(
   # create a unique label for all new nodes
   if (label) {
     sample_gnm_graph$nodes_df$label <-
-      sample_gnm_graph$nodes_df$id %>% as.character()
+      sample_gnm_graph$nodes_df$id |> as.character()
   }
 
   n_nodes <- nrow(sample_gnm_graph$nodes_df)
@@ -134,7 +134,7 @@ add_gnm_graph <- function(
       node_aes$index__ <- seq_len(nrow(sample_gnm_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -153,7 +153,7 @@ add_gnm_graph <- function(
       node_data$index__ <- seq_len(nrow(sample_gnm_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -172,7 +172,7 @@ add_gnm_graph <- function(
       edge_aes$index__ <- seq_len(nrow(sample_gnm_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -191,7 +191,7 @@ add_gnm_graph <- function(
       edge_data$index__ <- seq_len(nrow(sample_gnm_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -204,7 +204,7 @@ add_gnm_graph <- function(
   if (exists("node_aes_tbl")) {
 
     sample_gnm_graph$nodes_df <-
-      sample_gnm_graph$nodes_df %>%
+      sample_gnm_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -212,7 +212,7 @@ add_gnm_graph <- function(
   if (exists("node_data_tbl")) {
 
     sample_gnm_graph$nodes_df <-
-      sample_gnm_graph$nodes_df %>%
+      sample_gnm_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -220,7 +220,7 @@ add_gnm_graph <- function(
   if (exists("edge_aes_tbl")) {
 
     sample_gnm_graph$edges_df <-
-      sample_gnm_graph$edges_df %>%
+      sample_gnm_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -228,7 +228,7 @@ add_gnm_graph <- function(
   if (exists("edge_data_tbl")) {
 
     sample_gnm_graph$edges_df <-
-      sample_gnm_graph$edges_df %>%
+      sample_gnm_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

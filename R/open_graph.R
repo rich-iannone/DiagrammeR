@@ -12,7 +12,7 @@
 #' # a probability value of 0.05
 #' gnp_graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnp_graph(
 #'     n = 100,
 #'     p = 0.05

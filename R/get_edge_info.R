@@ -13,14 +13,14 @@
 #' @examples
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5, m = 10,
 #'     set_seed = 23)
 #'
 #' # Get information on the
 #' # graph's edges
-#' graph %>% get_edge_info()
+#' graph |> get_edge_info()
 #'
 #' @export
 get_edge_info <- function(graph) {
@@ -35,6 +35,6 @@ get_edge_info <- function(graph) {
 
   # Extract only the first 4 columns of the
   # edge data frame
-  graph$edges_df %>%
+  graph$edges_df |>
     dplyr::select(id, from, to, rel)
 }

@@ -19,7 +19,7 @@ Convert a DiagrammeR graph to an igraph graph object.
 # Create a random graph using the
 # `add_gnm_graph()` function
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_gnm_graph(
     n = 36,
     m = 50,

@@ -27,31 +27,31 @@
 #' @examples
 #' # Create a graph with 2 nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(n = 2)
 #'
 #' # Add an edge
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_edge(
 #'     from = 1,
 #'     to = 2)
 #'
 #' # Delete the edge
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   delete_edge(
 #'     from = 1,
 #'     to = 2)
 #'
 #' # Get the count of edges in the graph
-#' graph %>% count_edges()
+#' graph |> count_edges()
 #'
 #' # Create an undirected graph with
 #' # 2 nodes and an edge
 #' graph_undirected <-
-#'   create_graph(directed = FALSE) %>%
-#'   add_n_nodes(n = 2) %>%
+#'   create_graph(directed = FALSE) |>
+#'   add_n_nodes(n = 2) |>
 #'   add_edge(
 #'     from = 1,
 #'     to = 2)
@@ -59,26 +59,26 @@
 #' # Delete the edge; the order of node ID
 #' # values provided in `from` and `to`
 #' # don't matter for the undirected case
-#' graph_undirected %>%
+#' graph_undirected |>
 #'   delete_edge(
 #'     from = 2,
-#'     to = 1) %>%
+#'     to = 1) |>
 #'   count_edges()
 #'
 #' # The undirected graph has a single
 #' # edge with ID `1`; it can be
 #' # deleted by specifying `id`
-#' graph_undirected %>%
-#'   delete_edge(id = 1) %>%
+#' graph_undirected |>
+#'   delete_edge(id = 1) |>
 #'   count_edges()
 #'
 #' # Create a directed graph with 2
 #' # labeled nodes and an edge
 #' graph_labeled_nodes <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_n_nodes(
 #'     n = 2,
-#'     label = c("one", "two")) %>%
+#'     label = c("one", "two")) |>
 #'   add_edge(
 #'     from = "one",
 #'     to = "two")
@@ -87,10 +87,10 @@
 #' # labels in `from` and `to`; this
 #' # is analogous to creating the
 #' # edge using node labels
-#' graph_labeled_nodes %>%
+#' graph_labeled_nodes |>
 #'   delete_edge(
 #'     from = "one",
-#'     to = "two") %>%
+#'     to = "two") |>
 #'   count_edges()
 #'
 #' @family edge creation and removal
@@ -160,9 +160,9 @@ delete_edge <- function(
       }
 
       # Stop function if the label for `from` is not distinct in the graph
-      if (graph$nodes_df %>%
-          dplyr::select("label") %>%
-          dplyr::filter(label == from) %>%
+      if (graph$nodes_df |>
+          dplyr::select("label") |>
+          dplyr::filter(label == from) |>
           nrow() > 1) {
 
         cli::cli_abort(
@@ -177,9 +177,9 @@ delete_edge <- function(
       }
 
       # Stop function if the label for `to` is not distinct in the graph
-      if (graph$nodes_df %>%
-          dplyr::select("label") %>%
-          dplyr::filter(label == to) %>%
+      if (graph$nodes_df |>
+          dplyr::select("label") |>
+          dplyr::filter(label == to) |>
           nrow() > 1) {
 
         cli::cli_abort(
@@ -224,8 +224,8 @@ delete_edge <- function(
 
     # Stop function if the edge provided is not
     # in the edge data frame
-    if (edf %>%
-        dplyr::filter(from == from_id, to == to_id) %>%
+    if (edf |>
+        dplyr::filter(from == from_id, to == to_id) |>
         nrow() == 0) {
 
       cli::cli_abort(
@@ -234,7 +234,7 @@ delete_edge <- function(
 
     # Filter out relevant rows from `edf`
     edf <-
-      edf %>%
+      edf |>
       dplyr::filter(!(from == from_id & to == to_id))
 
     # Reset the row names in the edf
@@ -249,9 +249,9 @@ delete_edge <- function(
 
     # Stop function if the edge provided is not
     # in the edge data frame
-    if (edf %>%
+    if (edf |>
         dplyr::filter((from == from_id & to == to_id) |
-                      (from == to_id & to == from_id)) %>%
+                      (from == to_id & to == from_id)) |>
         nrow() == 0) {
 
       cli::cli_abort(
@@ -260,7 +260,7 @@ delete_edge <- function(
 
     # Filter out relevant rows from `edf`
     edf <-
-      edf %>%
+      edf |>
       dplyr::filter(!((from == from_id & to == to_id) |
                         (from == to_id & to == from_id)))
 

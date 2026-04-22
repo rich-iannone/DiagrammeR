@@ -42,8 +42,8 @@
 visnetwork <- function(graph) {
 
   # Extract node and edge data frames from the graph object
-  nodes <- graph %>% get_node_df()
-  edges <- graph %>% get_edge_df()
+  nodes <- graph |> get_node_df()
+  edges <- graph |> get_edge_df()
 
   # Render an empty graph if no nodes or edges exist
   if (is_graph_empty(graph)) {

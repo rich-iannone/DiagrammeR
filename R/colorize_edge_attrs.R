@@ -31,8 +31,8 @@
 #' # Create a graph with 5
 #' # nodes and 4 edges
 #' graph <-
-#'   create_graph() %>%
-#'   add_path(n = 5) %>%
+#'   create_graph() |>
+#'   add_path(n = 5) |>
 #'   set_edge_attrs(
 #'     edge_attr = weight,
 #'     values = c(3.7, 6.3, 9.2, 1.6))
@@ -45,7 +45,7 @@
 #' # part of any bucket, a gray color
 #' # is assigned by default)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   colorize_edge_attrs(
 #'     edge_attr_from = weight,
 #'     edge_attr_to = color,
@@ -56,7 +56,7 @@
 #' # edge attribute with distinct
 #' # colors (from the RColorBrewer
 #' # Red-Yellow-Green palette)
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @export
 colorize_edge_attrs <- function(
@@ -78,11 +78,11 @@ colorize_edge_attrs <- function(
 
   # Get the requested `edge_attr_from`
   edge_attr_from <-
-    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_from) |> rlang::get_expr() |> as.character()
 
   # Get the requested `edge_attr_to`
   edge_attr_to <-
-    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(edge_attr_to) |> rlang::get_expr() |> as.character()
 
   # Extract edf from graph
   edges_df <- graph$edges_df

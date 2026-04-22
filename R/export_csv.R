@@ -44,7 +44,7 @@
 #'
 #' # Create separate `nodes.csv` and
 #' # `edges.csv` files
-#' # graph %>% export_csv()
+#' # graph |> export_csv()
 #'
 #' @export
 export_csv <- function(

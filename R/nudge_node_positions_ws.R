@@ -33,16 +33,16 @@
 #' @examples
 #' # Create a simple graph with 4 nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_node(
 #'     type = "a",
-#'     label = "one") %>%
+#'     label = "one") |>
 #'   add_node(
 #'     type = "a",
-#'     label = "two") %>%
+#'     label = "two") |>
 #'   add_node(
 #'     type = "b",
-#'     label = "three") %>%
+#'     label = "three") |>
 #'   add_node(
 #'     type = "b",
 #'     label = "four")
@@ -50,13 +50,13 @@
 #' # Add position information to each of
 #' # the graph's nodes
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_node_position(
-#'     node = 1, x = 1, y = 1) %>%
+#'     node = 1, x = 1, y = 1) |>
 #'   set_node_position(
-#'     node = 2, x = 2, y = 2) %>%
+#'     node = 2, x = 2, y = 2) |>
 #'   set_node_position(
-#'     node = 3, x = 3, y = 3) %>%
+#'     node = 3, x = 3, y = 3) |>
 #'   set_node_position(
 #'     node = 4, x = 4, y = 4)
 #'
@@ -68,27 +68,27 @@
 #' # Move the selected nodes (all the nodes,
 #' # in this case) 5 units to the right
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   nudge_node_positions_ws(
 #'     dx = 5, dy = 0)
 #'
 #' # View the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Now select nodes that have `type == "b"`
 #' # and move them in the `y` direction 2 units
 #' # (the graph still has an active selection
 #' # and so it must be cleared first)
 #' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
+#'   graph |>
+#'   clear_selection() |>
 #'   select_nodes(
-#'     conditions = type == "b") %>%
+#'     conditions = type == "b") |>
 #'   nudge_node_positions_ws(
 #'     dx = 0, dy = 2)
 #'
 #' # View the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 nudge_node_positions_ws <- function(
@@ -127,7 +127,7 @@ nudge_node_positions_ws <- function(
   # Determine which of the nodes selected have position
   # information set (i.e., not NA)
   ndf_filtered <-
-    ndf %>%
+    ndf |>
     dplyr::filter(id %in% nodes, !is.na(x), !is.na(y))
 
   # If there are nodes to move, replace the `nodes`
@@ -146,10 +146,10 @@ nudge_node_positions_ws <- function(
   # a vectorized `if` statement across all nodes for
   # the `x` and `y` node attribute
   ndf_new <-
-    ndf %>%
+    ndf |>
     dplyr::mutate(x = dplyr::case_when(
       id %in% as.integer(nodes) ~ x + dx,
-      !(id %in% as.integer(nodes)) ~ x)) %>%
+      !(id %in% as.integer(nodes)) ~ x)) |>
     dplyr::mutate(y = dplyr::case_when(
       id %in% nodes ~ y + dy,
       !(id %in% as.integer(nodes)) ~ y))

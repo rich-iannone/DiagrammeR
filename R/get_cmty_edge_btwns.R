@@ -14,7 +14,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -26,20 +26,20 @@
 #' # the leading non-negative
 #' # eigenvector of the modularity
 #' # matrix of the graph
-#' graph %>%
+#' graph |>
 #'   get_cmty_edge_btwns()
 #'
 #' # Add the group membership
 #' # values to the graph
 #' # as a node attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'      df = get_cmty_edge_btwns(.))
+#'      df = get_cmty_edge_btwns(graph))
 #'
 #' # Display the graph's
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_cmty_edge_btwns <- function(graph) {
@@ -58,7 +58,7 @@ get_cmty_edge_btwns <- function(graph) {
 
   # Create df with node memberships
   data.frame(
-    id = igraph::membership(cmty_edge_btwns_obj) %>% names() %>% as.integer(),
+    id = igraph::membership(cmty_edge_btwns_obj) |> names() |> as.integer(),
     edge_btwns_group = as.vector(igraph::membership(cmty_edge_btwns_obj)),
     stringsAsFactors = FALSE)
 }

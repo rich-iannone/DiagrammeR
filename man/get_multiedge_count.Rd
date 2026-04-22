@@ -41,6 +41,6 @@ graph <-
 # Get the total number of multiple
 # edges (those edges that share an
 # edge definition) in the graph
-graph \%>\% get_multiedge_count()
+graph |> get_multiedge_count()
 
 }

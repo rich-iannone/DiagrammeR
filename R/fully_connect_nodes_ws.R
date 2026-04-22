@@ -27,8 +27,8 @@
 #' # then add a path of 3 nodes
 #' # and two isolated nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_path(n = 3) %>%
+#'   create_graph() |>
+#'   add_path(n = 3) |>
 #'   add_n_nodes(n = 2)
 #'
 #' # Select a node in the path
@@ -37,21 +37,21 @@
 #' # and `5`); then, and fully
 #' # connect these nodes together
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_id(
-#'     nodes = 3:5) %>%
+#'     nodes = 3:5) |>
 #'   fully_connect_nodes_ws()
 #'
 #' # Get the graph's edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Create an undirected, empty
 #' # graph; add a path of 3 nodes
 #' # and two isolated nodes
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
-#'   add_path(n = 3) %>%
+#'     directed = FALSE) |>
+#'   add_path(n = 3) |>
 #'   add_n_nodes(n = 2)
 #'
 #' # Select a node in the path
@@ -60,16 +60,16 @@
 #' # and `5`); then, and fully
 #' # connect these nodes together
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_id(
-#'     nodes = 3:5) %>%
+#'     nodes = 3:5) |>
 #'   fully_connect_nodes_ws()
 #'
 #' # Get the graph's edge data
 #' # frame; in the undirected
 #' # case, reverse edges aren't
 #' # added
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @export
 fully_connect_nodes_ws <- function(graph) {
@@ -90,16 +90,16 @@ fully_connect_nodes_ws <- function(graph) {
   check_graph_contains_node_selection(graph)
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Get the graph's edf
   edf <- graph$edges_df
 
   # Get the combination of edges
   edge_candidates <-
-    utils::combn(suppressMessages(get_selection(graph = graph)), 2) %>%
-    t() %>%
-    as.data.frame() %>%
+    utils::combn(suppressMessages(get_selection(graph = graph)), 2) |>
+    t() |>
+    as.data.frame() |>
     dplyr::rename(from = "V1", to = "V2")
 
   # Determine the complete set of edges
@@ -111,10 +111,10 @@ fully_connect_nodes_ws <- function(graph) {
       dplyr::setdiff(
         dplyr::bind_rows(
           edge_candidates,
-          edge_candidates %>%
-            dplyr::select(to, from) %>%
+          edge_candidates |>
+            dplyr::select(to, from) |>
             dplyr::rename(from = "to", to = "from")),
-        edf %>%
+        edf |>
           dplyr::select("from", "to"))
 
   } else {
@@ -122,7 +122,7 @@ fully_connect_nodes_ws <- function(graph) {
     edges_to_add <-
       dplyr::setdiff(
         edge_candidates,
-        edf %>%
+        edf |>
           dplyr::select("from", "to"))
   }
 
@@ -145,7 +145,7 @@ fully_connect_nodes_ws <- function(graph) {
   }
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

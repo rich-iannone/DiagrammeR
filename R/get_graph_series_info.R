@@ -12,30 +12,30 @@
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 4)
 #'
 #' graph_2 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(n = 5)
 #'
 #' graph_3 <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_star(n = 6)
 #'
 #' # Create an empty graph series
 #' # and add the graphs
 #' series <-
-#'   create_graph_series() %>%
+#'   create_graph_series() |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_1) %>%
+#'     graph = graph_1) |>
 #'   add_graph_to_graph_series(
-#'     graph = graph_2) %>%
+#'     graph = graph_2) |>
 #'   add_graph_to_graph_series(
 #'     graph = graph_3)
 #'
 #' # Get information on the graphs in the series
-#' series %>% get_graph_series_info()
+#' series |> get_graph_series_info()
 #'
 #' @export
 get_graph_series_info <- function(graph_series) {
@@ -52,7 +52,7 @@ get_graph_series_info <- function(graph_series) {
       nodes = integer(),
       edges = integer(),
       directed = logical()
-    ) %>%
+    ) |>
     as.data.frame(stringsAsFactors = FALSE)
 
   if (graphs_in_series == 0) {

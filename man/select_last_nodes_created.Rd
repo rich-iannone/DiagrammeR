@@ -21,11 +21,11 @@ nodes to be selected.
 # Create a graph and add 4 nodes
 # in 2 separate function calls
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_n_nodes(
     n = 2,
     type = "a",
-    label = c("a_1", "a_2")) \%>\%
+    label = c("a_1", "a_2")) |>
   add_n_nodes(
     n = 2,
     type = "b",
@@ -35,15 +35,15 @@ graph <-
 # from the last function call) and then
 # set their color to be `red`
 graph <-
-  graph \%>\%
-  select_last_nodes_created() \%>\%
+  graph |>
+  select_last_nodes_created() |>
   set_node_attrs_ws(
     node_attr = color,
-    value = "red") \%>\%
+    value = "red") |>
   clear_selection()
 
 # Display the graph's internal node
 # data frame to verify the change
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }

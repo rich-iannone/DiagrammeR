@@ -27,8 +27,8 @@
 #'
 #' # Select nodes `1` to `5` and show that
 #' # selection of nodes with `get_selection()`
-#' graph %>%
-#'   select_nodes_by_id(nodes = 1:5) %>%
+#' graph |>
+#'   select_nodes_by_id(nodes = 1:5) |>
 #'   get_selection()
 #'
 #' @export

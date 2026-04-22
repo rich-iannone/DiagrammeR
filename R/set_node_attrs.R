@@ -39,25 +39,25 @@
 #' # Set attribute `color = "green"` for
 #' # nodes `1` and `3` using the graph object
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_node_attrs(
 #'     node_attr = color,
 #'     values = "green",
 #'     nodes = c(1, 3))
 #'
 #' # View the graph's node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Set attribute `color = "blue"` for
 #' # all nodes in the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   set_node_attrs(
 #'     node_attr = color,
 #'     values = "blue")
 #'
 #' # Display the graph's ndf
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @family node creation and removal
 #'
@@ -74,7 +74,7 @@ set_node_attrs <- function(
 
   # Get the requested `node_attr`
   node_attr <-
-    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
+    rlang::enquo(node_attr) |> rlang::get_expr() |> as.character()
 
   # Stop function if `node_attr` is `id`
   # if (node_attr == "id") {

@@ -46,11 +46,11 @@ node \code{type} values for the new nodes.
 # will be assigned ID values
 # from `1` to `5`
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_n_nodes(n = 5)
 
 # Get the graph's node IDs
-graph \%>\% get_node_ids()
+graph |> get_node_ids()
 
 }
 \seealso{

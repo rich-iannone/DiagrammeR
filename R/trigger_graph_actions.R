@@ -17,7 +17,7 @@
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_gnm_graph(
 #'     n = 5,
 #'     m = 10,
@@ -29,7 +29,7 @@
 #' # to provide PageRank values in the
 #' # `pagerank` column
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "set_node_attr_w_fcn",
 #'     node_attr_fcn = "get_pagerank",
@@ -42,7 +42,7 @@
 #' # column between 0 and 1, and, puts
 #' # these values in the `width` column
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "rescale_node_attrs",
 #'     node_attr_from = "pagerank",
@@ -55,7 +55,7 @@
 #' # based on the numeric values from the
 #' # `width` column
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_graph_action(
 #'     fcn = "colorize_node_attrs",
 #'     node_attr_from = "width",
@@ -65,20 +65,20 @@
 #' # View the graph actions for the graph
 #' # object by using the `get_graph_actions()`
 #' # function
-#' graph %>% get_graph_actions()
+#' graph |> get_graph_actions()
 #'
 #' # Manually trigger to invocation of
 #' # the graph actions using the
 #' # `trigger_graph_actions()` function
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   trigger_graph_actions()
 #'
 #' # Examine the graph's internal node
 #' # data frame (ndf) to verify that
 #' # the `pagerank`, `width`, and
 #' # `fillcolor` columns are present
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 trigger_graph_actions <- function(graph) {
@@ -125,8 +125,8 @@ trigger_graph_actions <- function(graph) {
       graph <- graph_previous
 
       action_name_at_error <-
-        graph$graph_actions %>%
-        dplyr::filter(action_index == expr_error_at_index) %>%
+        graph$graph_actions |>
+        dplyr::filter(action_index == expr_error_at_index) |>
         dplyr::pull("action_name")
 
       if (!is.na(action_name_at_error)) {

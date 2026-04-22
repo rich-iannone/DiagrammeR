@@ -36,27 +36,27 @@
 #' # will also have edges from
 #' # and to themselves
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_full_graph(
 #'     n = 3, keep_loops = TRUE
 #'   )
 #'
 #' # Get node information
 #' # from this graph
-#' graph %>% get_node_info()
+#' graph |> get_node_info()
 #'
 #' # Using `keep_loops = FALSE`
 #' # (the default) will remove
 #' # the loops
-#' create_graph() %>%
-#'   add_full_graph(n = 3) %>%
+#' create_graph() |>
+#'   add_full_graph(n = 3) |>
 #'   get_node_info()
 #'
 #' # Values can be set for
 #' # the node `label`, node
 #' # `type`, and edge `rel`
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_full_graph(
 #'     n = 3,
 #'     type = "connected",
@@ -66,11 +66,11 @@
 #'
 #' # Show the graph's node
 #' # data frame (ndf)
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Show the graph's edge
 #' # data frame (edf)
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Create a fully-connected and
 #' # directed graph with 3 nodes,
@@ -82,9 +82,9 @@
 #' set.seed(23)
 #'
 #' edge_wt_matrix <-
-#'   rnorm(100, 5, 2) %>%
-#'   sample(9, FALSE) %>%
-#'   round(2) %>%
+#'   rnorm(100, 5, 2) |>
+#'   sample(9, FALSE) |>
+#'   round(2) |>
 #'   matrix(
 #'     ncol = 3,
 #'     nrow = 3,
@@ -94,7 +94,7 @@
 #' # Create the fully-connected
 #' # graph (without loops however)
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_full_graph(
 #'     n = 3,
 #'     type = "weighted",
@@ -106,18 +106,18 @@
 #'
 #' # Show the graph's node
 #' # data frame (ndf)
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' # Show the graph's edge
 #' # data frame (edf)
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # An undirected graph can
 #' # also use a matrix with
 #' # edge weights, but only
 #' # the lower triangle of
 #' # that matrix will be used
-#' create_graph(directed = FALSE) %>%
+#' create_graph(directed = FALSE) |>
 #'   add_full_graph(
 #'     n = 3,
 #'     type = "weighted",
@@ -125,7 +125,7 @@
 #'     rel = "related_to",
 #'     edge_wt_matrix = edge_wt_matrix,
 #'     keep_loops = FALSE
-#'   ) %>%
+#'   ) |>
 #'   get_edge_df()
 #'
 #' @export
@@ -167,10 +167,10 @@ add_full_graph <- function(
   graph_info <- graph$graph_info
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <- graph |> count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Create initial adjacency matrix
   adj_matrix <- matrix(1, nrow = n, ncol = n)
@@ -279,7 +279,7 @@ add_full_graph <- function(
       node_aes$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -298,7 +298,7 @@ add_full_graph <- function(
       node_data$index__ <- seq_len(nrow(new_graph$nodes_df))
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-index__)
     }
 
@@ -317,7 +317,7 @@ add_full_graph <- function(
       edge_aes$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -336,7 +336,7 @@ add_full_graph <- function(
       edge_data$index__ <- seq_len(nrow(new_graph$edges_df))
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -349,7 +349,7 @@ add_full_graph <- function(
   if (exists("node_aes_tbl")) {
 
     new_graph$nodes_df <-
-      new_graph$nodes_df %>%
+      new_graph$nodes_df |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -357,7 +357,7 @@ add_full_graph <- function(
   if (exists("node_data_tbl")) {
 
     new_graph$nodes_df <-
-      new_graph$nodes_df %>%
+      new_graph$nodes_df |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -365,7 +365,7 @@ add_full_graph <- function(
   if (exists("edge_aes_tbl")) {
 
     new_graph$edges_df <-
-      new_graph$edges_df %>%
+      new_graph$edges_df |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -373,7 +373,7 @@ add_full_graph <- function(
   if (exists("edge_data_tbl")) {
 
     new_graph$edges_df <-
-      new_graph$edges_df %>%
+      new_graph$edges_df |>
       dplyr::bind_cols(edge_data_tbl)
   }
 
@@ -387,14 +387,14 @@ add_full_graph <- function(
     combined_graph$last_node <- nodes_created + n
 
     # Get the updated number of nodes in the graph
-    nodes_graph_2 <- combined_graph %>% count_nodes()
+    nodes_graph_2 <- combined_graph |> count_nodes()
 
     # Get the number of nodes added to
     # the graph
     nodes_added <- nodes_graph_2 - nodes_graph_1
 
     # Get the updated number of edges in the graph
-    edges_graph_2 <- combined_graph %>% count_edges()
+    edges_graph_2 <- combined_graph |> count_edges()
 
     # Get the number of edges added to
     # the graph
@@ -429,14 +429,14 @@ add_full_graph <- function(
   } else {
 
     # Get the updated number of nodes in the graph
-    nodes_graph_2 <- new_graph %>% count_nodes()
+    nodes_graph_2 <- new_graph |> count_nodes()
 
     # Get the number of nodes added to
     # the graph
     nodes_added <- nodes_graph_2 - nodes_graph_1
 
     # Get the updated number of edges in the graph
-    edges_graph_2 <- new_graph %>% count_edges()
+    edges_graph_2 <- new_graph |> count_edges()
 
     # Get the number of edges added to
     # the graph

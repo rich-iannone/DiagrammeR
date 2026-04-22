@@ -19,19 +19,19 @@
 #' # in this path and then add a
 #' # `color` edge attribute
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 2,
-#'     rel = "a") %>%
-#'   select_last_edges_created() %>%
+#'     rel = "a") |>
+#'   select_last_edges_created() |>
 #'   set_edge_attrs(
 #'     edge_attr = color,
-#'     values = "steelblue") %>%
+#'     values = "steelblue") |>
 #'   clear_selection()
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' # Create a new node (will have
 #' # node ID of `3`) and then
@@ -40,8 +40,8 @@
 #' # attributes of edge `1` -> `2`
 #' # (edge ID `1`)
 #' graph_2 <-
-#'   graph %>%
-#'   add_node() %>%
+#'   graph |>
+#'   add_node() |>
 #'   add_edge_clone(
 #'     edge = 1,
 #'     from = 3,
@@ -49,22 +49,25 @@
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph_2 %>% get_edge_df()
+#' graph_2 |> get_edge_df()
 #'
 #' # The same change can be performed
 #' # with some helper functions in the
 #' # `add_edge_clone()` function call
 #' graph_3 <-
-#'   graph %>%
-#'     add_node() %>%
+#'   graph |>
+#'     add_node()
+#'
+#' graph_3 <-
+#'   graph_3 |>
 #'     add_edge_clone(
-#'       edge = get_last_edges_created(.),
-#'       from = get_last_nodes_created(.),
+#'       edge = get_last_edges_created(graph_3),
+#'       from = get_last_nodes_created(graph_3),
 #'       to = 1)
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph_3 %>% get_edge_df()
+#' graph_3 |> get_edge_df()
 #'
 #' @family edge creation and removal
 #' @export
@@ -103,21 +106,21 @@ add_edge_clone <- function(
   # Get the number of columns in the graph's
   # internal edge data frame
   n_col_edf <-
-    graph %>%
-    get_edge_df() %>%
+    graph |>
+    get_edge_df() |>
     ncol()
 
   # Extract all of the edge attributes
   # (`rel` and additional edge attrs)
   edge_attr_vals <-
-    graph %>%
-    get_edge_df() %>%
-    dplyr::filter(id == edge) %>%
+    graph |>
+    get_edge_df() |>
+    dplyr::filter(id == edge) |>
     dplyr::select(4:dplyr::all_of(n_col_edf))
 
   # Create the requested edge
   graph <-
-    graph %>%
+    graph |>
     add_edge(
       from = from,
       to = to)
@@ -144,7 +147,7 @@ add_edge_clone <- function(
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-
-    graph$graph_log %>%
+    graph$graph_log |>
     dplyr::filter(version_id <= current_graph_log_version_id)
 
   # Get the name of the function

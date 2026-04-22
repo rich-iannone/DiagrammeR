@@ -23,8 +23,8 @@
 #' @examples
 #' # Create a graph
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 3) %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 3) |>
 #'   add_edges_w_string(
 #'     edges = "1->3 1->2 2->3")
 #'
@@ -32,16 +32,16 @@
 #' # node with ID `3` (these are
 #' # `1`->`3` and `2`->`3`)
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_edges_by_node_id(nodes = 3)
 #'
 #' # Delete edges in selection
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   delete_edges_ws()
 #'
 #' # Get a count of edges in the graph
-#' graph %>% count_edges()
+#' graph |> count_edges()
 #'
 #' @family edge creation and removal
 #'
@@ -71,7 +71,7 @@ delete_edges_ws <- function(graph) {
   to_delete <- graph$edge_selection$to
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Delete all edges in selection
   for (i in seq_along(from_delete)) {
@@ -97,7 +97,7 @@ delete_edges_ws <- function(graph) {
     remove_linked_dfs(graph)
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

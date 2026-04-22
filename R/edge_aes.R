@@ -106,7 +106,7 @@
 #' # a path with several edge
 #' # aesthetic attributes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     type = "path",
@@ -118,7 +118,7 @@
 #' # node data frame; the node
 #' # aesthetic attributes have
 #' # been inserted
-#' graph %>%
+#' graph |>
 #'   get_edge_df()
 #'
 #' @family aesthetics
@@ -195,7 +195,7 @@ edge_aes <- function(style = NULL,
       decorate = decorate)
 
   non_null_attrs <-
-    seq_along(attr_values) %>% # 1:length(attr_values)
+    seq_along(attr_values) |> # 1:length(attr_values)
     purrr::map_chr(.f = function(x) {
       if (is.null(attr_values[[x]])) {
         NA_character_

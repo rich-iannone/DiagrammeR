@@ -22,14 +22,14 @@
 #'
 #' # Determine whether the
 #' # graph is undirected
-#' graph %>% is_graph_undirected()
+#' graph |> is_graph_undirected()
 #'
 #' # Use the `set_graph_directed()`
 #' # function and check again
 #' # as to whether the graph is
 #' # undirected
-#' graph %>%
-#'   set_graph_directed() %>%
+#' graph |>
+#'   set_graph_directed() |>
 #'   is_graph_undirected()
 #'
 #' @export

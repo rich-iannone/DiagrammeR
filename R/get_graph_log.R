@@ -15,17 +15,17 @@
 #' # delete 2 nodes from the graph
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
-#'     set_seed = 23) %>%
-#'   delete_node(node = 5) %>%
+#'     set_seed = 23) |>
+#'   delete_node(node = 5) |>
 #'   delete_node(node = 7)
 #'
 #' # Get the graph log, which is a
 #' # record of all graph transformations
-#' graph %>% get_graph_log()
+#' graph |> get_graph_log()
 #'
 #' @export
 get_graph_log <- function(graph) {

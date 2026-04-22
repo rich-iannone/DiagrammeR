@@ -152,7 +152,7 @@ replace_graph_edge_selection <- function(graph,
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  dplyr::tibble(node = integer()) %>%
+  dplyr::tibble(node = integer()) |>
     as.data.frame(stringsAsFactors = FALSE)
 }
 
@@ -198,7 +198,7 @@ is_attr_unique_and_non_na <- function(graph,
 
   # Are all values distinct?
   all_values_distinct <-
-    dplyr::pull(df, !!enquo(attr)) %>% dplyr::n_distinct() ==
+    dplyr::pull(df, !!enquo(attr)) |> dplyr::n_distinct() ==
     nrow(df)
 
   all_is_not_na && all_values_distinct
@@ -390,7 +390,7 @@ get_col_selection <- function(col_selection_stmt) {
     column_selection <-
       stringr::str_split(
         string = col_selection_stmt,
-        pattern = " & ") %>%
+        pattern = " & ") |>
       unlist()
 
   } else if (any(stringr::str_detect(
@@ -404,13 +404,13 @@ get_col_selection <- function(col_selection_stmt) {
       seq(
         from = (stringr::str_split(
           string = col_selection_stmt,
-          pattern = ":") %>%
-            unlist())[1] %>%
+          pattern = ":") |>
+            unlist())[1] |>
           as.numeric(),
         to = (stringr::str_split(
           string = col_selection_stmt,
-          pattern = ":") %>%
-            unlist())[2] %>%
+          pattern = ":") |>
+            unlist())[2] |>
           as.numeric())
 
   } else if (any(
@@ -426,11 +426,11 @@ get_col_selection <- function(col_selection_stmt) {
       c(
         (stringr::str_split(
           string = col_selection_stmt,
-          pattern = ":") %>%
+          pattern = ":") |>
            unlist())[1],
         (stringr::str_split(
           string = col_selection_stmt,
-          pattern = ":") %>%
+          pattern = ":") |>
            unlist())[2])
   } else {
     return(list())
@@ -451,7 +451,7 @@ get_col_selection <- function(col_selection_stmt) {
 contrasting_text_color <- function(background_color) {
 
   rgb_colors <-
-    ((grDevices::col2rgb(background_color) %>%
+    ((grDevices::col2rgb(background_color) |>
         as.numeric()) / 255)^2.2
 
   luminance <-
@@ -484,8 +484,8 @@ contrasting_text_color <- function(background_color) {
 emit_message <- function(fcn_name,
                          message_body) {
 
-  glue::glue("`{fcn_name}()` INFO: {message_body}") %>%
-    as.character() %>%
+  glue::glue("`{fcn_name}()` INFO: {message_body}") |>
+    as.character() |>
     message()
 }
 
@@ -739,9 +739,9 @@ get_df_ids <- function(graph_df) {
 
     if ("df_id" %in% colnames(graph_df)) {
 
-      graph_df %>%
-        dplyr::select("df_id") %>%
-        dplyr::filter(!is.na(df_id)) %>%
+      graph_df |>
+        dplyr::select("df_id") |>
+        dplyr::filter(!is.na(df_id)) |>
         dplyr::pull("df_id")
     } else {
       return(NA_character_)
@@ -766,13 +766,13 @@ remove_linked_dfs <- function(graph) {
   }
 
   ndf_df_ids <-
-    graph %>%
-    get_node_df() %>%
+    graph |>
+    get_node_df() |>
     get_df_ids()
 
   edf_df_ids <-
-    graph %>%
-    get_edge_df() %>%
+    graph |>
+    get_edge_df() |>
     get_df_ids()
 
   # Determine if any of the stored
@@ -781,12 +781,12 @@ remove_linked_dfs <- function(graph) {
   if (length(graph$df_storage) > 0) {
 
     ndf_df_id_to_remove <-
-      graph$df_storage %>%
-      dplyr::bind_rows() %>%
-      dplyr::filter(node_edge__ == "node") %>%
-      dplyr::select("df_id__") %>%
-      dplyr::distinct() %>%
-      dplyr::pull("df_id__") %>%
+      graph$df_storage |>
+      dplyr::bind_rows() |>
+      dplyr::filter(node_edge__ == "node") |>
+      dplyr::select("df_id__") |>
+      dplyr::distinct() |>
+      dplyr::pull("df_id__") |>
       base::setdiff(ndf_df_ids)
 
     # If any stored data frames are associated
@@ -805,12 +805,12 @@ remove_linked_dfs <- function(graph) {
   # the graph's internal edge data frame
   if (length(graph$df_storage) > 0) {
     edf_df_id_to_remove <-
-      graph$df_storage %>%
-      dplyr::bind_rows() %>%
-      dplyr::filter(node_edge__ == "edge") %>%
-      dplyr::select("df_id__") %>%
-      dplyr::distinct() %>%
-      dplyr::pull("df_id__") %>%
+      graph$df_storage |>
+      dplyr::bind_rows() |>
+      dplyr::filter(node_edge__ == "edge") |>
+      dplyr::select("df_id__") |>
+      dplyr::distinct() |>
+      dplyr::pull("df_id__") |>
       base::setdiff(edf_df_ids)
 
 
@@ -882,33 +882,33 @@ get_svg_tbl <- function(svg_vec) {
     } else if (grepl("<!-- Title:", line)) {
       rec <- dplyr::tibble(index = i, type = "title_block")
     } else if (grepl("^<svg", line)) {
-      rec <- dplyr::tibble(index = i, type = "svg") %>% dplyr::bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "svg") |> dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl(" viewBox", line)) {
       rec <- dplyr::tibble(index = i, type = "viewbox_info")
     } else if (grepl("^<g ", line)) {
-      rec <- dplyr::tibble(index = i, type = "g") %>% dplyr::bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "g") |> dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<title>", line)) {
-      rec <- dplyr::tibble(index = i, type = "title") %>% dplyr::bind_cols(get_inner_html(line))
+      rec <- dplyr::tibble(index = i, type = "title") |> dplyr::bind_cols(get_inner_html(line))
     } else if (grepl("^<polygon", line)) {
-      rec <- dplyr::tibble(index = i, type = "polygon") %>% dplyr::bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "polygon") |> dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<path", line)) {
-      rec <- dplyr::tibble(index = i, type = "path") %>% dplyr::bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "path") |> dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<ellipse", line)) {
-      rec <- dplyr::tibble(index = i, type = "ellipse") %>% dplyr::bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "ellipse") |> dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("<!-- [0-9]*? -->", line)) {
-      node_id <- gsub("(<!-- | -->)", "", line) %>% as.integer()
+      node_id <- gsub("(<!-- | -->)", "", line) |> as.integer()
       rec <- dplyr::tibble(index = i, type = "node_block", node_id = node_id)
     } else if (grepl("<!-- [0-9]*?&#45;&gt;[0-9]*? -->", line)) {
-      from_node_id <- gsub("(<!-- |?&#45;&gt;[0-9]*? -->)", "", line) %>% as.integer()
-      to_node_id <- gsub("(<!-- [0-9]*?&#45;&gt;| -->)", "", line) %>% as.integer()
+      from_node_id <- gsub("(<!-- |?&#45;&gt;[0-9]*? -->)", "", line) |> as.integer()
+      to_node_id <- gsub("(<!-- [0-9]*?&#45;&gt;| -->)", "", line) |> as.integer()
       rec <- dplyr::tibble(index = i, type = "edge_block", from = from_node_id, to = to_node_id)
     } else if (grepl("<!-- [0-9]*?&#45;&#45;[0-9]*? -->", line)) {
-      from_node_id <- gsub("(<!-- |?&#45;&#45;[0-9]*? -->)", "", line) %>% as.integer()
-      to_node_id <- gsub("(<!-- [0-9]*?&#45;&#45;| -->)", "", line) %>% as.integer()
+      from_node_id <- gsub("(<!-- |?&#45;&#45;[0-9]*? -->)", "", line) |> as.integer()
+      to_node_id <- gsub("(<!-- [0-9]*?&#45;&#45;| -->)", "", line) |> as.integer()
       rec <- dplyr::tibble(index = i, type = "edge_block", from = from_node_id, to = to_node_id)
     } else if (grepl("^<text ", line)) {
-      rec <- dplyr::tibble(index = i, type = "text") %>%
-        dplyr::bind_cols(get_attr_tbl(line)) %>%
+      rec <- dplyr::tibble(index = i, type = "text") |>
+        dplyr::bind_cols(get_attr_tbl(line)) |>
         dplyr::bind_cols(get_inner_html(line))
     } else if (grepl("</g>", line)) {
       rec <- dplyr::tibble(index = i, type = "g_close")
@@ -921,7 +921,7 @@ get_svg_tbl <- function(svg_vec) {
     svg_tbl <- dplyr::bind_rows(svg_tbl, rec)
   }
 
-  svg_tbl %>% tidyr::fill(node_id)
+  svg_tbl |> tidyr::fill(node_id)
 }
 
 #' Function to create a one-row table of attr-value pairs
@@ -929,18 +929,18 @@ get_svg_tbl <- function(svg_vec) {
 #' @noRd
 get_attr_tbl <- function(line) {
 
-  line <- gsub("<[a-z]*? ", "", line) %>% gsub("\"", "'", .) %>% gsub("(/>|>|>.*)", "", .)
+  line <- gsub("<[a-z]*? ", "", line) |> gsub("\"", "'", .) |> gsub("(/>|>|>.*)", "", .)
 
   el_attrs <-
-    strsplit(line, "' ") %>%
-    unlist() %>%
-    gsub("'", "", .) %>%
+    strsplit(line, "' ") |>
+    unlist() |>
+    gsub("'", "", .) |>
     strsplit("=")
 
   stats::setNames(
     sapply(el_attrs, `[[`, 2),
-    sapply(el_attrs, `[[`, 1)) %>%
-    as.list() %>%
+    sapply(el_attrs, `[[`, 1)) |>
+    as.list() |>
     dplyr::as_tibble()
 }
 

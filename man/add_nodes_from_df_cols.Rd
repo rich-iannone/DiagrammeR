@@ -57,7 +57,7 @@ df <-
 # and `col_2` from the data frame
 # to the graph object
 graph <-
-  graph \%>\%
+  graph |>
   add_nodes_from_df_cols(
     df = df,
     columns = c("col_1", "col_2"))
@@ -66,13 +66,13 @@ graph <-
 # frame; duplicate labels are
 # prevented with `keep_duplicates =
 # FALSE`)
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 # Add new nodes from columns 3 and 4;
 # We can specify the columns by their
 # numbers as well
 graph <-
-  graph \%>\%
+  graph |>
   add_nodes_from_df_cols(
     df = df,
     columns = 3:4)
@@ -81,7 +81,7 @@ graph <-
 # frame; note that nodes didn't
 # get made with columns that
 # are not character class columns
-graph \%>\% get_node_df()
+graph |> get_node_df()
 
 }
 \seealso{

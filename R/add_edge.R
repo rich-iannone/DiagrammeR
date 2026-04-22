@@ -25,10 +25,10 @@
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-
-#'   create_graph() %>%
-#'   add_node(label = "one") %>%
-#'   add_node(label = "two") %>%
-#'   add_node(label = "three") %>%
+#'   create_graph() |>
+#'   add_node(label = "one") |>
+#'   add_node(label = "two") |>
+#'   add_node(label = "three") |>
 #'   add_node(label = "four")
 #'
 #' # Add an edge between those
@@ -44,13 +44,13 @@
 #' # Use the `get_edge_info()`
 #' # function to verify that
 #' # the edge has been created
-#' graph %>%
+#' graph |>
 #'   get_edge_info()
 #'
 #' # Add another node and
 #' # edge to the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_edge(
 #'     from = 3,
 #'     to = 2,
@@ -59,7 +59,7 @@
 #' # Verify that the edge
 #' # has been created by
 #' # counting graph edges
-#' graph %>% count_edges()
+#' graph |> count_edges()
 #'
 #' # Add edges by specifying
 #' # node `label` values; note
@@ -67,11 +67,11 @@
 #' # unique `label` values to
 #' # use this option
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   add_edge(
 #'     from = "three",
 #'     to = "four",
-#'     rel = "L") %>%
+#'     rel = "L") |>
 #'   add_edge(
 #'     from = "four",
 #'     to = "one",
@@ -79,13 +79,13 @@
 #'
 #' # Use `get_edges()` to verify
 #' # that the edges were added
-#' graph %>% get_edges()
+#' graph |> get_edges()
 #'
 #' # Add edge aesthetic and data
 #' # attributes during edge creation
 #' graph_2 <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 2) %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 2) |>
 #'   add_edge(
 #'     from = 1,
 #'     to = 2,
@@ -100,7 +100,7 @@
 #' # to verify that the attribute
 #' # values were bound to the
 #' # newly created edge
-#' graph_2 %>% get_edge_df()
+#' graph_2 |> get_edge_df()
 #'
 #'
 #' @family edge creation and removal
@@ -146,7 +146,7 @@ add_edge <- function(
       edge_aes$index__ <- 1
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -165,7 +165,7 @@ add_edge <- function(
       edge_data$index__ <- 1
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -189,9 +189,9 @@ add_edge <- function(
 
     # Stop function if the label for
     # `from` is not distinct in the graph
-    if (graph$nodes_df %>%
-        dplyr::select("label") %>%
-        dplyr::filter(label == from) %>%
+    if (graph$nodes_df |>
+        dplyr::select("label") |>
+        dplyr::filter(label == from) |>
         nrow() > 1) {
 
       rlang::abort(
@@ -208,9 +208,9 @@ add_edge <- function(
 
     # Stop function if the label for
     # `to` is not distinct in the graph
-    if (graph$nodes_df %>%
-        dplyr::select("label") %>%
-        dplyr::filter(label == to) %>%
+    if (graph$nodes_df |>
+        dplyr::select("label") |>
+        dplyr::filter(label == to) |>
         nrow() > 1) {
 
       rlang::abort(
@@ -253,16 +253,16 @@ add_edge <- function(
       # those to the new edge
       graph <-
         suppressMessages(
-          graph %>%
+          graph |>
             select_edges_by_edge_id(
-              edges = graph$edges_df$id %>% max())
+              edges = graph$edges_df$id |> max())
         )
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
       for (i in seq_len(ncol(edge_aes_tbl))) {
         graph <-
-          graph %>%
+          graph |>
           set_edge_attrs_ws(
             edge_attr = !!colnames(edge_aes_tbl)[i],
             value = edge_aes_tbl[1, i][[1]]
@@ -281,7 +281,7 @@ add_edge <- function(
       # those to the new edge
       graph <-
         suppressMessages(
-          graph %>%
+          graph |>
             select_edges_by_edge_id(
               edges = max(graph$edges_df$id))
         )
@@ -290,7 +290,7 @@ add_edge <- function(
       # the new edge in the graph
       for (i in seq_len(ncol(edge_data_tbl))) {
         graph <-
-          graph %>%
+          graph |>
           set_edge_attrs_ws(
             edge_attr = !!colnames(edge_data_tbl)[i],
             value = edge_data_tbl[1, i][[1]]
@@ -308,7 +308,7 @@ add_edge <- function(
 
     # Remove extra items from the `graph_log`
     graph$graph_log <-
-      graph$graph_log %>%
+      graph$graph_log |>
       dplyr::filter(version_id <= current_graph_log_version_id)
 
     # Get the name of the function

@@ -21,18 +21,18 @@ that are not connected to any other node.
 # path of nodes and 3
 # unconnected nodes
 graph <-
-  create_graph() \%>\%
-  add_path(n = 3) \%>\%
+  create_graph() |>
+  add_path(n = 3) |>
   add_n_nodes(n = 3)
 
 # Get a count of all nodes
 # in the graph
-graph \%>\% count_nodes()
+graph |> count_nodes()
 
 # Get a count of all
 # unconnected nodes in the
 # graph
-graph \%>\%
+graph |>
   count_unconnected_nodes()
 
 }

@@ -24,20 +24,20 @@
 #' # Create an empty graph and
 #' # add a path of 6 nodes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 6)
 #'
 #' # Select nodes `3` and `4`
 #' # and fully disconnect them
 #' # from the graph
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   select_nodes_by_id(
-#'     nodes = 3:4) %>%
+#'     nodes = 3:4) |>
 #'   fully_disconnect_nodes_ws()
 #'
 #' # Get the graph's edge data frame
-#' graph %>% get_edge_df()
+#' graph |> get_edge_df()
 #'
 #' @export
 fully_disconnect_nodes_ws <- function(graph) {
@@ -61,12 +61,12 @@ fully_disconnect_nodes_ws <- function(graph) {
   edf <- graph$edges_df
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <- graph |> count_edges()
 
   # Filter edf such that any edges containing
   # nodes in the node selection are removed
   edf_replacement <-
-    edf %>%
+    edf |>
     dplyr::filter(
       !(from %in% suppressMessages(get_selection(graph)) |
           to %in% suppressMessages(get_selection(graph))))
@@ -75,10 +75,10 @@ fully_disconnect_nodes_ws <- function(graph) {
   graph$edges_df <- edf_replacement
 
   # Scavenge any invalid, linked data frames
-  graph <- graph %>% remove_linked_dfs()
+  graph <- graph |> remove_linked_dfs()
 
   # Get the updated number of edges in the graph
-  edges_graph_2 <- graph %>% count_edges()
+  edges_graph_2 <- graph |> count_edges()
 
   # Get the number of edges added to
   # the graph

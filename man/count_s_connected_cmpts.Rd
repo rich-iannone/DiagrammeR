@@ -20,7 +20,7 @@ Get the number of strongly-connected components in the graph.
 # Create a graph and add
 # several graph islands
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_islands_graph(
     n_islands = 4,
     island_size = 10,
@@ -30,6 +30,6 @@ graph <-
 
 # Get a count of strongly-connected
 # components in the graph
-graph \%>\% count_s_connected_cmpts()
+graph |> count_s_connected_cmpts()
 
 }

@@ -32,24 +32,24 @@ Selections of nodes can also be performed using the following traversal
 \examples{
 # Create a graph with 3 nodes
 graph <-
-  create_graph() \%>\%
-  add_n_nodes(n = 3) \%>\%
+  create_graph() |>
+  add_n_nodes(n = 3) |>
   add_edges_w_string(
     edges = "1->3 1->2 2->3")
 
 # Select node with ID `1`
 graph <-
-  graph \%>\%
+  graph |>
   select_nodes_by_id(nodes = 1)
 
 # Delete node in selection (this
 # also deletes any attached edges)
 graph <-
-  graph \%>\%
+  graph |>
   delete_nodes_ws()
 
 # Get a count of nodes in the graph
-graph \%>\% count_nodes()
+graph |> count_nodes()
 
 }
 \seealso{

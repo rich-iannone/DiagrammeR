@@ -119,7 +119,7 @@ replace_in_spec <- function(spec, envir = parent.frame()) {
           gsub(
             "^([0-9]+)(.*)", "\\1",
             strsplit(spec_body, paste0("@@", i, "-"))[[1]][2]
-          ) %>%
+          ) |>
           as.numeric()
 
         if (the_index > length(eval_expressions[[i]])) {

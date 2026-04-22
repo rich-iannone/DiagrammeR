@@ -54,7 +54,7 @@ file or a data frame.
 # `currencies` dataset available
 # in the package
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_nodes_from_table(
     table = currencies)
 
@@ -70,7 +70,7 @@ graph <-
 # `iso_4217_code` column of the
 # graph's internal node data frame
 graph_1 <-
-  graph \%>\%
+  graph |>
     add_edges_from_table(
       table = usd_exchange_rates,
       from_col = from_currency,
@@ -79,8 +79,8 @@ graph_1 <-
 
 # View part of the graph's
 # internal edge data frame
-graph_1 \%>\%
-  get_edge_df() \%>\%
+graph_1 |>
+  get_edge_df() |>
   head()
 
 # If you would like to assign
@@ -90,7 +90,7 @@ graph_1 \%>\%
 # set a static `rel` attribute for
 # all edges created, use `set_rel`
 graph_2 <-
-  graph \%>\%
+  graph |>
     add_edges_from_table(
       table = usd_exchange_rates,
       from_col = from_currency,
@@ -100,8 +100,8 @@ graph_2 <-
 
 # View part of the graph's internal
 # edge data frame (edf)
-graph_2 \%>\%
-  get_edge_df() \%>\%
+graph_2 |>
+  get_edge_df() |>
   head()
 
 }

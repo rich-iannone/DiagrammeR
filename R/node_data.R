@@ -12,7 +12,7 @@
 #' # a path with several node
 #' # data attributes
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(
 #'     n = 3,
 #'     type = "path",
@@ -24,7 +24,7 @@
 #' # node data frame; the node
 #' # data attributes have been
 #' # inserted
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #' @family node creation and removal
 #' @export
 node_data <- function(...) {

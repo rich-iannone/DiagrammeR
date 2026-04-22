@@ -15,7 +15,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -25,20 +25,20 @@
 #' # values for all nodes in the
 #' # graph through the Walktrap
 #' # community finding algorithm
-#' graph %>%
+#' graph |>
 #'   get_cmty_walktrap()
 #'
 #' # Add the group membership
 #' # values to the graph as a
 #' # node attribute
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   join_node_attrs(
-#'     df = get_cmty_walktrap(.))
+#'     df = get_cmty_walktrap(graph))
 #'
 #' # Display the graph's
 #' # node data frame
-#' graph %>% get_node_df()
+#' graph |> get_node_df()
 #'
 #' @export
 get_cmty_walktrap <- function(
@@ -59,7 +59,7 @@ get_cmty_walktrap <- function(
 
   # Create df with node memberships
   data.frame(
-    id = igraph::membership(cmty_walktrap_obj) %>% names() %>% as.integer(),
+    id = igraph::membership(cmty_walktrap_obj) |> names() |> as.integer(),
     walktrap_group = as.vector(igraph::membership(cmty_walktrap_obj)),
     stringsAsFactors = FALSE)
 }

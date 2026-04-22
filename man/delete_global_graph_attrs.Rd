@@ -26,15 +26,15 @@ Delete one of the global attributes stored within a graph object of class
 # Create a new graph and add
 # some extra global graph attrs
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_global_graph_attrs(
     attr = "overlap",
     value = "true",
-    attr_type = "graph") \%>\%
+    attr_type = "graph") |>
   add_global_graph_attrs(
     attr = "penwidth",
     value = 3,
-    attr_type = "node") \%>\%
+    attr_type = "node") |>
   add_global_graph_attrs(
     attr = "penwidth",
     value = 3,
@@ -42,21 +42,21 @@ graph <-
 
 # Inspect the graph's global
 # attributes
-graph \%>\%
+graph |>
   get_global_graph_attr_info()
 
 # Delete the `penwidth` attribute
 # for the graph's nodes using the
 # `delete_global_graph_attrs()` fcn
 graph <-
-  graph \%>\%
+  graph |>
   delete_global_graph_attrs(
     attr = "penwidth",
     attr_type = "node")
 
 # View the remaining set of global
 # attributes for the graph
-graph \%>\%
+graph |>
   get_global_graph_attr_info()
 
 }

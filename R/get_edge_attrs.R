@@ -20,33 +20,34 @@
 #' # edges have an edge attribute
 #' # named `value`
 #' graph <-
-#'   create_graph() %>%
-#'   add_n_nodes(n = 4) %>%
-#'   {
-#'     edges <-
-#'       create_edge_df(
-#'         from = c(1, 2, 1, 4),
-#'           to = c(2, 3, 4, 3),
-#'          rel = "rel")
-#'     add_edge_df(
-#'       graph = .,
-#'       edge_df = edges)
-#'   } %>%
+#'   create_graph() |>
+#'   add_n_nodes(n = 4)
+#'
+#' edges <-
+#'   create_edge_df(
+#'     from = c(1, 2, 1, 4),
+#'       to = c(2, 3, 4, 3),
+#'      rel = "rel")
+#'
+#' graph <-
+#'   add_edge_df(
+#'     graph = graph,
+#'     edge_df = edges) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 1.6,
 #'     from = 1,
-#'       to = 2) %>%
+#'       to = 2) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 4.3,
 #'     from = 1,
-#'       to = 4) %>%
+#'       to = 4) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 2.9,
 #'     from = 2,
-#'       to = 3) %>%
+#'       to = 3) |>
 #'   set_edge_attrs(
 #'     edge_attr = value,
 #'     values = 8.4,
@@ -55,14 +56,14 @@
 #'
 #' # Get the values for the
 #' # `value` edge attribute
-#' graph %>%
+#' graph |>
 #'   get_edge_attrs(
 #'     edge_attr = value)
 #'
 #' # To only return edge attribute
 #' # values for specified edges, use
 #' # the `from` and `to` arguments
-#' graph %>%
+#' graph |>
 #'   get_edge_attrs(
 #'     edge_attr = value,
 #'     from = c(1, 2),
@@ -81,7 +82,7 @@ get_edge_attrs <- function(
 
   edge_attr <- rlang::enquo(edge_attr)
 
-  if (rlang::get_expr(edge_attr) %>%
+  if (rlang::get_expr(edge_attr) |>
       as.character() %in% c("id", "from", "to")) {
 
     cli::cli_abort(
@@ -101,7 +102,7 @@ get_edge_attrs <- function(
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edf %>%
+      edf |>
       dplyr::pull(!!edge_attr)
 
     # Extract the edge names
@@ -121,13 +122,13 @@ get_edge_attrs <- function(
     # Filter the edf by the supplied
     # edge definitions
     edf <-
-      edf %>%
-      dplyr::mutate(from_to = paste(from, to, sep = "->")) %>%
+      edf |>
+      dplyr::mutate(from_to = paste(from, to, sep = "->")) |>
       dplyr::filter(from_to %in% edges)
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edf %>%
+      edf |>
       dplyr::pull(!!edge_attr)
 
     # Extract the edge names

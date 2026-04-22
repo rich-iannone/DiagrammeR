@@ -20,7 +20,7 @@
 #'     name = "the_name")
 #'
 #' # Get the graph's name
-#' graph %>% get_graph_name()
+#' graph |> get_graph_name()
 #'
 #' @export
 get_graph_name <- function(graph) {

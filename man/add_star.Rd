@@ -60,16 +60,16 @@ With a graph object of class \code{dgr_graph}, add a node star to the graph.
 # Create a new graph and add 2
 # stars of varying numbers of nodes
 graph <-
-  create_graph() \%>\%
+  create_graph() |>
   add_star(
     n = 4,
-    type = "four_star") \%>\%
+    type = "four_star") |>
   add_star(
     n = 5,
     type = "five_star")
 
 # Get node information from this graph
-graph \%>\% get_node_info()
+graph |> get_node_info()
 
 # Node and edge aesthetic and data
 # attributes can be specified in
@@ -81,7 +81,7 @@ suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 graph_w_attrs <-
-  create_graph() \%>\%
+  create_graph() |>
   add_star(
     n = 4,
     label = c(
@@ -106,9 +106,9 @@ graph_w_attrs <-
           sd = 1.0)))
 
 # Get the graph's node data frame
-graph_w_attrs \%>\% get_node_df()
+graph_w_attrs |> get_node_df()
 
 # Get the graph's edge data frame
-graph_w_attrs \%>\% get_edge_df()
+graph_w_attrs |> get_edge_df()
 
 }

@@ -33,7 +33,7 @@ Selections of nodes can also be performed using the following traversal
 # of 5 nodes with loops retained
 graph <-
   create_graph(
-    directed = FALSE) \%>\%
+    directed = FALSE) |>
   add_full_graph(
     n = 5,
     keep_loops = TRUE)
@@ -42,14 +42,14 @@ graph <-
 # and remove the loop edges
 # associated with those nodes
 graph <-
-  graph \%>\%
+  graph |>
   select_nodes_by_id(
-    nodes = 3:4) \%>\%
+    nodes = 3:4) |>
   delete_loop_edges_ws()
 
 # Count the number of loop
 # edges remaining in the graph
-graph \%>\% count_loop_edges()
+graph |> count_loop_edges()
 
 }
 \seealso{

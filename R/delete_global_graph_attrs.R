@@ -17,15 +17,15 @@
 #' # Create a new graph and add
 #' # some extra global graph attrs
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_global_graph_attrs(
 #'     attr = "overlap",
 #'     value = "true",
-#'     attr_type = "graph") %>%
+#'     attr_type = "graph") |>
 #'   add_global_graph_attrs(
 #'     attr = "penwidth",
 #'     value = 3,
-#'     attr_type = "node") %>%
+#'     attr_type = "node") |>
 #'   add_global_graph_attrs(
 #'     attr = "penwidth",
 #'     value = 3,
@@ -33,21 +33,21 @@
 #'
 #' # Inspect the graph's global
 #' # attributes
-#' graph %>%
+#' graph |>
 #'   get_global_graph_attr_info()
 #'
 #' # Delete the `penwidth` attribute
 #' # for the graph's nodes using the
 #' # `delete_global_graph_attrs()` fcn
 #' graph <-
-#'   graph %>%
+#'   graph |>
 #'   delete_global_graph_attrs(
 #'     attr = "penwidth",
 #'     attr_type = "node")
 #'
 #' # View the remaining set of global
 #' # attributes for the graph
-#' graph %>%
+#' graph |>
 #'   get_global_graph_attr_info()
 #'
 #' @export
@@ -88,7 +88,7 @@ delete_global_graph_attrs <- function(
     attr <- rlang::enquo(attr)
 
     graph$global_attrs <-
-      graph$global_attrs %>%
+      graph$global_attrs |>
       dplyr::filter(!(attr %in% !!attr))
   }
 
@@ -105,7 +105,7 @@ delete_global_graph_attrs <- function(
     attr_type <- rlang::enquo(attr_type)
 
     graph$global_attrs <-
-      graph$global_attrs %>%
+      graph$global_attrs |>
       dplyr::filter(!(attr_type %in% !!attr_type))
   }
 
@@ -125,13 +125,13 @@ delete_global_graph_attrs <- function(
       dplyr::tibble(
         attr = as.character(attr),
         value = NA_character_,
-        attr_type = as.character(attr_type)) %>%
+        attr_type = as.character(attr_type)) |>
       as.data.frame(stringsAsFactors = FALSE)
 
     # Use the `anti_join()` to remove global attribute
     # rows from the graph
     global_attrs_joined <-
-      global_attrs_available %>%
+      global_attrs_available |>
       dplyr::anti_join(
         global_attrs_to_remove,
         by = c("attr", "attr_type"))

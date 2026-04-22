@@ -43,10 +43,10 @@ graph.
 \examples{
 # Create a graph with 4 nodes
 graph <-
-  create_graph() \%>\%
-  add_node(label = "one") \%>\%
-  add_node(label = "two") \%>\%
-  add_node(label = "three") \%>\%
+  create_graph() |>
+  add_node(label = "one") |>
+  add_node(label = "two") |>
+  add_node(label = "three") |>
   add_node(label = "four")
 
 # Add an edge between those
@@ -62,13 +62,13 @@ graph <-
 # Use the `get_edge_info()`
 # function to verify that
 # the edge has been created
-graph \%>\%
+graph |>
   get_edge_info()
 
 # Add another node and
 # edge to the graph
 graph <-
-  graph \%>\%
+  graph |>
   add_edge(
     from = 3,
     to = 2,
@@ -77,7 +77,7 @@ graph <-
 # Verify that the edge
 # has been created by
 # counting graph edges
-graph \%>\% count_edges()
+graph |> count_edges()
 
 # Add edges by specifying
 # node `label` values; note
@@ -85,11 +85,11 @@ graph \%>\% count_edges()
 # unique `label` values to
 # use this option
 graph <-
-  graph \%>\%
+  graph |>
   add_edge(
     from = "three",
     to = "four",
-    rel = "L") \%>\%
+    rel = "L") |>
   add_edge(
     from = "four",
     to = "one",
@@ -97,13 +97,13 @@ graph <-
 
 # Use `get_edges()` to verify
 # that the edges were added
-graph \%>\% get_edges()
+graph |> get_edges()
 
 # Add edge aesthetic and data
 # attributes during edge creation
 graph_2 <-
-  create_graph() \%>\%
-  add_n_nodes(n = 2) \%>\%
+  create_graph() |>
+  add_n_nodes(n = 2) |>
   add_edge(
     from = 1,
     to = 2,
@@ -118,7 +118,7 @@ graph_2 <-
 # to verify that the attribute
 # values were bound to the
 # newly created edge
-graph_2 \%>\% get_edge_df()
+graph_2 |> get_edge_df()
 
 
 }

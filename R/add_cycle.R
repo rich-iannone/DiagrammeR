@@ -21,12 +21,12 @@
 #' # Create a new graph and
 #' # add a cycle of nodes to it
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(n = 6)
 #'
 #' # Get node information
 #' # from this graph
-#' graph %>%
+#' graph |>
 #'   get_node_info()
 #'
 #' # Node and edge aesthetic and data
@@ -39,7 +39,7 @@
 #' set.seed(23)
 #'
 #' graph_w_attrs <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_cycle(
 #'     n = 3,
 #'     label = c(
@@ -63,10 +63,10 @@
 #'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>% get_node_df()
+#' graph_w_attrs |> get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>% get_edge_df()
+#' graph_w_attrs |> get_edge_df()
 #'
 #' @export
 add_cycle <- function(
@@ -124,7 +124,7 @@ add_cycle <- function(
       node_aes$index__ <- seq_len(n)
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -143,7 +143,7 @@ add_cycle <- function(
       edge_aes$index__ <- seq_len(n)
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -162,7 +162,7 @@ add_cycle <- function(
       node_data$index__ <- seq_len(n)
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -181,7 +181,7 @@ add_cycle <- function(
       edge_data$index__ <- seq_len(n)
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -201,7 +201,7 @@ add_cycle <- function(
   if (exists("node_aes_tbl")) {
 
     cycle_nodes <-
-      cycle_nodes %>%
+      cycle_nodes |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -209,7 +209,7 @@ add_cycle <- function(
   if (exists("node_data_tbl")) {
 
     cycle_nodes <-
-      cycle_nodes %>%
+      cycle_nodes |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -224,7 +224,7 @@ add_cycle <- function(
   if (exists("edge_aes_tbl")) {
 
     cycle_edges <-
-      cycle_edges %>%
+      cycle_edges |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -232,7 +232,7 @@ add_cycle <- function(
   if (exists("edge_data_tbl")) {
 
     cycle_edges <-
-      cycle_edges %>%
+      cycle_edges |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

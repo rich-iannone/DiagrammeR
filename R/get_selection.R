@@ -12,7 +12,7 @@
 #' @examples
 #' # Create a simple graph
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_path(n = 6)
 #'
 #' # Select node `4`, then select
@@ -20,19 +20,19 @@
 #' # from node `4`, and finally
 #' # return the selection of nodes as
 #' # a vector object
-#' graph %>%
-#'   select_nodes(nodes = 4) %>%
+#' graph |>
+#'   select_nodes(nodes = 4) |>
 #'   select_nodes_in_neighborhood(
 #'     node = 4,
-#'     distance = 1) %>%
+#'     distance = 1) |>
 #'   get_selection()
 #'
 #' # Select edges associated with
 #' # node `4` and return the
 #' # selection of edges
-#' graph %>%
+#' graph |>
 #'   select_edges_by_node_id(
-#'     nodes = 4) %>%
+#'     nodes = 4) |>
 #'   get_selection()
 #'
 #' @export

@@ -17,7 +17,7 @@
 #' # `add_gnm_graph()` function
 #' graph <-
 #'   create_graph(
-#'     directed = FALSE) %>%
+#'     directed = FALSE) |>
 #'   add_gnm_graph(
 #'     n = 10,
 #'     m = 15,
@@ -25,7 +25,7 @@
 #'
 #' # Get degree histogram data for
 #' # the graph (reporting total degree)
-#' graph %>%
+#' graph |>
 #'   get_degree_histogram(
 #'     mode = "total")
 #'
@@ -48,8 +48,8 @@ get_degree_histogram <- function(
   if (mode %in% c("all", "total", "both")) {
 
     deg_hist_df <-
-      get_degree_distribution(graph) %>%
-      dplyr::mutate(total_degree_hist = total_degree_dist * count_nodes(graph)) %>%
+      get_degree_distribution(graph) |>
+      dplyr::mutate(total_degree_hist = total_degree_dist * count_nodes(graph)) |>
       dplyr::select("degree", "total_degree_hist")
   }
 
@@ -57,8 +57,8 @@ get_degree_histogram <- function(
   if (mode == "in") {
 
     deg_hist_df <-
-      get_degree_distribution(graph, mode = "in") %>%
-      dplyr::mutate(indegree_hist = indegree_dist * count_nodes(graph)) %>%
+      get_degree_distribution(graph, mode = "in") |>
+      dplyr::mutate(indegree_hist = indegree_dist * count_nodes(graph)) |>
       dplyr::select("degree", "indegree_hist")
   }
 
@@ -66,8 +66,8 @@ get_degree_histogram <- function(
   if (mode == "out") {
 
      deg_hist_df <-
-      get_degree_distribution(graph, mode = "out") %>%
-      dplyr::mutate(outdegree_hist = outdegree_dist * count_nodes(graph)) %>%
+      get_degree_distribution(graph, mode = "out") |>
+      dplyr::mutate(outdegree_hist = outdegree_dist * count_nodes(graph)) |>
       dplyr::select("degree", "outdegree_hist")
   }
 

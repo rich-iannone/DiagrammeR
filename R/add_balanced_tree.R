@@ -25,11 +25,11 @@
 #' # 2 (branching twice) and
 #' # different branching ratios
 #' graph <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_balanced_tree(
 #'     k = 2,
 #'     h = 2,
-#'     type = "binary") %>%
+#'     type = "binary") |>
 #'   add_balanced_tree(
 #'     k = 3,
 #'     h = 2,
@@ -37,8 +37,8 @@
 #'
 #' # Get some node information
 #' # from this graph
-#' graph %>%
-#'   get_node_info() %>%
+#' graph |>
+#'   get_node_info() |>
 #'   head(5)
 #'
 #' # Node and edge aesthetic and data
@@ -47,7 +47,7 @@
 #' # `node_data`, and `edge_data`
 #' # arguments
 #' graph_w_attrs <-
-#'   create_graph() %>%
+#'   create_graph() |>
 #'   add_balanced_tree(
 #'     k = 2,
 #'     h = 2,
@@ -71,14 +71,14 @@
 #'
 #' # Get the first three rows of
 #' # the graph's node data frame
-#' graph_w_attrs %>%
-#'   get_node_df() %>%
+#' graph_w_attrs |>
+#'   get_node_df() |>
 #'   head(3)
 #'
 #' # Get the first three rows of
 #' # the graph's edge data frame
-#' graph_w_attrs %>%
-#'   get_edge_df() %>%
+#' graph_w_attrs |>
+#'   get_edge_df() |>
 #'   head(3)
 #'
 #' @export
@@ -165,7 +165,7 @@ add_balanced_tree <- function(
       node_aes$index__ <- seq_len(n_nodes_tree)
 
       node_aes_tbl <-
-        dplyr::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -184,7 +184,7 @@ add_balanced_tree <- function(
       node_data$index__ <- seq_len(n_nodes_tree)
 
       node_data_tbl <-
-        dplyr::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) |>
         dplyr::select(-"index__")
     }
 
@@ -203,7 +203,7 @@ add_balanced_tree <- function(
       edge_aes$index__ <- seq_len(n_edges_tree)
 
       edge_aes_tbl <-
-        dplyr::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) |>
         dplyr::select(-"index__")
     }
 
@@ -222,7 +222,7 @@ add_balanced_tree <- function(
       edge_data$index__ <- seq_len(n_edges_tree)
 
       edge_data_tbl <-
-        dplyr::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) |>
         dplyr::select(-"index__")
     }
 
@@ -235,7 +235,7 @@ add_balanced_tree <- function(
   if (exists("node_aes_tbl")) {
 
     tree_nodes <-
-      tree_nodes %>%
+      tree_nodes |>
       dplyr::bind_cols(node_aes_tbl)
   }
 
@@ -243,7 +243,7 @@ add_balanced_tree <- function(
   if (exists("node_data_tbl")) {
 
     tree_nodes <-
-      tree_nodes %>%
+      tree_nodes |>
       dplyr::bind_cols(node_data_tbl)
   }
 
@@ -251,7 +251,7 @@ add_balanced_tree <- function(
   if (exists("edge_aes_tbl")) {
 
     tree_edges <-
-      tree_edges %>%
+      tree_edges |>
       dplyr::bind_cols(edge_aes_tbl)
   }
 
@@ -259,7 +259,7 @@ add_balanced_tree <- function(
   if (exists("edge_data_tbl")) {
 
     tree_edges <-
-      tree_edges %>%
+      tree_edges |>
       dplyr::bind_cols(edge_data_tbl)
   }
 

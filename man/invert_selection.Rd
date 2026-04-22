@@ -39,21 +39,21 @@ graph <-
 # Select nodes with ID
 # values `1` and `3`
 graph <-
-  graph \%>\%
+  graph |>
   select_nodes(
     nodes = c(1, 3))
 
 # Verify that a node
 # selection has been made
-graph \%>\% get_selection()
+graph |> get_selection()
 
 # Invert the selection
 graph <-
-  graph \%>\%
+  graph |>
   invert_selection()
 
 # Verify that the node
 # selection has been changed
-graph \%>\% get_selection()
+graph |> get_selection()
 
 }

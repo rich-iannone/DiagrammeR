@@ -54,8 +54,8 @@ attribute to generate a new edge attribute with color values.
 # Create a graph with 5
 # nodes and 4 edges
 graph <-
-  create_graph() \%>\%
-  add_path(n = 5) \%>\%
+  create_graph() |>
+  add_path(n = 5) |>
   set_edge_attrs(
     edge_attr = weight,
     values = c(3.7, 6.3, 9.2, 1.6))
@@ -68,7 +68,7 @@ graph <-
 # part of any bucket, a gray color
 # is assigned by default)
 graph <-
-  graph \%>\%
+  graph |>
   colorize_edge_attrs(
     edge_attr_from = weight,
     edge_attr_to = color,
@@ -79,6 +79,6 @@ graph <-
 # edge attribute with distinct
 # colors (from the RColorBrewer
 # Red-Yellow-Green palette)
-graph \%>\% get_edge_df()
+graph |> get_edge_df()
 
 }
