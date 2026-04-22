@@ -1,4 +1,4 @@
-# DiagrammeR (development version)
+# DiagrammeR 1.0.12
 
 # DiagrammeR 1.0.11
 
