@@ -60,8 +60,8 @@ get_leverage_centrality <- function(graph) {
       seq_along(degree_vals),
       function(x) {
         mean(
-          (degree_vals[x] - degree_vals[igraph::neighbors(ig_graph, degree_vals)]) /
-            (degree_vals[x] + degree_vals[igraph::neighbors(ig_graph, degree_vals)]))
+          (degree_vals[x] - degree_vals[igraph::neighbors(ig_graph, x)]) /
+            (degree_vals[x] + degree_vals[igraph::neighbors(ig_graph, x)]))
       }) |>
     unlist()
 
