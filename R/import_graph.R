@@ -344,6 +344,10 @@ import_graph <- function(
         from = edges_from,
         to = edges_to)
 
+    if (exists("edge_label")) {
+      all_edges$label <- edge_label
+    }
+
     if (exists("edge_value")) {
       all_edges$data_value <- edge_value
     }
