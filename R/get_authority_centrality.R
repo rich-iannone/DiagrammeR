@@ -71,9 +71,11 @@ get_authority_centrality <- function(
 
   # Get the authority centrality values for
   # each of the graph's nodes
-  if (igraph::igraph_version() >= "2.1.0") {
+  if (igraph::igraph_version() >= "2.1.0" &&
+      "hits_scores" %in% getNamespaceExports("igraph")) {
+    hits_scores_fn <- utils::getFromNamespace("hits_scores", "igraph")
     authority_centrality_values <-
-      igraph::hits_scores(
+      hits_scores_fn(
         graph = ig_graph,
         weights = weights_attr)
 
