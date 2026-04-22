@@ -39,33 +39,33 @@ functions:
 
 ``` r
 example_graph <-
-  create_graph() %>%
+  create_graph() |>
   add_pa_graph(
     n = 50, m = 1,
     set_seed = 23
-  ) %>%
+  ) |>
   add_gnp_graph(
     n = 50, p = 1/100,
     set_seed = 23
-  ) %>%
-  join_node_attrs(df = get_betweenness(.)) %>%
-  join_node_attrs(df = get_degree_total(.)) %>%
+  ) |>
+  (\(graph) join_node_attrs(graph, df = get_betweenness(graph)))() |>
+  (\(graph) join_node_attrs(graph, df = get_degree_total(graph)))() |>
   colorize_node_attrs(
     node_attr_from = total_degree,
     node_attr_to = fillcolor,
     palette = "Greens",
     alpha = 90
-  ) %>%
+  ) |>
   rescale_node_attrs(
     node_attr_from = betweenness,
     to_lower_bound = 0.5,
     to_upper_bound = 1.0,
     node_attr_to = height
-  ) %>%
-  select_nodes_by_id(nodes = get_articulation_points(.)) %>%
-  set_node_attrs_ws(node_attr = peripheries, value = 2) %>%
-  set_node_attrs_ws(node_attr = penwidth, value = 3) %>%
-  clear_selection() %>%
+  ) |>
+  (\(graph) select_nodes_by_id(graph, nodes = get_articulation_points(graph)))() |>
+  set_node_attrs_ws(node_attr = peripheries, value = 2) |>
+  set_node_attrs_ws(node_attr = penwidth, value = 3) |>
+  clear_selection() |>
   set_node_attr_to_display(attr = NULL)
 ```
 
@@ -92,9 +92,9 @@ whole process readable and understandable.
 
 ``` r
 a_graph <-
-  create_graph() %>%
-  add_node() %>%
-  add_node() %>%
+  create_graph() |>
+  add_node() |>
+  add_node() |>
   add_edge(from = 1, to = 2)
 ```
 
@@ -103,7 +103,7 @@ a_graph <-
 We can take away an edge by using `delete_edge()`.
 
 ``` r
-b_graph <- a_graph %>% delete_edge(from = 1, to = 2)
+b_graph <- a_graph |> delete_edge(from = 1, to = 2)
 ```
 
 <img src="man/figures/b_graph.png">
@@ -112,7 +112,7 @@ We can add a node to the graph while, at the same time, defining edges
 to or from existing nodes in the graph.
 
 ``` r
-c_graph <- b_graph %>% add_node(from = 1, to = 2)
+c_graph <- b_graph |> add_node(from = 1, to = 2)
 ```
 
 <img src="man/figures/c_graph.png">
@@ -159,7 +159,7 @@ edge were set with a `value` node/edge data attribute.
 
 ``` r
 d_graph <-
-  c_graph %>%
+  c_graph |>
   add_node(
     type = "type_a",
     node_aes = node_aes(
@@ -170,7 +170,7 @@ d_graph <-
     node_data = node_data(
       value = 2.5
     )
-  ) %>%
+  ) |>
   add_edge(
     from = 1, to = 3,
     rel = "interacted_with",
@@ -205,9 +205,9 @@ attribute and modify its `color` node aesthetic attribute:
 
 ``` r
 e_graph <-
-  d_graph %>%
-  select_nodes(conditions = value == 2.5) %>%
-  set_node_attrs_ws(node_attr = fillcolor, value = "orange") %>%
+  d_graph |>
+  select_nodes(conditions = value == 2.5) |>
+  set_node_attrs_ws(node_attr = fillcolor, value = "orange") |>
   clear_selection()
 ```
 
@@ -240,9 +240,9 @@ cycles, and trees to it.
 
 ``` r
 f_graph <-
-  create_graph() %>%
-  add_path(n = 3) %>%
-  add_cycle(n = 4) %>%
+  create_graph() |>
+  add_path(n = 3) |>
+  add_cycle(n = 4) |>
   add_balanced_tree(k = 2, h = 2)
 ```
 
@@ -254,7 +254,7 @@ Here, let’s add a directed GNM graph with 10 nodes and 15 edges (the
 
 ``` r
 g_graph <-
-  create_graph() %>%
+  create_graph() |>
   add_gnm_graph(
     n = 15, m = 20,
     set_seed = 23
@@ -267,7 +267,7 @@ The undirected version of this graph is can be made using:
 
 ``` r
 h_graph <-
-  create_graph(directed = FALSE) %>%
+  create_graph(directed = FALSE) |>
   add_gnm_graph(
     n = 15, m = 20,
     set_seed = 23
@@ -338,7 +338,7 @@ actually happening. First, create the graph object with
 i_graph_1 <- create_graph()
   
 # It will start off as empty
-i_graph_1 %>% is_graph_empty()
+i_graph_1 |> is_graph_empty()
 #> [1] TRUE
 ```
 
@@ -347,7 +347,7 @@ Add nodes from a table with `add_nodes_from_table()`:
 ``` r
 # Add the nodes to the graph
 i_graph_2 <-
-  i_graph_1 %>%
+  i_graph_1 |>
   add_nodes_from_table(
     table = node_list_1,
     label_col = label
@@ -358,7 +358,7 @@ Inspect the graph’s internal node data frame (ndf) with `get_node_df()`:
 
 ``` r
 # View the graph's internal node data frame
-i_graph_2 %>% get_node_df()
+i_graph_2 |> get_node_df()
 #>    id type label id_external
 #> 1   1 <NA>     A           1
 #> 2   2 <NA>     B           2
@@ -391,7 +391,7 @@ Now, connect the graph nodes with edges from another dataset using
 ``` r
 # Add the edges to the graph
 i_graph_3 <-
-  i_graph_2 %>%
+  i_graph_2 |>
   add_edges_from_table(
     table = edge_list_1,
     from_col = from,
@@ -404,7 +404,7 @@ Inspect the graph’s internal edge data frame (edf) with `get_edge_df()`:
 
 ``` r
 # View the edge data frame
-i_graph_3 %>% get_edge_df()
+i_graph_3 |> get_edge_df()
 #>    id from to  rel
 #> 1   1    1  2 <NA>
 #> 2   2    1  3 <NA>
@@ -470,19 +470,19 @@ the `drop_node_attrs()` function.
 
 ``` r
 j_graph <- 
-  create_graph() %>% 
+  create_graph() |> 
   add_nodes_from_table(
     table = node_list_2,
     label_col = label,
     type_col = type
-  ) %>%
+  ) |>
   add_edges_from_table(
     table = edge_list_2,
     from_col = from,
     to_col = to,
     from_to_map = id_external,
     rel_col = rel
-  ) %>%
+  ) |>
   drop_node_attrs(node_attr = id_external)
 ```
 
@@ -518,18 +518,18 @@ Here we go!
 
 ``` r
 k_graph <-
-  j_graph %>%
-  mutate_node_attrs(value_3 = value_1 + value_2) %>%
-  mutate_edge_attrs(value_3 = value_1 + value_2) %>%
-  select_nodes(conditions = value_3 > 10) %>%
-  set_node_attrs_ws(node_attr = fillcolor, value = "forestgreen") %>%
-  invert_selection() %>%
-  set_node_attrs_ws(node_attr = fillcolor, value = "red") %>%
-  select_edges(conditions = value_3 > 10) %>%
-  set_edge_attrs_ws(edge_attr = color, value = "forestgreen") %>%
-  invert_selection() %>%
-  set_edge_attrs_ws(edge_attr = color, value = "red") %>%
-  clear_selection() %>%
+  j_graph |>
+  mutate_node_attrs(value_3 = value_1 + value_2) |>
+  mutate_edge_attrs(value_3 = value_1 + value_2) |>
+  select_nodes(conditions = value_3 > 10) |>
+  set_node_attrs_ws(node_attr = fillcolor, value = "forestgreen") |>
+  invert_selection() |>
+  set_node_attrs_ws(node_attr = fillcolor, value = "red") |>
+  select_edges(conditions = value_3 > 10) |>
+  set_edge_attrs_ws(edge_attr = color, value = "forestgreen") |>
+  invert_selection() |>
+  set_edge_attrs_ws(edge_attr = color, value = "red") |>
+  clear_selection() |>
   set_node_attr_to_display(attr = value_3)
 ```
 
@@ -575,7 +575,7 @@ render_graph(graph, layout = "kk")
 
 <img src="man/figures/graph_example_1.png">
 
-Now that the graph is set up, you can create queries with **magrittr**
+Now that the graph is set up, you can create queries with
 pipelines to get specific answers from the graph.
 
 Get the average age of all the contributors. Select all nodes of type
@@ -584,9 +584,9 @@ attribute, so, get that attribute as a vector with `get_node_attrs_ws()`
 and then calculate the mean with R’s `mean()` function.
 
 ``` r
-graph %>% 
-  select_nodes(conditions = type == "person") %>%
-  get_node_attrs_ws(node_attr = age) %>%
+graph |> 
+  select_nodes(conditions = type == "person") |>
+  get_node_attrs_ws(node_attr = age) |>
   mean()
 #> [1] 33.6
 ```
@@ -598,9 +598,9 @@ get a numeric vector of `commits` values and then get its `sum()` (all
 commits to all projects).
 
 ``` r
-graph %>% 
-  select_edges() %>%
-  get_edge_attrs_ws(edge_attr = commits) %>%
+graph |> 
+  select_edges() |>
+  get_edge_attrs_ws(edge_attr = commits) |>
   sum()
 #> [1] 5182
 ```
@@ -617,10 +617,10 @@ edges. Get that vector of `commits` values with `get_edge_attrs_ws()`
 and then calculate the `sum()`. This is the total number of commits.
 
 ``` r
-graph %>% 
-  select_nodes(conditions = name == "Josh") %>%
-  trav_out_edge() %>%
-  get_edge_attrs_ws(edge_attr = commits) %>%
+graph |> 
+  select_nodes(conditions = name == "Josh") |>
+  trav_out_edge() |>
+  get_edge_attrs_ws(edge_attr = commits) |>
   sum()
 #> [1] 227
 ```
@@ -634,10 +634,10 @@ after `get_edge_attrs_ws()` (a good practice because we may not know the
 vector length, especially in big graphs).
 
 ``` r
-graph %>% 
-  select_nodes(conditions = name == "Louisa") %>%
-  trav_out_edge(conditions = rel == "maintainer") %>%
-  get_edge_attrs_ws(edge_attr = commits) %>%
+graph |> 
+  select_nodes(conditions = name == "Louisa") |>
+  trav_out_edge(conditions = rel == "maintainer") |>
+  get_edge_attrs_ws(edge_attr = commits) |>
   sum()
 #> [1] 236
 ```
@@ -656,11 +656,11 @@ get a named vector, we can use `unname()` to not show us the names of
 each vector component.
 
 ``` r
-graph %>% 
-  select_nodes(conditions = type == "person") %>%
-  select_nodes(conditions = age > 32, set_op = "intersect") %>%
-  get_node_attrs_ws(node_attr = name) %>%
-  sort() %>%
+graph |> 
+  select_nodes(conditions = type == "person") |>
+  select_nodes(conditions = age > 32, set_op = "intersect") |>
+  get_node_attrs_ws(node_attr = name) |>
+  sort() |>
   unname()
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
 ```
@@ -674,10 +674,10 @@ numerical values. Get a vector of `commits` and then get the sum (there
 are `1676` commits).
 
 ``` r
-graph %>% 
-  select_nodes(conditions = project == "supercalc") %>%
-  trav_in_edge() %>%
-  get_edge_attrs_ws(edge_attr = commits) %>%
+graph |> 
+  select_nodes(conditions = project == "supercalc") |>
+  trav_in_edge() |>
+  get_edge_attrs_ws(edge_attr = commits) |>
   sum()
 #> [1] 1676
 ```
@@ -701,14 +701,14 @@ with `clear_selection()`. The graph is now changed, have a look.
 
 ``` r
 graph <- 
-  graph %>%
+  graph |>
   add_edge(
     from = "Kim",
     to = "stringbuildeR",
     rel = "contributor"
-  ) %>%
-  select_last_edges_created() %>%
-  set_edge_attrs_ws(edge_attr = commits, value = 15) %>%
+  ) |>
+  select_last_edges_created() |>
+  set_edge_attrs_ws(edge_attr = commits, value = 15) |>
   clear_selection()
 ```
 
@@ -726,16 +726,16 @@ unconditionally to the people from which the edges originate with
 individuals as a sorted character vector.
 
 ``` r
-graph %>% 
+graph |> 
   select_nodes(
     conditions = 
       project == "randomizer" | 
       project == "supercalc"
-  ) %>%
-  trav_in_edge(conditions = rel == "contributor") %>%
-  trav_out_node() %>%
-  get_node_attrs_ws(node_attr = email) %>%
-  sort() %>%
+  ) |>
+  trav_in_edge(conditions = rel == "contributor") |>
+  trav_out_node() |>
+  get_node_attrs_ws(node_attr = email) |>
+  sort() |>
   unname()
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
 #> [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   
@@ -753,10 +753,10 @@ attribute values from that node selection, we can provide a sorted
 character vector of names.
 
 ``` r
-graph %>%
-  select_nodes_by_degree(expressions = "outdeg > 1") %>%
-  get_node_attrs_ws(node_attr = name) %>%
-  sort() %>%
+graph |>
+  select_nodes_by_degree(expressions = "outdeg > 1") |>
+  get_node_attrs_ws(node_attr = name) |>
+  sort() |>
   unname()
 #> [1] "Josh"   "Kim"    "Louisa"
 ```
