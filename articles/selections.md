@@ -566,8 +566,8 @@ the graph’s internal node data frame…
 # Inspect the new graph's NDF
 graph_2 %>% get_node_df()
 #>   id type label                  timestamp
-#> 1  1    A  <NA> 2026-04-22 00:49:47.030225
-#> 2  2    B  <NA> 2026-04-22 00:49:47.049863
+#> 1  1    A  <NA> 2026-04-22 01:00:42.125134
+#> 2  2    B  <NA>  2026-04-22 01:00:42.14532
 ```
 
 …and let’s inspect the graph’s internal edge data frame.
@@ -575,8 +575,8 @@ graph_2 %>% get_node_df()
 ``` r
 # Inspect the new graph's EDF
 graph_2 %>% get_edge_df()
-#>   id from to rel                 timestamp
-#> 1  1    1  2  AB 2026-04-22 00:49:47.06798
+#>   id from to rel                  timestamp
+#> 1  1    1  2  AB 2026-04-22 01:00:42.163598
 ```
 
 As can be seen, immediately invoking
