@@ -19,7 +19,7 @@ URL: https://rich-iannone.github.io/DiagrammeR/,
     https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Depends:
-    R (>= 3.2)
+    R (>= 4.1)
 Imports:
     dplyr (>= 1.0.7),
     glue (>= 1.5.0),
