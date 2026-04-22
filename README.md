@@ -800,8 +800,7 @@ participating in this project you agree to abide by its terms.
 
 ## 🏛️ Governance
 
-This project is primarily maintained by [Rich
-Iannone](https://twitter.com/riannone). Other authors may occasionally
+This project is primarily maintained by Rich Iannone. Other authors may occasionally
 assist with some of these duties.
 
 <hr>
