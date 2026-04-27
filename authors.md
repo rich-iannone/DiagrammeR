@@ -10,15 +10,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/rich-iannone/DiagrammeR/blob/v1.0.12/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/rich-iannone/DiagrammeR/blob/main/DESCRIPTION)
 
 Iannone R, Roy O (2026). *DiagrammeR: Graph/Network Visualization*. R
-package version 1.0.12, <https://rich-iannone.github.io/DiagrammeR/>.
+package version 1.0.12.9000,
+<https://rich-iannone.github.io/DiagrammeR/>.
 
     @Manual{,
       title = {DiagrammeR: Graph/Network Visualization},
       author = {Richard Iannone and Olivier Roy},
       year = {2026},
-      note = {R package version 1.0.12},
+      note = {R package version 1.0.12.9000},
       url = {https://rich-iannone.github.io/DiagrammeR/},
     }

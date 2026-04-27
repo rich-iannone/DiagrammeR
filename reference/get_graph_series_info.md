@@ -50,7 +50,7 @@ series <-
 # Get information on the graphs in the series
 series |> get_graph_series_info()
 #>   graph           name           date_time  tz nodes edges directed
-#> 1     1 graph_SVUyR63K 2026-04-27 20:39:41 UTC     4     3     TRUE
-#> 2     2 graph_SueySz3B 2026-04-27 20:39:41 UTC     5     5     TRUE
-#> 3     3 graph_HYG7a9jw 2026-04-27 20:39:41 UTC     6     5     TRUE
+#> 1     1 graph_SVUyR63K 2026-04-27 20:43:13 UTC     4     3     TRUE
+#> 2     2 graph_SueySz3B 2026-04-27 20:43:13 UTC     5     5     TRUE
+#> 3     3 graph_HYG7a9jw 2026-04-27 20:43:13 UTC     6     5     TRUE
 ```

@@ -64,6 +64,6 @@ series <-
 series |>
   get_graph_series_info()
 #>   graph           name           date_time  tz nodes edges directed
-#> 1     1 graph_mkRJxXyq 2026-04-27 20:39:53 UTC     4     3     TRUE
-#> 2     2 graph_ySz3BP7j 2026-04-27 20:39:53 UTC     6     5     TRUE
+#> 1     1 graph_mkRJxXyq 2026-04-27 20:43:25 UTC     4     3     TRUE
+#> 2     2 graph_ySz3BP7j 2026-04-27 20:43:25 UTC     6     5     TRUE
 ```
