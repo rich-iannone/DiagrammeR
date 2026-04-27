@@ -48,6 +48,6 @@ class(ig_graph)
 # Get a summary of the igraph
 # graph object
 summary(ig_graph)
-#> IGRAPH f252720 DN-B 36 50 -- 
+#> IGRAPH a7b8de9 DN-B 36 50 -- 
 #> + attr: name (v/c), type (v/c), label (v/c), rel (e/c)
 ```

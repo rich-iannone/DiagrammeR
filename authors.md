@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/rich-iannone/DiagrammeR/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/rich-iannone/DiagrammeR/blob/v1.0.12/DESCRIPTION)
 
 Iannone R, Roy O (2026). *DiagrammeR: Graph/Network Visualization*. R
 package version 1.0.12, <https://rich-iannone.github.io/DiagrammeR/>.
