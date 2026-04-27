@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DiagrammeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.11.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.12</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +40,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="diagrammer-development-version">DiagrammeR (development version)<a class="anchor" aria-label="anchor" href="#diagrammer-development-version"></a></h2>
-</div>
+<h2 class="pkg-version" data-toc-text="1.0.12" id="diagrammer-1012">DiagrammeR 1.0.12<a class="anchor" aria-label="anchor" href="#diagrammer-1012"></a></h2><p class="text-muted">CRAN release: 2026-04-27</p>
+<ul><li><p>The minimum R version is now 4.1 to reflect usage of the native pipe operator <code>|&gt;</code>.</p></li>
+<li><p>Fixed <code><a href="../reference/get_leverage_centrality.html">get_leverage_centrality()</a></code> which erroneously passed the full degree vector instead of a single vertex index to <code><a href="https://r.igraph.org/reference/neighbors.html" class="external-link">igraph::neighbors()</a></code> (<a href="https://github.com/rich-iannone/DiagrammeR/issues/541" class="external-link">#541</a>).</p></li>
+<li><p>Fixed <code><a href="../reference/get_authority_centrality.html">get_authority_centrality()</a></code> and <code>get_eigenvector_centrality()</code> to safely call <code><a href="https://r.igraph.org/reference/hits_scores.html" class="external-link">igraph::hits_scores()</a></code> and handle the igraph v2+ authority/hub API (<a href="https://github.com/rich-iannone/DiagrammeR/issues/542" class="external-link">#542</a>).</p></li>
+<li><p>Fixed GML import to correctly apply edge labels (<a href="https://github.com/rich-iannone/DiagrammeR/issues/543" class="external-link">#543</a>).</p></li>
+<li><p>Fixed <code><a href="../reference/grViz.html">grViz()</a></code> to correctly pass options to <code>Viz()</code> (<a href="https://github.com/cderv" class="external-link">@cderv</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/530" class="external-link">#530</a>).</p></li>
+<li><p>Fixed edge attribute generation logic when edge attributes are empty strings (<a href="https://github.com/rich-iannone/DiagrammeR/issues/521" class="external-link">#521</a>).</p></li>
+<li><p>Migrated all examples and internal code from <code>%&gt;%</code> to the native pipe <code>|&gt;</code> (<a href="https://github.com/rich-iannone/DiagrammeR/issues/540" class="external-link">#540</a>).</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.11" id="diagrammer-1011">DiagrammeR 1.0.11<a class="anchor" aria-label="anchor" href="#diagrammer-1011"></a></h2><p class="text-muted">CRAN release: 2024-02-02</p>
 <ul><li><p>DiagrammeR now has a dependency on viridisLite instead of viridis (<a href="https://github.com/olivroy" class="external-link">@olivroy</a>, <a href="https://github.com/rich-iannone/DiagrammeR/issues/511" class="external-link">#511</a>)</p></li>

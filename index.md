@@ -522,7 +522,7 @@ j_graph
 #>   CACHE / <none>
 #>   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
-#>   GRAPH LOG / <3 actions> -> add_edges_from_table() -> () -> drop_node_attrs()
+#>   GRAPH LOG / <8 actions> -> () -> () -> ()
 ```
 
 Now, because we have node/edge metadata (categorical labels and
@@ -851,8 +851,7 @@ file for more details.
 
 ## 🏛️ Governance
 
-This project is primarily maintained by [Rich
-Iannone](https://twitter.com/riannone). Other authors may occasionally
-assist with some of these duties.
+This project is primarily maintained by Rich Iannone. Other authors may
+occasionally assist with some of these duties.
 
 ------------------------------------------------------------------------

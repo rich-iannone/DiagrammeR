@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">DiagrammeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.11.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.12</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -364,7 +364,7 @@
 <span><span class="co">#&gt;   CACHE / &lt;none&gt;</span></span>
 <span><span class="co">#&gt;   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`</span></span>
 <span><span class="co">#&gt;   GRAPH ACTIONS / &lt;none&gt;</span></span>
-<span><span class="co">#&gt;   GRAPH LOG / &lt;3 actions&gt; -&gt; add_edges_from_table() -&gt; () -&gt; drop_node_attrs()</span></span></code></pre></div>
+<span><span class="co">#&gt;   GRAPH LOG / &lt;8 actions&gt; -&gt; () -&gt; () -&gt; ()</span></span></code></pre></div>
 <p>Now, because we have node/edge metadata (categorical labels and numerical data in <code>value_1</code> &amp; <code>value_2</code> for both nodes and edges), we can do some interesting things with the graph. First, let’s do some mutation with <code><a href="reference/mutate_node_attrs.html">mutate_node_attrs()</a></code> and <code><a href="reference/mutate_edge_attrs.html">mutate_edge_attrs()</a></code> and get the sums of <code>value_1</code> and <code>value_2</code> as <code>value_3</code> (for both the nodes and the edges). Then, let’s color the nodes and edges <code>forestgreen</code> if <code>value_3</code> is greater than <code>10</code> (<code>red</code> otherwise). Finally, let’s display the values of <code>value_3</code> for the nodes when rendering the graph diagram. Here we go!</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">k_graph</span> <span class="op">&lt;-</span></span>
@@ -520,7 +520,7 @@
 <div class="section level2">
 <h2 id="id_️-governance">🏛️ Governance<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F-governance"></a>
 </h2>
-<p>This project is primarily maintained by <a href="https://twitter.com/riannone" class="external-link">Rich Iannone</a>. Other authors may occasionally assist with some of these duties.</p>
+<p>This project is primarily maintained by Rich Iannone. Other authors may occasionally assist with some of these duties.</p>
 <hr>
 </div>
 

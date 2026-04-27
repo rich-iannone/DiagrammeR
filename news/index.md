@@ -1,6 +1,41 @@
 # Changelog
 
-## DiagrammeR (development version)
+## DiagrammeR 1.0.12
+
+CRAN release: 2026-04-27
+
+- The minimum R version is now 4.1 to reflect usage of the native pipe
+  operator `|>`.
+
+- Fixed
+  [`get_leverage_centrality()`](https://rich-iannone.github.io/DiagrammeR/reference/get_leverage_centrality.md)
+  which erroneously passed the full degree vector instead of a single
+  vertex index to
+  [`igraph::neighbors()`](https://r.igraph.org/reference/neighbors.html)
+  ([\#541](https://github.com/rich-iannone/DiagrammeR/issues/541)).
+
+- Fixed
+  [`get_authority_centrality()`](https://rich-iannone.github.io/DiagrammeR/reference/get_authority_centrality.md)
+  and `get_eigenvector_centrality()` to safely call
+  [`igraph::hits_scores()`](https://r.igraph.org/reference/hits_scores.html)
+  and handle the igraph v2+ authority/hub API
+  ([\#542](https://github.com/rich-iannone/DiagrammeR/issues/542)).
+
+- Fixed GML import to correctly apply edge labels
+  ([\#543](https://github.com/rich-iannone/DiagrammeR/issues/543)).
+
+- Fixed
+  [`grViz()`](https://rich-iannone.github.io/DiagrammeR/reference/grViz.md)
+  to correctly pass options to `Viz()`
+  ([@cderv](https://github.com/cderv),
+  [\#530](https://github.com/rich-iannone/DiagrammeR/issues/530)).
+
+- Fixed edge attribute generation logic when edge attributes are empty
+  strings
+  ([\#521](https://github.com/rich-iannone/DiagrammeR/issues/521)).
+
+- Migrated all examples and internal code from `%>%` to the native pipe
+  `|>` ([\#540](https://github.com/rich-iannone/DiagrammeR/issues/540)).
 
 ## DiagrammeR 1.0.11
 
