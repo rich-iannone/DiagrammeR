@@ -4,10 +4,12 @@
 <div align="center">
 
 <hr style="color:transparent" />
+
 <a href='https://rich-iannone.github.io/DiagrammeR/'><img src="man/figures/logo.svg" width="350px"/></a>
 <hr style="color:transparent"/>
 
 <!-- badges: start -->
+
 [![CRAN
 status](https://www.r-pkg.org/badges/version/DiagrammeR)](https://CRAN.R-project.org/package=DiagrammeR)
 [![R-CMD-check](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rich-iannone/DiagrammeR/actions/workflows/R-CMD-check.yaml)
@@ -503,7 +505,7 @@ j_graph
 #>   CACHE / <none>
 #>   GLOBAL ATTRS / 17 are set                 info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
-#>   GRAPH LOG / <3 actions> -> add_edges_from_table() -> () -> drop_node_attrs()
+#>   GRAPH LOG / <8 actions> -> () -> () -> ()
 ```
 
 Now, because we have node/edge metadata (categorical labels and
@@ -575,8 +577,8 @@ render_graph(graph, layout = "kk")
 
 <img src="man/figures/graph_example_1.png">
 
-Now that the graph is set up, you can create queries with
-pipelines to get specific answers from the graph.
+Now that the graph is set up, you can create queries with pipelines to
+get specific answers from the graph.
 
 Get the average age of all the contributors. Select all nodes of type
 `person` (not `project`). Each node of that type has non-`NA` `age`
@@ -798,8 +800,7 @@ participating in this project you agree to abide by its terms.
 
 ## 🏛️ Governance
 
-This project is primarily maintained by [Rich
-Iannone](https://twitter.com/riannone). Other authors may occasionally
+This project is primarily maintained by Rich Iannone. Other authors may occasionally
 assist with some of these duties.
 
 <hr>

@@ -1,4 +1,18 @@
-# DiagrammeR (development version)
+# DiagrammeR 1.0.12
+
+* The minimum R version is now 4.1 to reflect usage of the native pipe operator `|>`.
+
+* Fixed `get_leverage_centrality()` which erroneously passed the full degree vector instead of a single vertex index to `igraph::neighbors()` (#541).
+
+* Fixed `get_authority_centrality()` and `get_eigenvector_centrality()` to safely call `igraph::hits_scores()` and handle the igraph v2+ authority/hub API (#542).
+
+* Fixed GML import to correctly apply edge labels (#543).
+
+* Fixed `grViz()` to correctly pass options to `Viz()` (@cderv, #530).
+
+* Fixed edge attribute generation logic when edge attributes are empty strings (#521).
+
+* Migrated all examples and internal code from `%>%` to the native pipe `|>` (#540).
 
 # DiagrammeR 1.0.11
 

@@ -929,13 +929,15 @@ get_svg_tbl <- function(svg_vec) {
 #' @noRd
 get_attr_tbl <- function(line) {
 
-  line <- gsub("<[a-z]*? ", "", line) |> gsub("\"", "'", .) |> gsub("(/>|>|>.*)", "", .)
+  line <- gsub("<[a-z]*? ", "", line)
+  line <- gsub("\"", "'", line)
+  line <- gsub("(/>|>|>.*)", "", line)
 
   el_attrs <-
     strsplit(line, "' ") |>
-    unlist() |>
-    gsub("'", "", .) |>
-    strsplit("=")
+    unlist()
+  el_attrs <- gsub("'", "", el_attrs)
+  el_attrs <- strsplit(el_attrs, "=")
 
   stats::setNames(
     sapply(el_attrs, `[[`, 2),
