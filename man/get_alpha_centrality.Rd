@@ -9,7 +9,7 @@ get_alpha_centrality(
   alpha = 1,
   exo = 1,
   weights_attr = NULL,
-  tol = 1e-07
+  tol = 0.0000001
 )
 }
 \arguments{
